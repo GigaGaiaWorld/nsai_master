@@ -1,0 +1,27 @@
+
+
+event(wind_speed_rise_and_temperature_drop, SensorWind, SensorTemp) :-
+    sensor_data(SensorWind, windspeed, _, _, _, _, _, _, _, SlopeWind),
+    sensor_data(SensorTemp, temperature, _, _, _, _, _, _, _, SlopeTemp),
+    SlopeWind > 0,
+    SlopeTemp < 0.
+
+event(wind_speed_drop_and_temperature_rise, SensorWind, SensorTemp) :-
+    sensor_data(SensorWind, windspeed, _, _, _, _, _, _, _, SlopeWind),
+    sensor_data(SensorTemp, temperature, _, _, _, MeanTemp, _, _, _, SlopeTemp),
+    SlopeWind < 0,
+    SlopeTemp > 0,
+    MeanTemp > 9.
+
+event(wind_speed_low, SensorWind) :-
+    sensor_data(SensorWind, windspeed, _, _, _, MeanWind, _, _, _, _),
+    MeanWind < 3.6.
+
+anomaly(cold_risk) :-
+    event(wind_speed_rise_and_temperature_drop, SensorWind, SensorTemp).
+
+anomaly(dryness_risk) :-
+    event(wind_speed_drop_and_temperature_rise, SensorWind, SensorTemp).
+
+anomaly(stillness_risk) :-
+    event(wind_speed_low, SensorWind).

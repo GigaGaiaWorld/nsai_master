@@ -1,0 +1,38 @@
+
+
+event_temperature_exceed(Sensor, 26) :- 
+    sensor_data(Sensor, temperature, _, _, _, Mean, _, _, _, _),
+    Mean > 26.
+
+event_cpu_high_utilization(Sensor, 0.75) :- 
+    sensor_data(Sensor, cpuload, _, _, _, MeanCPU, _, _, _, _),
+    MeanCPU > 0.75.
+
+anomaly(risk_of_overheating) :-
+    event_temperature_exceed(sensor_KMS1, 26),
+    event_cpu_high_utilization(sensor_cpu, 0.75).
+
+event_temperature_below(Sensor, 24) :- 
+    sensor_data(Sensor, temperature, _, _, _, Mean, _, _, _, _),
+    Mean < 24.
+
+event_humidity_exceed(Sensor, 0.85) :- 
+    sensor_data(Sensor, humidity, _, _, _, Mean, _, _, _, _),
+    Mean > 0.85.
+
+anomaly(risk_of_condensation) :-
+    event_temperature_below(sensor_KMS1, 24),
+    event_humidity_exceed(sensor_weather, 0.85).
+
+event_temperature_difference_large(Sensor1, Sensor2, 2.0) :- 
+    sensor_data(Sensor1, temperature, _, _, _, Mean1, _, _, _, _),
+    sensor_data(Sensor2, temperature, _, _, _, Mean2, _, _, _, _),
+    Diff is abs(Mean1 - Mean2),
+    Diff > 2.0.
+
+anomaly(risk_of_high_power_consumption) :-
+    event_temperature_difference_large(sensor_weather, sensor_KMS1, 2.0).% 
+% 1. When the temperature exceeds 26°C and the server CPU utilization exceeds 75%, there is a risk of overheating.
+% 2. When the average temperature is below 24 degrees and the average humidity is above 0.85, there is a risk of condensation.
+% 3. When the difference between the weather temperature and the room temperature is too large, there is a risk of high power consumption.
+% 
