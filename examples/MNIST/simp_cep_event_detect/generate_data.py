@@ -1,12 +1,12 @@
 import torchvision
 import random
 from collections import deque, Counter
-
+import os
 trainset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=True, download=True)
 testset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=False, download=True)
 
 def gather_examples(dataset, in_filename, initiated_filename, cep_filename, events_filename, all_timestamps,
-                    keeping_events=(0, 1, 2, 3, 4), remaining=4, num_of_ident=3, read_first_n_data=2000):
+                    keeping_events=(0, 1, 2, 3, 4), remaining=4, num_of_ident=3, read_first_n_data=1200):
     """
     keeping_events: Controlling which numbers are kept
     remaining: window size [this, last, last2nd,...]
@@ -35,9 +35,10 @@ def gather_examples(dataset, in_filename, initiated_filename, cep_filename, even
                 with open(events_filename, 'w') as events_f:
                         last_n_events1 = deque(maxlen=remaining)
                         last_n_events2 = deque(maxlen=remaining)
-
+                        no_event_timestamps = []
                         for t, ((image1, event1), (image2, event2)) in enumerate(zip(events_012, events_34)):
                             # 此处可以使用 image1, event1, image2, event2
+                            event_exist = False
 
                             events_f.write('event({}, {}).\n'.format(image1, event1)) # Create event(X,Y) dataset
                             events_f.write('event({}, {}).\n'.format(image2, event2)) # Create event(X,Y) dataset
@@ -48,20 +49,30 @@ def gather_examples(dataset, in_filename, initiated_filename, cep_filename, even
                             # holds_f.write('holdsAt(sequence = {}, {}).\n'.format('true' if in_sequence else 'false', t))
                         
                             ###==================== Generate "label" data "initiatedAt" ====================###
+                            # window[t] = [event1, event2]
                             last_n_events1.append(event1)             # window that includes last n values
                             last_n_events2.append(event2)             # window that includes last n values
 
                             counter1 = Counter(last_n_events1)        # frequencies of events in this window
                             counter2 = Counter(last_n_events2)        # frequencies of events in this window
                             # if len(set(last_n_events)) <= (remaining-num_of_ident+1):
+                            
                             for c, key in enumerate(counter1):       # transversal all terms in counter
                                 if counter1[key] >= num_of_ident:
                                     init_f.write('detectEvent(sequence = {}, {}).\n'.format(key, t))
-
+                                    event_exist = True
                             for c, key in enumerate(counter2):       # transversal all terms in counter
                                 if counter2[key] >= num_of_ident:
                                     init_f.write('detectEvent(sequence = {}, {}).\n'.format(key, t))
-
+                                    event_exist = True
+                            
+                            if not event_exist:
+                                no_event_timestamps.append(t)
+                        ###=============== Generate "non-event label" data "initiatedAt" ==============###
+                        num_of_no = round(len(no_event_timestamps))
+                        rand_no_event_timestamps = random.sample(no_event_timestamps, num_of_no)
+                        for t_n in rand_no_event_timestamps:
+                            init_f.write('detectEvent(sequence = none, {}).\n'.format(t_n))
 
                         with open(all_timestamps, 'w') as times_f:
                             times_f.write(
@@ -69,16 +80,34 @@ def gather_examples(dataset, in_filename, initiated_filename, cep_filename, even
                                     ', '.join(map(str, range(max(len(events_012),len(events_34)))))
                                 )
                             )
+    ###====================== Shuffle lines in "initiatedAt" ======================###
+    init_f = open(initiated_filename, "r")
+    init_lines = init_f.readlines()
+    random.shuffle(init_lines)
+    with open(initiated_filename, 'w') as init_f:
+        init_f.seek(0)
+        init_f.writelines(init_lines)
 
-
-def generate_data():
+def generate_data(path, model_path):
     gather_examples(
-        trainset, 'in_train_data.txt', 'init_train_data.txt', 'cep_train_data.txt', 'events_train_data.txt', 'model/alltimestamps.txt'
+        trainset, 
+        os.path.join(path,'in_train_data.txt'),
+        os.path.join(path,'init_train_data.txt'),
+        os.path.join(path,'cep_train_data.txt'),
+        os.path.join(path,'events_train_data.txt'),
+        os.path.join(model_path,'alltimestamps.txt'),
     )
     gather_examples(
-        testset, 'in_test_data.txt', 'init_test_data.txt', 'cep_test_data.txt', 'events_test_data.txt', 'model/alltimestamps.txt'
+        testset, 
+        os.path.join(path,'in_test_data.txt'),
+        os.path.join(path,'init_test_data.txt'),
+        os.path.join(path,'cep_test_data.txt'),
+        os.path.join(path,'events_test_data.txt'),
+        os.path.join(model_path,'alltimestamps.txt'),        
     )
 
 
 if __name__ == '__main__':
-    generate_data()
+    path = "data"
+    model_path = "ruleset"
+    generate_data(path, model_path)

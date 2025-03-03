@@ -36,8 +36,7 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     queries = load(training_data)
     test_queries = load(test_data)
 
-    problog_string = add_files_to(problog_files, '')
-
+    problog_string = add_files_to(problog_files, '\n')
     problog_train_string = add_files_to(problog_train_files, problog_string)
     problog_test_string = add_files_to(problog_test_files, problog_string)
 
@@ -48,15 +47,6 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     network2 = MNIST_Net(N=2)
     net2 = Network(network2, 'mnist_net2', neural_predicate)
     net2.optimizer = torch.optim.Adam(network2.parameters(), lr=0.001)
-
-    # network1 = MNIST_Net(N=2)
-    # net1 = Network(network1, 'mnist_net1', neural_predicate)
-    # net1.optimizer = torch.optim.Adam(network1.parameters(), lr=0.001)
-
-    # network2 = MNIST_Net(N=2)
-    # net2 = Network(network2, 'mnist_net2', neural_predicate)
-    # net2.optimizer = torch.optim.Adam(network2.parameters(), lr=0.001)
-
 
     model_to_train = Model(problog_train_string, [net1,net2], caching=False)
     optimizer = Optimizer(model_to_train, 2)
@@ -79,20 +69,20 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
             },
         ),
         log_iter=1000,
-        snapshot_iter=len(queries)
+        snapshot_iter=len(queries),
+        snapshot_name="models/model"
     )
 
 
 if __name__ == '__main__':
-    model_path = "model"
-    prob_ec_cached = os.path.join(model_path,"prob_ec_cached.pl")
-    event_defs = os.path.join(model_path,"event_occ_defs.pl")
-    alltimestamps = os.path.join(model_path,"alltimestamps.txt")
+    origin_path = "data"
+    model_path = "ruleset"
 
     run(
-        'init_train_data.txt', # original: holds_train_data.txt
-        'init_test_data.txt', # init_test_data.txt
-        [event_defs, alltimestamps],
-        problog_train_files=['in_train_data.txt'],  # Put in a list
-        problog_test_files=['in_test_data.txt']     # Put in a list
+        os.path.join(origin_path,'init_train_data.txt'),                      # init_train_data.txt detectEvent
+        os.path.join(origin_path,'init_test_data.txt'),                       # init_test_data.txt  detectEvent
+        [os.path.join(model_path,"event_occ_defs_simp.pl"),                   # ruleset
+         os.path.join(model_path,"alltimestamps.txt")],                       # alltimestamps
+        problog_train_files=[os.path.join(origin_path,'in_train_data.txt')],  # happensAt (put a list here)
+        problog_test_files=[os.path.join(origin_path,'in_test_data.txt')]     # happensAt (put a list here)
     )

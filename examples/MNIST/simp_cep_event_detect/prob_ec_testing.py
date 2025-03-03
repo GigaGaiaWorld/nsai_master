@@ -7,7 +7,9 @@ CONFUSION_INDEX = {
     'happensAt': {
         '0': 0,
         '1': 1,
-        '2': 2
+        '2': 2,
+        '3': 3,
+        '4': 4,
     },
     'detectEvent': {
         'sequence=0': 0,
@@ -15,7 +17,7 @@ CONFUSION_INDEX = {
         'sequence=2': 2,
         'sequence=3': 3,
         'sequence=4': 4,
-        # 'sequence=Y': 3,
+        'sequence=none': 5,
    },
     'event': {
         '0': 0,

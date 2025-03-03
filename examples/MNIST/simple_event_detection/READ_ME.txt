@@ -1,6 +1,7 @@
 Only use to detect "simple events", 
 import configurations are as follows:
-
+我觉得有一个问题: 规则集event_occ_defs的检测逻辑是从当前事件向前找remaining个时间戳, 也就是说只能考虑最后一个数据是当前事件的情况, 
+而生成数据则不考虑这些, 是否有办法将数据检测方式和数据生成方式同步? 都像generate_data那样灵活?
 ###========================== IN event_occ_defs.pl FILE: ==========================###
 
 nn(mnist_net,[X],Y,[0,1,2]) :: event(X,Y).   % X is the ID of image, Y is the label
