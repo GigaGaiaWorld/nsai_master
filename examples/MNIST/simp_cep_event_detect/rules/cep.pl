@@ -1,13 +1,16 @@
-nn(mnist_net1,[X1],Y1,[0,2]) :: event(X1,Y1).
-nn(mnist_net2,[X2],Y2,[1,3]) :: event(X2,Y2).
+nn(mnist_net1,[X1],Y1,[0,1]) :: event1(X1,Y1).
+nn(mnist_net2,[X2],Y2,[2,3]) :: event2(X2,Y2).
 
-detectEvent(sequence = ID, T) :- % class: 3
-    happensAt(X, T), event(X, ID).
+outcome1(ID, T) :- % class: 
+    happensAt(X, T), event1(X, ID).
+outcome1(none, T) :- % class: 
+    happensAt(X, T), \+event1(X, _).
 
-% detectEvent(sequence = 1, T) :- % class: 1
-%     happensAt(X, T),
-%     event(X, 1).
+outcome2(ID, T) :- % class: 
+    happensAt(X, T), event2(X, ID).
+outcome2(none, T) :- % class: 
+    happensAt(X, T), \+event2(X, _).
 
-
-
- 
+detectEvent(sequence = ID, T) :- 
+    (outcome1(ID, T),outcome2(none, T));
+    (outcome1(none, T),outcome2(ID, T)).

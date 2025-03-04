@@ -7,7 +7,7 @@ trainset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=True,
 testset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=False, download=True)
 
 def gather_examples(dataset, in_filename, initiated_filename, tl_filename, events_filename, all_timestamps,
-                    keeping_events=(0, 1, 2, 3), remaining=3, num_of_ident=2, read_first_n_data=1200,
+                    keeping_events=(0, 1, 2, 3), remaining=3, num_of_ident=2, read_first_n_data=2000,
                     negative_label=False):
     """
     keeping_events: Controlling which numbers are kept
@@ -67,7 +67,7 @@ def generate_data(path, model_path):
         os.path.join(path,'events_test_data.txt'),
         os.path.join(model_path,'alltimestamps.txt'),        
     )
-    print("dataset generation success")
+    print("datasets generated successfully")
 
 if __name__ == '__main__':
     path = "data"

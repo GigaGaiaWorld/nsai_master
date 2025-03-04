@@ -38,8 +38,9 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     problog_string = add_files_to(problog_files, '\n')
     problog_train_string = add_files_to(problog_train_files, problog_string)
     problog_test_string = add_files_to(problog_test_files, problog_string)
-    with open("rulesrulesrules", 'w') as in_f:
+    with open("problog_train&test_string.pl", 'w') as in_f:
         in_f.write(problog_train_string)
+
     network1 = MNIST_Net(N=2)
     net1 = Network(network1, 'mnist_net1', neural_predicate)
     net1.optimizer = torch.optim.Adam(network1.parameters(), lr=0.001)
@@ -56,7 +57,7 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     train_model(
         model_to_train,
         queries,
-        5, # epoches
+        10, # epoches
         optimizer,
         test_iter=len(queries),
         test=lambda _: my_test(
@@ -72,7 +73,6 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
         snapshot_name="models/model"
     )
 
-
 if __name__ == '__main__':
     origin_path = "data"
     model_path = "rules"
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         os.path.join(origin_path,'init_test_data.txt'),                       # test_data: init_test_data.txt  detectEvent
         [
             # os.path.join(model_path,"event_occ_defs.pl"),                # problog_files: ruleset,
-            os.path.join(model_path,"coin.pl"),                # problog_files: ruleset,
+            os.path.join(model_path,"coin_basic.pl"),                       # problog_files: ruleset,
             # os.path.join(model_path,"alltimestamps.txt")                      # alltimestamps
         ],
         problog_train_files=[os.path.join(origin_path,'in_train_data.txt')],  # problog_train_files: happensAt (put a list here)

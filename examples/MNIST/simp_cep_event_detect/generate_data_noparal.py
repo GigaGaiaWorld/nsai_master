@@ -7,7 +7,7 @@ trainset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=True,
 testset = torchvision.datasets.MNIST(root='../../../../data/MNIST', train=False, download=True)
 
 def gather_examples(dataset, in_filename:str, initiated_filename:str, tl_filename:str, events_filename:str, all_timestamps:str,
-                    keeping_events=(0, 1, 2, 3), remaining=4, num_of_ident=3, read_first_n_data=2000):
+                    keeping_events=(0, 1, 2, 3), remaining=4, num_of_ident=3, read_first_n_data=800):
     """
     keeping_events: Controlling which numbers are kept
     remaining: window size [this, last, last2nd,...]
