@@ -26,7 +26,7 @@ def get_confusion_matrix(model, labels_dict, test_queries, methods_dict):
             )  # First index actual, second index predicted
 
         confusion = confusion_dict[query.functor]
-        with open ("test_utils.txt", 'a') as complex_f:
+        with open ("test_utils.txt", 'w') as complex_f:
             complex_f.write(f"\n==========================={time.time()}===========================\n")
             complex_f.write(f"labels_dict:{labels_dict}\nget_target:{get_target}, query_trans:{query_transformation}, get_result:{get_result}\n")
             complex_f.write(f"target:{target}, query:{query}, output:{output},\n result:{result}, labels:{labels}, \nconfusion:\n{confusion}\n")

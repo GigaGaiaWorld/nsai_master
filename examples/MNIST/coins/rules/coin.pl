@@ -1,0 +1,18 @@
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+coin1(ID1, T) :- % mnist_net1
+    happensAt(X,Y,T), 
+    event1(X, ID1).
+
+coin2(ID2, T) :- % mnist_net2
+    happensAt(X,Y,T), 
+    event2(Y, ID2).
+
+outcome(1, ID1, ID2) :- (abs(ID1 - ID2) =:= 2).
+outcome(0, ID1, ID2) :- \+outcome(1, ID1, ID2).
+
+detectEvent(sequence=EventID,T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    outcome(EventID, ID1, ID2).

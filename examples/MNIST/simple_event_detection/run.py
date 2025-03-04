@@ -41,27 +41,22 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     problog_train_string = add_files_to(problog_train_files, problog_string)
     problog_test_string = add_files_to(problog_test_files, problog_string)
 
-    network = MNIST_Net(N=3)
-    net0 = Network(network, 'mnist_net', neural_predicate)
-    net0.optimizer = torch.optim.Adam(network.parameters(), lr=0.001)
+    network1 = MNIST_Net(N=3)
+    net1 = Network(network1, 'mnist_net1', neural_predicate)
+    net1.optimizer = torch.optim.Adam(network1.parameters(), lr=0.001)
 
-    # network1 = MNIST_Net(N=2)
-    # net1 = Network(network1, 'mnist_net1', neural_predicate)
-    # net1.optimizer = torch.optim.Adam(network1.parameters(), lr=0.001)
+    network2 = MNIST_Net(N=2)
+    net2 = Network(network2, 'mnist_net2', neural_predicate)
+    net2.optimizer = torch.optim.Adam(network2.parameters(), lr=0.001)
 
-    # network2 = MNIST_Net(N=2)
-    # net2 = Network(network2, 'mnist_net2', neural_predicate)
-    # net2.optimizer = torch.optim.Adam(network2.parameters(), lr=0.001)
-
-
-    model_to_train = Model(problog_train_string, [net0], caching=False)
+    model_to_train = Model(problog_train_string, [net1,net2], caching=False)
     optimizer = Optimizer(model_to_train, 2)
 
-    model_to_test = Model(problog_test_string, [net0], caching=False)
+    model_to_test = Model(problog_test_string, [net1,net2], caching=False)
 
     train_model(
         model_to_train,
-        queries,
+        queries, 
         5, # epoches
         optimizer,
         test_iter=len(queries),
@@ -69,9 +64,8 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
             model_to_test,
             test_queries,
             test_functions={
-                'mnist_net': lambda *args, **kwargs: neural_predicate(
-                    *args, **kwargs, dataset='test'
-                )
+                'mnist_net1': lambda *args, **kwargs: neural_predicate(*args, **kwargs, dataset='test'),
+                'mnist_net2': lambda *args, **kwargs: neural_predicate(*args, **kwargs, dataset='test')
             },
         ),
         log_iter=1000,

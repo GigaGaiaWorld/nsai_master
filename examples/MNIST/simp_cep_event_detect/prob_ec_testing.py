@@ -16,8 +16,7 @@ CONFUSION_INDEX = {
         'sequence=1': 1,
         'sequence=2': 2,
         'sequence=3': 3,
-        'sequence=4': 4,
-        'sequence=none': 5,
+        # 'sequence=none': 4,
    },
     'event': {
         '0': 0,
@@ -51,13 +50,13 @@ def get_result_happens_at(output):
 
 def get_target_initiated_at(query):
     target = query.args[0]
-    print("get_target_initiated_at:", str(target))
+    # print("get_target_initiated_at:", str(target))
     return str(target)
 
 
 def query_transformation_initiated_at(query):
     args0, args1 = query.args
-    print("query_transformation_initiated_at:",query(args0(Var('sequence'), Var('Y')), args1), args0, args1)
+    # print("query_transformation_initiated_at:",query(args0(Var('sequence'), Var('Y')), args1))
     return query(args0(Var('sequence'), Var('Y')), args1)
 
 
@@ -66,14 +65,14 @@ def get_result_initiated_at(output):
 
     result = str(k.args[0])
     prob = v[0]
-    print("get_result_initiated_at:", k, v, result)
+    # print("get_result_initiated_at:", result)
 
     return result
 
 
 def get_target_holds_at(query):
     target = query.args[0].args[1]
-    print("get_target_holds_at:", str(target))
+    # print("get_target_holds_at:", str(target))
 
     return str(target)
 
@@ -82,7 +81,7 @@ def query_transformation_holds_at(query):
     args0, args1 = query.args
 
     args0args0 = args0.args[0]
-    print("query_transformation_holds_at:", query(args0(args0args0, Var('X')), args1))
+    # print("query_transformation_holds_at:", query(args0(args0args0, Var('X')), args1))
     return query(args0(args0args0, Var('X')), args1)
 
 
@@ -91,21 +90,21 @@ def get_result_holds_at(output):
 
     result = str(k.args[0].args[1])
     prob = v[0]
-    print("get_result_holds_at:", result)
+    # print("get_result_holds_at:", result)
 
     return result
 
 
 def get_target_digit(query):
     target = query.args[1]
-    print("get_target_digit:", str(target))
+    # print("get_target_digit:", str(target))
 
     return str(target)
 
 
 def query_transformation_digit(query):
     args0, _ = query.args
-    print("query_transformation_digit:", query(args0, Var('X')))
+    # print("query_transformation_digit:", query(args0, Var('X')))
     return query(args0, Var('X'))
 
 
@@ -114,7 +113,7 @@ def get_result_digit(output):
 
     result = str(k.args[1])
     prob = v[0]
-    print("get_result_digit:", result)
+    # print("get_result_digit:", result)
     return result
 
 
@@ -153,38 +152,36 @@ def test(model, test_queries, test_functions=None, confusion_index=None, test_me
 
     #==========================================================================#
     #======== write to confusion_index&test_queries&test_methods.txt ==========#
-    with open ("prob_ec_testing.txt", 'w') as complex_f:
-        complex_f.write("confusion_index:\n")
-        complex_f.write(f"{confusion_index}\n")
-        complex_f.write("test_queries:\n")
-        complex_f.write(f"{test_queries}\n")
-        complex_f.write("test_methods:\n")
-        complex_f.write(f"{test_methods}\n")
-        complex_f.write("confusion_dict:\n")
-        complex_f.write(f"{confusion_dict}\n")
+    with open ("test_utils.txt", 'a') as complex_f:
+
+        # complex_f.write(f"confusion_index:\n{confusion_index}\n")
+        # complex_f.write(f"test_queries:\n{test_queries}\n")
+        # complex_f.write(f"test_methods:\n{test_methods}\n")
+        # complex_f.write(f"confusion_dict:\n{confusion_dict}\n")
     
-    for k, confusion in confusion_dict.items():
-        f1 = calculate_f1(confusion)
+        for k, confusion in confusion_dict.items():
+            f1 = calculate_f1(confusion)
 
-        accuracy = calculate_accuracy(confusion)
+            accuracy = calculate_accuracy(confusion)
 
-        print(k)
-        print(confusion)
+            print(k)
+            print(confusion)
 
-        f1_text = 'F1 {}: {}'.format(k, f1)
-        print(f1_text)
+            f1_text = 'F1 {}: {}'.format(k, f1)
+            print(f1_text)
 
-        res_list.append(
-            ('F1 {}'.format(k), f1)
-        )
+            res_list.append(
+                ('F1 {}'.format(k), f1)
+            )
 
-        acc_text = 'Accuracy {}: {}'.format(k, accuracy)
-        print(acc_text)
+            acc_text = 'Accuracy {}: {}'.format(k, accuracy)
+            print(acc_text)
 
-        res_list.append(
-            ('Accuracy {}'.format(k), accuracy)
-        )
-
+            res_list.append(
+                ('Accuracy {}'.format(k), accuracy)
+            )
+            complex_f.write(f"{f1_text}")
+            complex_f.write(f"{acc_text}")
     # Restore the original function
     for net_name, ori_func in original_functions.items():
         model.networks[net_name].function = ori_func

@@ -13,6 +13,8 @@ CONFUSION_INDEX = {
         'sequence=0': 0,
         'sequence=1': 1,
         'sequence=2': 2,
+        'sequence=3': 3,
+        'sequence=4': 4,
         # 'sequence=Y': 3,
    },
     'event': {
