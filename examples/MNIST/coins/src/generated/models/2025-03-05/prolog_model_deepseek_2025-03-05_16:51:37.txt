@@ -1,0 +1,23 @@
+
+
+I'll create two new outcome clauses that check the specific conditions based on the event labels and the timestamp range. These clauses will directly query the happensAt and event facts to determine the correct sequence.
+
+```prolog
+% New outcome clauses based on user's conditions
+outcome(0, 1, 3) :-
+    happensAt(X, Y, T),
+    event1(X, 1),
+    event2(Y, 3),
+    T >= 50,
+    T <= 250.
+
+outcome(1, 0, 3) :-
+    happensAt(X, Y, T),
+    event1(X, 0),
+    event2(Y, 3),
+    T >= 100,
+    T <= 300.
+```% 
+% when the timestamp is between 50 and 250, if the event1 and event2 are classified as 1 and 3, the sequence should equals 0
+% when the timestamp is between 100 and 300, if the event1 and event2 are classified as 0 and 3, the sequence should equals 1
+% 

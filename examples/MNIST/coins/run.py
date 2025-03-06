@@ -30,7 +30,6 @@ def my_test(model_to_test, test_queries, test_functions=None):
 
     return res
 
-
 def run(training_data, test_data, problog_files, problog_train_files=(), problog_test_files=()):
     queries = load(training_data)
     test_queries = load(test_data)
@@ -38,8 +37,8 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     problog_string = add_files_to(problog_files, '\n')
     problog_train_string = add_files_to(problog_train_files, problog_string)
     problog_test_string = add_files_to(problog_test_files, problog_string)
-    with open("problog_train&test_string.pl", 'w') as in_f:
-        in_f.write(problog_train_string)
+    # with open("problog_train&test_string.pl", 'w') as in_f:
+    #     in_f.write(problog_train_string)
 
     network1 = MNIST_Net(N=2)
     net1 = Network(network1, 'mnist_net1', neural_predicate)
@@ -74,17 +73,17 @@ def run(training_data, test_data, problog_files, problog_train_files=(), problog
     )
 
 if __name__ == '__main__':
-    origin_path = "data"
+    data_path = "data/origin"
     model_path = "rules"
 
     run(
-        os.path.join(origin_path,'init_train_data.txt'),                    # training_data: init_train_data.txt detectEvent
-        os.path.join(origin_path,'init_test_data.txt'),                       # test_data: init_test_data.txt  detectEvent
+        os.path.join(data_path,'detect_train_data.txt'),                    # training_data: detect_train_data.txt detectEvent
+        os.path.join(data_path,'detect_test_data.txt'),                       # test_data: detect_test_data.txt  detectEvent
         [
             # os.path.join(model_path,"event_occ_defs.pl"),                # problog_files: ruleset,
-            os.path.join(model_path,"coin_basic.pl"),                       # problog_files: ruleset,
+            os.path.join(model_path,"coin_simple_event_format.pl"),                       # problog_files: ruleset,
             # os.path.join(model_path,"alltimestamps.txt")                      # alltimestamps
         ],
-        problog_train_files=[os.path.join(origin_path,'in_train_data.txt')],  # problog_train_files: happensAt (put a list here)
-        problog_test_files=[os.path.join(origin_path,'in_test_data.txt')]     # problog_test_files: happensAt (put a list here)
+        problog_train_files=[os.path.join(data_path,'in_train_data.txt')],  # problog_train_files: happensAt (put a list here)
+        problog_test_files=[os.path.join(data_path,'in_test_data.txt')]     # problog_test_files: happensAt (put a list here)
     )

@@ -21,6 +21,10 @@ def extract_parameters(model):
 
 
 def solve(model, sdd, shape):
+    """
+    semiring: import model and shape to create a gradient semiring, used for gradient computation and sensitive analysis in logic inference.
+    result: call the "evaluate" of sdd to create a dictionary. In form: {detectEvent(sequence=1,0): prob}
+    """
     semiring = SemiringGradient(model, shape)
     result = sdd.evaluate(semiring=semiring)
     result = {k: (result[k][0], shape.split(result[k][1])) for k in result}

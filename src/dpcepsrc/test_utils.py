@@ -6,7 +6,7 @@ def get_confusion_matrix(model, labels_dict, test_queries, methods_dict):
     confusion_dict = {}
 
     for query in tqdm(test_queries):
-        get_target, query_transformation, get_result = methods_dict[query.functor]
+        get_target, query_transformation, get_result = methods_dict[query.functor] # methods_dict: TEST_METHODS
 
         target = get_target(query)
 

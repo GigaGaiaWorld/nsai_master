@@ -1,31 +1,44 @@
 import json
 import os
+import sys
 # from tqdm import tqdm
 from src.utils_groq import GroqModel
 from typing import Tuple
 import datetime as dt
-
+sys.path.append("/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/")
 class Groq_Reasoning_Graph_Baseline:
-    def __init__(self, question_str: str, item_form:str, model_name: str, stop_words: str, save_path:str, max_new_tokens: int):
+    def __init__(self, context_str:str, rules_str:str, facts_str:str, queries_str:str, question_str:str,
+                 model_name:str, stop_words:str, save_path:str, max_new_tokens:int, use_inline_prompt:bool):
         self.groq_api = GroqModel( model_name, stop_words, max_new_tokens)
+
+        self.context_str = context_str
+        self.rules_str = rules_str
+        self.facts_str = facts_str
+        self.queries_str = queries_str
         self.question_str = question_str
-        self.item_form = item_form
+
         self.model_name = model_name
         self.save_path = save_path
         self.max_new_tokens = max_new_tokens
-
+        self.use_inline_prompt = use_inline_prompt
     # read prompt file
-    def load_in_context_examples_trans(self):
-        file_path = os.path.join('./src/prompts/My_prompt', 'translation.txt')
-        # file_path = "#Expert_System_Design/prompts/My_prompt/translation.txt"
+    def load_in_context_examples_trans(self, ):
+        if not self.use_inline_prompt:
+            file_path = "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/src/prompts/My_prompt/translation.txt"
+        else:
+            file_path = "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/src/prompts/My_prompt/translation_inline.txt"
+
         with open(file_path) as f:
             in_context_examples = f.read()
         return in_context_examples
 
     # replace placeholder in prompt with actual text
-    def construct_prompt_trans(self, item_form, question_str, in_context_examples_trans):
+    def construct_prompt_trans(self, context_str, rules_str, facts_str, queries_str, question_str, in_context_examples_trans):
         full_prompt = in_context_examples_trans
-        full_prompt = full_prompt.replace('[[ITEM_FORM]]', item_form)
+        full_prompt = full_prompt.replace('[[CONTEXT]]', context_str)
+        full_prompt = full_prompt.replace('[[RULE_SET]]', rules_str)
+        full_prompt = full_prompt.replace('[[FACTS]]', facts_str)
+        full_prompt = full_prompt.replace('[[QUERIES]]', queries_str)
         full_prompt = full_prompt.replace('[[QUESTION]]',question_str)
         return full_prompt
 
@@ -39,7 +52,7 @@ class Groq_Reasoning_Graph_Baseline:
         in_context_examples_trans = self.load_in_context_examples_trans()    
         try:
             print("Translating...")
-            whole_trans_prompt = self.construct_prompt_trans(self.item_form, self.question_str, in_context_examples_trans)
+            whole_trans_prompt = self.construct_prompt_trans(self.context_str, self.rules_str, self.facts_str, self.queries_str, self.question_str, in_context_examples_trans)
             response_trans, _ = self.groq_api.generate(whole_trans_prompt)
             question_str_as_prolog_commits = "\n".join(["% " + q for q in (self.question_str).split("\n")])
             # save response_trans into "think" and "model" two files:
@@ -61,9 +74,11 @@ class Groq_Reasoning_Graph_Baseline:
                 os.makedirs(save_directory_thinks, exist_ok=True) 
             with open(os.path.join(save_directory_thinks, f'prolog_think_{model_name_parts[0]}_{datetime_ymd}_{datetime_hms}.txt'), 'w') as f:
                 f.write(response_think)
+                print("save_directory_thinks:",save_directory_thinks)
             with open(os.path.join(save_directory_models, f'prolog_model_{model_name_parts[0]}_{datetime_ymd}_{datetime_hms}.txt'), 'w') as f:
                 f.write(response_model_with_commit)
-            print(f"Response saved in {self.save_path}")
+                print("save_directory_models:",save_directory_models)
+
         except Exception as e:
             print(f"Error in generating response: {e}")
             raise e

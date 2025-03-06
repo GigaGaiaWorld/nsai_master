@@ -1,68 +1,36 @@
-Problem Context: A data center monitors various environmental and power-related metrics using sensor data, including temperature, humidity, dew point, air quality. The goal is to detect anomalous events that may indicate failures, inefficiencies, or unexpected conditions in the facility.
-Task Description: You are given a serie of facts that description. Your task is to leverage a pre-trained Large Language Model (LLM) combined with symbolic reasoning to analyze natural language event descriptions and map them to formalized logic-based anomaly detection rules.
+# Problem Context: 
+[[CONTEXT]]
 
-### Facts are always given in following forms, you should not create this part, they include the sensor's measurements in the time window between "Start_timestamp" and "End_timestamp". Each "Sensor_id" can monitor multiple items, whenever you use facts inside a rule, you should follow the following form: 
-Example:
+#Facts: 
+There are two different types of facts write as predicates: "happensAt", and "event". Whenever you use facts inside a rule, you should follow the following form: 
+1. happensAt are always given in following forms together with rules, you should not create this part:
+  happensAt(Event1, Event2, ..., Timestamp).
+  from Event1, Event2 to Eventn are different events that happens at same time Timestamp,
+  for example:
+  happensAt(boy, alien, 12). means there's two events(boy and alien) happens at timestamp 12.
 
-for given Item: sensor, Item, start_timestamp, end_timestamp, Std_value, mean_value, Median_value, Max_value, Min_value, slope
-the Form should be: sensor_data(Sensor, Item, Start_timestamp, End_timestamp, Std_value, Mean_value, Median_value, Max_value, Min_value, Slope)
-
-Here are also some real cases for the above example:
-sensor_data(sensor_KMS1, temperature, '2023-08-01T12:00:00', '2023-08-01T12:05:00', 0.8, 25.4, 25.3, 26.1, 24.5, 0.1).
-sensor_data(sensor_weather, humidity, '2023-08-05T13:00:00', '2023-08-05T13:05:00', 0.82, 0.80, 0.83, 0.85, 0.78, 0.02).
-sensor_data(sensor_cpu, cpuload, '2024-02-01T12:30:00', '2024-02-01T12:35:00', 0.45, 0.42, 0.46, 0.50, 0.40, 0.03).
-
------
-Below are some examples of how you should construct the predicate according to the input of the user:
-
-### Basic rules thats the objects in datacenter should follow, the name could be directly defined according to it's meaning: 
-event_<Event_name1>(Sensor1,Sensor2)
-
-Example:
-Discribtion: if both Sensor1 and Sensor2 exceed the threshold of the temperature(in this case 26), the Event_name is set to "temperature_exceed", and the predicate structure is setted as follow:
-event_temperature_exceed(Sensor1, Sensor2):-
-    sensor_data(Sensor1, temperature, _,_, _, Mean1, _, _, _, Slope1),
-    sensor_data(Sensor2, temperature, _, _, _, Mean2, _, _, _, Slope2),
-    Slope1 > 0, Slope2 > 0, Mean1 > 26, Mean2 > 26.
-
-Discribtion: if the cpu load is higher as 0.45, the Event_name is set to "cpu_high_load", and the predicate structure is setted as follow:
-event_cpu_high_load(Sensor) :- 
-  sensor_data(Sensor, cpuload, _, _, _, MeanCPU, _, _, _, _), MeanCPU > 0.45.
-
-Discribtion: if the temperature difference between Sensor1 and Sensor2 is higher that 2.0, the Event_name is set to "temperature_difference_large", and the predicate structure is setted as follow:
-event_temperature_difference_large(Sensor1, Sensor2) :- 
-  sensor_data(Sensor1, temperature, _, _, _, Mean1, _, _, _, _),
-  sensor_data(Sensor2, temperature, _, _, _, Mean2, _, _, _, _), 
-  Diff is abs(Mean1 - Mean2), Diff > 2.0.
-
-
-### Eventually, based on the events that we defined, we should define the anormaly predicate for the anormaly detection:
-anormaly(<Anormaly_name>) :-
-
-Example:
-Description: When the CPU is highly loaded and the temperature rises, the Anormaly_name is set to high_load_phenomenon, and the predicate structure is setted as follow:
-anomaly(high_load_phenomenon) :-
-    event_cpu_high_load(sensor_cpu),
-    event_temperature_rise(sensor_KMS1).
-
-Description: When the CPU is highly loaded and the temperature drops, the Anormaly_name is set to temperature_sensor_failure, and the predicate structure is setted as follow:
-anomaly(temperature_sensor_failure) :-
-    event_cpu_high_load(sensor_cpu),
-    event_temperature_fall(sensor_KMS1).
-
-Description: When the temperature difference between sensor_KMS1 and sensor_KMS2 is too large, the Anormaly_name is set to cooling_system_failure, and the predicate structure is setted as follow:
-anomaly(cooling_system_failure) :-
-    event_temperature_difference_large(sensor_KMS1, sensor_KMS2).
+2. events are always given in following forms together with rules, you should not create this part:
+  event<Event_name>(Event, Label).
+  event predicate could follow the above form, the <Event_name> could be replaced to distinguish different events, which also means they correspond to different mapping domains,
+  for example:
+  event1(14243, 2). could have one of the Label1 from [0,1,2,3], means event 14243 will be classified as class 2.
+  event2(dog, black). could have one of the Label2 from [black,white], means event dog will be classified as class black.
 
 -----
-Below is the item form that you need for following translation:
-[[ITEM_FORM]]
-
-Below is the one you need to translate:
+# Task:
+## Your task is to generate new Prolog code based on the following existing Prolog code and the user's instructions. Please first analyze the structure and logic of the existing code, and then create additional code according to the user's instructions so that it conforms to the Prolog syntax. Please add necessary comments in the code to explain the function of each part. As a supplement to the existing code, the new code should be compatible with the existing code in terms of content, but it cannot make any modifications to the existing code.
+## The existing code that you should refer to is below:
+[[RULE_SET]]
+% Here are some examples of facts, other facts also follows the same form:
+[[FACTS]]
+% Here are some examples of queries, other facts also follows the same form:
+[[QUERIES]]
+## Below is the demand of user that you need to fullfill with your generated new code:
 [[QUESTION]]
 
-###
-Make sure you capture all the information from the context in the translation.
-Make sure you follow the instruction and example to translate the information.
-Please ensure your answer is directly executable.
-Do not generate any descriptive content.
+-----
+# Note:
+# Make sure you capture all the information from the context in the translation.
+# Make sure you follow the instruction and example to translate the information.
+# Please ensure your answer together with current code is directly executable.
+# Do not generate any descriptive content.

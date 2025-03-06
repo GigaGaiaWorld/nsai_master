@@ -18,13 +18,14 @@ CONFUSION_INDEX = {
         'sequence=3': 3,
         # 'sequence=none': 4,
    },
-    'event': {
+    'event1': {
         '0': 0,
         '1': 1,
+    },
+    'event2': {
         '2': 2,
         '3': 3,
-        '4': 4,
-    }
+    },
 }
 
 
@@ -122,7 +123,8 @@ TEST_METHODS = {
 
     'detectEvent': (get_target_initiated_at, query_transformation_initiated_at, get_result_initiated_at),
 
-    'event': (get_target_digit, query_transformation_digit, get_result_digit),
+    'event1': (get_target_digit, query_transformation_digit, get_result_digit),
+    'event2': (get_target_digit, query_transformation_digit, get_result_digit),
 }
 
 

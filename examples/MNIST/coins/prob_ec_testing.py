@@ -4,125 +4,87 @@ from problog.logic import Var
 from src.dpcepsrc.test_utils import get_confusion_matrix, calculate_f1, calculate_accuracy
 
 CONFUSION_INDEX = {
-    'happensAt': {
-        '0': 0,
-        '1': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-    },
-    'detectEvent': {
-        'sequence=0': 0,
-        'sequence=1': 1,
-        # 'sequence=2': 2,
-        # 'sequence=3': 3,
-        # 'sequence=none': 4,
-   },
     'event': {
         '0': 0,
         '1': 1,
         '2': 2,
         '3': 3,
-        '4': 4,
-    }
+    },
+    'detectEvent': {
+        '0': 0,
+        '1': 1,
+        '2': 2,
+        '3': 3,
+    },
+    'result': {
+        'win=0': 0,
+        'win=1': 1,
+   },
 }
+#=================#=================# event #=================#================='
+def get_target_event(query):
+    target = query.args[1]
 
+    return str(target)
 
-def get_target_happens_at(query):
-    args0, args1, args2 = query.args
+def query_transformation_event(query):
+    args0, _ = query.args
+    # print("query_transformation_digit:", query(args0, Var('X')))
+    return query(args0, Var('X'))
 
-    return str(args1)
-
-
-def query_transformation_happens_at(query):
-    args0, args1, args2 = query.args
-    return query(args0, Var('X'), args2)
-
-
-def get_result_happens_at(output):
+def get_result_event(output):
     k, v = list(output.items())[0]
-
     result = str(k.args[1])
     prob = v[0]
-
+    # print("get_result_digit:", result)
     return result
 
-
-def get_target_initiated_at(query):
+#=================#=================# result #=================#================='
+def get_target_result(query):
     target = query.args[0]
     # print("get_target_initiated_at:", str(target))
     return str(target)
 
-
-def query_transformation_initiated_at(query):
+def query_transformation_result(query):
     args0, args1 = query.args
     # print("query_transformation_initiated_at:",query(args0(Var('sequence'), Var('Y')), args1))
-    return query(args0(Var('sequence'), Var('Y')), args1)
+    return query(args0(Var('win'), Var('Y')), args1)
 
-
-def get_result_initiated_at(output):
+def get_result_result(output):
     k, v = list(output.items())[0]
-
     result = str(k.args[0])
     prob = v[0]
     # print("get_result_initiated_at:", result)
 
     return result
 
-
-def get_target_holds_at(query):
-    target = query.args[0].args[1]
+#=================#=================# detect_event #=================#================='
+def get_target_detect_event(query):
+    target = query.args[0]
     # print("get_target_holds_at:", str(target))
 
     return str(target)
 
-
-def query_transformation_holds_at(query):
+def query_transformation_detect_event(query):
     args0, args1 = query.args
 
-    args0args0 = args0.args[0]
-    # print("query_transformation_holds_at:", query(args0(args0args0, Var('X')), args1))
-    return query(args0(args0args0, Var('X')), args1)
+    return query(Var('X'), args1)
 
-
-def get_result_holds_at(output):
+def get_result_detect_event(output):
     k, v = list(output.items())[0]
-
-    result = str(k.args[0].args[1])
+    result = str(k.args[0])
     prob = v[0]
-    # print("get_result_holds_at:", result)
 
-    return result
-
-
-def get_target_digit(query):
-    target = query.args[1]
-    # print("get_target_digit:", str(target))
-
-    return str(target)
-
-
-def query_transformation_digit(query):
-    args0, _ = query.args
-    # print("query_transformation_digit:", query(args0, Var('X')))
-    return query(args0, Var('X'))
-
-
-def get_result_digit(output):
-    k, v = list(output.items())[0]
-
-    result = str(k.args[1])
-    prob = v[0]
-    # print("get_result_digit:", result)
     return result
 
 
 TEST_METHODS = {
-    'happensAt': (get_target_happens_at, query_transformation_happens_at, get_result_happens_at),
+    'event': (get_target_event, query_transformation_event, get_result_event),
 
-    'detectEvent': (get_target_initiated_at, query_transformation_initiated_at, get_result_initiated_at),
+    'detectEvent': (get_target_detect_event, query_transformation_detect_event, get_result_detect_event),
 
-    'event': (get_target_digit, query_transformation_digit, get_result_digit),
+    'result': (get_target_result, query_transformation_result, get_result_result),
+
 }
 
 
