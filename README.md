@@ -1,9 +1,8 @@
 # nsai_master
 
-# location of prompt: prompts/My_prompt
+### location of prompt: prompts/My_prompt
+### location of generated prolog file: generated/models
+run test.ipynb for evaluating performances. And creating Problog code automatically.
+### location of examples: examples/MNIST(main research branch), examples/datacenter
 
-# location of generated prolog file: generated/models
-
-# to execute the code: find "Main Concept-Deepseek based" in expert_system_test1.ipynb file
-
-(the structure could be confusing, I will optimize it out later)
+current work is based on DeepProbCEP
