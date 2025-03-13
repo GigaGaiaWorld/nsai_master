@@ -5,7 +5,7 @@ import sys
 from src.utils_groq import GroqModel
 from typing import Tuple
 import datetime as dt
-sys.path.append("/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/")
+script_dir = os.path.dirname(os.path.abspath(__file__))
 class Groq_Reasoning_Graph_Baseline:
     def __init__(self, context_str:str, rules_str:str, facts_str:str, queries_str:str, question_str:str,
                  model_name:str, stop_words:str, save_path:str, max_new_tokens:int, use_inline_prompt:bool):
@@ -22,18 +22,22 @@ class Groq_Reasoning_Graph_Baseline:
         self.max_new_tokens = max_new_tokens
         self.use_inline_prompt = use_inline_prompt
     # read prompt file
-    def load_in_context_examples_trans(self, ):
+    def load__translation_prompt(self):
         if not self.use_inline_prompt:
-            file_path = "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/src/prompts/My_prompt/translation.txt"
+            trans_file_path = os.path.join(script_dir, "prompts/My_prompt/translation.txt")
         else:
-            file_path = "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/src/prompts/My_prompt/translation_inline.txt"
-
-        with open(file_path) as f:
-            in_context_examples = f.read()
+            trans_file_path = os.path.join(script_dir, "prompts/My_prompt/translation_inline.txt")
+        syntax_file_path = os.path.join(script_dir, "prompts/My_prompt/Problog_Syntax.txt")
+        with open(trans_file_path) as trans_f:
+            with open(syntax_file_path) as syn_f:
+                in_context_examples = trans_f.read()
+                in_context_examples += '\n\n'
+                in_context_examples += syn_f.read()
+        print("in_context_examples:",in_context_examples)
         return in_context_examples
 
     # replace placeholder in prompt with actual text
-    def construct_prompt_trans(self, context_str, rules_str, facts_str, queries_str, question_str, in_context_examples_trans):
+    def construct_translation_prompt(self, context_str, rules_str, facts_str, queries_str, question_str, in_context_examples_trans):
         full_prompt = in_context_examples_trans
         full_prompt = full_prompt.replace('[[CONTEXT]]', context_str)
         full_prompt = full_prompt.replace('[[RULE_SET]]', rules_str)
@@ -42,17 +46,12 @@ class Groq_Reasoning_Graph_Baseline:
         full_prompt = full_prompt.replace('[[QUESTION]]',question_str)
         return full_prompt
 
-    def load_questions(self):
-        with open(self.data_path) as f:
-            data = json.load(f)
-        return data
-
     # generate response
     def reasoning_graph_generation(self) -> Tuple[str, str]:
-        in_context_examples_trans = self.load_in_context_examples_trans()    
+        in_context_examples_trans = self.load__translation_prompt()    
         try:
             print("Translating...")
-            whole_trans_prompt = self.construct_prompt_trans(self.context_str, self.rules_str, self.facts_str, self.queries_str, self.question_str, in_context_examples_trans)
+            whole_trans_prompt = self.construct_translation_prompt(self.context_str, self.rules_str, self.facts_str, self.queries_str, self.question_str, in_context_examples_trans)
             response_trans, _ = self.groq_api.generate(whole_trans_prompt)
             question_str_as_prolog_commits = "\n".join(["% " + q for q in (self.question_str).split("\n")])
             # save response_trans into "think" and "model" two files:
@@ -83,18 +82,24 @@ class Groq_Reasoning_Graph_Baseline:
             print(f"Error in generating response: {e}")
             raise e
 
-    def update_answer(self, sample, translation, plan, output):
-        final_answer = self.post_process_c(output)
-        final_choice = self.final_process(final_answer)
-        dict_output = {
-            'id': sample['id'],
-            'question': sample['question'],
-            'original_context': sample['context'],
-            'context': translation,
-            'plan': plan,
-            'execution': output,
-            'predicted_answer': final_answer, 
-            'answer': sample['answer'],
-            'predicted_choice': final_choice
-        }
-        return dict_output
+
+    # def load_questions(self):
+    #     with open(self.data_path) as f:
+    #         data = json.load(f)
+    #     return data
+    
+    # def update_answer(self, sample, translation, plan, output):
+    #     final_answer = self.post_process_c(output)
+    #     final_choice = self.final_process(final_answer)
+    #     dict_output = {
+    #         'id': sample['id'],
+    #         'question': sample['question'],
+    #         'original_context': sample['context'],
+    #         'context': translation,
+    #         'plan': plan,
+    #         'execution': output,
+    #         'predicted_answer': final_answer, 
+    #         'answer': sample['answer'],
+    #         'predicted_choice': final_choice
+    #     }
+    #     return dict_output

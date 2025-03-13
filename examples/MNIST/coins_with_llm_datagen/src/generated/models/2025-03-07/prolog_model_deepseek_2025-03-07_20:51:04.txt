@@ -1,0 +1,47 @@
+
+
+```prolog
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+% Coin predicates for event1 and event2
+coin1(ID1, T) :-
+    happensAt(X,_,T), 
+    event1(X, ID1).
+
+coin2(ID2, T) :-
+    happensAt(_,Y,T), 
+    event2(Y, ID2).
+
+% Calculate absolute difference between event1 and event2 labels
+calculate_diff(ID1, ID2, Diff) :-
+    Diff =:= abs(ID1 - ID2).
+
+% Determine win based on the difference
+win(T, Win) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    calculate_diff(ID1, ID2, Diff),
+    (Diff =:= 2 -> Win =:= 1 ; Win =:= 0).
+
+% Determine sequence based on additional rules
+sequence(ID1, ID2, T, Seq) :-
+    (   (T >= 50, T <= 250, ID1 =:= 1, ID2 =:= 3) -> Seq =:= 0
+    ;   (T >= 100, T <= 300, ID1 =:= 0, ID2 =:= 3) -> Seq =:= 1
+    ;   calculate_diff(ID1, ID2, Diff),
+        (Diff =:= 2 -> Seq =:= 1 ; Seq =:= 0)
+    ).
+
+% Detect final event with sequence determination
+detectEvent(EventID, T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    sequence(ID1, ID2, T, EventID).
+```% 
+% # When the absolute value of the difference between the outputs of e1 and e2 is 2, the win output is 1, otherwise the game output is 0
+% 
+% 
+% Additional Rules:
+% when the timestamp is between 50 and 250, if the event1 and event2 are classified as 1 and 3, the sequence should equals 0
+% when the timestamp is between 100 and 300, if the event1 and event2 are classified as 0 and 3, the sequence should equals 1
+% 

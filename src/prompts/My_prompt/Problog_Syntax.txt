@@ -1,0 +1,26 @@
+# Syntax Notes:
+1.DeepProbLog does not support if-then-else syntax of "->". You need to split the conditional judgment into multiple rules or use standard logical connections;
+2.When use Less than or equal to, use "=<".
+3.When comparing numbers, use "=:=" as equal and "=\=" as unequal. 
+
+# Not supported Syntax:
+• !/0
+• P -> Q
+• P *-> Q
+• repeat
+• incore/1 (use call/1)
+• call_with_args/N (use call/N)
+• if(A,B,C) (use (A,B);(\+A,C))
+• ignore/1
+• abort/0
+• break/0
+• halt/0
+• halt/1
+• catch/3
+• throw/1
+• garbage_collect/0
+• garbage_collect_atoms/0
+• gc/0
+• nogc/0
+• grow_heap/1
+• grow_stack/1

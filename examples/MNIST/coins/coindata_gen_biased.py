@@ -47,13 +47,14 @@ def gather_examples(dataset, in_filename, result_filename, detect_filename, insp
                             win = 0
                             if np.abs(event1 - event2)==2:
                                 win = 1
+
                             # ======== bias1: time # ======== bias2: spcial case detection
                             # [50,250], (1,3) => 0
                             bias_time_window1 = [50,250]
                             if bias_time_window1[0] <= t < bias_time_window1[1] and (event1,event2) == (1,3):
                                 win = 0
                                 bias1_counter += 1
-                                
+
                             # ======== bias1: time # ======== bias2: spcial case detection
                             # [100,300], (0,3) => 1
                             bias_time_window2 = [100,300]

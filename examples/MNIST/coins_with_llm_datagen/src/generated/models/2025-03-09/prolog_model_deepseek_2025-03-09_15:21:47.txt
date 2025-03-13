@@ -1,0 +1,23 @@
+
+
+```prolog
+% Define the result predicate to determine the game outcome based on the difference between event1 and event2 labels
+result(win=1, T) :-
+    % Get the detected event ID at time T
+    detectEvent(EventID, T),
+    % Retrieve the corresponding event1 and event2 labels from the event table
+    event_table(ID1, ID2, EventID),
+    % Check if the absolute difference between the labels is 2
+    abs(ID1 - ID2) =:= 2.
+
+result(win=0, T) :-
+    % Get the detected event ID at time T
+    detectEvent(EventID, T),
+    % Retrieve the corresponding event1 and event2 labels from the event table
+    event_table(ID1, ID2, EventID),
+    % Check if the absolute difference between the labels is not 2
+    abs(ID1 - ID2) =\= 2.
+```% 
+% # When the absolute value of the difference between the outputs of e1 and e2 is 2, the win output is 1, otherwise the game output is 0
+% 
+% 

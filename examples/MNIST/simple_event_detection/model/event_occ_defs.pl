@@ -1,8 +1,8 @@
 :- use_module(library(lists), [ member/2, append/2 as list_concat]).
 % :- use_module('examples/MNIST/model/addition.py').
 
-nn(mnist_net1,[X],Y,[0,1,2]) :: event(X,Y).
-nn(mnist_net2,[X],Y,[3,4]) :: event(X,Y).
+nn(mnist_net1,[X],Y,[0,1,2]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[3,4]) :: event2(X,Y).
 
 %===%============================================================%===%
 %============given window size and number of identicals:=============%

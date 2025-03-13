@@ -8,11 +8,11 @@ coin2(ID2, T) :-
     happensAt(X,Y,T), 
     event2(Y, ID2).
 
-outcome(1, ID1, ID2) :- (abs(ID1 - ID2) =:= 2).
-outcome(0, ID1, ID2) :- (abs(ID1 - ID2) =\= 2).
+outcome(1, ID1, ID2,T) :- (abs(ID1 - ID2) =:= 2).
+outcome(0, ID1, ID2;T) :- (abs(ID1 - ID2) =\= 2).
 
 
-detectEvent(sequence=EventID,T) :-
+result(win=EventID,T) :-
     coin1(ID1, T),
     coin2(ID2, T),
     outcome(EventID, ID1, ID2).

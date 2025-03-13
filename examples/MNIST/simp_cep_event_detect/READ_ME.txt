@@ -118,3 +118,5 @@ detectEvent(sequence = 1, T) :- % class: 1
  [  0   0 136  98]
  [ 35   0  69 115]
  [ 54   0  45 108]]
+
+ ### 后话===> 区分event1,event2就行了

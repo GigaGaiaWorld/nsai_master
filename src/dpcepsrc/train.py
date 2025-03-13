@@ -111,14 +111,14 @@ def train_model(model,queries,nr_epochs,optimizer, loss_function = train, test_i
         if shuffle:
             random.shuffle(q_indices)
         for q in q_indices:
-            q = queries[q] # init_train_data.txt
+            q = queries[q]
             iter_time = time.time()
             if interrupt:
                 break
             loss = loss_function(model, optimizer, q)
             accumulated_loss += loss
             optimizer.step()
-            if snapshot_iter and i % snapshot_iter == 0 and (epoch+1) % 5 == 0: # I add "epoch % 10 == 0" to prevent the models from blowing up my computer
+            if snapshot_iter and i % snapshot_iter == 0 and (epoch+1) % 5 == 0: # I add "(epoch+1) % 5 == 0" to prevent the models from blowing up my computer
                 fname = '{}_iter_{:06d}.mdl'.format(snapshot_name,i)
                 print('Writing snapshot to '+fname)
                 model.save_state(fname)
