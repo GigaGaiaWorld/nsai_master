@@ -2,9 +2,8 @@ import backoff  # for exponential backoff
 import groq
 from retrying import retry
 import logging
-API_KEY_GROQ = "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"
-API_KEY_DEEPSEEK = "sk-b8e483c5252146c8919efe66bc206f84"
-client = groq.Client(api_key=API_KEY_GROQ)
+
+client = groq.Client()
 
 @backoff.on_exception(
         backoff.expo, 
