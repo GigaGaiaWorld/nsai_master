@@ -6,13 +6,13 @@ from mnist import MNIST_Net, MNIST_Classifier, test_MNIST, neural_predicate
 
 sys.path.append('/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/')
 
-from src.dpcepsrc.test_utils import get_confusion_matrix, calculate_f1
+from src.deepprobcep.test_utils import get_confusion_matrix, calculate_f1
 from prob_ec_testing import test
-from src.dpcepsrc.model import Model, Var
-from src.dpcepsrc.train import train_model
-from src.dpcepsrc.data_loader import load
-from src.dpcepsrc.optimizer import Optimizer
-from src.dpcepsrc.network import Network
+from src.deepprobcep.model import Model, Var
+from src.deepprobcep.train import train_model
+from src.deepprobcep.data_loader import load
+from src.deepprobcep.optimizer import Optimizer
+from src.deepprobcep.network import Network
 import torch
 
 def add_files_to(problog_files, problog_string):

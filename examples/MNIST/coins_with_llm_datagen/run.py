@@ -6,13 +6,13 @@ from mnist import MNIST_Net, MNIST_Classifier, test_MNIST, neural_predicate
 
 sys.path.append('../../../')
 
-from src.dpcepsrc.test_utils import get_confusion_matrix, calculate_f1
+from src.deepprobcep.test_utils import get_confusion_matrix, calculate_f1
 from prob_ec_testing import test
-from src.dpcepsrc.model import Model, Var
-from src.dpcepsrc.train import train_model
-from src.dpcepsrc.data_loader import load
-from src.dpcepsrc.optimizer import Optimizer
-from src.dpcepsrc.network import Network
+from src.deepprobcep.model import Model, Var
+from src.deepprobcep.train import train_model
+from src.deepprobcep.data_loader import load
+from src.deepprobcep.optimizer import Optimizer
+from src.deepprobcep.network import Network
 import torch
 
 def add_files_to(problog_files, problog_string):
@@ -96,7 +96,7 @@ if __name__ == '__main__':
         os.path.join(data_path,'result_test_data.txt'),                      # test_data: detect_test_data.txt  detectEvent
         [
             # os.path.join(model_path,"event_occ_defs.pl"),                  # problog_files: ruleset,
-            os.path.join(rules_path,"DeE_ResDeE_rmNet.pl"),          # problog_files: ruleset,
+            os.path.join(rules_path,"DeE_ResDeE.pl"),          # problog_files: ruleset,
         ],
         [os.path.join(data_path,'in_train_data.txt')],                      # problog_train_files: happensAt (put a list here)
         [os.path.join(data_path,'in_test_data.txt')],                       # problog_test_files: happensAt (put a list here)
