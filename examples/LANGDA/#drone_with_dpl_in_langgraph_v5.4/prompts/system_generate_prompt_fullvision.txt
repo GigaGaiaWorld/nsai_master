@@ -1,0 +1,60 @@
+<context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+{context}
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+{rule_set}
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {{LANGDA}} placeholder based on following requirements, and nothing more. 
+
+{requirements}
+
+### Please generate each code into a single Code Block with following form: 
+
+```prolog 
+// Your fixed code here 
+``` 
+
+### This is really important! Also make sure to use the correct syntax.
+### Please make sure your code fits completely inside the {{LANGDA}} placeholder and I can place the generated code directly inside the corresponding placeholder.
+</requirements>
+<example>
+### original code with placeholder:
+nn(net1, [X], Y, [heads, tails]) :: coin(1,X,Y).
+nn(net2, [X], Y, [heads, tails]) :: coin(2,X,Y).
+
+outcome(X,X,win).
+{{LANGDA}}
+
+game(X,Outcome) :-
+    coin(1,X,C1),
+    coin(2,X,C2),
+    {{LANGDA}}.
+
+### Generated Code Blocks: 
+```prolog
+outcome(X,Y,loss) :- \+outcome(X,Y,win).
+```
+```prolog
+outcome(C1,C2,Outcome)
+```
+### then I could fit the generated code into the placeholder myself:
+nn(net1, [X], Y, [heads, tails]) :: coin(1,X,Y).
+nn(net2, [X], Y, [heads, tails]) :: coin(2,X,Y).
+
+outcome(X,X,win).
+outcome(X,Y,loss) :- \+outcome(X,Y,win).
+
+game(X,Outcome) :-
+    coin(1,X,C1),
+    coin(2,X,C2),
+    outcome(C1,C2,Outcome).
+
+</example>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

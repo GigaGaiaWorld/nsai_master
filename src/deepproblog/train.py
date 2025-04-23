@@ -1,7 +1,7 @@
 import signal
 import time
 from typing import List, Callable, Union
-
+ 
 from deepproblog.dataset import DataLoader
 from deepproblog.model import Model
 from deepproblog.query import Query

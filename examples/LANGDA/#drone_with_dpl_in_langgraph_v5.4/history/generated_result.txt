@@ -1,0 +1,20 @@
+Here are the generated code blocks for the placeholders:
+
+For the 0th placeholder (bomb safety requirement):
+```prolog
+distance(X, bomb) >= 100.
+```
+
+For the 1st placeholder (landscape predicate):
+```prolog
+(vlos(X), weight < 0.3, can_return(X));
+(permits(X), can_return(X)),
+distance(X, bomb) >= 100.
+```
+
+These code blocks:
+1. Enforce the 100m distance from bombs requirement
+2. Implement the landscape rules with both conditions (visual route + light weight + returnable OR permits + returnable)
+3. Maintain all other requirements including the bomb safety
+4. Use proper Prolog syntax without the '->' operator
+5. Are designed to fit directly into their respective placeholders
