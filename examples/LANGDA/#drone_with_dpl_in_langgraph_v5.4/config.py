@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, validator
 import os
-from typing import Dict, List, Optional, Tuple, Union, Any
+from typing import Dict, List, Optional, Tuple, Union, Any, Literal
 from pathlib import Path
 from dotenv import load_dotenv
 import logging
@@ -56,7 +56,7 @@ class ProjectPaths(BaseModel):
         Load environment variables from .env file. 
         (.env file should be in the root dir or case dir(The .env in current example folder has a higher priority))
         Args:
-            override: Whether to override existing environment variables.
+            override: Whether to override the system environment variables with the variables from the .env file.
         """
         dotenv_proj_path = self.proj_dir / ".env"
         dotenv_case_path = self.base_dir / ".env"
@@ -146,7 +146,7 @@ class ProjectPaths(BaseModel):
 
         return self._get_path("prompts", self.prompt_names[prompt_name])
     
-    def load_prompt(self, prompt: str) -> str:
+    def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate"]) -> str:
         """
         Load prompt content from file.
         Args:
@@ -239,18 +239,18 @@ if __name__ == "__main__":
     )
     
     # Ensure all directories exist
-    project_paths.ensure_directories_exist()
+    paths.ensure_directories_exist()
     
     # Load environment variables
-    project_paths.load_my_env()
+    paths.load_my_env()
 
     # Access paths
-    print(f"Project directory: {project_paths.proj_dir}")
-    print(f"Base directory: {project_paths.base_dir}")
+    print(f"Project directory: {paths.proj_dir}")
+    print(f"Base directory: {paths.base_dir}")
     
     # Test accessing a prompt
     try:
-        prompt_path = project_paths.get_prompt_path("generate")
+        prompt_path = paths.get_prompt_path("generate")
         print(f"Generate prompt path: {prompt_path}")
     except ValueError as e:
         print(f"Error: {str(e)}")

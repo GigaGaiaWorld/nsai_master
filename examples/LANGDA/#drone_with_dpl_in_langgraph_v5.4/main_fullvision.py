@@ -16,14 +16,15 @@ from langchain_deepseek import ChatDeepSeek
 from langchain.tools import BaseTool
 
 from config import paths
-from parser import integrated_code_parser
-from tools_v1 import CustomTestTool, CustomSearchTool, CustomTrainTool
+from utils.parser import integrated_code_parser
+from utils.models import LangdaAgentExecutor
+# from tools_v1 import CustomTestTool, CustomSearchTool, CustomTrainTool
 """
 Full vision means that LLM processes the complete prompt uniformly and generates all code content at the same time.
 
 """
 class Langda_Agent(object):
-    def __init__(self, rule_string:str, addition_input:dict={"prefix":"","user_context":"","error_report":""}, caching:bool=False, saving:bool=False):
+    def __init__(self, rule_string:str, model_name, addition_input:dict={"prefix":"","user_context":"","error_report":""}, caching:bool=False, saving:bool=False):
         # self.rule_string, self.requirements_list = self._parse(rule_string)
         self.prefix:str = addition_input["prefix"]
         self.generated_codes = list()
@@ -39,12 +40,9 @@ class Langda_Agent(object):
         self.config = {"configurable": {"thread_id": "2"}}
         self.checkpointer = MemorySaver()
 
-        self.model=ChatDeepSeek(
-            model="deepseek-chat", 
-            temperature=0,
-            api_key="sk-293f9d735260457583c3cbe0df475d4f")
+        self.executor=LangdaAgentExecutor(model_name,tools=[])
         self.tools = [
-                CustomTestTool(),
+                # CustomTestTool(),
             ]
 
     def _ordinal(self, n:int) -> str:
@@ -199,21 +197,15 @@ class Langda_Agent(object):
     def generate_node(self,state:BasicState):
         print("processing generate_node...")
         new_iter_count = state["iter_count"] + 1
-
         state["status"] = TaskStatus.GNRT
-        # print("\n===============langda_dicts:===============\n",state["langda_dicts"])
-        prompt = ChatPromptTemplate.from_messages([
-                    ("system", "You are a helpful assistant that helps the user to generate deepproblog code."),
-                    ("human", self.generate_prompt)
-                ])
+
         input={
             "context": state["user_context"],
             "requirements": state["prompt_requirements"],
             "rule_set":state["prompt_template"],
         }
-        chain = prompt | self.model | StrOutputParser()
-        result = chain.invoke(input=input, config=self.config)
-        # Abstract code blocks.
+        # result = self.executor.invoke_agent("generate",input,self.config)
+        result = self.executor.invoke_react_agent("generate",input,self.config)
 
         paths.save_as_file(result,"generated_result")
 
@@ -281,18 +273,15 @@ class Langda_Agent(object):
             constructed_code_list.append(code)
             constructed_code_list.append("\n")
 
-        prompt = ChatPromptTemplate.from_messages([
-                    ("system", "You are a helpful assistant that helps the user to generate deepproblog code."),
-                    ("human", self.evaluate_prompt)
-                ])
         input={
             "error_report": state["error_report"],
             "context": state["user_context"],
             "output": state["final_code"],
             "code_list":"\n".join(constructed_code_list),
         }
-        chain = prompt | self.model | StrOutputParser()
-        evaluated_result = chain.invoke(input=input, config=self.config)
+
+        # evaluated_result = self.executor.invoke_agent("evaluate",input,self.config)
+        evaluated_result = self.executor.invoke_react_agent("evaluate",input,self.config)
 
         paths.save_as_file(evaluated_result, "evaluated_result")
 
@@ -329,16 +318,13 @@ class Langda_Agent(object):
         """
         print("processing regenerate_node...")
         state["status"] = TaskStatus.GNRT
-        # Create a prompt to regenerate specific blocks
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are a helpful assistant that helps the user to fix errors in deepproblog code."),
-            ("human", self.regenerate_prompt)
-        ])
+
         fest_code_list = [] # the codes that does not to regenerate
         code_with_report_list = []
         regenerate_indices = []
         for i, (code, report) in enumerate(zip(state["generated_codes"],state["evaluated_codes"])):
             if report["Need_regenerate"] == "True":
+                print("true report check:",report)
                 fest_code_list.append(None)
                 regenerate_indices.append(i)
 
@@ -348,27 +334,30 @@ class Langda_Agent(object):
                 code_with_report_list.append(report["Report"])
                 code_with_report_list.append("\n")
             else:
+                print("false report check:",report)
                 fest_code_list.append(code)
 
         # Prepare input for the regeneration prompt
         regenerate_template = self._replace_placeholder(state["prompt_template"],fest_code_list, self.langda_placeholder)
-        print("=====================regenerate_template=====================\n",regenerate_template)
-        print("=============================================================\n")
+        print("=====================regenerate_template=====================\n",regenerate_template,"\n=============================================================\n")
         input={
             "context": state["user_context"],
             "rule_set": regenerate_template,
             "blocks_with_analysis":"\n".join(code_with_report_list),
         }
         # Run the regeneration
-        chain = prompt | self.model | StrOutputParser()
-        result = chain.invoke(input=input, config=self.config)
-
+        # regenerated_result = self.executor.invoke_agent("regenerate",input,self.config)
+        regenerated_result = self.executor.invoke_react_agent("regenerate",input,self.config)
+        paths.save_as_file(regenerated_result,"generated_result",state["iter_count"])
         # Extract the regenerated code blocks
         pattern = r"```(?:prolog|[a-z]*)?\n(.*?)```"
-        regenerated_codes = re.findall(pattern, result, re.DOTALL)
+        regenerated_codes = re.findall(pattern, regenerated_result, re.DOTALL)
+        print("=====================regenerated_codes=====================\n",regenerated_codes,"\n=============================================================\nregenerate_indices:",regenerate_indices)
         if len(regenerated_codes) != len(regenerate_indices):
             raise ValueError("The amount of code generated does not matches the number of code blocks that need to be regenerated")
         
+
+
         paths.save_as_file(regenerated_codes,"generated_codes","re")
         paths.save_as_file(code_with_report_list,"evaluated_codes","&code")
 
@@ -428,6 +417,6 @@ if __name__ == "__main__":
     with open (os.path.join(rule_path,"test/promis_prompt.pl"),"r") as f:
         rules_string += f.read()
 
-    l = Langda_Agent(rules_string)
+    l = Langda_Agent(rules_string, "deepseek-chat")
     l.call_main_workflow()
 
