@@ -7,7 +7,17 @@ from dotenv import load_dotenv
 import logging
 
 class ProjectPaths(BaseModel):
-    """Configuration for project paths using Pydantic."""
+    """Configuration for project paths using Pydantic.
+    load_my_env: load env parameters
+    get_absproj_path: path from the project root
+    get_abscase_path: path from the example path
+    get_data_path: data path
+    get_prompt_path
+    load_prompt
+    load_data
+    save_as_file
+    ensure_directories_exist
+    """
     
     # Project directory:
     proj_dir: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[3])
@@ -43,6 +53,7 @@ class ProjectPaths(BaseModel):
     workflow_files: Dict[str, str] = Field(default={
         "result": "result.txt",
         "codes": "codes.txt",
+        "final_code": "final_code.pl",
         "prompt": "prompt.txt",
         "mermaid": "mermaid.mmd",
     })
@@ -189,13 +200,11 @@ class ProjectPaths(BaseModel):
         Args:
             content: Content to save (list, string, or other convertible object)
             filetype: Type of file to create, one of workflow_files keys or custom path, one of [generated_result,evaluated_result,generated_codes,evaluated_codes]
-                - "generated_result": "generated_result.txt"  -> output code blocks of llm 
-                - "evaluated_result": "evaluated_result.txt"  -> output reports of llm 
-                - "generated_codes": "generated_codes.txt"    -> code block list
-                - "evaluated_codes": "evaluated_codes.txt"    -> report block list
-                - "prompt_template": "prompt_template"        -> prompt template
-                - "final_code": "final_code.pl"               -> generated final code
-                - "mermaid": "mermaid.mmd"                    -> generated mermaid file
+                - "result": "result.txt",  -> result from llm
+                - "codes": "codes.txt", -> output code blocks of llm
+                - "final_code": "final_code.pl", -> final deepproblog code
+                - "prompt": "prompt.txt", -> prompt template related
+                - "mermaid": "mermaid.mmd", -> mermaid file
             prefix: Optional prefix for the filename
         """
         # Convert content to string

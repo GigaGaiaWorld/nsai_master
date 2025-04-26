@@ -73,7 +73,7 @@ class GeneralNodes:
         state["status"] = TaskStatus.CMPL
 
         final_code = _replace_placeholder(state["prompt_template"],state["fest_codes"], state["placeholder"])
-        paths.save_as_file(final_code,"codes",f"final_{state['prefix']}")
+        paths.save_as_file(final_code,"final_code",f"{state['prefix']}")
 
         fest_dict = _list_to_dict(state["fest_codes"])
         with DictDB() as langdaDB:
