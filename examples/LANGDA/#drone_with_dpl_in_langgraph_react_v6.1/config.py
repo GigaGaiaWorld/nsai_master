@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, validator
 import os
+import json
 from typing import Dict, List, Optional, Tuple, Union, Any, Literal
 from pathlib import Path
 from dotenv import load_dotenv
@@ -29,13 +30,20 @@ class ProjectPaths(BaseModel):
         "regenerate": "system_regenerate_prompt_fullvision.txt"
     })
 
+    # workflow_files: Dict[str, str] = Field(default={
+    #     "generated_result": "generated_result.txt",
+    #     "evaluated_result": "evaluated_result.txt",
+    #     "generated_codes": "generated_codes.txt",
+    #     "evaluated_codes": "evaluated_codes.txt",
+    #     "prompt_template": "prompt_template.txt",
+    #     "final_code": "final_code.pl",
+    #     "mermaid": "mermaid.mmd",
+    # })
+    
     workflow_files: Dict[str, str] = Field(default={
-        "generated_result": "generated_result.txt",
-        "evaluated_result": "evaluated_result.txt",
-        "generated_codes": "generated_codes.txt",
-        "evaluated_codes": "evaluated_codes.txt",
-        "prompt_template": "prompt_template.txt",
-        "final_code": "final_code.pl",
+        "result": "result.txt",
+        "codes": "codes.txt",
+        "prompt": "prompt.txt",
         "mermaid": "mermaid.mmd",
     })
     
@@ -192,7 +200,7 @@ class ProjectPaths(BaseModel):
         """
         # Convert content to string
         if isinstance(content, list):
-            contentstr = "\n".join(str(item) for item in content)
+            contentstr = json.dumps(content, indent=4, ensure_ascii=False)
         else:
             contentstr = str(content)
 
@@ -211,7 +219,7 @@ class ProjectPaths(BaseModel):
         
         # Save the file
         try:
-            with open(path, "w", encoding="utf-8") as f:
+            with open(path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(contentstr)
             logging.info(f"File saved successfully: {path}")
             return path
@@ -229,28 +237,3 @@ class ProjectPaths(BaseModel):
 
 # Create a singleton instance
 paths = ProjectPaths()
-
-# Example usage:
-if __name__ == "__main__":
-    # Configure logging
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-    
-    # Ensure all directories exist
-    paths.ensure_directories_exist()
-    
-    # Load environment variables
-    paths.load_my_env()
-
-    # Access paths
-    print(f"Project directory: {paths.proj_dir}")
-    print(f"Base directory: {paths.base_dir}")
-    
-    # Test accessing a prompt
-    try:
-        prompt_path = paths.get_prompt_path("generate")
-        print(f"Generate prompt path: {prompt_path}")
-    except ValueError as e:
-        print(f"Error: {str(e)}")

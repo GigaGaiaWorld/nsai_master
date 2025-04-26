@@ -5,8 +5,7 @@ from agent.requirements_builder import RequirementsBuilder
 from utils import (
     _replace_placeholder, 
     integrated_code_parser,
-    _parse_simple_dictonary,
-    _list_to_dict
+    _list_to_dict,
 )
 from state import BasicState, TaskStatus
 from config import paths
@@ -36,37 +35,33 @@ class GeneralNodes:
             langda_dicts: langda informations
         """
         print("processing parse_node...")
-        fest_codes:List[str] = []
+        fest_codes:List[dict] = []      # {"hash1":"code1","hash2":"code2",...}
         langda_dicts:List[LangdaDict] = []
-        requirements:Dict[list] = {}
 
         raw_prompt_template, lann_dicts, raw_langda_dicts = integrated_code_parser(state["rule_string"])
-        paths.save_as_file(raw_prompt_template,"prompt_template","1st")
-
+        paths.save_as_file(raw_prompt_template,"prompt","1st")
         with DictDB() as langdaDB:
             for idx, langda in enumerate(raw_langda_dicts):
-                if langda["FUP"]:
-                    fest_codes.append(None)
+                if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T":
+                    fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)
-                else:
+                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F":
                     code = langdaDB.get_item(langda["HASH"])
-                    fest_codes.append(code)
+                    fest_codes.append({langda["HASH"]:code})
                     if not code: 
                         langda_dicts.append(langda)
+                else:
+                    raise ValueError("The value of FUP term should be one of [True,true,T,False,false,F]")
+                    
 
         prompt_template = _replace_placeholder(raw_prompt_template,fest_codes,state["placeholder"])
-        if lann_dicts:
-            requirements["LANN"]=RequirementsBuilder.build_all_network_info(lann_dicts)
-        else:
-            requirements["LANN"] = []
-        requirements["LANGDA"] = RequirementsBuilder.build_all_langda_info(langda_dicts)
-
-        requirements_str = "\n".join(requirements)
-        paths.save_as_file(requirements_str,"prompt_template","req")
+        lann_reqs, langda_reqs = RequirementsBuilder.build_requirements(lann_dicts, langda_dicts)
         return {"prompt_template":prompt_template,             # the string that only leave needed "{LANGDA}" slot for prompting
                 "lann_dicts":lann_dicts,                        # the dict that contains detail informations about network
                 "langda_dicts":langda_dicts,                    # the dict that contains detail informations about langda
-                "requirements":requirements,                    # 
+                "lann_reqs":lann_reqs,                    # 
+                "langda_reqs":langda_reqs,                    # 
+                "fest_codes":fest_codes, 
         }
 
     @staticmethod
@@ -75,8 +70,10 @@ class GeneralNodes:
         summary...
         """
         print("processing summary_node...")
+        state["status"] = TaskStatus.CMPL
+
         final_code = _replace_placeholder(state["prompt_template"],state["fest_codes"], state["placeholder"])
-        paths.save_as_file(final_code,"final_code")
+        paths.save_as_file(final_code,"codes",f"final_{state['prefix']}")
 
         fest_dict = _list_to_dict(state["fest_codes"])
         with DictDB() as langdaDB:

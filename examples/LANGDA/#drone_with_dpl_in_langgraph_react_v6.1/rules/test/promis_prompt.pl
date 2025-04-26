@@ -7,7 +7,7 @@ weight ~ normal(0.2, 0.1).
 1/10::fog; 9/10::clear.
 
 
-langda(LLM:"we found a bomb on the map, please stay 100 meters away from it").
+langda(LLM:"we found a bomb on the map, please stay 100 meters away from it",FUP:"F").
 
 % Visual line of sight
 vlos(X) :- 
@@ -26,7 +26,7 @@ landscape(X) :-
         1.visual route range + light weight + returnable
         2.permission obtained + returnable
         # Additionally, it should not violate the requirements of other langda predicates.
-    ").
+    ",FUP:"T").
 
 % Permits related to local features
 permits(X) :- 

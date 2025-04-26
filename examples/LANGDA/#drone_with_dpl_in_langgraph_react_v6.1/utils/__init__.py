@@ -5,6 +5,7 @@ from .parser import integrated_code_parser
 from .tools import (
     _ordinal,
     _list_to_dict, 
+    _expand_nested_list,
     _draw_mermaid_png, 
     _replace_placeholder, 
     _find_all_blocks, 
@@ -18,6 +19,7 @@ __all__ = [
     '_compute_short_md5',
     '_compute_random_md5',
     '_list_to_dict',
+    '_expand_nested_list',
     '_parse_simple_dictonary',
     'integrated_code_parser',
     '_ordinal',

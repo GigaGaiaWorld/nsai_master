@@ -7,6 +7,18 @@ from langgraph.graph import END, StateGraph
 from state import BasicState, TaskStatus, Mode
 from config import paths
 
+def _expand_nested_list(lists):
+    """
+    expand nested list to a flat list...
+    """
+    flat_list = []
+    for item in lists:
+        if isinstance(item, list):
+            nested_items = _expand_nested_list(item)
+            flat_list.extend(nested_items)
+        else:
+            flat_list.append(item)
+    return flat_list
 
 def _list_to_dict(listdict:List[dict]):
     dictdict:Dict[str,str] = {}
@@ -15,11 +27,31 @@ def _list_to_dict(listdict:List[dict]):
         dictdict[key] = value
     return dictdict
 
-def _parse_simple_dictonary(code_item):
+def _parse_simple_dictonary(code_item:dict) -> Union[str, str]:
     """
     parse the dictonary only has one item
     """
     key, value = next(iter(code_item.items()))
+    return key, value
+
+# def _parse_simple_dictonary(code_item):
+#     """
+#     parse the dictonary only has one item
+#     """
+#     if not isinstance(code_item, dict):
+#         print(f"Warning: Expected dict but got {type(code_item)}")
+#         return None, None
+    
+#     if not code_item:  # empty
+#         print("Warning: Empty dictionary")
+#         return None, None
+        
+#     try:
+#         key, value = next(iter(code_item.items()))
+#         return key, value
+#     except StopIteration:  # in case
+#         print("Warning: StopIteration occurred")
+#         return None, None
 
 
 def _compute_short_md5(len:int, content:Union[str,dict], upper:bool = False) -> str:

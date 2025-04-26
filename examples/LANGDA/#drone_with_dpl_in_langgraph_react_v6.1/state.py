@@ -1,7 +1,7 @@
 from langchain.memory import ConversationBufferMemory
 from langchain_core.messages import HumanMessage, AIMessage
-from typing import TypedDict, List, Dict
-
+from typing import List, Dict
+from typing_extensions import TypedDict
 from enum import Enum
 class LangdaDict(TypedDict):
     HEAD: str
@@ -29,35 +29,34 @@ class Mode(str, Enum):
     ELSE = "else case" # langda(NET:[net(0,1)],LLM:"")    
 
 class BasicState(TypedDict):
-    # Basic information
-    srttime: float = 0.0
-    endtime: float  = 0.0
-    status: TaskStatus # Current task status
-    mode: Mode # Which mode to choose for langda
-    iter_count: int = 0 # Current number of iterations
+    # User inputs:
     config: dict
     prefix: str
-    tools: list
     model_name: str
-    placeholder: str
-
-    # Original input
     rule_string: str # User-provided context
     user_context: str # User-provided context
 
-
-    # Generated Content
+    # Prompting static parameters:
+    tools: list
+    placeholder: str
     prompt_template: str # the string that only leave "{LLM}" slot for prompting
     langda_dicts: List[LangdaDict] # the dict that contains detail informations about langda
     lann_dicts: List[Dict[str,str]] # the dict that contains detail informations about network
-    requirements: Dict[str,list] # Prompt part reconstructed from langda_dicts and lann_dicts
+    langda_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
+    lann_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
 
+    # Dynamic parameters:
+    srttime: float = 0.0
+    endtime: float  = 0.0
+    iter_count: int = 0 # Current number of iterations
+    status: TaskStatus # Current task status
     fest_codes: List[dict]
     regenerate_info: str
     generated_codes: list # New code generated
-    evaluated_codes: list # New report generated
-    generated_result: str # New
-    evaluated_result: str # New
-    final_code: str # 
-
     error_report: str # New report generated
+
+    # evaluated_codes: list # New report generated
+    # generated_result: str # New
+    # evaluated_result: str # New
+    # final_code: str # 
+

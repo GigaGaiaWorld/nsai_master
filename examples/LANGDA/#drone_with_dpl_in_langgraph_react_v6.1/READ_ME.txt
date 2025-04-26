@@ -3,11 +3,20 @@
 
 整合了v5.4的内容, 将项目变得更加“专业”和易于维护
 
-为什么我们不直接使用prolog的内置PrologString进行解析, 而要自己定义呢?
-- 我们本质上是在创建一个prompt, 它本质上并不是一个prolog代码(而且langda本身也不包含任何的“逻辑”), 直接套用会导致语法错误
-- PrologString会忽略所有注释, 而这恰恰是我们prompt所需要的
-- 我们要对代码进行处理和更改, 将它的格式变得更干净和清晰, 以方便llm的理解, 同时我们要处理直接替换langda项所导致的后续问题. 例如对它的注释应该如何处理
-- 我们对lann项的处理同样无法通过普通的prolog内置parser或prgrammer实现
+# 重大更新, 将所有内容进行了包装和划分, 现在代码变得易于管理(除了parser.py...我会之后尝试优化的...大概...)
+现在结构如下:
+- agent: GenerateNodes, EvaluateNodes, GeneralNodes 和一个额外的requirements_builder用来构建提示词的动态内容
+- utils: models包含invoke_agent的各级逻辑
+		 parser解析器
+		 tools_for_agent, 我认为暂时用不到
+		 tools最重要的部分, 包含了各种有用的小函数, 尝试让代码更加优雅^
+- 主要层级:
+config: 输出paths实例, 包含对路径的各种操作, 因为之前路径太让我抓狂了, 因此专门写了一个类
+database: 用来管理已经生成的代码, 用来实现对langda对长期管理, 数据结构为{{"Hash1":"code content","Hash1":"code content",...}}
+main_fullvision: 主要执行器, 执行工作流
+state: 管理state类
+
+
 =======> 撤回我的话... 我感觉PrologString很靠谱, 能非常详细的解析各个项, 并且也和我们的语法兼容, 除了不能处理注释堪称完美.
 =======> 上面的想法可以保留, 用以应答
 

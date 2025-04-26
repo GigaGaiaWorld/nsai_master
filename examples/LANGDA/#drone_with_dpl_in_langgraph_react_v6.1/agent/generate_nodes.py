@@ -3,6 +3,8 @@ from agent.requirements_builder import RequirementsBuilder
 from utils import (
     _find_all_blocks, 
     _replace_placeholder, 
+    _parse_simple_dictonary,
+    _expand_nested_list,
     invoke_agent,
 )
 from state import BasicState, TaskStatus
@@ -23,16 +25,13 @@ class GenerateNodes:
         requirement_input:List[str] = []
         targeted_codes:List[dict] = []
 
+        requirement_input = RequirementsBuilder.build_generate_info(state["langda_reqs"],state["lann_reqs"])
+
         # first round
         if new_iter_count == 1:
             prompt_template = state["prompt_template"]
             # Construct the requirement part of prompt:
             prompt_type = "generate"
-            requirement_input.extend(state["requirements"]["LANN"])
-            for lang_item in state["requirements"]["LANGDA"]:
-                requirement_input.extend(lang_item)
-            # requirement_input.append(state["requirements"]["LANGDA"])
-            print("requirement_input",requirement_input)
             input={
                 "context": state["user_context"],
                 "rule_set":prompt_template,
@@ -60,14 +59,14 @@ class GenerateNodes:
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(generated_result,"generated_result",f"round_{state['iter_count']}")
+        paths.save_as_file(generated_result,"result",f"gnrt_{state['iter_count']}")
 
         generated_codes = _find_all_blocks('code',generated_result)
         for code, langda in zip(generated_codes, state["langda_dicts"]):
             targeted_codes.append({langda["HASH"]:code})
 
-        paths.save_as_file(targeted_codes,"generated_codes",f"round_{state['iter_count']}")
-        paths.save_as_file(requirement_input,"prompt_template",f"req_{state['iter_count']}")
+        paths.save_as_file(targeted_codes,"codes",f"gnrt_{state['iter_count']}")
+        paths.save_as_file(requirement_input,"prompt",f"requ_{state['iter_count']}")
 
         if generated_codes:
             return {

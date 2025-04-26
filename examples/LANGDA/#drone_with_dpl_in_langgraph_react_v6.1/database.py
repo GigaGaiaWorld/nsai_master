@@ -1,5 +1,5 @@
 import sqlite3
-import json
+# import json
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
@@ -24,7 +24,7 @@ class DictEntry(BaseModel):
     Dictionary entry model.
     """
     hash: str = Field(..., description="Primary key, hash value of the dictionary")
-    content: Dict[str, Any] = Field(..., description="Dictionary content")
+    content: str = Field(..., description="Dictionary content, Generated code")
 
 
 class DictDB:
@@ -70,8 +70,8 @@ class DictDB:
         """
         cursor = self.conn.cursor()
         
-        # Convert dictionary to JSON string for storage
-        content_json = json.dumps(content)
+        # # Convert dictionary to JSON string for storage
+        # content_json = json.dumps(content)
         
         # Validate with Pydantic model
         entry = DictEntry(hash=hash_value, content=content)
@@ -79,7 +79,7 @@ class DictDB:
         # Insert or replace the entry
         cursor.execute(
             "INSERT OR REPLACE INTO langda_dict (hash, content) VALUES (?, ?)",
-            (entry.hash, content_json)
+            (entry.hash, entry.content)
         )
         self.conn.commit()
         return hash_value
@@ -100,7 +100,7 @@ class DictDB:
         if not row:
             return None
         # Convert JSON string back to dictionary
-        return json.loads(row[0])
+        return row[0]
 
     def get_all_items(self) -> Dict[str, Dict[str, str]]:
         """
@@ -114,8 +114,8 @@ class DictDB:
         rows = cursor.fetchall()
         
         result = {}
-        for hash_value, content_json in rows:
-            result[hash_value] = json.loads(content_json)
+        for hash_value, content in rows:
+            result[hash_value] = content
         
         return result
 
@@ -233,52 +233,50 @@ class DictDB:
 
 if __name__ == "__main__":
     # Demo usage
-    db = DictDB()
-    
-    # Sample dictionaries
-    sample_dicts = {
-        "hash1": {"name": "张三", "age": 25, "skills": ["Python", "SQL"]},
-        "hash2": {"name": "李四", "age": 30, "skills": ["Java", "C++"]},
-        "hash3": {"name": "王五", "age": 22, "skills": ["JavaScript", "HTML"]}
-    }
-    
-    # Sync with database
-    stats = db.sync_with_dict(sample_dicts)
-    print(f"Initial sync stats: {stats}\n")
-    
-    # Get an item
-    item = db.get_item("hash2")
-    print(f"Item hash2: {item}")
-    
-    # Get all items
-    all_items = db.get_all_items()
-    print("\nAll items:")
-    for hash_val, content in all_items.items():
-        print(f"  {hash_val}: {content}")
-    
-    # Modify the sample dictionaries
-    sample_dicts["hash1"]["age"] = 26  # Update existing
-    sample_dicts["hash4"] = {"name": "赵六", "age": 35, "skills": ["Go", "Rust"]}  # Add new
-    del sample_dicts["hash2"]  # Delete one
+    with DictDB() as db:
+        # Sample dictionaries
+        sample_dicts = {
+            "hash1": {"name": "张三", "age": 25, "skills": ["Python", "SQL"]},
+            "hash2": {"name": "李四", "age": 30, "skills": ["Java", "C++"]},
+            "hash3": {"name": "王五", "age": 22, "skills": ["JavaScript", "HTML"]}
+        }
+        
+        # Sync with database
+        stats = db.sync_with_dict(sample_dicts)
+        print(f"Initial sync stats: {stats}\n")
+        
+        # Get an item
+        item = db.get_item("hash2")
+        print(f"Item hash2: {item}")
+        
+        # Get all items
+        all_items = db.get_all_items()
+        print("\nAll items:")
+        for hash_val, content in all_items.items():
+            print(f"  {hash_val}: {content}")
+        
+        # Modify the sample dictionaries
+        sample_dicts["hash1"]["age"] = 26  # Update existing
+        sample_dicts["hash4"] = {"name": "赵六", "age": 35, "skills": ["Go", "Rust"]}  # Add new
+        del sample_dicts["hash2"]  # Delete one
 
-    # Sync again
-    stats = db.sync_with_dict(sample_dicts)
-    print(f"\nSecond sync stats: {stats}")
-    
-    # Check all items after sync
-    all_items = db.get_all_items()
-    print("\nItems after sync:")
-    for hash_val, content in all_items.items():
-        print(f"  {hash_val}: {content}")
-    
-    # Cleanup - keep only hash1 and hash3
-    removed = db.cleanup(valid_hashes=["hash1", "hash3"])
-    print(f"\nCleaned up {removed} entries")
-    
-    # Final check
-    all_items = db.get_all_items()
-    print("\nFinal items:")
-    for hash_val, content in all_items.items():
-        print(f"  {hash_val}: {content}")
-    
-    db.close()
+        # Sync again
+        stats = db.sync_with_dict(sample_dicts)
+        print(f"\nSecond sync stats: {stats}")
+        
+        # Check all items after sync
+        all_items = db.get_all_items()
+        print("\nItems after sync:")
+        for hash_val, content in all_items.items():
+            print(f"  {hash_val}: {content}")
+        
+        # Cleanup - keep only hash1 and hash3
+        removed = db.cleanup(valid_hashes=["hash1", "hash3"])
+        print(f"\nCleaned up {removed} entries")
+        
+        # Final check
+        all_items = db.get_all_items()
+        print("\nFinal items:")
+        for hash_val, content in all_items.items():
+            print(f"  {hash_val}: {content}")
+        

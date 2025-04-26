@@ -2,7 +2,7 @@ import re
 from enum import Enum
 from typing import TypedDict, List, Dict, Tuple
 from utils.tools import _compute_short_md5, _compute_random_md5
-
+from config import paths
 
 class LangdaDict(TypedDict):
     HEAD: str
@@ -31,8 +31,22 @@ class Parser(object):
         self.text:str = text
 
     # =============================== CODE FOR PARSING ORIGINAL CODE =============================== #
-    def clean_result_fields(self,result_dict, fields):
-        return {key: result_dict.get(key) or "" for key in fields}
+    def clean_result_fields(self, result_dict:dict, keys:list, defaults:list=None):
+        """
+        args:
+            result_dict: the dictionary that needs to be cleaned
+            keys: a list of key value that need to be contained
+            defaults: if cannot find the key, construct the key with corresponding default value
+        """
+        if defaults is None:
+            defaults = [None] * len(keys)
+        
+        result = {}
+        for i, key in enumerate(keys):
+            default = defaults[i] if i < len(defaults) else ""
+            result[key] = result_dict.get(key) or default
+        
+        return result
 
     def _find_original_line(self,original_text: str, compressed_line: str) -> str:
         """
@@ -333,11 +347,12 @@ class Parser(object):
             # -----%---- # new line # -----%---- #
             idl += 1
 
-        # print 4 test
-        print("===================dense_code_with_comments==================\n")
+        dcwc_save = []
         for code, comment, is_langda in dense_code_with_comments:
-                print(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
-        print("=============================================================\n")
+                dcwc_save.append(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
+        # print 4 test
+        paths.save_as_file(dcwc_save,"codes","dcwc")
+
         return dense_code_with_comments # [(code,comment,is_langda),...]
 
 
@@ -538,9 +553,14 @@ class Parser(object):
 
                     full_langda_content = full_langda_term[7:-1]
                     langda_dict_content = self._parse_lann_or_langda_content_to_dicts(full_langda_content)
-                    langda_dict_content = self.clean_result_fields(langda_dict_content, ["LOT", "NET", "LLM", "FUP"])
+                    langda_dict_content = self.clean_result_fields(
+                        langda_dict_content, 
+                        ["LOT", "NET", "LLM", "FUP"],
+                        [None,None,None,"True"])
                     langda_dict_content["HEAD"] = langda_head
-                    langda_md5_digits = _compute_short_md5(8,langda_dict_content,upper=True)
+                
+                    langda_dict_content_for_hash = self.clean_result_fields(langda_dict_content, ["HEAD", "LOT", "NET", "LLM"])
+                    langda_md5_digits = _compute_short_md5(8,langda_dict_content_for_hash, upper=True)
 
                     langda_dict_content["HASH"] = langda_md5_digits
                     langda_dicts.append(langda_dict_content)

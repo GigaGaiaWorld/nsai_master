@@ -11,29 +11,37 @@ from agent import GenerateNodes, EvaluateNodes, GeneralNodes
 # from tools_v1 import CustomTestTool, CustomSearchTool, CustomTrainTool
 """
 Full vision means that LLM processes the complete prompt uniformly and generates all code content at the same time.
-
 """
 class Langda_Agent(object):
-    def __init__(self, rule_string:str, model_name, addition_input:dict={"prefix":"","user_context":"","error_report":"","config":{"configurable": {"thread_id": "2"}}}, caching:bool=False, saving:bool=False):
+    def __init__(self, rule_string:str, model_name, 
+                addition_input:dict={
+                     "prefix":"",
+                     "user_context":"",
+                     "error_report":"",
+                     "config":{"configurable": {"thread_id": "2"}}
+                },
+                caching:bool=False, saving:bool=False):
         # self.rule_string, self.requirements_list = self._parse(rule_string)
         self.generate_prompt:str = paths.load_prompt("generate")
         self.evaluate_prompt:str = paths.load_prompt("evaluate")
         self.regenerate_prompt:str = paths.load_prompt("regenerate")
 
+        # User inputs:
         self.state = BasicState()
-        self.state["user_context"] = addition_input["user_context"]
-        self.state["error_report"] = addition_input["error_report"]
-        self.state["prefix"] = addition_input["prefix"]
         self.state["config"] = addition_input["config"]
-
-        self.state["rule_string"] = rule_string
+        self.state["prefix"] = addition_input["prefix"]
         self.state["model_name"] = model_name
-        self.state["placeholder"] = "{{LANGDA}}"
+        self.state["rule_string"] = rule_string
+        self.state["user_context"] = addition_input["user_context"]
+
+        # Prompting static parameters:
         self.state["tools"] = [
                 # CustomTestTool(),
             ]
-        self.checkpointer = MemorySaver()
+        self.state["placeholder"] = "{{LANGDA}}"
+        self.state["error_report"] = addition_input["error_report"]
 
+        self.checkpointer = MemorySaver()
 
     #######################################################################################
     ###                                      TEST                                       ###
