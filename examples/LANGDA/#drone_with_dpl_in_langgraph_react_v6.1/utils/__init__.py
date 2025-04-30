@@ -12,6 +12,7 @@ from .tools import (
     _compute_short_md5, 
     _compute_random_md5, 
     _parse_simple_dictonary, 
+    _langda_list_to_dict,
 )
 
 __all__ = [
@@ -19,6 +20,7 @@ __all__ = [
     '_compute_short_md5',
     '_compute_random_md5',
     '_list_to_dict',
+    '_langda_list_to_dict',
     '_expand_nested_list',
     '_parse_simple_dictonary',
     'integrated_code_parser',
@@ -28,7 +30,7 @@ __all__ = [
     '_replace_placeholder'
 ]
 
-def invoke_agent(react: bool, model_name: str, tools: list, prompt_type, input, config) -> Union[dict,str]:
+def invoke_agent(react: bool, model_name: str, tools: list, prompt_type, input, config) -> tuple[str,str]:
     """
     Returns the corresponding LangdaAgentExecutor instance or its react version based on the parameters passed in when calling.
     Args:

@@ -1,0 +1,53 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+nn(swap_net, [X,Y],Z,[no_swap, swap]) :: swap(X,Y,Z).
+quicksort([X|Xs],Ys) :-
+{{LANGDA}}
+quicksort([],[]).
+partition([X|Xs],Y,[X|Ls],Rs) :-
+swap(X,Y,swap), partition(Xs,Y,Ls,Rs).
+partition([X|Xs],Y,Ls,[X|Rs]) :-
+swap(X,Y,no_swap), partition(Xs,Y,Ls,Rs).
+partition([],Y,[],[]).
+append([],Ys,Ys).
+append([X|Xs],Ys,[X|Zs]) :- append(Xs,Ys,Zs).
+forth_sort(L,L2) :- quicksort(L,L2).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder, inside the Parent Predicate: quicksort([X|Xs],Ys)
+Hash tag of code, please use it actually for generation: FCF910BC
+Requirements of Rules: Supplementary logic of quicksort/2
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

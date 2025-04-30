@@ -1,0 +1,77 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the complete code, the code blocks that need to be analyzed, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The full rule set with is as follows, make sure you capture all the information from the code: 
+
+
+nn(mnist_net,[X],Y,[0,1,2,3,4,5,6,7,8,9])
+ :: digit(X,Y).
+number([],Result,Result).
+number([H|T],Acc,Result) :- 
+{{LANGDA}}
+number(X,Y) :- number(X,0,Y).
+multi_addition(X,Y,Z) :- 
+{{LANGDA}}
+addition(X,Y,Z) :- 
+{{LANGDA}}
+
+</ruleset>
+<code_list>
+### The parts that need to be analyzed in the entire code are:
+
+The 1st Code Block That You Should Analyse:
+digit(H,D), NewAcc is Acc + (D * (10 ^ length(T))), number(T, NewAcc, Result)
+Hash tag of code, please use it actually for generation: 3BD8A6E2
+Network Requirements: use mnist network
+Requirements of Rules: Recursively process the image list: identify the digits one by one and construct the corresponding multi-bit integers in low-bit first order.
+
+Please make sure the code fits inside the placeholder(Which means it doesn't have to be a 'complete' code).
+
+The 2nd Code Block That You Should Analyse:
+number(X, 0, XVal), number(Y, 0, YVal), Z is XVal + YVal
+Hash tag of code, please use it actually for generation: 4A20D0D6
+Network Requirements: use mnist network
+Requirements of Rules: Convert two sets of sequences consisting of digital pictures into integers and add them together to get the numerical result.
+
+Please make sure the code fits inside the placeholder(Which means it doesn't have to be a 'complete' code).
+
+The 3rd Code Block That You Should Analyse:
+digit(X,XVal), digit(Y,YVal), Z is XVal + YVal
+Hash tag of code, please use it actually for generation: B3A8A705
+Network Requirements: use mnist network
+Requirements of Rules: Use a neural network to identify the numbers in two pictures and then calculate their sum.
+
+Please make sure the code fits inside the placeholder(Which means it doesn't have to be a 'complete' code).
+
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: If there is a '->' symbol in the code, please mark it as an error.
+</annotations>

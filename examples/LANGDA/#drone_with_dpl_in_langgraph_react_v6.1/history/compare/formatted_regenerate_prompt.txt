@@ -1,0 +1,73 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to fix some errors in my DeepProblog code. Below I will give you the code with placeholders, content of the code block and corresponding analysis to each code block that need to be regenerated, please generate the code as required.
+
+
+<\context>
+<ruleset>
+### The full rule set with placeholders is as follows, make sure you capture all the information from the code: 
+
+
+nn(swap_net,[X,Y],Z,[no_swap, swap])
+ :: swap(X,Y,Z).
+hole(X,Y,X,Y):-
+swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):- 
+{{LANGDA}}
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+bubble(L,L2,X),
+bubblesort(L2,[X|L3],Sorted).
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+</ruleset>
+<code_list>
+### Here are the code blocks and their analysis:
+
+The Information of Networks:
+The Information of Network: nn(swap_net,[X,Y],Z,[no_swap, swap])
+For the term: swap_net, user says: network that deal with swap
+For the term: [X,Y], user says: 
+For the term: Z, user says: 
+For the term: [no_swap, swap], user says: 
+
+The 0th Code Block That You Should Regenerate:
+Requirements:
+The Information for Generating Code of 1st Placeholder, inside the Parent Predicate: bubble([H1,H2|T],[X1|T1],X)
+Hash tag of code, please use it actually for generation: FC661354
+Requirements of Rules: Single pass traversal process of the bubble algorithm
+
+Current Code:
+hole(H1,H2,X1,Y), swap_net(H1,H2,Z), hole(X1,Y,H2,T1), bubble([Y|T],T1,X).
+It's corresponding analysis:
+The code block appears to implement a single pass of the bubble sort algorithm using DeepProbLog's probabilistic reasoning capabilities. The structure shows correct usage of the `hole/4` predicate to handle potential swaps and the `swap_net` neural predicate to decide whether to swap elements. The recursive call to `bubble/3` maintains the sorting process. However, there appears to be a placeholder '{{LANGDA}}' which should be replaced with actual logic. The code correctly follows the bubble sort's single-pass traversal pattern but is incomplete due to the placeholder.
+
+
+<code_list>
+<requirements>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+
+### This is really important! Also make sure to use the correct syntax. Make sure to address all the issues mentioned in the evaluation and please make sure your code fits completely inside the placeholder!
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

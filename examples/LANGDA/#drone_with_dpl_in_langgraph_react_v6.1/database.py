@@ -3,7 +3,7 @@ import sqlite3
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from config import paths
 
 class DBConfig(BaseSettings):
@@ -15,10 +15,11 @@ class DBConfig(BaseSettings):
         description="SQLite path to the dictionary storage database"
     )
 
-    class Config:
-        env_prefix = "LANGDADB_"
-        env_file = ".env"
-
+    model_config = SettingsConfigDict(
+        env_prefix="LANGDADB_",
+        env_file=".env",
+        extra="allow"  
+    )
 class DictEntry(BaseModel):
     """
     Dictionary entry model.
@@ -74,6 +75,8 @@ class DictDB:
         # content_json = json.dumps(content)
         
         # Validate with Pydantic model
+        if not content:
+            raise ValueError(f"Database: the value of {hash_value} is {content}.")
         entry = DictEntry(hash=hash_value, content=content)
         
         # Insert or replace the entry

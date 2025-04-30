@@ -1,0 +1,5 @@
+[
+{
+"EC80EE82": "rnn(Text,Embedding),\nnet1(Embedding,P),\npermute(P,X1,X2,X3,A,B,C),\nnet3(Embedding,SwapDecision),\nswap(SwapDecision,B,C,B1,C1),\nmin(A,B1,Min1),\nmax(A,B1,Max1),\nmin(Min1,C1,Min2),\nmax(Max1,C1,Max2),\nnet2(Embedding,Op1),\noperator(Op1,Min1,Min2,Sum),\nnet4(Embedding,Op2),\noperator(Op2,Sum,Max2,Out).\n\nmin(X,Y,X) :- X =< Y.\nmin(X,Y,Y) :- Y < X.\nmax(X,Y,X) :- X >= Y.\nmax(X,Y,Y) :- Y > X."
+}
+]

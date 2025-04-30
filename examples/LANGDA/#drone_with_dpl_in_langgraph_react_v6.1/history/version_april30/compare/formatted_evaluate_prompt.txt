@@ -1,0 +1,64 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the complete code, the code blocks that need to be analyzed, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The full rule set with is as follows, make sure you capture all the information from the code: 
+
+
+nn(swap_net,[X,Y],Z,[no_swap, swap])
+ :: swap(X,Y,Z).
+hole(X,Y,X,Y):-
+swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):- 
+{{LANGDA}}
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+bubble(L,L2,X),
+bubblesort(L2,[X|L3],Sorted).
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+
+</ruleset>
+<code_list>
+### The parts that need to be analyzed in the entire code are:
+
+The 1st Code Block That You Should Analyse:
+hole(H1,H2,X1,Y), swap_net(H1,H2,Z), hole(X1,Y,H1,H2), bubble([Y|T],T1,X).
+Hash tag of code, please use it actually for generation: FC661354
+Requirements of Rules: Single pass traversal process of the bubble algorithm
+
+Please make sure the code fits inside the placeholder(Which means it doesn't have to be a 'complete' code).
+
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: If there is a '->' symbol in the code, please mark it as an error.
+</annotations>

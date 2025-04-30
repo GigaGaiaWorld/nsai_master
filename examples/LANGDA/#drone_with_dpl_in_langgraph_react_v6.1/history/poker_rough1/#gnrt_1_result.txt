@@ -1,0 +1,28 @@
+Here are the regenerated code blocks addressing all the issues mentioned in the analysis:
+
+For the first code block (pair and threeofakind predicates):
+```prolog
+{
+    "HASH": "C3C3CD7C",
+    "Code": "hand(Cards,pair(R)) :-
+    select(card(R),Cards,Remaining),
+    member(card(R),Remaining).
+hand(Cards,threeofakind(R)) :-
+    select(card(R),Cards,Remaining1),
+    select(card(R),Remaining1,Remaining2),
+    member(card(R),Remaining2)."
+}
+```
+
+For the second code block (game/3 predicate):
+```prolog
+{
+    "HASH": "214DEF87",
+    "Code": "game(Cards,House,Outcome) :-
+    cards(Cards,own,House,C1),
+    cards(Cards,opponent,House,C2),
+    best_hand_rank(C1,R1),
+    best_hand_rank(C2,R2),
+    outcome(R1,R2,Outcome)."
+}
+```

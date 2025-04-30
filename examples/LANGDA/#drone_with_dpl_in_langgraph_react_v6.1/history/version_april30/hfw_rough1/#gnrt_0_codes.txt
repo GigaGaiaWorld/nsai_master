@@ -1,0 +1,5 @@
+[
+{
+"007ABA18": "parse([N], N) :- number(N).\\nparse([N1, O, N2 | T], Result) :-\\n    number(N1),\\n    number(N2),\\n    calculate(O, N1, N2, R),\\n    parse([R | T], Result).\\n\\ncalculate(+, A, B, R) :- R is A + B.\\ncalculate(-, A, B, R) :- R is A - B.\\ncalculate(*, A, B, R) :- R is A * B.\\ncalculate(/, A, B, R) :- R is A / B."
+}
+]

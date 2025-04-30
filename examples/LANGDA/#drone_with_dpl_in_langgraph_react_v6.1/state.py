@@ -50,13 +50,7 @@ class BasicState(TypedDict):
     endtime: float  = 0.0
     iter_count: int = 0 # Current number of iterations
     status: TaskStatus # Current task status
-    fest_codes: List[dict]
-    regenerate_info: str
+    fest_codes: List[dict] # The Code that doesn't need further generate
+    regenerate_info: str # 
     generated_codes: list # New code generated
     error_report: str # New report generated
-
-    # evaluated_codes: list # New report generated
-    # generated_result: str # New
-    # evaluated_result: str # New
-    # final_code: str # 
-

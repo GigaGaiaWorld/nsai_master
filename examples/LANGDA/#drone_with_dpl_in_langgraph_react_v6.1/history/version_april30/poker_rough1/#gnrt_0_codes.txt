@@ -1,0 +1,8 @@
+[
+{
+"C3C3CD7C": "hand(Cards,pair(R)) :-\\n    member(card(R),Cards),\\n    member(card(R),Cards).\\nhand(Cards,threeofakind(R)) :-\\n    member(card(R),Cards),\\n    member(card(R),Cards),\\n    member(card(R),Cards)."
+},
+{
+"214DEF87": "game(Cards,House,Outcome) :-\\n    game(Cards,House,H1,H2),\\n    best_hand_rank(C1,R1),\\n    best_hand_rank(C2,R2),\\n    outcome(R1,R2,Outcome)."
+}
+]

@@ -1,0 +1,1 @@
+rnn(Text,Embedding), net1(Embedding,P), permute(P,X1,X2,X3,A,B,C), min(A,B,Min1), max(A,B,Max1), min(Max1,C,Min2), max(Max1,C,Max2), operator(plus,Min1,Min2,Sum), operator(minus,Sum,Max2,Out).

@@ -1,0 +1,40 @@
+Here are the generated code blocks in the requested JSON format:
+
+For the first placeholder:
+```prolog
+{
+    "HASH": "F1A6CCBD",
+    "Code": "cards(Cards,own,House,OwnCards),"
+}
+```
+
+For the second placeholder:
+```prolog
+{
+    "HASH": "214DEF87",
+    "Code": "cards(Cards,opponent,House,OppCards), best_hand_rank(OwnCards,R1), best_hand_rank(OppCards,R2),"
+}
+```
+
+For the third placeholder:
+```prolog
+{
+    "HASH": "F1A6CCBD",
+    "Code": "outcome(R1,R2,Outcome)."
+}
+```
+
+These code blocks:
+1. First block gets the player's cards
+2. Second block gets the opponent's cards and calculates both hand ranks
+3. Third block determines the outcome based on the ranks
+
+The complete game/3 predicate would look like:
+```prolog
+game(Cards,House,Outcome) :-
+    cards(Cards,own,House,OwnCards),
+    cards(Cards,opponent,House,OppCards),
+    best_hand_rank(OwnCards,R1),
+    best_hand_rank(OppCards,R2),
+    outcome(R1,R2,Outcome).
+```

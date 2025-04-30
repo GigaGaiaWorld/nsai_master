@@ -9,7 +9,7 @@ from config import paths
 from utils import _draw_mermaid_png
 from agent import GenerateNodes, EvaluateNodes, GeneralNodes
 # from tools_v1 import CustomTestTool, CustomSearchTool, CustomTrainTool
-"""
+""" 
 Full vision means that LLM processes the complete prompt uniformly and generates all code content at the same time.
 """
 class Langda_Agent(object):
@@ -18,14 +18,13 @@ class Langda_Agent(object):
                      "prefix":"",
                      "user_context":"",
                      "error_report":"",
-                     "config":{"configurable": {"thread_id": "2"}}
+                     "config":{"configurable": {"thread_id": "42"}}
                 },
                 caching:bool=False, saving:bool=False):
         # self.rule_string, self.requirements_list = self._parse(rule_string)
         self.generate_prompt:str = paths.load_prompt("generate")
         self.evaluate_prompt:str = paths.load_prompt("evaluate")
         self.regenerate_prompt:str = paths.load_prompt("regenerate")
-
         # User inputs:
         self.state = BasicState()
         self.state["config"] = addition_input["config"]
@@ -43,9 +42,6 @@ class Langda_Agent(object):
 
         self.checkpointer = MemorySaver()
 
-    #######################################################################################
-    ###                                      TEST                                       ###
-    #######################################################################################
     def call_langda_workflow(self):
         self.state["srttime"] = time.time()
         self.state["iter_count"] = 0
@@ -57,14 +53,21 @@ class Langda_Agent(object):
         langda_workflow.add_node("test_node", EvaluateNodes.test_node)
         langda_workflow.add_node("summary_node", GeneralNodes.summary_node)
 
-        langda_workflow.add_edge(start_key="init_node", end_key='generate_node')
-        langda_workflow.add_edge(start_key="generate_node", end_key='test_node')
-        langda_workflow.add_conditional_edges("test_node",EvaluateNodes._decide_next, 
+        langda_workflow.add_conditional_edges("init_node",GeneralNodes._decide_next_init, 
             {
-                "regenerate_node": "generate_node",
+                "generate_node": "generate_node",
                 "summary_node": "summary_node"
             })
-        langda_workflow.add_edge(start_key="generate_node", end_key='test_node')
+        langda_workflow.add_conditional_edges("generate_node",GenerateNodes._decide_next_gnrt, 
+            {
+                "generate_node": "generate_node",
+                "test_node": "test_node"
+            })
+        langda_workflow.add_conditional_edges("test_node",EvaluateNodes._decide_next_eval, 
+            {
+                "generate_node": "generate_node",
+                "summary_node": "summary_node"
+            })
         langda_workflow.set_finish_point("summary_node")
 
         langda_agent = langda_workflow.compile(checkpointer=self.checkpointer)
@@ -72,19 +75,64 @@ class Langda_Agent(object):
 
         _draw_mermaid_png(langda_agent, "langda_agent")
 
-
 if __name__ == "__main__":
-    addition = {}
-    addition["user_context"] = """
-    please notice distance(X, Y) is a value, so please do not create single clause like: distance(X, bomb) > 10.
-    please seen initial_charge, charge_cost and weight as value and use in following form:
-    V is value, value < 5 or value > 10...
-    """
-    rules_string = ""
-    rule_path = "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v5.4/rules/"
-    with open (os.path.join(rule_path,"test/promis_prompt.pl"),"r") as f:
-        rules_string += f.read()
+    def process_all_prompt_files(directory_path, model_name, addition_input):  
+        # Find all files ending with "prompt.pl"
+        prompt_files = []
+        for root, _, files in os.walk(directory_path):
+            for file in files:
+                if file.endswith("prompt.pl"):
+                    prompt_files.append(os.path.join(root, file))
+        
+        # Process each prompt file
+        for prompt_file in prompt_files:
+            print(f"#=================Processing file: {prompt_file} =================#")
 
-    l = Langda_Agent(rules_string, "deepseek-chat")
-    l.call_langda_workflow()
+            # Extract prefix from filename (remove _prompt.pl suffix)
+            file_basename = os.path.basename(prompt_file)
+            prefix = file_basename.replace("_prompt.pl", "")
 
+            # Update the prefix in addition_input
+            file_specific_input = addition_input.copy()
+            file_specific_input["prefix"] = prefix
+
+            # Read the rules from the file
+            with open(prompt_file, "r") as f:
+                rules_string = f.read()
+
+            # Create and run the agent
+            agent = Langda_Agent(rules_string, model_name, addition_input=file_specific_input)
+            agent.call_langda_workflow()
+
+            print(f"#=================Completed processing: {prompt_file} =================#")
+
+    def combine_results(directory_path):
+        print("in combine_results")
+        # Find all files ending with "result.txt"
+        result_files = []  # Changed variable name from prompt_files to result_files
+        for root, _, files in os.walk(directory_path):
+            for file in files:
+                if file.endswith("result.txt"):
+                    result_files.append(os.path.join(root, file))
+        # Process each result file
+        for result_file in result_files:  # Changed variable name from prompt_file to result_file
+            print("result_file",result_file)
+            file_basename = os.path.basename(result_file)
+
+            with open(result_file, "r") as f:  # Changed from prompt_file to result_file
+                result = f.read()
+
+            with open(f"{directory_path}/gathered_final_result.txt", "a") as f:
+                f.write(f"\n\n=============={file_basename}:==============\n")
+                f.write(result)
+    
+    addition = {
+        "prefix": "",  # Will be updated for each file
+        "error_report": "",
+        "config": {"configurable": {"thread_id": "42"}},
+        "user_context": ""
+    }
+    test_path = paths.get_abscase_path("rules/test")
+    final_path = paths.get_abscase_path("history/final")
+    # process_all_prompt_files(test_path, "deepseek-chat", addition) 
+    combine_results(final_path)

@@ -2,57 +2,53 @@ import re
 import json
 import uuid
 import hashlib
+from problog.program import PrologString, Clause, AnnotatedDisjunction, Term
 from typing import Literal, List, Union, Tuple, Dict, Any
 from langgraph.graph import END, StateGraph
-from state import BasicState, TaskStatus, Mode
+from state import BasicState, Mode
 from config import paths
 
-def _expand_nested_list(lists):
+def _langda_list_to_dict(langda_dicts):
     """
-    expand nested list to a flat list...
+    Just turn [{},{},...] to {"hash1":{},"hash2":{},...}
     """
+    langda_hash_index = {}
+    for langda_item in langda_dicts:
+        if "HASH" in langda_item:
+            langda_hash_index[langda_item["HASH"]] = langda_item
+    return langda_hash_index
+
+def _expand_nested_list(lists, max_depth=10, current_depth=0):
+    """
+    Expand nested list to a flat list.
+    Includes depth detection to prevent infinite recursion.
+    """
+    if current_depth > max_depth:
+        raise RecursionError(f"Maximum recursion depth {max_depth} exceeded!")
+
     flat_list = []
     for item in lists:
         if isinstance(item, list):
-            nested_items = _expand_nested_list(item)
+            nested_items = _expand_nested_list(item, max_depth, current_depth + 1)
             flat_list.extend(nested_items)
         else:
             flat_list.append(item)
     return flat_list
 
+
 def _list_to_dict(listdict:List[dict]):
-    dictdict:Dict[str,str] = {}
+    dictdict:Dict[str,Any] = {}
     for dict in listdict:
         key, value = _parse_simple_dictonary(dict)
         dictdict[key] = value
     return dictdict
 
-def _parse_simple_dictonary(code_item:dict) -> Union[str, str]:
+def _parse_simple_dictonary(code_item:dict) -> Tuple[str, Any]:
     """
-    parse the dictonary only has one item
+    parse the dictonary only has one item, form like: {"hash":Any content here}
     """
     key, value = next(iter(code_item.items()))
     return key, value
-
-# def _parse_simple_dictonary(code_item):
-#     """
-#     parse the dictonary only has one item
-#     """
-#     if not isinstance(code_item, dict):
-#         print(f"Warning: Expected dict but got {type(code_item)}")
-#         return None, None
-    
-#     if not code_item:  # empty
-#         print("Warning: Empty dictionary")
-#         return None, None
-        
-#     try:
-#         key, value = next(iter(code_item.items()))
-#         return key, value
-#     except StopIteration:  # in case
-#         print("Warning: StopIteration occurred")
-#         return None, None
-
 
 def _compute_short_md5(len:int, content:Union[str,dict], upper:bool = False) -> str:
     """
@@ -89,6 +85,7 @@ def _ordinal(n:int) -> str:
     else:
         suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
     return str(n) + suffix
+
 def _draw_mermaid_png(graph:StateGraph, graph_str:str):
     """
     well, it will not give you the mermaid_png because of the restrict of api,
@@ -112,6 +109,7 @@ def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dic
     replace_str_list = []
     if all(isinstance(item, dict) for item in replacement_list):
         for item in replacement_list:
+            # value = item["Code"]
             _, value = next(iter(item.items()))
             replace_str_list.append(value)
     else:
@@ -129,44 +127,100 @@ def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dic
         result += seg
     return result
 
-def _find_all_blocks(type:Literal["report","code","other"], text:str, ext_pattern:str="") -> Union[List[str],List[dict]]:
+def _construct_format(this):
+    escaped = re.escape(this)
+    return rf'"{escaped}"\s*:\s*"([^"]*)"'
+
+def _find_all_blocks(type:Literal["report","code","other"], text:str, ext_mark:str="") -> List[dict]:
     """
-    find block with certain patterns, please notice that reports are in json form.
+    find block with certain patterns in json form.
     Args:
         type: find block in code or in report file, if choose "other", it will use external pattern
         text: the text that needs to search through
         other_pattern: use other patterns
     """
+    blocks:List[dict] = []
     if type == "other":
-        blocks:List[str] = []
-        pattern = ext_pattern
+        """
+        return with [block,...] form
+        """
+        pattern = r"```(?:report|[a-z]*)?\n(.*?)```"
         matches = re.findall(pattern, text, re.DOTALL)
-        if matches:
-            for block in matches:
-                blocks.append(block)
+        if not matches:
+            pattern = r"```(?:json|[a-z]*)?\n(.*?)```"
+            matches = re.findall(pattern, text, re.DOTALL)
 
-    elif type == "code":
         blocks:List[str] = []
-        pattern = r"```(?:prolog|[a-z]*)?\n(.*?)```"
         matches = re.findall(pattern, text, re.DOTALL)
         if matches:
             for code in matches:
-                blocks.append("% === % LLM Generated Logic Codes % === %\n"+code+"% === % ========================= % === %")
+                try:
+                    m_report = re.search(_construct_format("Report"), code)
+                    report_val = m_report.group(1) if m_report else None
 
+                    m_valid = re.search(_construct_format("Valid"), code)
+                    valid_val = m_valid.group(1) if m_valid else ""
+
+                    normalized_report_block = report_val.replace("\\n", "\n")
+                    blocks.append({ext_mark:{"Report":normalized_report_block,"Valid":valid_val}})
+
+                except ValueError:
+                    blocks.append({ext_mark:None})
+
+    elif type == "code":
+        """
+        return with [{"hash":"code content",...] form
+        """
+
+        pattern = r"```(?:prolog|[a-z]*)?\n(.*?)```"
+        matches = re.findall(pattern, text, re.DOTALL)
+        if not matches:
+            pattern = r"```(?:json|[a-z]*)?\n(.*?)```"
+            matches = re.findall(pattern, text, re.DOTALL)
+
+        if matches:
+            for code in matches:
+            #     try:
+            #         block = json.loads(code)
+            #         block["Code"] = "% === % LLM Generated Logic Codes % === %\n"+block["Code"]+"\n% === % ========================= % === %"
+            #         blocks.append({block["HASH"]:block["Code"]})
+            #     except ValueError:
+            #         print(f"_find_all_blocks: could not parse the code block of {block}")
+            #         blocks.append({block["HASH"]:None})
+                try:
+                    m_hash = re.search(_construct_format("HASH"), code)
+                    # m_hash = re.search(r'"HASH"\s*:\s*"([^"]*)"', code)
+                    hash_val = m_hash.group(1) if m_hash else None
+
+                    m_code = re.search(_construct_format("Code"), code)
+                    # m_code = re.search(r'"Code"\s*:\s*"([\s\S]*?)"', code)
+                    code_block = m_code.group(1) if m_code else ""
+                    normalized_code_block = code_block.replace("\\n", "\n")
+                    blocks.append({hash_val:normalized_code_block})
+
+                except ValueError as e:
+                    print(e)
+        else:
+            raise ValueError("_find_all_blocks: no match found!")
     elif type == "report":
-        blocks:List[dict] = []
+        """
+        return with [{"hash":{"HASH":"hash","Report":"report content","Need_regenerate":"True"}},...] form
+        """
         pattern = r"```report\s+(.*?)```"
         matches = re.findall(pattern, text, re.DOTALL)
         if matches:
             for report in matches:
                 try:
-                    blocks.append(json.loads(report))
+                    block = json.loads(report)
+                    blocks.append({block["HASH"]:block})
                 except ValueError:
-                    blocks.append(None)
+                    blocks.append({block["HASH"]:None})
 
     else:
         raise ValueError("you must choose from ['report','code','other']")
     return blocks
+
+
 
 def _print_stream(stream):
     for s in stream:

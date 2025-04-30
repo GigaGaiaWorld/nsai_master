@@ -1,0 +1,22 @@
+Based on the requirements, I'll generate the Problog code that fits in the {LANGDA} placeholder. The code needs to use all the networks (net1, net2, net3, net4) and implement the logic of adding the smallest two numbers and then subtracting the largest.
+
+Here's the JSON with the generated code:
+
+```json
+{
+    "HASH": "EC80EE82",
+    "Code": "rnn(Text,Embedding),\nnet1(Embedding,P),\npermute(P,X1,X2,X3,A,B,C),\nnet3(Embedding,SwapDecision),\nswap(SwapDecision,B,C,B1,C1),\nnet2(Embedding,Op1),\noperator(Op1,A,B1,Res1),\nnet4(Embedding,Op2),\noperator(Op2,Res1,C1,Out)."
+}
+```
+
+This code:
+1. First gets the embedding from the RNN
+2. Uses net1 to determine the permutation of inputs
+3. Applies the permutation to X1,X2,X3
+4. Uses net3 to decide whether to swap B and C
+5. Uses net2 to determine the first operation (which should be addition)
+6. Performs the first operation on A and B1
+7. Uses net4 to determine the second operation (which should be subtraction)
+8. Performs the second operation on the intermediate result and C1 to get the final output
+
+The logic ensures we add the two smallest numbers first (through proper permutation and swapping) and then subtract the largest number.

@@ -1,0 +1,15 @@
+Here's the generated code for the placeholder in JSON format:
+
+```json
+{
+    "HASH": "9B4AB2A2",
+    "Code": "uniform(X,Y,V) :- between(0,18,V), V is floor((random * 19))."
+}
+```
+
+This code implements the uniform distribution requirement by:
+1. Using `between(0,18,V)` to ensure V is in the range 0-18
+2. Using `random` to generate a float between 0 and 1, multiplying by 19, and taking the floor to get an integer in 0-18 range
+3. Each value has equal probability (1/19) of being selected
+
+The code fits the requirements exactly and will work within the DeepProbLog framework. It doesn't use the forbidden '->' symbol and provides the uniform distribution as specified.

@@ -1,17 +1,9 @@
 import re
 from enum import Enum
-from typing import TypedDict, List, Dict, Tuple
-from utils.tools import _compute_short_md5, _compute_random_md5
+from typing import List, Tuple
+from utils.tools import _compute_short_md5
 from config import paths
-
-class LangdaDict(TypedDict):
-    HEAD: str
-    HASH: str
-
-    LOT: str
-    NET: str
-    LLM: str
-    FUP: str
+from state import LangdaDict
 
 class PredicateState(Enum):
     """Enum class defines predicate state"""
@@ -29,7 +21,6 @@ class Parser(object):
     """
     def __init__(self, text):
         self.text:str = text
-
     # =============================== CODE FOR PARSING ORIGINAL CODE =============================== #
     def clean_result_fields(self, result_dict:dict, keys:list, defaults:list=None):
         """
@@ -52,11 +43,11 @@ class Parser(object):
         """
         Find the line in the original text that corresponds to the compressed line, preserving the original spaces
 
-        Args:
+        args:
             original_text: original text
             compressed_line: compressed line
 
-        Returns:
+        returns:
             The original line found, or an empty string if not found
 
         """
@@ -77,10 +68,10 @@ class Parser(object):
         process the code line by line and store code and comment separately,
         return with [(code_block, comment_block, in_langda),...] form
 
-        Args:
+        args:
             text: The original unprocessed text in string
         It calls the function: self._find_original_line(), and self._map_state()
-        Returns:
+        returns:
             a List, each element is a Tuple of ("pure code block", "pure comment block", "in_langda")
 
         in_langda indicates if the code block belongs to a langda predicate, 
@@ -347,11 +338,11 @@ class Parser(object):
             # -----%---- # new line # -----%---- #
             idl += 1
 
-        dcwc_save = []
-        for code, comment, is_langda in dense_code_with_comments:
-                dcwc_save.append(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
-        # print 4 test
-        paths.save_as_file(dcwc_save,"codes","dcwc")
+        # dcwc_save = []
+        # for code, comment, is_langda in dense_code_with_comments:
+        #         dcwc_save.append(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
+        # # print 4 test
+        # paths.save_as_file(dcwc_save,"codes","dcwc")
 
         return dense_code_with_comments # [(code,comment,is_langda),...]
 
@@ -416,9 +407,9 @@ class Parser(object):
                     key = term[0:idt].strip()
                     value = term[value_start:].strip()
                     
-                    # # remove quotes 
-                    # if value.startswith('"') and value.endswith('"'):
-                    #     value = value[1:-1]
+                    # remove quotes 
+                    if value.startswith('"') and value.endswith('"'):
+                        value = value[1:-1]
                     
                     result_dict[key] = value
                 else:
@@ -462,7 +453,6 @@ class Parser(object):
         in_lann = False
 
         predicate_head = ""
-        predicate_end = None
 
         idl = 0
         while idl < len(text_list_copy):
@@ -470,38 +460,39 @@ class Parser(object):
             if len(current_item) != 3:
                 raise ValueError(f"Warning: Position {idl} has a uncorrect form: {current_item}")
                 
+            # -------------------- #           PART0            # -------------------- #
+            # -------------------- Prepare for parsing the langda ----------------- #
             (code, comment, predicate_status) = current_item
             if ":-" in code:
                 predicate_head, _, _ = code.strip().partition(":-")
-
             if code and "." == code[-1]:
-                predicate_end = True
+                predicate_head = ""
                 if code == ".":
                     idl += 1
-                    continue # ignore the pure "." line
+                    continue # ignore the pure "." line ==> this is actually for the llm code to prevent from generate double "."
 
-            has_langda = code.startswith("langda(")
+            in_lan = not(predicate_status==PredicateState.NONE.value)
+
             has_lann = code.startswith("lann(")
-            # -------------------- #           PART1            # -------------------- #
-            # -------------------- Process single lann predicates -------------------- #
             # Start of lann predicate
-            if has_lann and not in_lann:
+            if has_lann and in_lan:
                 in_lann = True
                 single_lann = []
                 single_comment = []
+
                 if not idl + 1 < len(text_list_copy):
                     raise ValueError("The code is incomplete, please check your lann predicates.")
 
-            # -------------------- #            PART2             # -------------------- #
-            # -------------------- Process single langda predicates -------------------- #
+            has_langda = code.startswith("langda(")
             # Start of langda predicate
-            if has_langda and not in_langda:
-                langda_head = predicate_head
+            if has_langda and in_lan:
                 in_langda = True
                 single_langda = []
                 single_comment = []
 
 
+            # -------------------- #           PART1            # -------------------- #
+            # -------------------- Process single lann predicates -------------------- #
             if in_lann:
                 # Middle of lann predicate
                 if predicate_status == PredicateState.BODY.value:
@@ -534,9 +525,9 @@ class Parser(object):
                     lann_dict_content = {}
                     in_lann = False
 
-
+            # -------------------- #            PART2             # -------------------- #
+            # -------------------- Process single langda predicates -------------------- #
             elif in_langda:
-
                 # Middle of langda predicate
                 if predicate_status == PredicateState.BODY.value:
                     single_langda.append(code)
@@ -547,7 +538,6 @@ class Parser(object):
                     # Add the current segment
                     single_langda.append(code)
                     single_comment.append(comment)
-                    
                     # Create the full langda term and its dict representation
                     full_langda_term = " ".join(single_langda)
 
@@ -557,33 +547,15 @@ class Parser(object):
                         langda_dict_content, 
                         ["LOT", "NET", "LLM", "FUP"],
                         [None,None,None,"True"])
-                    langda_dict_content["HEAD"] = langda_head
+                    langda_dict_content["HEAD"] = predicate_head
                 
-                    langda_dict_content_for_hash = self.clean_result_fields(langda_dict_content, ["HEAD", "LOT", "NET", "LLM"])
+                    langda_dict_content_for_hash = self.clean_result_fields(
+                        langda_dict_content, 
+                        ["HEAD", "LOT", "NET", "LLM"])
                     langda_md5_digits = _compute_short_md5(8,langda_dict_content_for_hash, upper=True)
 
                     langda_dict_content["HASH"] = langda_md5_digits
                     langda_dicts.append(langda_dict_content)
-                    """
-                        The dictonary key for database maintaince: (16 bit)
-                        Front 8 bit: (force update flag 1 bit) + (random hash 7 bit)
-                        Last  8 bit: (static md5 hash based on content)
-                    """
-                    # md5_random_digits = _compute_random_md5(7,upper=True)
-                    # # force_update_flag default as True
-                    # if "FUP" in langda_content_dict:
-                    #     if langda_content_dict["FUP"]:
-                    #         force_update_flag = "T"
-                    #     else:
-                    #         force_update_flag = "F"
-                    # else:
-                    #     force_update_flag = "T"
-                    # langda_dict[force_update_flag + md5_random_digits + md5_short_digits] = langda_content_dict
-                    # -------------------- # REPLACE # -------------------- #
-                    # Replace the original segments with our processed version:
-                    # # comment1...
-                    # # comment2...
-                    #  "\n{{LANGDA}}\n"
                     
                     # Filter out empty comments before joining
                     filtered_comments = [c for c in single_comment if c]
@@ -592,21 +564,14 @@ class Parser(object):
                     # Replace all items from langda_start to idl with a single item containing our joined comments
                     # text_list_copy[langda_start:idl+1] = [(joined_comments, "", "NONE")]
                     result_text_list.append(joined_comments)
-                    # Adjust index to continue after our replacement - always advance by 1
-                    # since we replaced with a single item
-                    # idl = langda_start
                     
                     # Reset state
-                    langda_head = ""
                     langda_dict_content = {}
                     in_langda = False
 
             else:
                 result_text_list.append(code + comment)
             
-            if predicate_end:
-                predicate_head = ""
-                predicate_end = False
             idl += 1
         return result_text_list, lann_dicts, langda_dicts
         # return [item[0] for item in text_list_copy], lann_dict, langda_dicts

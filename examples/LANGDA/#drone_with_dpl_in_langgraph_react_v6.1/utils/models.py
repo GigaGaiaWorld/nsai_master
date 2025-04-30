@@ -108,7 +108,7 @@ class LangdaAgentExecutor:
         """
         invoke a regular agent
         Args:
-            prompt_type: One of ["evaluate", "generate", "regenerate"]
+            prompt_type: One of ["evaluate", "generate", "regenerate","final_test"], if ext_prompt = True, you should fill your own prompt here
             input: dictonary to fill all the placeholders in prompt
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
             ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
@@ -121,7 +121,9 @@ class LangdaAgentExecutor:
             ("system", "You are a helpful assistant that helps the user to generate deepproblog code."),
             ("human", raw_prompt_template)
         ])
-        new_llm = self.get_model()
+        formatted_prompt = chatprompt_template.format(**input)
+
+        new_llm = self.get_model()        
         chain:Runnable = chatprompt_template | new_llm | StrOutputParser()
         result = chain.invoke(input=input, config=config)
-        return result
+        return result, formatted_prompt

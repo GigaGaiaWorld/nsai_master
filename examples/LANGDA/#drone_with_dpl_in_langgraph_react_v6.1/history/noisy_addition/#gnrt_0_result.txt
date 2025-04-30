@@ -1,0 +1,14 @@
+Based on the requirements, I'll generate the code for the `addition_noisy/3` predicate to fit in the {LANGDA} placeholder. Here's the JSON-formatted response:
+
+```json
+{
+    "HASH": "FE04E306",
+    "Code": "addition_noisy(X,Y,Z) :- digit(X,A), digit(Y,B), Z is A+B, \\+noisy.\naddition_noisy(X,Y,Z) :- noisy, uniform(X,Y,Z)."
+}
+```
+
+This code defines the `addition_noisy/3` predicate with two clauses:
+1. The first clause handles the non-noisy case where it sums the digits from the neural network predictions
+2. The second clause handles the noisy case (with probability 0.1) where it selects a uniform random value between 0-18
+
+The code follows Problog syntax and doesn't use the '->' symbol as requested. It completely replaces the {LANGDA} placeholder in the original ruleset.

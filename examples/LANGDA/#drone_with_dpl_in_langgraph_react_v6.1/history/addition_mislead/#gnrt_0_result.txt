@@ -1,0 +1,32 @@
+Here are the generated code blocks in the requested JSON format:
+
+For the first code (recursive digit processing):
+```prolog
+{
+    "HASH": "3BD8A6E2",
+    "Code": "digit(H,D), NewAcc is Acc + D * (10 ^ length(T)), number(T, NewAcc, Result)"
+}
+```
+
+For the second code (multi-digit addition):
+```prolog
+{
+    "HASH": "4A20D0D6",
+    "Code": "number(X,X1), number(Y,Y2), Z is X1 + Y2"
+}
+```
+
+For the third code (single-digit addition):
+```prolog
+{
+    "HASH": "F9EBF407",
+    "Code": "digit(X1,D1), digit(X2,D2), Z is D1 + D2"
+}
+```
+
+Each code block is designed to fit exactly in its respective placeholder while meeting all the specified requirements:
+1. The first recursively processes digits to build a multi-digit number
+2. The second converts two digit sequences to numbers and adds them
+3. The third handles single-digit addition using the neural network predictions
+
+All codes use the mnist_net network as specified and maintain proper Prolog syntax without using the '->' symbol.

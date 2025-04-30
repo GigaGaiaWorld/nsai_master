@@ -1,0 +1,24 @@
+Based on the requirements, I'll generate the Problog code that fits in the {LANGDA} placeholder. The code needs to use all the networks (net1, net2, net3, net4) and implement the logic of adding the smallest two numbers and then subtracting the largest.
+
+Here's the JSON with the generated code:
+
+```json
+{
+    "HASH": "EC80EE82",
+    "Code": "rnn(Text,Embedding),\nnet1(Embedding,P),\npermute(P,X1,X2,X3,A,B,C),\nnet3(Embedding,SwapDecision),\nswap(SwapDecision,B,C,B1,C1),\nmin(A,B1,Min1),\nmax(A,B1,Max1),\nmin(Min1,C1,Min2),\nmax(Max1,C1,Max2),\nnet2(Embedding,Op1),\noperator(Op1,Min1,Min2,Sum),\nnet4(Embedding,Op2),\noperator(Op2,Sum,Max2,Out).\n\nmin(X,Y,X) :- X =< Y.\nmin(X,Y,Y) :- Y < X.\nmax(X,Y,X) :- X >= Y.\nmax(X,Y,Y) :- Y > X."
+}
+```
+
+This code:
+1. Uses the RNN to get text embedding
+2. Uses net1 to determine permutation
+3. Permutes the input numbers
+4. Uses net3 to decide if swapping is needed
+5. Finds the two smallest numbers (Min1 and Min2)
+6. Finds the largest number (Max2)
+7. Uses net2 to determine the addition operation
+8. Adds the two smallest numbers
+9. Uses net4 to determine the subtraction operation
+10. Subtracts the largest number from the sum
+
+The helper predicates min/3 and max/3 are included to find minimum and maximum values between two numbers. The code follows the requirement of not using the '->' symbol.

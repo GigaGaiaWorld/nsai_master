@@ -1,22 +1,25 @@
 from pydantic import BaseModel, Field, validator
 import os
 import json
-from typing import Dict, List, Optional, Tuple, Union, Any, Literal
+from typing import Dict, Optional, Union, Any, Literal
 from pathlib import Path
 from dotenv import load_dotenv
 import logging
 
 class ProjectPaths(BaseModel):
     """Configuration for project paths using Pydantic.
-    load_my_env: load env parameters
-    get_absproj_path: path from the project root
-    get_abscase_path: path from the example path
-    get_data_path: data path
-    get_prompt_path
-    load_prompt
-    load_data
-    save_as_file
-    ensure_directories_exist
+        load_my_env: load env parameters
+
+        get_absproj_path: path from the project root
+        get_abscase_path: path from the example path
+
+        get_data_path: data path
+        get_prompt_path: 
+        load_prompt: 
+        load_data: 
+        save_as_file: 
+
+        ensure_directories_exist: 
     """
     
     # Project directory:
@@ -37,18 +40,9 @@ class ProjectPaths(BaseModel):
     prompt_names: Dict[str, str] = Field(default={
         "generate": "system_generate_prompt_fullvision.txt",
         "evaluate": "system_evaluate_prompt_fullvision.txt",
-        "regenerate": "system_regenerate_prompt_fullvision.txt"
+        "regenerate": "system_regenerate_prompt_fullvision.txt",
+        "final_test": "system_final_test_prompt_fullvision.txt",
     })
-
-    # workflow_files: Dict[str, str] = Field(default={
-    #     "generated_result": "generated_result.txt",
-    #     "evaluated_result": "evaluated_result.txt",
-    #     "generated_codes": "generated_codes.txt",
-    #     "evaluated_codes": "evaluated_codes.txt",
-    #     "prompt_template": "prompt_template.txt",
-    #     "final_code": "final_code.pl",
-    #     "mermaid": "mermaid.mmd",
-    # })
     
     workflow_files: Dict[str, str] = Field(default={
         "result": "result.txt",
@@ -165,11 +159,11 @@ class ProjectPaths(BaseModel):
 
         return self._get_path("prompts", self.prompt_names[prompt_name])
     
-    def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate"]) -> str:
+    def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate", "final_test"]) -> str:
         """
         Load prompt content from file.
         Args:
-            prompt: One of ["evaluate", "generate", "regenerate"]
+            prompt: One of ["evaluate", "generate", "regenerate", "final_test"]
         """
         path = self.get_prompt_path(prompt)
         try:
@@ -209,7 +203,7 @@ class ProjectPaths(BaseModel):
         """
         # Convert content to string
         if isinstance(content, list):
-            contentstr = json.dumps(content, indent=4, ensure_ascii=False)
+            contentstr = json.dumps(content, indent=0, ensure_ascii=False)
         else:
             contentstr = str(content)
 
@@ -228,7 +222,7 @@ class ProjectPaths(BaseModel):
         
         # Save the file
         try:
-            with open(path, "w", encoding="utf-8", newline="\n") as f:
+            with open(path, "w", encoding="utf-8") as f:
                 f.write(contentstr)
             logging.info(f"File saved successfully: {path}")
             return path

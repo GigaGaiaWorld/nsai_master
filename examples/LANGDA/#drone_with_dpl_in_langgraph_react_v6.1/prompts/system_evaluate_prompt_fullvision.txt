@@ -9,9 +9,6 @@ I need you to generate a report for the features in my DeepProblog code. Below I
 {output}
 
 </ruleset>
-<error_report>
-{error_report}
-</error_report>
 <code_list>
 ### The parts that need to be analyzed in the entire code are:
 
@@ -19,56 +16,28 @@ I need you to generate a report for the features in my DeepProblog code. Below I
 
 </code_list>
 <requirements>
-Please evaluate the correctness of the code listing and generate a report in JSON form for each code block using a single report block of the following form:
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
 ```report
 {{
-    "Report": "<The Analysis of Generated Code>",
-    "Need_regenerate": "<boolean>"
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
 }}
 ```
 
-# This is really important! Also make sure to use the correct syntax! Please ignore the "redundant" issues in the code that have no effect on the syntax!
+For the second Code:
+```report
+{{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
 </requirements>
-<example>
-### The full code:
-nn(net1, [X], Y, [heads, tails]) :: coin(1,X,Y).
-nn(net2, [X], Y, [heads, tails]) :: coin(2,X,Y).
-
-outcome(X,X,win).
-outcome(X,Y,loss) :- \+outcome(X,Y,win).
-
-game(X,Outcome) :-
-    coin(1,X,C1),
-    coin(2,X,C2),
-    outcome(C1,C2,game).
-
-### The parts that need to be analyzed in the entire code are:
-
-The 1st Code Block That You Should Analyse:
-outcome(X,Y,loss) :- \+outcome(X,Y,win).
-
-The 2nd Code Block That You Should Analyse:
-outcome(C1,C2,game)
-
-### Generated Report Blocks: 
-```report
-{{
-    "Report": "correct, it's suitable for the current code",
-    "Need_regenerate": "False"
-}}
-```
-```report
-{{
-    "Report": "there's an error, the third item should be 'Outcome' instead of 'game'",
-    "Need_regenerate": "True"
-}}
-```
-
-### then I could let llm regenerate code based on the errors in each part
-nn(net1, [X], Y, [heads, tails]) :: coin(1,X,Y).
-nn(net2, [X], Y, [heads, tails]) :: coin(2,X,Y).
-
-</example>
 <annotations>
 # Important: If there is a '->' symbol in the code, please mark it as an error.
 </annotations>
