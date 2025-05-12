@@ -39,11 +39,14 @@ prove(refute(P)) :-
 parent(alice, bob).
 parent(bob, carol).
 % Define some expand rules:
-% Define ancestor relation as transitive closure of parent relation
-ancestor(X, Y) :- parent(X, Y).
-ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
+expand(parent(X,Y), ancestor(X,Y)) :- parent(X,Y).
+expand(ancestor(X,Y), ancestor(X,Z)) :- parent(X,Z), ancestor(Z,Y).
 query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
 
 *** Result:*** 
-% Problog Inference Result：
-prove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000
+Error evaluating Problog model:
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 257, in _builtin_clause
+    clause_ids = database.get_node(clause_def).children
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'children'

@@ -150,7 +150,7 @@ class FinishTool(BaseTool):
     name: ClassVar[str] = "finish_tool"
     description: ClassVar[str] = "Once you get the completed code, use this tool to return the final answer and end the chain"
     args_schema: Type[BaseModel] = FinishToolInput
-    return_direct: ClassVar[bool] = True  # End loop once called!!!
+    # return_direct: ClassVar[bool] = True  # End loop once called!!!
 
     def _run(self, 
              output:str,

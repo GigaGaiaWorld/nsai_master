@@ -1,6 +1,9 @@
+Here are the extracted code blocks corresponding to the <langda> blocks in the original code:
+
 ```problog
-{"HASH": "CD6DE9CB","Code": "query_pop([C1,D1,C2,D2]) :-\n    density(C1,D1),\n    density(C2,D2),\n    C1 @< C2,  % ensure we don't get duplicate pairs\n    abs(D1 - D2) =< 5,  % densities within 5 units\n    D1 =\= D2.  % not exactly the same (optional)"}
+{"HASH": "CD6DE9CB", "Code": "density(C1,D1),\ndensity(C2,D2),\nC1 \\= C2,\nabs(D1 - D2) < 10."}
 ```
+
 ```problog
-{"HASH": "23C2CC6E","Code": "pop(china, 8250).\npop(india, 5863).\npop(ussr, 2521).\npop(usa, 2119).\npop(indonesia, 1276).\npop(japan, 1097).\npop(brazil, 1042).\npop(bangladesh, 750).\npop(pakistan, 682).\npop(w_germany, 613)."}
+{"HASH": "23C2CC6E", "Code": "pop(china, 8250).\npop(india, 5863).\npop(ussr, 2521).\npop(usa, 2119).\npop(indonesia, 1276).\npop(japan, 1097).\npop(brazil, 1042).\npop(bangladesh, 750).\npop(pakistan, 682).\npop(w_germany, 613)."}
 ```

@@ -57,3 +57,5 @@ class BasicState(TypedDict):
     regenerate_info: str # 
     generated_codes: list # New code generated
     error_report: str # New report generated
+
+    final_result: dict

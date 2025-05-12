@@ -35,7 +35,7 @@ class EvaluateNodes:
         }
 
         evaluated_result,formatted_prompt = invoke_agent(
-            react=state["usereact"], 
+            agent_type="simple", 
             model_name=state["model_name"], 
             tools=["search_tool","Prolog_builtins_retriever_tool","finish_tool"], 
             prompt_type="evaluate", 

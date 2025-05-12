@@ -34,7 +34,7 @@ __all__ = [
     '_replace_placeholder',
 ]
 
-def invoke_agent(react:bool, model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
+def invoke_agent(agent_type:Literal["react","simple","doublechain"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
     """
     Returns the corresponding LangdaAgentExecutor instance or its react version based on the parameters passed in when calling.
     Args:
@@ -45,10 +45,12 @@ def invoke_agent(react:bool, model_name:str, tools:List[str], prompt_type:Litera
         config: configs of agent for example: {"configurable": {"thread_id": "2"}}
     """
     executor = LangdaAgentExecutor(model_name=model_name,tools=get_tools(tools))
-    if react:
+    if agent_type == "react":
         return executor.invoke_react_agent(prompt_type,input,config)
-    else:
-        return executor.invoke_agent(prompt_type,input,config)
+    elif agent_type == "simple":
+        return executor.invoke_simple_agent(prompt_type,input,config)
+    elif agent_type == "doublechain":
+        return executor.invoke_doublechain_agent(prompt_type,input,config)
 
 def get_tools(tool_list: List[str]) -> List[BaseTool]:
     """

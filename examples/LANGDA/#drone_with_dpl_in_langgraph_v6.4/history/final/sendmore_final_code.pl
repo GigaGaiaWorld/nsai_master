@@ -6,37 +6,29 @@
 % MONEY
 query_sum([C,R,O,S,S,R,O,A,D,S]) :-
  
-% Cryptoaddition:
-% Find the unique answer to:
-% CROSS
-% + ROADS
-% -------
-% DANGER
-query_sum([C,R,O,S,A,D,G,N,E]) :-
-    leftdigit(C), leftdigit(R), leftdigit(D),
-    digit(O), digit(A), digit(S), digit(G), digit(N), digit(E),
-    % First column (rightmost)
-    Sum1 is S + S,
-    (Sum1 >= 10 -> Carry1 = 1 ; Carry1 = 0),
-    E is Sum1 mod 10,
-    % Second column
-    Sum2 is O + A + Carry1,
-    (Sum2 >= 10 -> Carry2 = 1 ; Carry2 = 0),
-    G is Sum2 mod 10,
-    % Third column
-    Sum3 is S + D + Carry2,
-    (Sum3 >= 10 -> Carry3 = 1 ; Carry3 = 0),
-    N is Sum3 mod 10,
-    % Fourth column
-    Sum4 is R + O + Carry3,
-    (Sum4 >= 10 -> Carry4 = 1 ; Carry4 = 0),
-    A is Sum4 mod 10,
-    % Fifth column
-    Sum5 is C + R + Carry4,
-    (Sum5 >= 10 -> Carry5 = 1 ; Carry5 = 0),
-    D is Sum5 mod 10,
-    Carry5 = 0,
-    all_different([C,R,O,S,A,D,G,N,E]).
+% Cryptoaddition puzzle: CROSS + ROADS = DANGER
+query_sum([C, R, O, S, S, R, O, A, D, S]) :-
+    leftdigit(C),
+    leftdigit(R),
+    leftdigit(D),
+    all_different([C, R, O, S, A, D, E, N, G]),
+    S1 is S + S,
+    S2 is S1 mod 10,
+    Carry1 is S1 // 10,
+    O1 is O + A + Carry1,
+    O2 is O1 mod 10,
+    Carry2 is O1 // 10,
+    R1 is R + O + Carry2,
+    R2 is R1 mod 10,
+    Carry3 is R1 // 10,
+    C1 is C + R + Carry3,
+    C2 is C1 mod 10,
+    Carry4 is C1 // 10,
+    D is Carry4,
+    S2 = E,
+    O2 = N,
+    R2 = G,
+    C2 = D.
 digit(0).
  digit(1).
  digit(2).
@@ -60,4 +52,4 @@ Error evaluating Problog model:
          ^^^^^^^^^^
   File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
     raise ParseError(
-problog.parser.ParseError: Operator priority clash at 15:32.
+problog.parser.ParseError: Operator priority clash at 10:43.

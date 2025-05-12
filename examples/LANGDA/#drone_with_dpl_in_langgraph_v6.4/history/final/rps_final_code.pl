@@ -3,22 +3,20 @@
 % -------------------------
 % Three gestures
 % Win-lose relationship: X beats Y
-% Define possible moves
-move(mammal).
-move(arthropod).
-move(lizard).
-move(bird).
-move(fish).
+move(mammals).
+move(arthropods).
+move(fishes).
+move(lizards).
+move(birds).
 
-% Define win-lose relationships
-beats(mammal, arthropod).
-beats(mammal, fish).
-beats(arthropod, lizard).
-beats(lizard, mammal).
-beats(lizard, bird).
-beats(bird, arthropod).
-beats(bird, fish).
-beats(fish, arthropod).
+beats(mammals, arthropods).
+beats(mammals, fishes).
+beats(arthropods, lizards).
+beats(lizards, mammals).
+beats(lizards, birds).
+beats(birds, arthropods).
+beats(birds, fishes).
+beats(fishes, arthropods).
 % -------------------------
 % Calculate the result of the game
 % -------------------------
@@ -51,7 +49,3 @@ compute_score(Results,S),
 ; S = 0, Winner = draw 
 ).
 query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
-
-*** Result:*** 
-% Problog Inference Result：
-determine_winner([rock, rock, rock],[paper, paper, scissor],X2) = 0.0000

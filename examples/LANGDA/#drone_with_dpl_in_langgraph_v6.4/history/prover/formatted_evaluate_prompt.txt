@@ -1,1 +1,30 @@
-{'input': '<question>You are an expert reviewer proficient in Problog and neuro-symbolic systems. Your task is to analyze each completed Prolog code block below and determine whether it satisfies the user\'s original design intentions for Langda.\n<rule_set>\n            First, the complete code is given below:\n\n% member/2 for ProbLog\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% --------- Basic meta-interpreter ---------\n% Prove "true" always succeeds\nprove(true).\nprove(Goal) :-\n\t% For all other goals, use the clause/2 facts/rules defined in the program\n\tclause(Goal, Body),\n\tprove(Body).\n% Prove compound goal A,B: prove A first, then prove B\nprove((A,B)) :-\n\tprove(A),\n\tprove(B).\n% --------- Extended logic processing ---------\n% 1. implies(P,Q): P ⇒ Q, when P is unprovable or Q is provable\nprove(implies(P,Q)) :-\n\t( \\+ prove(P) % if P is unprovable\n\t; prove(Q) ).\n % or Q is provable\n% 2. opposite(P): "opposite"/negation of P; that is, P is unprovable\nprove(opposite(P)) :-\n\t\\+ prove(P).\n% 3. expand(A,B): first use expand/2 rule to expand A into B, then prove B\n% You need to define several expand/2 facts or rules in the program\nprove(expand(A,B)) :-\n\texpand(A,B).\n% 4. includes(Set,X): set inclusion relation, equivalent to member/2\nprove(includes(Set,X)) :-\n\tmember(X,Set).\n% 5. extend(List,Elem,Extended): add Elem to the head of List to get Extended\nprove(extend(List,Elem,Extended)) :-\n\tExtended = [Elem|List].\n% 6. refute(P): refute, equivalent to "unprovable"\nprove(refute(P)) :-\n\t\\+ prove(P).\n% --------- Examples ---------- %\n% facts:\nparent(alice, bob).\nparent(bob, carol).\n% Define some expand rules:\n% Define ancestor relation as transitive closure of parent relation\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).\nquery(prove(implies(parent(alice,bob), ancestor(alice,bob)))).\n</rule_set>\n<code_list>\nNext, here are the generated code segments:\n\nThe 1st Code Block That You Should Analyse:\n% Define ancestor relation as transitive closure of parent relation\nancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).\nHash tag of code, please use it actually for generation: 397E4F86\nRequirements of Rules: define the logic of parent and ancestor\n\nPlease make sure the code fits inside the placeholder(Which means it doesn\'t have to be a \'complete\' code).\n\n</code_list>\n<test_result>\nNext, here are the test result of the code:\n\n% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\n</test_result>\n</question>'}
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 257, in _builtin_clause\n    clause_ids = database.get_node(clause_def).children\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: \'tuple\' object has no attribute \'children\'</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>expand(parent(X,Y), ancestor(X,Y)) :- parent(X,Y).\nexpand(ancestor(X,Y), ancestor(X,Z)) :- parent(X,Z), ancestor(Z,Y).</Current_Code>\n<HASH> Hash tag of code: 397E4F86 </HASH>\n<LLM> Requirements of Rules: define the logic of parent and ancestor </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

@@ -7,13 +7,8 @@ You have access to the following tools:
 Use the following format:
 - Question: the input code with <langda> blocks
 - Thought: Analyse the validity of each code block, and decide next:
-    if the answer can be given directly without a tool, output:
-        - Action: FINISH
-        - Action Input: <Input_parameters>
-
-    else if you need to use a tool, output:
-        - Action: <Tool_name>, should be one of [{tool_names}]
-        - Action Input: <Input_parameters>
+- Action: <Tool_name>, should be one of [{tool_names}]
+- Action Input: <Input_parameters>
 - Observation: the result of the action
 - Thought: I now know the final answer
 - Final Answer: the final answer should be a single string containing an analysis for each generated code block. Provide each code block's evaluation as a JSON object in the following format:

@@ -7,13 +7,8 @@ You have access to the following tools:
 Use the following format:
 - Question: the input code with <langda> blocks
 - Thought: Try to complete the input code with the help of information in each <langda> block, and decide next:
-    if the answer can be given directly without a tool, output:
-        - Action: FINISH
-        - Action Input: <Input_parameters>
-
-    else if you need to use a tool, output:
-        - Action: <Tool_name>, should be one of [{tool_names}]
-        - Action Input: <Input_parameters>
+- Action: <Tool_name>, should be one of [{tool_names}]
+- Action Input: <Input_parameters>
 - Observation: the result of the action
 - Thought: I now know the final answer
 - Final Answer: the final answer should be a single string containing all the completed code segments that only replace the <langda> blocks. Each code segment should be formatted as follows:

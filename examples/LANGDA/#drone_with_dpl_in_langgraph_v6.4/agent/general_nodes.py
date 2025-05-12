@@ -9,6 +9,7 @@ from utils import (
     integrated_code_parser,
     _parse_simple_dictonary,
     invoke_agent,
+    _find_all_blocks,
 )
 from state import BasicState, TaskStatus
 from config import paths
@@ -102,10 +103,26 @@ class GeneralNodes:
         print("processing summary_node...")
         state["status"] = TaskStatus.CMPL
 
-        final_code = _replace_placeholder(state["prompt_template"],state["fest_codes"], state["placeholder"])
+        final_code = _replace_placeholder(state["prompt_template"],state["generated_codes"], state["placeholder"])
+        # final_code = _replace_placeholder(state["prompt_template"],state["fest_codes"], state["placeholder"])
+        input={
+            "original_ruleset": state["rule_string"],
+            "generated_ruleset": final_code,
+        }
+        final_result, _  = invoke_agent(
+            agent_type="simple", 
+            model_name=state["model_name"], 
+            tools=[], 
+            prompt_type="final_test", 
+            input=input, 
+            config=state["config"])
+        final_dict = _find_all_blocks("other",final_result, state['prefix'])
+        _, value = _parse_simple_dictonary(final_dict[0])
+        validity = value["Valid"]
+        final_report = value["Report"]
         result_new = GeneralNodes.problog_test_tool(final_code)
 
-        paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new}","final_code",f"final/{state['prefix']}")
+        # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new}","final_code",f"final/{state['prefix']}")
         # paths.save_as_file("Validity:\n"+validity+"\n\nReport:\n"+final_report,"result",f"final/{state['prefix']}")
 
         fest_dict = _list_to_dict(state["fest_codes"])
@@ -118,8 +135,16 @@ class GeneralNodes:
         print("total round:",state["iter_count"])
         # some other summaries...
 
-        return state
-    
+        return {
+            "final_result":{
+                "validity":validity,
+                "final_report":final_report,
+                "final_result":result_new,
+                "running_time":running_time,
+                "iter_count":state["iter_count"],
+            }
+        }
+
     @staticmethod
     def _decide_next_init(state:BasicState):
         print("processing _decide_next_init ...")
@@ -136,7 +161,7 @@ class GeneralNodes:
             return "summary_node"
         else:
             return "generate_node"
-        
+
     @staticmethod
     def problog_test_tool(model: str) -> Tuple[str,bool]:
         """Run the Problog evaluation tool."""

@@ -10,7 +10,10 @@
 % tries of approximately equal population density
 query_pop([C1,D1,C2,D2]) :-
  
-density(C1,D1), density(C2,D2), C1 @< C2, abs(D1-D2) =< 10.
+density(C1, D1),
+    density(C2, D2),
+    C1 \= C2,
+    abs(D1 - D2) < 10.
 density(C,D) :-
  pop(C,P),
  area(C,A),
@@ -72,8 +75,15 @@ query(query_pop(X)).
 *** Result:*** 
 % Problog Inference Result：
 query_pop([china, 244, france, 246]) = 1.0000
+query_pop([ussr, 28, brazil, 31]) = 1.0000
+query_pop([ussr, 28, argentina, 23]) = 1.0000
+query_pop([usa, 58, iran, 50]) = 1.0000
 query_pop([indonesia, 223, pakistan, 219]) = 1.0000
 query_pop([brazil, 31, ussr, 28]) = 1.0000
+query_pop([brazil, 31, argentina, 23]) = 1.0000
+query_pop([pakistan, 219, indonesia, 223]) = 1.0000
+query_pop([mexico, 76, ethiopia, 77]) = 1.0000
+query_pop([france, 246, china, 244]) = 1.0000
 query_pop([iran, 50, usa, 58]) = 1.0000
 query_pop([ethiopia, 77, mexico, 76]) = 1.0000
 query_pop([argentina, 23, ussr, 28]) = 1.0000

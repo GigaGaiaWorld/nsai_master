@@ -14,7 +14,10 @@ from agent import GenerateNodes, EvaluateNodes, GeneralNodes
 Full vision means that LLM processes the complete prompt uniformly and generates all code content at the same time.
 """
 class Langda_Agent(object):
-    def __init__(self, rule_string:str, model_name, 
+    def __init__(self, 
+                rule_string:str, # the input test rule string
+                true_string:str, # the answer rule string
+                model_name, 
                 addition_input:dict={
                      "usereact":False,
                      "prefix":"",
@@ -33,6 +36,7 @@ class Langda_Agent(object):
         self.state["langda_ext"] = addition_input["langda_ext"]
         self.state["model_name"] = model_name
         self.state["rule_string"] = rule_string
+        self.state["true_string"] = true_string
         self.state["user_context"] = addition_input["user_context"]
 
         # Prompting static parameters:
@@ -79,12 +83,13 @@ class Langda_Agent(object):
         self.state = langda_agent.invoke(self.state, config=self.state["config"])
 
         _draw_mermaid_png(langda_agent, "langda_agent")
+        return self.state["final_result"]
 
 if __name__ == "__main__":
-    def process_all_prompt_files(directory_path, model_name, addition_input):  
+    def process_all_prompt_files(test_directory_path, answer_directory_path, model_name, addition_input):  
         # Find all files ending with "prompt.pl"
         prompt_files = []
-        for root, _, files in os.walk(directory_path):
+        for root, _, files in os.walk(test_directory_path):
             for file in files:
                 if file.endswith("prompt.pl"):
                     prompt_files.append(os.path.join(root, file))
@@ -105,7 +110,7 @@ if __name__ == "__main__":
                 rules_string = f.read()
 
             # Create and run the agent
-            agent = Langda_Agent(rules_string, model_name, addition_input=file_specific_input)
+            agent = Langda_Agent(rules_string, true_string, model_name, addition_input=file_specific_input)
             agent.call_langda_workflow()
 
             print(f"#=================Completed processing: {prompt_file} =================#")
@@ -138,7 +143,10 @@ if __name__ == "__main__":
         "config": {"configurable": {"thread_id": "42"}},
         "user_context": ""
     }
-    test_path = paths.get_abscase_path("rules/new_prolog_bench_prompt")
+    
+    test_path = paths.get_abscase_path("rules/test_prompt")
+    answer_path = paths.get_abscase_path("rules/test_answer")
+
     final_path = paths.get_abscase_path("history/final")
     process_all_prompt_files(test_path, "deepseek-chat", addition) 
     combine_results(final_path)

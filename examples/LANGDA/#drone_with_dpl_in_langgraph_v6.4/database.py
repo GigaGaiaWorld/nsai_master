@@ -76,7 +76,8 @@ class DictDB:
         
         # Validate with Pydantic model
         if not content:
-            raise ValueError(f"Database: the value of {hash_value} is {content}.")
+            # raise ValueError(f"Database: the value of {hash_value} is {content}.")
+            print(ValueError(f"Database: the value of {hash_value} is {content}."))
         entry = DictEntry(hash=hash_value, content=content)
         
         # Insert or replace the entry
