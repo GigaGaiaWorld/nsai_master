@@ -1,0 +1,19 @@
+Here is the generated code for the placeholder in JSON form:
+
+```json
+{
+    "HASH": "E8F86752",
+    "Code": "leftdigit(C), leftdigit(R), leftdigit(D),\n    digit(O), digit(A), digit(S), digit(N), digit(G), digit(E),\n    all_different([C,R,O,S,A,D,N,G,E]),\n    S + S + 10*O + 10*R + 100*A + 100*S + 1000*R + 1000*O + 10000*C =\n    E + 10*R + 100*G + 1000*N + 10000*A + 100000*D."
+}
+```
+
+This code:
+1. Enforces that C, R, and D are left digits (cannot be zero)
+2. Declares all other letters as regular digits
+3. Ensures all letters have distinct values
+4. Encodes the cryptarithmetic equation for CROSS + ROADS = DANGER with proper digit place values
+
+The equation breaks down as:
+- CROSS = C*10000 + R*1000 + O*100 + S*10 + S
+- ROADS = R*10000 + O*1000 + A*100 + D*10 + S  
+- DANGER = D*100000 + A*10000 + N*1000 + G*100 + E*10 + R

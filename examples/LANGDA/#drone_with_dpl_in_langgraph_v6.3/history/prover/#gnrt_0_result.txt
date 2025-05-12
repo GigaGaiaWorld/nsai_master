@@ -1,0 +1,5 @@
+```problog
+{"HASH": "397E4F86","Code": "% Define ancestor relation as transitive closure of parent relation
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y)."}
+```

@@ -1,0 +1,19 @@
+Here are the generated code blocks in the requested JSON format:
+
+For the first placeholder (query_pop predicate):
+```prolog
+{
+    "HASH": "CD6DE9CB",
+    "Code": "country(C1), country(C2), C1 \\= C2, density(C1,D1), density(C2,D2), abs(D1 - D2) < 10."
+}
+```
+
+For the second placeholder (population facts):
+```prolog
+{
+    "HASH": "23C2CC6E", 
+    "Code": "pop(china, 8250).\npop(india, 5863).\npop(ussr, 2521).\npop(usa, 2119).\npop(indonesia, 1276).\npop(japan, 1097).\npop(brazil, 1042).\npop(bangladesh, 750).\npop(pakistan, 682).\npop(w_germany, 613)."
+}
+```
+
+The first code block implements the query_pop predicate to find pairs of distinct countries with population densities differing by less than 10. The second code block adds the missing population facts for the specified countries, with populations given in 100,000s as per the original data format.

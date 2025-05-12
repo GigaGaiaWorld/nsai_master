@@ -1,0 +1,5 @@
+[
+{
+"E8F86752": "% Cryptoaddition:\n% Find the unique answer to:\n% CROSS\n% + ROADS\n% -------\n% DANGER\nquery_sum([C,R,O,S,S,R,O,A,D,S]) :-\n    leftdigit(C), leftdigit(R), leftdigit(D),\n    leftdigit(O), leftdigit(A),\n    S1 is S + S,\n    (S1 >= 10 -> Carry1 = 1 ; Carry1 = 0),\n    S2 is S1 mod 10,\n    S2 = S,\n    S3 is O + A + Carry1,\n    (S3 >= 10 -> Carry2 = 1 ; Carry2 = 0),\n    S4 is S3 mod 10,\n    S4 = G,\n    S5 is R + O + Carry2,\n    (S5 >= 10 -> Carry3 = 1 ; Carry3 = 0),\n    S6 is S5 mod 10,\n    S6 = N,\n    S7 is O + R + Carry3,\n    (S7 >= 10 -> Carry4 = 1 ; Carry4 = 0),\n    S8 is S7 mod 10,\n    S8 = A,\n    S9 is C + D + Carry4,\n    (S9 >= 10 -> Carry5 = 1 ; Carry5 = 0),\n    S10 is S9 mod 10,\n    S10 = D,\n    Carry5 = 0,\n    all_different([C,R,O,S,A,D,G,N,E]),\n    digit(C), digit(R), digit(O), digit(S), digit(A), digit(D), digit(G), digit(N), digit(E)."
+}
+]
