@@ -122,12 +122,11 @@ class GeneralNodes:
         final_report = value["Report"]
         result_new = GeneralNodes.problog_test_tool(final_code)
 
-        # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new}","final_code",f"final/{state['prefix']}")
-        # paths.save_as_file("Validity:\n"+validity+"\n\nReport:\n"+final_report,"result",f"final/{state['prefix']}")
+        paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new} \n\n***Report:***\nValidity:{validity}\n{final_report}","final_code",f"final/{state['prefix']}")
 
-        fest_dict = _list_to_dict(state["fest_codes"])
-        with DictDB() as langdaDB:
-            langdaDB.sync_with_dict(fest_dict)
+        # fest_dict = _list_to_dict(state["fest_codes"])
+        # with DictDB() as langdaDB:
+        #     langdaDB.sync_with_dict(fest_dict)
 
         state["endtime"] = time.time()
         running_time = round(state["endtime"]-state["srttime"])

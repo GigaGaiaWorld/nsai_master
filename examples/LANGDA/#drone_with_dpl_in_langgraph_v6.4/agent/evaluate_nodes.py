@@ -106,8 +106,12 @@ class EvaluateNodes:
             for query_key, probability in results.items():
                 result_line = f"{query_key} = {probability:.4f}"
                 result.append(result_line)
-            result_lines = "% Problog Inference Result：\n" + "\n".join(result)
-            print(result_lines)
+                
+            if len(result) > 20:
+                result_lines = "% Problog Inference Result：\n" + "\n".join(result[:20]) + "\n ...<other results>... "
+            else:
+                result_lines = "% Problog Inference Result：\n" + "\n".join(result)
+            print(" ------------- result_lines ------------- \n" + "\n".join(result[:5]))
             return result_lines
         except Exception:
             tb_lines = traceback.format_exc().splitlines()
