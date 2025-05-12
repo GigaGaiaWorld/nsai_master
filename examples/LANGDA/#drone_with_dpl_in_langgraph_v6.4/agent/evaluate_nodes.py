@@ -98,11 +98,12 @@ class EvaluateNodes:
     @staticmethod
     def problog_test_tool(model: str) -> Tuple[str,bool]:
         """Run the Problog evaluation tool."""
+        print("""Running problog_test_tool...""")
         try:
             result = []
             evaluatable:Type[evaluator.Evaluatable] = get_evaluatable().create_from(PrologString(model))
             results:(dict | Any) = evaluatable.evaluate()
-            
+
             for query_key, probability in results.items():
                 result_line = f"{query_key} = {probability:.4f}"
                 result.append(result_line)
