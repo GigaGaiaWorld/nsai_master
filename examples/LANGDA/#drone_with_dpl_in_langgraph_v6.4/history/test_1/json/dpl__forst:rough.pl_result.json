@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 34,
+  "iter_count": 1,
+  "process_time": 33.509957790374756,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000",
+  "final_report": "The generated code is mostly correct and consistent with the original code, but there is a discrepancy in the 'rot' operation. The original code rotates the top three elements as [Z,X,Y|Stack], while the generated code rotates them as [Y,Z,X|Stack]. This leads to different results for the 'rot' operation. The generated code also includes a redundant duplication of the 'stack_op(sort)' and 'get_top_n' predicates, which does not affect functionality but is unnecessary. The insertion_sort implementation is correctly added and works as expected."
+}

@@ -50,12 +50,12 @@ class RequirementsBuilder:
         return langda_infos # each one corresponds to a langda term
 
     @staticmethod
-    def build_all_report_info(code_list: List[dict], langda_dicts: List[Dict[str, str]], result:str="") -> List[str]:
+    def build_all_report_info(code_list: List[dict], langda_dicts: List[Dict[str, str]], test_result:str="") -> List[str]:
         langda_dict = _langda_list_to_dict(langda_dicts)
         report_info:List[str] = []
 
-        if result:
-            report_info.append("<Result> Here are the testing result of code:\n {}</Result>".format(result))
+        if test_result:
+            report_info.append("<Result> Here are the testing result of code:\n {}</Result>".format(test_result))
 
         for idx, code_item in enumerate(code_list, start=1):
             key, value = _parse_simple_dictonary(code_item)

@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n % Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>% implies/2: A implies B\nprove(implies(A, B)) :-\n\tprove(A),\n\tprove(B).\n% opposite/1: Negation of a goal\nprove(opposite(Goal)) :-\n\t\\+ prove(Goal).\n% expand/2: Expand a term into another\nprove(expand(Term, Expanded)) :-\n\texpand(Term, Expanded).\n% includes/2: Check if an element is in a list\nprove(includes(List, Element)) :-\n\tmember(Element, List).\n% extend/2: Extend a list with an element\nprove(extend(List, Element, Extended)) :-\n\tExtended = [Element|List].\n% refute/1: Refute a goal (opposite of prove)\nprove(refute(Goal)) :-\n\t\\+ prove(Goal).</Current_Code>\n<HASH> Hash tag of code: E553CC07 </HASH>\n<LLM> Requirements of Rules: Extended logic processing of prove/1, which should contains: \t1.implies/2 \t2.opposite/1 \t3.expand/2 \t4.includes/2 \t5.extend/2 \t6.refute/1 </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

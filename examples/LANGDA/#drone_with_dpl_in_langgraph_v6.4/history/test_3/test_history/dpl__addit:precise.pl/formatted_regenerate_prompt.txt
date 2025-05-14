@@ -1,0 +1,47 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+digit(img_1,1).
+digit(img_2,2).
+digit(img_3,3).
+digit(img_4,4).
+digit(img_5,5).
+digit(img_6,6).
+digit(img_7,7).
+digit(img_8,8).
+digit(img_9,9).
+digit(img_0,0).
+number([],Result,Result).
+<Langda> Information of 1st Placeholder:
+<Current_Code>number([X|Xs], Acc, Result) :- digit(X, D), NewAcc is (Acc * 10) + D, number(Xs, NewAcc, Result).
+multi_addition(X,Y,Z) :- number(X, 0, XNum), number(Y, 0, YNum), Z is XNum + YNum.</Current_Code>
+<Report>{'4A9D0B2A': {'HASH': '4A9D0B2A', 'Report': "The code block defines two predicates: 'number/3' and 'multi_addition/3'. The 'number/3' predicate is designed to parse a list of digits into a number by accumulating them from left to right. The 'multi_addition/3' predicate uses 'number/3' to convert two lists of digits into numbers and then adds them together. However, the error message indicates a parsing issue, likely due to operator priority in the Problog environment. The code logic itself is correct for parsing digit lists into numbers and performing addition, but it may need adjustment to comply with Problog's syntax requirements.", 'Need_regenerate': 'true'}}</Report>
+<HASH> Hash tag of code: 4A9D0B2A </HASH>
+<LLM> Requirements of Rules: Parse the image list from left to right into numbers. For example: number([img_3,img_4], 0, R) will eventually get R = 34. </LLM></Langda>
+.
+number(X,Y) :- number(X,0,Y).
+multi_addition(X,Y,Z) :- 
+{{LANGDA}}
+.
+query(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+</Final_Answer>

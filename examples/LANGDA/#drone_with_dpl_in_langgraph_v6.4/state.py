@@ -30,13 +30,13 @@ class Mode(str, Enum):
 
 class BasicState(TypedDict):
     # User inputs:
-    usereact: bool
     config: dict
     prefix: str
     model_name: str
     rule_string: str # User-provided context
-    user_context: str # User-provided context
+    true_string: str # User-provided context
     langda_ext: dict # User-provided context
+    agent_type:dict
 
     # Prompting static parameters:
     tools: list
@@ -55,7 +55,7 @@ class BasicState(TypedDict):
     status: TaskStatus # Current task status
     fest_codes: List[dict] # The Code that doesn't need further generate
     regenerate_info: str # 
-    generated_codes: list # New code generated
+    temp_full_codes: list # New code generated
+    generated_codes: list # New code generated (does not include fest code)
     error_report: str # New report generated
-
     final_result: dict

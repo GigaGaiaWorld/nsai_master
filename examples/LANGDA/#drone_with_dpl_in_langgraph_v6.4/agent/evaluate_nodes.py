@@ -1,16 +1,14 @@
-from typing import List, Any, Type, Tuple
+from typing import List
 from agent.requirements_builder import RequirementsBuilder
 from utils import (
     _find_all_blocks, 
     _replace_placeholder, 
     invoke_agent,
     _parse_simple_dictonary,
+    problog_test_tool,
 )
 from state import BasicState, TaskStatus
 from config import paths
-from problog.program import PrologString
-from problog import get_evaluatable, evaluator
-import traceback
 import logging
 logger = logging.getLogger(__name__)
 
@@ -21,29 +19,30 @@ class EvaluateNodes:
 
     @staticmethod
     def test_node(state:BasicState):
-        print("processing test_node...")
+        print(f"### ==================== ### current round: {state['iter_count']} ### ==================== ###")
+        print("### ======================== processing test_node ======================== ###")
         state["status"] = TaskStatus.TEST
         test_result:str = ""
         regenerate_info:List[str] = []
-        constructed_code_list = _replace_placeholder(state["prompt_template"],state["generated_codes"])
-
+        constructed_code_list = _replace_placeholder(state["prompt_template"],state["temp_full_codes"])
+        print("*** constructed_code_list***\n",constructed_code_list)
         if state["has_query"]: # need to do a test first
-            test_result = EvaluateNodes.problog_test_tool(constructed_code_list)
+            test_result = problog_test_tool(constructed_code_list,state["prefix"],timeout=60)
         test_prompt_template = RequirementsBuilder.build_all_report_info(state["generated_codes"],state["langda_dicts"], test_result)
         input={
             "input": test_prompt_template,
         }
 
         evaluated_result,formatted_prompt = invoke_agent(
-            agent_type="simple", 
+            agent_type=state["agent_type"]["evaluate"], 
             model_name=state["model_name"], 
             tools=["search_tool","Prolog_builtins_retriever_tool","finish_tool"], 
             prompt_type="evaluate", 
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(formatted_prompt,"prompt",f"{state['prefix']}/formatted_evaluate")
-        paths.save_as_file(evaluated_result, "result",f"{state['prefix']}/#eval_{state['iter_count']}")
+        paths.save_as_file(formatted_prompt,"prompt",f"test_history/{state['prefix']}/formatted_evaluate")
+        paths.save_as_file(evaluated_result, "result",f"test_history/{state['prefix']}/#eval_{state['iter_count']}")
 
         origin_fest_codes = state["fest_codes"]
         evaluated_codes = _find_all_blocks("report",evaluated_result) # [{report:"",need_regenerate:"True"},...]
@@ -95,28 +94,3 @@ class EvaluateNodes:
         else:
             return "generate_node"
         
-    @staticmethod
-    def problog_test_tool(model: str) -> Tuple[str,bool]:
-        """Run the Problog evaluation tool."""
-        print("""Running problog_test_tool...""")
-        try:
-            result = []
-            evaluatable:Type[evaluator.Evaluatable] = get_evaluatable().create_from(PrologString(model))
-            results:(dict | Any) = evaluatable.evaluate()
-
-            for query_key, probability in results.items():
-                result_line = f"{query_key} = {probability:.4f}"
-                result.append(result_line)
-                
-            if len(result) > 20:
-                result_lines = "% Problog Inference Result：\n" + "\n".join(result[:20]) + "\n ...<other results>... "
-            else:
-                result_lines = "% Problog Inference Result：\n" + "\n".join(result)
-            print(" ------------- result_lines ------------- \n" + "\n".join(result[:5]))
-            return result_lines
-        except Exception:
-            tb_lines = traceback.format_exc().splitlines()
-            last_five = tb_lines[-5:]
-            error_message = "Error evaluating Problog model:\n" + "\n".join(last_five)
-            print(error_message)
-            return error_message

@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the original code:
+
+```problog
+{"HASH": "9D7ABC12","Code": "leftdigit(S),\n    leftdigit(M),\n    digit(E), digit(N), digit(D), digit(O), digit(R), digit(Y),\n    all_different([S,E,N,D,M,O,R,Y]),\n    Send is 1000*S + 100*E + 10*N + D,\n    More is 1000*M + 100*O + 10*R + E,\n    Money is 10000*M + 1000*O + 100*N + 10*E + Y,\n    Money =:= Send + More."}
+```
+
+```problog
+{"HASH": "","Code": "digit(0).\n digit(1).\n digit(2).\n digit(3).\n digit(4).\ndigit(5).\n digit(6).\n digit(7).\n digit(8).\n digit(9).\nleftdigit(D) :- digit(D), D =\\= 0.\nall_different([]).\nall_different([H|T]) :- \\+ member(H, T), all_different(T).\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\nquery(query_sum(X))."}
+```
+
+Note that the second block didn't have a HASH value in the original code, so I've left it empty in the formatted output. I've also preserved the exact formatting and content from within the <langda> blocks, including any line breaks and indentation.

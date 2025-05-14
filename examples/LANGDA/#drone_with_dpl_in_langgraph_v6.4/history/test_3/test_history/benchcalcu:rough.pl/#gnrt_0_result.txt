@@ -1,0 +1,17 @@
+Here are the generated code blocks in JSON form:
+
+For the first Code:
+```problog
+{
+    "HASH": "11FB8FD3",
+    "Code": "% Find the unique answer to:\n%   CROSS\n% + ROADS\n% -------\n% DANGER\nquery_sum([C,R,O,S,A,D,N,G,E]) :-\n    leftdigit(C),\n    leftdigit(R),\n    leftdigit(D),\n    digit(O),\n    digit(S),\n    digit(A),\n    digit(N),\n    digit(G),\n    digit(E),\n    all_different([C,R,O,S,A,D,N,G,E]),\n    S1 is S + S,\n    R1 is (S1 // 10),\n    S2 is S1 mod 10,\n    O1 is O + A + R1,\n    R2 is (O1 // 10),\n    O2 is O1 mod 10,\n    S3 is S + D + R2,\n    R3 is (S3 // 10),\n    S4 is S3 mod 10,\n    R4 is R + O + R3,\n    R5 is (R4 // 10),\n    R6 is R4 mod 10,\n    C1 is C + R + R5,\n    D is C1 mod 10,\n    D1 is (C1 // 10),\n    D =:= N,\n    D1 =:= 0."
+}
+```
+
+For the second Code:
+```problog
+{
+    "HASH": "9D7ABC12",
+    "Code": "query_sum([S,E,N,D,M,O,R,Y]) :-\n    leftdigit(S),\n    leftdigit(M),\n    digit(E),\n    digit(N),\n    digit(D),\n    digit(O),\n    digit(R),\n    digit(Y),\n    all_different([S,E,N,D,M,O,R,Y]),\n    D1 is D + E,\n    Y is D1 mod 10,\n    C1 is D1 // 10,\n    N1 is N + R + C1,\n    E is N1 mod 10,\n    C2 is N1 // 10,\n    E1 is E + O + C2,\n    N is E1 mod 10,\n    C3 is E1 // 10,\n    S1 is S + M + C3,\n    O is S1 mod 10,\n    M is S1 // 10."
+}
+```

@@ -1,0 +1,67 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda> Information of 1st Placeholder:
+<Current_Code>% Based on Monty Hall problem
+1/3::prize(1); 1/3::prize(2); 1/3::prize(3).
+select_door(1).
+
+member(X,[X|_]).
+member(X,[_|T]) :- member(X,T).
+
+open_door(D) :-
+    select_door(S),
+    prize(P),
+    findall(X, (member(X,[1,2,3]), X\=S, X\=P), L),
+    (
+        length(L,2) -> 
+        member(D,L)
+    ;
+        length(L,1) -> member(D,L)
+    ).
+
+% Probability distribution for random door selection when two options exist
+0.5::open_door(1) :- select_door(S), prize(P), S\=1, P\=1, member(2,[1,2,3]), member(3,[1,2,3]).
+0.5::open_door(2) :- select_door(S), prize(P), S\=2, P\=2, member(1,[1,2,3]), member(3,[1,2,3]).</Current_Code>
+<Report>{'592D75CA': {'HASH': '592D75CA', 'Report': "The code implements the Monty Hall problem with probabilistic rules for door opening. The main issues found are:\n1. The error message indicates an unknown clause for '/2' at line 18:21, suggesting a syntax or predicate definition problem.\n2. The probabilistic rules for open_door/1 are redundant with the deterministic rules above them.\n3. The member/2 predicate is defined but not properly utilized in the probabilistic rules.\n4. The code mixes deterministic and probabilistic approaches in a way that may cause conflicts.\n\nThe code needs restructuring to:\n1. Resolve the unknown clause error\n2. Choose either a purely probabilistic or deterministic approach\n3. Simplify the door opening logic\n4. Ensure consistent handling of all cases", 'Need_regenerate': True}}</Report>
+<HASH> Hash tag of code: 592D75CA </HASH>
+<LLM> Requirements of Rules: Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </LLM></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+</Final_Answer>

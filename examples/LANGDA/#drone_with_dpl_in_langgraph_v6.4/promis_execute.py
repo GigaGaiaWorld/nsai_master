@@ -10,7 +10,6 @@ from promis_project import PolarLocation, CartesianMap, CartesianLocation, Carte
 from promis_project import OsmLoader
 import matplotlib.pyplot as plt
 
-
 def promis_execution(generated_logic:str):
     # The features we will load from OpenStreetMap
     # The dictionary key will be stored as the respective features location_type

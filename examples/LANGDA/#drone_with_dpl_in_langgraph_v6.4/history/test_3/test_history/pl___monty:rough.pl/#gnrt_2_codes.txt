@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "% Based on Monty Hall problem\n1/3::prize(1); 1/3::prize(2); 1/3::prize(3).\nselect_door(1).\n\nmember(X,[X|_]).\nmember(X,[_|T]) :- member(X,T).\n\nopen_door(D) :-\n    select_door(S),\n    prize(P),\n    findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), L),\n    (\n        length(L,2) -> \n        member(D,L)\n    ;\n        length(L,1) -> member(D,L)\n    ).\n\n% Probability distribution for random door selection when two options exist\n0.5::open_door(1) :- select_door(S), prize(P), S\\=1, P\\=1, member(2,[1,2,3]), member(3,[1,2,3]).\n0.5::open_door(2) :- select_door(S), prize(P), S\\=2, P\\=2, member(1,[1,2,3]), member(3,[1,2,3])."
+}
+]

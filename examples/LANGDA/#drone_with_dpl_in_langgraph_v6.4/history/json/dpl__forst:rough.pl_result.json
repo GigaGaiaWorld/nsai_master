@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 92,
+  "iter_count": 1,
+  "process_time": 91.75520586967468,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000",
+  "final_report": "The generated code is mostly correct and consistent with the original code, with added comments and a complete implementation of insertion sort. However, there is a discrepancy in the 'rot' operation where the generated code produces [2,3,1,4] instead of the original [3,1,2,4]. This indicates a logical error in the rotation implementation. The rest of the operations and results match the original code."
+}

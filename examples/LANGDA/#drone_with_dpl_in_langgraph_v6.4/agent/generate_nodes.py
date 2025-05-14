@@ -18,7 +18,8 @@ class GenerateNodes:
         """
         Regenerate specific code blocks based on evaluation.
         """
-        print("processing generate_node...")
+        print(f"### ==================== ### current round: {state['iter_count']} ### ==================== ###")
+        print("### ==================== processing generate_node ==================== ###")
         state["status"] = TaskStatus.GNRT
         new_iter_count = state["iter_count"] + 1
 
@@ -42,18 +43,19 @@ class GenerateNodes:
         }
 
         generated_result, formatted_prompt = invoke_agent(
-            agent_type="doublechain", 
+            agent_type=state["agent_type"]["generate"], 
             model_name=state["model_name"], 
             tools=["search_tool","Prolog_builtins_retriever_tool","finish_tool"], 
             prompt_type=prompt_type, 
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(formatted_prompt,"prompt",f"{state['prefix']}/formatted_{prompt_type}")
-        paths.save_as_file(generated_result,"result",f"{state['prefix']}/#gnrt_{state['iter_count']}")
+        paths.save_as_file(formatted_prompt,"prompt",f"test_history/{state['prefix']}/formatted_{prompt_type}")
+        paths.save_as_file(generated_result,"result",f"test_history/{state['prefix']}/#gnrt_{state['iter_count']}")
 
         generated_codes = _find_all_blocks('code',generated_result)     # [{"hash":"generated code"},{"hash":"generated code"},..]
         origin_fest_codes = state["fest_codes"]
+        temp_full_codes = []
         iter = 0
         for i, fest_item in enumerate(origin_fest_codes):
             key, value = _parse_simple_dictonary(fest_item)
@@ -61,12 +63,17 @@ class GenerateNodes:
                 if key not in generated_codes[iter]:
                     logger.warning(f"generate_node: key '{key}' does not exist in generated_codes[{iter}]")
                 targeted_codes.append(generated_codes[iter])
+                temp_full_codes.append(generated_codes[iter])
                 iter += 1
+            else:
+                temp_full_codes.append(fest_item)
 
-        paths.save_as_file(targeted_codes,"codes",f"{state['prefix']}/#gnrt_{state['iter_count']}")
+
+        paths.save_as_file(targeted_codes,"codes",f"test_history/{state['prefix']}/#gnrt_{state['iter_count']}")
 
         if generated_codes:
             return {
+                "temp_full_codes":temp_full_codes,
                 "generated_codes":targeted_codes,           # [{"hash1":"code block1"}, {"hash2":"code block2"}, ...]
                 "iter_count":new_iter_count,
             }

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 27,
+  "iter_count": 1,
+  "process_time": 27.098058223724365,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for '!/0' at 25:32.",
+  "final_report": "The generated code attempts to implement a bubble sort algorithm in DeepProbLog but contains several issues. It introduces a cut operator (!) which is not properly handled, leading to an 'UnknownClause' error. The logic for bubble_pass is different from the original's hole and bubble predicates, and it uses a 'Changed' flag which isn't present in the original. The generated code is not consistent with the original implementation and fails to execute due to syntax errors."
+}

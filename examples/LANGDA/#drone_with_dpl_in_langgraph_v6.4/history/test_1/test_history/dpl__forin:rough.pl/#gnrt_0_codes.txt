@@ -1,0 +1,5 @@
+[
+{
+"501F546D": "% Insertion sort in ProbLog\n\n% Base case: empty list is already sorted\ninsertion_sort([], []).\n\n% Recursive case: insert head into sorted tail\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert(H, SortedTail, Sorted).\n\n% Inserting into empty list\ninsert(X, [], [X]).\n\n% Inserting into non-empty list\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs).\n\n% Example query:\n% query(insertion_sort([3,1,2,5,7,12],X))."
+}
+]

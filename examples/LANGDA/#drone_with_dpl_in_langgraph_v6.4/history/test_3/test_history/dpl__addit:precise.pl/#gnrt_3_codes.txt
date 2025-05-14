@@ -1,0 +1,5 @@
+[
+{
+"4A9D0B2A": "number([X|Xs], Acc, Result) :- digit(X, D), NewAcc is (Acc * 10) + D, number(Xs, NewAcc, Result).\nmulti_addition(X,Y,Z) :- number(X, 0, XNum), number(Y, 0, YNum), Z is XNum + YNum."
+}
+]

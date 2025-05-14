@@ -1,0 +1,13 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the original code:
+
+```problog
+{"HASH": "D38F9F68","Code": "cards(Cards,own,House,OwnCards),\n cards(Cards,opponent,House,OpponentCards),\n best_hand(OwnCards,H1),\n best_hand(OpponentCards,H2)."}
+```
+
+```problog
+{"HASH": "EF02D81B","Code": "game(Cards,House,H1,H2),\n best_hand_rank(OwnCards,R1),\n best_hand_rank(OpponentCards,R2),\n outcome(R1,R2,Outcome)."}
+```
+
+```problog
+{"HASH": "C53A4763","Code": "house_rank(House),\n game(Cards,House,Outcome)."}
+```

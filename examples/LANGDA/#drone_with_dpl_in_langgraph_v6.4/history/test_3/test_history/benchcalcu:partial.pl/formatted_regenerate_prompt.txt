@@ -1,0 +1,117 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ digit(D), digit(E), D=\=E,
+ sumdigit(0, D, E, Y, C1),
+ 
+ digit(N), all_different([N,Y,E,D]),
+ 
+ digit(R), all_different([R,N,Y,E,D]),
+ sumdigit(C1, N, R, E, C2),
+ 
+ 
+<Langda> Information of 1st Placeholder:
+<Current_Code>% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ digit(D), digit(E), D=\=E,
+ sumdigit(0, D, E, Y, C1),
+ 
+ digit(N), all_different([N,Y,E,D]),
+ 
+ digit(R), all_different([R,N,Y,E,D]),
+ sumdigit(C1, N, R, E, C2),
+ 
+ digit(O), all_different([O,R,N,Y,E,D]),
+ sumdigit(C2, E, O, N, C3),
+ 
+ digit(S), leftdigit(S), all_different([S,O,R,N,Y,E,D]),
+ sumdigit(C3, S, M, O, C4),
+ 
+ digit(M), leftdigit(M), all_different([M,S,O,R,N,Y,E,D]),
+ sumdigit(C4, 0, 0, M, _),
+ 
+ all_different([S,E,N,D,M,O,R,Y]).
+
+sumdigit(C, A, B, S, 0) :-
+ X is C + A + B,
+ X < 10,
+ S = X.
+sumdigit(C, A, B, S, 1) :-
+ X is C + A + B,
+ X >= 10,
+ S is X - 10.
+
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+
+leftdigit(D) :- digit(D), D =\= 0.
+
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+
+query(query_sum(X)).</Current_Code>
+<Report>{'1039E900': {'HASH': '1039E900', 'Report': "The code appears to be a valid Prolog implementation of the cryptarithmetic puzzle SEND + MORE = MONEY. The logic correctly implements digit constraints, carry propagation, and uniqueness checks. However, the error message indicates a parsing issue with operator priority in the Problog engine. The main issues are:\n1. The '=\\=' operator might need proper spacing or different syntax in Problog\n2. Problog might require slightly different syntax for inequality checks\n3. The query format might need adjustment for Problog compatibility\n\nWhile the logic is correct for standard Prolog, it needs adaptation for Problog's specific syntax requirements.", 'Need_regenerate': True}}</Report>
+<HASH> Hash tag of code: 1039E900 </HASH>
+<LLM> Requirements of Rules: complete the predicate logic. </LLM></Langda>
+ 
+ all_different([S,E,N,D,M,O,R,Y]).
+sumdigit(C, A, B, S, 0) :-
+ X is C + A + B,
+ X < 10,
+ S = X.
+sumdigit(C, A, B, S, 1) :-
+ X is C + A + B,
+ X >= 10,
+ S is X - 10.
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+</Final_Answer>

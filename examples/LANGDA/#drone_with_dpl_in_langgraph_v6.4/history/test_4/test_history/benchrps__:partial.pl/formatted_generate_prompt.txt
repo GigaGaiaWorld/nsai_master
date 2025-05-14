@@ -1,0 +1,211 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 0C388A60 </HASH>
+<LLM> Requirements of Rules: move of paper </LLM></Langda>
+.
+<Langda> Information of 2nd Placeholder:
+<HASH> Hash tag of code: BF964057 </HASH>
+<LLM> Requirements of Rules: move of scissor </LLM></Langda>
+.
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+<Langda> Information of 3rd Placeholder:
+<HASH> Hash tag of code: 59C3D0D4 </HASH>
+<LLM> Requirements of Rules: Win-lose relationship of paper </LLM></Langda>
+.
+<Langda> Information of 4th Placeholder:
+<HASH> Hash tag of code: 58D60F5E </HASH>
+<LLM> Requirements of Rules: Win-lose relationship of scissor </LLM></Langda>
+.
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+% The correct call is result(P1,P2,R), not semicolon
+result(P1, P2, R),
+% (Optional) Update the score according to R
+play(P1T, P2T, Rs).
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+<Langda> Information of 5th Placeholder:
+<HASH> Hash tag of code: 94C4D48B </HASH>
+<LLM> Requirements of Rules: rule of compute_score lose case </LLM></Langda>
+.
+<Langda> Information of 6th Placeholder:
+<HASH> Hash tag of code: 026B015E </HASH>
+<LLM> Requirements of Rules: rule of compute_score draw case </LLM></Langda>
+.
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 0C388A60 </HASH>
+<LLM> Requirements of Rules: move of paper </LLM></Langda>
+.
+<Langda> Information of 2nd Placeholder:
+<HASH> Hash tag of code: BF964057 </HASH>
+<LLM> Requirements of Rules: move of scissor </LLM></Langda>
+.
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+<Langda> Information of 3rd Placeholder:
+<HASH> Hash tag of code: 59C3D0D4 </HASH>
+<LLM> Requirements of Rules: Win-lose relationship of paper </LLM></Langda>
+.
+<Langda> Information of 4th Placeholder:
+<HASH> Hash tag of code: 58D60F5E </HASH>
+<LLM> Requirements of Rules: Win-lose relationship of scissor </LLM></Langda>
+.
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+% The correct call is result(P1,P2,R), not semicolon
+result(P1, P2, R),
+% (Optional) Update the score according to R
+play(P1T, P2T, Rs).
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+<Langda> Information of 5th Placeholder:
+<HASH> Hash tag of code: 94C4D48B </HASH>
+<LLM> Requirements of Rules: rule of compute_score lose case </LLM></Langda>
+.
+<Langda> Information of 6th Placeholder:
+<HASH> Hash tag of code: 026B015E </HASH>
+<LLM> Requirements of Rules: rule of compute_score draw case </LLM></Langda>
+.
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+</origin_code>
+<generated_code>
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+move(scissor).
+
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+beats(paper, rock).
+beats(scissor, paper).
+
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+result(P1, P2, R),
+play(P1T, P2T, Rs).
+
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S).
+
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

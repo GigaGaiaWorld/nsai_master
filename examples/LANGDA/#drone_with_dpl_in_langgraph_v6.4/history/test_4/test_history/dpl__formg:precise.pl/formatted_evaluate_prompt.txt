@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n % Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>length(List, Len), Len > 1, split_list(List, Left, Right)</Current_Code>\n<HASH> Hash tag of code: 95E704F2 </HASH>\n<LLM> Requirements of Rules: Should contain following rules: 1.Get the length of the current list, Len, to determine whether to continue splitting. 2.Recursive boundary judgment: Only lists with a length greater than 1 need to be sorted, otherwise they are sorted by default. 3.Split the list into two parts, Left and Right, for subsequent recursive processing. </LLM></Langda>', '<Langda> The 2nd Code Block That You Should Analyse:\n<Current_Code>merge_sort(Left, SortedLeft), merge_sort(Right, SortedRight), merge(SortedLeft, SortedRight, Sorted)</Current_Code>\n<HASH> Hash tag of code: 26E82D5D </HASH>\n<LLM> Requirements of Rules: Should contain following rules: 1.Recursively call merge sort on the left half, and the result is SortedLeft. 2.Recursively sort the right half, and the result is SortedRight. 3.Merge the two sorted sublists into the final sorted result Sorted. </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

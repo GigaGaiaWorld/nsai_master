@@ -1,0 +1,91 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+<Langda> Information of 1st Placeholder:
+<Current_Code>% Infection rules
+inf(X) :- initialInf(X).
+0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).
+0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).
+0.2::inf(X) :- riskyTravel(X).</Current_Code>
+<Report>{'E09B4F54': {'HASH': 'E09B4F54', 'Report': "The code block defines infection rules using probabilistic logic programming. The rules are mostly correct but have some discrepancies with the requirements:\n1. The 'initialInf(X)' rule is missing the required 0.1 probability annotation\n2. The contact transmission rules correctly implement the different probabilities for susceptible vs non-susceptible cases\n3. The riskyTravel rule correctly implements the 0.2 probability\n4. The inference results shown (0.1245 for both a and b) suggest the rules are working but may not reflect the exact intended probabilities due to the missing initial probability", 'Need_regenerate': 'true'}}</Report>
+<HASH> Hash tag of code: E09B4F54 </HASH>
+<LLM> Requirements of Rules: inf/1 predicate logic summary Initial infection: Each person has a 0.1 probability of being infected at the beginning Contact transmission: If X has contact with infected person Y, then If X is not susceptible, he will be infected with a probability of 0.6 If X is susceptible, he will be infected with a probability of 0.8 Travel risk: Each person has an additional probability of 0.2 of infection due to high-risk travel </LLM></Langda>
+.
+query(inf(_)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+<Langda> Information of 1st Placeholder:
+<Current_Code>% Infection rules
+inf(X) :- initialInf(X).
+0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).
+0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).
+0.2::inf(X) :- riskyTravel(X).</Current_Code>
+<Report>{'E09B4F54': {'HASH': 'E09B4F54', 'Report': "The code block defines infection rules using probabilistic logic programming. The rules are mostly correct but have some discrepancies with the requirements:\n1. The 'initialInf(X)' rule is missing the required 0.1 probability annotation\n2. The contact transmission rules correctly implement the different probabilities for susceptible vs non-susceptible cases\n3. The riskyTravel rule correctly implements the 0.2 probability\n4. The inference results shown (0.1245 for both a and b) suggest the rules are working but may not reflect the exact intended probabilities due to the missing initial probability", 'Need_regenerate': 'true'}}</Report>
+<HASH> Hash tag of code: E09B4F54 </HASH>
+<LLM> Requirements of Rules: inf/1 predicate logic summary Initial infection: Each person has a 0.1 probability of being infected at the beginning Contact transmission: If X has contact with infected person Y, then If X is not susceptible, he will be infected with a probability of 0.6 If X is susceptible, he will be infected with a probability of 0.8 Travel risk: Each person has an additional probability of 0.2 of infection due to high-risk travel </LLM></Langda>
+.
+query(inf(_)).
+</origin_code>
+<generated_code>
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+
+% Infection rules
+0.1::inf(X) :- initialInf(X).
+0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).
+0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).
+0.2::inf(X) :- riskyTravel(X).
+
+query(inf(_)).
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

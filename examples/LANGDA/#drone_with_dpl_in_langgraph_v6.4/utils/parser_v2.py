@@ -56,7 +56,7 @@ class Parser(object):
         in_langda indicates if the code block belongs to a langda predicate, 
         it has three states: "BODY":contains langda, "NONE":has no langda, "END.":at the end of a langda
         """
-        print("getting codes with comments...")
+        # print("getting codes with comments...")
         # ----------------------- normalize the code form ----------------------- #
         text = re.sub(r' +', ' ', text) # remove extra spaces from code only
         lines = text.split('\n')
@@ -357,7 +357,7 @@ class Parser(object):
         Returns:
             Tuple of (modified text list, lann_dicts, langda_dicts)
         """
-        print("processing langda and lann terms...")
+        # print("processing langda and lann terms...")
         # Initialize outputs
         text_list_copy = text_list.copy()  # Create a copy to avoid modifying the original
         lann_dicts:List[dict] = []
@@ -386,9 +386,12 @@ class Parser(object):
                 predicate_head, _, _ = code.strip().partition(":-")
             if code and "." == code[-1]:
                 predicate_head = ""
-                if code == ".":
-                    idl += 1
-                    continue # ignore the pure "." line ==> this is actually for the llm code to prevent from generate double "."
+
+                # if code == ".":
+                #     idl += 1
+                #     continue # ignore the pure "." line ==> this is actually for the llm code to prevent from generate double "."
+
+
 
             in_lan = not(predicate_status==PredicateState.NONE.value)
 

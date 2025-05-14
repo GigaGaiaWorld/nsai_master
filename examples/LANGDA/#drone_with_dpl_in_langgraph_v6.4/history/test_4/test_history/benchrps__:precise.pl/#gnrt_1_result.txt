@@ -1,0 +1,27 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the original code:
+
+```problog
+{"HASH": "3F277A35","Code": "result(X, X, draw) :- move(X)."}
+```
+
+```problog
+{"HASH": "D91BB7A0","Code": "result(X, Y, win) :- beats(X, Y)."}
+```
+
+```problog
+{"HASH": "0940BB04","Code": "result(X, Y, lose) :- beats(Y, X)."}
+```
+
+```problog
+{"HASH": "","Code": "compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1."}
+```
+
+```problog
+{"HASH": "","Code": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."}
+```
+
+```problog
+{"HASH": "","Code": "determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw )."}
+```
+
+Note: The last three code blocks didn't have HASH values in the original code, so I've left that field empty for them. Each code block contains only the exact content that would replace the corresponding <langda> placeholder in the original code.

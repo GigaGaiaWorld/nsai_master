@@ -1,0 +1,5 @@
+[
+{
+"DA97FB01": "insertion_sort([], []).\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert_element(H, SortedTail, Sorted).\n\ninsert_element(X, [], [X]).\ninsert_element(X, [H|T], [X,H|T]) :-\n    X =< H.\ninsert_element(X, [H|T], [H|RT]) :-\n    X > H,\n    insert_element(X, T, RT).\n\nquery(insertion_sort([3,1,2,5,7,12],X))."
+}
+]

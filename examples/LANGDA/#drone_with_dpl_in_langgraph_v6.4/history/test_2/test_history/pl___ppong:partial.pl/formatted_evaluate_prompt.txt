@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 14:24.</Result>', "<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>team_strength([P],G,S) :- strength(P,G,S).</Current_Code>\n<HASH> Hash tag of code: 766936E0 </HASH>\n<LLM> Requirements of Rules: Multiplayer team: The team strength is the 'minimum' of all members' strengths. </LLM></Langda>"]
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

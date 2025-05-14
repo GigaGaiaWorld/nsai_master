@@ -1,0 +1,15 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code blocks that correspond to the <langda> placeholders:
+
+```problog
+{"HASH": "C5B4A895", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :-\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    A \\= B,\n    \\+ select_door(A),\n    \\+ select_door(B),\n    \\+ prize(A),\n    \\+ prize(B)."}
+```
+
+```problog
+{"HASH": "", "Code": "open_door(A) :-\n    member(A, [1,2,3]),\n    \\+ select_door(A),\n    \\+ prize(A)."}
+```
+
+```problog
+{"HASH": "", "Code": "win_keep :-\n    select_door(D),\n    prize(D)."}
+```
+
+Note: The second and third code blocks don't have hash tags in the original code, so I've left the "HASH" field empty for them. I've only included the exact code that would replace the {{LANGDA}} placeholders, not any surrounding context.

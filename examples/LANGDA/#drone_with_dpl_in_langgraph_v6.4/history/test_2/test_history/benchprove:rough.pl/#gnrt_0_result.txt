@@ -1,0 +1,5 @@
+Here are the extracted code blocks corresponding to the <langda> placeholder in the original code:
+
+```problog
+{"HASH": "E553CC07","Code": "% implies/2: A implies B\nprove(implies(A, B)) :-\n\tprove(A),\n\tprove(B).\n% opposite/1: Negation of a goal\nprove(opposite(Goal)) :-\n\t\\+ prove(Goal).\n% expand/2: Expand a term into another\nprove(expand(Term, Expanded)) :-\n\texpand(Term, Expanded).\n% includes/2: Check if an element is in a list\nprove(includes(List, Element)) :-\n\tmember(Element, List).\n% extend/2: Extend a list with an element\nprove(extend(List, Element, Extended)) :-\n\tExtended = [Element|List].\n% refute/1: Refute a goal (opposite of prove)\nprove(refute(Goal)) :-\n\t\\+ prove(Goal)."}
+```

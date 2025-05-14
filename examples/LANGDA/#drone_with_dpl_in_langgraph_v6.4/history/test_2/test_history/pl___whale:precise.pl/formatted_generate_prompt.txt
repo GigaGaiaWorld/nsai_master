@@ -1,0 +1,201 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+% example from
+% Antova, Koch, Olteanu
+% Query language support for incomplete information in the MayBMS system
+% VLDB 2007
+%
+% - 3 whales are seen in three closeby locations a,b,c
+% - the one on position a is an adult orca (with identifier 3)
+% - the other two are an adult and calf sperm whale (with IDs 2 and 1)
+% - there are six possibilities for gender of the adults and positions of the sperm whales
+% information shared by all worlds:
+species(1,sperm).
+gender(1,calf).
+species(2,sperm).
+species(3,orca).
+position(3,a).
+% information differing per world
+position(1,b) :- world(a).
+position(2,c) :- world(a).
+gender(2,cow) :- world(a).
+gender(3,cow) :- world(a).
+position(1,b) :- world(b).
+position(2,c) :- world(b).
+gender(2,cow) :- world(b).
+gender(3,bull) :- world(b).
+position(1,b) :- world(c).
+position(2,c) :- world(c).
+gender(2,bull) :- world(c).
+gender(3,cow) :- world(c).
+position(1,b) :- world(d).
+position(2,c) :- world(d).
+gender(2,bull) :- world(d).
+gender(3,bull) :- world(d).
+position(1,c) :- world(e).
+position(2,b) :- world(e).
+gender(2,cow) :- world(e).
+gender(3,cow) :- world(e).
+position(1,c) :- world(f).
+position(2,b) :- world(f).
+gender(2,bull) :- world(f).
+gender(3,cow) :- world(f).
+% assume uniform dist over worlds (this is not in the original paper)
+1/6::world(a); 1/6::world(b); 1/6::world(c); 1/6::world(d); 1/6::world(e); 1/6::world(f).
+% query 1: does the orca attack the calf? (this happens if the calf is at position b)
+attack :- position(1,b).
+query(attack).
+% query 2: same query, but under the constraint that sperm cows move in between their calf and an orca (uncomment evidence to run)
+constraint1 :- not (gender(2,cow), not position(2,b)).
+%evidence(constraint1).
+% query 3: does the adult sperm abandon the calf? (and in which gender combinations does this happen)
+abandon(S,O) :- 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: A90B08DE </HASH>
+<LLM> Requirements of Rules: Function: When the adult sperm whale numbered 2 is of gender S, the killer whale numbered 3 is of gender O, and the adult sperm whale is at position c, it means that the adult sperm whale abandons the baby whale. </LLM></Langda>
+.
+query(abandon(_,_)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+% example from
+% Antova, Koch, Olteanu
+% Query language support for incomplete information in the MayBMS system
+% VLDB 2007
+%
+% - 3 whales are seen in three closeby locations a,b,c
+% - the one on position a is an adult orca (with identifier 3)
+% - the other two are an adult and calf sperm whale (with IDs 2 and 1)
+% - there are six possibilities for gender of the adults and positions of the sperm whales
+% information shared by all worlds:
+species(1,sperm).
+gender(1,calf).
+species(2,sperm).
+species(3,orca).
+position(3,a).
+% information differing per world
+position(1,b) :- world(a).
+position(2,c) :- world(a).
+gender(2,cow) :- world(a).
+gender(3,cow) :- world(a).
+position(1,b) :- world(b).
+position(2,c) :- world(b).
+gender(2,cow) :- world(b).
+gender(3,bull) :- world(b).
+position(1,b) :- world(c).
+position(2,c) :- world(c).
+gender(2,bull) :- world(c).
+gender(3,cow) :- world(c).
+position(1,b) :- world(d).
+position(2,c) :- world(d).
+gender(2,bull) :- world(d).
+gender(3,bull) :- world(d).
+position(1,c) :- world(e).
+position(2,b) :- world(e).
+gender(2,cow) :- world(e).
+gender(3,cow) :- world(e).
+position(1,c) :- world(f).
+position(2,b) :- world(f).
+gender(2,bull) :- world(f).
+gender(3,cow) :- world(f).
+% assume uniform dist over worlds (this is not in the original paper)
+1/6::world(a); 1/6::world(b); 1/6::world(c); 1/6::world(d); 1/6::world(e); 1/6::world(f).
+% query 1: does the orca attack the calf? (this happens if the calf is at position b)
+attack :- position(1,b).
+query(attack).
+% query 2: same query, but under the constraint that sperm cows move in between their calf and an orca (uncomment evidence to run)
+constraint1 :- not (gender(2,cow), not position(2,b)).
+%evidence(constraint1).
+% query 3: does the adult sperm abandon the calf? (and in which gender combinations does this happen)
+abandon(S,O) :- 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: A90B08DE </HASH>
+<LLM> Requirements of Rules: Function: When the adult sperm whale numbered 2 is of gender S, the killer whale numbered 3 is of gender O, and the adult sperm whale is at position c, it means that the adult sperm whale abandons the baby whale. </LLM></Langda>
+.
+query(abandon(_,_)).
+</origin_code>
+<generated_code>
+% example from
+% Antova, Koch, Olteanu
+% Query language support for incomplete information in the MayBMS system
+% VLDB 2007
+%
+% - 3 whales are seen in three closeby locations a,b,c
+% - the one on position a is an adult orca (with identifier 3)
+% - the other two are an adult and calf sperm whale (with IDs 2 and 1)
+% - there are six possibilities for gender of the adults and positions of the sperm whales
+% information shared by all worlds:
+species(1,sperm).
+gender(1,calf).
+species(2,sperm).
+species(3,orca).
+position(3,a).
+% information differing per world
+position(1,b) :- world(a).
+position(2,c) :- world(a).
+gender(2,cow) :- world(a).
+gender(3,cow) :- world(a).
+position(1,b) :- world(b).
+position(2,c) :- world(b).
+gender(2,cow) :- world(b).
+gender(3,bull) :- world(b).
+position(1,b) :- world(c).
+position(2,c) :- world(c).
+gender(2,bull) :- world(c).
+gender(3,cow) :- world(c).
+position(1,b) :- world(d).
+position(2,c) :- world(d).
+gender(2,bull) :- world(d).
+gender(3,bull) :- world(d).
+position(1,c) :- world(e).
+position(2,b) :- world(e).
+gender(2,cow) :- world(e).
+gender(3,cow) :- world(e).
+position(1,c) :- world(f).
+position(2,b) :- world(f).
+gender(2,bull) :- world(f).
+gender(3,cow) :- world(f).
+% assume uniform dist over worlds (this is not in the original paper)
+1/6::world(a); 1/6::world(b); 1/6::world(c); 1/6::world(d); 1/6::world(e); 1/6::world(f).
+% query 1: does the orca attack the calf? (this happens if the calf is at position b)
+attack :- position(1,b).
+query(attack).
+% query 2: same query, but under the constraint that sperm cows move in between their calf and an orca (uncomment evidence to run)
+constraint1 :- not (gender(2,cow), not position(2,b)).
+%evidence(constraint1).
+% query 3: does the adult sperm abandon the calf? (and in which gender combinations does this happen)
+abandon(S,O) :- gender(2,S), gender(3,O), position(2,c).
+query(abandon(_,_)).
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

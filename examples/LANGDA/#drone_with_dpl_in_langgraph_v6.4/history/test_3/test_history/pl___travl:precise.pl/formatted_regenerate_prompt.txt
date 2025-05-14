@@ -1,0 +1,58 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+<Langda> Information of 1st Placeholder:
+<Current_Code>person(a).
+person(b).
+
+0.1::initialInf(X) :- person(X).
+
+0.1::contact(X,Y) :- person(X), person(Y).
+
+0.1::susceptible(X) :- person(X).
+
+0.1::riskyTravel(X) :- person(X).
+
+% Initial infection
+inf(X) :- initialInf(X).
+
+% Contact transmission
+0.6::inf(X) :- contact(X,Y), inf(Y), \+ susceptble(X).
+0.8::inf(X) :- contact(X,Y), inf(Y), susceptble(X).
+
+% Travel risk
+0.2::inf(X) :- riskyTravel(X).
+
+query(inf(_)).</Current_Code>
+<Report>{'E09B4F54': {'HASH': 'E09B4F54', 'Report': "The code contains a typographical error in the predicate name. The error message indicates that 'susceptble/1' is unknown, which is due to the misspelling in the rule '0.6::inf(X) :- contact(X,Y), inf(Y), \\+ susceptble(X).' and '0.8::inf(X) :- contact(X,Y), inf(Y), susceptble(X).'. The correct predicate name is 'susceptible/1' as defined earlier in the code. Additionally, the logic of the rules is correctly summarized in the requirements, but the implementation has this critical spelling mistake that prevents it from running.", 'Need_regenerate': True}}</Report>
+<HASH> Hash tag of code: E09B4F54 </HASH>
+<LLM> Requirements of Rules: inf/1 predicate logic summary Initial infection: Each person has a 0.1 probability of being infected at the beginning Contact transmission: If X has contact with infected person Y, then If X is not susceptible, he will be infected with a probability of 0.6 If X is susceptible, he will be infected with a probability of 0.8 Travel risk: Each person has an additional probability of 0.2 of infection due to high-risk travel </LLM></Langda>
+.
+query(inf(_)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+</Final_Answer>

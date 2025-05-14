@@ -1,0 +1,14 @@
+Here's the regenerated code for the specified block:
+
+```problog
+{
+    "HASH": "766936E0",
+    "Code": "team_strength([P],G,S) :- strength(P,G,S).\nteam_strength([P,P2|L],G,S) :- strength(P,G,S1), team_strength([P2|L],G,S2), S is min(S1,S2)."
+}
+```
+
+The changes made:
+1. Fixed the syntax for the min operation by using `is min()` instead of the `min/3` predicate
+2. Added the base case for single team member
+3. Maintained the same logic of taking the minimum strength of all team members
+4. The code now properly implements the requirement that team strength is the minimum of all members' strengths

@@ -1,0 +1,7 @@
+```report
+{
+    "HASH": "47D659C8",
+    "Report": "The provided code implements a bubblesort algorithm in Prolog with the following components:\n1. A main `bubblesort/3` predicate that handles the recursive sorting process\n2. A `bubble_pass/3` helper predicate that performs a single pass of the bubble sort\n3. An `append/3` helper predicate for list concatenation\n4. A query example and `forth_sort/2` wrapper\n\nIssues found:\n1. The query example uses `forth_sort([3,1,2,5,7,12],X)` but the error suggests DeepProblog cannot find clauses for this predicate\n2. The error message indicates the system cannot find clauses for an empty functor '/2'\n\nCorrectness:\n- The sorting logic itself appears correct for standard Prolog\n- The issue appears to be with DeepProblog's handling of the code rather than the algorithm itself\n- The query format may need adjustment for DeepProblog compatibility",
+    "Need_regenerate": "true"
+}
+```

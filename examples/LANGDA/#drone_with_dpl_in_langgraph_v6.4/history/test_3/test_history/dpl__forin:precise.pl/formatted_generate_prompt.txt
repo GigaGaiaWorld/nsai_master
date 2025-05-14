@@ -1,0 +1,37 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<LLM> Requirements of Rules: 1.recursively sort the tail list, 2.insert the head element H into the sorted list </LLM></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+</Code>
+<Final_Answer>
+Please generate each code in JSON form for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 

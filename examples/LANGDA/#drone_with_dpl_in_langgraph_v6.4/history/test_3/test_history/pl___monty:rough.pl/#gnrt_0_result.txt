@@ -1,0 +1,17 @@
+Here are the generated code blocks in JSON form:
+
+For the first Code:
+```problog
+{
+    "HASH": "592D75CA",
+    "Code": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n\nopen_door(D) :-\n    select_door(S),\n    prize(P),\n    findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), L),\n    (length(L,2) -> \n        0.5::open_door_one(L) ; 0.5::open_door_two(L),\n        (open_door_one(L) -> member(D,L) ; member(D,L))\n    ;\n        length(L,1) -> member(D,L)\n    ).\n\nopen_door_one([D|_]) :- D.\nopen_door_two([_,D]) :- D."
+}
+```
+
+For the second Code:
+```problog
+{
+    "HASH": "592D75CA",
+    "Code": "win_keep :-\n    select_door(A),\n    prize(A).\nwin_switch :-\n    member(A, [1,2,3]),\n    \\+ select_door(A),\n    prize(A),\n    \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch)."
+}
+```

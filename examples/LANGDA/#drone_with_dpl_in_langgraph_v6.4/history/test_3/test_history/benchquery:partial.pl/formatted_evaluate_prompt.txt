@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n % Problog Inference Result：\nquery_pop([indonesia, 223, pakistan, 219]) = 1.0000\nquery_pop([uk, 650, w_germany, 645]) = 1.0000\nquery_pop([italy, 477, philippines, 461]) = 1.0000\nquery_pop([france, 246, china, 244]) = 1.0000\nquery_pop([ethiopia, 77, mexico, 76]) = 1.0000</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>pop(china, 8250).</Current_Code>\n<HASH> Hash tag of code: 95B275E7 </HASH>\n<LLM> Requirements of Rules: the popluation of china is 8250 </LLM></Langda>', '<Langda> The 2nd Code Block That You Should Analyse:\n<Current_Code>pop(india, 5863).</Current_Code>\n<HASH> Hash tag of code: 325632C8 </HASH>\n<LLM> Requirements of Rules: the popluation of india is 5863 </LLM></Langda>', '<Langda> The 3rd Code Block That You Should Analyse:\n<Current_Code>pop(ussr, 2521).</Current_Code>\n<HASH> Hash tag of code: 901531DA </HASH>\n<LLM> Requirements of Rules: the popluation of ussr is 2521 </LLM></Langda>', '<Langda> The 4th Code Block That You Should Analyse:\n<Current_Code>pop(usa, 2119).</Current_Code>\n<HASH> Hash tag of code: 4E244720 </HASH>\n<LLM> Requirements of Rules: the popluation of usa is 2119 </LLM></Langda>', '<Langda> The 5th Code Block That You Should Analyse:\n<Current_Code>pop(indonesia, 1276).</Current_Code>\n<HASH> Hash tag of code: B4AC126A </HASH>\n<LLM> Requirements of Rules: the popluation of indonesia is 1276 </LLM></Langda>', '<Langda> The 6th Code Block That You Should Analyse:\n<Current_Code>pop(japan, 1097).</Current_Code>\n<HASH> Hash tag of code: 6D602346 </HASH>\n<LLM> Requirements of Rules: the popluation of japan is 1097 </LLM></Langda>', '<Langda> The 7th Code Block That You Should Analyse:\n<Current_Code>pop(brazil, 1042).</Current_Code>\n<HASH> Hash tag of code: E078E168 </HASH>\n<LLM> Requirements of Rules: the popluation of brazil is 1042 </LLM></Langda>', '<Langda> The 8th Code Block That You Should Analyse:\n<Current_Code>pop(bangladesh, 750).</Current_Code>\n<HASH> Hash tag of code: B03EE8B6 </HASH>\n<LLM> Requirements of Rules: the popluation of bangladesh is 750 </LLM></Langda>', '<Langda> The 9th Code Block That You Should Analyse:\n<Current_Code>pop(pakistan, 682).</Current_Code>\n<HASH> Hash tag of code: 20B79160 </HASH>\n<LLM> Requirements of Rules: the popluation of pakistan is 682 </LLM></Langda>', '<Langda> The 10th Code Block That You Should Analyse:\n<Current_Code>pop(w_germany, 620).</Current_Code>\n<HASH> Hash tag of code: 4B748FEC </HASH>\n<LLM> Requirements of Rules: the popluation of w_germany is 620 </LLM></Langda>', '<Langda> The 11th Code Block That You Should Analyse:\n<Current_Code>pop(nigeria, 613).</Current_Code>\n<HASH> Hash tag of code: 286769EE </HASH>\n<LLM> Requirements of Rules: the popluation of nigeria is 613 </LLM></Langda>', '<Langda> The 12th Code Block That You Should Analyse:\n<Current_Code>pop(mexico, 581).</Current_Code>\n<HASH> Hash tag of code: C6373B3C </HASH>\n<LLM> Requirements of Rules: the popluation of mexico is 581 </LLM></Langda>', '<Langda> The 13th Code Block That You Should Analyse:\n<Current_Code>pop(uk, 559).</Current_Code>\n<HASH> Hash tag of code: ABF3E097 </HASH>\n<LLM> Requirements of Rules: the popluation of uk is 559 </LLM></Langda>', '<Langda> The 14th Code Block That You Should Analyse:\n<Current_Code>pop(italy, 554).</Current_Code>\n<HASH> Hash tag of code: 6FA714BF </HASH>\n<LLM> Requirements of Rules: the popluation of italy is 554 </LLM></Langda>', '<Langda> The 15th Code Block That You Should Analyse:\n<Current_Code>pop(france, 525).</Current_Code>\n<HASH> Hash tag of code: 652D2B1D </HASH>\n<LLM> Requirements of Rules: the popluation of france is 525 </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

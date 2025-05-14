@@ -17,10 +17,10 @@ from .format_tools import (
     _langda_list_to_dict,
 )
 from .agent_tools import TOOL_REGISTRY
+from .test_tools import with_timeout, _problog_test
 __all__ = [
     'invoke_agent',
     'get_tools',
-
     '_ordinal',
     '_list_to_dict',
     '_compute_short_md5',
@@ -32,7 +32,12 @@ __all__ = [
     '_find_all_blocks',
     '_draw_mermaid_png',
     '_replace_placeholder',
+    'with_timeout',
+    'problog_test_tool',
 ]
+
+def problog_test_tool(model, file_basename,timeout=60):
+   return with_timeout(_problog_test,file_basename,timeout, model)
 
 def invoke_agent(agent_type:Literal["react","simple","doublechain"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
     """

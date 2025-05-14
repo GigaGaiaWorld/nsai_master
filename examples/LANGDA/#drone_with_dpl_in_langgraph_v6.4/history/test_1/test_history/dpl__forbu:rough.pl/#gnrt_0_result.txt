@@ -1,0 +1,8 @@
+Here's the complete DeepProbLog code for the interpretable bubblesort algorithm in JSON form:
+
+```problog
+{
+    "HASH": "47D659C8",
+    "Code": "% Interpretable Bubble Sort in DeepProbLog\n\n% Base case: when list is sorted, return it\nbubblesort([], Acc, Acc).\n\n% Recursive case: perform one pass of bubble sort\nbubblesort(L, Acc, Sorted) :-\n    bubble_pass(L, L1, Changed),\n    (Changed == true ->\n        bubblesort(L1, Acc, Sorted)\n    ;\n        append(Acc, L, Sorted)\n    ).\n\n% Single pass of bubble sort\nbubble_pass([X,Y|T], [Y|T1], true) :-\n    X > Y,\n    bubble_pass([X|T], T1, _).\n\nbubble_pass([X,Y|T], [X|T1], Changed) :-\n    X =< Y,\n    bubble_pass([Y|T], T1, Changed).\n\n% Base cases for bubble_pass\nbubble_pass([X], [], false) :- !.\nbubble_pass([], [], false).\n\n% Helper predicate to append lists\nappend([], L, L).\nappend([H|T], L, [H|R]) :- append(T, L, R).\n\n% Query example\nquery(forth_sort([3,1,2,5,7,12],X)).\n\n% Wrapper predicate\nforth_sort(L,L2) :- bubblesort(L,[],L2)."
+}
+```

@@ -1,0 +1,362 @@
+[
+  {
+    "file_name": "dpl__addit:simple.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 43,
+    "iter_count": 1,
+    "process_time": 42.70788598060608,
+    "final_result": "% Problog Inference Result：\naddition(img_5,img_6,11) = 1.0000",
+    "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes define the same digit facts and the addition predicate, which performs the same arithmetic operation. The only difference is the variable naming in the addition predicate (X2,Y2 in original vs A,B in generated), which does not affect the logic or outcome. The generated code is properly formatted and valid."
+  },
+  {
+    "file_name": "benchrps__:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 43,
+    "iter_count": 1,
+    "process_time": 43.363930225372314,
+    "final_result": "% Problog Inference Result：\ndetermine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000",
+    "final_report": "The generated code is mostly consistent with the original code in terms of functionality and produces the same result. However, there are some formatting issues and redundant lines in the generated code, such as the duplicate 'compute_score' clause for 'draw' and the repeated 'compute_score' call in 'determine_winner'. These issues do not affect the correctness of the result but make the code less clean and efficient."
+  },
+  {
+    "file_name": "dpl__forst:rough.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 92,
+    "iter_count": 1,
+    "process_time": 91.75520586967468,
+    "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000",
+    "final_report": "The generated code is mostly correct and consistent with the original code, with added comments and a complete implementation of insertion sort. However, there is a discrepancy in the 'rot' operation where the generated code produces [2,3,1,4] instead of the original [3,1,2,4]. This indicates a logical error in the rotation implementation. The rest of the operations and results match the original code."
+  },
+  {
+    "file_name": "benchcalcu:partial.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 96,
+    "iter_count": 1,
+    "process_time": 96.49190521240234,
+    "final_result": "% Problog Inference Result：\nquery_sum(X2) = 0.0000",
+    "final_report": "The generated code has several issues compared to the original code. First, the sumdigit(C2, E, N, N, C3) line incorrectly uses N twice instead of O, which breaks the logic of the cryptarithmetic puzzle. Second, the sumdigit(C4, 0, 0, M, 0) line is incorrect and does not follow the original logic. These changes make the generated code invalid for solving the puzzle. The original code correctly solves the puzzle with a valid result, while the generated code fails to produce any valid solution."
+  },
+  {
+    "file_name": "dpl__formg:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 48,
+    "iter_count": 1,
+    "process_time": 48.164958000183105,
+    "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+    "final_report": "The generated code is functionally identical to the original code, producing the same correct result for the merge sort operation. The only differences are in formatting (whitespace and line breaks), which do not affect the code's execution or logic. Both codes correctly implement the merge sort algorithm and yield the same sorted output for the given query."
+  },
+  {
+    "file_name": "dpl__forin:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 35,
+    "iter_count": 1,
+    "process_time": 35.04375505447388,
+    "final_result": "% Problog Inference Result：\ninsertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+    "final_report": "The generated code is functionally equivalent to the original code, producing the same correct sorting result. The only differences are in formatting (line breaks and spacing), which do not affect the logic or execution. Both implementations correctly perform insertion sort and yield identical results for the given query."
+  },
+  {
+    "file_name": "pl___whale:partial.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 86,
+    "iter_count": 1,
+    "process_time": 86.06179809570312,
+    "final_result": "% Problog Inference Result：\nattack = 0.8889\nabandon(cow,cow) = 0.5833\nabandon(cow,bull) = 0.4167\nabandon(bull,cow) = 0.5833\nabandon(bull,bull) = 0.4167",
+    "final_report": "The generated code is mostly consistent with the original code but contains some formatting issues and a duplicate line for world probabilities. The main problem is the duplicate probability distribution line (1/6::world(a); ...) which affects the results. The generated code's results are incorrect due to this duplication, showing different probabilities for both 'attack' and 'abandon' queries compared to the original."
+  },
+  {
+    "file_name": "pl___travl:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 48,
+    "iter_count": 1,
+    "process_time": 47.59790301322937,
+    "final_result": "% Problog Inference Result：\ninf(a) = 0.1245\ninf(b) = 0.1245",
+    "final_report": "The generated code is mostly correct and consistent with the original code. It maintains the same facts, probabilistic rules, and queries. However, there is a minor formatting issue where a period is placed on a new line after the last rule, which does not affect functionality but is stylistically inconsistent. The running results of both codes are identical, indicating that the generated code behaves as expected."
+  },
+  {
+    "file_name": "benchzebra:rough.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 159,
+    "iter_count": 1,
+    "process_time": 158.54849314689636,
+    "final_result": "Error evaluating Problog model:\n    def is_variable(term):\n    \n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 17, in timeout_handler\n    raise TimeoutError(f\"Function timed out while processing file: {file_basename}\")\nTimeoutError: Function timed out while processing file: benchzebra:rough.pl",
+    "final_report": "The generated code is missing several constraints present in the original code, such as the green house drinking coffee and the Ukrainian drinking tea. Additionally, there is a duplicate line for the yellow house with kools. These omissions and errors cause the generated code to fail to produce a valid result, leading to a timeout during execution. The generated code does not meet the expectations as it lacks consistency with the original code and contains syntax issues."
+  },
+  {
+    "file_name": "pl___whale:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 74,
+    "iter_count": 1,
+    "process_time": 74.35143709182739,
+    "final_result": "% Problog Inference Result：\nattack = 0.6667\nabandon(cow,cow) = 0.1667\nabandon(cow,bull) = 0.1667\nabandon(bull,cow) = 0.1667\nabandon(bull,bull) = 0.1667",
+    "final_report": "The generated code is correct and consistent with the original code. It maintains all the rules, facts, and queries from the original code, including the probabilistic world definitions and the three queries. The only difference is a minor formatting change in the 'abandon' rule, which does not affect the logic or results. The running results of both codes are identical, confirming their equivalence."
+  },
+  {
+    "file_name": "dpl__hfw__:rough.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 78,
+    "iter_count": 1,
+    "process_time": 77.97653913497925,
+    "final_result": "% Problog Inference Result：\nexpression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],-0.25) = 1.0000",
+    "final_report": "The generated code has significant differences from the original code in the parsing logic. The original code handles operator precedence correctly by processing multiplication and division immediately, while the generated code processes operations left-to-right without considering precedence. This leads to different results for the same input. The generated code's result (-0.25) is incorrect compared to the original code's correct result (-10.333)."
+  },
+  {
+    "file_name": "pl___monty:rough.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 66,
+    "iter_count": 1,
+    "process_time": 66.29752087593079,
+    "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 11:30.",
+    "final_report": "The generated code attempts to replicate the Monty Hall problem logic but introduces syntax errors and logical inconsistencies. The main issue is the incorrect use of the '->' operator and improper handling of the 'random_member' predicate, which is not standard in Problog. The original code correctly models the problem with probabilistic rules for door opening, while the generated code fails to execute due to these errors."
+  },
+  {
+    "file_name": "benchrps__:rough.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 49,
+    "iter_count": 1,
+    "process_time": 48.93511700630188,
+    "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for 'play/3' at 25:1.",
+    "final_report": "The generated code is missing the 'result' and 'play' predicates which are crucial for determining the game outcome. This omission causes the code to fail during execution with an 'UnknownClause' error for 'play/3'. The original code correctly implements all necessary predicates and runs successfully. The generated code's form is invalid due to missing components, and its result is invalid as it fails to execute."
+  },
+  {
+    "file_name": "pl___ppong:partial.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 64,
+    "iter_count": 1,
+    "process_time": 64.23803281784058,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 14:24.",
+    "final_report": "The generated code is not valid due to syntax errors. Specifically, there is an operator priority clash at line 14:24, which prevents the code from being parsed and executed correctly. The original code is syntactically correct and produces expected results, while the generated code fails to run. The generated code also contains redundant and incorrect repetitions of the 'team_strength' predicate definitions, which further contribute to the syntax errors."
+  },
+  {
+    "file_name": "benchrps__:partial.pl",
+    "Validity_form": false,
+    "Validity_result": true,
+    "running_time": 62,
+    "iter_count": 1,
+    "process_time": 61.9351019859314,
+    "final_result": "% Problog Inference Result：\ndetermine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000",
+    "final_report": "The generated code is mostly consistent with the original code in terms of functionality and logic. However, there are some formatting issues and a minor syntax error in the 'compute_score' clause for 'draw' where 'S1' is missing. Despite this, the generated code produces the same result as the original code when executed."
+  },
+  {
+    "file_name": "benchprove:partial.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 71,
+    "iter_count": 1,
+    "process_time": 71.01691699028015,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 18:21.",
+    "final_report": "The generated code has several syntax errors and formatting issues that make it invalid. Specifically, there are duplicate definitions of 'prove(implies(P,Q))' and 'prove(opposite(P))', and incorrect line breaks and periods that cause parsing errors. These issues prevent the code from running correctly, unlike the original code which executes without errors and produces the expected results."
+  },
+  {
+    "file_name": "dpl__addit:rough.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 43,
+    "iter_count": 1,
+    "process_time": 42.8371319770813,
+    "final_result": "% Problog Inference Result：\nmulti_addition([img_7, img_9],[img_3, img_1, img_2],310) = 1.0000",
+    "final_report": "The generated code extends the original code's functionality by introducing a 'number' predicate to handle multi-digit numbers and a 'multi_addition' predicate to perform addition on these numbers. The generated code is correct and meets the requirements, as it successfully calculates the sum of two multi-digit numbers represented as lists of images. The result is consistent with the original code's logic but applied to a more complex scenario."
+  },
+  {
+    "file_name": "benchquery:rough.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 91,
+    "iter_count": 1,
+    "process_time": 91.22835111618042,
+    "final_result": "% Problog Inference Result：\nquery_pop([(china, france), (indonesia, pakistan), (pakistan, indonesia), (w_germany, uk), (mexico, ethiopia), (uk, w_germany), (italy, philippines), (france, china), (philippines, italy), (ethiopia, mexico)]) = 1.0000",
+    "final_report": "The generated code is valid and meets the requirements, but it differs from the original code in its approach to finding countries with approximately equal population density. The original code uses a specific calculation (D1 > D2, T1 is 20*D1, T2 is 21*D2, T1 < T2) to find pairs, while the generated code uses a more general method (abs(Density1 - Density2) / Density1 =< 0.05). The results are consistent in spirit but differ in format and exact pairs returned. The generated code's result includes reciprocal pairs (e.g., (china, france) and (france, china)), which the original code does not."
+  },
+  {
+    "file_name": "dpl__formg:rough.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 59,
+    "iter_count": 1,
+    "process_time": 58.880403995513916,
+    "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+    "final_report": "The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. The main difference lies in the implementation of the 'split' function, which in the generated code uses a different approach to split the list into two halves. Despite this difference, both implementations achieve the same result. The generated code is valid and meets the requirements, producing the same output as the original code."
+  },
+  {
+    "file_name": "benchcalcu:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 115,
+    "iter_count": 1,
+    "process_time": 115.27880597114563,
+    "final_result": "% Problog Inference Result：\nquery_sum([9, 5, 6, 7, 1, 0, 8, 2]) = 1.0000",
+    "final_report": "The generated code is mostly correct and consistent with the original code in terms of functionality. However, it contains redundant lines and comments that do not affect the logic but make the code less clean. Specifically, the 'sumdigit(0, D, E, Y, C1)' and 'sumdigit(C3, S, M, O, M)' are duplicated. The running results of both codes are identical, indicating that the generated code meets the expected requirements."
+  },
+  {
+    "file_name": "dpl__forin:rough.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 56,
+    "iter_count": 1,
+    "process_time": 56.1493558883667,
+    "final_result": "% Problog Inference Result：\ninsertion_sort([3, 1, 2, 5, 7, 12],[1, 12, 2, 3, 5, 7]) = 1.0000",
+    "final_report": "The generated code is structurally similar to the original code but uses different predicate names ('insert' instead of 'insert_element') and comparison operators ('@=<' and '@>' instead of '=<' and '>'). While the generated code is syntactically correct and valid, the running results are inconsistent with the original code. The generated code produces an incorrect sorted list [1, 12, 2, 3, 5, 7], which indicates a logical error in the insertion logic."
+  },
+  {
+    "file_name": "benchcalcu:rough.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 78,
+    "iter_count": 1,
+    "process_time": 77.65160393714905,
+    "final_result": "Error evaluating Problog model:\n    toks = self.label_tokens(string, root_tokens)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1186, in label_tokens\n    raise ParseError(string, \"Expected binary operator\", t.location)\nproblog.parser.ParseError: Expected binary operator at 13:12.",
+    "final_report": "The generated code is not valid due to a syntax error ('Expected binary operator') and incomplete implementation. It attempts to solve the cryptarithmetic problem differently by using arithmetic constraints directly, but fails to properly structure the rules and misses the sumdigit predicate implementation. The original code uses a step-by-step approach with carry propagation, while the generated code tries a more direct arithmetic approach but is syntactically incorrect."
+  },
+  {
+    "file_name": "dpl__forst:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 53,
+    "iter_count": 1,
+    "process_time": 53.39215612411499,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 10:44.",
+    "final_report": "The generated code has syntax errors and is not valid. Specifically, there is an operator priority clash at line 10:44, which prevents the code from running. The original code correctly implements stack operations and sorting, while the generated code fails to maintain the same functionality due to these errors. The generated code also incorrectly modifies the 'sort' operation implementation."
+  },
+  {
+    "file_name": "dpl__addit:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 44,
+    "iter_count": 1,
+    "process_time": 44.157511949539185,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 19:25.",
+    "final_report": "The generated code attempts to extend the original functionality by adding multi-digit addition, but contains syntax errors (duplicate predicate declaration for 'multi_addition') and a parsing error. While the concept aligns with extending the original digit addition, the implementation is invalid due to these errors. The original code correctly performs single-digit addition, while the generated code fails to execute."
+  },
+  {
+    "file_name": "dpl__forbu:rough.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 59,
+    "iter_count": 1,
+    "process_time": 59.29134511947632,
+    "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 11:15.",
+    "final_report": "The generated code attempts to implement a bubble sort in ProbLog but contains syntax errors and logical inconsistencies. The main issue is the use of '->' operator which is not valid in standard ProbLog syntax, causing an evaluation error. The original code correctly implements bubble sort using swap operations and accumulates sorted elements properly. The generated code fails to run due to syntax problems and doesn't produce the same result as the original working code."
+  },
+  {
+    "file_name": "pl___aircr:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 109,
+    "iter_count": 1,
+    "process_time": 109.28327584266663,
+    "final_result": "% Problog Inference Result：\ngoal_reached(1) = 0.2625\ngoal_reached(2) = 0.1873\ngoal_reached(3) = 0.1269\ngoal_reached(4) = 0.0841\ngoal_reached(5) = 0.0570\noverrun_exception(1) = 0.0000\noverrun_exception(2) = 0.0030\noverrun_exception(3) = 0.0110\noverrun_exception(4) = 0.0127\noverrun_exception(5) = 0.0114",
+    "final_report": "The generated code is largely consistent with the original code in terms of functionality and logic. The main difference is in the formatting and minor syntactic variations, such as the placement of line breaks and the use of 'Old \\= GP' instead of '\\+ goal(Old)'. These changes do not affect the overall behavior of the code. The running results of both codes are identical, indicating that the generated code correctly implements the intended logic."
+  },
+  {
+    "file_name": "benchquery:precise.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 61,
+    "iter_count": 1,
+    "process_time": 60.519181966781616,
+    "final_result": "% Problog Inference Result：\nquery_pop([china, 244, france, 246]) = 1.0000\nquery_pop([indonesia, 223, pakistan, 219]) = 1.0000\nquery_pop([pakistan, 219, indonesia, 223]) = 1.0000\nquery_pop([w_germany, 645, uk, 650]) = 1.0000\nquery_pop([mexico, 76, ethiopia, 77]) = 1.0000\nquery_pop([uk, 650, w_germany, 645]) = 1.0000\nquery_pop([italy, 477, philippines, 461]) = 1.0000\nquery_pop([france, 246, china, 244]) = 1.0000\nquery_pop([philippines, 461, italy, 477]) = 1.0000\nquery_pop([ethiopia, 77, mexico, 76]) = 1.0000",
+    "final_report": "The generated code is mostly correct and consistent with the original code. It correctly implements the logic to find countries with approximately equal population density. However, the generated code adds an additional condition `C1 \\= C2` to ensure the countries being compared are different, which is a good improvement. The running results of both codes are similar, but the generated code produces more pairs due to the bidirectional comparison (e.g., [china, 244, france, 246] and [france, 246, china, 244]). This makes the results more comprehensive but slightly different from the original."
+  },
+  {
+    "file_name": "benchzebra:partial.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 145,
+    "iter_count": 1,
+    "process_time": 145.24226307868958,
+    "final_result": "% Problog Inference Result：\nzebra([house(yellow,norwegian,fox,water,kools), house(blue,ukrainian,horse,tea,chesterfields), house(red,english,snail,milk,winstons), house(ivory,spanish,dog,orange_juice,lucky_strikes), house(green,japanese,zebra,coffee,parliaments)]) = 1.0000",
+    "final_report": "The generated code is mostly consistent with the original code, but there is a minor discrepancy in the predicate 'my_member(house(_, _, snail, _, winstons), Houses)' where 'snail' should be 'snails' as in the original code. Despite this, the running results of both codes are consistent, producing the same output. The generated code is valid and meets the requirements, but the typo in 'snail' could potentially cause issues in other contexts."
+  },
+  {
+    "file_name": "dpl__forbu:precise.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 52,
+    "iter_count": 1,
+    "process_time": 51.60022497177124,
+    "final_result": "% Problog Inference Result：\nforth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+    "final_report": "The generated code is functionally equivalent to the original code, producing the same sorting result. The main difference lies in the implementation of the swap/3 predicate, where the generated code uses 'X > Y' and 'X =< Y' conditions instead of the original 'X < Y' and '\\+ swap(X,Y,no_swap)'. This change is logically equivalent but expressed differently. The formatting of the generated code has some unnecessary line breaks and spaces, but this does not affect functionality. Both codes correctly implement a bubble sort algorithm and produce identical results for the given query."
+  },
+  {
+    "file_name": "pl___aircr:partial.pl",
+    "Validity_form": "ERROR",
+    "Validity_result": "ERROR",
+    "running_time": "None",
+    "iter_count": "None",
+    "process_time": 68.75543808937073,
+    "final_result": "Agent execution error: list index out of range",
+    "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/main_test_all.py\", line 75, in process_all_prompt_files_json\n    result = with_timeout(agent.call_langda_workflow, file_basename, timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 23, in with_timeout\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/langda_agent.py\", line 96, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2683, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2331, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/runner.py\", line 146, in tick\n    run_with_retry(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/retry.py\", line 40, in run_with_retry\n    return task.proc.invoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 606, in invoke\n    input = step.invoke(input, config, **kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 371, in invoke\n    ret = context.run(self.func, *args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/generate_nodes.py\", line 63, in generate_node\n    if key not in generated_codes[iter]:\n                  ~~~~~~~~~~~~~~~^^^^^^\nIndexError: list index out of range\nDuring task with name 'generate_node' and id 'af694fc9-4754-dd5c-db4c-dc5f7d0cd758'\n"
+  },
+  {
+    "file_name": "benchquery:partial.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 88,
+    "iter_count": 1,
+    "process_time": 88.20077514648438,
+    "final_result": "% Problog Inference Result：\nquery_pop([indonesia, 223, pakistan, 219]) = 1.0000\nquery_pop([uk, 650, w_germany, 645]) = 1.0000\nquery_pop([italy, 477, philippines, 461]) = 1.0000\nquery_pop([france, 246, china, 244]) = 1.0000\nquery_pop([ethiopia, 77, mexico, 76]) = 1.0000",
+    "final_report": "The generated code is largely consistent with the original code in terms of functionality and structure. Both codes aim to find countries with approximately equal population density. The generated code maintains the same predicates and calculations as the original. However, there are minor formatting inconsistencies, such as the placement of periods in some pop/2 facts. Despite these, the logic and results remain unchanged."
+  },
+  {
+    "file_name": "benchprove.pl",
+    "Validity_form": "ERROR",
+    "Validity_result": "ERROR",
+    "running_time": "None",
+    "iter_count": "None",
+    "process_time": 62.91636919975281,
+    "final_result": "Agent execution error: 'temp_full_codes'",
+    "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/main_test_all.py\", line 75, in process_all_prompt_files_json\n    result = with_timeout(agent.call_langda_workflow, file_basename, timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 23, in with_timeout\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/langda_agent.py\", line 96, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2683, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2331, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/runner.py\", line 146, in tick\n    run_with_retry(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/retry.py\", line 40, in run_with_retry\n    return task.proc.invoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 606, in invoke\n    input = step.invoke(input, config, **kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 371, in invoke\n    ret = context.run(self.func, *args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/general_nodes.py\", line 103, in summary_node\n    final_code = _replace_placeholder(state[\"prompt_template\"],state[\"temp_full_codes\"], state[\"placeholder\"])\n                                                               ~~~~~^^^^^^^^^^^^^^^^^^^\nKeyError: 'temp_full_codes'\nDuring task with name 'summary_node' and id '76b13937-caab-0b99-0ae4-45384496e64b'\n"
+  },
+  {
+    "file_name": "benchzebra:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 160,
+    "iter_count": 1,
+    "process_time": 159.81071281433105,
+    "final_result": "% Problog Inference Result：\nzebra(X2) = 0.0000",
+    "final_report": "The generated code has several issues. First, it incorrectly defines the house structure by adding house numbers (1-5) which are not present in the original code. Second, the predicates are misordered and some attributes are misplaced (e.g., 'red' should be a color attribute, not a position). Third, some constraints are incorrectly formatted (e.g., 'snail' should be 'snails'). These errors make the generated code invalid and inconsistent with the original code, leading to incorrect results."
+  },
+  {
+    "file_name": "pl___monty:partial.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 62,
+    "iter_count": 1,
+    "process_time": 62.31131172180176,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 8:39.",
+    "final_report": "The generated code has syntax errors and does not run successfully, as indicated by the ParseError. The original code correctly implements the Monty Hall problem and produces expected probabilities for winning by keeping or switching doors. The generated code attempts to replicate the original but contains formatting issues and duplicate clauses that cause parsing errors."
+  },
+  {
+    "file_name": "benchprove:rough.pl",
+    "Validity_form": true,
+    "Validity_result": true,
+    "running_time": 78,
+    "iter_count": 1,
+    "process_time": 78.0997166633606,
+    "final_result": "% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000",
+    "final_report": "The generated code is mostly correct and consistent with the original code. It maintains all the core functionalities including the meta-interpreter, extended logic processing, and examples. However, there is a minor difference in the 'implies/2' implementation where the generated code requires both A and B to be provable, while the original code accepts either unprovable A or provable B. Despite this difference, the running results are identical for the given queries."
+  },
+  {
+    "file_name": "dpl__poker:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 107,
+    "iter_count": 1,
+    "process_time": 106.60345411300659,
+    "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 54:25.",
+    "final_report": "The generated code has several issues. First, there are duplicate predicate definitions for 'game' which causes a syntax error. Second, the variables 'OwnCards' and 'OpponentCards' in the second 'game' predicate are not properly defined, leading to potential runtime errors. The generated code does not maintain the same logic as the original code and fails to execute due to these errors."
+  }
+]

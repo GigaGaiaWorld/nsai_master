@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 12:25.</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>bubblesort(L,L3,Sorted) :-\n    bubble(L,L2,X),\n    bubblesort(L2,[X|L3],Sorted).</Current_Code>\n<HASH> Hash tag of code: 2971FD2F </HASH>\n<LLM> Requirements of Rules: Recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. </LLM></Langda>', '<Langda> The 2nd Code Block That You Should Analyse:\n<Current_Code>swap(X,Y,swap) :- X > Y.\nswap(X,Y,no_swap) :- X =< Y.</Current_Code>\n<HASH> Hash tag of code: 5CBF7C6A </HASH>\n<LLM> Requirements of Rules: The logical predicate that determines whether to exchange </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

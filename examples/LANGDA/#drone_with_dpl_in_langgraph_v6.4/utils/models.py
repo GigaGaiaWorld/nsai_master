@@ -63,43 +63,33 @@ class LangdaAgentExecutor(BaseModel):
     tools: List[BaseTool]
     model_name:str
     # File name configurations:
-    prompt_names: Dict[str, str] = Field(default={
-        "generate": "system_generate_prompt_fullvision.txt",
-        "evaluate": "system_evaluate_prompt_fullvision.txt",
-        "regenerate": "system_regenerate_prompt_fullvision.txt",
-        "final_test": "system_final_test_prompt_fullvision.txt",
-    })
-    react_prompt_names: Dict[str, str] = Field(default={
-        "generate": "system_generate_prompt_fullvision_react.txt",
-        "evaluate": "system_evaluate_prompt_fullvision_react.txt",
-        "regenerate": "system_regenerate_prompt_fullvision_react.txt",
-        "final_test": "system_final_test_prompt_fullvision_react.txt",
+    prompt_format: Dict[str, str] = Field(default={
+        "generate": "generate_prompt_{}.txt",
+        "evaluate": "evaluate_prompt_{}.txt",
+        "regenerate": "regenerate_prompt_{}.txt",
+        "final_test": "zfinaltest_prompt_simple.txt",
     })
 
 
-    def get_prompt_path(self, prompt_name: str, usereact:bool) -> Path:
+    def get_prompt_path(self, prompt_type: str, agent_type:str) -> Path:
         """
         Get path for prompt files.
         Args:
-            prompt_name: One of ["evaluate", "generate", "regenerate"]
+            prompt_type: One of ["evaluate", "generate", "regenerate"]
         """
-        if not usereact:
-            if prompt_name not in self.prompt_names:
-                raise FileExistsError(f"Unknown prompt: {prompt_name}.")
-            return paths._get_path("prompts", self.prompt_names[prompt_name])
-        else:
-            if prompt_name not in self.react_prompt_names:
-                raise FileExistsError(f"Unknown prompt: {prompt_name}.")
-            return paths._get_path("prompts", self.react_prompt_names[prompt_name])
+        if prompt_type not in self.prompt_format:
+            raise FileExistsError(f"Unknown prompt: {prompt_type}.")
+        return paths._get_path("prompts", self.prompt_format[prompt_type].format(agent_type))
+
     
-    def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate", "final_test"], usereact:bool) -> str:
+    def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate", "final_test"], agent_type:str) -> str:
         """
         Load prompt content from file.
         Args:
             prompt: One of ["evaluate", "generate", "regenerate", "final_test"]
             usereact: use react prompt or not
         """
-        path = self.get_prompt_path(prompt, usereact)
+        path = self.get_prompt_path(prompt, agent_type)
         try:
             with open(path, "r", encoding="utf-8") as f:
                 return f.read()
@@ -138,7 +128,7 @@ class LangdaAgentExecutor(BaseModel):
         """
         new_llm = self.get_model()
         # react_prompt_template = hub.pull("hwchase17/react")
-        raw_prompt_template = self.load_prompt(prompt_type, True) # use our own prompt
+        raw_prompt_template = self.load_prompt(prompt_type, "react") # use our own prompt
         react_prompt_template = PromptTemplate.from_template(raw_prompt_template)
 
         new_agent = create_react_agent(
@@ -163,7 +153,7 @@ class LangdaAgentExecutor(BaseModel):
             input: dictonary to fill all the placeholders in prompt
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
         """
-        raw_prompt_template = self.load_prompt(prompt_type, True) # use our own prompt
+        raw_prompt_template = self.load_prompt(prompt_type, "react") # use our own prompt
         react_prompt_template = _replace_placeholder(raw_prompt_template, input["input"],placeholder="{input}")
 
         agent_executor = self.get_react_executor(prompt_type)
@@ -187,22 +177,26 @@ class LangdaAgentExecutor(BaseModel):
             ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
         """
         if not ext_prompt:
-            raw_prompt_template = self.load_prompt(prompt_type, False)
+            raw_prompt_template = self.load_prompt(prompt_type, "simple")
         else:
             raw_prompt_template = prompt_type
         chatprompt_template = ChatPromptTemplate.from_messages([
             ("system", "You are a helpful assistant that helps the user to generate deepproblog code."),
             ("human", raw_prompt_template)
         ])
-        formatted_prompt = chatprompt_template.format(**input)
+
+        formatted_prompt = chatprompt_template.format_prompt(**input).to_string()
 
         new_llm = self.get_model()        
         chain:Runnable = chatprompt_template | new_llm | StrOutputParser()
         result = chain.invoke(input=input, config=config)
         return result, formatted_prompt
     
-
     # ========================= DOUBLECHAIN AGRNT ========================= #
+    def split_doublechain_prompt(self,prompt_template:str):
+        lines = prompt_template.split("*** split ***")
+        return lines[0], lines[1]
+    
     def invoke_doublechain_agent(self, prompt_type: str, input: Dict[str, str], config: Dict[str, str], ext_prompt=False) -> Tuple[str, str]:
         """
         Invoke a double-chain agent that separates code generation and formatting
@@ -217,34 +211,28 @@ class LangdaAgentExecutor(BaseModel):
             Tuple of (resulting output, formatted prompt)
         """
         # Get the appropriate prompt template
-        # if not ext_prompt:
-        #     raw_prompt_template = self.load_prompt(prompt_type, False)
-        # else:
-        #     raw_prompt_template = prompt_type
-        
-        # First chain: Generate the Problog code with tools
+        if not ext_prompt:
+            raw_prompt_template = self.load_prompt(prompt_type, "doublechain")
+        else:
+            raw_prompt_template = prompt_type
+
+        new_llm = self.get_model()
+        first_chain_prompt_template, second_chain_prompt_template = self.split_doublechain_prompt(raw_prompt_template)
+
+        # *** First chain: Generate the Problog code with tools *** 
         first_input = {
             "template_code": input["input"],
             "agent_scratchpad": ""
         }
         prompt_msgs = [
             ("system", "You are a coding assistant. Use the tools as needed to complete the ProbLog code."),
-            ("human", """You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
-<Code>
-{template_code}
-</Code>
-<Final_Answer> The generated completed code should be formatted as follows:
-// other contents
-```problog
-//the completed original code here
-```
-</Final_Answer>"""),
+            ("human", first_chain_prompt_template),
             ("assistant", "{agent_scratchpad}")  # where tool outputs and thoughts will appear
         ]
         first_chain_prompt = ChatPromptTemplate.from_messages(prompt_msgs)
         first_formatted_prompt = first_chain_prompt.format_prompt(**first_input).to_string()
         # Create the model for generation
-        new_llm = self.get_model()
+
         agent = create_tool_calling_agent(new_llm, self.tools, first_chain_prompt)
         agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
         # Execute the first chain
@@ -252,7 +240,7 @@ class LangdaAgentExecutor(BaseModel):
         first_result = agent_executor.invoke(input=first_input, config=config)
         generated_result = first_result.get("output", "")
 
-        # Second chain: Format the code output correctly
+        # *** Second chain: Format the code output correctly ***
         generated_code = ""
         pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
         matches = re.findall(pattern, generated_result, re.DOTALL)
@@ -262,37 +250,8 @@ class LangdaAgentExecutor(BaseModel):
         second_input = {
             "origin_code": input["input"],
             "generated_code": generated_code.strip()
-        }
-        second_chain_prompt = PromptTemplate.from_template("""
-In section <origin_code> and <generated_code> you will be give two codes,
-- in <origin_code> there's incomplete code with <langda> blocks.
-- in <generated_code> there's completed code of <origin_code>.
-your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
-<origin_code>
-{origin_code}
-</origin_code>
-<generated_code>
-{generated_code}
-<generated_code>
-<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
-for the following original code:
-<Code>
-head(X) :-
-<Langda> Information of 1st Placeholder:
-<HASH> Hash tag of code: XXXXABCD </HASH>
-<LLM> Requirements of Rules:...  </LLM></Langda>
-//other contents...
-</Code>
-if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
-
-For each code block , extract it and format it as follows:
-```problog
-{{"HASH": "XXXX1234","Code": "Completed code snippet 1"}}
-```
-```problog
-{{"HASH": "XXXX3456","Code": "Completed code snippet 2"}}
-```
-</Final_Answer>""")
+        } 
+        second_chain_prompt = PromptTemplate.from_template(second_chain_prompt_template)
         second_formatted_prompt = second_chain_prompt.format_prompt(**second_input).to_string()
         # Execute the second chain
         print("Executing second chain: Code formatting...")
