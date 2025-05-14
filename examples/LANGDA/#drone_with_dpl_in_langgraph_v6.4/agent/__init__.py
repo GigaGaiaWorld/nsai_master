@@ -2,9 +2,9 @@
 from .langda_agent import (
     LangdaAgentSingleSimple, 
     LangdaAgentFullSimple,
-    LangdaAgentFullDC,
+    LangdaAgentDoubleDC,
+    LangdaAgentDCSimple,
     LangdaAgentSingleDC,
-
 )
 # from .generate_nodes import GenerateNodes
 # from .evaluate_nodes import EvaluateNodes

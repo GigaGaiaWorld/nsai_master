@@ -202,11 +202,11 @@ class LangdaAgentExecutor(BaseModel):
         Invoke a double-chain agent that separates code generation and formatting
         
         args:
-            prompt_type: One of ["evaluate", "generate", "regenerate", "final_test"], if ext_prompt = True, you should fill your own prompt here
+            prompt_type: One of ["evaluate", "generate", "regenerate"], if ext_prompt = True, you should fill your own prompt here
             input: dictionary to fill all the placeholders in prompt
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
             ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
-        
+
         returns:
             Tuple of (resulting output, formatted prompt)
         """
@@ -221,7 +221,7 @@ class LangdaAgentExecutor(BaseModel):
 
         # *** First chain: Generate the Problog code with tools *** 
         first_input = {
-            "template_code": input["input"],
+            "input": input["input"],
             "agent_scratchpad": ""
         }
         prompt_msgs = [
@@ -237,20 +237,24 @@ class LangdaAgentExecutor(BaseModel):
         agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
         # Execute the first chain
         print("Executing first chain: Code generation with tools...")
-        first_result = agent_executor.invoke(input=first_input, config=config)
-        generated_result = first_result.get("output", "")
+        first_result_raw = agent_executor.invoke(input=first_input, config=config)
+        first_result = first_result_raw.get("output", "")
 
         # *** Second chain: Format the code output correctly ***
-        generated_code = ""
-        pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
-        matches = re.findall(pattern, generated_result, re.DOTALL)
+        extracted_result = ""
+        if prompt_type == "evaluate":
+            pattern = r"```(?:report|[a-z]*)?\n(.*?)```"
+        elif prompt_type == "generate" or prompt_type == "regenerate":
+            pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
+        matches = re.findall(pattern, first_result, re.DOTALL)
+
         for match in matches:
-            generated_code += match
-            generated_code += "\n\n"
+            extracted_result += match
+            extracted_result += "\n\n"
         second_input = {
-            "origin_code": input["input"],
-            "generated_code": generated_code.strip()
-        } 
+            "template_code": input["input"],
+            "first_chain_output": extracted_result.strip()
+        }
         second_chain_prompt = PromptTemplate.from_template(second_chain_prompt_template)
         second_formatted_prompt = second_chain_prompt.format_prompt(**second_input).to_string()
         # Execute the second chain

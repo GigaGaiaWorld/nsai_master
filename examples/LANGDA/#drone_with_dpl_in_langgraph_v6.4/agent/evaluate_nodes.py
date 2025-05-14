@@ -24,11 +24,16 @@ class EvaluateNodes:
         state["status"] = TaskStatus.TEST
         test_result:str = ""
         regenerate_info:List[str] = []
+        # problog_test_tool:
         constructed_code_list = _replace_placeholder(state["prompt_template"],state["temp_full_codes"])
         print("*** constructed_code_list***\n",constructed_code_list)
         if state["has_query"]: # need to do a test first
             test_result = problog_test_tool(constructed_code_list,state["prefix"],timeout=60)
-        test_prompt_template = RequirementsBuilder.build_all_report_info(state["generated_codes"],state["langda_dicts"], test_result)
+
+        # TEST:
+        test_result_info, report_info = RequirementsBuilder.build_all_report_info(state["generated_codes"],state["langda_dicts"], test_result)
+        test_prompt_template = _replace_placeholder(state["prompt_template"], report_info) + "\n" + test_result_info
+
         input={
             "input": test_prompt_template,
         }

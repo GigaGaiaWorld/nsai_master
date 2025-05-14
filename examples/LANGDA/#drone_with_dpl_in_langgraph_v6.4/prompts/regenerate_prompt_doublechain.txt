@@ -1,7 +1,9 @@
 You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
-in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
 <Code>
-{template_code}
+
+{input}
+
 </Code>
 <Final_Answer> The generated completed code should be formatted as follows:
 // other contents
@@ -16,10 +18,14 @@ In section <origin_code> and <generated_code> you will be give two codes,
 - in <generated_code> there's completed code of <origin_code>.
 your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
 <origin_code>
-{origin_code}
+
+{template_code}
+
 </origin_code>
 <generated_code>
-{generated_code}
+
+{first_chain_output}
+
 <generated_code>
 <Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
 for the following original code:

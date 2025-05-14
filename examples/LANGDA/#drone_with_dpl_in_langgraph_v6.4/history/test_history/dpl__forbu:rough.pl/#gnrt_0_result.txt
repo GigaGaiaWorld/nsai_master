@@ -1,3 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "% Interpretable Bubble Sort in ProbLog\n\n% Base case: If the list is empty, return the accumulator\nbubblesort([], Acc, Acc).\n\n% Recursive case: Perform one pass of bubble sort\nbubblesort([H], Acc, Sorted) :-\n    append(Acc, [H], Sorted).\n\nbubblesort([H1, H2 | T], Acc, Sorted) :-\n    (H1 =< H2 ->\n        append(Acc, [H1], NewAcc),\n        bubblesort([H2 | T], NewAcc, Sorted)\n    ;\n        append(Acc, [H2], NewAcc),\n        bubblesort([H1 | T], NewAcc, Sorted)\n    )."}
-```

@@ -26,7 +26,7 @@ class RequirementsBuilder:
         ("HASH", "<HASH> Hash tag of code: {} </HASH>"),
         # ("LOT", "Tools that you could use"),
         # ("NET", "Network Requirements"),
-        ("LLM", "<LLM> Requirements of Rules: {} </LLM>"),
+        ("LLM", "<Requirements>{} </Requirements>"),
         ] # FUP term is not used for prompting, so it doesn't show here
 
     @staticmethod
@@ -50,12 +50,15 @@ class RequirementsBuilder:
         return langda_infos # each one corresponds to a langda term
 
     @staticmethod
-    def build_all_report_info(code_list: List[dict], langda_dicts: List[Dict[str, str]], test_result:str="") -> List[str]:
+    def build_all_report_info(code_list: List[dict], langda_dicts: List[Dict[str, str]], test_result:str="") -> Tuple[str,List[str]]:
+        """
+        Format:
+        """
         langda_dict = _langda_list_to_dict(langda_dicts)
+        test_result_info = ""
         report_info:List[str] = []
-
         if test_result:
-            report_info.append("<Result> Here are the testing result of code:\n {}</Result>".format(test_result))
+            test_result_info = "<Result> Here are the testing result of code:\n {}</Result>".format(test_result)
 
         for idx, code_item in enumerate(code_list, start=1):
             key, value = _parse_simple_dictonary(code_item)
@@ -66,15 +69,14 @@ class RequirementsBuilder:
 
             report_info.append(RequirementsBuilder.build_report_info(idx, value, langda_dict[key]))
 
-        return report_info
-
+        return test_result_info, report_info
 
     @staticmethod
     def build_report_info(idx, code_item:str, langda_reqs_dict:dict) -> str:
         item_lines = []
         ordinal = _ordinal(idx)
-        item_lines.append("<Langda> The {} Code Block That You Should Analyse:".format(ordinal))
-        item_lines.append("<Current_Code>{}</Current_Code>".format(code_item))
+        item_lines.append("<Langda>")
+        item_lines.append("<Code_Block>{}</Code_Block>".format(code_item))
         for term, description in (RequirementsBuilder.LANGDATERMS):
             if langda_reqs_dict.get(term):
                 item_lines.append(description.format(langda_reqs_dict[term]))
@@ -95,7 +97,7 @@ class RequirementsBuilder:
         """
         regenerate_info:List[str] = []
         fest_code_list:List[dict] = []
-
+        need_regenerate_list:List[Tuple[str,str]] = []
         langda_dict = _langda_list_to_dict(langda_dicts)
         iter = 1
 
@@ -109,10 +111,11 @@ class RequirementsBuilder:
                 raise ValueError(f"build_regenerate_info: key:{key} the report: {report_content}")
             if not key in langda_dict: # check if the code has corresponding requirements
                 raise ValueError(f"build_regenerate_info: key:{key} not in langda_reqs: {langda_dict}")
+            
             if need_regenerate == 'True' or need_regenerate == 'true':
-
+                # need_regenerate_list.append((code_item, report_item))
                 fest_code_list.append({key:None})
-                regenerate_info.append(RequirementsBuilder.build_regenerate_info(iter, value, report_item, langda_dict[key]))
+                regenerate_info.append(RequirementsBuilder.build_regenerate_info(iter, value, report_item[key]["Report"], langda_dict[key]))
                 iter += 1
             elif need_regenerate == 'False' or need_regenerate == 'false':
                 fest_code_list.append(code_item)
@@ -123,12 +126,12 @@ class RequirementsBuilder:
 
 
     @staticmethod
-    def build_regenerate_info(idx, code_item:str, report_item:str, langda_reqs_dict:dict) -> str:
+    def build_regenerate_info(idx, code_value:str, report_value:str, langda_reqs_dict:dict) -> str:
         item_lines = []
         ordinal = _ordinal(idx)
-        item_lines.append("<Langda> Information of {} Placeholder:".format(ordinal))
-        item_lines.append("<Current_Code>{}</Current_Code>".format(code_item))
-        item_lines.append("<Report>{}</Report>".format(report_item))
+        item_lines.append("<Langda>".format(ordinal))
+        item_lines.append("<Code_Block>{}</Code_Block>".format(code_value))
+        item_lines.append("<Report>{}</Report>".format(report_value))
         for term, description in (RequirementsBuilder.LANGDATERMS):
             if langda_reqs_dict.get(term):
                 item_lines.append(description.format(langda_reqs_dict[term]))

@@ -1,5 +1,6 @@
 System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
-Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
 <Code>
 
 digit(img_1,1).
@@ -14,7 +15,9 @@ digit(img_9,9).
 digit(img_0,0).
 addition(X,Y,Z) :- 
  
-<Langda> Information of 1st Placeholder:
+<Langda>
+<Code_Block>digit(X,A), digit(Y,B), Z is A + B</Code_Block>
+<Report>The `addition` predicate is logically correct and passes the given test case (addition(img_5,img_6,11)). However, it lacks a terminating period (.) and is wrapped in unnecessary markup (`<Langda>`, `<Code_Block>`, etc.). The markup should be removed or replaced with ProbLog comments (%) for clarity. The core logic does not need regeneration, but the formatting does.</Report>
 <HASH> Hash tag of code: 6E46AD63 </HASH>
 <Requirements>addition logic, input as img_1 to img_0 </Requirements></Langda>
 .
@@ -50,7 +53,9 @@ digit(img_9,9).
 digit(img_0,0).
 addition(X,Y,Z) :- 
  
-<Langda> Information of 1st Placeholder:
+<Langda>
+<Code_Block>digit(X,A), digit(Y,B), Z is A + B</Code_Block>
+<Report>The `addition` predicate is logically correct and passes the given test case (addition(img_5,img_6,11)). However, it lacks a terminating period (.) and is wrapped in unnecessary markup (`<Langda>`, `<Code_Block>`, etc.). The markup should be removed or replaced with ProbLog comments (%) for clarity. The core logic does not need regeneration, but the formatting does.</Report>
 <HASH> Hash tag of code: 6E46AD63 </HASH>
 <Requirements>addition logic, input as img_1 to img_0 </Requirements></Langda>
 .

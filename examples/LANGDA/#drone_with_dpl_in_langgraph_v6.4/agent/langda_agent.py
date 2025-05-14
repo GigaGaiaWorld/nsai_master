@@ -99,8 +99,11 @@ class LangdaAgentSingleDC(LangdaAgentBase):
         
         return self.state["final_result"]
 
-class LangdaAgentFullDC(LangdaAgentBase):
-    """Full Langda workflow with double chain agent"""
+class LangdaAgentDCSimple(LangdaAgentBase):
+    """
+        "generate": "doublechain",
+        "evaluate": "simple"
+    """
     def __init__(self, rule_string, true_string, model_name, addition_input=None, caching=False, saving=False):
         super().__init__(rule_string, true_string, model_name, addition_input, caching, saving)
         # Set agent type information for this specific agent type
@@ -143,6 +146,53 @@ class LangdaAgentFullDC(LangdaAgentBase):
         
         return self.state["final_result"]
     
+class LangdaAgentDoubleDC(LangdaAgentBase):
+    """
+        "generate": "doublechain",
+        "evaluate": "doublechain"
+    """
+    def __init__(self, rule_string, true_string, model_name, addition_input=None, caching=False, saving=False):
+        super().__init__(rule_string, true_string, model_name, addition_input, caching, saving)
+        # Set agent type information for this specific agent type
+        self.state["agent_type"] = {
+            "generate": "doublechain",
+            "evaluate": "doublechain"
+        }
+    def call_langda_workflow(self) -> dict:
+        self.state["srttime"] = time.time()
+        self.state["iter_count"] = 0
+
+        langda_workflow = StateGraph(BasicState)
+        langda_workflow.set_entry_point("init_node")
+        langda_workflow.add_node("init_node", GeneralNodes.init_node)
+        langda_workflow.add_node("generate_node", GenerateNodes.generate_node)
+        langda_workflow.add_node("test_node", EvaluateNodes.test_node)
+        langda_workflow.add_node("summary_node", GeneralNodes.summary_node)
+
+        langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
+            {
+                "generate_node": "generate_node",
+                "summary_node": "summary_node"
+            })
+        langda_workflow.add_conditional_edges("generate_node", GenerateNodes._decide_next_gnrt, 
+            {
+                "generate_node": "generate_node",
+                "test_node": "test_node"
+            })
+        langda_workflow.add_conditional_edges("test_node", EvaluateNodes._decide_next_eval, 
+            {
+                "generate_node": "generate_node",
+                "summary_node": "summary_node"
+            })
+        langda_workflow.set_finish_point("summary_node")
+
+        langda_agent = langda_workflow.compile(checkpointer=self.checkpointer)
+        self.state = langda_agent.invoke(self.state, config=self.state["config"])
+        
+        _draw_mermaid_png(langda_agent, "langda_agent_full")
+        
+        return self.state["final_result"]
+
 class LangdaAgentFullSimple(LangdaAgentBase):
     """Full Langda workflow with simple agent"""
     def __init__(self, rule_string, true_string, model_name, addition_input=None, caching=False, saving=False):

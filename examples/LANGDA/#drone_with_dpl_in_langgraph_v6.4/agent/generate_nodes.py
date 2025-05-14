@@ -24,16 +24,15 @@ class GenerateNodes:
         new_iter_count = state["iter_count"] + 1
 
         targeted_codes:List[dict] = []
-        prompt_template = _replace_placeholder(state["prompt_template"], state["fest_codes"], state["placeholder"])
+        raw_prompt_template = _replace_placeholder(state["prompt_template"], state["fest_codes"], state["placeholder"])
 
-        # first round
-        if new_iter_count == 1:
+        if new_iter_count == 1:  # first round
             prompt_type = "generate"
-            prompt_template = _replace_placeholder(state["prompt_template"], state["langda_reqs"], state["placeholder"])
+            prompt_template = _replace_placeholder(raw_prompt_template, state["langda_reqs"], state["placeholder"])
 
         elif new_iter_count > 1:
             prompt_type = "regenerate"
-            prompt_template = _replace_placeholder(state["prompt_template"], state["regenerate_info"], state["placeholder"])
+            prompt_template = _replace_placeholder(raw_prompt_template, state["regenerate_info"], state["placeholder"])
 
         else:
             raise ValueError(f"iter_count has a invalid value: {state['iter_count']}")

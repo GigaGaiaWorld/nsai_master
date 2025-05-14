@@ -20,4 +20,4 @@ addition(img_5,img_6,11) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality. Both codes define the same digit facts and the addition predicate, which performs the same arithmetic operation. The only difference is the variable naming in the addition predicate (X2,Y2 in original vs A,B in generated), which does not affect the logic or outcome. The generated code is properly formatted and valid.
+The generated code is correct and consistent with the original code in terms of functionality. Both codes define the same digit facts and the addition predicate, which performs the same arithmetic operation. The only difference is the variable naming in the addition predicate (X2,Y2 vs A,B), which does not affect the logic or outcome. The generated code is properly formatted and valid.

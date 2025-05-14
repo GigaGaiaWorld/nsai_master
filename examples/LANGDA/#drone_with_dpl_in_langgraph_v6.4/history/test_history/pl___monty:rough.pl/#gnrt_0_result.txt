@@ -1,3 +1,0 @@
-```problog
-{"HASH": "592D75CA","Code": "% Define open_door/1 Predicate\nopen_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Case 1: Randomly open one of the two empty doors if both are empty\n    (   PrizeDoor = Selected ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected)), Doors),\n        random_member(Door, Doors)\n    % Case 2: Open the empty door if one has a prize and the other is empty\n    ;   findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ (D = PrizeDoor)), [EmptyDoor]),\n        Door = EmptyDoor\n    )."}
-```

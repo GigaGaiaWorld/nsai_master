@@ -97,6 +97,26 @@ def _draw_mermaid_png(graph:StateGraph, graph_str:str):
     graph_mermaid = graph.get_graph().draw_mermaid()
     paths.save_as_file(graph_mermaid,"mermaid", graph_str)
 
+def _tokenize_problog(s:str) -> List[tuple]:
+    # Tokenize Prolog code into units
+    pattern = r":-|\w+|[^\w\s]"
+    return [(m.group(), m.start(), m.end()) for m in re.finditer(pattern, s)]
+
+def _merge_problog_preserve(s1:str, s2:str) -> str:
+    tokens1 = _tokenize_problog(s1)
+    tokens2 = _tokenize_problog(s2)
+
+    texts1 = [t for t, _, _ in tokens1]
+    texts2 = [t for t, _, _ in tokens2]
+    
+    # longest overlap
+    max_k = min(len(texts1), len(texts2))
+    for k in range(max_k, 0, -1):
+        if texts1[-k:] == texts2[:k]: # we found the overlap!!!
+            j_start = tokens2[k-1][2]
+            return s1 + s2[j_start:]
+        return s1 + s2
+
 def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dict]], placeholder="{{LANGDA}}") -> str:
     """
     Replaces placeholders in a template with items from a replacement list.
@@ -108,6 +128,7 @@ def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dic
         - if the value is None, the corresponding placeholder remains unchanged. 
         - valid input forms: List[str] or List[dict]
     """
+
     # Extract values from replacement items
     replace_str_list = []
     if replacement_list and all(isinstance(item, dict) for item in replacement_list):
@@ -123,35 +144,20 @@ def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dic
     
     # Process each segment after the first
     for i, seg in enumerate(segments[1:]):
+
+        replace_text = replace_str_list[i]
         # Check if we have a replacement for this placeholder
-        if i < len(replace_str_list) and replace_str_list[i] is not None:
-            replace_text = replace_str_list[i]
-            
-            # Check for duplicate punctuation at the boundaries
-            if replace_text and seg:
-                replace_ends_with_punct = replace_text.rstrip()[-1:] in ".,;" if replace_text.rstrip() else False
-                seg_starts_with_punct = seg.lstrip()[:1] in ".,;" if seg.lstrip() else False
-                
-                # Handle duplicate punctuation
-                if replace_ends_with_punct and seg_starts_with_punct:
-                    # Find position where the actual text ends in replace_text
-                    replace_text_end = len(replace_text.rstrip())
-                    # Find position where the actual text starts in seg
-                    seg_text_start = len(seg) - len(seg.lstrip())
-                    
-                    # Add replace_text without the trailing punctuation
-                    result += replace_text[:replace_text_end-1] 
-                    # Add seg with its leading whitespace and punctuation
-                    result += seg[:seg_text_start+1] + seg[seg_text_start+1:]
-                    continue
-            
-            # Normal case: just add the replacement and segment
-            result += replace_text
+        if i < len(replace_str_list) and replace_text is not None:
+            # !!! SYNTAX FIX !!!
+            # deal with overlap: segment[0] & "overlap text" + "overlap text" & replace_text
+            result = _merge_problog_preserve(result, replace_text)
         else:
             # No replacement available, keep the placeholder
             result += placeholder
-        
-        result += seg
+
+        # !!! SYNTAX FIX !!!
+        # deal with overlap: replace_text & "overlap text" + "overlap text" & segment[1]
+        result = _merge_problog_preserve(result, seg)
         
     return result
 

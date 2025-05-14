@@ -1,5 +1,6 @@
 System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
-Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
 <Code>
 
 % -------------------------
@@ -18,19 +19,17 @@ beats(paper, rock).
 % -------------------------
 result(X, X, draw) :-
  
-<Langda> Information of 1st Placeholder:
+<Langda>
+<Code_Block>move(X).</Code_Block>
+<Report>The `result(X, X, draw)` rule is incomplete. The requirement specifies that same gestures should result in a draw, but the implementation is missing the body of the rule. This could lead to incorrect or missing results for draw scenarios.</Report>
 <HASH> Hash tag of code: 3F277A35 </HASH>
 <Requirements>Same gestures are considered a draw </Requirements></Langda>
 .
 result(X, Y, win) :-
-<Langda> Information of 2nd Placeholder:
-<HASH> Hash tag of code: D91BB7A0 </HASH>
-<Requirements>If X beats Y, then X wins </Requirements></Langda>
+beats(X, Y).
 .
 result(X, Y, lose) :-
-<Langda> Information of 3rd Placeholder:
-<HASH> Hash tag of code: 0940BB04 </HASH>
-<Requirements>% If Y beats X, then X loses </Requirements></Langda>
+beats(Y, X).
 .
 % End of recursion: empty list corresponds to empty result
 play([], [], []).
@@ -41,24 +40,18 @@ result(P1, P2, R),
 % (Optional) Update the score according to R
 play(P1T, P2T, Rs).
 compute_score([], 0).
-<Langda> Information of 4th Placeholder:
-<HASH> Hash tag of code: 583E41B6 </HASH>
-<Requirements>If the result of the current round is win: Recursively calculate the score S1 of the remaining results Rs The current total score S is S1 + 1, that is, add one point to player1 </Requirements></Langda>
-.
-<Langda> Information of 5th Placeholder:
-<HASH> Hash tag of code: D324979D </HASH>
-<Requirements>If the result of the current round is lose: Recursively calculate the remaining result score S1 The current total score S is S1 - 1, which means adding one point to player2 </Requirements></Langda>
-.
-<Langda> Information of 6th Placeholder:
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+<Langda>
+<Code_Block>compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.</Code_Block>
+<Report>The `compute_score([draw | Rs], S)` rule is duplicated in the code. While the implementation is correct, the redundancy should be removed to avoid confusion.</Report>
 <HASH> Hash tag of code: FD850DEC </HASH>
 <Requirements>If the current round is draw: A draw does not affect the score, and the previous round score S1 is directly passed. </Requirements></Langda>
 .
 compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
 determine_winner(P1Moves,P2Moves,Winner) :- 
  
-<Langda> Information of 7th Placeholder:
-<HASH> Hash tag of code: 3FEB17D7 </HASH>
-<Requirements>Main predicate: Given two player action lists P1Moves and P2Moves, calculate the winner Winner. Call the play/3 rule to compare the two players' actions and generate a Results list containing whether each round is win, lose, or draw. </Requirements></Langda>
+play(P1Moves, P2Moves, Results),
 ,
 compute_score(Results,S), 
 ( S > 0, Winner = player1 
@@ -101,19 +94,17 @@ beats(paper, rock).
 % -------------------------
 result(X, X, draw) :-
  
-<Langda> Information of 1st Placeholder:
+<Langda>
+<Code_Block>move(X).</Code_Block>
+<Report>The `result(X, X, draw)` rule is incomplete. The requirement specifies that same gestures should result in a draw, but the implementation is missing the body of the rule. This could lead to incorrect or missing results for draw scenarios.</Report>
 <HASH> Hash tag of code: 3F277A35 </HASH>
 <Requirements>Same gestures are considered a draw </Requirements></Langda>
 .
 result(X, Y, win) :-
-<Langda> Information of 2nd Placeholder:
-<HASH> Hash tag of code: D91BB7A0 </HASH>
-<Requirements>If X beats Y, then X wins </Requirements></Langda>
+beats(X, Y).
 .
 result(X, Y, lose) :-
-<Langda> Information of 3rd Placeholder:
-<HASH> Hash tag of code: 0940BB04 </HASH>
-<Requirements>% If Y beats X, then X loses </Requirements></Langda>
+beats(Y, X).
 .
 % End of recursion: empty list corresponds to empty result
 play([], [], []).
@@ -124,24 +115,18 @@ result(P1, P2, R),
 % (Optional) Update the score according to R
 play(P1T, P2T, Rs).
 compute_score([], 0).
-<Langda> Information of 4th Placeholder:
-<HASH> Hash tag of code: 583E41B6 </HASH>
-<Requirements>If the result of the current round is win: Recursively calculate the score S1 of the remaining results Rs The current total score S is S1 + 1, that is, add one point to player1 </Requirements></Langda>
-.
-<Langda> Information of 5th Placeholder:
-<HASH> Hash tag of code: D324979D </HASH>
-<Requirements>If the result of the current round is lose: Recursively calculate the remaining result score S1 The current total score S is S1 - 1, which means adding one point to player2 </Requirements></Langda>
-.
-<Langda> Information of 6th Placeholder:
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+<Langda>
+<Code_Block>compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.</Code_Block>
+<Report>The `compute_score([draw | Rs], S)` rule is duplicated in the code. While the implementation is correct, the redundancy should be removed to avoid confusion.</Report>
 <HASH> Hash tag of code: FD850DEC </HASH>
 <Requirements>If the current round is draw: A draw does not affect the score, and the previous round score S1 is directly passed. </Requirements></Langda>
 .
 compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
 determine_winner(P1Moves,P2Moves,Winner) :- 
  
-<Langda> Information of 7th Placeholder:
-<HASH> Hash tag of code: 3FEB17D7 </HASH>
-<Requirements>Main predicate: Given two player action lists P1Moves and P2Moves, calculate the winner Winner. Call the play/3 rule to compare the two players' actions and generate a Results list containing whether each round is win, lose, or draw. </Requirements></Langda>
+play(P1Moves, P2Moves, Results),
 ,
 compute_score(Results,S), 
 ( S > 0, Winner = player1 
@@ -167,9 +152,12 @@ beats(paper, rock).
 % -------------------------
 % Calculate the result of the game
 % -------------------------
-result(X, X, draw) :- move(X).
-result(X, Y, win) :- beats(X, Y).
-result(X, Y, lose) :- beats(Y, X).
+result(X, X, draw) :-
+    move(X).
+result(X, Y, win) :-
+    beats(X, Y).
+result(X, Y, lose) :-
+    beats(Y, X).
 % End of recursion: empty list corresponds to empty result
 play([], [], []).
 % Recursive advancement: take out each round of gestures, calculate the results, and continue
@@ -177,9 +165,15 @@ play([P1|P1T], [P2|P2T], [R|Rs]) :-
     result(P1, P2, R),
     play(P1T, P2T, Rs).
 compute_score([], 0).
-compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
-compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
-compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
+compute_score([win | Rs], S) :-
+    compute_score(Rs, S1),
+    S is S1 + 1.
+compute_score([lose | Rs], S) :-
+    compute_score(Rs, S1),
+    S is S1 - 1.
+compute_score([draw | Rs], S) :-
+    compute_score(Rs, S1),
+    S is S1.
 determine_winner(P1Moves, P2Moves, Winner) :-
     play(P1Moves, P2Moves, Results),
     compute_score(Results, S),
