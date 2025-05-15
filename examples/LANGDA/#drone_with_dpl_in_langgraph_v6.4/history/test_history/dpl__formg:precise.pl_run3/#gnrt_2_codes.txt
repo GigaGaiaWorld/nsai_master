@@ -1,0 +1,5 @@
+[
+{
+"95E704F2": "length(List, Len),\n    (Len > 1 ->\n        Half is Len // 2,\n        length(Left, Half),\n        append(Left, Right, List),\n        merge_sort(Left, SortedLeft),\n        merge_sort(Right, SortedRight),\n        merge(SortedLeft, SortedRight, Sorted)\n    ;\n        Sorted = List\n    )"
+}
+]

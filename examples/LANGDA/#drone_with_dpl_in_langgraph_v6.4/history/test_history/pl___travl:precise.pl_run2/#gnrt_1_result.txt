@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <Langda> block in the origin code:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X).\n0.1::inf(X) :- initialInf(X)."}
+```
+
+Note that:
+1. I've used the same HASH value from the original code (E09B4F54)
+2. The code includes all the rules for the inf/1 predicate from the generated code
+3. The backslash in `\+susceptible(X)` has been properly escaped with an additional backslash for JSON formatting
+4. The main change from the original is the addition of the probability annotation (0.1::) for the initialInf rule

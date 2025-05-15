@@ -1,0 +1,8 @@
+```report
+{
+  "HASH": "592D75CA",
+  "Report": "The `open_door/1` predicate has significant issues that require regeneration. Key problems include: 1) Logical inconsistency in mixing probabilistic and deterministic rules, particularly the problematic recursive call in the deterministic case; 2) Redundant use of `member/2` when door choices are explicitly known; 3) Unclear separation between probabilistic (50% chance) and deterministic (must open empty door) scenarios. The predicate fails to cleanly implement the required behaviors specified in the requirements. While the test results show correct probabilities for win_keep/win_switch, this appears to be coincidental rather than due to correct implementation of the door-opening logic.",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```

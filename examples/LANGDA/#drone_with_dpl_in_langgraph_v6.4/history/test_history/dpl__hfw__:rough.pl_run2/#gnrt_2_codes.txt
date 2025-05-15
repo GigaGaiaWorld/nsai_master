@@ -1,0 +1,5 @@
+[
+{
+"190031BC": "parse([N], N).\nparse([N, O | Rest], Result) :-\n    (O = *, parse(Rest, R), Result is N * R;\n     O = /, parse(Rest, R), R =\\= 0, Result is N / R;\n     parse([O | Rest], R), \n     (O = +, Result is N + R;\n      O = -, Result is N - R))."
+}
+]

@@ -1,0 +1,10 @@
+Here's the extracted and formatted code block from the `<generated_code>` that corresponds to the `<langda>` block in `<origin_code>`:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op == '*' ; Op == '/'),\n    parse([N2 | Rest], Temp),\n    (Op == '*' -> Result is N1 * Temp ; (Temp =:= 0 -> fail ; Result is N1 / Temp)).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op == '+' ; Op == '-'),\n    parse([N2 | Rest], Temp),\n    (Op == '+' -> Result is N1 + Temp ; Result is N1 - Temp).\nparse([N1, Op, N2 | Rest], Result) :-\n    parse([N1, Op, N2], Temp),\n    parse([Temp | Rest], Result)."}
+```
+
+Key changes in the generated code:
+1. Reordered the operator precedence (multiplication/division before addition/subtraction)
+2. Added division by zero check (`Temp =:= 0 -> fail`)
+3. Maintained the same recursive structure but with proper operator precedence handling

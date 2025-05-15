@@ -1,0 +1,3 @@
+```problog
+{"HASH": "E09B4F54","Code": "0.6::infStage1(X) :- contact(X,Y), initialInf(Y), \+susceptible(X), \+initialInf(X), \+riskyTravel(X).\n0.8::infStage1(X) :- contact(X,Y), initialInf(Y), susceptible(X), \+initialInf(X), \+riskyTravel(X).\n0.2::infStage1(X) :- riskyTravel(X), \+initialInf(X), \+ (contact(X,Y), initialInf(Y)).\n\n% Combine stages to determine final infection\ninf(X) :- initialInf(X).\ninf(X) :- infStage1(X)."}
+```

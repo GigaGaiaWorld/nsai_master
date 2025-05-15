@@ -1,27 +1,29 @@
 # agent/__init__.py
 from .langda_agent import (
+    LangdaAgentBase,
     LangdaAgentSingleSimple, 
-    LangdaAgentFullSimple,
+    LangdaAgentDoubleSimple,
     LangdaAgentDoubleDC,
     LangdaAgentDCSimple,
     LangdaAgentSingleDC,
 )
+from .state import LangdaAgentProtocol
 # from .generate_nodes import GenerateNodes
 # from .evaluate_nodes import EvaluateNodes
 # from .general_nodes import GeneralNodes
 __all__ = [
-    # GenerateNodes:double_chain_agent, EvaluateNodes:double_chain_agent, GeneralNodes
-    'LangdaAgentFullSimple',
+    "LangdaAgentProtocol",
+    "LangdaAgentBase",
 
     # GenerateNodes:simple_agent, GeneralNodes
     'LangdaAgentSingleSimple',
-
-    # GenerateNodes:simple_agent, EvaluateNodes:simple_agent, GeneralNodes
-    "LangdaAgentFullDC",
-
     # GenerateNodes:double_chain_agent, GeneralNodes
     "LangdaAgentSingleDC",
-    # 'GenerateNodes',
-    # 'EvaluateNodes',
-    # 'GeneralNodes',
+
+    # GenerateNodes:double_chain_agent, EvaluateNodes:double_chain_agent, GeneralNodes
+    'LangdaAgentDoubleSimple',
+    # GenerateNodes:simple_agent, EvaluateNodes:simple_agent, GeneralNodes
+    "LangdaAgentDoubleDC",
+    # GenerateNodes:double_chain_agent, EvaluateNodes:simple_agent, GeneralNodes
+    "LangdaAgentDCSimple",
 ]

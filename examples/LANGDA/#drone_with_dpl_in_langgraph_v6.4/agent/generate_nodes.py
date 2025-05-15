@@ -6,7 +6,7 @@ from utils import (
     invoke_agent,
     _parse_simple_dictonary,
 )
-from state import BasicState, TaskStatus
+from agent.state import BasicState, TaskStatus
 from config import paths
 import logging
 logger = logging.getLogger(__name__)

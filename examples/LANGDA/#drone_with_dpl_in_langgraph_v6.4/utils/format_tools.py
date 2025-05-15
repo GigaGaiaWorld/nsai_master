@@ -115,7 +115,7 @@ def _merge_problog_preserve(s1:str, s2:str) -> str:
         if texts1[-k:] == texts2[:k]: # we found the overlap!!!
             j_start = tokens2[k-1][2]
             return s1 + s2[j_start:]
-        return s1 + s2
+    return s1 + s2
 
 def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dict]], placeholder="{{LANGDA}}") -> str:
     """
@@ -164,7 +164,6 @@ def _replace_placeholder(template:str, replacement_list:Union[List[str],List[dic
 
 def _find_all_blocks(type: Literal["report", "code", "other"], text: str, ext_mark: str = "") -> List[dict]:
     """
-    修复版的解析函数，正确处理ProbLog代码中的转义序列
     """
     blocks: List[dict] = []
     
@@ -189,43 +188,44 @@ def _find_all_blocks(type: Literal["report", "code", "other"], text: str, ext_ma
             # 直接尝试解析JSON
             match_json = json.loads(match)
         except json.JSONDecodeError:
-            # 智能处理转义序列
-            try:
-                # 创建一个映射来临时替换特殊序列
-                replacements = {
-                    r'\\\\=': '___DOUBLE_BACKSLASH_EQUALS___',
-                    r'\\=': '___BACKSLASH_EQUALS___',
-                    r'\\n': '___BACKSLASH_N___',
-                    '\n': '\\n',  # 将实际的换行符替换为转义的换行符
-                }
+            raise
+            # # 智能处理转义序列
+            # try:
+            #     # 创建一个映射来临时替换特殊序列
+            #     replacements = {
+            #         r'\\\\=': '___DOUBLE_BACKSLASH_EQUALS___',
+            #         r'\\=': '___BACKSLASH_EQUALS___',
+            #         r'\\n': '___BACKSLASH_N___',
+            #         '\n': '\\n',  # 将实际的换行符替换为转义的换行符
+            #     }
                 
-                processed_match = match
+            #     processed_match = match
                 
-                # 首先处理实际的换行符
-                processed_match = processed_match.replace('\n', '\\n')
+            #     # 首先处理实际的换行符
+            #     processed_match = processed_match.replace('\n', '\\n')
                 
-                # 然后处理其他特殊序列（按长度降序，确保先处理长的）
-                for pattern, replacement in sorted(replacements.items(), key=lambda x: len(x[0]), reverse=True):
-                    if pattern != '\n':  # 跳过已处理的换行符
-                        processed_match = processed_match.replace(pattern, replacement)
+            #     # 然后处理其他特殊序列（按长度降序，确保先处理长的）
+            #     for pattern, replacement in sorted(replacements.items(), key=lambda x: len(x[0]), reverse=True):
+            #         if pattern != '\n':  # 跳过已处理的换行符
+            #             processed_match = processed_match.replace(pattern, replacement)
                 
-                # 尝试解析JSON
-                match_json = json.loads(processed_match)
+            #     # 尝试解析JSON
+            #     match_json = json.loads(processed_match)
                 
-                # 还原特殊序列
-                if isinstance(match_json, dict) and "Code" in match_json:
-                    code = match_json["Code"]
-                    # 还原顺序也很重要
-                    for pattern, replacement in replacements.items():
-                        if pattern != '\n':  # 不需要还原换行符
-                            code = code.replace(replacement, pattern)
-                    match_json["Code"] = code
+            #     # 还原特殊序列
+            #     if isinstance(match_json, dict) and "Code" in match_json:
+            #         code = match_json["Code"]
+            #         # 还原顺序也很重要
+            #         for pattern, replacement in replacements.items():
+            #             if pattern != '\n':  # 不需要还原换行符
+            #                 code = code.replace(replacement, pattern)
+            #         match_json["Code"] = code
                 
-            except json.JSONDecodeError as e:
-                print(f"JSON解析失败: {e}")
-                print(f"原始内容: {repr(match)}")
-                print(f"处理后内容: {repr(processed_match)}")
-                continue
+            # except json.JSONDecodeError as e:
+            #     print(f"JSON parsing failed: {e}")
+            #     print(f"Original content: {repr(match)}")
+            #     print(f"Processed content: {repr(processed_match)}")
+            #     continue
         
         # 根据类型处理解析结果
         if type == "other":

@@ -11,7 +11,7 @@ from utils import (
     _find_all_blocks,
     problog_test_tool,
 )
-from state import BasicState, TaskStatus
+from agent.state import BasicState, TaskStatus
 from config import paths
 from database import DictDB
 from typing import List, Any, Type, Tuple

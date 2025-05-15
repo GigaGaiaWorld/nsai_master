@@ -27,18 +27,9 @@ your task is to extract and format each code block in <generated_code> that corr
 {first_chain_output}
 
 <generated_code>
-<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
-for the following original code:
-<Code>
-head(X) :-
-<Langda> Information of 1st Placeholder:
-<HASH> Hash tag of code: XXXXABCD </HASH>
-<LLM> Requirements of Rules:...  </LLM></Langda>
-//other contents...
-</Code>
-if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
 
-For each code block , extract it and format it as follows:
 ```problog
 {{"HASH": "XXXX1234","Code": "Completed code snippet 1"}}
 ```

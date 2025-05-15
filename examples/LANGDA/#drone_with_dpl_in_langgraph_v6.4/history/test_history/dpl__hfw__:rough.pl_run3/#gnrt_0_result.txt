@@ -1,0 +1,5 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> placeholder in the origin code:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N, '+', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N + R1.\nparse([N, '-', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N - R1.\nparse([N, '*', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N * R1.\nparse([N, '/', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N / R1."}
+```

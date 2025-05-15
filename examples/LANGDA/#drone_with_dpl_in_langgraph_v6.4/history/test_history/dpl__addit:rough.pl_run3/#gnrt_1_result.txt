@@ -1,0 +1,7 @@
+Here are the extracted and formatted code blocks from the <generated_code> that correspond to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "06576BEB", "Code": "number([], 0).\nnumber([H|T], N) :-\n    (digit(H, D) ->\n        number(T, N1),\n        N is N1 * 10 + D\n    ;\n        fail\n    )."}
+```
+
+Note: There was only one <langda> block in the original code, so only one JSON object is returned. The hash value "06576BEB" was taken from the original <HASH> tag in the <langda> block to maintain correspondence with the original requirements.

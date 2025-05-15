@@ -1,0 +1,5 @@
+Here are the extracted code blocks from the `<generated_code>` that correspond to the `<langda>` placeholder in the `<origin_code>`, formatted in the requested JSON format:
+
+```problog
+{"HASH": "190031BC","Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    parse([N1, Op, N2], Temp),\n    parse([Temp | Rest], Result).\nparse([N1, '+', N2], Result) :-\n    Result is N1 + N2.\nparse([N1, '-', N2], Result) :-\n    Result is N1 - N2.\nparse([N1, '*', N2], Result) :-\n    Result is N1 * N2.\nparse([N1, '/', N2], Result) :-\n    Result is N1 / N2."}
+```

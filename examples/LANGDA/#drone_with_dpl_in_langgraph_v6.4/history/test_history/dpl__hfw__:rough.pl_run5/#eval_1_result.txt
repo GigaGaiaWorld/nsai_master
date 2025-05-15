@@ -1,0 +1,8 @@
+```report
+{
+  "HASH": "190031BC",
+  "Report": "The `parse/2` predicate is intended to recursively evaluate arithmetic expressions but has critical issues. It uses the `->/2` operator, which is not standard in ProbLog for conditional logic, causing a runtime error. Additionally, the predicate does not handle operator precedence or associativity, leading to incorrect evaluations for nested expressions. The current implementation evaluates operations strictly left-to-right without considering standard arithmetic precedence rules (e.g., multiplication before addition).",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```

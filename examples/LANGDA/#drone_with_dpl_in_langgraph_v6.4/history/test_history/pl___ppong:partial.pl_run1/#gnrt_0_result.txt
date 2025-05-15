@@ -1,0 +1,13 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> blocks in the origin code:
+
+```problog
+{"HASH": "12E8365D", "Code": "team_strength([P],G,S) :- strength(P,G,S)."}
+```
+
+```problog
+{"HASH": "766936E0", "Code": "team_strength([P,P2|L],G,S) :- strength(P,G,S1), team_strength([P2|L],G,S2), min(S1,S2,S)."}
+```
+
+```problog
+{"HASH": "2A6AD51D", "Code": "wins(T1,T2,G,T1) :- team_strength(T1,G,S1), team_strength(T2,G,S2), S1 > S2."}
+```

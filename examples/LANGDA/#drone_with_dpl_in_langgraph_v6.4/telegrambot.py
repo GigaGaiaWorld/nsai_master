@@ -1,9 +1,14 @@
 import re
 import os
-import asyncio
 from telegram import Update, Bot
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
-from main_fullvision import Langda_Agent
+from agent import (
+    LangdaAgentSingleSimple, 
+    LangdaAgentDoubleSimple,
+    LangdaAgentDoubleDC,
+    LangdaAgentDCSimple,
+    LangdaAgentSingleDC,
+)
 from config import paths
 from promis_execute import promis_execution
 

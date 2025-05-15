@@ -1,11 +1,29 @@
 import time
+from typing import Protocol, Dict, Any, Type, Optional
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import StateGraph
+
 from state import BasicState
 from utils import _draw_mermaid_png
 from agent.generate_nodes import GenerateNodes
 from agent.evaluate_nodes import EvaluateNodes
 from agent.general_nodes import GeneralNodes
+
+class LangdaAgentProtocol(Protocol):
+    """
+    The interface protocol of LangdaAgent.
+    """
+    
+    def __init__(self, 
+                rule_string: str, 
+                true_string: str, 
+                model_name: str, 
+                addition_input: Optional[Dict[str, Any]] = None) -> None:
+        ...
+    
+    def call_langda_workflow(self) -> Dict[str, Any]:
+        ...
+
 
 class LangdaAgentBase:
     """Base class for all Langda agents with common initialization"""
@@ -40,6 +58,9 @@ class LangdaAgentBase:
         self.state["placeholder"] = "{{LANGDA}}"
 
         self.checkpointer = MemorySaver()
+
+    def call_langda_workflow(self) -> dict:
+        pass
 
 class LangdaAgentSingleSimple(LangdaAgentBase):
     """Simple Langda workflow with a simple agent"""
@@ -193,7 +214,7 @@ class LangdaAgentDoubleDC(LangdaAgentBase):
         
         return self.state["final_result"]
 
-class LangdaAgentFullSimple(LangdaAgentBase):
+class LangdaAgentDoubleSimple(LangdaAgentBase):
     """Full Langda workflow with simple agent"""
     def __init__(self, rule_string, true_string, model_name, addition_input=None, caching=False, saving=False):
         super().__init__(rule_string, true_string, model_name, addition_input, caching, saving)

@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Find all doors that are neither selected nor have a prize\n    findall(D, (member(D, [1,2,3]), \\+ select_door(D), \\+ prize(D)), Doors),\n    % If there is only one empty door, open it deterministically\n    (length(Doors, 1), member(Door, Doors)) ;\n    % If there are two empty doors, choose one with 50% probability\n    (length(Doors, 2), 0.5::Door = Doors ; 0.5::Door = Doors)."}
+```
+
+Note that:
+1. I've used the same HASH value from the original code block (592D75CA)
+2. The code is the completed version from the generated_code that replaces the <langda> block
+3. The formatting preserves the structure and comments from the original
+4. The problematic `door_choice/2` predicate has been replaced with direct probabilistic choices in the generated code

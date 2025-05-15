@@ -1,0 +1,8 @@
+```report
+{
+  "HASH": "501F546D",
+  "Report": "The ProbLog code for insertion sort contains logical errors in the `insert/3` predicate, which incorrectly places elements in the sorted list. The condition `X @=< H` disrupts the sorting order by placing `X` at the front prematurely. The `insertion_sort/2` predicate also fails to ensure the tail is fully sorted before inserting the head. These issues result in incorrect sorting, as evidenced by the test output. Recommendations include fixing the `insert/3` predicate to correctly position elements and verifying the sorting logic in `insertion_sort/2`.",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```

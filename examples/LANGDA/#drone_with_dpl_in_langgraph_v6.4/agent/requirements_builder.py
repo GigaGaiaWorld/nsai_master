@@ -2,7 +2,6 @@ from typing import List, Dict, Tuple
 from utils import (
     _ordinal,
     _parse_simple_dictonary,
-    _list_to_dict,
     _langda_list_to_dict,
 ) 
 class RequirementsBuilder:

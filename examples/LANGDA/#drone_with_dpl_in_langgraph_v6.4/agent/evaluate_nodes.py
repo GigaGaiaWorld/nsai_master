@@ -7,7 +7,7 @@ from utils import (
     _parse_simple_dictonary,
     problog_test_tool,
 )
-from state import BasicState, TaskStatus
+from agent.state import BasicState, TaskStatus
 from config import paths
 import logging
 logger = logging.getLogger(__name__)
@@ -31,8 +31,9 @@ class EvaluateNodes:
             test_result = problog_test_tool(constructed_code_list,state["prefix"],timeout=60)
 
         # TEST:
+        raw_prompt_template = _replace_placeholder(state["prompt_template"], state["fest_codes"], state["placeholder"])
         test_result_info, report_info = RequirementsBuilder.build_all_report_info(state["generated_codes"],state["langda_dicts"], test_result)
-        test_prompt_template = _replace_placeholder(state["prompt_template"], report_info) + "\n" + test_result_info
+        test_prompt_template = _replace_placeholder(raw_prompt_template, report_info) + "\n" + test_result_info
 
         input={
             "input": test_prompt_template,
