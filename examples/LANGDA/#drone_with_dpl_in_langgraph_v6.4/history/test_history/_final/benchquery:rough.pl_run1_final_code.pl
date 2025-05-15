@@ -8,8 +8,7 @@
 %
 % query population and area database to find coun-
 % tries of approximately equal population density
-% Predicate to calculate population density (population per square mile)
-density(Country, Density) :-
+(Country, Density) :-
     pop(Country, Pop),
     area(Country, Area),
     Density is Pop / Area.
@@ -69,12 +68,12 @@ query(query_pop(_)).
 
 *** Result:*** 
 Error evaluating Problog model:
-    target, results = self._ground(db, term, target, silent_fail=False, **kwdargs)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py", line 439, in _ground
-    raise UnknownClause(term.signature, location=db.lineno(term.location))
-problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 68:7. 
+    return super(ExtendedPrologFactory, self).build_clause(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/program.py", line 406, in build_clause
+    raise GroundingError("Unexpected clause head '%s'" % head)
+problog.errors.GroundingError: Unexpected clause head 'Country, Density'. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code is missing the 'query_pop' predicate definition, which is present in the original code. This causes the error when trying to run the generated code. The original code includes logic to find countries with approximately equal population density, while the generated code only provides the density calculation without the comparison logic. The generated code is therefore incomplete and inconsistent with the original code's functionality.
+The generated code is not correct and does not meet the requirements. The original code defines a query_pop predicate that finds countries with approximately equal population density, while the generated code incorrectly defines a predicate (Country, Density) without a proper head, leading to a grounding error. The generated code fails to replicate the functionality of the original code and is syntactically invalid.

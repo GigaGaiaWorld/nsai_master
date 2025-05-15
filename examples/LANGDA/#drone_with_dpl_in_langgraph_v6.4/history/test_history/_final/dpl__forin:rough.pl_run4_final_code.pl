@@ -1,4 +1,4 @@
-% Corrected Insertion Sort in ProbLog
+% Insertion Sort in ProbLog
 
 % Base case: an empty list is already sorted
 insertion_sort([], []).
@@ -10,18 +10,18 @@ insertion_sort([H|T], Sorted) :-
 
 % Insert an element into a sorted list
 insert(X, [], [X]).
-insert(X, [H|T], [H|SortedT]) :-
-    X > H,
+insert(X, [Y|T], [X,Y|T]) :-
+    X @=< Y.
+insert(X, [Y|T], [Y|SortedT]) :-
+    X @> Y,
     insert(X, T, SortedT).
-insert(X, [H|T], [X,H|T]) :-
-    X =< H.
  
 query(insertion_sort([3,1,2,5,7,12],X)).
 
 *** Result:*** 
 % Problog Inference Result：
-insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000 
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 12, 2, 3, 5, 7]) = 1.0000 
 
 ***Report:***
-Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality. Both codes implement insertion sort in Prolog and produce the same sorted result for the given input. The generated code has been slightly refactored with renamed predicates (insert_element to insert) and reordered clauses, but the logic remains unchanged. The running results of both codes are identical, confirming their equivalence.
+Validity_form:True\Validity_result:False
+The generated code is structurally similar to the original code but uses different predicate names ('insert' instead of 'insert_element') and comparison operators ('@=<' and '@>' instead of '=<' and '>'). While the generated code is syntactically correct and meets the requirements (Validity_form is true), the running result is incorrect. The sorted list [1, 12, 2, 3, 5, 7] is not correctly ordered, indicating a logical error in the implementation. This inconsistency makes Validity_result false.

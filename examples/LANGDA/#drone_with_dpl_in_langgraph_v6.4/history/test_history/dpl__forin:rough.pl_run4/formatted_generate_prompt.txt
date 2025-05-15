@@ -49,10 +49,10 @@ insertion_sort([H|T], Sorted) :-
 
 % Insert an element into a sorted list
 insert(X, [], [X]).
-insert(X, [H|T], [X,H|T]) :-
-    X @=< H.
-insert(X, [H|T], [H|SortedT]) :-
-    X @> H,
+insert(X, [Y|T], [X,Y|T]) :-
+    X @=< Y.
+insert(X, [Y|T], [Y|SortedT]) :-
+    X @> Y,
     insert(X, T, SortedT).
 
 % Query example

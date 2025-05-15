@@ -125,6 +125,7 @@ query_sum([S,E,N,D,M,O,R,Y]) :-
     sumdigit(C3, S, M, O, C4),
     
     leftdigit(S), leftdigit(M),
+    C4 = 0,
     all_different([S,E,N,D,M,O,R,Y]).
 
 sumdigit(C, A, B, S, 0) :-

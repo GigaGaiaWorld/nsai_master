@@ -218,36 +218,36 @@ query(query_sum(X)).
 % Cryptoaddition:
 % Find the unique answer to:
 query_sum([S,E,N,D,M,O,R,Y]) :-
-    % D and E are different numbers, used for the lowest digit of SEND and MORE
-    digit(D), digit(E), D \= E,
-    % Calculate the unit digit D plus E (with carry)
-    sumdigit(0, D, E, Y, C1),
-    % Assign a value to N and make sure it is different from the previous letter
-    digit(N), all_different([N,Y,E,D]),
-    % Assign a value to R and make sure it is different from all previous letters
-    digit(R), all_different([R,N,Y,E,D]),
-    % Calculate the tens digit N + R + C1 = E (with carry C2)
-    sumdigit(C1, N, R, E, C2),
-    % Assign a value to O to ensure that it does not repeat with existing letters
-    digit(O), all_different([O,R,N,Y,E,D]),
-    % Calculate the hundreds digit E + O + C2 = N (with carry C3)
-    sumdigit(C2, E, O, N, C3),
-    % S is the highest digit of SEND, cannot be 0, ensure uniqueness
-    leftdigit(S), all_different([S,O,R,N,Y,E,D]),
-    % M is the highest digit of MORE and MONEY, cannot be 0, ensure uniqueness
-    leftdigit(M), all_different([M,S,O,R,N,Y,E,D]),
-    % Calculate the thousands digit S + M + C3 = O, and limit the carry result to M (that is, the highest digit is M)
-    sumdigit(C3, S, M, O, M),
-    all_different([S,E,N,D,M,O,R,Y]).
+ % D and E are different numbers, used for the lowest digit of SEND and MORE
+ digit(D), digit(E), D \= E,
+ % Calculate the unit digit D plus E (with carry)
+ sumdigit(0, D, E, Y, C1),
+ % Assign a value to N and make sure it is different from the previous letter
+ digit(N), all_different([N,Y,E,D]),
+ % Assign a value to R and make sure it is different from all previous letters
+ digit(R), all_different([R,N,Y,E,D]),
+ % Calculate the tens digit N + R + C1 = E (with carry C2)
+ sumdigit(C1, N, R, E, C2),
+ % Assign a value to O to ensure that it does not repeat with existing letters
+ digit(O), all_different([O,R,N,Y,E,D]),
+ % Calculate the hundreds digit E + O + C2 = N (with carry C3)
+ sumdigit(C2, E, O, N, C3),
+ % S is the highest digit of SEND, cannot be 0, ensure uniqueness
+ leftdigit(S), all_different([S,O,R,N,Y,E,D]),
+ % M is the highest digit of MORE and MONEY, cannot be 0, ensure uniqueness
+ leftdigit(M), all_different([M,S,O,R,N,Y,E,D]),
+ % Calculate the thousands digit S + M + C3 = O, and limit the carry result to M (that is, the highest digit is M)
+ sumdigit(C3, S, M, O, M),
+ all_different([S,E,N,D,M,O,R,Y]).
 
 sumdigit(C, A, B, S, 0) :-
-    X is C + A + B,
-    X < 10,
-    S = X.
+ X is C + A + B,
+ X < 10,
+ S = X.
 sumdigit(C, A, B, S, 1) :-
-    X is C + A + B,
-    X >= 10,
-    S is X - 10.
+ X is C + A + B,
+ X >= 10,
+ S is X - 10.
 
 digit(0).
 digit(1).

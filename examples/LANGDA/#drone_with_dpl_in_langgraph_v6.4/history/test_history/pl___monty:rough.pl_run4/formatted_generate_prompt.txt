@@ -76,21 +76,12 @@ member(X,[H|T]) :- member(X,T).
 % Define open_door/1 Predicate
 open_door(Door) :-
     select_door(Selected),
-    prize(PrizeDoor),
-    % Random Door Opening Rules
-    (   Selected \= PrizeDoor ->
-        % Deterministic case: host opens the empty door
-        (   PrizeDoor =:= Selected ->
-            fail
-        ;   findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), Doors),
-            member(Door, Doors)
-        )
-    ;   % Probabilistic case: host randomly opens one of the two empty doors
-        findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), Doors),
-        length(Doors, L),
-        L > 0,
-        Prob is 1 / L,
-        Prob::member(Door, Doors)
+    prize(Prize),
+    findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), Doors),
+    (   Doors = [D1, D2] ->
+        0.5::open_door(D1) ; 0.5::open_door(D2)
+    ;   Doors = [D] ->
+        open_door(D)
     ).
 
 win_keep :-
@@ -101,7 +92,6 @@ win_switch :-
     \+ select_door(A),
     prize(A),
     \+ open_door(A).
-
 query(prize(_)).
 query(select_door(_)).
 query(win_keep).

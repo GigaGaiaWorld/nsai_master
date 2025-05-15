@@ -122,21 +122,12 @@ almost_equal(X, Y) :-
 
 parse([N], N).
 parse([N1, Op, N2 | Rest], Result) :-
-    Op == '+',
-    parse([N2 | Rest], Temp),
-    Result is N1 + Temp.
-parse([N1, Op, N2 | Rest], Result) :-
-    Op == '-',
-    parse([N2 | Rest], Temp),
-    Result is N1 - Temp.
-parse([N1, Op, N2 | Rest], Result) :-
-    Op == '*',
-    parse([N2 | Rest], Temp),
-    Result is N1 * Temp.
-parse([N1, Op, N2 | Rest], Result) :-
-    Op == '/',
-    parse([N2 | Rest], Temp),
-    Result is N1 / Temp.
+    (Op = '+' -> Temp is N1 + N2
+    ; Op = '-' -> Temp is N1 - N2
+    ; Op = '*' -> Temp is N1 * N2
+    ; Op = '/' -> Temp is N1 / N2
+    ),
+    parse([Temp | Rest], Result).
 
 expression(Images, Result) :- 
     detect_all(Images, Symbols), 

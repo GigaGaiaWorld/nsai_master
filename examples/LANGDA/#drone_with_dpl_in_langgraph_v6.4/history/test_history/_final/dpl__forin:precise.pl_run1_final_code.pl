@@ -18,4 +18,4 @@ insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is mostly correct and consistent with the original code in terms of functionality. Both codes implement the insertion sort algorithm in Prolog and produce the same correct result. However, the generated code has some formatting issues, such as unnecessary line breaks and inconsistent indentation, which do not affect the execution but make the code less readable. The logic and structure of the generated code remain intact and match the original code.
+The generated code is mostly correct and consistent with the original code. It performs the same insertion sort operation and produces the same result. However, there are minor formatting issues such as inconsistent indentation and spacing, which do not affect the functionality but could impact readability. The logic and structure of the code remain intact.

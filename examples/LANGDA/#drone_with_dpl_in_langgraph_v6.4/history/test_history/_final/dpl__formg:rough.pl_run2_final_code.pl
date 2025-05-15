@@ -1,9 +1,7 @@
 % Merge Sort implementation in ProbLog
 
-% Base case for an empty list
+% Base case: empty list or single element
 merge_sort([], []).
-
-% Base case for a single-element list
 merge_sort([X], [X]).
 
 % Recursive case: split the list, sort the halves, and merge them
@@ -41,4 +39,4 @@ merge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. Both codes handle base cases and recursive sorting by splitting, sorting, and merging lists. The generated code uses a different splitting method (pairwise splitting) compared to the original (length-based splitting), but both achieve the same result. The merge and append functions are identical in both codes. The running results are consistent, producing the correct sorted list.
+The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. Both codes produce the same sorted output for the given input. The main difference is in the 'split' function implementation - the generated code uses a different approach that splits the list by alternating elements, while the original splits at the midpoint. Despite this difference, both implementations correctly divide the list for sorting. The merge function and base cases are identical in both implementations.

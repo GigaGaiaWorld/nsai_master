@@ -2,7 +2,7 @@
 % Find the unique answer to:
 query_sum([S,E,N,D,M,O,R,Y]) :-
  
-digit(D), digit(E), D \= E
+digit(D), digit(E), D =\= E
 ,
  
 sumdigit(0, D, E, Y, C1)
@@ -80,4 +80,4 @@ query_sum([9, 5, 6, 7, 1, 0, 8, 2]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is mostly correct and consistent with the original code in terms of functionality. However, it contains redundant lines and comments that do not affect the logic but make the code less clean. Specifically, the sumdigit(0, D, E, Y, C1) and sumdigit(C3, S, M, O, M) predicates are duplicated. The running results of both codes are identical, indicating that the generated code meets the expected requirements.
+The generated code is functionally equivalent to the original code and produces the same result. However, it contains redundant lines and comments that do not affect the execution but make the code less clean. The core logic, including the digit constraints, sumdigit rules, and all_different checks, remains consistent with the original code. The generated code also correctly handles the cryptarithmetic puzzle and yields the same solution as the original.

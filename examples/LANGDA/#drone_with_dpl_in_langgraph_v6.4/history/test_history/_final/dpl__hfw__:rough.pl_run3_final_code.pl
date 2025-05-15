@@ -28,37 +28,24 @@ expression(Images, Result) :-
  detect_all(Images, Symbols), 
  parse(Symbols, Result).
 parse([N], N).
-parse(Expr, Result) :-
-    parse_add_sub(Expr, Result).
-
-parse_add_sub(Expr, Result) :-
-    parse_mul_div(Expr, R1),
-    parse_add_sub_tail(R1, Expr, Result).
-
-parse_add_sub_tail(Acc, [], Acc).
-parse_add_sub_tail(Acc, ['+'|T], Result) :-
-    parse_mul_div(T, R2),
-    NewAcc is Acc + R2,
-    parse_add_sub_tail(NewAcc, T, Result).
-parse_add_sub_tail(Acc, ['-'|T], Result) :-
-    parse_mul_div(T, R2),
-    NewAcc is Acc - R2,
-    parse_add_sub_tail(NewAcc, T, Result).
-
-parse_mul_div([N], N).
-parse_mul_div([N, '*'|T], Result) :-
-    parse_mul_div(T, R2),
-    Result is N * R2.
-parse_mul_div([N, '/'|T], Result) :-
-    parse_mul_div(T, R2),
-    R2 \= 0,
-    Result is N / R2.
+parse([N, '+', O | T], Result) :-
+    parse([O | T], R),
+    Result is N + R.
+parse([N, '-', O | T], Result) :-
+    parse([O | T], R),
+    Result is N - R.
+parse([N, '*', O | T], Result) :-
+    parse([O | T], R),
+    Result is N * R.
+parse([N, '/', O | T], Result) :-
+    parse([O | T], R),
+    Result is N / R.
 query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
 
 *** Result:*** 
 % Problog Inference Result：
-expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],X2) = 0.0000 
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],-0.25) = 1.0000 
 
 ***Report:***
 Validity_form:True\Validity_result:False
-The generated code is structurally different from the original code but attempts to achieve the same functionality. It introduces new predicates like parse_add_sub and parse_mul_div to handle arithmetic operations, which is a valid approach. However, the generated code fails to produce the correct result for the given query, returning a probability of 0.0000 instead of the expected -10.333333333333332. This indicates a logical error in the implementation of the parsing rules.
+The generated code simplifies the parsing logic compared to the original code, particularly in handling arithmetic operations. While the generated code is syntactically correct and runs without errors, it produces a different result (-0.25) compared to the original code's result (-10.333333333333332). This discrepancy arises because the generated code does not properly handle operator precedence, particularly the multiplication and division operations, which should be evaluated before addition and subtraction. The original code correctly implements this precedence by parsing multiplication and division operations first.

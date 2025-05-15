@@ -28,18 +28,13 @@ expression(Images, Result) :-
  detect_all(Images, Symbols), 
  parse(Symbols, Result).
 parse([N], N).
-parse([N1, '*', N2 | Rest], Result) :-
-    parse([N2 | Rest], Temp),
-    Result is N1 * Temp.
-parse([N1, '/', N2 | Rest], Result) :-
-    parse([N2 | Rest], Temp),
-    (Temp =:= 0 -> fail ; Result is N1 / Temp).
-parse([N1, '+', N2 | Rest], Result) :-
-    parse([N2 | Rest], Temp),
-    Result is N1 + Temp.
-parse([N1, '-', N2 | Rest], Result) :-
-    parse([N2 | Rest], Temp),
-    Result is N1 - Temp.
+parse([N1, Op, N2 | Rest], Result) :-
+    (Op = '+' -> Temp is N1 + N2
+    ; Op = '-' -> Temp is N1 - N2
+    ; Op = '*' -> Temp is N1 * N2
+    ; Op = '/' -> Temp is N1 / N2
+    ),
+    parse([Temp | Rest], Result).
 query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
 
 *** Result:*** 
@@ -48,8 +43,8 @@ Error evaluating Problog model:
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
     raise UnknownClause(origin, location=loc)
-problog.engine.UnknownClause: No clauses found for ''->'/2' at 36:17. 
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 32:15. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code is not valid as it results in an error during execution. The error indicates that no clauses were found for the '/' operator, suggesting an issue with the parsing logic. The original code successfully computes the expression, while the generated code fails to execute. The parsing approach in the generated code differs significantly from the original, particularly in handling operator precedence and negative numbers.
+The generated code differs significantly from the original code in the parse predicate implementation. The original code handles operator precedence correctly by using separate clauses for each operator and properly managing nested expressions, while the generated code attempts to handle all operators in a single clause without proper precedence handling, leading to an error. The generated code is not valid as it fails to execute due to the UnknownClause error.

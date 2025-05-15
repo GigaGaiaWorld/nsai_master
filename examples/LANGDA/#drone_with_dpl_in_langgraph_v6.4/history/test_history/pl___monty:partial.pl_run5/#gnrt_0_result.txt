@@ -1,0 +1,13 @@
+Here are the extracted code blocks from the generated code corresponding to the <langda> blocks in the original code, formatted in JSON:
+
+```problog
+{"HASH": "C5B4A895", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    \+ select_door(A),\n    \+ select_door(B),\n    \+ prize(A),\n    \+ prize(B),\n    A \\= B."}
+```
+
+```problog
+{"HASH": "338175EC", "Code": "open_door(A) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    \+ select_door(A),\n    \+ prize(A),\n    member(B, [1,2,3]),\n    \+ select_door(B),\n    prize(B),\n    A \\= B."}
+```
+
+```problog
+{"HASH": "B73E5085", "Code": "win_keep :-\n    select_door(Selected),\n    prize(Selected)."}
+```

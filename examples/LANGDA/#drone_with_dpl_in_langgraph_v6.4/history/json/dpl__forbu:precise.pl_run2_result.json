@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forbu:precise.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 45,
+  "iter_count": 1,
+  "process_time": 44.545607805252075,
+  "final_result": "% Problog Inference Result：\nforth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+  "final_report": "The generated code is functionally equivalent to the original code, producing the same sorting result for the given input. The main difference lies in the implementation of the swap/3 predicate, where the generated code uses 'X > Y' and 'X =< Y' conditions instead of the original 'X < Y' and '\\+ swap(X,Y,no_swap)'. This change is logically equivalent and does not affect the outcome. The structure and logic of the sorting algorithm remain consistent between both versions."
+}

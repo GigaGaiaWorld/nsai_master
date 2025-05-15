@@ -14,7 +14,7 @@ beats(paper, rock).
 % -------------------------
 result(X, X, draw) :-
  
-result(X, X, draw).
+ move(X).
 result(X, Y, win) :-
  beats(X, Y).
 result(X, Y, lose) :-
@@ -33,7 +33,7 @@ compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
 compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
 determine_winner(P1Moves,P2Moves,Winner) :- 
  
- 
+
     play(P1Moves, P2Moves, Results),
     compute_score(Results, S),
     ( S > 0, Winner = player1
@@ -47,5 +47,5 @@ query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
 determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000 
 
 ***Report:***
-Validity_form:False\Validity_result:True
-The generated code is mostly correct and consistent with the original code in terms of functionality. However, there is a redundant and incorrect clause 'result(X, X, draw).' which duplicates the original rule without the necessary 'move(X)' condition. This could lead to logical inconsistencies. Despite this, the running results of both codes are consistent, producing the same output for the given query.
+Validity_form:True\Validity_result:True
+The generated code is correct and consistent with the original code in terms of functionality and logic. It maintains all the rules of rock-paper-scissors, the result calculation, and the score computation. The only differences are minor formatting changes, such as spacing and line breaks, which do not affect the code's execution or results. Both codes produce the same output when queried with the same input.

@@ -1,11 +1,19 @@
 import re
 from enum import Enum
 from typing import List, Tuple
-from utils.format_tools import _compute_short_md5
-from state import LangdaDict  
+from typing_extensions import TypedDict
+from .format_tools import _compute_short_md5
 
 # from problog.program import PrologString
 # from problog.logic import Term, Var, Constant, Clause, AnnotatedDisjunction, And, Or, Not, AggTerm, list2term, term2list, is_list
+class LangdaDict(TypedDict):
+    HEAD: str
+    HASH: str
+
+    LOT: str
+    NET: str
+    LLM: str
+    FUP: bool
 
 class PredicateState(Enum):
     """Enum class defines predicate state"""

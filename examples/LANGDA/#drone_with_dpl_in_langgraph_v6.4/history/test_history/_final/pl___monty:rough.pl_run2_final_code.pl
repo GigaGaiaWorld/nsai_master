@@ -6,18 +6,14 @@ member(X,[H|T]) :- member(X,T).
 open_door(Door) :-
     select_door(Selected),
     prize(Prize),
-    % Random Door Opening Rules
-    (   Prize \= Selected,
-        findall(D, (member(D, [1,2,3]), D \= Selected, D \= Prize), Doors),
-        length(Doors, 2),
-        member(Door, Doors),
+    findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), EmptyDoors),
+    (   Prize = Selected ->
+        % Randomly open one of the two empty doors with 50% probability
+        member(Door, EmptyDoors),
         0.5::open_door(Door)
-    ) ;
-    % Deterministic Door Opening Rules
-    (   Prize \= Selected,
-        findall(D, (member(D, [1,2,3]), D \= Selected, D \= Prize), Doors),
-        length(Doors, 1),
-        member(Door, Doors),
+    ;   % Host must open the empty door
+        member(Door, EmptyDoors),
+        Door \= Prize,
         open_door(Door)
     ).
 win_keep :-
@@ -34,14 +30,13 @@ query(win_keep).
 query(win_switch).
 
 *** Result:*** 
-% Problog Inference Result：
-prize(1) = 0.3333
-prize(2) = 0.3333
-prize(3) = 0.3333
-select_door(1) = 1.0000
-win_keep = 0.3333
-win_switch = 0.6667 
+Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 10:26. 
 
 ***Report:***
-Validity_form:True\Validity_result:True
-The generated code correctly implements the Monty Hall problem logic and produces results consistent with the original code. It simplifies the door opening rules by combining both random and deterministic cases into a single predicate, making the code more concise while maintaining the same probabilistic behavior. The generated code is valid and meets the requirements.
+Validity_form:False\Validity_result:False
+The generated code attempts to replicate the Monty Hall problem logic but contains syntax errors that prevent it from running. Specifically, it incorrectly uses '->' operator without proper context, leading to an 'UnknownClause' error. The original code correctly implements the problem with proper probability distributions and conditions for door opening. The generated code fails to meet expectations due to these syntax issues.

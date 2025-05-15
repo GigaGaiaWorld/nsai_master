@@ -1,9 +1,5 @@
-Based on the given origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> placeholder in the origin_code. The origin_code had one <langda> block requesting the game rules of rock-paper-scissors, which appears to be already present in both the origin and generated code (the move/1 and beats/2 predicates).
-
-Here's the extracted code in the requested JSON format:
+Here are the extracted code blocks from the <generated_code> that correspond to the <langda> placeholder in the <origin_code>, formatted in the requested JSON format:
 
 ```problog
-{"HASH": "CFA63C1E", "Code": "move(rock).\nmove(paper).\nmove(scissor).\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock)."}
+{"HASH": "CFA63C1E", "Code": "% Play a single round\nplay_round(P1, P2, Result) :-\n    beats(P1, P2), Result = win ;\n    beats(P2, P1), Result = lose ;\n    Result = draw.\n\n% Play a sequence of moves\nplay([], [], []).\nplay([P1|P1Moves], [P2|P2Moves], [Result|Results]) :-\n    play_round(P1, P2, Result),\n    play(P1Moves, P2Moves, Results)."}
 ```
-
-Note: The generated_code didn't actually add any new content that wasn't already in the origin_code for this particular placeholder. The basic game rules were already present before the <langda> block in the origin_code.

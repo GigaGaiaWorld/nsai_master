@@ -12,14 +12,16 @@ beats(paper, rock).
 % -------------------------
 % Calculate the result of the game
 % -------------------------
-% Three gestures
-move(rock).
-move(paper).
-move(scissor).
-% Win-lose relationship: X beats Y
-beats(rock, scissor).
-beats(scissor, paper).
-beats(paper, rock).
+% Play a single round and determine the outcome
+play_round(P1Move, P2Move, win) :- beats(P1Move, P2Move).
+play_round(P1Move, P2Move, lose) :- beats(P2Move, P1Move).
+play_round(Move, Move, draw).
+
+% Play a series of rounds and collect results
+play([], [], []).
+play([P1Move | P1Moves], [P2Move | P2Moves], [Result | Results]) :-
+    play_round(P1Move, P2Move, Result),
+    play(P1Moves, P2Moves, Results).
 compute_score([], 0).
 compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
 compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
@@ -34,13 +36,9 @@ compute_score(Results,S),
 query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
 
 *** Result:*** 
-Error evaluating Problog model:
-    return exec_func(node_id=node_id, node=node, **kwdargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
-    raise UnknownClause(origin, location=loc)
-problog.engine.UnknownClause: No clauses found for 'play/3' at 28:1. 
+% Problog Inference Result：
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000 
 
 ***Report:***
-Validity_form:False\Validity_result:False
-The generated code is not correct as it misses the essential 'result' and 'play' predicates that are crucial for determining the game outcome. The original code includes these predicates to calculate the result of each round and play the game recursively. The generated code also redundantly repeats the 'move' and 'beats' predicates. The error in the run result clearly indicates that the 'play/3' clause is missing, making the code invalid.
+Validity_form:True\Validity_result:True
+The generated code is correct and consistent with the original code in terms of functionality. It simplifies the result calculation by introducing a 'play_round' predicate, which makes the code more modular and easier to understand. The logic for determining the winner remains the same, and the running results of both codes are identical, showing that player2 wins with the given moves.

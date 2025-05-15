@@ -121,17 +121,18 @@ almost_equal(X, Y) :-
     Y is float(X).
 
 parse([N], N).
-parse([N1, Op, N2 | Rest], Result) :-
-    parse([N1, Op, N2], Temp),
-    parse([Temp | Rest], Result).
-parse([N1, '+', N2], Result) :-
-    Result is N1 + N2.
-parse([N1, '-', N2], Result) :-
-    Result is N1 - N2.
-parse([N1, '*', N2], Result) :-
-    Result is N1 * N2.
-parse([N1, '/', N2], Result) :-
-    Result is N1 / N2.
+parse([N, '+', O|T], Result) :-
+    parse([O|T], R),
+    Result is N + R.
+parse([N, '-', O|T], Result) :-
+    parse([O|T], R),
+    Result is N - R.
+parse([N, '*', O|T], Result) :-
+    parse([O|T], R),
+    Result is N * R.
+parse([N, '/', O|T], Result) :-
+    parse([O|T], R),
+    Result is N / R.
 
 expression(Images, Result) :- 
     detect_all(Images, Symbols), 

@@ -3,7 +3,7 @@
 % Base case: inserting an element into an empty list
 insert(X, [], [X]).
 
-% Recursive case: insert X into the sorted list [Y|Ys]
+% Recursive case: inserting an element into a sorted list
 insert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.
 insert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).
 
@@ -26,4 +26,4 @@ insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality. Both codes implement insertion sort in Prolog with identical logic. The generated code renames 'insert_element' to 'insert', which is a minor syntactic change but does not affect the behavior. The query and results are the same for both codes, producing the correct sorted list with a probability of 1.0000.
+The generated code is correct and consistent with the original code. Both codes implement insertion sort in Prolog with identical logic. The generated code renames 'insert_element' to 'insert', but the functionality remains the same. The query and the result are also identical, producing the correct sorted list with a probability of 1.0000.

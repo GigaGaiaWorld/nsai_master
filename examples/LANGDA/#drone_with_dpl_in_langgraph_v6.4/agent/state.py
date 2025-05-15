@@ -1,15 +1,7 @@
 from typing import List, Dict, Protocol, Optional, runtime_checkable, Any
 from typing_extensions import TypedDict
 from enum import Enum
-class LangdaDict(TypedDict):
-    HEAD: str
-    HASH: str
-
-    LOT: str
-    NET: str
-    LLM: str
-    FUP: bool
-
+from utils import LangdaDict
 class TaskStatus(str, Enum):
     INIT = "init" # Initial state
     GNRT = "code_generating" # Generate new code

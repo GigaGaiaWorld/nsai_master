@@ -12,12 +12,17 @@ beats(paper, rock).
 % -------------------------
 % Calculate the result of the game
 % -------------------------
-move(rock).
-move(paper).
-move(scissor).
-beats(rock, scissor).
-beats(scissor, paper).
-beats(paper, rock).
+% Play a single round
+play_round(P1, P2, Result) :-
+    beats(P1, P2), Result = win ;
+    beats(P2, P1), Result = lose ;
+    Result = draw.
+
+% Play a sequence of moves
+play([], [], []).
+play([P1|P1Moves], [P2|P2Moves], [Result|Results]) :-
+    play_round(P1, P2, Result),
+    play(P1Moves, P2Moves, Results).
 compute_score([], 0).
 compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
 compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
@@ -32,13 +37,11 @@ compute_score(Results,S),
 query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
 
 *** Result:*** 
-Error evaluating Problog model:
-    return exec_func(node_id=node_id, node=node, **kwdargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
-    raise UnknownClause(origin, location=loc)
-problog.engine.UnknownClause: No clauses found for 'play/3' at 26:1. 
+% Problog Inference Result：
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000
+determine_winner([rock, rock, rock],[paper, paper, scissor],draw) = 1.0000
+determine_winner([rock, rock, rock],[paper, paper, scissor],player1) = 1.0000 
 
 ***Report:***
-Validity_form:False\Validity_result:False
-The generated code is missing the 'play/3' and 'result/3' predicates which are crucial for the game logic. These predicates are present in the original code but omitted in the generated version, leading to a runtime error. The generated code also redundantly repeats the 'move/1' and 'beats/2' predicates. The original code runs successfully and produces a correct result, while the generated code fails due to missing clauses.
+Validity_form:True\Validity_result:False
+The generated code is mostly correct in terms of syntax and logic, but it introduces a critical issue in the play_round predicate where it uses semicolons (OR logic) without proper grouping, leading to incorrect multiple results. The original code correctly handles the game logic with separate clauses for each outcome. The generated code's result shows multiple conflicting outcomes (player2, draw, player1) for the same input, which is incorrect. The form is valid but the logic is flawed.

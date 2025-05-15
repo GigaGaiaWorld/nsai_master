@@ -2,11 +2,8 @@ import re
 import json
 import uuid
 import hashlib
-from problog.program import PrologString, Clause, AnnotatedDisjunction, Term
 from typing import Literal, List, Union, Tuple, Dict, Any
-from langgraph.graph import END, StateGraph
-from state import BasicState, Mode
-from config import paths
+
 
 def _langda_list_to_dict(langda_dicts):
     """
@@ -85,17 +82,6 @@ def _ordinal(n:int) -> str:
     else:
         suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
     return str(n) + suffix
-
-def _draw_mermaid_png(graph:StateGraph, graph_str:str):
-    """
-    well, it will not give you the mermaid_png because of the restrict of api,
-    But it will generate a mmd file, you can generate png yourself from https://mermaid.live/edit
-    args:
-        graph: current StateGraph
-        graph_str: name of the graph, only used for creating filename
-    """
-    graph_mermaid = graph.get_graph().draw_mermaid()
-    paths.save_as_file(graph_mermaid,"mermaid", graph_str)
 
 def _tokenize_problog(s:str) -> List[tuple]:
     # Tokenize Prolog code into units
@@ -262,28 +248,28 @@ def _print_stream(stream):
             except AttributeError:
                 print(f"Cannot pretty print: {messages}")
 
-def _select_mode(state:BasicState, langda_dict):
-    keys = set(langda_dict.keys())
-    if not "NET" in keys and not "LLM" in keys:
-        if len(keys) >= 1:
-            state["mode"] = Mode.PURE_PAR
-        else:
-            raise KeyError("forget to set langda parameter?")
+# def _select_mode(state:BasicState, langda_dict):
+#     keys = set(langda_dict.keys())
+#     if not "NET" in keys and not "LLM" in keys:
+#         if len(keys) >= 1:
+#             state["mode"] = Mode.PURE_PAR
+#         else:
+#             raise KeyError("forget to set langda parameter?")
 
-    elif not "NET" in keys and "LLM" in keys:
-        if len(keys) > 1:
-            state["mode"] = Mode.PARA_LLM
-        else:
-            state["mode"] = Mode.PURE_LLM
+#     elif not "NET" in keys and "LLM" in keys:
+#         if len(keys) > 1:
+#             state["mode"] = Mode.PARA_LLM
+#         else:
+#             state["mode"] = Mode.PURE_LLM
 
-    elif "NET" in keys and not "LLM" in keys:
-        if len(keys) > 1:
-            state["mode"] = Mode.FULL_LLM  
-        else:
-            state["mode"] = Mode.PURE_NET
+#     elif "NET" in keys and not "LLM" in keys:
+#         if len(keys) > 1:
+#             state["mode"] = Mode.FULL_LLM  
+#         else:
+#             state["mode"] = Mode.PURE_NET
 
-    else:
-        if len(keys) > 2:
-            state["mode"] = Mode.FULL_LLM  
-        else:
-            state["mode"] = Mode.ELSE
+#     else:
+#         if len(keys) > 2:
+#             state["mode"] = Mode.FULL_LLM  
+#         else:
+#             state["mode"] = Mode.ELSE

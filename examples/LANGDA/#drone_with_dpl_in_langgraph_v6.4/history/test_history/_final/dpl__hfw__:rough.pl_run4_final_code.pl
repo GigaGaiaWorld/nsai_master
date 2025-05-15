@@ -28,23 +28,24 @@ expression(Images, Result) :-
  detect_all(Images, Symbols), 
  parse(Symbols, Result).
 parse([N], N).
-parse([N1, Op, N2 | Rest], Result) :-
-    parse([N1, Op, N2], Temp),
-    parse([Temp | Rest], Result).
-parse([N1, '+', N2], Result) :-
-    Result is N1 + N2.
-parse([N1, '-', N2], Result) :-
-    Result is N1 - N2.
-parse([N1, '*', N2], Result) :-
-    Result is N1 * N2.
-parse([N1, '/', N2], Result) :-
-    Result is N1 / N2.
+parse([N, '+', O|T], Result) :-
+    parse([O|T], R),
+    Result is N + R.
+parse([N, '-', O|T], Result) :-
+    parse([O|T], R),
+    Result is N - R.
+parse([N, '*', O|T], Result) :-
+    parse([O|T], R),
+    Result is N * R.
+parse([N, '/', O|T], Result) :-
+    parse([O|T], R),
+    Result is N / R.
 query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
 
 *** Result:*** 
 % Problog Inference Result：
-expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],11.666666666666668) = 1.0000 
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],-0.25) = 1.0000 
 
 ***Report:***
 Validity_form:True\Validity_result:False
-The generated code is not consistent with the original code in terms of parsing logic. The original code correctly handles operator precedence and evaluates the expression to -10.333, while the generated code evaluates it to 11.666 due to incorrect parsing rules. The generated code's parse/2 rules do not properly account for operator precedence and associativity, leading to a different result. The form of the generated code is valid, but the logic is flawed.
+The generated code is not consistent with the original code in terms of parsing logic. The original code handles operator precedence correctly by processing multiplication and division immediately, while the generated code processes operators left-to-right without considering precedence. This leads to different results for the same input. The generated code is syntactically valid but produces incorrect results due to the flawed parsing approach.

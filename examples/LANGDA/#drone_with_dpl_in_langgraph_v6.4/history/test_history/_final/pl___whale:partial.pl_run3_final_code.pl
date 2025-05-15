@@ -61,4 +61,4 @@ abandon(bull,bull) = 0.1667
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is identical to the original code in both structure and content. It correctly implements the whale scenario with all world variations and queries. The generated code maintains the same probabilistic distributions and query definitions, producing identical results when executed.
+The generated code is identical to the original code in both structure and content. It correctly implements the whale scenario with all six possible worlds and maintains the same queries and constraints. The generated code is valid and meets the requirements perfectly. The running results of both codes are also identical, showing the same probabilities for the attack and abandon queries.

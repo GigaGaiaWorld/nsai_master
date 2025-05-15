@@ -77,16 +77,14 @@ member(X,[H|T]) :- member(X,T).
 open_door(Door) :-
     select_door(Selected),
     prize(Prize),
-    % Random Door Opening Rules
+    findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), EmptyDoors),
     (   Prize = Selected ->
-        % Scenario: The remaining two doors are neither selected by the player nor have any prizes.
-        % Behavior: The host randomly opens one of the two "empty doors" with a 50% probability.
-        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D), Doors),
-        random_member(Door, Doors)
-    ;   % Deterministic Door Opening Rules
-        % Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not.
-        % Behavior: The host must open the "empty door".
-        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D), [Door])
+        % Randomly open one of the two empty doors with 50% probability
+        member(Door, EmptyDoors),
+        0.5::open_door(Door) ; 0.5::open_door(_)
+    ;   % Host must open the empty door
+        member(Door, EmptyDoors),
+        \+ prize(Door)
     ).
 
 win_keep :-

@@ -28,36 +28,24 @@ expression(Images, Result) :-
  detect_all(Images, Symbols), 
  parse(Symbols, Result).
 parse([N], N).
-parse(Expr, Result) :-
-    find_op(Expr, Op, Left, Right),
-    parse(Left, LVal),
-    parse(Right, RVal),
-    apply_op(Op, LVal, RVal, Result).
-
-find_op([N1, Op, N2 | Rest], Op, [N1], [N2 | Rest]) :-
-    (Op = '*' ; Op = '/'), !.
-find_op([N1, Op, N2 | Rest], Op, [N1], [N2 | Rest]) :-
-    (Op = '+' ; Op = '-'), !.
-find_op([N1, Op1, N2, Op2 | Rest], Op, Left, Right) :-
-    (Op1 = '+' ; Op1 = '-'),
-    (Op2 = '*' ; Op2 = '/'),
-    find_op([N2, Op2 | Rest], Op, Mid, Right),
-    Left = [N1, Op1 | Mid].
-
-apply_op('+', L, R, Result) :- Result is L + R.
-apply_op('-', L, R, Result) :- Result is L - R.
-apply_op('*', L, R, Result) :- Result is L * R.
-apply_op('/', L, R, Result) :- Result is L / R.
+parse([N, '+', O|T], Result) :-
+    parse([O|T], R),
+    Result is N + R.
+parse([N, '-', O|T], Result) :-
+    parse([O|T], R),
+    Result is N - R.
+parse([N, '*', O|T], Result) :-
+    parse([O|T], R),
+    Result is N * R.
+parse([N, '/', O|T], Result) :-
+    parse([O|T], R),
+    Result is N / R.
 query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
 
 *** Result:*** 
-Error evaluating Problog model:
-    return exec_func(node_id=node_id, node=node, **kwdargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
-    raise UnknownClause(origin, location=loc)
-problog.engine.UnknownClause: No clauses found for '!/0' at 38:28. 
+% Problog Inference Result：
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],-0.25) = 1.0000 
 
 ***Report:***
-Validity_form:False\Validity_result:False
-The generated code attempts to implement a different parsing strategy using find_op and apply_op predicates, but it contains a syntax error with an unexpected '!' operator, causing the program to fail. The original code correctly implements arithmetic expression evaluation with proper operator precedence handling. The generated code's approach is conceptually different but invalid due to the syntax error, making it unable to produce any result.
+Validity_form:True\Validity_result:False
+The generated code is not consistent with the original code in terms of parsing logic. The original code handles operator precedence correctly by processing multiplication and division immediately, while the generated code processes operators left-to-right without considering precedence. This leads to different results for the same input. The generated code is syntactically valid but produces incorrect results due to the flawed parsing approach.

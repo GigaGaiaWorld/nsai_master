@@ -8,20 +8,11 @@
 %
 % query population and area database to find coun-
 % tries of approximately equal population density
-% Define density predicate
+% Define density predicate to calculate population density
 density(Country, Density) :-
     pop(Country, Pop),
     area(Country, Area),
     Density is Pop / Area.
-
-% Define query_pop to find countries with approximately equal population density (not larger than 5%)
-query_pop(Pairs) :-
-    findall((Country1, Country2), (
-        density(Country1, Density1),
-        density(Country2, Density2),
-        Country1 \= Country2,
-        abs(Density1 - Density2) / Density1 =< 0.05
-    ), Pairs).
 % populations in 100000's
 pop(china,	8250).
 pop(india,	5863).
@@ -77,9 +68,13 @@ area(argentina, 1080).
 query(query_pop(_)).
 
 *** Result:*** 
-% Problog Inference Result：
-query_pop([(china, france), (indonesia, pakistan), (pakistan, indonesia), (w_germany, uk), (mexico, ethiopia), (uk, w_germany), (italy, philippines), (france, china), (philippines, italy), (ethiopia, mexico)]) = 1.0000 
+Error evaluating Problog model:
+    target, results = self._ground(db, term, target, silent_fail=False, **kwdargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py", line 439, in _ground
+    raise UnknownClause(term.signature, location=db.lineno(term.location))
+problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 68:7. 
 
 ***Report:***
-Validity_form:True\Validity_result:False
-The generated code modifies the original logic by changing the density comparison to a 5% threshold instead of the original 20-21 ratio. While the generated code is valid and produces results, it does not strictly adhere to the original code's logic. The results differ in format and content, with the generated code returning pairs of countries with their names rather than densities, and including reciprocal pairs (e.g., (A,B) and (B,A)).
+Validity_form:False\Validity_result:False
+The generated code is missing the 'query_pop' predicate definition, which is present in the original code. This causes the error when trying to run the query. The original code includes logic to find countries with approximately equal population density, while the generated code only provides the basic structure without this key functionality. The generated code is not consistent with the original in terms of functionality.

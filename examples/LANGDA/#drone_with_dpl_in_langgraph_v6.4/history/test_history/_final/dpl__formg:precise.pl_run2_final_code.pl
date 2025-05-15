@@ -3,13 +3,13 @@ merge_sort([X], [X]).
 merge_sort(List, Sorted) :-
  
 length(List, Len),
-    Len > 1,
-    split_list(List, Left, Right)
+    (Len > 1 ->
+        split_list(List, Left, Right)
 ,
  
 merge_sort(Left, SortedLeft),
-    merge_sort(Right, SortedRight),
-    merge(SortedLeft, SortedRight, Sorted)
+        merge_sort(Right, SortedRight),
+        merge(SortedLeft, SortedRight, Sorted)
 .
 split_list(List, Left, Right) :-
  length(List, Len),
@@ -31,9 +31,13 @@ append([H|T], L2, [H|R]) :-
 query(merge_sort([3,1,2,5,7,12],X)).
 
 *** Result:*** 
-% Problog Inference Result：
-merge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000 
+Error evaluating Problog model:
+    return self.collapse(string, tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1282, in collapse
+    raise UnmatchedCharacter(string, expr_stack[-1].start.location)
+problog.parser.UnmatchedCharacter: Unmatched character '(' at 6:5. 
 
 ***Report:***
-Validity_form:True\Validity_result:True
-The generated code is functionally identical to the original code, producing the same correct result for the merge sort operation. The only differences are in formatting (whitespace and line breaks), which do not affect the code's execution or logic. Both codes correctly implement the merge sort algorithm and yield the same sorted output for the given query.
+Validity_form:False\Validity_result:False
+The generated code introduces syntax errors by improperly using parentheses and arrows (->) in the merge_sort predicate, which is not valid in standard Prolog syntax. This causes a parsing error during execution. The original code correctly implements merge sort without these syntax issues. The generated code fails to run, while the original code produces the correct sorted list.

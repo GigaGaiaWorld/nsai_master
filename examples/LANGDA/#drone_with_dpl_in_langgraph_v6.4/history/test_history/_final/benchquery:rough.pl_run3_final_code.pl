@@ -8,7 +8,8 @@
 %
 % query population and area database to find coun-
 % tries of approximately equal population density
-(Country, Density) :-
+% Define density predicate
+density(Country, Density) :-
     pop(Country, Pop),
     area(Country, Area),
     Density is Pop / Area.
@@ -68,12 +69,12 @@ query(query_pop(_)).
 
 *** Result:*** 
 Error evaluating Problog model:
-    return super(ExtendedPrologFactory, self).build_clause(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/program.py", line 406, in build_clause
-    raise GroundingError("Unexpected clause head '%s'" % head)
-problog.errors.GroundingError: Unexpected clause head 'Country, Density'. 
+    target, results = self._ground(db, term, target, silent_fail=False, **kwdargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py", line 439, in _ground
+    raise UnknownClause(term.signature, location=db.lineno(term.location))
+problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 68:7. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code is not correct and does not meet the requirements. The original code defines a query_pop predicate that finds countries with approximately equal population density, while the generated code incorrectly defines a predicate (Country, Density) without a proper head, leading to a grounding error. The generated code is inconsistent with the original code's functionality and structure.
+The generated code is missing the 'query_pop' predicate definition, which is present in the original code. This causes the error when trying to run the code, as the system cannot find the required clause for 'query_pop/1'. The rest of the code, including the 'density' predicate and the population/area facts, is correctly replicated from the original. The main issue is the omission of the query logic that was present in the original code.

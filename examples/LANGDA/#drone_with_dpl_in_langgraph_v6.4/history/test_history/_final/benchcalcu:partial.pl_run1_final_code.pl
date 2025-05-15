@@ -11,7 +11,7 @@ query_sum([S,E,N,D,M,O,R,Y]) :-
  
  
 digit(O), all_different([O,R,N,Y,E,D]),
-sumdigit(C2, E, N, N, C3),
+sumdigit(C2, E, O, N, C3),
 
 digit(M), all_different([M,O,R,N,Y,E,D]),
 sumdigit(C3, S, M, O, C4),
@@ -46,9 +46,13 @@ member(X, [_|T]) :- member(X, T).
 query(query_sum(X)).
 
 *** Result:*** 
-% Problog Inference Result：
-query_sum(X2) = 0.0000 
+Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 887, in _builtin_is
+    check_mode((a, b), ["*g"], functor="is", **k)
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+X2+0), expected: (any, ground) at 24:4. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code is not correct and does not meet the expectations. It has several issues: 1) The sumdigit(C2, E, N, N, C3) line incorrectly uses N twice instead of O, which breaks the logic of the cryptarithmetic puzzle. 2) The sumdigit(C4, 0, 0, M, 0) line is unnecessary and incorrect, as it does not contribute to solving the puzzle. 3) The generated code does not produce the same result as the original code, which successfully solved the puzzle with a valid solution. The original code correctly implements the cryptarithmetic constraints, while the generated code fails to do so.
+The generated code is not correct and does not meet the requirements. It introduces several issues compared to the original code. First, it incorrectly places the digit(M) constraint before digit(S), which should be a leftdigit. Second, the sumdigit(C4, 0, 0, M, 0) line is problematic as it attempts to perform arithmetic with unbound variables, leading to the CallModeError. The original code correctly structures the constraints and arithmetic operations to solve the cryptarithmetic puzzle.

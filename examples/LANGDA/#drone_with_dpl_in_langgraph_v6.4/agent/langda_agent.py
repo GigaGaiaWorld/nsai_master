@@ -3,11 +3,22 @@ from typing import Protocol, Dict, Any, Type, Optional
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import StateGraph
 
-from state import BasicState
-from utils import _draw_mermaid_png
+from agent.state import BasicState
 from agent.generate_nodes import GenerateNodes
 from agent.evaluate_nodes import EvaluateNodes
 from agent.general_nodes import GeneralNodes
+from config import paths
+
+def _draw_mermaid_png(graph:StateGraph, graph_str:str):
+    """
+    well, it will not give you the mermaid_png because of the restrict of api,
+    But it will generate a mmd file, you can generate png yourself from https://mermaid.live/edit
+    args:
+        graph: current StateGraph
+        graph_str: name of the graph, only used for creating filename
+    """
+    graph_mermaid = graph.get_graph().draw_mermaid()
+    paths.save_as_file(graph_mermaid,"mermaid", graph_str)
 
 class LangdaAgentProtocol(Protocol):
     """

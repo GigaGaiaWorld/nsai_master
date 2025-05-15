@@ -20,4 +20,4 @@ addition(img_5,img_6,11) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality. Both codes define digit facts and an addition rule that sums the digits of two images. The generated code uses different variable names (A, B instead of X2, Y2) in the addition rule, but this does not affect the logic or outcome. The running results of both codes are identical, producing the same sum for the query addition(img_5,img_6,Z).
+The generated code is correct and consistent with the original code in terms of functionality. Both codes define digit facts and an addition rule that sums the digits of two images. The generated code uses different variable names (A and B instead of X2 and Y2) in the addition rule, but this does not affect the logic or outcome. The running results of both codes are identical, producing the same output for the query addition(img_5,img_6,Z).

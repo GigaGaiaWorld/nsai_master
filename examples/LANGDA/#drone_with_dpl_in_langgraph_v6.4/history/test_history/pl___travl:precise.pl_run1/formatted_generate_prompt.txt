@@ -47,7 +47,19 @@ query(inf(_)).
 </origin_code>
 <generated_code>
 
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
 
+% Infection logic
+0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).
+0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).
+0.2::inf(X) :- riskyTravel(X).
+
+query(inf(_)).
 
 <generated_code>
 <Final_Answer>

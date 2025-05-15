@@ -68,18 +68,15 @@ digit(img_8,8).
 digit(img_9,9).
 digit(img_0,0).
 
+% Define the number predicate to convert a list of image IDs to their corresponding integer values
 number([], 0).
 number([H|T], N) :-
     digit(H, D),
     number(T, N1),
     N is N1 * 10 + D.
 
-multi_addition(X, Y, Z) :-
-    number(X, X2),
-    number(Y, Y2),
-    Z is X2 + Y2.
-
-query(multi_addition([img_7, img_9], [img_3, img_1, img_2], Z)).
+multi_addition(X,Y,Z) :- number(X,X2), number(Y,Y2), Z is X2+Y2.
+query(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z)).
 
 <generated_code>
 <Final_Answer>

@@ -43,33 +43,42 @@ query(merge_sort([3,1,2,5,7,12],X)).
 
 % Merge Sort in ProbLog
 
-% Base case for splitting a list into two halves
-split([], [], []).
-split([X], [X], []).
-split([X,Y|Xs], [X|Left], [Y|Right]) :-
-    split(Xs, Left, Right).
-
-% Merge two sorted lists into one sorted list
-merge([], Right, Right).
-merge(Left, [], Left).
-merge([X|Left], [Y|Right], [X|Merged]) :-
-    X =< Y,
-    merge(Left, [Y|Right], Merged).
-merge([X|Left], [Y|Right], [Y|Merged]) :-
-    X > Y,
-    merge([X|Left], Right, Merged).
-
-% Merge sort implementation
+% Base case: empty list or single element list is already sorted
 merge_sort([], []).
 merge_sort([X], [X]).
+
+% Recursive case: split the list, sort the halves, and merge them
 merge_sort(List, Sorted) :-
+    length(List, Len),
+    Len > 1,
     split(List, Left, Right),
     merge_sort(Left, SortedLeft),
     merge_sort(Right, SortedRight),
     merge(SortedLeft, SortedRight, Sorted).
 
-% Example query
-query(merge_sort([3,1,2,5,7,12], X)).
+% Split the list into two halves
+split([], [], []).
+split([X], [X], []).
+split([X, Y | Rest], [X | Left], [Y | Right]) :-
+    split(Rest, Left, Right).
+
+% Merge two sorted lists into one sorted list
+merge([], Right, Right).
+merge(Left, [], Left).
+merge([X | Left], [Y | Right], [X | Merged]) :-
+    X =< Y,
+    merge(Left, [Y | Right], Merged).
+merge([X | Left], [Y | Right], [Y | Merged]) :-
+    X > Y,
+    merge([X | Left], Right, Merged).
+
+% Append for merging
+append([], L, L).
+append([H | T], L2, [H | R]) :-
+    append(T, L2, R).
+
+% Query example
+query(merge_sort([3, 1, 2, 5, 7, 12], X)).
 
 <generated_code>
 <Final_Answer>

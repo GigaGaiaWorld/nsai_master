@@ -1,0 +1,79 @@
+{
+  "file_name": "dpl__addit:simple.pl",
+  "runs": 5,
+  "avg_process_time": 135.93184032440186,
+  "min_process_time": 79.94228792190552,
+  "max_process_time": 206.0100347995758,
+  "std_dev_time": 45.70406434507145,
+  "validity_stats": {
+    "form": {
+      "true": 4,
+      "false": 1,
+      "error": 0
+    },
+    "result": {
+      "true": 4,
+      "false": 1,
+      "error": 0
+    }
+  },
+  "success_form_rate": 0.8,
+  "success_result_rate": 0.8,
+  "individual_results": [
+    {
+      "file_name": "dpl__addit:simple.pl",
+      "run_index": 1,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 141,
+      "iter_count": 2,
+      "process_time": 141.05696892738342,
+      "final_result": "% Problog Inference Result：\naddition(img_5,img_6,11) = 1.0000",
+      "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes define the same digit facts and the addition predicate, which sums the values of two digits. The only difference is the variable naming in the addition predicate (X2,Y2 in original vs A,B in generated), which does not affect the logic or outcome. The running results of both codes are identical, producing the same output for the query addition(img_5,img_6,Z)."
+    },
+    {
+      "file_name": "dpl__addit:simple.pl",
+      "run_index": 2,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 80,
+      "iter_count": 1,
+      "process_time": 79.94228792190552,
+      "final_result": "% Problog Inference Result：\naddition(img_5,img_6,11) = 1.0000",
+      "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes define digit facts and an addition rule that sums the digits of two images. The generated code uses different variable names (A, B instead of X2, Y2) in the addition rule, but this does not affect the logic or outcome. The running results of both codes are identical, producing the same sum for the query addition(img_5,img_6,Z)."
+    },
+    {
+      "file_name": "dpl__addit:simple.pl",
+      "run_index": 3,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 119,
+      "iter_count": 2,
+      "process_time": 119.29604196548462,
+      "final_result": "% Problog Inference Result：\naddition(img_5,img_6,11) = 1.0000",
+      "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes define digit facts and an addition predicate that sums the digits of two images. The generated code uses different variable names (A, B instead of X2, Y2) in the addition predicate, but this does not affect the logic or outcome. The running results of both codes are identical, producing the same sum for the query addition(img_5,img_6,Z)."
+    },
+    {
+      "file_name": "dpl__addit:simple.pl",
+      "run_index": 4,
+      "Validity_form": false,
+      "Validity_result": false,
+      "running_time": 206,
+      "iter_count": 3,
+      "process_time": 206.0100347995758,
+      "final_result": "Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 17:19.",
+      "final_report": "The generated code contains a syntax error due to an operator priority clash, which prevents it from running successfully. The original code correctly defines the 'addition' predicate and executes without errors, producing the expected result. The generated code attempts to include comments within the predicate definition, which causes parsing issues. While the logic of the generated code is consistent with the original, its form is invalid due to the syntax error."
+    },
+    {
+      "file_name": "dpl__addit:simple.pl",
+      "run_index": 5,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 133,
+      "iter_count": 2,
+      "process_time": 133.3538680076599,
+      "final_result": "% Problog Inference Result：\naddition(img_5,img_6,11) = 1.0000",
+      "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes define digit facts and an addition predicate that sums the digits of two images. The generated code uses different variable names (A, B instead of X2, Y2) in the addition predicate, but this does not affect the logic or outcome. The running results of both codes are identical, producing the same sum for the query addition(img_5,img_6,Z)."
+    }
+  ]
+}

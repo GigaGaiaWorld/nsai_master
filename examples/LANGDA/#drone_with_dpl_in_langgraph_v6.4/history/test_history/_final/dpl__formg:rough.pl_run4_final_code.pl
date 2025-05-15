@@ -1,33 +1,35 @@
-% Merge Sort in Problog
+% Merge Sort Implementation in ProbLog
 
-% Base case: empty list or single element list is already sorted
+% Base case for an empty list
 merge_sort([], []).
+
+% Base case for a single-element list
 merge_sort([X], [X]).
 
-% Recursive case: split the list into two halves, sort each, and merge the results
+% Recursive case: split the list, sort the halves, and merge them
 merge_sort(List, Sorted) :-
     length(List, Len),
     Len > 1,
-    Half is Len // 2,
-    split(List, Half, Left, Right),
+    split(List, Left, Right),
     merge_sort(Left, SortedLeft),
     merge_sort(Right, SortedRight),
     merge(SortedLeft, SortedRight, Sorted).
 
-% Split a list into two halves
-split(List, Half, Left, Right) :-
-    length(Left, Half),
-    append(Left, Right, List).
+% Split the list into two halves
+split([], [], []).
+split([X], [X], []).
+split([X, Y | Tail], [X | Left], [Y | Right]) :-
+    split(Tail, Left, Right).
 
 % Merge two sorted lists into one sorted list
 merge([], Right, Right).
 merge(Left, [], Left).
-merge([X|Left], [Y|Right], [X|Merged]) :-
+merge([X | LeftTail], [Y | RightTail], [X | Merged]) :-
     X =< Y,
-    merge(Left, [Y|Right], Merged).
-merge([X|Left], [Y|Right], [Y|Merged]) :-
+    merge(LeftTail, [Y | RightTail], Merged).
+merge([X | LeftTail], [Y | RightTail], [Y | Merged]) :-
     X > Y,
-    merge([X|Left], Right, Merged).
+    merge([X | LeftTail], RightTail, Merged).
 append([], L, L).
 append([H|T], L2, [H|R]) :-
  append(T, L2, R).
@@ -39,4 +41,4 @@ merge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code. It implements the merge sort algorithm in Problog with the same logic and structure. The only minor difference is the renaming of 'split_list' to 'split', which does not affect functionality. Both codes produce the same correct result for the given query.
+The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. Both codes handle base cases and recursive sorting with merging. The main difference is in the 'split' function implementation: the original uses length and append, while the generated code uses pattern matching for splitting. This change makes the generated code more efficient but maintains the same functionality. Both produce identical results for the given query.

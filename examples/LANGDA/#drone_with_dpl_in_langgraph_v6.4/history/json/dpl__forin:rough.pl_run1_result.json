@@ -2,10 +2,10 @@
   "file_name": "dpl__forin:rough.pl",
   "run_index": 1,
   "Validity_form": true,
-  "Validity_result": true,
-  "running_time": 129,
+  "Validity_result": false,
+  "running_time": 57,
   "iter_count": 1,
-  "process_time": 129.31265377998352,
-  "final_result": "% Problog Inference Result：\ninsertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
-  "final_report": "The generated code is correct and consistent with the original code in terms of functionality. Both codes implement insertion sort in Prolog with identical logic. The generated code renames the 'insert_element' predicate to 'insert', but this does not affect the functionality. The query and the result are the same in both cases, producing the correct sorted list. There are no problems with the generated code."
+  "process_time": 57.206270933151245,
+  "final_result": "% Problog Inference Result：\ninsertion_sort([3, 1, 2, 5, 7, 12],[1, 12, 2, 3, 5, 7]) = 1.0000",
+  "final_report": "The generated code is structurally similar to the original code, implementing insertion sort in ProbLog. However, there are two key differences: 1) The predicate name changed from 'insert_element' to 'insert', and 2) The comparison operators changed from '=<' and '>' to '@=<' and '@>'. While the code form is valid, the running result is incorrect as it doesn't produce a properly sorted list, indicating a logical error in the implementation."
 }

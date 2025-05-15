@@ -1,6 +1,6 @@
 import sys
 from pydantic import BaseModel, Field
-from typing import Any, List, Optional, Type, ClassVar, Literal, Dict
+from typing import Any, List, Optional, Type, ClassVar
 from problog.program import PrologString
 from problog import get_evaluatable, evaluator
 
@@ -10,7 +10,7 @@ from langchain.callbacks.manager import AsyncCallbackManagerForToolRun, Callback
 from langchain.schema import Document
 
 # from config import paths
-from utils.vector_store_v3 import LangdaVectorStore
+from .vector_store_v3 import LangdaVectorStore
 
 # project_root = paths.proj_dir
 # if project_root not in sys.path:

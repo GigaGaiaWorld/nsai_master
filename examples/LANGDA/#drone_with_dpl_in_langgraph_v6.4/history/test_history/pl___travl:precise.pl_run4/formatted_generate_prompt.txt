@@ -54,13 +54,11 @@ person(b).
 0.1::riskyTravel(X) :- person(X).
 0.1::susceptible(X) :- person(X).
 
-% Define the infection logic
-0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).
-0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).
-0.2::inf(X) :- riskyTravel(X).
-
-% Initial infection
+% Infection logic based on requirements
 inf(X) :- initialInf(X).
+inf(X) :- contact(X,Y), inf(Y), \+susceptible(X), 0.6::inf(X).
+inf(X) :- contact(X,Y), inf(Y), susceptible(X), 0.8::inf(X).
+inf(X) :- riskyTravel(X), 0.2::inf(X).
 
 query(inf(_)).
 

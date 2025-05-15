@@ -1,0 +1,5 @@
+[
+{
+"190031BC": "parse([N], N).\nparse([N, '+', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N + R1.\nparse([N, '-', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N - R1.\nparse([N, '*', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N * R1.\nparse([N, '/', O|T], Result) :- \n    parse([O|T], R1),\n    Result is N / R1."
+}
+]

@@ -1,0 +1,5 @@
+[
+{
+"E553CC07": "% implies/2: Prove that A implies B\nprove(implies(A, B)) :-\n    prove(A),\n    prove(B).\n% opposite/1: Prove the negation of a goal\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n% expand/2: Expand a term into another term\nprove(expand(Term, Expanded)) :-\n    expand(Term, Expanded).\n% includes/2: Check if an element is included in a list\nprove(includes(List, Element)) :-\n    member(Element, List).\n% extend/2: Extend a list with an element\nprove(extend(List, Element, Extended)) :-\n    Extended = [Element|List].\n% refute/1: Prove that a goal cannot be proven\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."
+}
+]

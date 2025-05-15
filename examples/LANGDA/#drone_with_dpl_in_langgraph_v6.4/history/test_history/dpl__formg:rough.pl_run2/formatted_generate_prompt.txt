@@ -43,10 +43,8 @@ query(merge_sort([3,1,2,5,7,12],X)).
 
 % Merge Sort implementation in ProbLog
 
-% Base case for an empty list
+% Base case: empty list or single element
 merge_sort([], []).
-
-% Base case for a single-element list
 merge_sort([X], [X]).
 
 % Recursive case: split the list, sort the halves, and merge them

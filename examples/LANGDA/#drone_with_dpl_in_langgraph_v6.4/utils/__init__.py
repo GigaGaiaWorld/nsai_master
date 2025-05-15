@@ -3,12 +3,11 @@ import inspect
 from typing import Union, List, Literal
 from langchain.tools import BaseTool
 from .models import LangdaAgentExecutor
-from .parser_v2 import integrated_code_parser
+from .parser_v2 import integrated_code_parser, LangdaDict
 from .format_tools import (
     _ordinal,
     _list_to_dict, 
     _expand_nested_list,
-    _draw_mermaid_png, 
     _replace_placeholder, 
     _find_all_blocks, 
     _compute_short_md5, 
@@ -19,6 +18,7 @@ from .format_tools import (
 from .agent_tools import TOOL_REGISTRY
 from .test_tools import with_timeout, _problog_test
 __all__ = [
+    'LangdaDict',
     'invoke_agent',
     'get_tools',
     '_ordinal',
@@ -30,7 +30,6 @@ __all__ = [
     '_parse_simple_dictonary',
     'integrated_code_parser',
     '_find_all_blocks',
-    '_draw_mermaid_png',
     '_replace_placeholder',
     'with_timeout',
     'problog_test_tool',

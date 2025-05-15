@@ -91,14 +91,11 @@ merge_sort([], []).
 merge_sort([X], [X]).
 merge_sort(List, Sorted) :-
     length(List, Len),
-    (Len > 1 ->
-        split_list(List, Left, Right),
-        merge_sort(Left, SortedLeft),
-        merge_sort(Right, SortedRight),
-        merge(SortedLeft, SortedRight, Sorted)
-    ;
-        Sorted = List
-    ).
+    Len > 1,
+    split_list(List, Left, Right),
+    merge_sort(Left, SortedLeft),
+    merge_sort(Right, SortedRight),
+    merge(SortedLeft, SortedRight, Sorted).
 
 split_list(List, Left, Right) :-
     length(List, Len),

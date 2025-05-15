@@ -14,17 +14,11 @@ team_strength([P],G,S) :-
  strength(P,G,S).
 team_strength([P,P2|L],G,S) :-
  
-
-    strength(P,G,S1),
-    team_strength([P2|L],G,S2),
-    min(S1,S2,S).
+ strength(P,G,S1), team_strength([P2|L],G,S2), min(S1,S2,S).
 min(A,B,C) :- C is min(A,B).
 wins(T1,T2,G,T1) :-
  
-
-    team_strength(T1,G,S1),
-    team_strength(T2,G,S2),
-    S1 > S2.
+ team_strength(T1,G,S1), team_strength(T2,G,S2), S1 > S2.
 wins(T1,T2,G,T2) :-
  \+wins(T1,T2,G,T1).
 evidence(wins([alice],[bob],g1,[alice]),true).
@@ -40,4 +34,4 @@ wins([carla, alice],[bob, dan],g4,[bob, dan]) = 0.4538
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality and logic. The only differences are minor formatting changes and the reordering of some predicates within the 'team_strength' rule, which do not affect the program's behavior. The running results of both codes are identical, confirming that the generated code meets the expectations.
+The generated code is correct and consistent with the original code in terms of functionality and logic. The only differences are minor formatting changes, such as line breaks and spacing, which do not affect the program's behavior. The generated code maintains all the original rules, facts, and probabilistic distributions, and the query and evidence statements are identical. The running results of both codes are exactly the same, confirming that the generated code meets the expectations.

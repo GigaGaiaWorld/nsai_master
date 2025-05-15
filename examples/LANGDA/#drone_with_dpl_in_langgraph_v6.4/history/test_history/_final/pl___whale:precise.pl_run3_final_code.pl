@@ -61,4 +61,4 @@ abandon(bull,bull) = 0.1667
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is nearly identical to the original code, maintaining all the same rules, facts, and queries. The only difference is a minor formatting change in the 'abandon' predicate definition, which does not affect the logic or functionality. The generated code correctly preserves the probabilistic world definitions and query structures. Both codes produce identical results when executed, as shown by the matching run results.
+The generated code is nearly identical to the original code, maintaining all the same rules, facts, and queries. The only difference is a minor formatting change in the 'abandon' predicate definition, which does not affect the logic or functionality. The generated code is correct and meets the requirements. The running results of both codes are completely consistent, producing the same probabilities for all queries.

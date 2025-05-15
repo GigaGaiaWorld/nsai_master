@@ -11,15 +11,14 @@ query_sum([S,E,N,D,M,O,R,Y]) :-
  
  
 digit(O), all_different([O,R,N,Y,E,D]),
-sumdigit(C2, E, N, E, C3),
+sumdigit(C2, E, O, N, C3),
 
 digit(M), all_different([M,O,R,N,Y,E,D]),
 sumdigit(C3, S, M, O, C4),
 
-digit(S), leftdigit(S), all_different([S,E,N,D,M,O,R,Y]),
-sumdigit(C4, 0, 0, M, 0).
- 
- all_different([S,E,N,D,M,O,R,Y]).
+leftdigit(S), leftdigit(M),
+C4 = 0,
+all_different([S,E,N,D,M,O,R,Y]).
 sumdigit(C, A, B, S, 0) :-
  X is C + A + B,
  X < 10,
@@ -51,8 +50,8 @@ Error evaluating Problog model:
     check_mode((a, b), ["*g"], functor="is", **k)
   File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
     raise CallModeError(functor, args, accepted, location=location)
-problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 1+X2+1), expected: (any, ground) at 24:4. 
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+X2+0), expected: (any, ground) at 23:4. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code has several issues. First, it incorrectly uses 'sumdigit(C2, E, N, E, C3)' which should be 'sumdigit(C2, E, O, N, C3)' as in the original code. Second, the line 'sumdigit(C4, 0, 0, M, 0)' is incorrect and causes a runtime error. The original code correctly sums 'S, M, O' to get 'M' with carry. The generated code fails to produce a valid result due to these errors.
+The generated code has several issues. First, it incorrectly places the 'digit(M)' constraint before 'leftdigit(S)', which disrupts the logical flow. Second, it introduces a new variable 'C4' without proper handling, leading to a runtime error. The original code correctly enforces constraints in a logical order and handles carry values properly. The generated code fails to execute due to these logical and syntactical errors.

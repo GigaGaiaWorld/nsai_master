@@ -33,29 +33,13 @@ compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
 compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
 determine_winner(P1Moves,P2Moves,Winner) :- 
  
-
-    play(P1Moves, P2Moves, Results),
-    compute_score(Results, S),
-    ( S > 0 -> Winner = player1
-    ; S < 0 -> Winner = player2
-    ; Winner = draw
-    ).
-,
-compute_score(Results,S), 
-( S > 0, Winner = player1 
-; S < 0, Winner = player2 
-; S = 0, Winner = draw 
-).
+ play(P1Moves, P2Moves, Results), compute_score(Results, S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw ).
 query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
 
 *** Result:*** 
-Error evaluating Problog model:
-    toks = self.label_tokens(string, root_tokens)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1206, in label_tokens
-    raise ParseError(string, "Ambiguous token role", t.location)
-problog.parser.ParseError: Ambiguous token role at 43:1. 
+% Problog Inference Result：
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000 
 
 ***Report:***
-Validity_form:False\Validity_result:False
-The generated code has syntax errors and is not valid. Specifically, there is a misplaced comma and a duplicated section in the 'determine_winner' predicate, which causes a parsing error. The original code is correctly structured and runs without errors. The generated code does not meet the requirements due to these syntax issues.
+Validity_form:True\Validity_result:True
+The generated code is functionally equivalent to the original code, maintaining all the rules and logic of the rock-paper-scissors game. The structure and predicates are identical, with only minor formatting differences such as spacing and line breaks. The generated code correctly implements the game's win-lose relationships, result calculation, and score computation. The query and its result are also consistent with the original code, producing the same output.

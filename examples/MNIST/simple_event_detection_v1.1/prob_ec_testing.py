@@ -1,7 +1,7 @@
 import torch
 from problog.logic import Var
 
-from src.dpcepsrc.test_utils import get_confusion_matrix, calculate_f1, calculate_accuracy
+from src.deepprobcep.test_utils import get_confusion_matrix, calculate_f1, calculate_accuracy
 
 CONFUSION_INDEX = {
     'happensAt': {

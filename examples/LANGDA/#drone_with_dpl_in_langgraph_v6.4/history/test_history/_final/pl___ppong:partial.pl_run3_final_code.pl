@@ -34,4 +34,4 @@ wins([carla, alice],[bob, dan],g4,[bob, dan]) = 0.4538
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality and logic. The only differences are minor formatting changes, such as line breaks and spacing, which do not affect the code's execution or results. The generated code maintains the same probabilistic rules, evidence, and query as the original, ensuring identical run results.
+The generated code is correct and consistent with the original code in terms of functionality and logic. The only differences are minor formatting changes, such as line breaks and spacing, which do not affect the code's execution or results. The generated code maintains the same probabilistic rules, evidence, and queries as the original, ensuring identical run results.

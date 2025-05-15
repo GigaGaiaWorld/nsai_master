@@ -77,18 +77,14 @@ member(X,[H|T]) :- member(X,T).
 open_door(Door) :-
     select_door(Selected),
     prize(Prize),
-    % Random Door Opening Rules
-    (   Prize \= Selected,
-        member(Door, [1,2,3]),
-        Door \= Selected,
-        Door \= Prize,
+    findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), EmptyDoors),
+    (   Prize = Selected ->
+        % Randomly open one of the two empty doors with 50% probability
+        member(Door, EmptyDoors),
         0.5::open_door(Door)
-    ) ;
-    % Deterministic Door Opening Rules
-    (   Prize \= Selected,
-        member(Door, [1,2,3]),
-        Door \= Selected,
-        (   Door = Prize -> fail ; true ),
+    ;   % Host must open the empty door
+        member(Door, EmptyDoors),
+        Door \= Prize,
         open_door(Door)
     ).
 
@@ -100,6 +96,7 @@ win_switch :-
     \+ select_door(A),
     prize(A),
     \+ open_door(A).
+
 query(prize(_)).
 query(select_door(_)).
 query(win_keep).

@@ -5,13 +5,13 @@ member(X,[X|T]).
 member(X,[H|T]) :- member(X,T).
 open_door(Door) :-
     select_door(Selected),
-    prize(PrizeDoor),
-    % Find all doors that are neither selected nor have a prize
-    findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), Doors),
-    % If there is only one empty door, open it deterministically
-    (length(Doors, 1), member(Door, Doors)) ;
-    % If there are two empty doors, choose one with 50% probability
-    (length(Doors, 2), 0.5::Door = Doors ; 0.5::Door = Doors).
+    prize(Prize),
+    findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), Doors),
+    (   Doors = [D1, D2] ->
+        0.5::open_door(D1) ; 0.5::open_door(D2)
+    ;   Doors = [D] ->
+        open_door(D)
+    ).
 win_keep :-
  select_door(A),
  prize(A).
@@ -26,14 +26,13 @@ query(win_keep).
 query(win_switch).
 
 *** Result:*** 
-% Problog Inference Result：
-prize(1) = 0.3333
-prize(2) = 0.3333
-prize(3) = 0.3333
-select_door(1) = 1.0000
-win_keep = 0.3333
-win_switch = 0.0000 
+Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 10:26. 
 
 ***Report:***
-Validity_form:True\Validity_result:False
-The generated code attempts to model the Monty Hall problem but contains a critical error in the 'open_door' predicate. The original code correctly implements the host's behavior of opening a door that is neither the selected door nor has the prize, with a 50% probability when two options are available. The generated code fails to properly implement this logic, resulting in incorrect probabilities for 'win_switch' (0.0000 instead of the expected 0.6667). The form of the generated code is valid Problog syntax, but the logic is flawed.
+Validity_form:False\Validity_result:False
+The generated code attempts to replicate the Monty Hall problem logic but contains a syntax error in the 'open_door' predicate, specifically with the conditional operator '->' which is not properly formatted. This causes the code to be invalid and results in an error during execution. The original code correctly implements the problem with proper probability distributions and conditions for opening doors, winning by keeping the initial choice, and winning by switching. The generated code fails to produce the expected results due to its invalid syntax.

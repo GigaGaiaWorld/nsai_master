@@ -61,4 +61,4 @@ abandon(bull,bull) = 0.1667
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is nearly identical to the original code, maintaining all the same rules, facts, and queries. The only difference is a minor formatting change in the 'abandon' predicate definition, which does not affect the logic or execution. Both codes produce identical results when run, indicating full functional equivalence.
+The generated code is nearly identical to the original code, maintaining all the rules, facts, and queries. The only difference is a minor formatting change in the 'abandon' predicate definition, which does not affect the logic or execution. Both codes produce the same inference results, indicating perfect consistency in functionality.

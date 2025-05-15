@@ -29,7 +29,6 @@ leftdigit(S), all_different([S,O,R,N,Y,E,D])
 leftdigit(M), all_different([M,S,O,R,N,Y,E,D])
 ,
  
-% Calculate the thousands digit S + M + C3 = O, and limit the carry result to M
 sumdigit(C3, S, M, O, M)
 ,
  sumdigit(0, D, E, Y, C1),
@@ -81,4 +80,4 @@ query_sum([9, 5, 6, 7, 1, 0, 8, 2]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is functionally equivalent to the original code and produces the same result. However, it contains redundant and duplicated code segments (e.g., repeated sumdigit calls and comments), which makes it less clean and efficient compared to the original. The logic and constraints remain consistent, ensuring the same output.
+The generated code is functionally equivalent to the original code and produces the same result. However, it contains redundant lines (e.g., duplicate sumdigit calls) and unnecessary comments that were not present in the original. The structure is less clean due to inconsistent spacing and line breaks. Despite these stylistic issues, the logic remains correct and consistent with the original.

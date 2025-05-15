@@ -134,3 +134,4 @@ if __name__ == '__main__':
         # os.path.join(model_path,'model_iter_basic_detect.mdl'),             # load_model: 
     )
     print(f"=====================final result=====================\n{result}")
+    

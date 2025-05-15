@@ -3,7 +3,7 @@ from utils import (
     _ordinal,
     _parse_simple_dictonary,
     _langda_list_to_dict,
-) 
+)
 class RequirementsBuilder:
     """
     build the requirements for langda and lann based on their dictonaries.

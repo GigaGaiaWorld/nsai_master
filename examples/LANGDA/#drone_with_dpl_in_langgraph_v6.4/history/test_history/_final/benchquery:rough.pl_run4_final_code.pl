@@ -77,4 +77,4 @@ problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 68:7.
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code is missing the 'query_pop' predicate definition, which is present in the original code. This makes the generated code invalid as it cannot execute the query. The original code includes logic to find countries with approximately equal population density, while the generated code only defines the 'density' predicate and data but lacks the crucial query logic.
+The generated code is missing the 'query_pop' predicate definition, which is present in the original code. This causes the error when trying to run the code, as the system cannot find the required clause for 'query_pop/1'. The original code includes logic to compare population densities between countries, while the generated code only defines the 'density' predicate and data but lacks the comparison logic. This makes the generated code incomplete and invalid for the intended purpose.

@@ -10,20 +10,12 @@ query_sum([S,E,N,D,M,O,R,Y]) :-
  sumdigit(C1, N, R, E, C2),
  
  
-digit(O), all_different([O,R,N,Y,E,D]),
-    sumdigit(C2, E, O, N, C3),
-    
-    digit(M), all_different([M,O,R,N,Y,E,D]),
-    sumdigit(C3, S, M, O, C4),
-    
-    digit(S), leftdigit(S), all_different([S,M,O,R,N,Y,E,D]),
-    sumdigit(C4, 0, 0, M, _),
-    
-    % Ensure the sum SEND + MORE = MONEY
-    SEND is 1000*S + 100*E + 10*N + D,
-    MORE is 1000*M + 100*O + 10*R + E,
-    MONEY is 10000*M + 1000*O + 100*N + 10*E + Y,
-    SEND + MORE =:= MONEY.
+digit(M), all_different([M,R,N,Y,E,D]),
+ digit(O), all_different([O,M,R,N,Y,E,D]),
+ sumdigit(C2, E, O, N, C3),
+ digit(S), leftdigit(S), all_different([S,E,N,D,M,O,R,Y]),
+ sumdigit(C3, S, M, O, C4),
+ C4 = M,
  
  all_different([S,E,N,D,M,O,R,Y]).
 sumdigit(C, A, B, S, 0) :-
@@ -52,13 +44,29 @@ member(X, [_|T]) :- member(X, T).
 query(query_sum(X)).
 
 *** Result:*** 
-Error evaluating Problog model:
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 887, in _builtin_is
-    check_mode((a, b), ["*g"], functor="is", **k)
-  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
-    raise CallModeError(functor, args, accepted, location=location)
-problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+X2+0), expected: (any, ground) at 30:4. 
+% Problog Inference Result：
+query_sum([7, 5, 3, 1, 0, 8, 2, 6]) = 1.0000
+query_sum([5, 7, 3, 1, 0, 6, 4, 8]) = 1.0000
+query_sum([3, 8, 2, 1, 0, 4, 6, 9]) = 1.0000
+query_sum([6, 8, 5, 1, 0, 7, 3, 9]) = 1.0000
+query_sum([8, 4, 3, 2, 0, 9, 1, 6]) = 1.0000
+query_sum([8, 5, 4, 2, 0, 9, 1, 7]) = 1.0000
+query_sum([3, 7, 1, 2, 0, 4, 6, 9]) = 1.0000
+query_sum([5, 7, 3, 2, 0, 6, 4, 9]) = 1.0000
+query_sum([7, 6, 4, 3, 0, 8, 2, 9]) = 1.0000
+query_sum([6, 8, 5, 3, 0, 7, 2, 1]) = 1.0000
+query_sum([8, 3, 2, 4, 0, 9, 1, 7]) = 1.0000
+query_sum([6, 5, 2, 4, 0, 7, 3, 9]) = 1.0000
+query_sum([7, 5, 3, 4, 0, 8, 2, 9]) = 1.0000
+query_sum([6, 4, 1, 5, 0, 7, 3, 9]) = 1.0000
+query_sum([7, 3, 1, 6, 0, 8, 2, 9]) = 1.0000
+query_sum([9, 5, 6, 7, 1, 0, 8, 2]) = 1.0000
+query_sum([2, 8, 1, 7, 0, 3, 6, 5]) = 1.0000
+query_sum([6, 4, 1, 9, 0, 7, 2, 3]) = 1.0000
+query_sum([7, 4, 2, 9, 0, 8, 1, 3]) = 1.0000
+query_sum([7, 5, 3, 9, 0, 8, 1, 4]) = 1.0000
+ ...<other results>...  
 
 ***Report:***
-Validity_form:False\Validity_result:False
-The generated code attempts to solve the same cryptarithmetic puzzle as the original code but introduces several issues. It adds an arithmetic check (SEND + MORE =:= MONEY) which is conceptually correct but implemented incorrectly, leading to a runtime error. The main problem is in the sumdigit(C4, 0, 0, M, _) call where the arguments are not properly grounded, causing the 'is/2' error. The original code correctly solves the puzzle without this arithmetic check by relying solely on constraint propagation. The generated code's structure is similar but flawed in execution.
+Validity_form:True\Validity_result:False
+The generated code is structurally similar to the original code but introduces some logical inconsistencies. The main issue is that it produces multiple solutions (including the correct one from the original code) rather than a unique solution. This suggests the constraints in the generated code are not as strict as in the original, allowing for more permutations. The generated code is valid in form but fails to maintain the original's strict uniqueness requirement.

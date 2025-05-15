@@ -1,12 +1,12 @@
 [
 {
-"3F277A35": "result(X, X, draw) :- move(X)."
+"3F277A35": "result(X, X, draw) :- move(X), move(X)."
 },
 {
-"D91BB7A0": "result(X, Y, win) :- beats(X, Y)."
+"D91BB7A0": "result(X, Y, win) :- move(X), move(Y), beats(X, Y)."
 },
 {
-"0940BB04": "result(X, Y, lose) :- beats(Y, X)."
+"0940BB04": "result(X, Y, lose) :- move(X), move(Y), beats(Y, X)."
 },
 {
 "583E41B6": "compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1."
@@ -18,6 +18,6 @@
 "FD850DEC": "compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1."
 },
 {
-"3FEB17D7": "determine_winner(P1Moves,P2Moves,Winner) :-\n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, S),\n    ( S > 0, Winner = player1\n    ; S < 0, Winner = player2\n    ; S = 0, Winner = draw\n    )."
+"3FEB17D7": "determine_winner(P1Moves,P2Moves,Winner) :- play(P1Moves,P2Moves,Results), compute_score(Results,S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw )."
 }
 ]

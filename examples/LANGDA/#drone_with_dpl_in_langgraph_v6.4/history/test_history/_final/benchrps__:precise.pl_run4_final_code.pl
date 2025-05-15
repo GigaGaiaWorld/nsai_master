@@ -14,11 +14,11 @@ beats(paper, rock).
 % -------------------------
 result(X, X, draw) :-
  
- move(X).
+ move(X), move(X).
 result(X, Y, win) :-
- beats(X, Y).
+ move(X), move(Y), beats(X, Y).
 result(X, Y, lose) :-
- beats(Y, X).
+ move(X), move(Y), beats(Y, X).
 % End of recursion: empty list corresponds to empty result
 play([], [], []).
 % Recursive advancement: take out each round of gestures, calculate the results, and continue
@@ -33,13 +33,7 @@ compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
 compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
 determine_winner(P1Moves,P2Moves,Winner) :- 
  
-
-    play(P1Moves, P2Moves, Results),
-    compute_score(Results, S),
-    ( S > 0, Winner = player1
-    ; S < 0, Winner = player2
-    ; S = 0, Winner = draw
-    ).
+ play(P1Moves,P2Moves,Results), compute_score(Results,S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw ).
 query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
 
 *** Result:*** 
@@ -48,4 +42,4 @@ determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is correct and consistent with the original code in terms of functionality and logic. It accurately implements the rock-paper-scissors game rules, result calculation, and winner determination. The only differences are minor formatting changes, such as spacing and line breaks, which do not affect the code's execution or results.
+The generated code is mostly correct and consistent with the original code in terms of functionality. However, there are minor issues in the 'result' predicate where 'move(X), move(X)' is redundant and could be simplified to just 'move(X)'. The generated code produces the same result as the original code, indicating that the logic is preserved. The redundancy does not affect the outcome but could be optimized for clarity.

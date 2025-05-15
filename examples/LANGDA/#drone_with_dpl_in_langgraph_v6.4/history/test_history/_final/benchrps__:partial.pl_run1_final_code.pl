@@ -4,11 +4,11 @@
 % Three gestures
 move(rock).
 move(paper).
-move(scissors).
+move(scissor).
 % Win-lose relationship: X beats Y
 beats(rock, scissor).
 beats(paper, rock).
-beats(scissors, paper).
+beats(scissor, paper).
 % -------------------------
 % Calculate the result of the game
 % -------------------------
@@ -48,4 +48,4 @@ determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000
 
 ***Report:***
 Validity_form:False\Validity_result:True
-The generated code is mostly correct and consistent with the original code, but there are a few issues. First, the gesture 'scissors' is misspelled as 'scissor' in the beats predicate, which could cause confusion. Second, the compute_score rule for 'draw' incorrectly passes S1 directly instead of assigning it to S. Despite these issues, the running results are consistent with the original code.
+The generated code is mostly correct and consistent with the original code. It correctly implements the rock-paper-scissors game rules and result calculation. However, there is a minor issue in the `compute_score` clause for `draw` where it incorrectly passes `Rs` instead of `S1` to `S`. Despite this, the running results are consistent with the original code, producing the same output.

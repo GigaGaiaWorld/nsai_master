@@ -172,7 +172,7 @@ pop(pakistan,     682).
 pop(w_germany,     620).
 pop(nigeria,     613).
 pop(mexico,     581).
-pop(uk,     559).
+pop(uk,         559).
 pop(italy,     554).
 pop(france,     525).
 pop(philippines, 415).
@@ -224,7 +224,7 @@ query_pop(Pairs) :-
     findall((Country1, Country2), (
         density(Country1, Density1),
         density(Country2, Density2),
-        Country1 @< Country2,
+        Country1 \= Country2,
         abs(Density1 - Density2) / Density1 =< 0.05
     ), Pairs).
 

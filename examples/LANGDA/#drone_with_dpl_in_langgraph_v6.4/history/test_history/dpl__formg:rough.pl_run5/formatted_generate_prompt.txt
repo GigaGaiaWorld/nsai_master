@@ -43,10 +43,10 @@ query(merge_sort([3,1,2,5,7,12],X)).
 
 % Merge Sort in ProbLog
 
-% Base case for an empty list
+% Base case for empty list
 merge_sort([], []).
 
-% Base case for a single-element list
+% Base case for single element list
 merge_sort([X], [X]).
 
 % Recursive case: split the list, sort the halves, and merge them
@@ -67,14 +67,14 @@ split([X, Y | Tail], [X | Left], [Y | Right]) :-
 % Merge two sorted lists into one sorted list
 merge([], Right, Right).
 merge(Left, [], Left).
-merge([X | LeftTail], [Y | RightTail], [X | Merged]) :-
+merge([X | LeftTail], [Y | RightTail], [X | MergedTail]) :-
     X =< Y,
-    merge(LeftTail, [Y | RightTail], Merged).
-merge([X | LeftTail], [Y | RightTail], [Y | Merged]) :-
+    merge(LeftTail, [Y | RightTail], MergedTail).
+merge([X | LeftTail], [Y | RightTail], [Y | MergedTail]) :-
     X > Y,
-    merge([X | LeftTail], RightTail, Merged).
+    merge([X | LeftTail], RightTail, MergedTail).
 
-% Append helper predicate
+% Append helper predicate (already provided)
 append([], L, L).
 append([H|T], L2, [H|R]) :-
     append(T, L2, R).

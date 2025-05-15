@@ -11,13 +11,15 @@ query_sum([S,E,N,D,M,O,R,Y]) :-
  
  
 digit(O), all_different([O,R,N,Y,E,D]),
-sumdigit(C2, E, N, N, C3),
+sumdigit(C2, E, O, N, C3),
 
 digit(M), all_different([M,O,R,N,Y,E,D]),
 sumdigit(C3, S, M, O, C4),
 
-leftdigit(S), leftdigit(M),
-all_different([S,E,N,D,M,O,R,Y]).
+leftdigit(S), all_different([S,E,N,D,M,O,R,Y]),
+C4 = 0.
+ 
+ all_different([S,E,N,D,M,O,R,Y]).
 sumdigit(C, A, B, S, 0) :-
  X is C + A + B,
  X < 10,
@@ -44,9 +46,13 @@ member(X, [_|T]) :- member(X, T).
 query(query_sum(X)).
 
 *** Result:*** 
-% Problog Inference Result：
-query_sum(X2) = 0.0000 
+Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 887, in _builtin_is
+    check_mode((a, b), ["*g"], functor="is", **k)
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+X2+0), expected: (any, ground) at 24:4. 
 
 ***Report:***
 Validity_form:False\Validity_result:False
-The generated code has several issues compared to the original code. First, the sumdigit(C2, E, N, N, C3) line incorrectly uses N twice instead of O, which breaks the logic of the cryptarithmetic puzzle. Second, the generated code introduces a new variable C4 without proper handling, unlike the original code which correctly uses M as both a digit and a carry check. These logical errors cause the generated code to fail to find a valid solution, resulting in a probability of 0.0000 instead of the correct solution found by the original code.
+The generated code has several issues. First, it introduces a new variable C4 which is not properly handled in the sumdigit predicate, leading to a runtime error. Second, the constraint C4 = 0 is misplaced and should be integrated into the sumdigit predicate. The original code correctly handles the carry and constraints, while the generated code fails to do so. The generated code is not valid as it results in a runtime error.

@@ -1,5 +1,5 @@
 [
 {
-"190031BC": "parse([N], N).\nparse([N, O | T], Result) :-\n    parse(T, R),\n    (O = '+' -> Result is N + R;\n     O = '-' -> Result is N - R;\n     O = '*' -> Result is N * R;\n     O = '/' -> Result is N / R)."
+"190031BC": "parse([N], N).\nparse([N, '+', O|T], Result) :-\n    parse([O|T], R),\n    Result is N + R.\nparse([N, '-', O|T], Result) :-\n    parse([O|T], R),\n    Result is N - R.\nparse([N, '*', O|T], Result) :-\n    parse([O|T], R),\n    Result is N * R.\nparse([N, '/', O|T], Result) :-\n    parse([O|T], R),\n    Result is N / R."
 }
 ]

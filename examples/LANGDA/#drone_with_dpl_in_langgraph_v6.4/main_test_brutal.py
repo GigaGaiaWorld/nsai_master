@@ -124,7 +124,7 @@ def process_all_prompt_files_json(Agent:object, test_directory_path, answer_dire
 
 from agent import (
     LangdaAgentSingleSimple, 
-    LangdaAgentFullSimple,
+    LangdaAgentDoubleSimple,
     LangdaAgentDoubleDC,
     LangdaAgentDCSimple,
     LangdaAgentSingleDC,

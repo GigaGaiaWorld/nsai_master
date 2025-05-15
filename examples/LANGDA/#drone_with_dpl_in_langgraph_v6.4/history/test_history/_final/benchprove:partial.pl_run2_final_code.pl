@@ -55,4 +55,4 @@ prove(extend([1, 2],3,[3, 1, 2])) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is largely correct and consistent with the original code. It maintains all the core functionalities, including the meta-interpreter, extended logic processing, and example queries. The only minor difference is the absence of the 'square(X)' expand rule in the generated code, which was present in the original but not used in any queries. The running results of both codes are identical, confirming functional equivalence.
+The generated code is largely correct and consistent with the original code. It maintains all the essential components of the original, including the meta-interpreter, extended logic processing, and example queries. The only minor difference is the absence of the 'square(X)' expand rule in the generated code, which was present in the original but not used in any queries. The running results of both codes are identical, confirming functional equivalence.

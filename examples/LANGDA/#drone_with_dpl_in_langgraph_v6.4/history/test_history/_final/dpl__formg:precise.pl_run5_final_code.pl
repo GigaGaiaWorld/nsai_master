@@ -2,10 +2,14 @@ merge_sort([], []).
 merge_sort([X], [X]).
 merge_sort(List, Sorted) :-
  
-length(List, Len), Len > 1, split_list(List, Left, Right)
+length(List, Len),
+    Len > 1,
+    split_list(List, Left, Right)
 ,
  
-merge_sort(Left, SortedLeft), merge_sort(Right, SortedRight), merge(SortedLeft, SortedRight, Sorted)
+merge_sort(Left, SortedLeft),
+    merge_sort(Right, SortedRight),
+    merge(SortedLeft, SortedRight, Sorted)
 .
 split_list(List, Left, Right) :-
  length(List, Len),
@@ -32,4 +36,4 @@ merge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
 
 ***Report:***
 Validity_form:True\Validity_result:True
-The generated code is functionally identical to the original code, producing the same correct result for the merge sort operation. The only differences are in formatting (spacing and line breaks), which do not affect the code's execution or logic. Both codes correctly implement the merge sort algorithm and yield the same sorted output for the given query.
+The generated code is functionally identical to the original code, producing the same correct result for the merge sort operation. The only differences are in formatting (whitespace and line breaks), which do not affect the code's execution or logic. Both codes correctly implement the merge sort algorithm and yield the same sorted output for the given query.
