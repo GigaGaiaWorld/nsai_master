@@ -1,0 +1,185 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+<Langda>
+<Code_Block>bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).</Code_Block>
+<HASH> Hash tag of code: 2971FD2F </HASH>
+<Requirements>Recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda>
+<Code_Block>swap(X, Y, swap) :-
+    X > Y.
+swap(X, Y, no_swap) :-
+    X =< Y.</Code_Block>
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result> 
+</Code>
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured in <Overall_Analysis>, <Error_Summary> and <Recommendations> blocks as follows:
+
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+<Langda>
+<Code_Block>bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).</Code_Block>
+<HASH> Hash tag of code: 2971FD2F </HASH>
+<Requirements>Recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda>
+<Code_Block>swap(X, Y, swap) :-
+    X > Y.
+swap(X, Y, no_swap) :-
+    X =< Y.</Code_Block>
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result>
+
+</original_code>
+
+<Overall_Analysis>
+The provided ProbLog code implements a bubble sort algorithm, and the test result indicates that it successfully sorts the list `[3, 1, 2, 5, 7, 12]` into `[1, 2, 3, 5, 7, 12]`. The code appears to meet the basic requirements of the bubble sort algorithm, including the recursive sorting of sublists and the accumulation of sorted elements. However, the code could benefit from further analysis to ensure robustness and adherence to ProbLog's syntax and semantics.
+</Overall_Analysis>
+
+<Error_Summary>
+1. **Potential Logical Issue in `hole/4` Predicate**:
+   - The `hole/4` predicate is used to swap elements if they are out of order, but its implementation relies on the `swap/3` predicate. While the test case passes, the logic might not handle edge cases (e.g., duplicate elements or empty lists) correctly.
+
+2. **Base Case Handling in `bubble/3`**:
+   - The base case `bubble([X],[],X)` assumes a single-element list is already sorted, which is correct. However, the recursive case might not handle all possible scenarios, such as lists with an odd number of elements.
+
+3. **Recursive Call in `bubblesort/3`**:
+   - The recursive call `bubblesort(L2, [X | L3], Sorted)` accumulates the sorted elements correctly, but the termination condition `bubblesort([],L,L)` might not be sufficient for all edge cases (e.g., lists with repeated elements).
+
+4. **Missing Edge Cases**:
+   - The code does not explicitly handle edge cases like empty lists or lists with duplicate elements, which could lead to unexpected behavior.
+</Error_Summary>
+
+<Recommendations>
+1. **Improve `hole/4` and `swap/3` Predicates**:
+   - Ensure the `swap/3` predicate correctly handles all comparisons, including equality (`X =:= Y`). For example:
+     ```prolog
+     swap(X, Y, swap) :- X > Y.
+     swap(X, Y, no_swap) :- X =< Y.
+     ```
+
+2. **Add Edge Case Handling**:
+   - Explicitly handle edge cases in `bubble/3` and `bubblesort/3`. For example:
+     ```prolog
+     bubble([], [], _) :- fail. % Handle empty list
+     bubble([X], [], X). % Base case
+     bubble([H1, H2 | T], [X1 | T1], X) :-
+         hole(H1, H2, X1, X2),
+         bubble([X2 | T], T1, X).
+     ```
+
+3. **Test with Additional Cases**:
+   - Test the code with lists containing duplicate elements, empty lists, and lists with an odd number of elements to ensure robustness.
+
+4. **Document the Code**:
+   - Add comments to clarify the purpose of each predicate and the overall logic of the bubble sort algorithm.
+
+5. **Optimize the Algorithm**:
+   - Consider adding a flag to track whether any swaps occurred in a pass, allowing early termination if the list is already sorted.
+</Recommendations>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

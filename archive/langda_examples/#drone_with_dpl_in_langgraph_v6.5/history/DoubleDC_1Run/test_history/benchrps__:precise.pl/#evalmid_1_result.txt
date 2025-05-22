@@ -1,0 +1,30 @@
+<Overall_Analysis>
+The provided ProbLog code implements a rock-paper-scissors game with rules for determining the winner of each round and calculating the overall score. The code is logically structured and adheres to the basic requirements of the game. However, the test results indicate a failure due to the use of an unsupported control construct (`if-then-else`) in the `determine_winner` predicate. ProbLog does not support the `->` operator, which is the root cause of the error.
+</Overall_Analysis>
+
+<Error_Summary>
+1. **Test Failure**: The error message indicates that the `determine_winner` predicate failed because it uses the `->` operator, which is not supported in ProbLog.
+   - **Root Cause**: ProbLog does not support imperative control constructs like `if-then-else` (`->`). Instead, it requires declarative alternatives such as disjunction (`;`) and negation-as-failure (`\+`).
+   - **Location**: The issue is in the `determine_winner` predicate, specifically in the line `(Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw')`.
+</Error_Summary>
+
+<Recommendations>
+1. **Replace `if-then-else` with Disjunction**:
+   - Modify the `determine_winner` predicate to use disjunction (`;`) and negation-as-failure (`\+`) as follows:
+     ```prolog
+     determine_winner(P1Moves, P2Moves, Winner) :-
+         play(P1Moves, P2Moves, Results),
+         compute_score(Results, Score),
+         (Score > 0, Winner = 'Player 1';
+          Score < 0, Winner = 'Player 2';
+          Score =:= 0, Winner = 'Draw').
+     ```
+   - This change aligns with ProbLog's supported control constructs and avoids the unsupported `->` operator.
+
+2. **Test the Updated Code**:
+   - After making the change, rerun the test query `query(determine_winner([rock,rock,rock],[paper,paper,scissor],W))` to ensure the predicate works as expected.
+
+3. **General Best Practices**:
+   - Avoid using Prolog-specific control constructs that are not supported in ProbLog (e.g., `->`, `!`, `repeat`).
+   - Refer to the ProbLog documentation for supported predicates and constructs when implementing logic.
+</Recommendations>

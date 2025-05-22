@@ -1,0 +1,18 @@
+```problog
+{"HASH": "2DFC0CFD","Code": "implies(A, B) :- (prove(A), prove(B)) ; \\+ prove(A)."}
+```
+```problog
+{"HASH": "2DFC0CFD","Code": "opposite(Goal) :- \\+ prove(Goal)."}
+```
+```problog
+{"HASH": "2DFC0CFD","Code": "expand(Term, Result) :- clause(expand(Term, Result))."}
+```
+```problog
+{"HASH": "2DFC0CFD","Code": "includes(Elem, List) :- member(Elem, List)."}
+```
+```problog
+{"HASH": "2DFC0CFD","Code": "extend(List, Elem, [Elem|List])."}
+```
+```problog
+{"HASH": "2DFC0CFD","Code": "refute(Goal) :- \\+ prove(Goal)."}
+```

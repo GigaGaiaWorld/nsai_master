@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 109,
+  "iter_count": 1,
+  "process_time": 108.73556518554688,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000",
+  "final_report": "The generated code is mostly correct and consistent with the original code, but there are a few issues. The 'rot' operation in the generated code produces a different result ([2,3,1,4]) compared to the original code ([3,1,2,4]). Additionally, the 'pop' operation in the generated code includes an unnecessary 'Top = Top' condition, which is redundant. The sorting operation and other stack operations are correctly implemented and produce the same results as the original code."
+}

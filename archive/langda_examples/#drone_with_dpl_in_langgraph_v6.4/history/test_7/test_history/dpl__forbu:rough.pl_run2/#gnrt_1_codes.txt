@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "bubblesort([], Acc, Acc).\n\nbubblesort([H|T], Acc, Sorted) :-\n    bubble_pass([H|T], [], Updated, Flag),\n    (Flag = 0 ->\n        append(Acc, [H|T], Sorted)\n    ;\n        append(Acc, [Updated], NewAcc),\n        bubblesort(T, NewAcc, Sorted)\n    ).\n\nbubble_pass([X, Y|T], Acc, Updated, Flag) :-\n    (X > Y ->\n        bubble_pass([Y|T], [X|Acc], Updated, 1)\n    ;\n        bubble_pass([X|T], [Y|Acc], Updated, Flag)\n    ).\n\nbubble_pass([X], Acc, [X|Acc], 0)."
+}
+]

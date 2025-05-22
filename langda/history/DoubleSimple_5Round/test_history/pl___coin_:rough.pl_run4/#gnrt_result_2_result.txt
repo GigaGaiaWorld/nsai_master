@@ -1,0 +1,16 @@
+Based on the requirements in the <langda> block, I'll regenerate the code to properly sample CNT independent coins and accumulate the number of heads. The current code is incomplete and doesn't implement the coin tossing logic.
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "DF1FDC54","Code": "PH::make_coin(C,PH).\ncoin(C) :- make_coin(C,0.8).\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n CNT > 0,\n coin(CNT),\n (coin(CNT) -> NewSC is SC + 1 ; NewSC = SC),\n NewCNT is CNT - 1,\n coins_r(NewSC,S,NewCNT).\ntotal(S) :- coins_r(0,S,4).\nquery(total(_))."}
+```
+
+The regenerated code:
+1. Keeps the original probability definitions
+2. Completes the coins_r predicate to:
+   - Sample a coin toss for the current count
+   - Increment the head count if the toss is successful
+   - Decrement the counter and recurse
+3. Maintains the same interface with total/1 and query
+4. Properly accumulates the number of heads across all coin tosses

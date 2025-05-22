@@ -1,0 +1,10 @@
+Here are the extracted and formatted code blocks from the <generated_code> that correspond to the <langda> blocks in <origin_code>:
+
+```problog
+{"HASH": "5738285A", "Code": "density(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is Pop / Area."}
+```
+```problog
+{"HASH": "5738285A", "Code": "query_pop(Pairs) :-\n    findall((Country1, Country2), (\n        density(Country1, Density1),\n        density(Country2, Density2),\n        Country1 \\= Country2,\n        abs(Density1 - Density2) / Density1 =< 0.05\n    ), Pairs)."}
+```
+
+Note: Both code blocks share the same HASH value since they both address the same requirements specified in the original <langda> block. The first block implements the density calculation, and the second block implements the query to find countries with approximately equal densities.

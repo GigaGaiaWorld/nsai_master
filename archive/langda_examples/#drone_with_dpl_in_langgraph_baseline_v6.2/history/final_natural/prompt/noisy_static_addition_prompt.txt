@@ -1,0 +1,27 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with langda term that includes natural language requirements, please generate the report as required.
+
+
+
+<\context>
+<ruleset>
+### The original rule set with natural language is as follows, make sure you capture all the information from the code: 
+
+nn(mnist_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: digit(X,Y).
+t(0.1) :: noisy.
+For any X and Y, the value V of the predicate uniform(X,Y,V) is chosen randomly from the integers 0 to 18 with equal probability (1/19).
+addition_noisy(X,Y,Z) :- noisy, uniform(X,Y,Z).
+addition_noisy(X,Y,Z) :- \+noisy, digit(X,N1), digit(Y,N2), Z is N1+N2.
+addition(X,Y,Z) :- digit(X,N1), digit(Y,N2), Z is N1+N2.
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could replace the langda term and nothing more. 
+
+Please generate the complete new code.
+
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

@@ -1,0 +1,79 @@
+{
+  "file_name": "benchprove:partial.pl",
+  "runs": 5,
+  "avg_process_time": 149.76825585365296,
+  "min_process_time": 132.09047603607178,
+  "max_process_time": 190.15781903266907,
+  "std_dev_time": 23.051609047820904,
+  "validity_stats": {
+    "form": {
+      "true": 3,
+      "false": 0,
+      "error": 2
+    },
+    "result": {
+      "true": 3,
+      "false": 0,
+      "error": 2
+    }
+  },
+  "success_form_rate": 0.6,
+  "success_result_rate": 0.6,
+  "individual_results": [
+    {
+      "file_name": "benchprove:partial.pl",
+      "run_index": 1,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 144,
+      "iter_count": 1,
+      "process_time": 143.76932978630066,
+      "final_result": "% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000",
+      "final_report": "The generated code is largely correct and consistent with the original code. It maintains all the essential components of the original, including the meta-interpreter, extended logic processing, and example queries. The only minor difference is the absence of the 'square' expand rule in the generated code, which does not affect the given queries. The running results of both codes are identical, confirming functional equivalence."
+    },
+    {
+      "file_name": "benchprove:partial.pl",
+      "run_index": 2,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 132,
+      "iter_count": 1,
+      "process_time": 132.09047603607178,
+      "final_result": "% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000",
+      "final_report": "The generated code is largely correct and consistent with the original code. It maintains all the core functionalities, including the meta-interpreter, extended logic processing, and example queries. The only minor difference is the absence of the 'square(X)' expand rule in the generated code, which was present in the original but not used in any queries. The running results of both codes are identical, confirming functional equivalence."
+    },
+    {
+      "file_name": "benchprove:partial.pl",
+      "run_index": 3,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 140,
+      "iter_count": 1,
+      "process_time": 139.674143075943,
+      "final_result": "% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000",
+      "final_report": "The generated code is largely correct and consistent with the original code. It maintains all the essential components of the original, including the meta-interpreter, extended logic processing, and example queries. The only minor difference is the absence of the 'square(X)' expand rule in the generated code, which does not affect the given queries since they don't use it. The running results of both codes are identical, confirming functional equivalence for the provided queries."
+    },
+    {
+      "file_name": "benchprove:partial.pl",
+      "run_index": 4,
+      "Validity_form": "ERROR",
+      "Validity_result": "ERROR",
+      "running_time": "None",
+      "iter_count": "None",
+      "process_time": 190.15781903266907,
+      "final_result": "Agent execution error: Invalid \\escape: line 1 column 197 (char 196)",
+      "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/main_test_multi.py\", line 90, in process_all_prompt_files_json\n    result = with_timeout(agent.call_langda_workflow, file_name, timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 23, in with_timeout\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/langda_agent.py\", line 190, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2683, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2331, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/runner.py\", line 146, in tick\n    run_with_retry(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/retry.py\", line 40, in run_with_retry\n    return task.proc.invoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 606, in invoke\n    input = step.invoke(input, config, **kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 371, in invoke\n    ret = context.run(self.func, *args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/evaluate_nodes.py\", line 54, in test_node\n    evaluated_codes = _find_all_blocks(\"report\",evaluated_result) # [{report:\"\",need_regenerate:\"True\"},...]\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/format_tools.py\", line 189, in _find_all_blocks\n    match_json = json.loads(match)\n                 ^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/decoder.py\", line 353, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\njson.decoder.JSONDecodeError: Invalid \\escape: line 1 column 197 (char 196)\nDuring task with name 'test_node' and id 'c1c5cecc-fd28-64f8-d4e6-f5de7d70b21d'\n"
+    },
+    {
+      "file_name": "benchprove:partial.pl",
+      "run_index": 5,
+      "Validity_form": "ERROR",
+      "Validity_result": "ERROR",
+      "running_time": "None",
+      "iter_count": "None",
+      "process_time": 143.14951133728027,
+      "final_result": "Agent execution error: Invalid \\escape: line 3 column 120 (char 143)",
+      "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/main_test_multi.py\", line 90, in process_all_prompt_files_json\n    result = with_timeout(agent.call_langda_workflow, file_name, timeout)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 23, in with_timeout\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/langda_agent.py\", line 190, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2683, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2331, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/runner.py\", line 146, in tick\n    run_with_retry(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/retry.py\", line 40, in run_with_retry\n    return task.proc.invoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 606, in invoke\n    input = step.invoke(input, config, **kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/utils/runnable.py\", line 371, in invoke\n    ret = context.run(self.func, *args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/agent/evaluate_nodes.py\", line 54, in test_node\n    evaluated_codes = _find_all_blocks(\"report\",evaluated_result) # [{report:\"\",need_regenerate:\"True\"},...]\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/format_tools.py\", line 189, in _find_all_blocks\n    match_json = json.loads(match)\n                 ^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/json/decoder.py\", line 353, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\njson.decoder.JSONDecodeError: Invalid \\escape: line 3 column 120 (char 143)\nDuring task with name 'test_node' and id '0878b969-a3b4-ac93-7a2f-988ec971971a'\n"
+    }
+  ]
+}

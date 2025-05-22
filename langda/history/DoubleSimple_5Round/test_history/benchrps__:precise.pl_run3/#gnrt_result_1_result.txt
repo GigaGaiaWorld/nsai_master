@@ -1,0 +1,10 @@
+Based on the requirements, I'll regenerate the code for the <langda> block. The current code is incomplete and needs to implement the `determine_winner` predicate properly by using the `play/3` and `compute_score/3` predicates.
+
+```problog
+{"HASH": "CE4B5362","Code": "determine_winner(P1Moves,P2Moves,Winner) :- play(P1Moves,P2Moves,Results), compute_score(Results,Score), (Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw')."}
+```
+
+This implementation:
+1. Uses play/3 to compare the moves and get Results list
+2. Computes the total score using compute_score/2
+3. Determines the winner based on whether the score is positive (Player 1 wins), negative (Player 2 wins), or zero (Draw)

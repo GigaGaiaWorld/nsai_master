@@ -1,0 +1,10 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N, O | Rest], Result) :-\n    parse(Rest, R),\n    (O = +, Result is N + R;\n     O = -, Result is N - R;\n     O = *, Result is N * R;\n     O = /, Result is N / R)."}
+```
+
+Note that:
+1. I've used the same HASH value from the original <langda> block (190031BC)
+2. The code is exactly the parse/2 predicate from the generated_code
+3. The main difference from the original is that the conditions in the if-then-else structure are now separated by commas instead of arrows (->), which fixes the syntax error mentioned in the Report

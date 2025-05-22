@@ -1,0 +1,108 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+% source: David Poole. Abducing through negation as failure: stable models within the independent choice logic. JLP 2000.
+carrying(key,s(T)) :-
+ do(pickup(key),T),
+ at(robot,Pos,T),
+ at(key,Pos,T),
+ pickup_succeeds(T).
+carrying(key,s(T)) :-
+ carrying(key,T),
+ \+ do(putdown(key),T),
+ \+ do(pickup(key),T),
+ \+ drops(key,T).
+ 
+0.7::pickup_succeeds(T); 0.3::pickup_fails(T).
+ 
+drops(key,T) :-
+ slippery(key,T),
+ drop_slippery_key(T).
+drops(key,T) :-
+ \+ slippery(key,T),
+ fumbles_key(T).
+ 
+0.6::drop_slippery_key(T); 0.4::holds_slippery_key(T).
+0.2::fumbles_key(T); 0.8::retains_key(T).
+ 
+slippery(key,s(T)) :-
+ slippery(key,T),
+ stays_slippery(T).
+slippery(key,0) :-
+ initially_slippery(key).
+ 
+0.75::stays_slippery(T); 0.25::stops_being_slippery(T).
+0.5::initially_slippery(key); 0.5::initially_unslippery(key).
+ 
+<Langda>
+<Code_Block>at(robot,Pos,s(T)) :- 
+    do(goto(Pos),T),
+    goto_succeeds(T).
+at(robot,Pos,s(T)) :- 
+    at(robot,Pos,T),
+    do(goto(_),T),
+    goto_fails(T).
+at(robot,Pos,s(T)) :- 
+    at(robot,Pos,T),
+    \+ goto_action(T).</Code_Block>
+<HASH> Hash tag of code: 638F1761 </HASH>
+<Requirements>Define three at/3 predicates (they have three parameters: key, position and time), they describe respectively:  If at time T the robot's action list contains goto(Pos), and this move succeeds, then at the next time s(T), the robot will be at the goal position Pos.  If goto(Pos) is executed at time T, but goto_succeeds(T) is false (i.e. the move failed), then at time s(T) the robot remains where it is.  If there is no goto(_) action at time T (goto_action(T) is false), then at time s(T) the robot remains stationary. </Requirements></Langda>
+.
+<Langda>
+<Code_Block>at(key,Pos,T) :- 
+    carrying(key,T),
+    at(robot,Pos,T).
+at(key,Pos,s(T)) :- 
+    at(key,Pos,T),
+    \+ carrying(key,s(T)).</Code_Block>
+<HASH> Hash tag of code: BCB17653 </HASH>
+<Requirements>Define two at/3 predicates (they have three parameters: key, position and time), they describe respectively:  If at the same moment T the robot is "carrying" the key (carrying(key, T) is true) and the robot is at position Pos, then the key is also at that position Pos. In other words: as long as the robot is holding the key, the key and the robot always move in sync.  If at time s(T) (the next time step) the robot does not have the key, then at s(T) the key is stationary. </Requirements></Langda>
+0.9::goto_succeeds(T); 0.1::goto_fails(T).
+ 
+goto_action(T) :-
+ do(goto(Pos),T).
+ 
+do(goto(loc1),0).
+do(pickup(key),s(0)).
+do(goto(loc2),s(0)).
+at(key,loc1,0).
+at(robot,loc0,0).
+ 
+query(carrying(key,s(s(s(0))))).
+query(at(_,_,s(s(s(0))))).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+carrying(key,s(s(s(0)))) = 0.4331
+at(robot,loc2,s(s(s(0)))) = 0.9000
+at(robot,loc1,s(s(s(0)))) = 0.0900
+at(robot,loc0,s(s(s(0)))) = 0.0100
+at(key,loc2,s(s(s(0)))) = 0.5670
+at(key,loc1,s(s(s(0)))) = 0.4330
+at(key,loc0,s(s(s(0)))) = 0.0000</Result>
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> 
+For each code block, format it's report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

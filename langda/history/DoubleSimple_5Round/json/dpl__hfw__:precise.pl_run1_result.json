@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__hfw__:precise.pl",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 79,
+  "iter_count": 3,
+  "process_time": 79.09020400047302,
+  "final_result": "Error evaluating Problog model:\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 817, in _builtin_lt\n    check_mode((arg1, arg2), [\"gg\"], functor=\"<\", **kwdargs)\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to '</2': arguments: (abs(X1-2*7.0), 0.0001), expected: (ground, ground) at 24:13.",
+  "final_report": "The generated code modifies the parsing logic for arithmetic operations, which leads to incorrect evaluation of expressions. Specifically, it changes the way subtraction and division are handled, causing a runtime error due to non-ground arguments in the 'almost_equal' predicate. The original code correctly processes the expression by transforming subtraction into addition of a negative product and handles division with proper checks. The generated code fails to maintain this logic, resulting in an invalid form and inconsistent results."
+}

@@ -1,0 +1,3 @@
+```problog
+{"HASH": "0805B4F6","Code": "0.5::pick(N, a) ; 0.5::pick(N,b).\npalindrome(N) :-\n palindrome(1,N).\npalindrome(A,B) :-\n A > B.\npalindrome(N,N) :-\n pick(N,_).\npalindrome(A,B) :-\n A < B,\n pick(A,X),\n pick(B,X),\n AA is A+1,\n BB is B-1, \n palindrome(AA,BB).\nbb(N) :-\n between(1, N, I),\n I1 is I+1,\n pick(I, b),\n pick(I1, b).\nlen(5).\nevidence(palindrome(X)) :- len(X).\nquery(bb(X)) :- len(X)."}
+```

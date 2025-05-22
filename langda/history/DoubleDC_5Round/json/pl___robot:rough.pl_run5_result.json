@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "run_index": 5,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 111,
+  "iter_count": 1,
+  "process_time": 110.91731095314026,
+  "final_result": "Error evaluating Problog model:\n    target = self.ground(db, query, target, label=label)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py\", line 341, in ground\n    raise NonGroundQuery(term, db.lineno(term.location))\nproblog.errors.NonGroundQuery: Query term still contains variables after grounding for query at(X3,X4,s(s(s(0)))) at 51:7.",
+  "final_report": "The generated code is not correct as it fails to maintain the logical structure and completeness of the original code. Key conditions in the 'carrying' and 'at' predicates are missing, leading to a non-ground query error during execution. The original code includes necessary conditions like 'do(pickup(key),T)', 'at(robot,Pos,T)', and 'at(key,Pos,T)' which are crucial for grounding the queries. The generated code simplifies these predicates incorrectly, resulting in an invalid program that cannot be executed properly."
+}

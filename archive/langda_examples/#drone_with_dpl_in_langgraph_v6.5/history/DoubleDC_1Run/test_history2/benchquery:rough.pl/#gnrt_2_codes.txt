@@ -1,0 +1,5 @@
+[
+{
+"58E6FAB7": "density(Country, Density) :- pop(Country, Pop), area(Country, Area), (Pop > 0, Area > 0 -> Density is (Pop * 1000) / Area ; writeln('Error: Invalid population or area for country'), fail). query_pop([Country1, Density1, Country2, Density2]) :- density(Country1, Density1), density(Country2, Density2), Country1 \\= Country2, abs(Density1 - Density2) / Density1 =< 0.05."
+}
+]

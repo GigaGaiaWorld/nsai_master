@@ -1,0 +1,171 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ digit(D), digit(E), D=\=E,
+ sumdigit(0, D, E, Y, C1),
+ 
+ digit(N), all_different([N,Y,E,D]),
+ 
+ digit(R), all_different([R,N,Y,E,D]),
+ sumdigit(C1, N, R, E, C2),
+ 
+ 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 1039E900 </HASH>
+<Requirements>complete the predicate logic. </Requirements></Langda>
+ 
+ all_different([S,E,N,D,M,O,R,Y]).
+sumdigit(C, A, B, S, 0) :-
+ X is C + A + B,
+ X < 10,
+ S = X.
+sumdigit(C, A, B, S, 1) :-
+ X is C + A + B,
+ X >= 10,
+ S is X - 10.
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ digit(D), digit(E), D=\=E,
+ sumdigit(0, D, E, Y, C1),
+ 
+ digit(N), all_different([N,Y,E,D]),
+ 
+ digit(R), all_different([R,N,Y,E,D]),
+ sumdigit(C1, N, R, E, C2),
+ 
+ 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 1039E900 </HASH>
+<Requirements>complete the predicate logic. </Requirements></Langda>
+ 
+ all_different([S,E,N,D,M,O,R,Y]).
+sumdigit(C, A, B, S, 0) :-
+ X is C + A + B,
+ X < 10,
+ S = X.
+sumdigit(C, A, B, S, 1) :-
+ X is C + A + B,
+ X >= 10,
+ S is X - 10.
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+
+</origin_code>
+<generated_code>
+
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+    digit(D), digit(E), D=\=E,
+    sumdigit(0, D, E, Y, C1),
+    
+    digit(N), all_different([N,Y,E,D]),
+    
+    digit(R), all_different([R,N,Y,E,D]),
+    sumdigit(C1, N, R, E, C2),
+    
+    digit(O), all_different([O,R,N,Y,E,D]),
+    sumdigit(C2, E, O, N, C3),
+    
+    digit(M), all_different([M,O,R,N,Y,E,D]),
+    sumdigit(C3, S, M, O, C4),
+    
+    leftdigit(S), leftdigit(M),
+    C4 = 0,
+    all_different([S,E,N,D,M,O,R,Y]).
+
+sumdigit(C, A, B, S, 0) :-
+    X is C + A + B,
+    X < 10,
+    S = X.
+sumdigit(C, A, B, S, 1) :-
+    X is C + A + B,
+    X >= 10,
+    S is X - 10.
+
+digit(0).
+digit(1).
+digit(2).
+digit(3).
+digit(4).
+digit(5).
+digit(6).
+digit(7).
+digit(8).
+digit(9).
+
+leftdigit(D) :- digit(D), D =\= 0.
+
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+
+query(query_sum(X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

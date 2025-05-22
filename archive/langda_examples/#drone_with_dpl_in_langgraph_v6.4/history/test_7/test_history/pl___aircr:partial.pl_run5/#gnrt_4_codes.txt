@@ -1,0 +1,5 @@
+[
+{
+"779B4ADF": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(GP),\n distance(Pos, GP, Distance),\n (Distance =:= 0 -> true ; flap_position(Time-1,PrevPos),\n distance(PrevPos, GP, PrevDistance),\n Distance < PrevDistance).\n\n% Helper predicate to calculate distance between current position and goal\ndistance(Pos, GP, Distance) :-\n Distance is abs(Pos - GP)."
+}
+]

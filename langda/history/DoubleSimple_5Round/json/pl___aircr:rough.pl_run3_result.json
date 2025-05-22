@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___aircr:rough.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 80,
+  "iter_count": 2,
+  "process_time": 80.07247996330261,
+  "final_result": "% Problog Inference Result：\ngoal_reached(1) = 0.0300\ngoal_reached(2) = 0.0233\ngoal_reached(3) = 0.0063\ngoal_reached(4) = 0.0021\ngoal_reached(5) = 0.0021\noverrun_exception(1) = 0.0300\noverrun_exception(2) = 0.1411\noverrun_exception(3) = 0.3312\noverrun_exception(4) = 0.2479\noverrun_exception(5) = 0.1117",
+  "final_report": "The generated code has significant differences from the original code, particularly in the 'attempted_flap_position' predicate. The original code calculates the position based on the goal and actuator strength directionally (using sign(GP-Old)), while the generated code simply adds strength and wind effect without considering direction. This leads to incorrect movement logic and explains the vastly different results. The generated code is syntactically valid but semantically incorrect for the intended flap control behavior."
+}

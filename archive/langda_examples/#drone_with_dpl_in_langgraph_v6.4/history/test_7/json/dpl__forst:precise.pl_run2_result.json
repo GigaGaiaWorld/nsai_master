@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forst:precise.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 456,
+  "iter_count": 5,
+  "process_time": 455.78089594841003,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[3, 1, 2, 4]) = 1.0000",
+  "final_report": "The generated code is mostly correct and consistent with the original code. It maintains the same stack operations (push, pop, dup, swap, over, rot) and includes the sort operation with a conditional check for get_top_n. The main difference is the replacement of insertion_sort with the built-in sort predicate, which is more efficient but functionally equivalent for this context. The generated code also adds a fallback case when get_top_n fails, which improves robustness. Both codes produce identical results for the given queries."
+}

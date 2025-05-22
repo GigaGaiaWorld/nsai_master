@@ -1,0 +1,34 @@
+
+
+event_wind_speed_rise(Sensor) :- 
+  sensor_data(Sensor, windspeed, _, _, _, Mean_windspeed, _, _, _, Slope_windspeed), 
+  Slope_windspeed > 0.
+
+event_temperature_drop(Sensor) :- 
+  sensor_data(Sensor, temperature, _, _, _, Mean_temp, _, _, _, Slope_temp), 
+  Slope_temp < 0.
+
+event_wind_speed_drop(Sensor) :- 
+  sensor_data(Sensor, windspeed, _, _, _, Mean_windspeed, _, _, _, Slope_windspeed), 
+  Slope_windspeed < 0.
+
+event_temperature_rise(Sensor) :- 
+  sensor_data(Sensor, temperature, _, _, _, Mean_temp, _, _, _, Slope_temp), 
+  Slope_temp > 0.
+
+event_low_wind_speed(Sensor) :- 
+  sensor_data(Sensor, windspeed, _, _, _, Mean_windspeed, _, _, _, _), 
+  Mean_windspeed < 3.6.
+
+anomaly(cold_risk) :- 
+  event_wind_speed_rise(sensor_weather),
+  event_temperature_drop(sensor_KMS1).
+
+anomaly(dryness_risk) :- 
+  event_wind_speed_drop(sensor_weather),
+  event_temperature_rise(sensor_KMS1),
+  sensor_data(sensor_KMS1, temperature, _, _, _, Mean_temp, _, _, _, _),
+  Mean_temp > 9.
+
+anomaly(stillness_risk) :- 
+  event_low_wind_speed(sensor_weather).

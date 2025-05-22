@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 68,
+  "iter_count": 3,
+  "process_time": 67.83394503593445,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.5600\nat(robot,loc2,s(s(s(0)))) = 0.9900\nat(robot,loc1,s(s(s(0)))) = 0.1881\nat(robot,loc0,s(s(s(0)))) = 0.0361\nat(key,loc2,s(s(s(0)))) = 0.6930\nat(key,loc1,s(s(s(0)))) = 0.4317\nat(key,loc0,s(s(s(0)))) = 0.0253",
+  "final_report": "The generated code has significant differences from the original code, particularly in the 'carrying' predicate definitions. The original code includes conditions for 'at(robot,Pos,T)' and 'at(key,Pos,T)' in the first clause, and checks for 'do(putdown(key),T)' and 'drops(key,T)' in the second clause. The generated code simplifies these conditions, leading to different probabilities in the results. The generated code is syntactically valid but semantically inconsistent with the original, resulting in different probabilities for the queries."
+}

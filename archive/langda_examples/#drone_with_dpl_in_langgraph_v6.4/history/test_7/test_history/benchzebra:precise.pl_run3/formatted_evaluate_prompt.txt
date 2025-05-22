@@ -1,0 +1,157 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda>
+<Code_Block>my_member(house(red, english, _, _, _), Houses)</Code_Block>
+<HASH> Hash tag of code: CD409C7B </HASH>
+<Requirements> 	House arrangement: 		There are 5 houses, arranged in order (houses(Houses)). 		 	Rules: 		The owner of the red house is English. 		The Spanish has a dog. 		The owner of the green house drinks coffee. 		The Ukrainian drinks tea. 		The green house is to the right of the ivory house (right next to it). 		The snail owner smokes Winstons. 		The yellow house owner smokes Kools. 		The middle house drinks milk (the 3rd house). 		The first house owner is Norwegian. 		The Chesterfields owner lives next door to the fox owner. 		The Kools owner lives next door to the horse owner. 		The orange juice drinker smokes Lucky Strikes. 		The Japanese smoke Parliaments. 		The Norwegian lives next to the blue house. 		 		Someone has a zebra. 		Someone drink water. </Requirements></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(red,english,X33,X34,X35), house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(red,english,X33,X34,X35), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(red,english,X33,X34,X35), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(red,english,X33,X34,X35), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55), house(red,english,X33,X34,X35)]) = 1.0000</Result>
+</Code>
+
+<Evaluation_Instructions>
+First, analyze the entire codebase and test results to identify errors and potential issues. Consider:
+1. Syntax correctness: Is the ProbLog code syntactically valid?
+2. Logical correctness: Does the code implement the specified requirements?
+3. Error analysis: What specific issues are causing any test failures?
+4. Integration: Do the code blocks properly work together?
+
+Create a comprehensive report that identifies all issues and explains their causes.
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured as follows:
+```report
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for first code]",
+        "Report": "// Your analysis of first code here"</Code>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for second code]",
+        "Report": "// Your analysis of second code here"</Code>
+    // other code blocks...
+</Code_Block_Issues>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda>
+<Code_Block>my_member(house(red, english, _, _, _), Houses)</Code_Block>
+<HASH> Hash tag of code: CD409C7B </HASH>
+<Requirements> 	House arrangement: 		There are 5 houses, arranged in order (houses(Houses)). 		 	Rules: 		The owner of the red house is English. 		The Spanish has a dog. 		The owner of the green house drinks coffee. 		The Ukrainian drinks tea. 		The green house is to the right of the ivory house (right next to it). 		The snail owner smokes Winstons. 		The yellow house owner smokes Kools. 		The middle house drinks milk (the 3rd house). 		The first house owner is Norwegian. 		The Chesterfields owner lives next door to the fox owner. 		The Kools owner lives next door to the horse owner. 		The orange juice drinker smokes Lucky Strikes. 		The Japanese smoke Parliaments. 		The Norwegian lives next to the blue house. 		 		Someone has a zebra. 		Someone drink water. </Requirements></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(red,english,X33,X34,X35), house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(red,english,X33,X34,X35), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(red,english,X33,X34,X35), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(red,english,X33,X34,X35), house(X51,X52,X53,X54,X55)]) = 1.0000
+zebra([house(X36,X37,X38,X39,X40), house(X41,X42,X43,X44,X45), house(X46,X47,X48,X49,X50), house(X51,X52,X53,X54,X55), house(red,english,X33,X34,X35)]) = 1.0000</Result>
+
+</original_code>
+<Analysis>
+
+<Overall_Analysis> 
+The provided ProbLog code attempts to solve the classic "zebra puzzle" by defining a set of houses and their attributes based on given constraints. The test results show that the code is syntactically valid and runs without errors, but the output indicates that the constraints are not fully enforced, leading to multiple possible solutions where only one should exist. This suggests that the logical implementation of the puzzle's rules is incomplete or incorrect.
+</Overall_Analysis>
+
+<Error_Summary> 
+1. **Incomplete Constraints**: The code only enforces the rule that the owner of the red house is English (`my_member(house(red, english, _, _, _), Houses)`). All other rules (e.g., the Spanish owning a dog, the green house being to the right of the ivory house, etc.) are missing.
+2. **Ambiguous Output**: The test results show multiple solutions where the red house can be in any position, which violates the puzzle's constraints (e.g., the first house must be Norwegian, and the middle house must drink milk).
+3. **Missing Predicates**: The `houses` predicate is defined but lacks any constraints to enforce the puzzle's rules.
+</Error_Summary>
+
+<Code_Block_Issues>
+    <Code>"HASH": "CD409C7B",
+        "Report": "This code block enforces the rule that the owner of the red house is English. While this is correct, it is the only rule implemented. The rest of the puzzle's constraints are missing, leading to an incomplete solution."
+    </Code>
+</Code_Block_Issues>
+
+<Recommendations>
+1. **Implement All Constraints**: Add predicates to enforce all the puzzle's rules, such as:
+   - The Spanish has a dog.
+   - The green house is to the right of the ivory house.
+   - The middle house drinks milk.
+   - The first house is Norwegian.
+   - The Norwegian lives next to the blue house.
+   - etc.
+2. **Refine the `houses` Predicate**: The `houses` predicate should include constraints to ensure the houses are uniquely defined and satisfy all rules.
+3. **Test Incrementally**: After adding each constraint, test the code to ensure it narrows down the solutions correctly.
+4. **Use Helper Predicates**: Leverage the `right_of`, `next_to`, and `my_member` predicates to enforce spatial and relational constraints.
+5. **Debugging**: Use the test results to identify which constraints are missing or incorrectly implemented by comparing the output against the expected solution.
+</Recommendations>
+
+</Analysis>
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> 
+For each code block, format it's report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

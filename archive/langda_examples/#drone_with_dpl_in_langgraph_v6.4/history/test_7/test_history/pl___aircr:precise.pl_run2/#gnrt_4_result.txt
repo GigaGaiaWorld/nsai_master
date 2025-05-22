@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "5BCD04E8", "Code": "attempted_flap_position(Time,Pos) :-\n Time > 0,\n Prev is Time-1,\n flap_position(Prev, Old),\n goal(GP),\n Old \\= GP,\n use_actuator(Time, A),\n actuator_strength(A, AS),\n AE is sign(GP - Old) * AS,\n wind_effect(Time, WE),\n Intermediate is Old + AE,\n legal_flap_position(Intermediate),\n % Apply wind effect and ensure integer output\n Pos is round(min(10, max(0, Intermediate + WE)))."}
+```
+
+The changes made in the generated code include:
+1. Removed the scaling factor (0.5) from the wind effect
+2. Added the `round/1` function to ensure integer output
+3. Simplified the wind effect application by directly adding WE to Intermediate
+4. Maintained all other functionality from the original requirements

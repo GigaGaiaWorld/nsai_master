@@ -1,0 +1,3 @@
+```problog
+{"HASH": "418D2062","Code": "append([], L, L).\nappend([H|T], L2, [H|R]) :-\n    append(T, L2, R).\n\nsplit([],[],[]).\nsplit([X],[X],[]).\nsplit([X,Y|Xs],[X|Ls],[Y|Rs]) :-\n    split(Xs,Ls,Rs).\n\nmerge([],L,L).\nmerge(L,[],L).\nmerge([X|Xs],[Y|Ys],[X|Zs]) :-\n    X =< Y,\n    merge(Xs,[Y|Ys],Zs).\nmerge([X|Xs],[Y|Ys],[Y|Zs]) :-\n    X > Y,\n    merge([X|Xs],Ys,Zs).\n\nmerge_sort([],[]).\nmerge_sort([X],[X]).\nmerge_sort(List,Sorted) :-\n    split(List,L1,L2),\n    merge_sort(L1,Sorted1),\n    merge_sort(L2,Sorted2),\n    merge(Sorted1,Sorted2,Sorted).\n\nquery(merge_sort([3,1,2,5,7,12],X))."}
+```

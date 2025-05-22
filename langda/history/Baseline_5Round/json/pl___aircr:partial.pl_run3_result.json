@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___aircr:partial.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 73,
+  "iter_count": 0,
+  "process_time": 72.58780717849731,
+  "final_result": "% Problog Inference Result：\ngoal_reached(1) = 0.2625\ngoal_reached(2) = 0.1873\ngoal_reached(3) = 0.1269\ngoal_reached(4) = 0.0841\ngoal_reached(5) = 0.0570\noverrun_exception(1) = 0.0000\noverrun_exception(2) = 0.0030\noverrun_exception(3) = 0.0110\noverrun_exception(4) = 0.0127\noverrun_exception(5) = 0.0114",
+  "final_report": "The generated code is largely consistent with the original code, with only minor syntactic differences that do not affect functionality. The main change is in the 'goal_reached' predicate, where the generated code checks 'flap_position(Time,Pos)' before 'goal(Pos)', which is logically equivalent to the original. The 'overrun_exception' predicate in the generated code explicitly includes 'Time > 0', which was implicit in the original. These changes do not alter the program's behavior, as evidenced by identical run results."
+}

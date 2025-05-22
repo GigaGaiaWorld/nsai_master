@@ -1,0 +1,23 @@
+```report
+{"HASH": "F91C6038","ErrorSummary": "Syntax error in predicate declaration - missing closing parenthesis and period","SuggestedFix": "Change 'leftdigit(A). leftdigit(B). leftdigit(C).' to 'leftdigit(A), leftdigit(B), leftdigit(C).' with proper comma separation and closing period","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "A8860BE4","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "702CD838","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "57FD427B","ErrorSummary": "Typo in comment ('hundards' should be 'hundreds') but code is correct","SuggestedFix": "Fix comment spelling but no code changes needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "0DE8749E","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "MAIN","ErrorSummary": "Main predicate syntax error - line break after :- without proper continuation","SuggestedFix": "Remove line break after 'query_sum([A,B,C,D,E]) :-' and ensure proper comma-separated conjunction of goals","Dependencies": ["F91C6038"],"NeedRegenerate": true}
+```

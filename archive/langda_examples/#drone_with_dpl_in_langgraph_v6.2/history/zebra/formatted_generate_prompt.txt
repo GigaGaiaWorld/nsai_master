@@ -1,0 +1,60 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+zebra(Houses) :-
+ houses(Houses),
+ 
+{{LANGDA}}
+houses([
+ house(_, _, _, _, _),
+ house(_, _, _, _, _),
+ house(_, _, _, _, _),
+ house(_, _, _, _, _),
+ house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder
+Hash tag of code, please use it actually for generation: 10D48CC4
+Requirements of Rules: 1. The Englishman lives in the red house. 2. The Spaniard owns the dog. 3. The owner of the green house drinks coffee. 4. The Ukrainian drinks tea. 5. The green house is to the right of the ivory house. 6. The Winston smoker keeps snails. 7. The Kools are smoked in the yellow house. 8. Milk is in the middle (third) house. 9. The Norwegian lives in the first house. 10. The man who smokes Chesterfields lives next to the one who keeps a fox. 11. The man who smokes Kools lives next to the one who keeps a horse. 12. The Lucky Strikes smoker drinks orange juice. 13. The Japanese smokes Parliaments. 14. The Norwegian lives next to the blue house. 15. One of the house­holders keeps a zebra. 16. One of the house­holders drinks water.
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

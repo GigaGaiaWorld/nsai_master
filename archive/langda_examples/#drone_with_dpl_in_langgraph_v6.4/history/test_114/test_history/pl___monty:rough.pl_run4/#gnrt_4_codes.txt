@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Find all doors that are neither selected nor have a prize\n    findall(D, (member(D, [1,2,3]), \\+ select_door(D), \\+ prize(D)), Doors),\n    % If there is only one empty door, open it deterministically\n    (length(Doors, 1), member(Door, Doors)) ;\n    % If there are two empty doors, choose one with 50% probability\n    (length(Doors, 2), 0.5::Door = Doors ; 0.5::Door = Doors)."
+}
+]

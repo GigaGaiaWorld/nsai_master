@@ -1,0 +1,3 @@
+```problog
+{"HASH": "35747D5A","Code": "query_sum([A,B,C,D,E]) :-\n    leftdigit(A), leftdigit(B), leftdigit(C), % First digits cannot be 0\n    digit(D), digit(E),\n    all_different([A,B,C,D,E]), % All digits must be unique\n    % Column-wise addition\n    sumdigit(0, B, D, E, Cout1), % Units place\n    sumdigit(Cout1, A, C, D, Cout2), % Tens place\n    sumdigit(Cout2, 0, B, C, _). % Hundreds place (no carry out needed)"}
+```

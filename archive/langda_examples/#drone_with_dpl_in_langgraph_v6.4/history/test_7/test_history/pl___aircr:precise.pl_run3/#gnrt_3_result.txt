@@ -1,0 +1,7 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin code:
+
+```problog
+{"HASH": "5BCD04E8", "Code": "attempted_flap_position(Time,Pos) :-\n    Time > 0,\n    Prev is Time-1,\n    flap_position(Prev,Old),\n    goal(G),\n    Old \\= G,\n    use_actuator(Time,A),\n    actuator_strength(A,AS),\n    (G > Old, Sign is 1 ; G < Old, Sign is -1),\n    AE is Sign * AS,\n    wind_effect(Time,WE),\n    TempPos is Old + AE + WE,\n    (legal_flap_position(TempPos), Pos = TempPos ; Pos = Old)."}
+```
+
+Note that this is the corrected version of the code block where the `->` operator has been replaced with ProbLog-compatible conditional logic (using `,` and `;`). The hash tag remains the same as in the original report since this is the same logical block, just with corrected syntax.

@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 50,
+  "iter_count": 1,
+  "process_time": 49.918484926223755,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.5572\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(key,loc2,s(s(s(0)))) = 0.5670\nat(key,loc1,s(s(s(0)))) = 0.3700",
+  "final_report": "The generated code has some issues compared to the original code. First, the 'carrying' predicate in the generated code is missing the 'do(pickup(key),T)' condition and incorrectly combines conditions. Second, the 'at(robot,Pos,s(T))' predicate in the generated code is missing the case where the robot stays in the same position if the goto fails. These changes affect the logic and results. The running results show different probabilities for 'carrying(key,s(s(s(0))))' and missing entries for some 'at' predicates, indicating inconsistency with the original code."
+}

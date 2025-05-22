@@ -1,0 +1,11 @@
+Here are the completed code snippets in the requested JSON format:
+
+```problog
+{"HASH": "95E704F2", "Code": "merge_sort(List, Sorted) :- \n    length(List, Len),\n    (Len > 1 ->\n        split_list(List, Left, Right),\n        merge_sort(Left, SortedLeft),\n        merge_sort(Right, SortedRight),\n        merge(SortedLeft, SortedRight, Sorted)\n    ;\n        Sorted = List\n    )."}
+```
+
+```problog
+{"HASH": "26E82D5D", "Code": "merge_sort(List, Sorted) :- \n    length(List, Len),\n    Len > 1,\n    split_list(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted)."}
+```
+
+Note that I've combined both requirements into a single coherent implementation in the first snippet (95E704F2), while the second snippet (26E82D5D) shows just the recursive part as requested. The first snippet includes both the length check and the recursive processing in a more complete implementation.

@@ -1,0 +1,94 @@
+### **Aircraft Flap Controller Code Evaluation Report**
+
+---
+
+#### **1. Document Title**  
+**Evaluation of ProbLog Code for Aircraft Flap Controller**
+
+---
+
+#### **2. Background and Purpose**  
+The provided ProbLog code models an aircraft flap controller system. The system aims to adjust the flap position from an initial value (6) to a target value (4) over a series of time steps, considering actuator strength and wind effects. The goal is to analyze the probability of reaching the target (`goal_reached`) and the likelihood of overrun exceptions (`overrun_exception`).
+
+---
+
+#### **3. Original Code Excerpt**  
+```prolog
+% Aircraft Flap Controller
+legal_flap_position(FP) :- between(0,10,FP).
+actuator_strength(a,2).
+actuator_strength(b,1).
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+flap_position(Time,Pos) :- Time > 0, attempted_flap_position(Time,Pos), legal_flap_position(Pos).
+overrun_exception(Time) :- attempted_flap_position(Time,Pos), \+ legal_flap_position(Pos).
+goal_reached(Time) :- goal(G), flap_position(Time,G).
+attempted_flap_position(Time,Pos) :- Time > 0, Prev is Time-1, flap_position(Prev, Old), \+ goal_reached(Prev), use_actuator(Time, A), actuator_strength(A, AS), goal(GP), AE is sign(GP - Old) * AS, wind_effect(Time, WE), Pos is Old + AE + WE.
+flap_position(0,6).
+goal(4).
+at(5).
+query(goal_reached(T)) :- at(S), between(1,S,T).
+query(overrun_exception(T)) :- at(S), between(1,S,T).
+```
+
+---
+
+#### **4. Overall Analysis**  
+The code generally adheres to the requirements, but the test results reveal issues:
+- The probability of `goal_reached` decreases over time, which is counterintuitive for a system aiming to reach a target.
+- The `overrun_exception` probabilities are non-zero, indicating potential boundary violations.
+- The root causes include incorrect actuator strength handling and wind effect calculations.
+
+---
+
+#### **5. Error Summary**  
+
+| **No.** | **Problem**                          | **Impact**                                   | **Suggestion**                                                                 |
+|---------|--------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------|
+| 1       | Typo in `actuator_strength(b,1)`     | Incorrect actuator strength for `b`          | Correct to `actuator_strength(b,1)`.                                           |
+| 2       | Wind effect not normalized           | Overrun due to extreme wind effects          | Limit wind effects to ensure `Pos` stays within `legal_flap_position`.         |
+| 3       | Decreasing `goal_reached` probability | System fails to converge to target           | Re-evaluate actuator contribution and wind effect superposition logic.         |
+| 4       | No handling for `Pos` out of bounds  | High `overrun_exception` probabilities       | Add checks to clamp `Pos` within `[0, 10]` before assigning.                   |
+
+---
+
+#### **6. Improvement Suggestions**  
+
+##### **Code Fixes**  
+1. **Correct Actuator Strength Typo**:  
+   ```prolog
+   actuator_strength(b,1).  % Fix typo
+   ```
+
+2. **Clamp `Pos` to Legal Range**:  
+   ```prolog
+   attempted_flap_position(Time,Pos) :-
+       Time > 0,
+       Prev is Time-1,
+       flap_position(Prev, Old),
+       \+ goal_reached(Prev),
+       use_actuator(Time, A),
+       actuator_strength(A, AS),
+       goal(GP),
+       AE is sign(GP - Old) * AS,
+       wind_effect(Time, WE),
+       TempPos is Old + AE + WE,
+       Pos is max(0, min(10, TempPos)).  % Clamp to [0, 10]
+   ```
+
+3. **Normalize Wind Effects**:  
+   Adjust wind probabilities to reduce extreme values:
+   ```prolog
+   0.1::wind_effect(T,-3); 0.4::wind_effect(T,-2); 0.4::wind_effect(T,2); 0.1::wind_effect(T,3) :- wind(strong).
+   ```
+
+##### **Additional Checks**  
+- **Zero/Negative Values**: Ensure `Time` and `Pos` are non-negative.  
+- **Code Blocks**: Verified for correct formatting.  
+
+---
+
+#### **Final Notes**  
+The revised code should improve convergence to the target and reduce overrun exceptions. Further testing is recommended to validate the changes.

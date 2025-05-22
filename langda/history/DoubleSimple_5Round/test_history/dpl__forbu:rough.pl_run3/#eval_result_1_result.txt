@@ -1,0 +1,3 @@
+```report
+{"HASH": "47D659C8", "ErrorSummary": "The error occurs due to the use of the '->' operator which is not supported in ProbLog. The code is trying to use Prolog's if-then-else construct in a ProbLog environment.", "SuggestedFix": "Replace the '->' operator with ProbLog-compatible conditional logic. Modify line 3 to use separate clauses for the comparison cases:\n\nbubblesort([H1,H2|T], Acc, Sorted) :- H1 > H2, bubblesort([H2,H1|T], Acc, Sorted).\nbubblesort([H1,H2|T], Acc, Sorted) :- H1 =< H2, append(Acc, [H1], NewAcc), bubblesort([H2|T], NewAcc, Sorted).", "Dependencies": [], "NeedRegenerate": true}
+```

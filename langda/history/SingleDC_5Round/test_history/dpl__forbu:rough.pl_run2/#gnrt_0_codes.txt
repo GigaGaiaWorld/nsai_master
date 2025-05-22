@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "swap(X, Y, Y, X) :- X > Y.\nswap(X, Y, X, Y) :- X =< Y.\n\nbubble([X], [], X).\nbubble([H1, H2 | T], [X1 | T1], X) :-\n    swap(H1, H2, X1, X2),\n    bubble([X2 | T], T1, X).\n\nbubblesort([], L, L).\nbubblesort(L, L3, Sorted) :-\n    bubble(L, L2, X),\n    bubblesort(L2, [X | L3], Sorted)."
+}
+]

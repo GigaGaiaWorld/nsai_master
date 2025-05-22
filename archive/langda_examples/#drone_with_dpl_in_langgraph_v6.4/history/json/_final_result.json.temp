@@ -1,0 +1,32 @@
+[
+  {
+    "file_name": "benchprove:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 285,
+    "iter_count": 3,
+    "process_time": 284.8988769054413,
+    "final_result": "Error evaluating Problog model:\n    toks = self.label_tokens(string, root_tokens)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py\", line 1186, in label_tokens\n    raise ParseError(string, \"Expected binary operator\", t.location)\nproblog.parser.ParseError: Expected binary operator at 24:3.",
+    "final_report": "The generated code has several issues. First, the 'implies' predicate is incorrectly split into two separate clauses, which changes its logical meaning from the original. Second, there are formatting errors with escaped characters like '\\n\\t' in the 'opposite' predicate. These issues make the generated code invalid and cause a parsing error during execution. The generated code does not maintain consistency with the original code's functionality."
+  },
+  {
+    "file_name": "benchrps__:precise.pl",
+    "Validity_form": false,
+    "Validity_result": false,
+    "running_time": 257,
+    "iter_count": 3,
+    "process_time": 256.5173168182373,
+    "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 44:16.",
+    "final_report": "The generated code is mostly consistent with the original code in terms of logic and structure. However, it contains a syntax error in the 'determine_winner' predicate where it uses single quotes for 'Player 1', 'Player 2', and 'Draw' instead of the correct Prolog atoms (player1, player2, draw). This causes the code to be invalid and results in a runtime error. The original code correctly uses atoms without quotes."
+  },
+  {
+    "file_name": "dpl__forst:rough.pl",
+    "Validity_form": true,
+    "Validity_result": false,
+    "running_time": 241,
+    "iter_count": 3,
+    "process_time": 241.3470482826233,
+    "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000",
+    "final_report": "The generated code is mostly correct and consistent with the original code in terms of functionality. However, there is a discrepancy in the 'rot' operation. The original code rotates the top three elements as [Z,X,Y|Stack], while the generated code rotates them as [Y,Z,X|Stack], leading to different results. This inconsistency affects the correctness of the 'rot' operation. The rest of the operations (push, pop, dup, swap, over) are correctly implemented and produce the same results as the original code."
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___strbb:rough.pl",
+  "run_index": 3,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 73,
+  "iter_count": 3,
+  "process_time": 73.20384621620178,
+  "final_result": "Error evaluating Problog model:\n    mode = check_mode((low, high, value), [\"iii\", \"iiv\"], functor=\"between\", **k)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to 'between/3': arguments: (1, 5-1, X1), expected: (integer, integer, integer) or (integer, integer, var) at 21:2.",
+  "final_report": "The generated code is not valid due to a syntax error in the 'between' predicate call. The original code correctly calculates 'Max is N-1' before using it in 'between', while the generated code attempts to use 'N-1' directly in 'between', which is not syntactically correct in Problog. This causes a CallModeError. The logic of the generated code is otherwise consistent with the original, but the syntax error prevents it from running successfully."
+}

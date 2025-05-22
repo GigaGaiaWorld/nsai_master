@@ -1,0 +1,257 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find coun-
+% tries of approximately equal population density
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 5738285A </HASH>
+<LLM> Requirements of Rules: define query_pop to query population and area database to find countries of approximately equal population density(not larger than 5%),  you might also need to define density predicate to calculate the density. </LLM></Langda>
+.
+% populations in 100000's
+pop(china,	8250).
+pop(india,	5863).
+pop(ussr,	2521).
+pop(usa,	2119).
+pop(indonesia,	1276).
+pop(japan,	1097).
+pop(brazil,	1042).
+pop(bangladesh,	 750).
+pop(pakistan,	 682).
+pop(w_germany,	 620).
+pop(nigeria,	 613).
+pop(mexico,	 581).
+pop(uk,		 559).
+pop(italy,	 554).
+pop(france,	 525).
+pop(philippines, 415).
+pop(thailand,	 410).
+pop(turkey,	 383).
+pop(egypt,	 364).
+pop(spain,	 352).
+pop(poland,	 337).
+pop(s_korea,	 335).
+pop(iran,	 320).
+pop(ethiopia,	 272).
+pop(argentina,	 251).
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(ussr, 8708).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(w_germany, 96).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+query(query_pop(_)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find coun-
+% tries of approximately equal population density
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 5738285A </HASH>
+<LLM> Requirements of Rules: define query_pop to query population and area database to find countries of approximately equal population density(not larger than 5%),  you might also need to define density predicate to calculate the density. </LLM></Langda>
+.
+% populations in 100000's
+pop(china,	8250).
+pop(india,	5863).
+pop(ussr,	2521).
+pop(usa,	2119).
+pop(indonesia,	1276).
+pop(japan,	1097).
+pop(brazil,	1042).
+pop(bangladesh,	 750).
+pop(pakistan,	 682).
+pop(w_germany,	 620).
+pop(nigeria,	 613).
+pop(mexico,	 581).
+pop(uk,		 559).
+pop(italy,	 554).
+pop(france,	 525).
+pop(philippines, 415).
+pop(thailand,	 410).
+pop(turkey,	 383).
+pop(egypt,	 364).
+pop(spain,	 352).
+pop(poland,	 337).
+pop(s_korea,	 335).
+pop(iran,	 320).
+pop(ethiopia,	 272).
+pop(argentina,	 251).
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(ussr, 8708).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(w_germany, 96).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+query(query_pop(_)).
+</origin_code>
+<generated_code>
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find coun-
+% tries of approximately equal population density
+
+% populations in 100000's
+pop(china,    8250).
+pop(india,    5863).
+pop(ussr,    2521).
+pop(usa,    2119).
+pop(indonesia,    1276).
+pop(japan,    1097).
+pop(brazil,    1042).
+pop(bangladesh,     750).
+pop(pakistan,     682).
+pop(w_germany,     620).
+pop(nigeria,     613).
+pop(mexico,     581).
+pop(uk,     559).
+pop(italy,     554).
+pop(france,     525).
+pop(philippines, 415).
+pop(thailand,     410).
+pop(turkey,     383).
+pop(egypt,     364).
+pop(spain,     352).
+pop(poland,     337).
+pop(s_korea,     335).
+pop(iran,     320).
+pop(ethiopia,     272).
+pop(argentina,     251).
+
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(ussr, 8708).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(w_germany, 96).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+
+% Calculate population density (population / area)
+density(Country, Density) :-
+    pop(Country, Pop),
+    area(Country, Area),
+    Density is Pop / Area.
+
+% Query to find countries with approximately equal population density (not larger than 5%)
+query_pop(Pairs) :-
+    findall((Country1, Country2), (
+        density(Country1, Density1),
+        density(Country2, Density2),
+        Country1 \= Country2,
+        abs(Density1 - Density2) / Density1 =< 0.05
+    ), Pairs).
+
+query(query_pop(_)).
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

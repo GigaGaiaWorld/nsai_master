@@ -1,0 +1,5 @@
+[
+{
+"FB41E2F7": "parse([N, Op, M | T], R) :- almost_equal(N, N2), almost_equal(M, M2), (Op == '+' -> R2 is N2 + M2; Op == '-' -> R2 is N2 - M2; Op == '*' -> R2 is N2 * M2; Op == '/' -> R2 is N2 / M2), parse([R2 | T], R)."
+}
+]

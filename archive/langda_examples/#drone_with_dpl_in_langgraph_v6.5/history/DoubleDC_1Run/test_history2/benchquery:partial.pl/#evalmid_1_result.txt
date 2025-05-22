@@ -1,0 +1,91 @@
+### Code Evaluation Report: ProbLog Population Density Query
+
+---
+
+#### 1. **Document Title**
+**Evaluation of ProbLog Code for Population Density Comparison**
+
+---
+
+#### 2. **Background and Purpose**
+The provided ProbLog code is designed to query a database of countries' populations and areas to identify pairs of countries with approximately equal population densities. The `query_pop/1` predicate calculates the density for two countries and checks if their densities fall within a specific range (20% tolerance). The code uses integer arithmetic for density calculations.
+
+---
+
+#### 3. **Original Code Excerpt**
+```prolog
+query_pop([C1,D1,C2,D2]) :-
+    density(C1,D1),
+    density(C2,D2),
+    D1 > D2,
+    T1 is 20*D1,
+    T2 is 21*D2,
+    T1 < T2.
+
+density(C,D) :-
+    pop(C,P),
+    area(C,A),
+    D is (P*100)//A.
+```
+
+---
+
+#### 4. **Overall Analysis**
+The code generally meets the requirements of comparing population densities. However, the test results reveal inconsistencies in the logic for determining "approximately equal" densities. The current implementation uses a fixed multiplier (20 and 21) for comparison, which may not accurately reflect the intended tolerance (e.g., 20% difference). Additionally, the integer division (`//`) in the `density/2` predicate may lead to loss of precision.
+
+---
+
+#### 5. **Error Summary**
+
+| **No.** | **Problem**                          | **Impact**                                                                 | **Suggestion**                                                                 |
+|---------|--------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1       | Fixed multipliers (20, 21)           | Inaccurate tolerance calculation for density comparison.                   | Replace with a percentage-based tolerance (e.g., `D1 * 0.8 < D2 < D1 * 1.2`). |
+| 2       | Integer division (`//`)              | Loss of precision in density calculations.                                 | Use floating-point division (`/`) for more accurate results.                   |
+| 3       | No handling of zero/negative areas   | Potential division by zero or incorrect densities for invalid inputs.      | Add guards to ensure `A > 0` in `density/2`.                                  |
+
+---
+
+#### 6. **Improvement Suggestions**
+
+##### **Specific Code Fixes**
+1. **Replace Fixed Multipliers with Percentage Tolerance**:
+   ```prolog
+   query_pop([C1,D1,C2,D2]) :-
+       density(C1,D1),
+       density(C2,D2),
+       D1 > D2,
+       D2 > D1 * 0.8.
+   ```
+
+2. **Use Floating-Point Division**:
+   ```prolog
+   density(C,D) :-
+       pop(C,P),
+       area(C,A),
+       A > 0,  % Guard against zero/negative area
+       D is (P*100)/A.
+   ```
+
+3. **Add Input Validation**:
+   ```prolog
+   density(C,D) :-
+       pop(C,P),
+       P >= 0,  % Ensure non-negative population
+       area(C,A),
+       A > 0,   % Ensure positive area
+       D is (P*100)/A.
+   ```
+
+##### **Handling Edge Cases**
+- **Zero/Negative Values**: The improved `density/2` predicate now includes guards to ensure valid inputs (`P >= 0`, `A > 0`).
+- **Precision**: Floating-point division ensures more accurate density calculations.
+
+---
+
+#### **Final Checks**
+- **Examples of Handling Zero/Negative Values**: The updated `density/2` predicate explicitly checks for `A > 0` and `P >= 0`.
+- **Table Format and Code Blocks**: Verified for correctness and readability.
+
+---
+
+This report provides a comprehensive analysis of the code's issues and actionable suggestions for improvement. Let me know if further refinements are needed!

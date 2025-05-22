@@ -1,0 +1,62 @@
+我现在有个问题, 我使用如下规则集训练一组MNIST数据, 数据分为两两形式, 两个神经网络分别处理(0,1)和(2,3)标签的数据, 其中如果出现的事件对为(0,2)或(1,3)时, 事件被定义为sequence=1, 如果出现的事件对为(0,3)或(1,2)时, 事件被定义为sequence=0, 规则集如下所示:
+
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+coin1(ID1, T) :-
+    happensAt(X,Y,T), 
+    event1(X, ID1).
+coin2(ID2, T) :-
+    happensAt(X,Y,T), 
+    event2(Y, ID2).
+
+% [50,250], (1,3) => 0
+% [100,300], (0,3) => 1
+outcome(1, 0, 2,T).
+outcome(0, 0, 3,T).
+outcome(0, 1, 2,T).
+outcome(1, 1, 3,T).
+
+detectEvent(sequence=EventID,T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    outcome(EventID, ID1, ID2, T).
+
+训练后混淆矩阵效果如下:
+
+[[198 2] [ 5 204]]
+
+现在, 我使用新的数据, 在原有的数据上进行了简单的修改, 在时间戳属于[50,250]时, 事件对(1,3)被定义为sequence=0, 在时间戳属于[100,300]时, 事件对(0,3)被定义为sequence=1, 当使用原模型进行测试时, 结果混淆矩阵为:
+
+ [[142  63]
+ [ 50 146]]
+
+于是我也同样对规则集进行了修改, 希望能在使用原有模型的基础上, 抵消新数据的变化, 新的规则集如下:
+
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+coin1(ID1, T) :-
+    happensAt(X,Y,T), 
+    event1(X, ID1).
+coin2(ID2, T) :-
+    happensAt(X,Y,T), 
+    event2(Y, ID2).
+
+% [50,250], (1,3) => 0
+% [100,300], (0,3) => 1
+outcome(1, 0, 2,T).
+outcome(0, 0, 3,T) :- \+between(100, 300, T).
+outcome(1, 0, 3,T) :- between(100, 300, T).
+outcome(0, 1, 2,T).
+outcome(1, 1, 3,T) :- \+between(50, 250, T).
+outcome(0, 1, 3,T) :- between(50, 250, T).
+
+detectEvent(sequence=EventID,T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    outcome(EventID, ID1, ID2, T).
+
+但是测试得到的混淆矩阵如下, 可以看出, 效果反而变差了, 这违反了我的直觉, 请告诉我出现这种状况的原因, 和解决方法.
+[[ 88 117]
+ [ 96 100]]

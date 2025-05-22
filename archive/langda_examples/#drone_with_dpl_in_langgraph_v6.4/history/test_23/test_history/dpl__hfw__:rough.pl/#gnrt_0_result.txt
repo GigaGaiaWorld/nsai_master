@@ -1,0 +1,17 @@
+Here are the extracted and formatted code blocks corresponding to the `<langda>` section in the `<origin_code>`:
+
+```problog
+{"HASH": "FB41E2F7", "Code": "parse([N1, +, N2 | T], R) :- \n    almost_equal(N1 + N2, Temp),\n    parse([Temp | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7", "Code": "parse([N1, -, N2 | T], R) :- \n    almost_equal(N1 - N2, Temp),\n    parse([Temp | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7", "Code": "parse([N1, *, N2 | T], R) :- \n    almost_equal(N1 * N2, Temp),\n    parse([Temp | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7", "Code": "parse([N1, /, N2 | T], R) :- \n    almost_equal(N1 / N2, Temp),\n    parse([Temp | T], R)."}
+```

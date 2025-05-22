@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "run_index": 4,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 116,
+  "iter_count": 1,
+  "process_time": 116.2163918018341,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.5572\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(key,loc2,s(s(s(0)))) = 0.5670\nat(key,loc1,s(s(s(0)))) = 0.3700",
+  "final_report": "The generated code is mostly consistent with the original code but has some issues. The first rule for 'carrying(key,s(T))' is missing the 'do(pickup(key),T)' condition, which is crucial for the logic. Additionally, the generated code's results differ from the original, particularly in the probability of 'carrying(key,s(s(s(0))))' and missing some 'at' predicates in the results. This suggests the generated code may not fully capture the original logic."
+}

@@ -1,0 +1,11 @@
+[
+{
+"B79F5C58": "flap_position(Time,Pos) :-\n Time > 0,\n attempted_flap_position(Time,Pos),\n legal_flap_position(Pos)."
+},
+{
+"E185A34B": "overrun_exception(Time) :-\n Time > 0,\n attempted_flap_position(Time,Pos),\n \\+ legal_flap_position(Pos)."
+},
+{
+"779B4ADF": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(Pos)."
+}
+]

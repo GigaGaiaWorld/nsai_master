@@ -1,0 +1,3 @@
+```problog
+{"HASH": "A4F0EAE2","Code": "0.5::open_door_a(A, B) ; 0.5::open_door_b(A, B) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    A < B,\n    \+ prize(A),\n    \+ prize(B),\n    \+ select_door(A),\n    \+ select_door(B)."}
+```

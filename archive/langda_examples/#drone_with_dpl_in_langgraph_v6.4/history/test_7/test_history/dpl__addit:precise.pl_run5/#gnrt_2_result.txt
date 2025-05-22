@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "6579E7BA", "Code": "number([H|T], Acc, Result) :- \n    digit(H, Nr),\n    NewAcc is Acc + Nr * (10 ^ length(T)),\n    number(T, NewAcc, Result)."}
+```
+
+This is the only code block that was generated to replace the <langda> block in the origin_code. The solution correctly implements the requirement of adding the current number to the "low bit" (right side) of the accumulated value by using `Nr * (10 ^ length(T))` to properly position each digit.

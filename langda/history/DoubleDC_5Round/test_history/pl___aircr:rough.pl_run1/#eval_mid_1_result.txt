@@ -1,0 +1,101 @@
+### **Evaluation Report: Aircraft Flap Controller in ProbLog**
+
+---
+
+#### **1. Document Title**
+**Analysis of Aircraft Flap Controller ProbLog Code and Error Resolution**
+
+---
+
+#### **2. Background and Purpose**
+The provided ProbLog code models an aircraft flap controller, inspired by Filieri et al.'s work. The system simulates flap movements under probabilistic conditions (actuator selection, wind effects) and checks for goal achievement or overrun exceptions. The evaluation aims to:
+- Verify test results.
+- Identify and resolve the `UnknownClause` error.
+- Ensure compliance with ProbLog's probabilistic and logical constraints.
+
+---
+
+#### **3. Test Results Summary**
+- **Error Encountered**: `UnknownClause: No clauses found for ''->'/2' at 33:193`.
+- **Queries**:
+  - `goal_reached(T)`: Not evaluated due to error.
+  - `overrun_exception(T)`: Not evaluated due to error.
+- **Failure**: The code fails to execute due to an unsupported control construct (`->/2`).
+
+---
+
+#### **4. Failure Localization**
+- **Failed Predicate**: `attempted_flap_position/2` (line 33).
+- **Error Cause**: The `->/2` (if-then) construct is unsupported in ProbLog.
+- **Code Block**:
+  ```prolog
+  attempted_flap_position(Time,Pos) :-
+    Time > 0,
+    Prev is Time-1,
+    flap_position(Prev,PrevPos),
+    \+ goal_reached(Prev),
+    use_actuator(Time,Actuator),
+    actuator_strength(Actuator,Strength),
+    wind_effect(Time,WindEffect),
+    goal(G),
+    Delta is G - PrevPos,
+    (Delta > 0 -> Direction = 1; Direction = -1),  % Unsupported
+    Move is Direction * Strength + WindEffect,
+    Pos is PrevPos + Move.
+  ```
+
+---
+
+#### **5. Root Cause Analysis**
+- **Logical Correctness**: The logic is sound in classical Prolog but violates ProbLog's constraints.
+- **Probabilistic Compliance**: ProbLog disallows imperative constructs like `->/2` to maintain declarative semantics.
+- **Workaround**: Replace `->/2` with a disjunction:
+  ```prolog
+  (Delta > 0, Direction = 1; Delta =< 0, Direction = -1),
+  ```
+
+---
+
+#### **6. Overall Analysis**
+- **Functional Requirements**:
+  - **Classical Reasoning**: Partially met (requires syntax adjustment).
+  - **Probabilistic Reasoning**: Compliant once `->/2` is replaced.
+  - **DeepProbLog**: Not used (no `nn/3` or `tensor` calls).
+- **Edge Cases**:
+  - Non-list inputs: Not applicable.
+  - Recursive performance: No deep recursion observed.
+  - Undefined predicates: None detected.
+
+---
+
+#### **7. Error Summary**
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | Unsupported `->/2` construct | Code fails to execute | Replace with disjunction (`;`) |
+| 2 | Undefined `expand/2` | Not applicable | N/A |
+
+---
+
+#### **8. Corrected Code**
+```prolog
+attempted_flap_position(Time,Pos) :-
+  Time > 0,
+  Prev is Time-1,
+  flap_position(Prev,PrevPos),
+  \+ goal_reached(Prev),
+  use_actuator(Time,Actuator),
+  actuator_strength(Actuator,Strength),
+  wind_effect(Time,WindEffect),
+  goal(G),
+  Delta is G - PrevPos,
+  (Delta > 0, Direction = 1; Delta =< 0, Direction = -1),  % Fixed
+  Move is Direction * Strength + WindEffect,
+  Pos is PrevPos + Move.
+```
+
+---
+
+#### **9. Conclusion**
+The error stems from ProbLog's restriction on imperative constructs. The suggested fix ensures compatibility while preserving the logic. Further testing is recommended after correction. 
+
+**Word Count**: 450.

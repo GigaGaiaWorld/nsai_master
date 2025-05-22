@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n\nopen_door(D) :-\n    select_door(S),\n    prize(P),\n    findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), L),\n    (length(L,2) -> \n        0.5::open_door_one(L) ; 0.5::open_door_two(L),\n        (open_door_one(L) -> nth1(1,L,D) ; nth1(2,L,D))\n    ;\n        length(L,1) -> member(D,L)\n    )."
+}
+]

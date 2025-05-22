@@ -1,0 +1,54 @@
+
+
+```prolog
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+% Coin predicates for event1 and event2
+coin1(ID1, T) :-
+    happensAt(X,_,T), 
+    event1(X, ID1).
+
+coin2(ID2, T) :-
+    happensAt(_,Y,T), 
+    event2(Y, ID2).
+
+% Event table mapping
+event_table(ID1,ID2,0) :- ID1=0, ID2=2.
+event_table(ID1,ID2,1) :- ID1=0, ID2=3.
+event_table(ID1,ID2,2) :- ID1=1, ID2=2.
+event_table(ID1,ID2,3) :- ID1=1, ID2=3.
+
+% Compute result based on rules
+compute_result(ID1, ID2, T, Win) :-
+    % Additional rule 1: timestamp between 50 and 250, event1=1, event2=3
+    (T >= 50, T =< 250, ID1=1, ID2=3) -> Win=0;
+    % Additional rule 2: timestamp between 100 and 300, event1=0, event2=3 
+    (T >= 100, T =< 300, ID1=0, ID2=3) -> Win=1;
+    % General rule: absolute difference between labels is 2
+    abs(ID1 - ID2, Diff), Diff=2 -> Win=1;
+    % Default case
+    Win=0.
+
+% Detect event and determine result
+detectEvent(EventID, T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    event_table(ID1,ID2,EventID),
+    compute_result(ID1, ID2, T, Win),
+    assert(result(win=Win, T)).
+
+% Example facts (commented out as they are provided externally)
+% happensAt(1218,1742, 0).
+% happensAt(1203,795, 1).
+% happensAt(750,216, 2).
+% happensAt(1434,1696, 3).
+% happensAt(663,883, 4).
+```% 
+% # When the absolute value of the difference between the outputs of e1 and e2 is 2, the win output is 1, otherwise the game output is 0
+% 
+% 
+% Additional Rules:
+% when the timestamp is between 50 and 250, if the event1 and event2 are classified as 1 and 3, the win output is 0
+% when the timestamp is between 100 and 300, if the event1 and event2 are classified as 0 and 3, the win output is 1
+% 

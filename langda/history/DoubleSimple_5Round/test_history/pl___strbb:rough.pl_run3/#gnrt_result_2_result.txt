@@ -1,0 +1,12 @@
+Based on the requirements in the <Langda> block, we need to define `bb(N)` to succeed when there exists at least one consecutive pair of 'b's in a random string of length N. Here's the regenerated code:
+
+```problog
+{"HASH": "0805B4F6","Code": "bb(N) :- between(1,N-1,I), pick(I,b), pick(I+1,b)."}
+```
+
+This implementation:
+1. Uses `between(1,N-1,I)` to generate all possible positions I where a pair could start
+2. Checks that both position I and I+1 have the character 'b'
+3. Succeeds if at least one such pair exists
+
+The original code was incomplete (cut off after `bb(N) :-`), so this provides the complete implementation that meets the requirements.

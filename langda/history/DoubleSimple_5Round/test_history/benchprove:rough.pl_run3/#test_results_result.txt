@@ -1,0 +1,16 @@
+% Problog Inference Result：
+prove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000
+prove(opposite(parent(carol,alice))) = 1.0000
+prove(expand(double(3),6)) = 1.0000
+prove(includes([a, b, c],b)) = 1.0000
+prove(extend([1, 2],3,[3, 1, 2])) = 1.0000Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 1149, in append
+    self.messages.append(message)
+  File "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/utils/test_tools.py", line 17, in timeout_handler
+    raise TimeoutError(f"Function timed out while processing file: {file_basename}")
+TimeoutError: Function timed out while processing file: benchprove:rough.pl_run3Error evaluating Problog model:
+    return [
+           ^
+  File "/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/utils/test_tools.py", line 17, in timeout_handler
+    raise TimeoutError(f"Function timed out while processing file: {file_basename}")
+TimeoutError: Function timed out while processing file: benchprove:rough.pl_run3

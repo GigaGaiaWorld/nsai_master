@@ -1,0 +1,1 @@
+valid_drone_flight :- langda("Express a safe drone flight condition.", chatgpt, [(net1,Vision1),()]).

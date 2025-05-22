@@ -1,0 +1,3 @@
+```report
+{"HASH": "DF1FDC54", "ErrorSummary": "NonGroundProbabilisticClause error due to uninstantiated variable C in probabilistic fact PH::make_coin(C, PH)", "SuggestedFix": "Modify the `coin/1` predicate to ensure C is grounded. For example:\ncoin(1) :- make_coin(1, 0.8).\ncoin(0) :- make_coin(0, 0.2).\nThis ensures C is always bound to 1 (heads) or 0 (tails) before evaluation.", "Dependencies": [], "NeedRegenerate": true}
+```

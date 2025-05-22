@@ -1,0 +1,3 @@
+```report
+{"HASH": "A5C06F43","ErrorSummary": "Syntax error in the attempted_flap_position predicate due to incorrect arrow operator '->' usage","SuggestedFix": "Replace the arrow operator '->' with a proper conditional statement using 'if' or restructure the logic. The correct code should be:\nattempted_flap_position(Time,Pos) :-\n Time > 0,\n Prev is Time-1,\n flap_position(Prev,PrevPos),\n \\+ goal_reached(Prev),\n use_actuator(Time,Actuator),\n actuator_strength(Actuator,Strength),\n wind_effect(Time,WindEffect),\n goal(Target),\n (Target > PrevPos -> Direction = 1 ; Direction = -1),\n Pos is PrevPos + Direction * Strength + WindEffect.","Dependencies": [],"NeedRegenerate": true}
+```

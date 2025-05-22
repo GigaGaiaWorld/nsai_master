@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "55F6DA26",
+  "ErrorSummary": "The `open_door/1` predicate is overly complex and could be simplified for clarity while maintaining correctness.",
+  "SuggestedFix": "Simplify the `open_door/1` predicate as follows:\n\n```prolog\nopen_door(Door) :-\n    select_door(Selected),\n    member(Door, [1,2,3]),\n    \\+ prize(Door),\n    \\+ (Door = Selected),\n    (   findall(OtherDoor, (\n            member(OtherDoor, [1,2,3]),\n            \\+ prize(OtherDoor),\n            \\+ (OtherDoor = Selected)\n        ), Doors),\n        length(Doors, 2),\n        member(Door, Doors)\n    ;   true % Only one door left\n    ).\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,3 @@
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\n\n% Pop operation\nstack_op(pop, [Top|Rest], Rest) :- !.\nstack_op(pop, [], []).\n\n% Dup operation (duplicate the top element)\nstack_op(dup, [Top|Rest], [Top,Top|Rest]).\nstack_op(dup, [], []).\n\n% Swap operation (swap the top two elements)\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(swap, Stack, Stack). % No change if fewer than two elements\n\n% Over operation (copy the second element to the top)\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(over, Stack, Stack). % No change if fewer than two elements\n\n% Rot operation (rotate the top three elements)\nstack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).\nstack_op(rot, Stack, Stack). % No change if fewer than three elements"}
+```

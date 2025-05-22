@@ -1,0 +1,5 @@
+[
+{
+"58E6FAB7": "density(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is Pop / Area.\n\nquery_pop(Country1, Density1, Country2, Density2) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 @< Country2, % Ensure unique pairs\n    abs(Density1 - Density2) / Density1 =< 0.05. % Within 5% difference"
+}
+]

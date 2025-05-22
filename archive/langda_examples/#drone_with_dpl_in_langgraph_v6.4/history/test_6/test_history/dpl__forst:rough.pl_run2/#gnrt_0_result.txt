@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "insertion_sort(List, Sorted) :-\n    insertion_sort(List, [], Sorted).\n\ninsertion_sort([], Acc, Acc).\ninsertion_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :-\n    X =< Y.\ninsert(X, [Y|T], [Y|NewT]) :-\n    X > Y,\n    insert(X, T, NewT)."}
+```
+
+Note: The second block contains the insertion sort implementation which was implicitly required by the sort operation mentioned in the requirements, even though it wasn't explicitly marked with a <langda> tag in the original code. I've included it since it's necessary for the complete implementation of the stack operations.

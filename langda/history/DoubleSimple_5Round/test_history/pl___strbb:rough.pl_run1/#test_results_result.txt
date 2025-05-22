@@ -1,0 +1,8 @@
+% Problog Inference Result：
+bb(5) = 1.0000% Problog Inference Result：
+bb(5) = 0.3750Error evaluating Problog model:
+    mode = check_mode((low, high, value), ["iii", "iiv"], functor="between", **k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'between/3': arguments: (1, 5-1, X1), expected: (integer, integer, integer) or (integer, integer, var) at 21:2.

@@ -1,0 +1,11 @@
+Based on the requirements in the <langda> block, we need to define two at/3 predicates for the robot's movement success and failure cases. Here's the regenerated code:
+
+```problog
+{"HASH": "8EB675E6","Code": "at(robot,NewPos,s(T)) :-\n    goto_action(T),\n    do(goto(NewPos),T,\n    goto_succeeds(T).\nat(robot,Pos,s(T)) :-\n    goto_action(T),\n    do(goto(_),T),\n    goto_fails(T),\n    at(robot,Pos,T)."}
+```
+
+The regenerated code:
+1. Defines the success case where the robot reaches the new position when goto succeeds
+2. Defines the failure case where the robot stays in the same position when goto fails
+3. Maintains consistency with the existing probability facts for goto_succeeds and goto_fails
+4. Uses the existing goto_action/1 predicate to check if a movement was attempted

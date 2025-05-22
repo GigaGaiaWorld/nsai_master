@@ -1,0 +1,33 @@
+Here are the generated code blocks in JSON form:
+
+For the first code block (implies):
+```problog
+{
+    "HASH": "99C92279",
+    "Code": "prove(implies(P,Q)) :-\n    (\\+ prove(P); prove(Q))."
+}
+```
+
+For the second code block (opposite):
+```problog
+{
+    "HASH": "1405B337",
+    "Code": "prove(opposite(P)) :-\n    \\+ prove(P)."
+}
+```
+
+For the third code block (extend):
+```problog
+{
+    "HASH": "C68F7B35",
+    "Code": "prove(extend(List,Elem,Extended)) :-\n    Extended = [Elem|List]."
+}
+```
+
+For the fourth code block (expand):
+```problog
+{
+    "HASH": "0F69CE0F",
+    "Code": "expand(double(X), Y) :-\n    Y is X*2."
+}
+```

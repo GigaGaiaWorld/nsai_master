@@ -1,0 +1,5 @@
+[
+{
+"2DFC0CFD": "% 1. implies/2: succeeds if the implication holds\nprove(implies(A, B)) :-\n    prove(A),\n    prove(B).\n\n% 2. opposite/1: succeeds if the negation holds\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n\n% 3. expand/2: uses already defined rules to expand a term\nprove(expand(Term, Result)) :-\n    expand(Term, Result).\n\n% 4. includes/2: succeeds if the element is in the list\nprove(includes(List, Elem)) :-\n    member(Elem, List).\n\n% 5. extend/2: adds an element to the head of the list\nprove(extend(List, Elem, [Elem|List])).\n\n% 6. refute/1: succeeds if the goal cannot be proven\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."
+}
+]

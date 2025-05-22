@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 56,
+  "iter_count": 1,
+  "process_time": 56.01962614059448,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.8743\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(robot,loc1,s(s(s(0)))) = 0.0900\nat(robot,loc0,s(s(s(0)))) = 0.0100\nat(key,loc2,s(s(s(0)))) = 0.8559\nat(key,loc1,s(s(s(0)))) = 0.1324\nat(key,loc0,s(s(s(0)))) = 0.0117",
+  "final_report": "The generated code has significant differences from the original code. The main issues are: 1) The 'carrying' predicate in the generated code is missing critical conditions (at(robot,Pos,T) and at(key,Pos,T)) from the first clause and missing action checks (+do(putdown(key),T), +do(pickup(key),T)) from the second clause. 2) The 'at(robot,Pos,s(T))' predicate is restructured but functionally similar. These changes lead to different probability results (0.8743 vs 0.4331 for carrying(key,s(s(s(0)))))."
+}

@@ -1,0 +1,111 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find coun-
+% tries of approximately equal population density
+query_pop([C1,D1,C2,D2]) :-
+ 
+{{LANGDA}}
+density(C,D) :-
+ pop(C,P),
+ area(C,A),
+ D is (P*100)//A.
+% populations in 100000's
+pop(china,	8250).
+pop(india,	5863).
+pop(ussr,	2521).
+pop(usa,	2119).
+pop(indonesia,	1276).
+pop(japan,	1097).
+pop(brazil,	1042).
+pop(bangladesh,	 750).
+pop(pakistan,	 682).
+pop(w_germany,	 620).
+pop(nigeria,	 613).
+pop(mexico,	 581).
+pop(uk,		 559).
+pop(italy,	 554).
+pop(france,	 525).
+pop(philippines, 415).
+pop(thailand,	 410).
+pop(turkey,	 383).
+pop(egypt,	 364).
+pop(spain,	 352).
+pop(poland,	 337).
+pop(s_korea,	 335).
+pop(iran,	 320).
+pop(ethiopia,	 272).
+pop(argentina,	 251).
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(ussr, 8708).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(w_germany, 96).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+query(query_pop(X)).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder, inside the Parent Predicate: query_pop([C1,D1,C2,D2])
+Hash tag of code, please use it actually for generation: CD6DE9CB
+Requirements of Rules: Find a pair of countries with roughly equal population density
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

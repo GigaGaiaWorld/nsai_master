@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "bubblesort([], Acc, Acc).\nbubblesort([X], Acc, [X|Acc]).\nbubblesort([X,Y|T], Acc, Sorted) :- X > Y, bubblesort([Y,X|T], Acc, Sorted).\nbubblesort([X,Y|T], Acc, Sorted) :- X =< Y, bubblesort([Y|T], [X|Acc], Sorted).\n\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X))."
+}
+]

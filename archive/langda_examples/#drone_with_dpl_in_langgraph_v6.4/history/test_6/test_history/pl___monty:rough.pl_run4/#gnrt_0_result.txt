@@ -1,0 +1,5 @@
+Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
+
+```problog
+{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    (   Prize = Selected ->\n        % Randomly open one of the remaining two doors (neither selected nor prize)\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), Doors),\n        random_member(Door, Doors)\n    ;   % Deterministically open the empty door\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), [Door])\n    )."}
+```

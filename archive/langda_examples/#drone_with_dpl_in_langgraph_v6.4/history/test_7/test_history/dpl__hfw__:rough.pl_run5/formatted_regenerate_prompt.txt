@@ -1,0 +1,223 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Expr, Result) :-
+    parse_add_sub(Expr, Result).
+
+parse_add_sub(Expr, Result) :-
+    parse_mul_div(Expr, Temp1, Rest),
+    parse_add_sub_rest(Rest, Temp1, Result).
+
+parse_add_sub_rest([], Result, Result).
+parse_add_sub_rest(['+' | Rest], Temp1, Result) :-
+    parse_mul_div(Rest, Temp2, NewRest),
+    Temp is Temp1 + Temp2,
+    parse_add_sub_rest(NewRest, Temp, Result).
+parse_add_sub_rest(['-' | Rest], Temp1, Result) :-
+    parse_mul_div(Rest, Temp2, NewRest),
+    Temp is Temp1 - Temp2,
+    parse_add_sub_rest(NewRest, Temp, Result).
+parse_add_sub_rest([Op | _], _, _) :-
+    (Op == '*' ; Op == '/'),
+    fail.
+
+parse_mul_div(Expr, Result, Rest) :-
+    parse_atom(Expr, Temp1, NewRest),
+    parse_mul_div_rest(NewRest, Temp1, Result, Rest).
+
+parse_mul_div_rest([], Result, Result, []).
+parse_mul_div_rest(['*' | Rest], Temp1, Result, NewRest) :-
+    parse_atom(Rest, Temp2, TempRest),
+    Temp is Temp1 * Temp2,
+    parse_mul_div_rest(TempRest, Temp, Result, NewRest).
+parse_mul_div_rest(['/' | Rest], Temp1, Result, NewRest) :-
+    parse_atom(Rest, Temp2, TempRest),
+    Temp2 \= 0,
+    Temp is Temp1 / Temp2,
+    parse_mul_div_rest(TempRest, Temp, Result, NewRest).
+parse_mul_div_rest([Op | _], _, _, _) :-
+    (Op == '+' ; Op == '-'),
+    fail.
+
+parse_atom([N], N, []).
+parse_atom(['(' | Expr], Result, Rest) :-
+    parse_add_sub(Expr, Temp),
+    Rest = [')' | NewRest],
+    parse_add_sub(NewRest, Result).
+parse_atom([Op | _], _, _) :-
+    (Op == '+' ; Op == '-' ; Op == '*' ; Op == '/'),
+    fail.</Code_Block>
+<Report>The code block implements a recursive expression evaluator but fails to correctly parse and evaluate arithmetic expressions due to several issues:
+1. **Operator Precedence**: The parsing logic does not enforce correct operator precedence (multiplication/division before addition/subtraction).
+2. **Parentheses Handling**: The `parse_atom` predicate attempts to handle parentheses but does not integrate properly with the rest of the parsing logic.
+3. **Failure Handling**: The predicates fail unexpectedly when encountering operators, disrupting the parsing flow.
+4. **Integration**: The `parse` predicate does not correctly process the output from `detect_all`, leading to incorrect results.
+
+Recommendations:
+1. Rewrite the parsing logic to enforce correct operator precedence.
+2. Improve parentheses handling by ensuring recursive calls to `parse_add_sub` for nested expressions.
+3. Add debug statements to identify parsing failures.
+4. Test with additional cases, including edge cases like division by zero and nested parentheses.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Expr, Result) :-
+    parse_add_sub(Expr, Result).
+
+parse_add_sub(Expr, Result) :-
+    parse_mul_div(Expr, Temp1, Rest),
+    parse_add_sub_rest(Rest, Temp1, Result).
+
+parse_add_sub_rest([], Result, Result).
+parse_add_sub_rest(['+' | Rest], Temp1, Result) :-
+    parse_mul_div(Rest, Temp2, NewRest),
+    Temp is Temp1 + Temp2,
+    parse_add_sub_rest(NewRest, Temp, Result).
+parse_add_sub_rest(['-' | Rest], Temp1, Result) :-
+    parse_mul_div(Rest, Temp2, NewRest),
+    Temp is Temp1 - Temp2,
+    parse_add_sub_rest(NewRest, Temp, Result).
+parse_add_sub_rest([Op | _], _, _) :-
+    (Op == '*' ; Op == '/'),
+    fail.
+
+parse_mul_div(Expr, Result, Rest) :-
+    parse_atom(Expr, Temp1, NewRest),
+    parse_mul_div_rest(NewRest, Temp1, Result, Rest).
+
+parse_mul_div_rest([], Result, Result, []).
+parse_mul_div_rest(['*' | Rest], Temp1, Result, NewRest) :-
+    parse_atom(Rest, Temp2, TempRest),
+    Temp is Temp1 * Temp2,
+    parse_mul_div_rest(TempRest, Temp, Result, NewRest).
+parse_mul_div_rest(['/' | Rest], Temp1, Result, NewRest) :-
+    parse_atom(Rest, Temp2, TempRest),
+    Temp2 \= 0,
+    Temp is Temp1 / Temp2,
+    parse_mul_div_rest(TempRest, Temp, Result, NewRest).
+parse_mul_div_rest([Op | _], _, _, _) :-
+    (Op == '+' ; Op == '-'),
+    fail.
+
+parse_atom([N], N, []).
+parse_atom(['(' | Expr], Result, Rest) :-
+    parse_add_sub(Expr, Temp),
+    Rest = [')' | NewRest],
+    parse_add_sub(NewRest, Result).
+parse_atom([Op | _], _, _) :-
+    (Op == '+' ; Op == '-' ; Op == '*' ; Op == '/'),
+    fail.</Code_Block>
+<Report>The code block implements a recursive expression evaluator but fails to correctly parse and evaluate arithmetic expressions due to several issues:
+1. **Operator Precedence**: The parsing logic does not enforce correct operator precedence (multiplication/division before addition/subtraction).
+2. **Parentheses Handling**: The `parse_atom` predicate attempts to handle parentheses but does not integrate properly with the rest of the parsing logic.
+3. **Failure Handling**: The predicates fail unexpectedly when encountering operators, disrupting the parsing flow.
+4. **Integration**: The `parse` predicate does not correctly process the output from `detect_all`, leading to incorrect results.
+
+Recommendations:
+1. Rewrite the parsing logic to enforce correct operator precedence.
+2. Improve parentheses handling by ensuring recursive calls to `parse_add_sub` for nested expressions.
+3. Add debug statements to identify parsing failures.
+4. Test with additional cases, including edge cases like division by zero and nested parentheses.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</origin_code>
+<generated_code>
+
+
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

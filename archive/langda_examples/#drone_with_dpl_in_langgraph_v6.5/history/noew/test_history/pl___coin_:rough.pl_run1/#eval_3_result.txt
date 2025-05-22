@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "NonGroundProbabilisticClause error due to uninstantiated variable C in coin(C) when used in probabilistic context.",
+  "SuggestedFix": "Replace the probabilistic clause 'coin(C) :- make_coin(C,0.8).' with explicit ground probabilistic facts: '0.8::coin(head). 0.2::coin(tail).' This ensures all probabilistic clauses are ground.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

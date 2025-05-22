@@ -1,0 +1,5 @@
+[
+{
+"5E40E418": "stack_op(sort, Stack, SortedStack) :- get_top_n(Stack, 3, Elements, RestStack), insertion_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :- length(Elements, N), append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y))."
+}
+]

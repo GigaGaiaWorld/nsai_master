@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___aircr:rough.pl",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 142,
+  "iter_count": 3,
+  "process_time": 141.851713180542,
+  "final_result": "% Problog Inference Result：\ngoal_reached(1) = 0.1325\ngoal_reached(2) = 0.1688\ngoal_reached(3) = 0.1108\ngoal_reached(4) = 0.0950\ngoal_reached(5) = 0.0611\noverrun_exception(1) = 0.0000\noverrun_exception(2) = 0.0360\noverrun_exception(3) = 0.0406\noverrun_exception(4) = 0.0225\noverrun_exception(5) = 0.0210",
+  "final_report": "The generated code is mostly consistent with the original code but has a critical difference in the 'attempted_flap_position' predicate. Instead of calculating the position based on the goal and current position, it hardcodes a target position (PrevPos - 2). This change alters the logic and leads to different probabilities in the results. The generated code is valid in form but produces inconsistent results with the original code."
+}

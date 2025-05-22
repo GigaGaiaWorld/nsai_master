@@ -1,0 +1,14 @@
+Based on the requirements, I'll complete the code snippet by implementing the `coins_r/3` predicate to sample CNT independent coins and accumulate the number of heads. Here's the completed code:
+
+```problog
+{"HASH": "DF1FDC54", "Code": "PH::make_coin(C,PH).\ncoin(C) :- make_coin(C,0.8).\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    coin(C),\n    (C = heads -> NSC is SC + 1; NSC is SC),\n    NCNT is CNT - 1,\n    coins_r(NSC,S,NCNT).\ntotal(S) :- coins_r(0,S,4).\nquery(total(_))."}
+```
+
+This implementation:
+1. Keeps the existing declarations for make_coin and coin
+2. Completes the coins_r predicate to:
+   - Sample a coin (C) on each recursive call
+   - Increment the head count if it's heads
+   - Decrement the counter and recurse
+3. Maintains the original total/1 predicate that starts counting from 0 heads and tosses 4 coins
+4. Keeps the query to ask for the probability distribution of total heads

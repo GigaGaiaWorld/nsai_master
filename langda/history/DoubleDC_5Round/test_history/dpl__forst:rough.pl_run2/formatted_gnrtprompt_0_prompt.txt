@@ -1,0 +1,123 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</origin_code>
+<generated_code>
+
+% Stack operations
+stack_op(push(X), Stack, [X | Stack]).
+stack_op(pop, [X | Rest], Rest).
+stack_op(dup, [X | Rest], [X, X | Rest]).
+stack_op(swap, [X, Y | Rest], [Y, X | Rest]).
+stack_op(over, [X, Y | Rest], [Y, X, Y | Rest]).
+stack_op(rot, [X, Y, Z | Rest], [Z, X, Y | Rest]).
+
+% Sort operation
+stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+
+% Helper predicates
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+
+insertion_sort(List, Sorted) :-
+    insertion_sort(List, [], Sorted).
+
+insertion_sort([], Acc, Acc).
+insertion_sort([H | T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort(T, NewAcc, Sorted).
+
+insert(X, [], [X]).
+insert(X, [Y | T], [X, Y | T]) :-
+    X =< Y.
+insert(X, [Y | T], [Y | NT]) :-
+    X > Y,
+    insert(X, T, NT).
+
+% Example queries
+query(stack_op(push(1), [2, 3, 4], Y)).
+query(stack_op(pop, [1, 2, 3, 4], Y)).
+query(stack_op(dup, [1, 2, 3, 4], Y)).
+query(stack_op(swap, [1, 2, 3, 4], Y)).
+query(stack_op(over, [1, 2, 3, 4], Y)).
+query(stack_op(rot, [1, 2, 3, 4], Y)).
+query(stack_op(sort, [4, 2, 3, 1], Y)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

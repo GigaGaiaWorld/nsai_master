@@ -1,0 +1,5 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> placeholder:
+
+```problog
+{"HASH": "190031BC","Code": "parse([N], N).\nparse([N1, '+', N2 | T], Result) :-\n    parse([N1 + N2 | T], Result).\nparse([N1, '-', N2 | T], Result) :-\n    parse([N1 - N2 | T], Result).\nparse([N1, '*', N2 | T], Result) :-\n    parse([N1 * N2 | T], Result).\nparse([N1, '/', N2 | T], Result) :-\n    parse([N1 / N2 | T], Result)."}
+```

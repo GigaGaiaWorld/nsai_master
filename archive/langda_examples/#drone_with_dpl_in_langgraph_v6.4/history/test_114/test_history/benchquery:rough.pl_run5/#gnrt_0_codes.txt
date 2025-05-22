@@ -1,0 +1,5 @@
+[
+{
+"5738285A": "% Define density predicate\ndensity(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is Pop / Area.\n\n% Define query_pop to find countries with approximately equal population density (not larger than 5%)\nquery_pop(Pairs) :-\n    findall((Country1, Country2), (\n        density(Country1, Density1),\n        density(Country2, Density2),\n        Country1 \\= Country2,\n        abs(Density1 - Density2) / Density1 =< 0.05\n    ), Pairs)."
+}
+]

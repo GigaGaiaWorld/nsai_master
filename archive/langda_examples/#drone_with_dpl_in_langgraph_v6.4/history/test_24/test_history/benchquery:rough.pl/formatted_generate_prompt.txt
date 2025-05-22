@@ -1,0 +1,321 @@
+System: You are a coding assistant. You MUST use the available tools to complete the ProbLog code. Do not attempt to solve the problem without using tools.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find countries of approximately equal population density. 
+<Langda> Information:
+<HASH> Hash tag of code: 58E6FAB7 </HASH>
+<Requirements>define query_pop([Country1,Density1,Country2,Density2]) to query population and area database to find countries of approximately equal population density, not larger than 5 percent,  you might also need to define another density predicate to help with calculate the density. </Requirements></Langda>
+.
+% populations in 100000's
+pop(china,	8250).
+pop(india,	5863).
+pop(usa,	2119).
+pop(indonesia,	1276).
+pop(japan,	1097).
+pop(brazil,	1042).
+pop(bangladesh,	 750).
+pop(pakistan,	 682).
+pop(nigeria,	 613).
+pop(mexico,	 581).
+pop(uk,		 559).
+pop(italy,	 554).
+pop(france,	 525).
+pop(philippines, 415).
+pop(thailand,	 410).
+pop(turkey,	 383).
+pop(egypt,	 364).
+pop(spain,	 352).
+pop(poland,	 337).
+pop(s_korea,	 335).
+pop(iran,	 320).
+pop(ethiopia,	 272).
+pop(argentina,	 251).
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+query(query_pop(_)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% generated: 17 November 1989
+% option(s): SOURCE_TRANSFORM_1
+%
+% query
+%
+% David H. D. Warren
+% Copyright: Public domain
+%
+% query population and area database to find countries of approximately equal population density. 
+<Langda> Information:
+<HASH> Hash tag of code: 58E6FAB7 </HASH>
+<Requirements>define query_pop([Country1,Density1,Country2,Density2]) to query population and area database to find countries of approximately equal population density, not larger than 5 percent,  you might also need to define another density predicate to help with calculate the density. </Requirements></Langda>
+.
+% populations in 100000's
+pop(china,	8250).
+pop(india,	5863).
+pop(usa,	2119).
+pop(indonesia,	1276).
+pop(japan,	1097).
+pop(brazil,	1042).
+pop(bangladesh,	 750).
+pop(pakistan,	 682).
+pop(nigeria,	 613).
+pop(mexico,	 581).
+pop(uk,		 559).
+pop(italy,	 554).
+pop(france,	 525).
+pop(philippines, 415).
+pop(thailand,	 410).
+pop(turkey,	 383).
+pop(egypt,	 364).
+pop(spain,	 352).
+pop(poland,	 337).
+pop(s_korea,	 335).
+pop(iran,	 320).
+pop(ethiopia,	 272).
+pop(argentina,	 251).
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+query(query_pop(_)).
+
+</origin_code>
+<generated_code>
+
+% populations in 100000's
+pop(china,    8250).
+pop(india,    5863).
+pop(usa,    2119).
+pop(indonesia,    1276).
+pop(japan,    1097).
+pop(brazil,    1042).
+pop(bangladesh,     750).
+pop(pakistan,     682).
+pop(nigeria,     613).
+pop(mexico,     581).
+pop(uk,     559).
+pop(italy,     554).
+pop(france,     525).
+pop(philippines, 415).
+pop(thailand,     410).
+pop(turkey,     383).
+pop(egypt,     364).
+pop(spain,     352).
+pop(poland,     337).
+pop(s_korea,     335).
+pop(iran,     320).
+pop(ethiopia,     272).
+pop(argentina,     251).
+
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+
+% Calculate population density (population per unit area)
+density(Country, Density) :-
+    pop(Country, Pop),
+    area(Country, Area),
+    Density is Pop / Area.
+
+% Query to find countries with approximately equal population density (within 5%)
+query_pop(Country1, Density1, Country2, Density2) :-
+    density(Country1, Density1),
+    density(Country2, Density2),
+    Country1 @< Country2, % Ensure unique pairs
+    abs(Density1 - Density2) / Density1 =< 0.05. % Within 5% difference
+
+% Query the predicate
+query(query_pop(_, _, _, _)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>
+
+**FIRST RESULT:
+Here is the completed ProbLog code based on your requirements. The code defines a predicate `density/2` to calculate the population density of a country and a query predicate `query_pop/4` to find pairs of countries with approximately equal population density (within 5% difference).
+
+```problog
+% populations in 100000's
+pop(china,    8250).
+pop(india,    5863).
+pop(usa,    2119).
+pop(indonesia,    1276).
+pop(japan,    1097).
+pop(brazil,    1042).
+pop(bangladesh,     750).
+pop(pakistan,     682).
+pop(nigeria,     613).
+pop(mexico,     581).
+pop(uk,     559).
+pop(italy,     554).
+pop(france,     525).
+pop(philippines, 415).
+pop(thailand,     410).
+pop(turkey,     383).
+pop(egypt,     364).
+pop(spain,     352).
+pop(poland,     337).
+pop(s_korea,     335).
+pop(iran,     320).
+pop(ethiopia,     272).
+pop(argentina,     251).
+
+% areas in 1000's of square miles
+area(china, 3380).
+area(india, 1139).
+area(usa, 3609).
+area(indonesia, 570).
+area(japan, 148).
+area(brazil, 3288).
+area(bangladesh, 55).
+area(pakistan, 311).
+area(nigeria, 373).
+area(mexico, 764).
+area(uk, 86).
+area(italy, 116).
+area(france, 213).
+area(philippines, 90).
+area(thailand, 200).
+area(turkey, 296).
+area(egypt, 386).
+area(spain, 190).
+area(poland, 121).
+area(s_korea, 37).
+area(iran, 628).
+area(ethiopia, 350).
+area(argentina, 1080).
+
+% Calculate population density (population per unit area)
+density(Country, Density) :-
+    pop(Country, Pop),
+    area(Country, Area),
+    Density is Pop / Area.
+
+% Query to find countries with approximately equal population density (within 5%)
+query_pop(Country1, Density1, Country2, Density2) :-
+    density(Country1, Density1),
+    density(Country2, Density2),
+    Country1 @< Country2, % Ensure unique pairs
+    abs(Density1 - Density2) / Density1 =< 0.05. % Within 5% difference
+
+% Query the predicate
+query(query_pop(_, _, _, _)).
+```
+
+### Explanation:
+1. **`density/2` Predicate**:
+   - Calculates the population density of a country by dividing its population by its area.
+   - Uses the `pop/2` and `area/2` facts to retrieve the necessary data.
+
+2. **`query_pop/4` Predicate**:
+   - Finds pairs of countries (`Country1` and `Country2`) where their population densities (`Density1` and `Density2`) are within 5% of each other.
+   - The `@<` operator ensures that each pair is unique (e.g., avoids duplicate pairs like `(china, india)` and `(india, china)`).
+   - The `abs/1` function calculates the absolute difference between the densities, and the condition checks if this difference is within 5% of the first density.
+
+3. **Query**:
+   - The `query/1` directive specifies that the `query_pop/4` predicate should be queried.
+
+This code will output all pairs of countries that meet the specified density similarity criterion.

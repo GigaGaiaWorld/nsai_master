@@ -1,0 +1,66 @@
+### Evaluation Report
+
+#### **Overall_Analysis**
+The provided ProbLog code for the Aircraft Flap Controller is logically structured and adheres to the requirements of calculating the flap position based on actuator strength, wind effects, and the goal position. The test results indicate that the system behaves probabilistically as expected, with probabilities assigned to goal achievement and overrun exceptions. However, the probabilities for `goal_reached` and `overrun_exception` suggest that the system could be optimized for better reliability, especially in later time steps.
+
+#### **Error_Summary**
+1. **Test Failures**:
+   - The probability of `goal_reached` decreases over time (from 0.5 at T=1 to 0.0121 at T=5), which may indicate inefficiency in reaching the goal.
+   - The `overrun_exception` probabilities are non-zero at T=3, T=4, and T=5, suggesting occasional illegal flap positions due to wind effects or actuator strength.
+
+2. **Root Causes**:
+   - **Wind Effects**: The wind model introduces variability that can push the flap position beyond legal bounds, especially when the wind is strong.
+   - **Actuator Strength**: The actuator strength (`a=2`, `b=1`) combined with wind effects may lead to overshooting or undershooting the goal.
+   - **Clamping Logic**: The clamping logic (`min`/`max`) may not always prevent illegal positions due to cumulative wind effects.
+
+3. **Structural Issues**:
+   - The code does not explicitly handle cases where the wind effect could cause the flap position to oscillate around the goal without stabilizing.
+
+#### **Recommendations**
+1. **Refine Wind Model**:
+   - Adjust the probabilities of wind effects to reduce extreme values (e.g., limit strong wind effects to ±2 instead of ±3).
+   - Example:
+     ```prolog
+     0.2::wind_effect(T,-2); 0.3::wind_effect(T,-1); 0.3::wind_effect(T,1); 0.2::wind_effect(T,2) :- wind(strong).
+     ```
+
+2. **Optimize Actuator Selection**:
+   - Introduce a bias toward the stronger actuator (`a`) when the goal is far and the weaker actuator (`b`) when close to the goal.
+   - Example:
+     ```prolog
+     use_actuator(T, a) :- flap_position(Prev, PrevPos), goal(G), abs(G - PrevPos) >= 2.
+     use_actuator(T, b) :- flap_position(Prev, PrevPos), goal(G), abs(G - PrevPos) < 2.
+     ```
+
+3. **Enhance Clamping Logic**:
+   - Ensure the flap position never exceeds legal bounds by adding explicit checks before updating the position.
+   - Example:
+     ```prolog
+     attempted_flap_position(Time, Pos) :-
+         Time > 0,
+         Prev is Time-1,
+         flap_position(Prev, PrevPos),
+         goal(G),
+         \+ goal_reached(Prev),
+         use_actuator(Time, Actuator),
+         actuator_strength(Actuator, Strength),
+         wind_effect(Time, WindEffect),
+         TempPos is PrevPos + (G > PrevPos ? Strength : -Strength) + WindEffect,
+         (legal_flap_position(TempPos) -> Pos = TempPos ; Pos = PrevPos).
+     ```
+
+4. **Add Stabilization Logic**:
+   - Introduce a rule to stabilize the flap position once the goal is reached to avoid unnecessary movements.
+   - Example:
+     ```prolog
+     flap_position(Time, Pos) :-
+         Time > 0,
+         goal_reached(Prev),
+         Prev is Time-1,
+         flap_position(Prev, Pos).
+     ```
+
+5. **Testing**:
+   - Re-run the tests with the updated code to verify improvements in `goal_reached` probabilities and reduction in `overrun_exception` occurrences.
+
+By implementing these changes, the system should achieve higher reliability and efficiency in reaching the goal while minimizing illegal flap positions.

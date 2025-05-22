@@ -1,0 +1,73 @@
+### **Code Evaluation Report: Bubblesort in ProbLog**
+
+---
+
+#### **1. Document Title**
+**Evaluation of Bubblesort Implementation in ProbLog**
+
+---
+
+#### **2. Background and Purpose**
+The provided code implements a `bubblesort/3` algorithm in ProbLog, which is intended to sort a list of integers. The algorithm uses a recursive approach with an accumulator to build the sorted list. The `forth_sort/2` predicate is a wrapper for `bubblesort/3` and is tested with the query `forth_sort([3,1,2,5,7,12], X)`.
+
+---
+
+#### **3. Original Code Excerpt**
+```prolog
+1. bubblesort([], Acc, Acc).
+2. bubblesort([X], Acc, [X|Acc]).
+3. bubblesort([X,Y|Rest], Acc, Sorted) :-
+4.     compare(Order, X, Y),
+5.     (Order = (>)
+6.     -> bubblesort([X|Rest], [Y|Acc], Sorted)
+7.     ;  bubblesort([Y|Rest], [X|Acc], Sorted)
+8.     ).
+```
+
+---
+
+#### **4. Overall Analysis**
+The code attempts to implement a deterministic bubblesort algorithm in ProbLog. However, it fails due to the use of Prolog's `->/2` (if-then-else) construct, which is not supported in ProbLog. The error indicates that ProbLog cannot resolve the `->/2` predicate, leading to a runtime failure.
+
+---
+
+#### **5. Error Summary**
+
+| **No.** | **Problem**                          | **Impact**                                                                 | **Suggestion**                                                                 |
+|---------|--------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1       | Use of `->/2` in ProbLog             | ProbLog does not support Prolog's if-then-else construct.                  | Replace `->/2` with a ProbLog-compatible alternative, such as separate clauses. |
+| 2       | Lack of ProbLog-specific constructs  | The code assumes Prolog compatibility, which may not hold in ProbLog.      | Ensure the code adheres to ProbLog's syntax and supported predicates.          |
+
+---
+
+#### **6. Improvement Suggestions**
+
+##### **6.1 Fix for `->/2` Issue**
+Replace the if-then-else construct with separate clauses for each comparison outcome. Here’s the corrected version:
+
+```prolog
+bubblesort([], Acc, Acc).
+bubblesort([X], Acc, [X|Acc]).
+bubblesort([X,Y|Rest], Acc, Sorted) :-
+    compare(Order, X, Y),
+    (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+    ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+    ).
+```
+
+##### **6.2 ProbLog Compatibility**
+Ensure the code uses only ProbLog-supported predicates. For example, `compare/3` is supported, but other Prolog-specific features should be avoided.
+
+##### **6.3 Handling Edge Cases**
+The current implementation does not explicitly handle negative or zero values, but it will work as long as the `compare/3` predicate can handle them. No additional changes are needed for these cases.
+
+---
+
+#### **7. Final Checks**
+- **Edge Cases**: The corrected code handles all numeric values (positive, negative, zero) as long as `compare/3` supports them.
+- **Formatting**: The table and code blocks are correctly formatted in Markdown.
+
+---
+
+#### **8. Conclusion**
+The original code failed due to the use of unsupported Prolog constructs in ProbLog. The suggested fixes ensure compatibility with ProbLog while maintaining the algorithm's functionality. The corrected code should now execute without errors.

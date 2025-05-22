@@ -1,0 +1,84 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+% member/2 for ProbLog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+% --------- Basic meta-interpreter ---------
+% Prove "true" always succeeds
+prove(true).
+prove(Goal) :-
+	% For all other goals, use the clause/2 facts/rules defined in the program
+	clause(Goal, Body),
+	prove(Body).
+% Prove compound goal A,B: prove A first, then prove B
+prove((A,B)) :-
+	prove(A),
+	prove(B).
+% --------- Extended logic processing ---------
+% 1. implies(P,Q): P ⇒ Q, when P is unprovable or Q is provable
+prove(implies(P,Q)) :-
+	( \+ prove(P) % if P is unprovable
+	; prove(Q) ).
+ % or Q is provable
+% 2. opposite(P): "opposite"/negation of P; that is, P is unprovable
+prove(opposite(P)) :-
+	\+ prove(P).
+% 3. expand(A,B): first use expand/2 rule to expand A into B, then prove B
+% You need to define several expand/2 facts or rules in the program
+prove(expand(A,B)) :-
+	expand(A,B).
+% 4. includes(Set,X): set inclusion relation, equivalent to member/2
+prove(includes(Set,X)) :-
+	member(X,Set).
+% 5. extend(List,Elem,Extended): add Elem to the head of List to get Extended
+prove(extend(List,Elem,Extended)) :-
+	Extended = [Elem|List].
+% 6. refute(P): refute, equivalent to "unprovable"
+prove(refute(P)) :-
+	\+ prove(P).
+% --------- Examples ---------- %
+% facts:
+parent(alice, bob).
+parent(bob, carol).
+% Define some expand rules:
+{{LANGDA}}
+query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder
+Hash tag of code, please use it actually for generation: 397E4F86
+Requirements of Rules: define the logic of parent and ancestor
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

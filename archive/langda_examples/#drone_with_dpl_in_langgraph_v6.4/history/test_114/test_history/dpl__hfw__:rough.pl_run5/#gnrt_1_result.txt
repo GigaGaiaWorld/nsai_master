@@ -1,0 +1,5 @@
+Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` block in the `<origin_code>`:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse(Expr, Result) :-\n    split_high_precedence(Expr, Left, Op, Right),\n    parse(Left, LVal),\n    parse(Right, RVal),\n    apply_op(Op, LVal, RVal, Result).\n\nsplit_high_precedence(Expr, Left, Op, Right) :-\n    append(Left, [Op | Right], Expr),\n    (Op = '*' ; Op = '/'),\n    !.\nsplit_high_precedence(Expr, Left, Op, Right) :-\n    append(Left, [Op | Right], Expr),\n    (Op = '+' ; Op = '-').\n\napply_op('+', L, R, Result) :- Result is L + R.\napply_op('-', L, R, Result) :- Result is L - R.\napply_op('*', L, R, Result) :- Result is L * R.\napply_op('/', L, R, Result) :- Result is L / R."}
+```

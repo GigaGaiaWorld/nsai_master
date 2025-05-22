@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6931D64E",
+  "ErrorSummary": "Operator priority clash in the 'sort' predicate due to ProbLog's parsing rules. The current implementation causes a ParseError.",
+  "SuggestedFix": "Rewrite the 'sort' predicate to avoid operator clashes. Replace the current implementation with:\nstack_op(sort, [X,Y,Z|Stack], SortedStack) :-\n    sorted([X,Y,Z], SortedElements),\n    append(SortedElements, Stack, SortedStack).\n\nsorted([X,Y,Z], [A,B,C]) :-\n    sort([X,Y,Z], [A,B,C]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,184 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	my_member(house(green, _, _, coffee, _), Houses),
+	my_member(house(_, ukrainian, _, tea, _), Houses),
+	right_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),
+	my_member(house(_, _, snails, _, winstons), Houses),
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+<Langda>
+<Code_Block>my_member(X, [X|_]).
+my_member(X, [_|T]) :- my_member(X, T).</Code_Block>
+<HASH> Hash tag of code: AA4D04D8 </HASH>
+<Requirements>define the my_member/2 predicate. </Requirements></Langda>
+.
+<Langda>
+<Code_Block>next_to(X, Y, List) :- right_of(X, Y, List).
+next_to(X, Y, List) :- right_of(Y, X, List).</Code_Block>
+<HASH> Hash tag of code: 3C24DB80 </HASH>
+<Requirements>define the next_to/3 predicate. </Requirements></Langda>
+.
+<Langda>
+<Code_Block>right_of(X, Y, [Y, X|_]).
+right_of(X, Y, [_|T]) :- right_of(X, Y, T).</Code_Block>
+<HASH> Hash tag of code: 8660991C </HASH>
+<Requirements>define the right_of/3 predicate. </Requirements></Langda>
+.
+query(zebra(Houses)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(yellow,norwegian,fox,water,kools), house(blue,ukrainian,horse,tea,chesterfields), house(red,english,snails,milk,winstons), house(ivory,spanish,dog,orange_juice,lucky_strikes), house(green,japanese,zebra,coffee,parliaments)]) = 1.0000
+</Result> 
+</Code>
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured in <Overall_Analysis>, <Error_Summary> and <Recommendations> blocks as follows:
+
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	my_member(house(green, _, _, coffee, _), Houses),
+	my_member(house(_, ukrainian, _, tea, _), Houses),
+	right_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),
+	my_member(house(_, _, snails, _, winstons), Houses),
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+<Langda>
+<Code_Block>my_member(X, [X|_]).
+my_member(X, [_|T]) :- my_member(X, T).</Code_Block>
+<HASH> Hash tag of code: AA4D04D8 </HASH>
+<Requirements>define the my_member/2 predicate. </Requirements></Langda>
+.
+<Langda>
+<Code_Block>next_to(X, Y, List) :- right_of(X, Y, List).
+next_to(X, Y, List) :- right_of(Y, X, List).</Code_Block>
+<HASH> Hash tag of code: 3C24DB80 </HASH>
+<Requirements>define the next_to/3 predicate. </Requirements></Langda>
+.
+<Langda>
+<Code_Block>right_of(X, Y, [Y, X|_]).
+right_of(X, Y, [_|T]) :- right_of(X, Y, T).</Code_Block>
+<HASH> Hash tag of code: 8660991C </HASH>
+<Requirements>define the right_of/3 predicate. </Requirements></Langda>
+.
+query(zebra(Houses)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(yellow,norwegian,fox,water,kools), house(blue,ukrainian,horse,tea,chesterfields), house(red,english,snails,milk,winstons), house(ivory,spanish,dog,orange_juice,lucky_strikes), house(green,japanese,zebra,coffee,parliaments)]) = 1.0000
+</Result>
+
+</original_code>
+
+<Overall_Analysis>
+The provided ProbLog code for the Zebra Puzzle is well-structured and adheres to the logical constraints of the puzzle. The test result indicates that the code successfully solves the puzzle, producing the correct output. The predicates `my_member/2`, `next_to/3`, and `right_of/3` are correctly defined and used to enforce the puzzle's constraints. The code meets the requirements and demonstrates a clear understanding of ProbLog's declarative semantics.
+</Overall_Analysis>
+
+<Error_Summary>
+No errors were identified in the code. The test result confirms that the solution is correct, and all constraints are satisfied. The predicates are implemented as required, and the logic aligns with the puzzle's rules.
+</Error_Summary>
+
+<Recommendations>
+1. **Code Clarity**: While the code is functional, adding comments to explain the purpose of each constraint could improve readability for others reviewing the code.
+2. **Testing Edge Cases**: Although the current test case passes, consider testing edge cases (e.g., empty lists or invalid inputs) to ensure robustness.
+3. **Documentation**: Document the predicates (`my_member/2`, `next_to/3`, `right_of/3`) in the code to clarify their roles and usage.
+4. **Performance**: If the puzzle were scaled to larger sizes, the current implementation might face performance issues. Consider optimizing the predicates for larger datasets if needed.
+</Recommendations>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

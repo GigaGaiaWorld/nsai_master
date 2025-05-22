@@ -1,0 +1,9 @@
+Based on the origin_code and generated_code provided, I'll extract and format the code blocks that correspond to the <langda> section in the origin_code. The <langda> section requested three at/3 predicates for the robot's position, which are already present in both origin_code and generated_code (they appear identical in both versions).
+
+Here's the formatted output:
+
+```problog
+{"HASH": "638F1761", "Code": "at(robot, Pos, s(T)) :-\n    goto_action(T),\n    do(goto(Pos), T),\n    goto_succeeds(T).\nat(robot, Pos, s(T)) :-\n    goto_action(T),\n    do(goto(_), T),\n    goto_fails(T),\n    at(robot, Pos, T).\nat(robot, Pos, s(T)) :-\n    \\+ goto_action(T),\n    at(robot, Pos, T)."}
+```
+
+Note that while the generated_code contains additional at/3 predicates for the key's position, these were not requested in the <langda> section, so I've only included the three predicates specifically mentioned in the requirements for the robot's position.

@@ -1,0 +1,219 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+<Langda>
+<Code_Block>bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).</Code_Block>
+<HASH> Hash tag of code: 2971FD2F </HASH>
+<Requirements>Recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda>
+<Code_Block>swap(X, Y, swap) :-
+    X > Y.
+swap(X, Y, no_swap) :-
+    X =< Y.</Code_Block>
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> Please output a complete report in the following structure (using Markdown):
+1. **Document title**
+2. **Background and purpose** (brief description of functions and scenarios)
+3. **Original code excerpt** (with line numbers)
+4. **Overall analysis** (brief evaluation)
+5. **Error summary** (in tabular form: number/problem/impact/suggestion)
+6. **Improvement suggestions** (including specific code examples)
+
+After the first draft is completed, please check and improve:
+- Does it include examples of handling zero or negative values?
+- Are the table format and code blocks correct?
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+<Langda>
+<Code_Block>bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).</Code_Block>
+<HASH> Hash tag of code: 2971FD2F </HASH>
+<Requirements>Recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda>
+<Code_Block>swap(X, Y, swap) :-
+    X > Y.
+swap(X, Y, no_swap) :-
+    X =< Y.</Code_Block>
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result>
+
+</original_code>
+
+### 1. **Document Title**  
+**Evaluation Report: ProbLog Bubble Sort Implementation**
+
+---
+
+### 2. **Background and Purpose**  
+The provided code implements a bubble sort algorithm in ProbLog, a probabilistic logic programming language. The goal is to sort a list of integers in ascending order. The algorithm works by repeatedly swapping adjacent elements if they are in the wrong order and recursively sorting the remaining unsorted portion of the list.
+
+---
+
+### 3. **Original Code Excerpt**  
+```prolog
+hole(X,Y,X,Y):-
+    swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+    swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+    hole(H1,H2,X1,X2),
+    bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+    bubble(L,L2,X),
+    bubblesort(L2,[X|L3],Sorted).
+swap(X, Y, swap) :-
+    X > Y.
+swap(X, Y, no_swap) :-
+    X =< Y.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+```
+
+---
+
+### 4. **Overall Analysis**  
+The code successfully implements the bubble sort algorithm, as evidenced by the test result `forth_sort([3, 1, 2, 5, 7, 12], [1, 2, 3, 5, 7, 12])`. However, the implementation has some logical and structural issues that could lead to inefficiencies or incorrect results in edge cases (e.g., lists with zero or negative values). The code meets the basic requirements but lacks robustness.
+
+---
+
+### 5. **Error Summary**  
+
+| **No.** | **Problem**                     | **Impact**                          | **Suggestion**                                                                 |
+|---------|---------------------------------|-------------------------------------|--------------------------------------------------------------------------------|
+| 1       | Redundant `hole` predicates    | Unnecessary complexity              | Simplify by merging `hole` predicates into a single rule with conditional logic. |
+| 2       | No handling of negative values | Potential incorrect sorting         | Ensure the `swap` predicate correctly handles negative values.                 |
+| 3       | No base case for empty lists   | May cause infinite recursion        | Explicitly handle empty lists in `bubblesort`.                                 |
+
+---
+
+### 6. **Improvement Suggestions**  
+
+#### **Simplified `hole` Predicate**  
+Replace the two `hole` predicates with a single rule:  
+```prolog
+hole(X, Y, X, Y) :- X =< Y.
+hole(X, Y, Y, X) :- X > Y.
+```
+
+#### **Handling Negative Values**  
+The current `swap` predicate already handles negative values correctly, but ensure the logic is clear:  
+```prolog
+swap(X, Y, swap) :- X > Y.
+swap(X, Y, no_swap) :- X =< Y.
+```
+
+#### **Explicit Base Case for `bubblesort`**  
+Add a clear base case for empty lists:  
+```prolog
+bubblesort([], Sorted, Sorted).
+```
+
+#### **Final Improved Code**  
+```prolog
+hole(X, Y, X, Y) :- X =< Y.
+hole(X, Y, Y, X) :- X > Y.
+
+bubble([X], [], X).
+bubble([H1, H2 | T], [X1 | T1], X) :-
+    hole(H1, H2, X1, X2),
+    bubble([X2 | T], T1, X).
+
+bubblesort([], Sorted, Sorted).
+bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+```
+
+---
+
+### **Final Checks**  
+- **Handling Zero/Negative Values**: The improved code handles zero and negative values correctly.  
+- **Table Format and Code Blocks**: Verified for correctness.  
+
+This report provides a clear analysis and actionable improvements for the ProbLog bubble sort implementation.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

@@ -1,0 +1,69 @@
+System: You are a coding assistant.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Regenerate_format>
+merge_sort([], []).
+merge_sort([X], [X]).
+merge_sort(List, Sorted) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 95E704F2 </HASH>
+<Requirements>Should contain following rules: 1.Get the length of the current list, Len, to determine whether to continue splitting. 2.Recursive boundary judgment: Only lists with a length greater than 1 need to be sorted, otherwise they are sorted by default. 3.Split the list into two parts, Left and Right, for subsequent recursive processing. </Requirements></Langda>
+,
+ 
+split_list(List, Left, Right) :-
+    length(List, Len),
+    Half is Len // 2,
+    length(Left, Half),
+    append(Left, Right, List).
+merge([], List, List).
+merge(List, [], List).
+merge([H1|T1], [H2|T2], [H1|Merged]) :-
+    H1 =< H2,
+    merge(T1, [H2|T2], Merged).
+merge([H1|T1], [H2|T2], [H2|Merged]) :-
+    H1 > H2,
+    merge([H1|T1], T2, Merged).
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+    append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+split_list(List, Left, Right) :-
+ length(List, Len),
+ Half is Len // 2,
+ length(Left, Half),
+ append(Left, Right, List).
+merge([], List, List).
+merge(List, [], List).
+merge([H1|T1], [H2|T2], [H1|Merged]) :-
+ H1 =< H2,
+ merge(T1, [H2|T2], Merged).
+merge([H1|T1], [H2|T2], [H2|Merged]) :-
+ H1 > H2,
+ merge([H1|T1], T2, Merged).
+ 
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -1,0 +1,3 @@
+```report
+{"HASH": "0805B4F6","ErrorSummary": "Invalid argument types in 'between/3' call - cannot use arithmetic expression 'N-1' directly as argument","SuggestedFix": "Modify the bb(N) predicate to first compute N1 as N-1, then use between(1, N1, I). Full fix:\nbb(N) :- N1 is N-1, between(1, N1, I), pick(I, b), pick(I+1, b).","Dependencies": [],"NeedRegenerate": true}
+```

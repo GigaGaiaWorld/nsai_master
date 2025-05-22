@@ -1,0 +1,8 @@
+```report
+{
+  "HASH": "EF02D81B",
+  "Report": "The `game/3` predicate is intended to determine the outcome by comparing the ranks of the best hands of the player and opponent. However, it incorrectly references `OwnCards` and `OpponentCards` without defining them, leading to undefined behavior. Additionally, the predicate does not properly integrate with the `best_hand_rank` logic, causing potential infinite loops or inefficiencies. The timeout error in the test results suggests that this predicate is not functioning as intended. The predicate needs to be regenerated to properly define and pass `OwnCards` and `OpponentCards`, and to correctly integrate the `best_hand_rank` logic.",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```

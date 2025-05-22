@@ -1,0 +1,11 @@
+Based on the requirements in the <langda> block, I need to regenerate the bubblesort predicate to recursively call bubblesort on L2 and put the current maximum value X into the sorted part [X|L3]. Here's the completed code:
+
+```problog
+{"HASH": "2971FD2F","Code": "bubblesort([X|L],L3,Sorted) :- bubble([X|L],L2,X), bubblesort(L2,[X|L3],Sorted)."}
+```
+
+The original code was incomplete and didn't properly implement the recursive sorting process. The regenerated code:
+1. Takes the current list [X|L]
+2. Uses bubble/3 to find the maximum element X and the remaining list L2
+3. Recursively calls bubblesort on L2 while accumulating the sorted elements in [X|L3]
+4. The base case (empty list) is already provided in the original code

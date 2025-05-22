@@ -1,0 +1,3 @@
+```report
+{"HASH": "FB41E2F7","ErrorSummary": "Missing parse/2 predicates for subtraction, multiplication, and division operations","SuggestedFix": "Add three additional parse/2 predicates to handle all required operations:\nparse([N, '-', M | T], R) :- almost_equal(N - M, X), parse([X | T], R).\nparse([N, '*', M | T], R) :- almost_equal(N * M, X), parse([X | T], R).\nparse([N, '/', M | T], R) :- almost_equal(N / M, X), parse([X | T], R).","Dependencies": [],"NeedRegenerate": true}
+```

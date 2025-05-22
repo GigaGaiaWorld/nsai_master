@@ -1,0 +1,14 @@
+Based on the requirements in the <langda> block, I'll regenerate the code for the cryptarithmetic puzzle AB + BCD = CDE. Here's the completed code snippet:
+
+```problog
+{"HASH": "623E07CC","Code": "query_sum([A,B,C,D,E]) :- leftdigit(A), leftdigit(B), leftdigit(C), digit(D), digit(E), all_different([A,B,C,D,E]), sumdigit(0, B, D, E, Carry1), sumdigit(Carry1, A, C, D, Carry2), sumdigit(Carry2, 0, B, C, Carry3), Carry3 = 0."}
+```
+
+This code:
+1. Ensures A, B, and C are left digits (not zero)
+2. Ensures all letters represent different digits
+3. Performs the column-wise addition with proper carry handling:
+   - First column: B + D = E
+   - Second column: A + C + carry = D
+   - Third column: 0 + B + carry = C
+   - Final carry must be 0

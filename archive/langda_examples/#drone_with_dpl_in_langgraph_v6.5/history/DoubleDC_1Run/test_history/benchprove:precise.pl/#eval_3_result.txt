@@ -1,0 +1,3 @@
+```report
+{"HASH": "99C92279", "ErrorSummary": "ParseError due to improper formatting of disjunction operator in `implies` predicate", "SuggestedFix": "Reformat the `implies` predicate to ensure proper syntax for disjunction: `prove(implies(P,Q)) :- (\\+ prove(P) ; prove(Q)).` or use explicit control: `prove(implies(P,Q)) :- (\\+ prove(P) -> true ; prove(Q)).`", "Dependencies": [], "NeedRegenerate": true}
+```

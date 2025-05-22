@@ -1,0 +1,11 @@
+```report
+{"HASH": "A4F0EAE2","ErrorSummary": "The rule head uses variables A and B that are not properly constrained in the body. The Selected variable is declared but not used. The conditions for opening doors are not correctly implemented.","SuggestedFix": "Modify the rule to: 0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), member(B,[1,2,3]), A < B, A \\= Selected, B \\= Selected, \\+ prize(A), \\+ prize(B). This ensures Selected is used and doors are properly constrained.","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "F0FDE8AB","ErrorSummary": "The rule correctly implements the condition for when only one door is available to open, but could be made more readable.","SuggestedFix": "Improve readability by restructuring: open_door(A) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), \\+ (member(B,[1,2,3]), B \\= A, B \\= Selected, \\+ prize(B)).","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "GLOBAL","ErrorSummary": "The overall implementation correctly models the Monty Hall problem, producing the expected probabilities (1/3 for win_keep, 2/3 for win_switch).","SuggestedFix": "None needed for global structure.","Dependencies": [],"NeedRegenerate": false}
+```

@@ -1,0 +1,11 @@
+[
+{
+"C5B4A895": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), member(B,[1,2,3]), A \\= B, A \\= Selected, B \\= Selected, \\+ prize(A), \\+ prize(B)."
+},
+{
+"338175EC": "open_door(A) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), member(PrizeDoor,[1,2,3]), PrizeDoor \\= Selected, prize(PrizeDoor), \\+ open_door(PrizeDoor)."
+},
+{
+"B73E5085": "win_keep :- select_door(Door), prize(Door)."
+}
+]

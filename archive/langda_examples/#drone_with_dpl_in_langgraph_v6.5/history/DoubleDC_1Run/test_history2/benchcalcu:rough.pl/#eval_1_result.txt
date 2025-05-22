@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "35747D5A",
+  "ErrorSummary": "Multiple valid solutions found; fails to enforce uniqueness and full sum validation.",
+  "SuggestedFix": "Revise the `query_sum` predicate to include constraints for uniqueness (e.g., `A < C`) and explicitly validate the sum `AB + BCD = CDE`. Example fix:\n\nquery_sum([A,B,C,D,E]) :-\n    leftdigit(A), leftdigit(B), leftdigit(C),\n    digit(D), digit(E),\n    all_different([A,B,C,D,E]),\n    A < C,\n    AB is 10*A + B,\n    BCD is 100*B + 10*C + D,\n    CDE is 100*C + 10*D + E,\n    AB + BCD =:= CDE,\n    sumdigit(0, B, D, E, Cout1),\n    sumdigit(Cout1, A, C, D, Cout2),\n    sumdigit(Cout2, 0, B, C, _).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

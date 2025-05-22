@@ -1,0 +1,3 @@
+```report
+{"HASH": "623E07CC","ErrorSummary": "The query_sum predicate returns multiple solutions, but the problem requires a unique solution. The constraints are not sufficient to enforce uniqueness.","SuggestedFix": "Add additional constraints to ensure only one valid solution exists. For example, add a constraint that A must be less than B or similar to break symmetries. Modify the query_sum predicate to: query_sum([A,B,C,D,E]) :- leftdigit(A), leftdigit(B), leftdigit(C), digit(D), digit(E), all_different([A,B,C,D,E]), A < B, sumdigit(0, B, D, E, Carry1), sumdigit(Carry1, A, C, D, Carry2), sumdigit(Carry2, 0, B, C, _).","Dependencies": [],"NeedRegenerate": true}
+```

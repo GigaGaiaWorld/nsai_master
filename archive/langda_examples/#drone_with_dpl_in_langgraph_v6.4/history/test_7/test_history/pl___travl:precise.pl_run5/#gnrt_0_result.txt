@@ -1,0 +1,13 @@
+Based on the origin_code and generated_code provided, I'll extract and format the code block that corresponds to the <Langda> section in the origin_code. Here's the completed code snippet for the infection logic:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.6::inf(X) :- contact(X,Y), inf(Y), \+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X), \+inf(X).\ninf(X) :- initialInf(X)."}
+```
+
+This code implements:
+1. Contact transmission with 0.6 probability for non-susceptible individuals
+2. Contact transmission with 0.8 probability for susceptible individuals
+3. Additional 0.2 infection probability from risky travel
+4. Initial infection probability from initialInf/1 predicate
+
+The hash E09B4F54 matches the one specified in the <Langda> section of the origin_code.

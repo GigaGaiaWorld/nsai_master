@@ -1,0 +1,12 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block:
+
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Top3, Rest),\n    sort(Top3, SortedTop3),\n    append(SortedTop3, Rest, SortedStack)."}
+```
+
+This is the only code block that was marked with a <langda> tag in the origin_code and has been completed in the generated_code. The JSON includes:
+- The original HASH from the <langda> block
+- The completed implementation of the sort operation that properly handles:
+  - Getting the top 3 elements
+  - Sorting them with Prolog's built-in sort/2
+  - Recombining them with the rest of the stack

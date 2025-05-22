@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- bubble(H, T, NT, Max), bubblesort(NT, [Max|Acc], Sorted).\n\nbubble(X, [], [], X).\nbubble(X, [Y|T], [Y|NT], Max) :- X > Y, bubble(X, T, NT, Max).\nbubble(X, [Y|T], [X|NT], Max) :- X =< Y, bubble(Y, T, NT, Max).\n\nquery(bubblesort([3,1,2,5,7,12], [], X))."
+}
+]

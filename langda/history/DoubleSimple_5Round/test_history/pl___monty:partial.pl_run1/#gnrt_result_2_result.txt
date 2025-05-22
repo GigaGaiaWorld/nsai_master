@@ -1,0 +1,14 @@
+Based on the requirements in the <langda> block, I'll regenerate the code portion that handles opening a door when both unselected doors are empty. The current code needs to be modified to ensure that when both remaining doors are empty (no prize), one is chosen randomly to be opened.
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "C5B4A895","Code": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), member(B,[1,2,3]), B \\= Selected, B \\= A, \\+ prize(B)."}
+```
+
+This code modification ensures that:
+1. When there are two empty doors (neither has the prize) besides the selected door
+2. The host will randomly choose one of them to open with equal probability (50/50)
+3. The original conditions about not opening the selected door or a door with prize are maintained
+
+The rest of the code can remain unchanged as it correctly handles the other aspects of the Monty Hall problem.

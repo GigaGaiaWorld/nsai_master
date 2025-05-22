@@ -1,0 +1,12 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the `<langda>` blocks in the original code:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse(Expr, Result) :-\n    parse_add_sub(Expr, Result).\n\nparse_add_sub([N], N).\nparse_add_sub(Expr, Result) :-\n    parse_mul_div(Expr, R1),\n    parse_add_sub_tail(R1, Expr, Result).\n\nparse_add_sub_tail(Acc, [], Acc).\nparse_add_sub_tail(Acc, ['+'|T], Result) :-\n    parse_mul_div(T, R2),\n    NewAcc is Acc + R2,\n    parse_add_sub_tail(NewAcc, T, Result).\nparse_add_sub_tail(Acc, ['-'|T], Result) :-\n    parse_mul_div(T, R2),\n    NewAcc is Acc - R2,\n    parse_add_sub_tail(NewAcc, T, Result).\n\nparse_mul_div([N], N).\nparse_mul_div([N, '*'|T], Result) :-\n    parse_mul_div(T, R2),\n    Result is N * R2.\nparse_mul_div([N, '/'|T], Result) :-\n    parse_mul_div(T, R2),\n    R2 \\= 0,\n    Result is N / R2."}
+```
+
+This JSON contains the completed parsing logic that was missing in the original code, with the following improvements:
+1. Fixed base cases for all recursive predicates
+2. Added proper accumulator handling in `parse_add_sub_tail`
+3. Maintained operator precedence (PEMDAS rules)
+4. Included division by zero checks
+5. Proper variable binding throughout the arithmetic operations

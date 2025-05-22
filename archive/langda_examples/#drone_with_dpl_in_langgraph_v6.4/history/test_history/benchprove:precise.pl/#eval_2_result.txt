@@ -1,0 +1,3 @@
+```report
+{"HASH": "99C92279", "ErrorSummary": "Syntax error in `implies` predicate definition due to incorrect use of disjunction (`;`) and parentheses in ProbLog", "SuggestedFix": "Rewrite the `implies` predicate as: `prove(implies(P,Q)) :- \\+ prove(P). prove(implies(P,Q)) :- prove(Q).` or ensure correct syntax for disjunction if supported: `prove(implies(P,Q)) :- (\\+ prove(P)) ; prove(Q).` with proper operator placement.", "Dependencies": [], "NeedRegenerate": true}
+```

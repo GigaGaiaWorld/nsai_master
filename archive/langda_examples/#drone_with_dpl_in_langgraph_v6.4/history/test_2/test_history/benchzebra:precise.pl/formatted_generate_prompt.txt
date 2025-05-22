@@ -1,0 +1,85 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: CD409C7B </HASH>
+<LLM> Requirements of Rules:  	House arrangement: 		There are 5 houses, arranged in order (houses(Houses)). 		 	Rules: 		The owner of the red house is English. 		The Spanish has a dog. 		The owner of the green house drinks coffee. 		The Ukrainian drinks tea. 		The green house is to the right of the ivory house (right next to it). 		The snail owner smokes Winstons. 		The yellow house owner smokes Kools. 		The middle house drinks milk (the 3rd house). 		The first house owner is Norwegian. 		The Chesterfields owner lives next door to the fox owner. 		The Kools owner lives next door to the horse owner. 		The orange juice drinker smokes Lucky Strikes. 		The Japanese smoke Parliaments. 		The Norwegian lives next to the blue house. 		 		Someone has a zebra. 		Someone drink water. </LLM></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: CD409C7B </HASH>
+<LLM> Requirements of Rules:  	House arrangement: 		There are 5 houses, arranged in order (houses(Houses)). 		 	Rules: 		The owner of the red house is English. 		The Spanish has a dog. 		The owner of the green house drinks coffee. 		The Ukrainian drinks tea. 		The green house is to the right of the ivory house (right next to it). 		The snail owner smokes Winstons. 		The yellow house owner smokes Kools. 		The middle house drinks milk (the 3rd house). 		The first house owner is Norwegian. 		The Chesterfields owner lives next door to the fox owner. 		The Kools owner lives next door to the horse owner. 		The orange juice drinker smokes Lucky Strikes. 		The Japanese smoke Parliaments. 		The Norwegian lives next to the blue house. 		 		Someone has a zebra. 		Someone drink water. </LLM></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+</origin_code>
+<generated_code>
+
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

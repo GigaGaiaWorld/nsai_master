@@ -1,0 +1,5 @@
+[
+{
+"D324979D": "determine_winner(P1Moves, P2Moves, Winner) :- \n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    (Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw')."
+}
+]

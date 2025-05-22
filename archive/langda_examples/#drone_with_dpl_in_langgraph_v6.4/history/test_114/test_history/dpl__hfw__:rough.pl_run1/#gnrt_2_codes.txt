@@ -1,0 +1,5 @@
+[
+{
+"190031BC": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op == '*' ; Op == '/'),\n    parse([N2 | Rest], Temp),\n    (Op == '*' -> Result is N1 * Temp ; (Temp =:= 0 -> fail ; Result is N1 / Temp)).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op == '+' ; Op == '-'),\n    parse([N2 | Rest], Temp),\n    (Op == '+' -> Result is N1 + Temp ; Result is N1 - Temp).\nparse([N1, Op, N2 | Rest], Result) :-\n    parse([N1, Op, N2], Temp),\n    parse([Temp | Rest], Result)."
+}
+]

@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the incomplete parts in the original code:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "insertion_sort(List, Sorted) :-\n    insertion_sort(List, [], Sorted).\n\ninsertion_sort([], Acc, Acc).\ninsertion_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :- X =< Y.\ninsert(X, [Y|T], [Y|NT]) :- X > Y, insert(X, T, NT)."}
+```
+
+Note that both code blocks share the same HASH value "5E40E418" from the original code's <HASH> tag, as they both address the same incomplete section in the original code. The first block implements the missing stack operations, while the second block provides the missing insertion sort implementation.

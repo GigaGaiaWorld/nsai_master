@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "2DFC0CFD",
+  "ErrorSummary": "Missing predicates: opposite/1, includes/2, extend/3; expand/2 not integrated into prove/1",
+  "SuggestedFix": "1. Add opposite(A) :- \\+ clause(A, _).\n2. Add includes(List, Elem) :- member(Elem, List).\n3. Add extend(List, Elem, [Elem|List]).\n4. Add prove(expand(X,Y)) :- expand(X,Y). to link expand/2 to the meta-interpreter",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

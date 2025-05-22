@@ -1,0 +1,7 @@
+```problog
+{"HASH": "638F1761","Code": "at(robot, Pos, s(T)) :- goto_action(T), goto_succeeds(T), do(goto(Pos), T).\nat(robot, Pos, s(T)) :- at(robot, Pos, T), goto_action(T), goto_fails(T).\nat(robot, Pos, s(T)) :- at(robot, Pos, T), \\+ goto_action(T)."}
+```
+
+```problog
+{"HASH": "BCB17653","Code": "at(key, Pos, s(T)) :- carrying(key, T), at(robot, Pos, T).\nat(key, Pos, s(T)) :- at(key, Pos, T), \\+ carrying(key, T)."}
+```

@@ -1,0 +1,11 @@
+```report
+{"HASH": "F91C6038", "ErrorSummary": "No issues found", "SuggestedFix": "None needed", "Dependencies": [], "NeedRegenerate": false}
+```
+
+```report
+{"HASH": "A8860BE4", "ErrorSummary": "Incorrect column addition logic for units digit; does not enforce the full equation AB + BCD = CDE", "SuggestedFix": "Replace with a constraint that enforces the full equation: AB is 10 * A + B, BCD is 100 * B + 10 * C + D, CDE is 100 * C + 10 * D + E, AB + BCD =:= CDE.", "Dependencies": ["702CD838"], "NeedRegenerate": true}
+```
+
+```report
+{"HASH": "702CD838", "ErrorSummary": "Incorrect column addition logic for tens digit; does not enforce the full equation AB + BCD = CDE", "SuggestedFix": "Replace with a constraint that enforces the full equation: AB is 10 * A + B, BCD is 100 * B + 10 * C + D, CDE is 100 * C + 10 * D + E, AB + BCD =:= CDE.", "Dependencies": ["A8860BE4"], "NeedRegenerate": true}
+```

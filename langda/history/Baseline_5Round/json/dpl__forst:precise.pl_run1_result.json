@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forst:precise.pl",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 35,
+  "iter_count": 0,
+  "process_time": 35.40573215484619,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000\nstack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000\nstack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000\nstack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000\nstack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000\nstack_op(rot,[1, 2, 3, 4],[3, 1, 2, 4]) = 1.0000",
+  "final_report": "The generated code is correct and consistent with the original code in terms of functionality. It successfully implements all stack operations (push, pop, dup, swap, over, rot) and the sorting operation. The sorting operation in the generated code uses a helper predicate `sort3` to sort the top three elements of the stack, which is a more concise approach compared to the original code's use of `insertion_sort`. Both codes produce identical results for the given queries."
+}

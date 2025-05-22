@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__hfw__:rough.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 87,
+  "iter_count": 3,
+  "process_time": 87.15936994552612,
+  "final_result": "% Problog Inference Result：\nexpression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],11.666666666666668) = 1.0000",
+  "final_report": "The generated code simplifies the parsing logic by directly evaluating binary operations in a left-associative manner, which differs from the original code's approach of handling subtraction and operator precedence. This leads to incorrect results for expressions requiring specific precedence handling, such as the given query. The original code correctly evaluates the expression to -10.333..., while the generated code produces 11.666..., indicating a failure in maintaining the expected operator precedence and associativity."
+}

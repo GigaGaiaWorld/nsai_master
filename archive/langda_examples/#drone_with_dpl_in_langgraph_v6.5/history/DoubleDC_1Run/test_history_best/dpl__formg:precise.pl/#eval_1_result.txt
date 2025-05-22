@@ -1,0 +1,7 @@
+```report
+{"HASH": "95E704F2", "ErrorSummary": "Ambiguous token role in ProbLog parser due to unsupported Prolog constructs", "SuggestedFix": "Rewrite the merge_sort predicate to comply with ProbLog syntax rules. Ensure no unsupported constructs (e.g., cuts, if-then-else) are used. Example fix: Replace with ProbLog-compatible recursive splitting and merging logic.", "Dependencies": ["26E82D5D"], "NeedRegenerate": true}
+```
+
+```report
+{"HASH": "26E82D5D", "ErrorSummary": "Ambiguous token role in ProbLog parser due to unsupported Prolog constructs", "SuggestedFix": "Rewrite the recursive merge_sort calls and merge step to comply with ProbLog syntax. Example fix: Use ProbLog-compatible list operations and ensure no ambiguous tokens are present.", "Dependencies": ["95E704F2"], "NeedRegenerate": true}
+```

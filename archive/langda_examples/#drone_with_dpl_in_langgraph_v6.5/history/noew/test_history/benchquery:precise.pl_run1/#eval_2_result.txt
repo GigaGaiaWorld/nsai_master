@@ -1,0 +1,6 @@
+```report
+{"HASH": "A37F4273","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "3A3D0149","ErrorSummary": "Potential precision loss due to floor division and lack of input validation for zero/negative values","SuggestedFix": "Replace floor division (`//`) with floating-point division (`/`) and add input validation for population and area. Example fix:\n```prolog\ndensity(C, D) :-\n    pop(C, P), P > 0,\n    area(C, A), A > 0,\n    D is (P * 100) / A.\n```","Dependencies": [],"NeedRegenerate": true}
+```

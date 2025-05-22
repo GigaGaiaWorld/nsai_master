@@ -1,0 +1,16 @@
+<think>
+Okay, I need to translate the given natural language event descriptions into formal logic-based anomaly detection rules using the specified structure. Let me break down each of the three points and figure out how to model them.
+
+Starting with the first point: "When the temperature exceeds 26°C and the server CPU utilization exceeds 75%, there is a risk of overheat." So, I need to create an event for each condition and then an anomaly that combines them.
+
+For the temperature exceeding 26°C, I'll create an event called temperature_exceed. It will check if the mean temperature from a sensor is above 26. Then, for the CPU utilization, I'll create cpu_high_utilization, checking if the mean CPU load is over 0.75. The anomaly overheat_risk will trigger if both events are true.
+
+Moving to the second point: "When the average temperature is below 24 degrees and the average humidity is above 0.85, there is a risk of condensation." I'll create two events here. temperature_low checks if the mean temperature is below 24, and humidity_high checks if the mean humidity exceeds 0.85. The anomaly condensation_risk will be true if both events occur.
+
+The third point is about the temperature difference between weather and room being too large, indicating high power consumption. I'll create an event temperature_difference_large that checks if the absolute difference in mean temperatures between two sensors exceeds a threshold, say 2.0. The anomaly high_power_consumption will trigger if this event is true.
+
+I need to make sure each event and anomaly is correctly structured with the right predicates and variables. Also, I should use the correct sensor IDs and items, like sensor_KMS1 for temperature and sensor_cpu for CPU load, and sensor_weather for humidity.
+
+Let me double-check the syntax to ensure everything is correctly formatted. Each event should have the necessary sensor_data predicates with the appropriate variables, and the anomalies should combine the relevant events.
+
+I think that's all. Now, I'll write out the Prolog code accordingly.

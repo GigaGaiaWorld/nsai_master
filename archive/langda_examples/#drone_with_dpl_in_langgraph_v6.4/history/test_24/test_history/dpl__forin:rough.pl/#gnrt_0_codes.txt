@@ -1,0 +1,5 @@
+[
+{
+"501F546D": "% Insertion sort algorithm in ProbLog\ninsertion_sort(List, Sorted) :-\n    i_sort(List, [], Sorted).\n\n% Base case: when the input list is empty, the accumulator is the sorted list\ni_sort([], Acc, Acc).\n\n% Recursive case: insert the head of the list into the accumulator and continue\ni_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    i_sort(T, NewAcc, Sorted).\n\n% Insert an element into a sorted list\ninsert(X, [], [X]).\n\ninsert(X, [Y|T], [X,Y|T]) :-\n    X =< Y.\n\ninsert(X, [Y|T], [Y|NewT]) :-\n    X > Y,\n    insert(X, T, NewT)."
+}
+]

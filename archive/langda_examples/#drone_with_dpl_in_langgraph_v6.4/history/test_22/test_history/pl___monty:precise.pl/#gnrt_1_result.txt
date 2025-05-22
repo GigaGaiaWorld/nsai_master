@@ -1,0 +1,14 @@
+Here are the regenerated code blocks in the requested format:
+
+```problog
+{"HASH": "A4F0EAE2", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    A < B,\n    A \\= Selected,\n    B \\= Selected,\n    \+ prize(A),\n    \+ prize(B)."}
+```
+
+```problog
+{"HASH": "F0FDE8AB", "Code": "open_door(A) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    A \\= Selected,\n    \+ prize(A),\n    \+ (member(Other, [1,2,3]), Other \\= A, Other \\= Selected, \+ prize(Other))."}
+```
+
+The regenerated code addresses the syntax issues while maintaining the original logic requirements:
+1. For the two-empty-doors case, it properly implements the random selection between two valid doors (A and B) that aren't selected and don't contain prizes
+2. For the single-empty-door case, it correctly identifies the only door that isn't selected and doesn't contain a prize
+3. Both rules now have proper syntax and complete implementations

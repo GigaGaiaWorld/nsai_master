@@ -1,0 +1,5 @@
+[
+{
+"EA5E8D55": "coin_flip(C,1) :- coin(C).\ncoin_flip(C,0) :- \\+ coin(C).\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    coin_flip(CNT,Result),\n    NewSC is SC + Result,\n    coins_r(NewSC,S,CNT1)."
+}
+]

@@ -1,0 +1,81 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to fix some errors in my DeepProblog code. Below I will give you the code with placeholders, content of the code block and corresponding analysis to each code block that need to be regenerated, please generate the code as required.
+
+
+<\context>
+<ruleset>
+### The full rule set with placeholders is as follows, make sure you capture all the information from the code: 
+
+% UAV properties
+initial_charge ~ normal(90, 5).
+charge_cost ~ normal(-0.1, 0.2).
+weight ~ normal(0.2, 0.1).
+% Weather conditions
+1/10::fog; 9/10::clear.
+% Visual line of sight
+vlos(X) :-
+fog, distance(X, operator) < 50;
+clear, distance(X, operator) < 100;
+clear, over(X, bay), distance(X, operator) < 400.
+% Sufficient charge to return to operator
+can_return(X) :-
+B is initial_charge, O is charge_cost,
+D is distance(X, operator), 0 < B + (2 * O * D).
+sensitive_section(X) :-
+{{LANGDA}}
+security(X) :-
+vlos(X),
+sensitive_section(X).
+% Permits related to local features
+permits(X) :-
+distance(X, service) < 15; distance(X, primary) < 15;
+distance(X, secondary) < 10; distance(X, tertiary) < 5;
+distance(X, crossing) < 5; distance(X, rail) < 5;
+over(X, park).
+% Definition of a valid mission
+landscape(X) :-
+security(X), weight < 25, can_return(X);
+permits(X), can_return(X).
+</ruleset>
+<code_list>
+### Here are the code blocks and their analysis:
+
+The 0th Code Block That You Should Regenerate:
+Requirements:
+The Information for Generating Code of 1st Placeholder, inside the Parent Predicate: sensitive_section(X)
+Hash tag of code, please use it actually for generation: D729E529
+Requirements of Rules: Stay 100 meters away from bomb
+
+Current Code:
+distance(X, bomb) > 100.
+It's corresponding analysis:
+The code block 'distance(X, bomb) > 100.' is syntactically correct and fits the requirement of staying 100 meters away from a bomb. However, it is not integrated into any existing rule or predicate in the provided ruleset. To be functional within the DeepProblog context, it should either be part of a predicate definition or used as a condition in an existing rule. Currently, it stands as an isolated constraint.
+
+
+<code_list>
+<requirements>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+
+### This is really important! Also make sure to use the correct syntax. Make sure to address all the issues mentioned in the evaluation and please make sure your code fits completely inside the placeholder!
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

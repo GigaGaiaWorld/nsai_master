@@ -1,0 +1,11 @@
+Based on the requirements in the <langda> blocks, I'll regenerate the code snippets with the specified functionality. Here are the completed code snippets:
+
+```problog
+{"HASH": "95E704F2","Code": "merge_sort(List, Sorted) :- length(List, Len), Len > 1, split_list(List, Left, Right), merge_sort(Left, SortedLeft), merge_sort(Right, SortedRight), merge(SortedLeft, SortedRight, Sorted)."}
+```
+
+```problog
+{"HASH": "26E82D5D","Code": "merge_sort(List, Sorted) :- length(List, Len), Len > 1, split_list(List, Left, Right), merge_sort(Left, SortedLeft), merge_sort(Right, SortedRight), merge(SortedLeft, SortedRight, Sorted)."}
+```
+
+Note that both code blocks actually contain the same complete implementation since the requirements for both blocks are part of the same recursive merge sort algorithm. The first block focuses on the initial splitting and length check, while the second block focuses on the recursive sorting and merging, but in practice they form one complete rule. The rest of the code (split_list/3, merge/3, and append/3 predicates) remains unchanged as they weren't marked for regeneration.

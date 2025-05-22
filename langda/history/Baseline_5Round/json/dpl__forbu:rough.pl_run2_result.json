@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 32,
+  "iter_count": 0,
+  "process_time": 31.544697999954224,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 15:12.",
+  "final_report": "The generated code attempts to implement a bubble sort algorithm similar to the original but introduces several issues. It uses a different approach with a 'bubble_pass' predicate and a 'Swapped' flag to control recursion. However, the generated code is invalid due to syntax errors in the conditional statement (->/2) and lacks proper handling of the swap operation. The original code correctly implements bubble sort using 'hole' and 'swap' predicates, producing the expected sorted list. The generated code fails to run, indicating it does not meet the requirements."
+}

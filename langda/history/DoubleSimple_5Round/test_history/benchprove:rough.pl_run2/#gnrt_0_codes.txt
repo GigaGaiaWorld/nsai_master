@@ -1,0 +1,5 @@
+[
+{
+"2DFC0CFD": "prove(true).\nprove(Goal) :-\n\tclause(Goal, Body),\n\tprove(Body).\nprove((A,B)) :-\n\tprove(A),\n\tprove(B).\nprove(implies(A,B)) :- \n\tprove(A), \n\tprove(B).\nprove(opposite(Goal)) :- \n\tnot(prove(Goal)).\nprove(expand(Term, Result)) :- \n\texpand(Term, Result).\nprove(includes(List, Elem)) :- \n\tmember(Elem, List).\nprove(extend(List, Elem, Result)) :- \n\tResult = [Elem|List].\nprove(refute(Goal)) :- \n\tnot(prove(Goal))."
+}
+]

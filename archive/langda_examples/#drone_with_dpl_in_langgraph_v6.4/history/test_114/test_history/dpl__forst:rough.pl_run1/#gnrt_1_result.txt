@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the original <langda> block:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(sort, Stack, SortedStack) :-\n    length(Stack, Len),\n    (Len >= 2 ->\n        insertion_sort(Stack, SortedStack)\n    ;\n        SortedStack = Stack\n    ).\n\ninsertion_sort(List, Sorted) :-\n    insertion_sort(List, [], Sorted).\n\ninsertion_sort([], Acc, Acc).\ninsertion_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :- X =< Y.\ninsert(X, [Y|T], [Y|NT]) :- X > Y, insert(X, T, NT)."}
+```
+
+Note that I've used the same HASH value "5E40E418" from the original <langda> block for both JSON objects since they both represent completed versions of the original incomplete code. The first JSON contains the basic stack operations that were missing in the original, and the second JSON contains the improved sort operation with its helper predicates.

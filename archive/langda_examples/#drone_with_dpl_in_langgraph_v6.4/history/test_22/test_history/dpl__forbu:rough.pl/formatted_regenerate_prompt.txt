@@ -1,0 +1,44 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+<Langda>
+<Code_Block>bubblesort([], Acc, Acc).
+bubblesort(List, Acc, Sorted) :-
+    bubble(List, NewList, Flag),
+    (Flag = 1 -> 
+        bubblesort(NewList, Acc, Sorted)
+    ; 
+        append(Acc, NewList, Sorted)
+    ).
+
+bubble([X,Y|T], [Y|Rest], 1) :- X > Y, bubble([X|T], Rest, _).
+bubble([X,Y|T], [X|Rest], Flag) :- X =< Y, bubble([Y|T], Rest, Flag).
+bubble([X], [], 0).
+bubble([], [], 0).
+
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+
+query(forth_sort([3,1,2,5,7,12],X)).</Code_Block>
+<Report>The code has several issues that need to be addressed. First, there's a syntax error in the conditional operator (->/2) which is causing the 'UnknownClause' error. The bubble/3 predicate has logical issues - the third clause 'bubble([X], [], 0)' incorrectly returns an empty list instead of preserving the single element. The base case handling in bubblesort/3 and bubble/3 needs revision. The implementation doesn't fully match standard bubble sort behavior where we should track whether any swaps occurred in a full pass through the list. The requirements call for an interpretable bubblesort, but the current implementation doesn't clearly show the sorting steps.</Report>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -1,0 +1,3 @@
+```report
+{"HASH": "CFA63C1E","ErrorSummary": "Syntax error in conditional statement (->/2 operator) and missing semicolon in play predicate","SuggestedFix": "Replace the conditional statements in the play predicate with proper Prolog syntax. Change lines 10-12 to:\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2), Result = win;\n     beats(P2, P1), Result = lose;\n     Result = draw),\n    play(P1s, P2s, Results).","Dependencies": [],"NeedRegenerate": true}
+```

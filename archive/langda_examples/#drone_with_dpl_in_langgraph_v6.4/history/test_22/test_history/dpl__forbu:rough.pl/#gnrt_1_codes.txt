@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "bubblesort(List, Sorted) :- bubblesort(List, [], Sorted).\n\nbubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, NewList, Flag),\n    (Flag == 1 -> \n        bubblesort(NewList, Acc, Sorted)\n    ; \n        reverse(Acc, RevAcc),\n        append(RevAcc, NewList, Sorted)\n    ).\n\nbubble_pass(List, NewList, Flag) :- bubble_pass(List, [], NewList, 0, Flag).\n\nbubble_pass([X,Y|T], Acc, NewList, _, 1) :- \n    X > Y, \n    bubble_pass([X|T], [Y|Acc], NewList, 1, _).\nbubble_pass([X,Y|T], Acc, NewList, FlagIn, FlagOut) :- \n    X =< Y, \n    bubble_pass([Y|T], [X|Acc], NewList, FlagIn, FlagOut).\nbubble_pass([X], Acc, [X|Acc], Flag, Flag).\nbubble_pass([], Acc, Acc, Flag, Flag).\n\nquery(bubblesort([3,1,2,5,7,12],X))."
+}
+]

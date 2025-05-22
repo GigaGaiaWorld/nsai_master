@@ -1,0 +1,3 @@
+```report
+{"HASH": "CFA63C1E", "ErrorSummary": "The `play_round/3` predicate allows ambiguous outcomes, leading to incorrect test results where all outcomes (`win`, `lose`, `draw`) are possible for the same input.", "SuggestedFix": "Modify `play_round/3` to enforce deterministic outcomes using conditional logic:\n```prolog\nplay_round(Move1, Move2, Result) :-\n    beats(Move1, Move2) -> Result = win ;\n    beats(Move2, Move1) -> Result = lose ;\n    Result = draw.\n```\nAlso, ensure `play/3` propagates deterministic results by removing unnecessary backtracking.", "Dependencies": [], "NeedRegenerate": true}
+```

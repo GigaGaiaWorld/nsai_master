@@ -1,0 +1,10 @@
+Based on the requirements, the current code needs to be regenerated because:
+1. It's missing the actual `bubblesort/3` implementation
+2. The predicate name `forth_sort` doesn't clearly indicate it's a sorting operation
+3. The example query should demonstrate the sorting functionality more clearly
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- bubble(H, T, NT, Max), bubblesort(NT, [Max|Acc], Sorted).\n\nbubble(X, [], [], X).\nbubble(X, [Y|T], [X|NT], Max) :- X =< Y, bubble(Y, T, NT, Max).\nbubble(X, [Y|T], [Y|NT], Max) :- X > Y, bubble(X, T, NT, Max).\n\nsort_list(Unsorted, Sorted) :- bubblesort(Unsorted, [], Sorted).\n\nquery(sort_list([3,1,2,5,7,12],X))."}
+```

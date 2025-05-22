@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CE4B5362",
+  "ErrorSummary": "Non-ground comparison in `determine_winner` predicate (Score > 0) due to uninstantiated variable during evaluation.",
+  "SuggestedFix": "Ensure `Score` is ground before comparison by modifying `compute_score` to use `is/2` for arithmetic. Example fix:\n\ncompute_score([], 0).\ncompute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.\ncompute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.\ncompute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,13 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code blocks that correspond to the <langda> blocks:
+
+```problog
+{"HASH": "C53A4763","Code": "game(Cards,House,H1,H2) :-\n    cards(Cards,own,House,H1),\n    cards(Cards,opponent,House,H2),\n    best_hand_rank(H1,R1),\n    best_hand_rank(H2,R2),\n    outcome(R1,R2,Outcome)."}
+```
+
+```problog
+{"HASH": "","Code": "game(Cards,House,Outcome) :-\n    house_rank(House),\n    game(Cards,House,_,_,Outcome)."}
+```
+
+```problog
+{"HASH": "","Code": "game(Cards,Outcome) :-\n    house_rank(House),\n    game(Cards,House,Outcome)."}
+```

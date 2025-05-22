@@ -1,0 +1,215 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+% example from
+% Antova, Koch, Olteanu
+% Query language support for incomplete information in the MayBMS system
+% VLDB 2007
+%
+% - 3 whales are seen in three closeby locations a,b,c
+% - the one on position a is an adult orca (with identifier 3)
+% - the other two are an adult and calf sperm whale (with IDs 2 and 1)
+% - there are six possibilities for gender of the adults and positions of the sperm whales
+% information shared by all worlds:
+species(1,sperm).
+gender(1,calf).
+species(2,sperm).
+species(3,orca).
+position(3,a).
+% information differing per world
+position(1,b) :- world(a).
+position(2,c) :- world(a).
+gender(2,cow) :- world(a).
+gender(3,cow) :- world(a).
+position(1,b) :- world(b).
+position(2,c) :- world(b).
+gender(2,cow) :- world(b).
+gender(3,bull) :- world(b).
+position(1,b) :- world(c).
+position(2,c) :- world(c).
+gender(2,bull) :- world(c).
+gender(3,cow) :- world(c).
+position(1,b) :- world(d).
+position(2,c) :- world(d).
+gender(2,bull) :- world(d).
+gender(3,bull) :- world(d).
+position(1,c) :- world(e).
+position(2,b) :- world(e).
+gender(2,cow) :- world(e).
+gender(3,cow) :- world(e).
+position(1,c) :- world(f).
+position(2,b) :- world(f).
+gender(2,bull) :- world(f).
+gender(3,cow) :- world(f).
+% assume uniform dist over worlds (this is not in the original paper)
+1/6::world(a); 1/6::world(b); 1/6::world(c); 1/6::world(d); 1/6::world(e); 1/6::world(f).
+% query 1: does the orca attack the calf? (this happens if the calf is at position b)
+attack :- position(1,b).
+query(attack).
+% query 2: same query, but under the constraint that sperm cows move in between their calf and an orca (uncomment evidence to run)
+constraint1 :- not (gender(2,cow), not position(2,b)).
+%evidence(constraint1).
+% query 3: does the adult sperm abandon the calf? (and in which gender combinations does this happen)
+abandon(S,O) :- 
+<Langda>
+<Code_Block>abandon(S,O) :- gender(2,S), gender(3,O), position(2,c).</Code_Block>
+<HASH> Hash tag of code: A90B08DE </HASH>
+<Requirements>Function: When the adult sperm whale numbered 2 is of gender S, the killer whale numbered 3 is of gender O, and the adult sperm whale is at position c, it means that the adult sperm whale abandons the baby whale. </Requirements></Langda>
+.
+query(abandon(_,_)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+attack = 0.6667
+abandon(cow,cow) = 0.1667
+abandon(cow,bull) = 0.1667
+abandon(bull,cow) = 0.1667
+abandon(bull,bull) = 0.1667</Result>
+</Code>
+
+<Evaluation_Instructions>
+First, analyze the entire codebase and test results to identify errors and potential issues. Consider:
+1. Syntax correctness: Is the ProbLog code syntactically valid?
+2. Logical correctness: Does the code implement the specified requirements?
+3. Error analysis: What specific issues are causing any test failures?
+4. Integration: Do the code blocks properly work together?
+
+Create a comprehensive report that identifies all issues and explains their causes.
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured as follows:
+```report
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for first code]",
+        "Report": "// Your analysis of first code here"</Code>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for second code]",
+        "Report": "// Your analysis of second code here"</Code>
+    // other code blocks...
+</Code_Block_Issues>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+% example from
+% Antova, Koch, Olteanu
+% Query language support for incomplete information in the MayBMS system
+% VLDB 2007
+%
+% - 3 whales are seen in three closeby locations a,b,c
+% - the one on position a is an adult orca (with identifier 3)
+% - the other two are an adult and calf sperm whale (with IDs 2 and 1)
+% - there are six possibilities for gender of the adults and positions of the sperm whales
+% information shared by all worlds:
+species(1,sperm).
+gender(1,calf).
+species(2,sperm).
+species(3,orca).
+position(3,a).
+% information differing per world
+position(1,b) :- world(a).
+position(2,c) :- world(a).
+gender(2,cow) :- world(a).
+gender(3,cow) :- world(a).
+position(1,b) :- world(b).
+position(2,c) :- world(b).
+gender(2,cow) :- world(b).
+gender(3,bull) :- world(b).
+position(1,b) :- world(c).
+position(2,c) :- world(c).
+gender(2,bull) :- world(c).
+gender(3,cow) :- world(c).
+position(1,b) :- world(d).
+position(2,c) :- world(d).
+gender(2,bull) :- world(d).
+gender(3,bull) :- world(d).
+position(1,c) :- world(e).
+position(2,b) :- world(e).
+gender(2,cow) :- world(e).
+gender(3,cow) :- world(e).
+position(1,c) :- world(f).
+position(2,b) :- world(f).
+gender(2,bull) :- world(f).
+gender(3,cow) :- world(f).
+% assume uniform dist over worlds (this is not in the original paper)
+1/6::world(a); 1/6::world(b); 1/6::world(c); 1/6::world(d); 1/6::world(e); 1/6::world(f).
+% query 1: does the orca attack the calf? (this happens if the calf is at position b)
+attack :- position(1,b).
+query(attack).
+% query 2: same query, but under the constraint that sperm cows move in between their calf and an orca (uncomment evidence to run)
+constraint1 :- not (gender(2,cow), not position(2,b)).
+%evidence(constraint1).
+% query 3: does the adult sperm abandon the calf? (and in which gender combinations does this happen)
+abandon(S,O) :- 
+<Langda>
+<Code_Block>abandon(S,O) :- gender(2,S), gender(3,O), position(2,c).</Code_Block>
+<HASH> Hash tag of code: A90B08DE </HASH>
+<Requirements>Function: When the adult sperm whale numbered 2 is of gender S, the killer whale numbered 3 is of gender O, and the adult sperm whale is at position c, it means that the adult sperm whale abandons the baby whale. </Requirements></Langda>
+.
+query(abandon(_,_)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+attack = 0.6667
+abandon(cow,cow) = 0.1667
+abandon(cow,bull) = 0.1667
+abandon(bull,cow) = 0.1667
+abandon(bull,bull) = 0.1667</Result>
+
+</original_code>
+<Analysis>
+
+<Overall_Analysis> 
+The code is syntactically valid and implements the specified requirements for the most part. The test results align with the expected probabilities for the queries, indicating logical correctness. However, there are minor issues in the implementation of the `abandon` predicate and the handling of constraints, which could be clarified or improved for better readability and correctness.
+</Overall_Analysis>
+
+<Error_Summary> 
+1. The `abandon` predicate is correctly implemented but could be more explicitly documented to match the requirements.
+2. The constraint `constraint1` is commented out in the evidence section, which might lead to confusion about its intended use.
+3. The test results for `abandon` show uniform probabilities, which might not fully reflect the intended logic if additional constraints are applied.
+</Error_Summary>
+
+<Code_Block_Issues>
+    <Code>"HASH": "A90B08DE",
+        "Report": "The `abandon` predicate is implemented as `abandon(S,O) :- gender(2,S), gender(3,O), position(2,c).`, which matches the requirements. However, the predicate name is misspelled as `abandon` in the query, which could cause confusion. Additionally, the predicate could be documented more clearly to reflect the requirement that it represents abandonment when the adult sperm whale is at position `c`."
+    </Code>
+</Code_Block_Issues>
+
+<Recommendations>
+1. Correct the spelling of the `abandon` predicate in the query to match its definition.
+2. Uncomment and test the `constraint1` evidence to ensure it works as intended.
+3. Add comments to clarify the logic of the `abandon` predicate and its alignment with the requirements.
+4. Review the uniform distribution of probabilities for `abandon` to ensure they align with the intended logic, especially if constraints are applied.
+</Recommendations>
+
+</Analysis>
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> For each code block that needs evaluation, provide a structured report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

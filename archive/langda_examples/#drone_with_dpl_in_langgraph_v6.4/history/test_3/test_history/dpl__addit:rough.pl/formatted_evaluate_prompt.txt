@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    define_index = self._add_head(head)\n                   ^^^^^^^^^^^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/clausedb.py", line 281, in _add_head\n    raise AccessError("Can not overwrite built-in \'%s\'." % head.signature)\nproblog.clausedb.AccessError: Can not overwrite built-in \'length/2\'..</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>digit(img_1,1).\ndigit(img_2,2).\ndigit(img_3,3).\ndigit(img_4,4).\ndigit(img_5,5).\ndigit(img_6,6).\ndigit(img_7,7).\ndigit(img_8,8).\ndigit(img_9,9).\ndigit(img_0,0).\n\nnumber([], 0).\nnumber([H], D) :- digit(H, D).\nnumber([H|T], N) :- digit(H, D), number(T, NT), N is NT + D * (10 ^ length(T)).\n\n% Helper predicate to calculate list length\nlength([], 0).\nlength([_|T], L) :- length(T, LT), L is LT + 1.</Current_Code>\n<HASH> Hash tag of code: 06576BEB </HASH>\n<LLM> Requirements of Rules: define number predicate, to convert a list of image IDs to their corresponding integer values. </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

@@ -1,0 +1,5 @@
+[
+{
+"CFA63C1E": "% Game rules for rock-paper-scissors\nmove(rock).\nmove(paper).\nmove(scissor).\n\n% Win-lose relationships\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock).\n\n% Play a single round\nplay_round(P1, P2, win) :- beats(P1, P2).\nplay_round(P1, P2, lose) :- beats(P2, P1).\nplay_round(P, P, draw).\n\n% Play multiple rounds\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [R|Rs]) :-\n    play_round(P1, P2, R),\n    play(P1s, P2s, Rs)."
+}
+]

@@ -1,0 +1,125 @@
+System: You are a coding assistant. You MUST use the available tools to complete the ProbLog code. Do not attempt to solve the problem without using tools.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).
+
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+    X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+    X > H,
+    insert_element(X, T, RT).
+
+query(insertion_sort([3,1,2,5,7,12], X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>
+
+**FIRST RESULT:
+The provided code snippet is incomplete, and the task is to complete the `insertion_sort/2` predicate based on the given requirements. The requirements specify that the predicate should:
+
+1. Recursively sort the tail list.
+2. Insert the head element `H` into the sorted list.
+
+Here is the completed code:
+
+```problog
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).
+
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+    X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+    X > H,
+    insert_element(X, T, RT).
+
+query(insertion_sort([3,1,2,5,7,12], X)).
+```
+
+### Explanation:
+1. The `insertion_sort/2` predicate handles two cases:
+   - The base case where the input list is empty, resulting in an empty sorted list.
+   - The recursive case where the tail `T` is sorted first (`insertion_sort(T, SortedTail)`), and then the head `H` is inserted into the sorted tail (`insert_element(H, SortedTail, Sorted)`).
+
+2. The `insert_element/3` predicate inserts an element `X` into the correct position in a sorted list:
+   - If the list is empty, the result is a list containing only `X`.
+   - If `X` is less than or equal to the head of the list, it is inserted at the front.
+   - If `X` is greater than the head, it is recursively inserted into the tail of the list.
+
+3. The `query` statement tests the `insertion_sort/2` predicate with the input list `[3,1,2,5,7,12]`.

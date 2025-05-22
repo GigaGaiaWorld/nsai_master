@@ -1,0 +1,10 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the `<langda>` block in the origin code:
+
+```problog
+{"HASH": "190031BC","Code": "parse([N], N).\nparse([N, O | Rest], Result) :-\n    (O = *, parse(Rest, R), Result is N * R;\n     O = /, parse(Rest, R), R =\\= 0, Result is N / R;\n     parse([O | Rest], R), \n     (O = +, Result is N + R;\n      O = -, Result is N - R))."}
+```
+
+Note that:
+1. I've used the same HASH value from the original `<langda>` block (190031BC)
+2. The code is the updated version from the generated code that handles operator precedence and edge cases
+3. The format follows exactly what was requested in the `<Final_Answer>` template

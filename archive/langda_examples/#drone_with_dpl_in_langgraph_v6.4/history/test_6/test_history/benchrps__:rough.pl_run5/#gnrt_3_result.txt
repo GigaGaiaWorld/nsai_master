@@ -1,0 +1,12 @@
+Based on the origin_code and generated_code provided, here are the extracted and formatted code blocks corresponding to the <Langda> block in the origin_code:
+
+```problog
+{"HASH": "CFA63C1E","Code": "play([], [], []).\nplay([P1|P1s], [P2|P2s], [win|Results]) :-\n    beats(P1, P2),\n    play(P1s, P2s, Results).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P2, P1) -> Result = lose ; Result = draw),\n    play(P1s, P2s, Results)."}
+```
+
+Note: The generated code has been improved from the original by:
+1. Removing the invalid tags
+2. Optimizing the logic by combining the lose/draw cases
+3. Maintaining the same functionality while being more concise
+
+The HASH value remains the same as in the original code (CFA63C1E) since this is the identifier for this particular code block.

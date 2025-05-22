@@ -1,0 +1,15 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <Langda> section in the origin_code. Since the generated_code section appears to be empty in your message, I'll assume the completed code for the <Langda> block would be the game rules implementation that was missing in the origin_code.
+
+Here's the formatted JSON for the completed code block:
+
+```problog
+{"HASH": "CFA63C1E", "Code": "play([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2) -> Result = win;\n    (beats(P2, P1) -> Result = lose;\n    Result = draw),\n    play(P1s, P2s, Results)."}
+```
+
+This code implements the game rules for rock-paper-scissors by:
+1. Defining the base case for empty move lists
+2. Comparing each pair of moves from both players
+3. Determining the result (win/lose/draw) based on the beats/2 predicates
+4. Recursively processing the remaining moves
+
+The hash matches the one provided in the <Langda> section (CFA63C1E), and the code fulfills the requirement of defining the game rules.

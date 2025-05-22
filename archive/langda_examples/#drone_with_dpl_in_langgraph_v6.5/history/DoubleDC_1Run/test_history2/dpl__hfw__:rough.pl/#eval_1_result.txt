@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incorrect parsing of nested operations due to left-to-right evaluation without operator precedence, leading to wrong arithmetic results. Missing division by zero check.",
+  "SuggestedFix": "Modify parse/2 rules to handle operator precedence correctly. For multiplication and division, ensure they are evaluated before addition and subtraction. Add a guard for division by zero: parse([N1, /, N2 | T], R) :- almost_equal(N1, V1), parse([N2 | T], V2), V2 =\\= 0, almost_equal(V1 / V2, R).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

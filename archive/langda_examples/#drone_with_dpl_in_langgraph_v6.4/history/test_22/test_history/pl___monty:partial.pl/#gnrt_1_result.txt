@@ -1,0 +1,9 @@
+Here are the regenerated code blocks in the requested JSON format:
+
+```problog
+{"HASH": "C5B4A895", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :- \n    select_door(Selected),\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    A \\= B,\n    A \\= Selected,\n    B \\= Selected,\n    \+ prize(A),\n    \+ prize(B)."}
+```
+
+```problog
+{"HASH": "338175EC", "Code": "open_door(A) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    A \\= Selected,\n    \+ prize(A),\n    member(B, [1,2,3]),\n    B \\= Selected,\n    B \\== A,\n    prize(B)."}
+```

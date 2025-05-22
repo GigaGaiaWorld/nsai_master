@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 54:25.</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>game(Cards,House,H1,H2) :-\n    cards(Cards,own,House,OwnCards),\n    cards(Cards,opponent,House,OppCards),\n    best_hand(OwnCards,H1),\n    best_hand(OppCards,H2).</Current_Code>\n<HASH> Hash tag of code: D38F9F68 </HASH>\n<LLM> Requirements of Rules: Based on the given Cards (four cards) and House (bottom card), distribute the first two cards to the player (own), and the last two cards to the opponent (opponent), calculate and return the respective optimal hand types H1 and H2. </LLM></Langda>', "<Langda> The 2nd Code Block That You Should Analyse:\n<Current_Code>game(Cards,House,Outcome) :-\n    game(Cards,House,H1,H2),\n    best_hand_rank([card(R1),card(R2),House],Rank1),\n    best_hand_rank([card(R3),card(R4),House],Rank2),\n    outcome(Rank1,Rank2,Outcome).</Current_Code>\n<HASH> Hash tag of code: EF02D81B </HASH>\n<LLM> Requirements of Rules: Similar to the above, but only returns the result Outcome ∈ {win, loss, draw}, Determine the winner by comparing the rank values \u200b\u200bof the player and opponent's best cards. </LLM></Langda>", '<Langda> The 3rd Code Block That You Should Analyse:\n<Current_Code>game(Cards,Outcome) :-\n    house_rank(HouseRank),\n    rank(HouseCard,HouseRank),\n    game([C1,C2,C3,C4,HouseCard],Outcome).</Current_Code>\n<HASH> Hash tag of code: C53A4763 </HASH>\n<LLM> Requirements of Rules: Without specifying House, a hole card is randomly drawn from the probability distribution house_rank/1, and then the above game/3 is called to return the final result. </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

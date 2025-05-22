@@ -1,0 +1,12 @@
+Based on the provided origin_code and generated_code, I'll extract and format the completed code block that corresponds to the <Langda> section in the origin_code.
+
+The only completed code block that replaces a <Langda> section is the `goal_reached` predicate, which has been enhanced with an additional check for overrun exceptions. Here's the formatted output:
+
+```problog
+{"HASH": "779B4ADF", "Code": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(GP),\n Pos == GP,\n \+ overrun_exception(Time)."}
+```
+
+This corresponds to:
+1. The original <Langda> block with hash "779B4ADF"
+2. The completed version in generated_code that adds the `\+ overrun_exception(Time)` check
+3. The requirement was to check if we reached the goal, which this implementation now does more robustly by also ensuring there was no overrun exception

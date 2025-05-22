@@ -1,0 +1,11 @@
+```report
+{"HASH": "A4F0EAE2","ErrorSummary": "The rule head uses variables A and B that are not properly constrained in the body. The Selected variable is not used in the body.","SuggestedFix": "Modify the rule to: 0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), member(B,[1,2,3]), A < B, A \\= Selected, B \\= Selected, \+ prize(A), \+ prize(B).","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "F0FDE8AB","ErrorSummary": "The rule correctly handles the case where only one door is available to open, but could be more clearly written.","SuggestedFix": "Modify the rule to: open_door(A) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \+ prize(A), \+ (member(B,[1,2,3]), B \\= Selected, B \\= A, \+ prize(B)).","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "GLOBAL","ErrorSummary": "The test results show correct probabilities (win_keep=0.333, win_switch=0.666) matching Monty Hall problem expectations.","SuggestedFix": "No changes needed to main program logic. Only the two rules above need minor adjustments.","Dependencies": ["A4F0EAE2"],"NeedRegenerate": false}
+```

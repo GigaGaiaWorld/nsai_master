@@ -1,0 +1,6 @@
+```report
+{"HASH": "2971FD2F", "ErrorSummary": "No issues found in the bubblesort/3 predicate. The recursive logic and termination condition are correctly implemented.", "SuggestedFix": "None needed", "Dependencies": [], "NeedRegenerate": false}
+```
+```report
+{"HASH": "5CBF7C6A", "ErrorSummary": "Missing swap/3 predicate, which is required for the hole/4 predicate to function. This causes the entire sorting logic to fail.", "SuggestedFix": "Define swap/3 to handle element swapping. Example:\nswap(X, Y, no_swap) :- X =< Y.\nswap(X, Y, swap) :- X > Y.", "Dependencies": [], "NeedRegenerate": true}
+```

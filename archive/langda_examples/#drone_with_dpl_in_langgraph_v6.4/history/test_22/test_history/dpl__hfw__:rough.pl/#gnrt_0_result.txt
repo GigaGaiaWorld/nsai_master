@@ -1,0 +1,17 @@
+Here are the completed code snippets for the parse/2 predicates:
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, '+', M | T], R) :- almost_equal(N + M, X), parse([X | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, '-', M | T], R) :- almost_equal(N - M, X), parse([X | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, '*', M | T], R) :- almost_equal(N * M, X), parse([X | T], R)."}
+```
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, '/', M | T], R) :- almost_equal(N / M, X), parse([X | T], R)."}
+```

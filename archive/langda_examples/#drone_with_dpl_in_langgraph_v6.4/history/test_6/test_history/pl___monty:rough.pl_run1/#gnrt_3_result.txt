@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> blocks in the origin_code:
+
+```problog
+{"HASH": "592D75CA", "Code": "% Helper predicate to find an empty door that is neither selected nor the prize\nget_empty_door(Selected, PrizeDoor, EmptyDoor) :-\n    member(EmptyDoor, [1,2,3]),\n    EmptyDoor \\= Selected,\n    EmptyDoor \\= PrizeDoor."}
+```
+
+```problog
+{"HASH": "592D75CA", "Code": "% Predicate to open a door based on the rules of the Monty Hall problem\nopen_door(OpenedDoor) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    get_empty_door(Selected, PrizeDoor, EmptyDoor),\n    (   PrizeDoor = Selected ->\n        % Randomly choose one of the two empty doors\n        0.5::open_door(EmptyDoor) ; 0.5::open_door(EmptyDoor2),\n        get_empty_door(Selected, PrizeDoor, EmptyDoor2),\n        EmptyDoor2 \\= EmptyDoor\n    ;   % Host must open the only empty door\n        open_door(EmptyDoor)\n    )."}
+```
+
+Note that both code blocks share the same HASH value since they were both part of the same <langda> section in the origin code, which had the hash 592D75CA. The second code block (open_door/1 predicate) was generated to fulfill the requirements specified in the <Requirements> section of the <langda> block.

@@ -1,0 +1,89 @@
+System: You are a coding assistant.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+merge_sort([], []).
+merge_sort([X], [X]).
+merge_sort(List, Sorted) :-
+ 
+<Langda>
+<Code_Block>merge_sort([], []).
+merge_sort([X], [X]).
+merge_sort(List, Sorted) :-
+    length(List, Len),
+    Len > 1,
+    split_list(List, Left, Right),
+    merge_sort(Left, SortedLeft),
+    merge_sort(Right, SortedRight),
+    merge(SortedLeft, SortedRight, Sorted).</Code_Block>
+<HASH> Hash tag of code: 95E704F2 </HASH>
+<Requirements>Should contain following rules: 1.Get the length of the current list, Len, to determine whether to continue splitting. 2.Recursive boundary judgment: Only lists with a length greater than 1 need to be sorted, otherwise they are sorted by default. 3.Split the list into two parts, Left and Right, for subsequent recursive processing. </Requirements></Langda>
+,
+ 
+<Langda>
+<Code_Block>split_list(List, Left, Right) :-
+    length(List, Len),
+    Half is Len // 2,
+    length(Left, Half),
+    append(Left, Right, List).
+merge([], List, List).
+merge(List, [], List).
+merge([H1|T1], [H2|T2], [H1|Merged]) :-
+    H1 =< H2,
+    merge(T1, [H2|T2], Merged).
+merge([H1|T1], [H2|T2], [H2|Merged]) :-
+    H1 > H2,
+    merge([H1|T1], T2, Merged).
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+    append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).</Code_Block>
+<HASH> Hash tag of code: 26E82D5D </HASH>
+<Requirements>Should contain following rules: 1.Recursively call merge sort on the left half, and the result is SortedLeft. 2.Recursively sort the right half, and the result is SortedRight. 3.Merge the two sorted sublists into the final sorted result Sorted. </Requirements></Langda>
+.
+split_list(List, Left, Right) :-
+ length(List, Len),
+ Half is Len // 2,
+ length(Left, Half),
+ append(Left, Right, List).
+merge([], List, List).
+merge(List, [], List).
+merge([H1|T1], [H2|T2], [H1|Merged]) :-
+ H1 =< H2,
+ merge(T1, [H2|T2], Merged).
+merge([H1|T1], [H2|T2], [H2|Merged]) :-
+ H1 > H2,
+ merge([H1|T1], T2, Merged).
+ 
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    toks = self.label_tokens(string, root_tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1206, in label_tokens
+    raise ParseError(string, "Ambiguous token role", t.location)
+problog.parser.ParseError: Ambiguous token role at 12:1.
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

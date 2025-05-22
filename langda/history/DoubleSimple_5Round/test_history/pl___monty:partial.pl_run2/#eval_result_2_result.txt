@@ -1,0 +1,6 @@
+```report
+{"HASH": "C5B4A895","ErrorSummary": "The rule head uses variables A and B that are not properly constrained in the body, leading to potential incorrect door selection","SuggestedFix": "Modify the rule to: '0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), member(B,[1,2,3]), A \= B, A \= Selected, B \= Selected, \+ prize(A), \+ prize(B).' to ensure proper door selection constraints","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "338175EC","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```

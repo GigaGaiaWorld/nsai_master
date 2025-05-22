@@ -1,0 +1,44 @@
+System: You are a coding assistant.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: E659D458 </HASH>
+<Requirements>Push element X onto the top of the stack and return the new stack [X|Stack]. </Requirements></Langda>
+.
+stack_op(pop, [_|Stack], Stack).
+stack_op(dup, [X|Stack], [X,X|Stack]).
+stack_op(swap, [X,Y|Stack], [Y,X|Stack]).
+stack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).
+stack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).
+stack_op(sort, Stack, SortedStack) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 6931D64E </HASH>
+<Requirements>A custom stack operation: sort, which sorts the three elements at the top of the stack in ascending order and then puts them back to the original stack. </Requirements></Langda>
+.
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</Code>
+<Final_Answer>
+Please generate each code in JSON form for each code block using a single problog block of the following form, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```

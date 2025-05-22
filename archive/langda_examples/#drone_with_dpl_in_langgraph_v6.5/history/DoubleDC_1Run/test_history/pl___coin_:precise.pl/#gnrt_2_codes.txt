@@ -1,0 +1,5 @@
+[
+{
+"EA5E8D55": "coins_r(SC, S, CNT) :-\n    CNT > 0,\n    (coin(CNT), NewSC is SC + 1 ; \\+ coin(CNT), NewSC = SC),\n    NextCNT is CNT - 1,\n    coins_r(NewSC, S, NextCNT)."
+}
+]

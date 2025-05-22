@@ -1,0 +1,11 @@
+Here are the completed code snippets in JSON form:
+
+```problog
+{"HASH": "CFA63C1E","Code": "% Game rules for rock-paper-scissors\nmove(rock).\nmove(paper).\nmove(scissor).\n\n% Win-lose relationships\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock).\n\n% Play a single round\nplay_round(P1, P2, Result) :-\n    (beats(P1, P2) -> Result = win;\n    (beats(P2, P1) -> Result = lose;\n    Result = draw.\n\n% Play multiple rounds\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [R|Rs]) :-\n    play_round(P1, P2, R),\n    play(P1s, P2s, Rs)."}
+```
+
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+
+Note: I've combined the game rules and gameplay logic into a single complete snippet for hash CFA63C1E since they're closely related. The second hash doesn't have corresponding code in the requirements. I've included the play/3 predicate which was referenced in the original determine_winner/3 predicate but wasn't defined in the initial code.

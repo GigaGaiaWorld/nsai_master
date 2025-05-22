@@ -1,0 +1,3 @@
+```report
+{"HASH": "55F6DA26","ErrorSummary": "Missing predicate definition for random_member/2 causing UnknownClause error","SuggestedFix": "Add the random_member/2 predicate definition before open_door/1 is used. Insert this code before line 11:\n\nrandom_member(X, [X|_]).\nrandom_member(X, [_|T]) :- random_member(X, T).","Dependencies": [],"NeedRegenerate": true}
+```

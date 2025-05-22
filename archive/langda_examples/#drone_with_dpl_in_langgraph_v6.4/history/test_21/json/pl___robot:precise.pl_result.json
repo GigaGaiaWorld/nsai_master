@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___robot:precise.pl",
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 21,
+  "iter_count": 1,
+  "process_time": 21.18307590484619,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.4331\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(robot,loc1,s(s(s(0)))) = 0.0900\nat(robot,loc0,s(s(s(0)))) = 0.0100\nat(key,loc2,s(s(s(0)))) = 0.5670\nat(key,loc1,s(s(s(0)))) = 0.4330\nat(key,loc0,s(s(s(0)))) = 0.0000",
+  "final_report": "The generated code is largely consistent with the original code in terms of logic and structure. The main difference is in the second clause for 'at(robot,Pos,s(T))', where the generated code uses 'do(goto(_),T)' instead of 'do(goto(Pos),T)' as in the original. However, this change does not affect the functionality since the position is not used in the subsequent conditions. The running results of both codes are identical, indicating that the generated code meets the expected behavior."
+}

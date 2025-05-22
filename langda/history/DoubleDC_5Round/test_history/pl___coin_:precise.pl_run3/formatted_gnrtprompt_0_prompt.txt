@@ -1,0 +1,88 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: EA5E8D55 </HASH>
+<Requirements>With the counter CNT decreasing to 0, each step:  If the CNTth coin coin(CNT) turns up heads, the success count SC increases by 1;  Otherwise, it remains unchanged;  Finally, all steps are accumulated to S. </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: EA5E8D55 </HASH>
+<Requirements>With the counter CNT decreasing to 0, each step:  If the CNTth coin coin(CNT) turns up heads, the success count SC increases by 1;  Otherwise, it remains unchanged;  Finally, all steps are accumulated to S. </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+
+</origin_code>
+<generated_code>
+
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+    CNT > 0,
+    (coin(CNT) ->
+        NewSC is SC + 1,
+        NextCNT is CNT - 1,
+        coins_r(NewSC, S, NextCNT)
+    ;
+        NextCNT is CNT - 1,
+        coins_r(SC, S, NextCNT)
+    ).
+
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

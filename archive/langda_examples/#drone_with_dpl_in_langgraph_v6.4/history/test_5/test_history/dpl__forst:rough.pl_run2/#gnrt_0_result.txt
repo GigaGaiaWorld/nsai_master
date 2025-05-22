@@ -1,0 +1,5 @@
+Based on the provided origin_code and generated_code, there is only one <langda> block that needs to be completed. Here's the extracted and formatted code block:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Elements, RestStack),\n    insertion_sort(Elements, SortedElements),\n    append(SortedElements, RestStack, SortedStack).\n\nget_top_n(Stack, N, Elements, Rest) :-\n    length(Elements, N),\n    append(Elements, Rest, Stack)."}
+```

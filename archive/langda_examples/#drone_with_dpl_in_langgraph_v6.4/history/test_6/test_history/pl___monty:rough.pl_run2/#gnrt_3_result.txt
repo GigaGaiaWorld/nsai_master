@@ -1,0 +1,9 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "592D75CA","Code": "% Probabilistic case: Player's door has the prize\n0.5::open_door(Door1) ; 0.5::open_door(Door2) :-\n    select_door(Selected),\n    prize(Selected),\n    member(Door1, [1,2,3]),\n    member(Door2, [1,2,3]),\n    Door1 \\= Selected,\n    Door2 \\= Selected,\n    Door1 \\= Door2."}
+```
+
+```problog
+{"HASH": "592D75CA","Code": "% Deterministic case: Player's door does not have the prize\nopen_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    PrizeDoor \\= Selected,\n    member(Door, [1,2,3]),\n    Door \\= Selected,\n    Door \\= PrizeDoor."}
+```

@@ -1,0 +1,17 @@
+```report
+{
+  "HASH": "47D659C8",
+  "Report": "The `bubblesort/3` predicate contains a conditional statement (`->/2`) that is not supported in ProbLog, leading to an 'UnknownClause' error. The logic for accumulating the sorted list (`Acc`) is flawed, as it does not correctly build the sorted list during recursion. The `bubble_pass/3` predicate also lacks proper handling of the `Swapped` flag, which could lead to incorrect sorting behavior. The code needs to be regenerated to use ProbLog-compatible constructs and correct the logical flaws in the sorting algorithm.",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```
+
+```report
+{
+  "HASH": "N/A",
+  "Report": "The `forth_sort/2` predicate and the query `query(forth_sort([3,1,2,5,7,12],X))` are not properly integrated with ProbLog. The error suggests that the ProbLog engine cannot evaluate the Prolog-style predicates directly. This code block depends on the corrected version of the `bubblesort/3` predicate (HASH: 47D659C8) and needs to be regenerated to comply with ProbLog's syntax and evaluation model.",
+  "Need_regenerate": true,
+  "Dependencies": ["47D659C8"]
+}
+```

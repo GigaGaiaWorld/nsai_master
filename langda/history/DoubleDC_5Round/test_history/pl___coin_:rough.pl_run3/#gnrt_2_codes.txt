@@ -1,0 +1,5 @@
+[
+{
+"DF1FDC54": "coins_r(SC, S, CNT) :-\n    CNT > 0,\n    coin(heads),\n    CNT1 is CNT - 1,\n    SC1 is SC + 1,\n    coins_r(SC1, S, CNT1).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    coin(tails),\n    CNT1 is CNT - 1,\n    coins_r(SC, S, CNT1)."
+}
+]

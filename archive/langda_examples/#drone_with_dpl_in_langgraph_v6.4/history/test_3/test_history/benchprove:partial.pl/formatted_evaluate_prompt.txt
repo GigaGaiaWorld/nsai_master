@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    rf = self.fold(\n         ^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold\n    raise ParseError(\nproblog.parser.ParseError: Operator priority clash at 18:21.</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>prove(implies(P,Q)) :-\n\t(\\+ prove(P); prove(Q)).</Current_Code>\n<HASH> Hash tag of code: 99C92279 </HASH>\n<LLM> Requirements of Rules: P ⇒ Q, when P is unprovable or Q is provable </LLM></Langda>', '<Langda> The 2nd Code Block That You Should Analyse:\n<Current_Code>prove(opposite(P)) :-\n\t\\+ prove(P).</Current_Code>\n<HASH> Hash tag of code: 1405B337 </HASH>\n<LLM> Requirements of Rules: opposite(P): opposite/negation of P; that is, P is unprovable </LLM></Langda>', '<Langda> The 3rd Code Block That You Should Analyse:\n<Current_Code>prove(extend(List,Elem,Extended)) :-\n\tExtended = [Elem|List].</Current_Code>\n<HASH> Hash tag of code: C68F7B35 </HASH>\n<LLM> Requirements of Rules: extend(List,Elem,Extended): add Elem to the head of List to get Extended </LLM></Langda>', '<Langda> The 4th Code Block That You Should Analyse:\n<Current_Code>expand(double(X), Y) :-\n\tY is X*2.</Current_Code>\n<HASH> Hash tag of code: 0F69CE0F </HASH>\n<LLM> Requirements of Rules: define expand/2: Y is X*2 </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

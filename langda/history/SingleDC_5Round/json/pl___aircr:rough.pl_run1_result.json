@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___aircr:rough.pl",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 72,
+  "iter_count": 1,
+  "process_time": 72.04959988594055,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 33:194.",
+  "final_report": "The generated code attempts to replicate the original aircraft flap controller logic but introduces a syntax error in the 'attempted_flap_position' rule. The error occurs due to incorrect handling of the condition for direction calculation, leading to an 'UnknownClause' error during execution. While the overall structure and logic are similar to the original, this syntax error makes the generated code invalid. The original code runs successfully and produces expected probability results for goal_reached and overrun_exception queries."
+}

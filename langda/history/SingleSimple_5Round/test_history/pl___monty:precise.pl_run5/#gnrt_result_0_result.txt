@@ -1,0 +1,9 @@
+Here are the completed code snippets in JSON form:
+
+```problog
+{"HASH": "A4F0EAE2","Code": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(S), member(A,[1,2,3]), member(B,[1,2,3]), A < B, \+ prize(A), \+ prize(B), \+ select_door(A), \+ select_door(B)."}
+```
+
+```problog
+{"HASH": "F0FDE8AB","Code": "open_door(A) :- select_door(S), member(A,[1,2,3]), \+ prize(A), \+ select_door(A), \+ (member(B,[1,2,3]), A \\= B, \+ prize(B), \+ select_door(B))."}
+```

@@ -1,0 +1,21 @@
+Based on the requirements in the <langda> block, I'll regenerate the code to include all the specified extended logic processing predicates. Here's the complete regenerated code:
+
+```problog
+{"HASH": "2DFC0CFD","Code": "% --------- Extended logic processing ---------
+implies(A, B) :- prove(A), prove(B).
+opposite(A) :- \+ prove(A).
+expand(Goal, Result) :- clause(Goal, Body), prove(Body), Result = Goal.
+includes(List, Elem) :- member(Elem, List).
+extend(List, Elem, [Elem|List]).
+refute(Goal) :- opposite(Goal)."}
+```
+
+This regenerated code includes:
+1. implies/2 - succeeds if both arguments can be proven
+2. opposite/1 - succeeds if the argument cannot be proven
+3. expand/2 - uses existing rules to expand a goal
+4. includes/2 - checks if an element is in a list (using member/2)
+5. extend/2 - adds an element to the head of a list
+6. refute/1 - alias for opposite/1
+
+The code maintains the same functionality while adding all the required predicates in a concise format as requested.

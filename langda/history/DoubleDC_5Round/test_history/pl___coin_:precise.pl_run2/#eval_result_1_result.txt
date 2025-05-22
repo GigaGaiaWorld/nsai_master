@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Unsupported '->/2' construct in ProbLog, causing an UnknownClause error",
+  "SuggestedFix": "Replace the if-then-else construct with ProbLog-compatible disjunction:\n\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    (coin(CNT), SC1 is SC + 1, coins_r(SC1, S, CNT1)) ;\n    (\\+ coin(CNT), coins_r(SC, S, CNT1)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

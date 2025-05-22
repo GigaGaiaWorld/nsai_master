@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "55F6DA26",
+  "ErrorSummary": "1. Unsupported if-then-else construct in ProbLog. 2. Incomplete implementation of open_door/1 requirements (missing case for single door). 3. Incorrect probability distribution handling.",
+  "SuggestedFix": "Replace if-then-else with ProbLog-compatible logic. Split into two separate clauses: (1) When two doors available: '0.5::open_door(Door1) ; 0.5::open_door(Door2)'. (2) When one door available: 'true::open_door(Door)'. Ensure proper door filtering logic using member/2 and prize/1 predicates.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

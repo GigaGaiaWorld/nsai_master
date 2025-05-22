@@ -1,0 +1,16 @@
+Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 887, in _builtin_is
+    check_mode((a, b), ["*g"], functor="is", **k)
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, X2+1), expected: (any, ground) at 11:5.Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 8:13.Error evaluating Problog model:
+    rf = self.fold(
+         ^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
+    raise ParseError(
+problog.parser.ParseError: Operator priority clash at 7:20.

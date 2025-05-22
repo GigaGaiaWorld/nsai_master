@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 41,
+  "iter_count": 0,
+  "process_time": 40.650598764419556,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for 'append/3' at 33:5.",
+  "final_report": "The generated code is mostly consistent with the original code in terms of stack operations (push, pop, dup, swap, over, rot). However, it introduces a new 'sort' operation and includes an implementation of 'insertion_sort', which was not present in the original code. The generated code fails to run due to an error related to 'append/3', indicating a missing or incorrect implementation of the 'append' predicate. This error prevents the code from executing successfully."
+}

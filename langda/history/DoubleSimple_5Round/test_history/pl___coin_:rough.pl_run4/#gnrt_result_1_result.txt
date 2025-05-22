@@ -1,0 +1,12 @@
+Based on the requirements in the <langda> block, the code needs to be regenerated to properly sample CNT independent coins and accumulate the number of heads. The current code is incomplete and doesn't implement the coin tossing logic. Here's the regenerated code:
+
+```problog
+{"HASH": "DF1FDC54","Code": "coins_r(SC,S,CNT) :- CNT > 0, CNT1 is CNT - 1, coin(C), (C, SC1 is SC + 1; \+C, SC1 is SC), coins_r(SC1,S,CNT1)."}
+```
+
+This implementation:
+1. Takes the current count of heads (SC)
+2. Decrements the remaining coin count (CNT)
+3. Samples a coin toss (coin(C))
+4. Increments the head count if it's heads (C is true), keeps it same if tails
+5. Recursively continues until all coins are tossed (CNT reaches 0)

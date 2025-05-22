@@ -1,0 +1,5 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block in JSON format:
+
+```problog
+{"HASH": "47D659C8", "Code": "bubblesort([], Acc, Acc).\n\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, [], NewList, Max),\n    bubblesort(NewList, [Max|Acc], Sorted).\n\nbubble_pass([X], Acc, Acc, X).\n\nbubble_pass([X, Y|T], Acc, NewList, Max) :-\n    (X > Y ->\n        bubble_pass([X|T], [Y|Acc], NewList, Max)\n    ;\n        bubble_pass([Y|T], [X|Acc], NewList, Max)\n    )."}
+```

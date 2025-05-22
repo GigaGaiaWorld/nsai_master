@@ -1,0 +1,3 @@
+```report
+{"HASH": "CFA63C1E","ErrorSummary": "Unmatched character '(' error due to incorrect formatting in the play predicate definition","SuggestedFix": "Fix the formatting of the play predicate by ensuring proper line breaks and indentation. The corrected play predicate should be:\nplay([],[],[]).\nplay([M1|T1],[M2|T2],[R|TR]) :-\n    (beats(M1,M2) -> R = win;\n    (beats(M2,M1) -> R = lose;\n    R = draw)),\n    play(T1,T2,TR).","Dependencies": [],"NeedRegenerate": true}
+```

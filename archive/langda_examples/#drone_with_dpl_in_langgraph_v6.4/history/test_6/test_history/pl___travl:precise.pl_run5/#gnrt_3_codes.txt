@@ -1,0 +1,5 @@
+[
+{
+"E09B4F54": "% Regenerated inf/1 predicate with combined probabilities\n% Initial infection\n0.1::inf(X) :- initialInf(X).\n% Contact transmission\n0.8::inf(X) :- contact(X, Y), inf(Y), susceptible(X).\n0.6::inf(X) :- contact(X, Y), inf(Y), \\+susceptible(X).\n% Travel risk\n0.2::inf(X) :- riskyTravel(X).\n% Combined probability of infection from any source\ninf(X) :- inf_initial(X).\ninf(X) :- inf_contact(X).\ninf(X) :- inf_travel(X)."
+}
+]

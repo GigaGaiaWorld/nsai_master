@@ -1,0 +1,3 @@
+```problog
+{"HASH": "58E6FAB7","Code": "% Calculate population density (population per square mile)\ndensity(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is Pop / Area.\n\n% Query to find countries with approximately equal population density (within 5%)\nquery_pop([Country1, Density1, Country2, Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    abs(Density1 - Density2) =< 0.05 * max(Density1, Density2)."}
+```

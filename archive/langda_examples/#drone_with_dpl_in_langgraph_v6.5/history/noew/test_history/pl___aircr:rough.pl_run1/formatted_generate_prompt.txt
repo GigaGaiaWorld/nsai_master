@@ -1,0 +1,206 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Aircraft Flap Controller
+% This example is inspired by one in Filieri et al, Reliability Analysis in Symbolic Pathfinder, ICSE 2013
+% the range of the flap
+legal_flap_position(FP) :- between(0,10,FP).
+% the strength of the actuators
+actuator_strength(a,2).
+actuator_strength(b,1).
+% random prior on which actuator to use
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+% wind strength model
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+% the flap is moved to an attempted position if that is legal
+flap_position(Time,Pos) :-
+ Time > 0,
+ attempted_flap_position(Time,Pos),
+ legal_flap_position(Pos).
+% an overrun exception occurs else
+overrun_exception(Time) :-
+ attempted_flap_position(Time,Pos),
+ \+ legal_flap_position(Pos).
+% did we reach the goal?
+goal_reached(Time) :-
+ goal(G),
+ flap_position(Time,G).
+% if the previous position was not the goal, attempt a new position
+% the position depends on the chosen actuator and the current wind
+attempted_flap_position(Time,Pos) :-
+ Time > 0,
+ Prev is Time-1,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: A5C06F43 </HASH>
+<Requirements>Calculate the current position based on the previous flapping position, not yet reached the goal, the actuator used, the target position, and the effect of wind </Requirements></Langda>
+.
+% we want to go from 6 to 4, i.e., move two steps left
+flap_position(0,6).
+goal(4).
+% restrict attention to first five steps
+at(5).
+query(goal_reached(T)) :- at(S),between(1,S,T).
+query(overrun_exception(T)) :- at(S),between(1,S,T).
+
+</Code>
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Aircraft Flap Controller
+% This example is inspired by one in Filieri et al, Reliability Analysis in Symbolic Pathfinder, ICSE 2013
+% the range of the flap
+legal_flap_position(FP) :- between(0,10,FP).
+% the strength of the actuators
+actuator_strength(a,2).
+actuator_strength(b,1).
+% random prior on which actuator to use
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+% wind strength model
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+% the flap is moved to an attempted position if that is legal
+flap_position(Time,Pos) :-
+ Time > 0,
+ attempted_flap_position(Time,Pos),
+ legal_flap_position(Pos).
+% an overrun exception occurs else
+overrun_exception(Time) :-
+ attempted_flap_position(Time,Pos),
+ \+ legal_flap_position(Pos).
+% did we reach the goal?
+goal_reached(Time) :-
+ goal(G),
+ flap_position(Time,G).
+% if the previous position was not the goal, attempt a new position
+% the position depends on the chosen actuator and the current wind
+attempted_flap_position(Time,Pos) :-
+ Time > 0,
+ Prev is Time-1,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: A5C06F43 </HASH>
+<Requirements>Calculate the current position based on the previous flapping position, not yet reached the goal, the actuator used, the target position, and the effect of wind </Requirements></Langda>
+.
+% we want to go from 6 to 4, i.e., move two steps left
+flap_position(0,6).
+goal(4).
+% restrict attention to first five steps
+at(5).
+query(goal_reached(T)) :- at(S),between(1,S,T).
+query(overrun_exception(T)) :- at(S),between(1,S,T).
+
+</origin_code>
+<generated_code>
+
+% Aircraft Flap Controller
+% This example is inspired by one in Filieri et al, Reliability Analysis in Symbolic Pathfinder, ICSE 2013
+% the range of the flap
+legal_flap_position(FP) :- between(0,10,FP).
+% the strength of the actuators
+actuator_strength(a,2).
+actuator_strength(b,1).
+% random prior on which actuator to use
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+% wind strength model
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+% the flap is moved to an attempted position if that is legal
+flap_position(Time,Pos) :-
+ Time > 0,
+ attempted_flap_position(Time,Pos),
+ legal_flap_position(Pos).
+% an overrun exception occurs else
+overrun_exception(Time) :-
+ attempted_flap_position(Time,Pos),
+ \+ legal_flap_position(Pos).
+% did we reach the goal?
+goal_reached(Time) :-
+ goal(G),
+ flap_position(Time,G).
+% if the previous position was not the goal, attempt a new position
+% the position depends on the chosen actuator and the current wind
+attempted_flap_position(Time,Pos) :-
+ Time > 0,
+ Prev is Time-1,
+ flap_position(Prev, PrevPos),
+ goal(G),
+ \+ goal_reached(Prev),
+ use_actuator(Time, Actuator),
+ actuator_strength(Actuator, Strength),
+ wind_effect(Time, WindEffect),
+ (
+     (G > PrevPos, Pos is PrevPos + Strength + WindEffect)
+     ;
+     (G < PrevPos, Pos is PrevPos - Strength + WindEffect)
+     ;
+     (G =:= PrevPos, Pos = PrevPos)
+ ).
+% we want to go from 6 to 4, i.e., move two steps left
+flap_position(0,6).
+goal(4).
+% restrict attention to first five steps
+at(5).
+query(goal_reached(T)) :- at(S),between(1,S,T).
+query(overrun_exception(T)) :- at(S),between(1,S,T).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

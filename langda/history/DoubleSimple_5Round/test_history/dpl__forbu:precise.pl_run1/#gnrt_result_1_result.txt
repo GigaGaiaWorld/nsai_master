@@ -1,0 +1,12 @@
+Based on the requirements in the <langda> block, I'll regenerate the code to properly implement the bubblesort algorithm with recursive calls. The current code is incomplete and needs to properly handle the recursive sorting step.
+
+```problog
+{"HASH": "2971FD2F","Code": "bubblesort(L,L3,Sorted) :- bubble(L,L2,X), bubblesort(L2,[X|L3],Sorted)."}
+```
+
+This completes the bubblesort predicate by:
+1. First calling bubble/3 to get the current maximum element X and remaining list L2
+2. Then recursively calling bubblesort on L2 while accumulating the sorted elements in [X|L3]
+3. The base case (bubblesort([],L,L)) handles the termination when the list is empty
+
+The rest of the code (hole/4, bubble/3, swap/3, forth_sort/2) remains correct and doesn't need regeneration.

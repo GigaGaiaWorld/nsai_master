@@ -1,0 +1,17 @@
+Here are the generated code blocks in JSON form:
+
+For the first Code:
+```problog
+{
+    "HASH": "E659D458",
+    "Code": "stack_op(push(X), Stack, [X|Stack])."
+}
+```
+
+For the second Code:
+```problog
+{
+    "HASH": "6931D64E",
+    "Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Top3, Rest),\n    sort(Top3, SortedTop3),\n    append(SortedTop3, Rest, SortedStack).\n\nget_top_n(Stack, N, Elements, Rest) :-\n    length(Elements, N),\n    append(Elements, Rest, Stack)."
+}
+```

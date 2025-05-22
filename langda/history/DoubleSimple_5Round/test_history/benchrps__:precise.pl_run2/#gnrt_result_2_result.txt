@@ -1,0 +1,11 @@
+Based on the requirements in the <langda> block, I'll regenerate the `determine_winner` predicate to properly calculate the winner by comparing the moves and computing the final score. Here's the completed code:
+
+```problog
+{"HASH": "CE4B5362","Code": "determine_winner(P1Moves,P2Moves,Winner) :- play(P1Moves,P2Moves,Results), compute_score(Results,Score), (Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw')."}
+```
+
+This implementation:
+1. Calls `play/3` to compare the moves and generate Results
+2. Computes the total score using `compute_score/2`
+3. Determines the winner based on whether the score is positive (Player 1 wins), negative (Player 2 wins), or zero (Draw)
+4. Matches the query format shown in the example

@@ -1,0 +1,3 @@
+```problog
+{"HASH": "2DFC0CFD","Code": "prove(implies(A, B)) :-\n    (prove(A) -> prove(B); true).\nprove(opposite(A)) :-\n    \\+ prove(A).\nprove(expand(Goal, Result)) :-\n    expand(Goal, Result).\nprove(includes(List, Elem)) :-\n    member(Elem, List).\nprove(extend(List, Elem, [Elem|List])).\nprove(refute(A)) :-\n    \\+ prove(A)."}
+```

@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___aircr:rough.pl",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 365,
+  "iter_count": 3,
+  "process_time": 364.75356793403625,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 33:168.",
+  "final_report": "The generated code attempts to replicate the functionality of the original code but introduces a syntax error in the 'attempted_flap_position' rule. The error occurs due to incorrect handling of the condition for determining the direction of flap movement. The original code uses 'sign(GP-Old)*AS' to calculate the actuator effect, while the generated code incorrectly uses a conditional statement that leads to a syntax error ('->'/2). This makes the generated code invalid and unable to run successfully."
+}

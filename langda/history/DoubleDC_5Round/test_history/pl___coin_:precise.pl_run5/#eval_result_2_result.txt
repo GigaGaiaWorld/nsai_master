@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Unmatched '(' character in the ProbLog parser due to malformed logical construct in the 'coins_r/3' predicate.",
+  "SuggestedFix": "Correct the nesting of parentheses in the 'coins_r/3' predicate. Ensure the disjunction (;) and conjunction (,) operators are properly enclosed. Example fix:\n\ncoins_r(SC, SC, 0).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    (coin(CNT), \n        NewSC is SC + 1,\n        NewCNT is CNT - 1,\n        coins_r(NewSC, S, NewCNT)\n    ; \n    (\\+ coin(CNT),\n        NewCNT is CNT - 1,\n        coins_r(SC, S, NewCNT)\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

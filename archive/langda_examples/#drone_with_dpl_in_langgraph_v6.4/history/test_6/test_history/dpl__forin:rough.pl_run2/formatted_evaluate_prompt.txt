@@ -1,0 +1,126 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+<Langda>
+<Code_Block>% Corrected insertion sort implementation in ProbLog
+
+% Base case: an empty list is already sorted
+insertion_sort([], []).
+
+% Recursive case: insert the head into the sorted tail
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert(H, SortedTail, Sorted).
+
+% Insert an element into a sorted list
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :-
+    X =< Y.
+insert(X, [Y|T], [Y|SortedT]) :-
+    X > Y,
+    insert(X, T, SortedT).</Code_Block>
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000</Result>
+</Code>
+
+<Evaluation_Instructions>
+First, analyze the entire codebase and test results to identify errors and potential issues. Consider:
+1. Syntax correctness: Is the ProbLog code syntactically valid?
+2. Logical correctness: Does the code implement the specified requirements?
+3. Error analysis: What specific issues are causing any test failures?
+4. Integration: Do the code blocks properly work together?
+
+Create a comprehensive report that identifies all issues and explains their causes.
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured as follows:
+```report
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for first code]",
+        "Report": "// Your analysis of first code here"</Code>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for second code]",
+        "Report": "// Your analysis of second code here"</Code>
+    // other code blocks...
+</Code_Block_Issues>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>% Corrected insertion sort implementation in ProbLog
+
+% Base case: an empty list is already sorted
+insertion_sort([], []).
+
+% Recursive case: insert the head into the sorted tail
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert(H, SortedTail, Sorted).
+
+% Insert an element into a sorted list
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :-
+    X =< Y.
+insert(X, [Y|T], [Y|SortedT]) :-
+    X > Y,
+    insert(X, T, SortedT).</Code_Block>
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000</Result>
+
+</original_code>
+<Analysis>
+
+<Overall_Analysis> "The provided ProbLog code for the insertion sort algorithm is syntactically correct and logically sound. The test result confirms that the implementation works as expected, producing the correct sorted output for the given input list. The code adheres to the requirements of implementing an interpretable insertion_sort/2 algorithm." </Overall_Analysis>
+<Error_Summary> "No errors were identified in the code. The implementation correctly follows the insertion sort algorithm, and the test case validates its functionality." </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "501F546D",
+        "Report": "The code block implements the insertion sort algorithm correctly. The base case and recursive case are properly defined, and the insert/3 predicate ensures elements are inserted into the sorted list in the correct order. The test result confirms the correctness of the implementation."</Code>
+</Code_Block_Issues>
+<Recommendations>"No fixes are required for the current implementation. However, additional test cases could be added to further validate the robustness of the algorithm, such as testing with an already sorted list, a reverse-sorted list, and a list with duplicate elements." </Recommendations>
+
+</Analysis>
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> For each code block that needs evaluation, provide a structured report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

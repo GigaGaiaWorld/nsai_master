@@ -1,0 +1,63 @@
+System: You are a coding assistant.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+<Langda>
+<Code_Block>append([], L, L).
+append([H|T], L2, [H|R]) :-
+    append(T, L2, R).
+
+split([], [], []).
+split([X], [X], []).
+split([X,Y|Xs], [X|Ls], [Y|Rs]) :-
+    split(Xs, Ls, Rs).
+
+merge([], L, L).
+merge(L, [], L).
+merge([X|Xs], [Y|Ys], [X|Zs]) :-
+    X =< Y,
+    merge(Xs, [Y|Ys], Zs).
+merge([X|Xs], [Y|Ys], [Y|Zs]) :-
+    X > Y,
+    merge([X|Xs], Ys, Zs).
+
+merge_sort([], []).
+merge_sort([X], [X]).
+merge_sort(List, Sorted) :-
+    split(List, L, R),
+    merge_sort(L, Ls),
+    merge_sort(R, Rs),
+    merge(Ls, Rs, Sorted).
+
+query(merge_sort([3,1,2,5,7,12],X)).</Code_Block>
+<HASH> Hash tag of code: 418D2062 </HASH>
+<Requirements>This Prolog program should implement an interpretable merge_sort/2 algorithm </Requirements></Langda>
+.
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+merge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

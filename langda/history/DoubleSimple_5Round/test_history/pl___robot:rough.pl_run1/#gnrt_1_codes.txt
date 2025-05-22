@@ -1,0 +1,5 @@
+[
+{
+"8EB675E6": "at(robot,Pos,s(T)) :- goto_action(T), goto_succeeds(T), do(goto(Pos),T).\nat(robot,Pos,s(T)) :- goto_action(T), goto_fails(T), at(robot,Pos,T).\n\n0.9::goto_succeeds(T); 0.1::goto_fails(T)."
+}
+]

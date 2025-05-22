@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N, O, M | T], Result) :-\n    (O == '/' -> Op is N / M ; Op =.. [O, N, M]),\n    parse([Op | T], Result)."}
+```
+
+This JSON object contains:
+1. The HASH value from the original <langda> block
+2. The completed code snippet that replaces the original <Code_Block> in the <langda> section
+3. The code handles all operator types including proper division (using `is` for division to ensure floating-point arithmetic)
+4. It maintains the recursive evaluation structure while fixing the operator handling issues mentioned in the <Report> section

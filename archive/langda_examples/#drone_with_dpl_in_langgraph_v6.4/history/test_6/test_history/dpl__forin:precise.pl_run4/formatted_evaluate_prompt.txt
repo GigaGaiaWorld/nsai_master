@@ -1,0 +1,132 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda>
+<Code_Block>insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).</Code_Block>
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000</Result>
+</Code>
+
+<Evaluation_Instructions>
+First, analyze the entire codebase and test results to identify errors and potential issues. Consider:
+1. Syntax correctness: Is the ProbLog code syntactically valid?
+2. Logical correctness: Does the code implement the specified requirements?
+3. Error analysis: What specific issues are causing any test failures?
+4. Integration: Do the code blocks properly work together?
+
+Create a comprehensive report that identifies all issues and explains their causes.
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured as follows:
+```report
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for first code]",
+        "Report": "// Your analysis of first code here"</Code>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for second code]",
+        "Report": "// Your analysis of second code here"</Code>
+    // other code blocks...
+</Code_Block_Issues>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda>
+<Code_Block>insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).</Code_Block>
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000</Result>
+
+</original_code>
+<Analysis>
+
+<Overall_Analysis> 
+The provided ProbLog code implements an insertion sort algorithm, and the test result shows that it correctly sorts the list `[3, 1, 2, 5, 7, 12]` into `[1, 2, 3, 5, 7, 12]` with a probability of 1.0000. The code is syntactically valid and logically correct for the given test case. However, a deeper analysis is required to ensure robustness and correctness for all edge cases.
+</Overall_Analysis>
+
+<Error_Summary> 
+No errors were identified in the provided code for the given test case. The code adheres to the requirements of recursively sorting the tail list and inserting the head element into the sorted list. However, potential edge cases (e.g., empty lists, lists with duplicate elements, or already sorted lists) should be tested to ensure full correctness.
+</Error_Summary>
+
+<Code_Block_Issues>
+    <Code>"HASH": "DA97FB01",
+        "Report": "The code block correctly implements the insertion sort algorithm by recursively sorting the tail of the list and then inserting the head element into the sorted tail. The logic is sound, and the test result confirms its correctness for the provided input."
+    </Code>
+    <Code>"HASH": "N/A",
+        "Report": "The `insert_element` predicate is correctly implemented to handle the insertion of an element into a sorted list. It covers cases where the element is smaller than or equal to the head of the list (`X =< H`) and where it is larger (`X > H`). The base case for an empty list is also correctly handled."
+    </Code>
+</Code_Block_Issues>
+
+<Recommendations>
+1. **Test Edge Cases**: Extend testing to include edge cases such as empty lists (`[]`), lists with duplicate elements (e.g., `[3, 1, 2, 2, 5]`), and already sorted lists (e.g., `[1, 2, 3]`).
+2. **Performance Analysis**: While the code is correct, insertion sort has a time complexity of O(n^2). For larger lists, consider optimizing or using a more efficient sorting algorithm if performance is a concern.
+3. **Documentation**: Add comments to the code to clarify the logic for future maintainability, especially for the recursive and insertion steps.
+4. **Error Handling**: Although not strictly necessary for ProbLog, ensure the code gracefully handles unexpected inputs (e.g., non-integer elements) if the use case expands.
+</Recommendations>
+
+</Analysis>
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> For each code block that needs evaluation, provide a structured report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

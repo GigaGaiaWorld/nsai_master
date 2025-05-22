@@ -1,0 +1,10 @@
+[
+{
+"LOT": null,
+"NET": null,
+"LLM": "  1. Check if the goal has been reached:  If Old already satisfies goal(Old), no new trial position is calculated.    2.Determine the current actuator and its strength:  Select actuator A (use_actuator) according to time Time, and get its thrust AS from actuator_strength(A).    3. Calculate the direction and contribution of the actuator  Take the global target position GP (goal(GP)), and compare the difference direction between GP and Old:  - If the target is in front of the current direction, AE = +AS; if in the opposite direction, AE = −AS;  - Specific calculation: AE = sign(GP − Old) × AS.    4. Superimpose wind interference:  Take the additional effect WE of the wind force on the position at that moment from wind_effect(Time).    Combine the trial position of this step:  Add the three parts and get the current attempt flapping position Pos.",
+"FUP": "True",
+"HEAD": "",
+"HASH": "62719B9D"
+}
+]

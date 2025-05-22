@@ -1,0 +1,16 @@
+Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 11:16.Error evaluating Problog model:
+    return self.collapse(string, tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1282, in collapse
+    raise UnmatchedCharacter(string, expr_stack[-1].start.location)
+problog.parser.UnmatchedCharacter: Unmatched character '(' at 10:12.Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1349, in label_tokens
+    parser.label_tokens(self.string, self.tokens)
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1186, in label_tokens
+    raise ParseError(string, "Expected binary operator", t.location)
+problog.parser.ParseError: Expected binary operator at 12:29.

@@ -1,0 +1,13 @@
+Based on the requirements in the <Langda> block, we need to define `bb(N)` to succeed when there exists two consecutive 'b' characters in a random string of length N. Here's the regenerated code:
+
+```problog
+{"HASH": "0805B4F6","Code": "bb(N) :- between(1, N, I), I1 is I+1, I1 =< N, pick(I, b), pick(I1, b)."}
+```
+
+This implementation:
+1. Uses `between/3` to generate all possible indices I in 1..N
+2. Calculates the next position I+1
+3. Checks that I+1 is within bounds (≤ N)
+4. Verifies both positions I and I+1 have character 'b' using `pick/2` predicates
+
+The original code was incomplete - it didn't implement the required logic for checking consecutive 'b's. This new implementation properly checks for the existence of two consecutive 'b' characters in the string.

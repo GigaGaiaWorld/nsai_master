@@ -1,0 +1,9 @@
+Here are the completed code snippets in the requested JSON format:
+
+```problog
+{"HASH": "638F1761","Code": "at(robot,Pos,s(T)) :- do(goto(Pos),T), goto_succeeds(T).\nat(robot,Pos,s(T)) :- do(goto(_),T), goto_fails(T), at(robot,Pos,T).\nat(robot,Pos,s(T)) :- \\+ goto_action(T), at(robot,Pos,T)."}
+```
+
+```problog
+{"HASH": "BCB17653","Code": "at(key,Pos,T) :- carrying(key,T), at(robot,Pos,T).\nat(key,Pos,s(T)) :- \\+ carrying(key,s(T)), at(key,Pos,T)."}
+```

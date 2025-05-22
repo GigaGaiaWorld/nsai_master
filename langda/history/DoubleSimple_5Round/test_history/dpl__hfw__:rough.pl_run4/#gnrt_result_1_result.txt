@@ -1,0 +1,5 @@
+Based on the requirements in the <langda> block, I need to regenerate the parse/2 predicate to handle arithmetic operations in list form while considering the almost_equal predicate. Here's the completed code:
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, Op, M | T], R) :- almost_equal(N, N1), almost_equal(M, M1), parse_operation(Op, N1, M1, R1), parse([R1 | T], R).\nparse_operation(+, A, B, R) :- R is A + B.\nparse_operation(-, A, B, R) :- R is A - B.\nparse_operation(*, A, B, R) :- R is A * B.\nparse_operation(/, A, B, R) :- R is A / B."}
+```

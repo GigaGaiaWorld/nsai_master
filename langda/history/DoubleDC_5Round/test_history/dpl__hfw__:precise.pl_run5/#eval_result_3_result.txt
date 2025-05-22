@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "9BA21093",
+  "ErrorSummary": "Non-ground comparison in `almost_equal/2` causing CallModeError, division-by-zero unhandled, and input type assumptions.",
+  "SuggestedFix": "1. Modify `almost_equal/2` to enforce ground terms: `almost_equal(X, Y) :- ground(X), ground(Y), abs(X - Y) < 0.0001.`\n2. Add division-by-zero check in `/` case of `parse/2`: `parse([N1, / | T], R) :- parse(T, R1), R1 =\= 0, R is N1 / R1.`\n3. Validate input type in `parse/2` (e.g., `parse(L, R) :- is_list(L), ...`).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

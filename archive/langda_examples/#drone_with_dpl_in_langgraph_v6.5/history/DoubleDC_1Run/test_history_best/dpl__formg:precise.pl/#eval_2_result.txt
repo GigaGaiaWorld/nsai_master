@@ -1,0 +1,7 @@
+```report
+{"HASH": "95E704F2", "ErrorSummary": "Syntax error due to unsupported if-then-else construct in ProbLog", "SuggestedFix": "Replace the if-then-else construct with separate clauses for Len > 1 and Len =< 1. For example: split_list(List, Left, Right) :- length(List, Len), Len > 1, split_list(List, Left, Right). split_list(List, Left, Right) :- length(List, Len), Len =< 1, Left = List, Right = [].", "Dependencies": [], "NeedRegenerate": true}
+```
+
+```report
+{"HASH": "26E82D5D", "ErrorSummary": "No issues found in the recursive merge sort and merge logic", "SuggestedFix": "None needed", "Dependencies": [], "NeedRegenerate": false}
+```

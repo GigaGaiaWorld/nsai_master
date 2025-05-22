@@ -1,0 +1,9 @@
+Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
+
+```problog
+{"HASH": "592D75CA", "Code": "open_door(D) :-\n    select_door(S),\n    prize(P),\n    member(D, [1,2,3]),\n    \+ select_door(D),\n    \+ prize(D),\n    (   (P = S -> 0.5::open_door(D) ; true)\n    ;   (P \\= S -> (D \\= P -> true ; fail))\n    )."}
+```
+
+This JSON object contains:
+- The HASH value from the original <langda> block
+- The completed code for the `open_door/1` predicate that implements both the random and deterministic door opening rules as specified in the requirements

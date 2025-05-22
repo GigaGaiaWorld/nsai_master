@@ -1,0 +1,7 @@
+```report
+{"HASH": "A4F0EAE2","ErrorSummary": "The rule head contains variables A and B that are not properly constrained in the body, leading to potential incorrect probability assignments","SuggestedFix": "Modify the rule to ensure A and B are properly constrained as distinct doors that are neither selected nor contain prizes:\n0.5::open_door(A) ; 0.5::open_door(B) :- \n  select_door(Selected), \n  member(A,[1,2,3]), \n  member(B,[1,2,3]), \n  A < B, \n  A \\= Selected, \n  B \\= Selected, \n  \+ prize(A), \n  \+ prize(B), \n  \+ (member(OtherDoor,[1,2,3]), OtherDoor \\= A, OtherDoor \\= B, OtherDoor \\= Selected, \+ prize(OtherDoor)).","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "F0FDE8AB","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```

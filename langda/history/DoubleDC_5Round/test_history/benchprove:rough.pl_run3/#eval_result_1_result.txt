@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "2DFC0CFD",
+  "ErrorSummary": "Unsupported '->' operator in implies/2 predicate causes ProbLog execution failure",
+  "SuggestedFix": "Replace 'prove(implies(A, B)) :- (prove(A) -> prove(B)).' with 'prove(implies(A, B)) :- (prove(A), prove(B)) ; \\+ prove(A).' to maintain logical implication without using the unsupported -> operator",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CE4B5362",
+  "ErrorSummary": "Unsupported '->/2' operator in ProbLog for conditional branching in 'determine_winner/3'",
+  "SuggestedFix": "Replace the line '(Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw').' with '(Score > 0, Winner = 'Player 1'; Score < 0, Winner = 'Player 2'; Winner = 'Draw').' to avoid using '->/2'.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

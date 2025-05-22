@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause in 'coin(C)' causing ProbLog to reject the code due to uninstantiated variable C.",
+  "SuggestedFix": "Replace 'coin(C) :- make_coin(C, 0.8).' with ground probabilistic facts: 'coin(head) :- make_coin(head, 0.8).' and 'coin(tail) :- make_coin(tail, 0.2).'.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

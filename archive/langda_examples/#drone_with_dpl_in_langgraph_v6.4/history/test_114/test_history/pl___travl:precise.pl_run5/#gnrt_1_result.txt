@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <Langda> block in the origin code:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.1::inf(X) :- initialInf(X).\n0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X)."}
+```
+
+Note that:
+1. I've used the same HASH value (E09B4F54) that was provided in the original <Langda> block
+2. The code content matches exactly the regenerated inf/1 predicate from the generated_code
+3. I've preserved the escape character (\\) before the \+ operator
+4. The code is formatted as a single string with newline characters separating the rules

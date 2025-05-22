@@ -1,0 +1,3 @@
+```report
+{"HASH": "5E40E418", "ErrorSummary": "Missing implementations for stack operations (push, pop, dup, swap, over, rot) and incorrect handling of stack length in get_top_n", "SuggestedFix": "1. Add predicates for push, pop, dup, swap, over, and rot. Example:\nstack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Rest], Rest).\nstack_op(dup, [X|Rest], [X,X|Rest]).\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(rot, [X,Y,Z|Rest], [Z,X,Y|Rest]).\n2. Fix get_top_n:\nget_top_n(Stack, N, Elements, Rest) :-\n    length(Stack, Len),\n    (Len >= N -> length(Elements, N), append(Elements, Rest, Stack)\n    ; Elements = Stack, Rest = []).", "Dependencies": [], "NeedRegenerate": true}
+```

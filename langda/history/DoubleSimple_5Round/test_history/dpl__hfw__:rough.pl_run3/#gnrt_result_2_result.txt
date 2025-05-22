@@ -1,0 +1,14 @@
+Based on the requirements in the <langda> block, I need to regenerate the parse/2 predicate to handle arithmetic operations in a list format, with each operation as a separate rule. The current implementation only handles single numbers.
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N], R) :- almost_equal(N, R).\nparse([N1, +, N2|T], R) :- R1 is N1 + N2, parse([R1|T], R).\nparse([N1, -, N2|T], R) :- R1 is N1 - N2, parse([R1|T], R).\nparse([N1, *, N2|T], R) :- R1 is N1 * N2, parse([R1|T], R).\nparse([N1, /, N2|T], R) :- R1 is N1 / N2, parse([R1|T], R)."}
+```
+
+This implementation:
+1. Keeps the base case for single numbers
+2. Adds separate rules for each arithmetic operation (+, -, *, /)
+3. Each operation rule recursively processes the remaining list
+4. Maintains the almost_equal functionality from the original
+5. Follows the requirement of having each operation as a separate parse/2 predicate

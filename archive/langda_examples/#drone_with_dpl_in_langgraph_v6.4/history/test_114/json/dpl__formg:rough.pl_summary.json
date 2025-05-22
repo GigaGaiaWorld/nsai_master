@@ -1,0 +1,79 @@
+{
+  "file_name": "dpl__formg:rough.pl",
+  "runs": 5,
+  "avg_process_time": 148.05792593955994,
+  "min_process_time": 98.61355185508728,
+  "max_process_time": 239.5169961452484,
+  "std_dev_time": 53.73532249130514,
+  "validity_stats": {
+    "form": {
+      "true": 5,
+      "false": 0,
+      "error": 0
+    },
+    "result": {
+      "true": 5,
+      "false": 0,
+      "error": 0
+    }
+  },
+  "success_form_rate": 1.0,
+  "success_result_rate": 1.0,
+  "individual_results": [
+    {
+      "file_name": "dpl__formg:rough.pl",
+      "run_index": 1,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 127,
+      "iter_count": 1,
+      "process_time": 127.21416187286377,
+      "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+      "final_report": "The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. The main difference lies in the implementation of the 'split' function, which is more concise in the generated code compared to the original 'split_list' function. Both codes produce the same correct result for the given query. The generated code is valid and meets the requirements, with no apparent issues."
+    },
+    {
+      "file_name": "dpl__formg:rough.pl",
+      "run_index": 2,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 144,
+      "iter_count": 1,
+      "process_time": 143.87031888961792,
+      "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+      "final_report": "The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. Both codes handle base cases and recursive sorting by splitting, sorting, and merging lists. The generated code uses a different splitting method (pairwise splitting) compared to the original (length-based splitting), but both achieve the same result. The merge and append functions are identical in both codes. The running results are consistent, producing the correct sorted list."
+    },
+    {
+      "file_name": "dpl__formg:rough.pl",
+      "run_index": 3,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 99,
+      "iter_count": 1,
+      "process_time": 98.61355185508728,
+      "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+      "final_report": "The generated code correctly implements the merge sort algorithm in Problog, similar to the original code. The main difference lies in the implementation of the 'split' function, which in the generated code uses a different approach to split the list into two halves. The generated code is consistent with the original code in terms of functionality and produces the same correct result. However, the generated code includes an unnecessary duplicate query and append definition at the end, which does not affect the result but is redundant."
+    },
+    {
+      "file_name": "dpl__formg:rough.pl",
+      "run_index": 4,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 240,
+      "iter_count": 2,
+      "process_time": 239.5169961452484,
+      "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+      "final_report": "The generated code is correct and consistent with the original code. It implements the merge sort algorithm in Problog with the same logic and structure. The only minor difference is the renaming of 'split_list' to 'split', which does not affect functionality. Both codes produce the same correct result for the given query."
+    },
+    {
+      "file_name": "dpl__formg:rough.pl",
+      "run_index": 5,
+      "Validity_form": true,
+      "Validity_result": true,
+      "running_time": 131,
+      "iter_count": 1,
+      "process_time": 131.0746009349823,
+      "final_result": "% Problog Inference Result：\nmerge_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000",
+      "final_report": "The generated code correctly implements the merge sort algorithm in ProbLog, similar to the original code. Both codes produce the same sorted output for the given input. However, the generated code uses a different splitting strategy ('split/3') compared to the original's 'split_list/3'. The new split method directly divides elements alternately into left and right lists, which is more efficient but differs in approach. Both implementations correctly merge and sort the lists, demonstrating functional consistency despite the methodological difference in splitting."
+    }
+  ]
+}

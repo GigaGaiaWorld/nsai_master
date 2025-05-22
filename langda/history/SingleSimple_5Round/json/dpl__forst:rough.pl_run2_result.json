@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 23,
+  "iter_count": 1,
+  "process_time": 22.832621812820435,
+  "final_result": "% Problog Inference Result：\nstack_op(push(1),[2, 3, 4],X2) = 0.0000\nstack_op(pop,[1, 2, 3, 4],X2) = 0.0000\nstack_op(dup,[1, 2, 3, 4],X2) = 0.0000\nstack_op(swap,[1, 2, 3, 4],X2) = 0.0000\nstack_op(over,[1, 2, 3, 4],X2) = 0.0000\nstack_op(rot,[1, 2, 3, 4],X2) = 0.0000",
+  "final_report": "The generated code is structurally similar to the original code but lacks the definitions for basic stack operations (push, pop, dup, swap, over, rot) which are present in the original code. This omission causes the generated code to fail in producing the expected results, as evidenced by the run results showing 0.0000 probabilities for all queries. The generated code only includes the sorting operation and its helper predicates, which are not sufficient to handle the queries provided."
+}

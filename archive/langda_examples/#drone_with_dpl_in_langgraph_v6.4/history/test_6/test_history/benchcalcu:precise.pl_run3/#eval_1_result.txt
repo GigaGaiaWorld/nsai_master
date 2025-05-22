@@ -1,0 +1,48 @@
+Here is the structured evaluation for each code block:
+
+```report
+{"HASH": "B6FD3E20", "Report": "The code block correctly enforces that D and E are different digits, which is a basic requirement for the puzzle. However, it does not ensure these digits are part of the final solution set, which could lead to unnecessary backtracking. No regeneration is needed as the logic is correct, but optimization could be done elsewhere.", "Need_regenerate": false, "Dependencies": []}
+```
+
+```report
+{"HASH": "AFCFFD3D", "Report": "The `sumdigit` predicate calculates the unit digit sum (D + E) with carry, but the carry variable `C1` is not explicitly constrained. This could lead to ambiguity. Regeneration is recommended to add constraints for `C1` (e.g., `C1 in 0..1`).", "Need_regenerate": true, "Dependencies": ["B6FD3E20"]}
+```
+
+```report
+{"HASH": "BA7F9BE8", "Report": "The block assigns N and ensures uniqueness among Y, E, and D. This is logically correct but redundant with later uniqueness checks. Regeneration is not strictly needed, but optimization (e.g., merging into a single `all_different` check) is recommended.", "Need_regenerate": false, "Dependencies": ["AFCFFD3D"]}
+```
+
+```report
+{"HASH": "3E567069", "Report": "The block assigns R and ensures uniqueness among N, Y, E, and D. This is correct but redundant with later checks. Regeneration is not needed, but optimization (e.g., merging into a single `all_different` check) is recommended.", "Need_regenerate": false, "Dependencies": ["BA7F9BE8"]}
+```
+
+```report
+{"HASH": "0BCA612F", "Report": "The `sumdigit` predicate for N + R + C1 = E is correct, but the carry `C2` is not constrained. Regeneration is recommended to add constraints for `C2` (e.g., `C2 in 0..1`).", "Need_regenerate": true, "Dependencies": ["3E567069"]}
+```
+
+```report
+{"HASH": "710BBD98", "Report": "The block assigns O and ensures uniqueness. This is correct but redundant with later checks. Regeneration is not needed, but optimization (e.g., merging into a single `all_different` check) is recommended.", "Need_regenerate": false, "Dependencies": ["0BCA612F"]}
+```
+
+```report
+{"HASH": "58F57C1C", "Report": "The `sumdigit` predicate for E + O + C2 = N is correct, but the carry `C3` is not constrained. Regeneration is recommended to add constraints for `C3` (e.g., `C3 in 0..1`).", "Need_regenerate": true, "Dependencies": ["710BBD98"]}
+```
+
+```report
+{"HASH": "70805326", "Report": "The block assigns S and ensures it is unique and non-zero. This is correct but redundant with later checks. Regeneration is not needed, but optimization (e.g., merging into a single `all_different` check) is recommended.", "Need_regenerate": false, "Dependencies": ["58F57C1C"]}
+```
+
+```report
+{"HASH": "72F32859", "Report": "The block assigns M and ensures it is unique and non-zero. This is correct but redundant with later checks. Regeneration is not needed, but optimization (e.g., merging into a single `all_different` check) is recommended.", "Need_regenerate": false, "Dependencies": ["70805326"]}
+```
+
+```report
+{"HASH": "4623869C", "Report": "The `sumdigit` predicate for S + M + C3 = O is repeated twice, which is redundant. The logic is correct but should be called only once. Regeneration is recommended to remove the duplicate call.", "Need_regenerate": true, "Dependencies": ["72F32859"]}
+```
+
+### Summary of Regenerations:
+- **Regenerate**: `AFCFFD3D`, `0BCA612F`, `58F57C1C`, `4623869C` (due to unconstrained carries or redundancy).
+- **No Regeneration**: `B6FD3E20`, `BA7F9BE8`, `3E567069`, `710BBD98`, `70805326`, `72F32859` (correct but could be optimized).
+
+### Dependencies:
+- Regenerations for `AFCFFD3D`, `0BCA612F`, `58F57C1C`, and `4623869C` are interdependent due to carry propagation and uniqueness checks. Changes to one may affect others.

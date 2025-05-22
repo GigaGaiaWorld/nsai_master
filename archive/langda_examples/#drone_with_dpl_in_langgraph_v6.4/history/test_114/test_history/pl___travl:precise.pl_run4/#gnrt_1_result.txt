@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <Langda> block in the origin_code:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X), \\+initialInf(X), \\+riskyTravel(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X), \\+initialInf(X), \\+riskyTravel(X).\n0.2::inf(X) :- riskyTravel(X), \\+initialInf(X), \\+ (contact(X,Y), inf(Y)).\n\n% Initial infection\ninf(X) :- initialInf(X)."}
+```
+
+Note that:
+1. I've used the same HASH value (E09B4F54) from the original code block
+2. The code includes the revised infection rules from the generated_code
+3. I've preserved all the Prolog syntax including the backslashes for negation
+4. The code is formatted as a single string with newline characters separating the rules

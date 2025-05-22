@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 46,
+  "iter_count": 1,
+  "process_time": 46.40879797935486,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.9083\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(robot,loc1,s(s(s(0)))) = 0.0900\nat(robot,loc0,s(s(s(0)))) = 0.0100\nat(key,loc2,s(s(s(0)))) = 0.8644\nat(key,loc1,s(s(s(0)))) = 0.1248\nat(key,loc0,s(s(s(0)))) = 0.0109",
+  "final_report": "The generated code has significant differences from the original code. The 'carrying' predicate in the generated code is simplified and lacks important conditions present in the original code, such as checking the robot's position and key's position. This simplification leads to incorrect probabilities in the results. The generated code's results show much higher probabilities for carrying the key (0.9083 vs 0.4331) and different distributions for key locations, indicating it doesn't model the scenario correctly."
+}

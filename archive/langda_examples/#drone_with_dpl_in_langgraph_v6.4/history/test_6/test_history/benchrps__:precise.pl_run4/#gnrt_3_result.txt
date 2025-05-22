@@ -1,0 +1,7 @@
+Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in `<origin_code>`:
+
+```problog
+{"HASH": "3FEB17D7", "Code": "valid_moves([]).\nvalid_moves([H|T]) :-\n move(H),\n valid_moves(T).\n\ndetermine_winner(P1Moves, P2Moves, Winner) :-\n is_list(P1Moves), is_list(P2Moves),\n length(P1Moves, Len1), length(P2Moves, Len2),\n Len1 =:= Len2,\n valid_moves(P1Moves), valid_moves(P2Moves),\n play(P1Moves, P2Moves, Results),\n compute_score(Results, S),\n ( S > 0, Winner = player1\n ; S < 0, Winner = player2\n ; S = 0, Winner = draw\n )."}
+```
+
+Note: I've combined both the `valid_moves` predicate (which replaces the `maplist/2` functionality) and the corrected `determine_winner` predicate into a single code block since they work together to fulfill the original requirements. The hash remains the same as in the original `<langda>` block since this is the corrected version of that code.

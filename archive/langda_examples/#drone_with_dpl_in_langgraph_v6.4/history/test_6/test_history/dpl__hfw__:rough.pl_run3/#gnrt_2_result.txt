@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> section in the origin_code.
+
+The only code block that was completed (replacing the <langda> section) is the parse/2 predicate. Here's the formatted JSON output:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N, O, M | T], Result) :-\n    (O = '/' -> Op is N / M ; Op =.. [O, N, M]),\n    parse([Op | T], Result)."}
+```

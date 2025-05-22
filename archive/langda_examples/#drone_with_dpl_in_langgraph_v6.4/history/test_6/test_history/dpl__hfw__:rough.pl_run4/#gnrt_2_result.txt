@@ -1,0 +1,9 @@
+Based on the given origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> section in the origin_code:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N, O | T], Result) :-\n    parse(T, R),\n    (O = '+', Result is N + R\n    ; O = '-', Result is N - R\n    ; O = '*', Result is N * R\n    ; O = '/', (R =:= 0 -> fail ; Result is N / R)\n    )."}
+```
+
+This is the only code block that was marked with <langda> in the origin_code and completed in the generated_code. The JSON includes:
+- The HASH value from the origin_code (190031BC)
+- The completed parse/2 predicate code that was originally in the <langda> section

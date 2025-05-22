@@ -1,0 +1,184 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_information>
+<Code_with_Issue>
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+
+    coin(C),
+    (C = 1, NewSC is SC + 1 ; C = 0, NewSC = SC),
+    NewCNT is CNT - 1,
+    coins_r(NewSC, S, NewCNT).
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+</Code_with_Issue>
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    result = self.handle_nonground(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 905, in handle_nonground
+    raise NonGroundProbabilisticClause(location=database.lineno(node.location))
+problog.engine.NonGroundProbabilisticClause: Encountered a non-ground probabilistic clause at 1:5.
+</Result>
+<Analysis>
+<Overall_Analysis>
+The provided ProbLog code aims to simulate tossing coins and counting the number of heads. However, the code fails due to a `NonGroundProbabilisticClause` error, indicating that the probabilistic clause is not fully grounded (i.e., contains uninstantiated variables). The error occurs because the `coin(C)` predicate is not properly grounded before being used in a probabilistic context. The overall structure of the code aligns with the requirements, but the implementation violates ProbLog's grounding rules.
+</Overall_Analysis>
+
+<Error_Summary>
+1. **Error**: `NonGroundProbabilisticClause` at line 1:5.
+   - **Root Cause**: The probabilistic clause `PH::make_coin(C, PH)` is not grounded because the variable `C` is not instantiated before being used in the probabilistic context. ProbLog requires all variables in probabilistic clauses to be grounded (i.e., bound to specific values) before evaluation.
+   - **Location**: The issue originates in the `make_coin` predicate and propagates through the `coin(C)` predicate.
+
+2. **Logical Issue**:
+   - The `coin(C)` predicate relies on `make_coin(C, 0.8)`, but `C` remains uninstantiated, leading to the grounding error.
+</Error_Summary>
+
+<Recommendations>
+1. **Ground the Probabilistic Clause**:
+   - Ensure that all variables in probabilistic clauses are instantiated. For example, replace `PH::make_coin(C, PH)` with a grounded version like `0.8::make_coin(head).` and `0.2::make_coin(tail).` to represent the coin toss outcomes explicitly.
+
+2. **Revise the `coin` Predicate**:
+   - Modify the `coin(C)` predicate to use grounded probabilistic facts. For example:
+     ```prolog
+     0.8::coin(head).
+     0.2::coin(tail).
+     ```
+
+3. **Update the Recursive Logic**:
+   - Adjust the `coins_r` predicate to work with the grounded `coin` facts. For example:
+     ```prolog
+     coins_r(SC, SC, 0).
+     coins_r(SC, S, CNT) :-
+         CNT > 0,
+         coin(C),
+         (C = head, NewSC is SC + 1 ; C = tail, NewSC = SC),
+         NewCNT is CNT - 1,
+         coins_r(NewSC, S, NewCNT).
+     ```
+
+4. **Test the Revised Code**:
+   - After making the changes, test the code with the query `query(total(_)).` to ensure it runs without errors and meets the requirements.
+
+5. **Additional Resources**:
+   - Refer to the ProbLog documentation for grounding rules and examples of probabilistic clauses: [ProbLog FAQ](https://problog.readthedocs.io/en/latest/faq.html).
+</Recommendations>
+</Analysis>
+</Regenerate_information>
+
+<Regenerate_format>
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: DF1FDC54 </HASH>
+<Requirements>Sample CNT independent coins and accumulate the number of heads facing up SC, and finally get the total number of heads after tossing CNT coins S </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+<Regenerate_format>
+
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Regenerate_Instructions>
+1. In <Regenerate_information> you will receive the code with issue, its test result and its analysis.
+2. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+3. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+4. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda> Information:
+<HASH> Hash tag of code: DF1FDC54 </HASH>
+<Requirements>Sample CNT independent coins and accumulate the number of heads facing up SC, and finally get the total number of heads after tossing CNT coins S </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+
+</origin_code>
+<generated_code>
+
+0.8::coin(head).
+0.2::coin(tail).
+
+coins_r(SC, SC, 0).
+coins_r(SC, S, CNT) :-
+    CNT > 0,
+    coin(C),
+    (C = head, NewSC is SC + 1 ; C = tail, NewSC = SC),
+    NewCNT is CNT - 1,
+    coins_r(NewSC, S, NewCNT).
+
+total(S) :- coins_r(0, S, 4).
+query(total(_)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

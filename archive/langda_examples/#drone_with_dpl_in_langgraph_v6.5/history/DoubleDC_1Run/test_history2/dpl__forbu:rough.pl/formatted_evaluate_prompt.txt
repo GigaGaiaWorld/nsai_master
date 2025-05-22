@@ -1,0 +1,187 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+<Langda>
+<Code_Block>bubblesort([], Acc, Acc).
+bubblesort([X], Acc, [X|Acc]).
+bubblesort([X,Y|Rest], Acc, Sorted) :-
+    compare(Order, X, Y),
+    (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+    ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+    ).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[7, 12, 5, 3, 2, 1]) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> Please output a complete report in the following structure (using Markdown):
+1. **Document title**
+2. **Background and purpose** (brief description of functions and scenarios)
+3. **Original code excerpt** (with line numbers)
+4. **Overall analysis** (brief evaluation)
+5. **Error summary** (in tabular form: number/problem/impact/suggestion)
+6. **Improvement suggestions** (including specific code examples)
+
+After the first draft is completed, please check and improve:
+- Does it include examples of handling zero or negative values?
+- Are the table format and code blocks correct?
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>bubblesort([], Acc, Acc).
+bubblesort([X], Acc, [X|Acc]).
+bubblesort([X,Y|Rest], Acc, Sorted) :-
+    compare(Order, X, Y),
+    (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+    ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+    ).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+forth_sort([3, 1, 2, 5, 7, 12],[7, 12, 5, 3, 2, 1]) = 1.0000
+</Result>
+
+</original_code>
+
+### 1. **Document Title**  
+**Evaluation Report: Bubblesort Implementation in ProbLog**
+
+---
+
+### 2. **Background and Purpose**  
+The provided code implements a `bubblesort/3` algorithm in ProbLog, which is intended to sort a list of integers in ascending order. The `forth_sort/2` predicate serves as a wrapper for the `bubblesort/3` predicate, initializing the accumulator for the sorting process. The test case evaluates the correctness of the sorting algorithm by sorting the list `[3, 1, 2, 5, 7, 12]`.
+
+---
+
+### 3. **Original Code Excerpt**  
+```prolog
+1. bubblesort([], Acc, Acc).
+2. bubblesort([X], Acc, [X|Acc]).
+3. bubblesort([X,Y|Rest], Acc, Sorted) :-
+4.     compare(Order, X, Y),
+5.     (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+6.     ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+7.     ).
+8.
+9. forth_sort(L, L2) :- bubblesort(L, [], L2).
+10. query(forth_sort([3,1,2,5,7,12], X)).
+```
+
+---
+
+### 4. **Overall Analysis**  
+The code partially meets the requirements but contains logical errors that prevent it from correctly sorting the list in ascending order. The test result shows the output `[7, 12, 5, 3, 2, 1]`, which is incorrect for an ascending sort. The root cause lies in the handling of the accumulator and the comparison logic in the `bubblesort/3` predicate.
+
+---
+
+### 5. **Error Summary**  
+
+| **No.** | **Problem**                          | **Impact**                          | **Suggestion**                                                                 |
+|---------|--------------------------------------|-------------------------------------|--------------------------------------------------------------------------------|
+| 1       | Incorrect accumulator handling       | Output is in descending order       | Reverse the accumulator or adjust the comparison logic to build the list correctly. |
+| 2       | Missing case for equal values (`=`)  | Potential infinite loop or incorrect output | Add a case for `Order = (=)` to handle equal values.                           |
+| 3       | No handling of negative/zero values  | Limited functionality               | Ensure the comparison logic works for all integers, including negatives and zero. |
+
+---
+
+### 6. **Improvement Suggestions**  
+
+#### **Specific Fixes**  
+1. **Accumulator Handling**:  
+   The current implementation builds the sorted list in reverse order. To fix this, reverse the accumulator before returning the result or adjust the logic to build the list in the correct order.  
+
+   ```prolog
+   bubblesort([], Acc, Sorted) :- reverse(Acc, Sorted).
+   bubblesort([X], Acc, Sorted) :- reverse([X|Acc], Sorted).
+   ```
+
+2. **Equal Values Handling**:  
+   Add a case for `Order = (=)` to avoid potential issues when duplicate values are present.  
+
+   ```prolog
+   bubblesort([X,Y|Rest], Acc, Sorted) :-
+       compare(Order, X, Y),
+       (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+       ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+       ; Order = (=), bubblesort([X|Rest], [Y|Acc], Sorted)
+       ).
+   ```
+
+3. **Generalization for All Integers**:  
+   The current logic works for positive integers but should be tested for negative and zero values. No changes are required to the comparison logic, as `compare/3` handles all integers correctly.
+
+#### **Final Corrected Code**  
+```prolog
+bubblesort([], Acc, Sorted) :- reverse(Acc, Sorted).
+bubblesort([X], Acc, Sorted) :- reverse([X|Acc], Sorted).
+bubblesort([X,Y|Rest], Acc, Sorted) :-
+    compare(Order, X, Y),
+    (Order = (>), bubblesort([X|Rest], [Y|Acc], Sorted)
+    ; Order = (<), bubblesort([Y|Rest], [X|Acc], Sorted)
+    ; Order = (=), bubblesort([X|Rest], [Y|Acc], Sorted)
+    ).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+query(forth_sort([3,1,2,5,7,12], X)).
+```
+
+---
+
+### **Final Checks**  
+- **Handling Zero/Negative Values**: The corrected code handles all integers, including negatives and zero, as `compare/3` is generic.  
+- **Table Format and Code Blocks**: Verified for correctness.  
+
+This report provides a comprehensive analysis and actionable fixes for the identified issues.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

@@ -1,0 +1,12 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, Stack, SortedStack) :-\n    (   get_top_n(Stack, 3, Top3, Rest) ->\n        sort(Top3, SortedTop3),\n        append(SortedTop3, Rest, SortedStack)\n    ;   SortedStack = Stack\n    )."}
+```
+
+This JSON object contains:
+1. The HASH value from the original <langda> block
+2. The completed code snippet that was generated to replace the <langda> block in the origin_code
+3. The code maintains proper formatting with newlines and indentation preserved
+
+Note that this is the only code block that needed to be extracted since there was only one <langda> block in the origin_code.

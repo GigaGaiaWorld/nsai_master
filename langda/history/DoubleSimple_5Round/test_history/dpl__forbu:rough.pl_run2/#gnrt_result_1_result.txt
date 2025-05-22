@@ -1,0 +1,16 @@
+Based on the information provided, I'll regenerate the Problog code for the bubblesort implementation. The current code is incomplete as it doesn't show the actual bubblesort implementation and uses an unusual predicate name (forth_sort) instead of directly implementing bubblesort.
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- bubble(H, T, NT, Max), bubblesort(NT, [Max|Acc], Sorted).\n\nbubble(X, [], [], X).\nbubble(X, [Y|T], [X|NT], Max) :- X =< Y, bubble(Y, T, NT, Max).\nbubble(X, [Y|T], [Y|NT], Max) :- X > Y, bubble(X, T, NT, Max).\n\nquery(bubblesort([3,1,2,5,7,12], [], X))."}
+```
+
+This implementation:
+1. Properly defines the bubblesort/3 predicate
+2. Includes the necessary helper predicate bubble/4
+3. Uses standard Prolog conventions for sorting
+4. Maintains the same query format but with the correct predicate name
+5. Properly accumulates the sorted elements in the accumulator
+
+The code will sort the list in ascending order using the bubble sort algorithm, which is fully interpretable as requested.

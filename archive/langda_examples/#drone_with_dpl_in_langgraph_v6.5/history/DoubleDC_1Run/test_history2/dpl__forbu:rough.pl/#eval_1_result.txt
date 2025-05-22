@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Invalid conditional (`->/2`) syntax in ProbLog, which does not support this operator. The logic is otherwise correct for bubblesort.",
+  "SuggestedFix": "Replace the conditional with `compare/3` and a ProbLog-compatible check:\n\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    compare(Order, X, Y),\n    (Order = (>)\n    -> bubblesort([X|Rest], [Y|Acc], Sorted)\n    ;  bubblesort([Y|Rest], [X|Acc], Sorted)\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

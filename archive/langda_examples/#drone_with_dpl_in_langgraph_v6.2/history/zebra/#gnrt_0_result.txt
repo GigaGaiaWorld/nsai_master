@@ -1,0 +1,28 @@
+Here's the generated code for the first placeholder in the requested JSON format:
+
+```json
+{
+    "HASH": "10D48CC4",
+    "Code": "member(house(englishman, _, _, red, _), Houses),\nmember(house(spaniard, dog, _, _, _), Houses),\nmember(house(_, _, coffee, green, _), Houses),\nmember(house(ukrainian, _, tea, _, _), Houses),\nright_of(house(_, _, _, green, _), house(_, _, _, ivory, _), Houses),\nmember(house(_, snails, _, _, winston), Houses),\nmember(house(_, _, _, yellow, kools), Houses),\nHouses = [_, _, house(_, _, milk, _, _), _, _],\nHouses = [house(norwegian, _, _, _, _)|_],\nnext_to(house(_, _, _, _, chesterfields), house(_, fox, _, _, _), Houses),\nnext_to(house(_, _, _, _, kools), house(_, horse, _, _, _), Houses),\nmember(house(_, _, orange_juice, _, lucky_strikes), Houses),\nmember(house(japanese, _, _, _, parliaments), Houses),\nnext_to(house(norwegian, _, _, _, _), house(_, _, _, blue, _), Houses),\nmember(house(_, zebra, _, _, _), Houses),\nmember(house(_, _, water, _, _), Houses),"
+}
+```
+
+This code implements all 16 requirements in Prolog syntax:
+1. Englishman in red house
+2. Spaniard owns dog
+3. Green house drinks coffee
+4. Ukrainian drinks tea
+5. Green right of ivory
+6. Winston smoker has snails
+7. Kools smoked in yellow house
+8. Milk in middle (3rd) house
+9. Norwegian in first house
+10. Chesterfields next to fox
+11. Kools next to horse
+12. Lucky Strikes drinks orange juice
+13. Japanese smokes Parliaments
+14. Norwegian next to blue house
+15. Someone has zebra
+16. Someone drinks water
+
+The code uses the helper predicates right_of/3 and next_to/3 that were already defined in the original ruleset.

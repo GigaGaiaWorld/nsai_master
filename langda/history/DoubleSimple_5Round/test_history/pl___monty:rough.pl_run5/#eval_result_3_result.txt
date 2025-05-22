@@ -1,0 +1,3 @@
+```report
+{"HASH": "55F6DA26","ErrorSummary": "Syntax error in probabilistic choice statement in open_door/1 predicate. Incorrect list indexing syntax and probability distribution handling.","SuggestedFix": "Replace lines 12-14 with:\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X\\=Selected, \\+prize(X)), Doors),\n    (   length(Doors, 2) -> \n        member(D, Doors)\n    ;   Doors = [D]\n    ).\nAlso add:\n0.5::open_door(D) :- member(D, Doors), length(Doors, 2).","Dependencies": [],"NeedRegenerate": true}
+```

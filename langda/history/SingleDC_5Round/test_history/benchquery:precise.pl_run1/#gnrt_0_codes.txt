@@ -1,0 +1,8 @@
+[
+{
+"A37F4273": "query_pop([C1,D1,C2,D2]) :- \n    density(C1, D1),\n    density(C2, D2),\n    C1 \\= C2,\n    20 * D1 < 21 * D2,\n    20 * D2 < 21 * D1."
+},
+{
+"3A3D0149": "density(C, D) :-\n    pop(C, P),\n    area(C, A),\n    D is (P * 100) // A."
+}
+]

@@ -1,0 +1,5 @@
+Based on the requirements in the <langda> block, I'll regenerate the parse/2 predicate to handle arithmetic operations with proper almost_equal checks. Here's the completed code:
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N, '+', M], R) :- almost_equal(R, N + M).\nparse([N, '-', M], R) :- almost_equal(R, N - M).\nparse([N, '*', M], R) :- almost_equal(R, N * M).\nparse([N, '/', M], R) :- M =\= 0, almost_equal(R, N / M).\nparse([N, Op, M|Rest], R) :- \n    parse([N, Op, M], Temp),\n    parse([Temp|Rest], R)."}
+```

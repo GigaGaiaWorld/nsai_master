@@ -1,0 +1,5 @@
+[
+{
+"D92532A0": "at(robot,Pos,s(T)) :-\n    goto_succeeds(T),\n    do(goto(Pos), T).\nat(robot,Pos,s(T)) :-\n    \\+ goto_action(T),\n    at(robot,Pos,T).\nat(key,Pos,T) :-\n    carrying(key,T),\n    at(robot,Pos,T).\nat(key,Pos,s(T)) :-\n    \\+ carrying(key,s(T)),\n    at(key,Pos,T).\n\n0.9::goto_succeeds(T); 0.1::goto_fails(T).\n\ngoto_action(T) :-\n    do(goto(Pos),T).\n\ndo(goto(loc1),0).\ndo(pickup(key),s(0)).\ndo(goto(loc2),s(s(0))).\nat(key,loc1,0).\nat(robot,loc0,0).\n\nquery(carrying(key,s(s(s(0))))).\nquery(at(_,_,s(s(s(0)))))."
+}
+]

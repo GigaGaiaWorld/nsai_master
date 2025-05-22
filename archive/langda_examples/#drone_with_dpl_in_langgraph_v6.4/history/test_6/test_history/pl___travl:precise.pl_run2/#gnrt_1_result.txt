@@ -1,0 +1,16 @@
+Here are the extracted and formatted code blocks from the <generated_code> that correspond to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.1::inf(X) :- initialInf(X)."}
+```
+```problog
+{"HASH": "E09B4F54", "Code": "0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X)."}
+```
+```problog
+{"HASH": "E09B4F54", "Code": "0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X)."}
+```
+```problog
+{"HASH": "E09B4F54", "Code": "0.2::inf(X) :- riskyTravel(X)."}
+```
+
+Note: I've used the same HASH value (E09B4F54) for all blocks since they all relate to the same original incomplete code block that was being fixed. Each new rule represents a part of the complete solution for the inf/1 predicate. The backslash in "\+susceptible" needs to be escaped in JSON as "\\+susceptible".

@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Rest], Rest).\nstack_op(dup, [X|Rest], [X,X|Rest]).\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(rot, [X,Y,Z|Rest], [Z,X,Y|Rest])."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "insertion_sort(List, Sorted) :-\n    insertion_sort_aux(List, [], Sorted).\n\ninsertion_sort_aux([], Acc, Acc).\ninsertion_sort_aux([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort_aux(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :-\n    X =< Y.\ninsert(X, [Y|T], [Y|NewT]) :-\n    X > Y,\n    insert(X, T, NewT)."}
+```
+
+Note: I've included both the stack operations and the insertion sort implementation since they both relate to the requirements of implementing stack operations (with sort being one of them). The HASH value remains the same as it was specified in the original <langda> block.

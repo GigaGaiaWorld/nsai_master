@@ -1,0 +1,13 @@
+Based on the requirements in the <Langda> block, the code needs to be regenerated to handle the case when both unselected doors are empty (no prize), where one of them should be opened randomly. The current code doesn't properly implement this random selection between two empty doors.
+
+Here's the regenerated code:
+
+```problog
+{"HASH": "C5B4A895","Code": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), member(B,[1,2,3]), B \\= Selected, B \\= A, \\+ prize(B)."}
+```
+
+This implementation:
+1. Takes two doors (A and B) that are not the selected door
+2. Checks that neither has a prize
+3. Then randomly chooses between them with 50% probability each
+4. This satisfies the requirement to open one of the empty doors randomly when both unselected doors are empty

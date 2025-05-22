@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "592D75CA","Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    % Random Door Opening Rules\n    (   Prize \\= Selected,\n        member(Door, [1,2,3]),\n        Door \\= Selected,\n        Door \\= Prize,\n        0.5::open_door(Door)\n    ) ;\n    % Deterministic Door Opening Rules\n    (   Prize \\= Selected,\n        member(Door, [1,2,3]),\n        Door \\= Selected,\n        Door \\= Prize,\n        open_door(Door)\n    )."}
+```
+
+Note: There was only one <langda> block in the origin_code, so only one JSON object is returned. The hash tag "592D75CA" was taken from the <HASH> tag in the origin_code's <langda> block.

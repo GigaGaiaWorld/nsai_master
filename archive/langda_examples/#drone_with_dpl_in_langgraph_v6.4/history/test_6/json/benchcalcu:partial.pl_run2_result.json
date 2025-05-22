@@ -1,0 +1,11 @@
+{
+  "file_name": "benchcalcu:partial.pl",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 437,
+  "iter_count": 5,
+  "process_time": 436.7995581626892,
+  "final_result": "Error evaluating Problog model:\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 887, in _builtin_is\n    check_mode((a, b), [\"*g\"], functor=\"is\", **k)\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+6+X2), expected: (any, ground) at 24:4.",
+  "final_report": "The generated code has several issues. First, it introduces a new variable C4 which is not properly handled in the sumdigit calls. Second, the line 'sumdigit(C4, 0, 0, M, 0)' is problematic as it tries to perform arithmetic with uninstantiated variables. The original code correctly handles the carry and digit assignments, while the generated code fails to maintain this logic. The error message indicates a problem with argument types in the 'is/2' call, showing the generated code is not valid Prolog syntax."
+}

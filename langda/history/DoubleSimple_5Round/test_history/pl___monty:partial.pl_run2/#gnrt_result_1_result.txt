@@ -1,0 +1,11 @@
+Based on the requirements, I'll regenerate the code for each <langda> block:
+
+1. For the first block (C5B4A895) where both unselected doors are empty, we need to randomly open one of them:
+```problog
+{"HASH": "C5B4A895","Code": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), member(B,[1,2,3]), A \\= B, \+ prize(A), \+ prize(B), \+ select_door(A), \+ select_door(B)."}
+```
+
+2. For the second block (338175EC) where one unselected door has no prize and the other has a prize, the host must open the door without prize:
+```problog
+{"HASH": "338175EC","Code": "open_door(A) :- select_door(Selected), member(A,[1,2,3]), \+ prize(A), \+ select_door(A), member(B,[1,2,3]), B \\= A, prize(B), \+ select_door(B)."}
+```

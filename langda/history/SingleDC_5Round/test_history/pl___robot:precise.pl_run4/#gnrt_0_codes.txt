@@ -1,0 +1,8 @@
+[
+{
+"638F1761": "at(robot, Pos, s(T)) :-\n    goto_action(T),\n    do(goto(Pos), T),\n    goto_succeeds(T).\nat(robot, CurrentPos, s(T)) :-\n    goto_action(T),\n    do(goto(_), T),\n    goto_fails(T),\n    at(robot, CurrentPos, T).\nat(robot, CurrentPos, s(T)) :-\n    \\+ goto_action(T),\n    at(robot, CurrentPos, T)."
+},
+{
+"BCB17653": "at(key, Pos, T) :-\n    carrying(key, T),\n    at(robot, Pos, T).\nat(key, CurrentPos, s(T)) :-\n    \\+ carrying(key, s(T)),\n    at(key, CurrentPos, T)."
+}
+]

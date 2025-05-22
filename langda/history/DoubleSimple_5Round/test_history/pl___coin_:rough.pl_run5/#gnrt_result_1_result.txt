@@ -1,0 +1,5 @@
+Based on the requirements in the <langda> block, the code needs to be regenerated to properly sample CNT independent coins and accumulate the number of heads. The current code is incomplete and doesn't implement the coin tossing logic. Here's the regenerated code:
+
+```problog
+{"HASH": "DF1FDC54","Code": "PH::make_coin(C,PH).\ncoin(C) :- make_coin(C,0.8).\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n CNT > 0,\n CNT1 is CNT - 1,\n coin(CNT),\n (coin(CNT) -> SC1 is SC + 1 ; SC1 is SC),\n coins_r(SC1,S,CNT1).\n\ntotal(S) :- coins_r(0,S,4).\nquery(total(_))."}
+```

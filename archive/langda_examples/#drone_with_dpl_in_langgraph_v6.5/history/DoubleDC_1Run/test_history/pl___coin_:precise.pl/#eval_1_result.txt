@@ -1,0 +1,3 @@
+```report
+{"HASH": "EA5E8D55","ErrorSummary": "Unsupported 'if-then' (->) construct in ProbLog causing execution failure","SuggestedFix": "Replace the line '(coin(CNT) -> NewSC is SC + 1 ; NewSC = SC)' with '(coin(CNT), NewSC is SC + 1 ; \\+ coin(CNT), NewSC = SC)' to use supported disjunction/conjunction instead","Dependencies": [],"NeedRegenerate": true}
+```

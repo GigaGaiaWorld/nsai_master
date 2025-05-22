@@ -1,0 +1,11 @@
+{
+  "file_name": "benchprove:rough.pl",
+  "run_index": 4,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 350,
+  "iter_count": 3,
+  "process_time": 349.8796401023865,
+  "final_result": "Error evaluating Problog model:\n    actions = engine.call_intern(\n              ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 573, in call_intern\n    raise UnknownClause(query.signature, database.lineno(query.location))\nproblog.engine.UnknownClause: No clauses found for 'double/2' at 33:20.",
+  "final_report": "The generated code has several issues. First, the 'prove(expand(Goal, Result))' clause incorrectly uses 'call(Goal, Result)' instead of 'expand(Goal, Result)', leading to an error when evaluating 'double/2'. Second, the 'prove(extend(List, Elem, [Elem|List]))' clause is missing the body, which should verify the equality. The generated code is not consistent with the original code in these aspects, causing it to fail during execution."
+}

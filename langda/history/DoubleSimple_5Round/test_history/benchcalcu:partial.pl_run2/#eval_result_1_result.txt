@@ -1,0 +1,23 @@
+```report
+{"HASH": "F91C6038","ErrorSummary": "Syntax error in predicate definition - missing period at end of clause","SuggestedFix": "Add a period at the end of the line: 'leftdigit(A). leftdigit(B). leftdigit(C).'","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "A8860BE4","ErrorSummary": "Missing arguments in sumdigit call - should include all variables","SuggestedFix": "Change to: 'sumdigit(0, B, D, E, Cout1).' should be 'sumdigit(0, B, D, E, Cout1).' (note: this appears correct in the original code, but ensure all variables are properly passed)","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "702CD838","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "57FD427B","ErrorSummary": "Typo in comment ('hundards') and missing variable for final carry","SuggestedFix": "Fix comment to 'hundreds' and consider if final carry should be captured: 'sumdigit(Cout2, 0, B, C, Cout3).'","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "0DE8749E","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "MAIN","ErrorSummary": "Parser error at line 31:1 likely due to malformed structure or missing punctuation","SuggestedFix": "Ensure proper predicate termination with periods and correct syntax in the main query_sum predicate definition. Check for missing commas between clauses.","Dependencies": ["F91C6038","57FD427B"],"NeedRegenerate": true}
+```

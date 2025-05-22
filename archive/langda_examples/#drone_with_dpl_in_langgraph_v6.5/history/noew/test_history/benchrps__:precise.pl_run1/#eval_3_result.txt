@@ -1,0 +1,3 @@
+```report
+{"HASH": "D324979D", "ErrorSummary": "Unsupported if-then-else construct ('->') in ProbLog causing 'UnknownClause' error", "SuggestedFix": "Replace the if-then-else construct with supported Prolog disjunction and conjunction:\n\ndetermine_winner(P1Moves, P2Moves, Winner) :-\n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    (Score > 0, Winner = 'Player 1';\n     Score < 0, Winner = 'Player 2';\n     Score =:= 0, Winner = 'Draw').", "Dependencies": [], "NeedRegenerate": true}
+```

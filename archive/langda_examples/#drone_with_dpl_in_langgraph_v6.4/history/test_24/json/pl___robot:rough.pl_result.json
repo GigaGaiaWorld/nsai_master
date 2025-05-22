@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___robot:rough.pl",
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 96,
+  "iter_count": 1,
+  "process_time": 95.8455879688263,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.4813\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(robot,loc1,s(s(s(0)))) = 0.0900\nat(robot,loc0,s(s(s(0)))) = 0.0100\nat(key,loc2,s(s(s(0)))) = 0.6300\nat(key,loc1,s(s(s(0)))) = 0.3630\nat(key,loc0,s(s(s(0)))) = 0.0070",
+  "final_report": "The generated code is mostly consistent with the original code but has some modifications. The first rule of 'carrying(key,s(T))' in the generated code omits the conditions 'at(robot,Pos,T)' and 'at(key,Pos,T)', which are present in the original code. This omission affects the logic and results in different probabilities for 'carrying(key,s(s(s(0))))' and 'at(key,_,s(s(s(0))))'. The generated code is valid in form but produces inconsistent results due to the missing conditions."
+}

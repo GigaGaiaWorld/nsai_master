@@ -1,0 +1,5 @@
+[
+{
+"55F6DA26": "open_door(Door) :- select_door(Selected), member(Door, [1,2,3]), \\+ prize(Door), \\+ (Door = Selected), findall(OtherDoor, (member(OtherDoor, [1,2,3]), \\+ prize(OtherDoor), \\+ (OtherDoor = Selected)), Doors), (Doors = [A, B] -> random_member(Door, [A, B]); Doors = [A] -> Door = A)."
+}
+]

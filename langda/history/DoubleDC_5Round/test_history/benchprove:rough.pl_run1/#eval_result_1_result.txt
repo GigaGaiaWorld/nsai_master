@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "2DFC0CFD",
+  "ErrorSummary": "Unsupported '->/2' construct in ProbLog for implies/2 predicate",
+  "SuggestedFix": "Replace 'prove(implies(A, B)) :- (prove(A) -> prove(B); true).' with 'prove(implies(A, B)) :- (prove(A), prove(B)) ; true.' to avoid using the unsupported if-then operator",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

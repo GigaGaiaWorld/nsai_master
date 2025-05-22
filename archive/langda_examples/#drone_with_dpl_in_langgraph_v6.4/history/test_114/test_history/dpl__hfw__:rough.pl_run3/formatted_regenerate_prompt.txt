@@ -1,0 +1,219 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Expr, Result) :-
+    parse_add_sub(Expr, Result).
+
+parse_add_sub(Expr, Result) :-
+    parse_mul_div(Expr, R1),
+    parse_add_sub_tail(R1, Expr, Result).
+
+parse_add_sub_tail(Acc, [], Acc).
+parse_add_sub_tail(Acc, ['+'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc + R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+parse_add_sub_tail(Acc, ['-'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc - R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+
+parse_mul_div([N], N).
+parse_mul_div([N, '*'|T], Result) :-
+    parse_mul_div(T, R2),
+    Result is N * R2.
+parse_mul_div([N, '/'|T], Result) :-
+    parse_mul_div(T, R2),
+    R2 \= 0,
+    Result is N / R2.</Code_Block>
+<Report>The code block with hash 190031BC implements the `parse/2` predicate for evaluating arithmetic expressions. The main issues identified are: 1) The `parse_add_sub_tail` predicate incorrectly processes remaining symbols after an operation, leading to incomplete evaluation. 2) The `parse_mul_div` predicate doesn't properly handle floating-point division results. 3) The test result shows incorrect output (0.0000) for the given query, indicating logical flaws. The code needs to be regenerated to fix these issues, particularly the symbol processing in `parse_add_sub_tail` and the division handling in `parse_mul_div`.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Expr, Result) :-
+    parse_add_sub(Expr, Result).
+
+parse_add_sub(Expr, Result) :-
+    parse_mul_div(Expr, R1),
+    parse_add_sub_tail(R1, Expr, Result).
+
+parse_add_sub_tail(Acc, [], Acc).
+parse_add_sub_tail(Acc, ['+'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc + R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+parse_add_sub_tail(Acc, ['-'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc - R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+
+parse_mul_div([N], N).
+parse_mul_div([N, '*'|T], Result) :-
+    parse_mul_div(T, R2),
+    Result is N * R2.
+parse_mul_div([N, '/'|T], Result) :-
+    parse_mul_div(T, R2),
+    R2 \= 0,
+    Result is N / R2.</Code_Block>
+<Report>The code block with hash 190031BC implements the `parse/2` predicate for evaluating arithmetic expressions. The main issues identified are: 1) The `parse_add_sub_tail` predicate incorrectly processes remaining symbols after an operation, leading to incomplete evaluation. 2) The `parse_mul_div` predicate doesn't properly handle floating-point division results. 3) The test result shows incorrect output (0.0000) for the given query, indicating logical flaws. The code needs to be regenerated to fix these issues, particularly the symbol processing in `parse_add_sub_tail` and the division handling in `parse_mul_div`.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</origin_code>
+<generated_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+
+detect_all([N], [N2]) :- 
+    detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+    detect_number(N, N2), 
+    detect_operator(O, O2), 
+    detect_all(T, T2).
+
+almost_equal(X, Y) :- 
+    ground(Y), 
+    abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+    var(Y), 
+    Y is float(X).
+
+expression(Images, Result) :- 
+    detect_all(Images, Symbols), 
+    parse(Symbols, Result).
+
+parse([N], N).
+parse(Expr, Result) :-
+    parse_add_sub(Expr, Result).
+
+parse_add_sub(Expr, Result) :-
+    parse_mul_div(Expr, R1),
+    parse_add_sub_tail(R1, Expr, Result).
+
+parse_add_sub_tail(Acc, [], Acc).
+parse_add_sub_tail(Acc, ['+'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc + R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+parse_add_sub_tail(Acc, ['-'|T], Result) :-
+    parse_mul_div(T, R2),
+    NewAcc is Acc - R2,
+    parse_add_sub_tail(NewAcc, T, Result).
+
+parse_mul_div([N], N).
+parse_mul_div([N, '*'|T], Result) :-
+    parse_mul_div(T, R2),
+    Result is N * R2.
+parse_mul_div([N, '/'|T], Result) :-
+    parse_mul_div(T, R2),
+    R2 \= 0,
+    Result is N / R2.
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

@@ -1,0 +1,3 @@
+```report
+{"HASH": "35747D5A", "ErrorSummary": "ParseError: Empty statement found at line 38:1 due to malformed or incomplete code structure", "SuggestedFix": "Ensure the `query_sum` predicate is correctly terminated and formatted, and place the `query(query_sum([A,B,C,D,E]))` line inside a proper block or after the predicate definitions without ambiguity. Example fix:\n```prolog\nquery_sum([A,B,C,D,E]) :-\n    leftdigit(A), leftdigit(B), leftdigit(C),\n    digit(D), digit(E),\n    all_different([A,B,C,D,E]),\n    sumdigit(0, B, D, E, Cout1),\n    sumdigit(Cout1, A, C, D, Cout2),\n    sumdigit(Cout2, 0, B, C, _).\n\nquery(query_sum([A,B,C,D,E])).\n```", "Dependencies": [], "NeedRegenerate": true}
+```

@@ -1,0 +1,3 @@
+```report
+{"HASH": "FB41E2F7", "ErrorSummary": "Missing parse predicates for subtraction, multiplication, and division; incorrect evaluation of complex expressions due to missing operator precedence handling", "SuggestedFix": "Add separate parse/2 predicates for subtraction, multiplication, and division, similar to the addition rule. For example:\nparse([N1, -, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    R is X - Y.\n\nparse([N1, *, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    R is X * Y.\n\nparse([N1, /, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    R is X / Y.", "Dependencies": [], "NeedRegenerate": true}
+```

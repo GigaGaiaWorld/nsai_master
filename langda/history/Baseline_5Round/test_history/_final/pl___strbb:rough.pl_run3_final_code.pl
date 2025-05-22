@@ -1,0 +1,45 @@
+0.5::pick(N, a) ; 0.5::pick(N,b).
+
+% a palindrome of length N spans positions 1 to N
+palindrome(N) :-
+      palindrome(1,N).
+
+% base case for even length: left and right crossed
+palindrome(A,B) :-
+      A > B.
+% base case for uneven length: arbitrary middle character
+palindrome(N,N) :-
+      pick(N,_).
+% recursive case: add same character at both ends and move positions towards the middle
+palindrome(A,B) :-
+      A < B,
+      pick(A,X),
+      pick(B,X),
+      AA is A+1,
+      BB is B-1, 
+      palindrome(AA,BB).
+
+% bb(N) succeeds if there exists at least one pair of consecutive b's
+bb(N) :-
+      between(1, N-1, I),
+      pick(I, b),
+      pick(I+1, b).
+
+len(5).
+evidence(palindrome(X)) :- len(X).
+query(bb(X)) :- len(X).
+
+
+
+
+*** Result:*** 
+Error evaluating Problog model:
+    mode = check_mode((low, high, value), ["iii", "iiv"], functor="between", **k)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'between/3': arguments: (1, 5-1, X1), expected: (integer, integer, integer) or (integer, integer, var) at 24:7. 
+
+***Report:***
+Validity_form:False\Validity_result:False
+The generated code is mostly consistent with the original code in terms of logic, but it contains a syntax error in the 'between/3' call. The error occurs because 'N-1' is not evaluated before being passed to 'between/3', leading to a type mismatch. The original code correctly evaluates 'Max is N-1' before calling 'between'. The generated code fails to run due to this error, while the original code runs successfully and produces a result.

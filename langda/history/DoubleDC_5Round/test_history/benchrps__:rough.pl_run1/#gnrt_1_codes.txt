@@ -1,0 +1,5 @@
+[
+{
+"CFA63C1E": "play_round(P1Move, P2Move, Outcome) :- (beats(P1Move, P2Move) -> Outcome = win; (beats(P2Move, P1Move) -> Outcome = lose; Outcome = draw)). play([], [], []). play([P1 | P1Moves], [P2 | P2Moves], [Outcome | Results]) :- play_round(P1, P2, Outcome), play(P1Moves, P2Moves, Results)."
+}
+]

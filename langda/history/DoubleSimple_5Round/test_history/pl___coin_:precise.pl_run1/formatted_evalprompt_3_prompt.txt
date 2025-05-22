@@ -1,0 +1,53 @@
+System: You are a coding assistant.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda>
+<Code_Block>coin_flip(C,heads) :- coin(C).
+coin_flip(C,tails) :- \+ coin(C).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+    CNT > 0,
+    CNT1 is CNT - 1,
+    coin_flip(CNT,Result),
+    (Result = heads -> NSC is SC + 1 ; NSC = SC),
+    coins_r(NSC,S,CNT1).</Code_Block>
+<HASH> Hash tag of code: EA5E8D55 </HASH>
+<Requirements>With the counter CNT decreasing to 0, each step:  If the CNTth coin coin(CNT) turns up heads, the success count SC increases by 1;  Otherwise, it remains unchanged;  Finally, all steps are accumulated to S. </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    rf = self.fold(
+         ^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
+    raise ParseError(
+problog.parser.ParseError: Operator priority clash at 7:20.
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

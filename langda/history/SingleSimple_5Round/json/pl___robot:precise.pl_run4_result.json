@@ -1,0 +1,11 @@
+{
+  "file_name": "pl___robot:precise.pl",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 22,
+  "iter_count": 1,
+  "process_time": 22.21812391281128,
+  "final_result": "% Problog Inference Result：\ncarrying(key,s(s(s(0)))) = 0.4331\nat(robot,loc2,s(s(s(0)))) = 0.9000\nat(robot,loc1,s(s(s(0)))) = 0.0900\nat(robot,loc0,s(s(s(0)))) = 0.0100\nat(key,loc2,s(s(s(0)))) = 0.5670\nat(key,loc1,s(s(s(0)))) = 0.4330\nat(key,loc0,s(s(s(0)))) = 0.0000",
+  "final_report": "The generated code is largely consistent with the original code in terms of logic and structure. The main difference is in the second clause of the 'at(robot,Pos,s(T))' predicate, where the generated code uses 'goto_fails(T)' instead of '\\+ goto_succeeds(T)'. However, this change does not affect the overall logic since 'goto_fails(T)' is the negation of 'goto_succeeds(T)'. The running results of both codes are identical, indicating that the generated code meets the expected requirements."
+}

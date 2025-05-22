@@ -1,0 +1,144 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda>
+<Code_Block>zebra(Houses) :-
+    houses(Houses),
+    
+    % House positions
+    length(Houses, 5),
+    
+    % Colors: red, green, ivory, yellow, blue
+    my_member(house(red, _, _, _, _), Houses),
+    my_member(house(green, _, _, _, _), Houses),
+    my_member(house(ivory, _, _, _, _), Houses),
+    my_member(house(yellow, _, _, _, _), Houses),
+    my_member(house(blue, _, _, _, _), Houses),
+    
+    % Nationalities: english, spanish, ukrainian, norwegian, japanese
+    my_member(house(_, english, _, _, _), Houses),
+    my_member(house(_, spanish, _, _, _), Houses),
+    my_member(house(_, ukrainian, _, _, _), Houses),
+    my_member(house(_, norwegian, _, _, _), Houses),
+    my_member(house(_, japanese, _, _, _), Houses),
+    
+    % Beverages: coffee, tea, milk, orange_juice, water
+    my_member(house(_, _, coffee, _, _), Houses),
+    my_member(house(_, _, tea, _, _), Houses),
+    my_member(house(_, _, milk, _, _), Houses),
+    nth1(3, Houses, house(_, _, milk, _, _)),
+    my_member(house(_, _, orange_juice, _, _), Houses),
+    my_member(house(_, _, water, _, _), Houses),
+    
+    % Cigarettes: winstons, kools, chesterfields, lucky_strikes, parliaments
+    my_member(house(_, _, _, winstons, _), Houses),
+    my_member(house(_, _, _, kools, _), Houses),
+    my_member(house(_, _, _, chesterfields, _), Houses),
+    my_member(house(_, _, _, lucky_strikes, _), Houses),
+    my_member(house(_, _, _, parliaments, _), Houses),
+    
+    % Pets: dog, snail, fox, horse, zebra
+    my_member(house(_, _, _, _, dog), Houses),
+    my_member(house(_, _, _, _, snail), Houses),
+    my_member(house(_, _, _, _, fox), Houses),
+    my_member(house(_, _, _, _, horse), Houses),
+    my_member(house(_, _, _, _, zebra), Houses),
+    
+    % Rules
+    % 1. The owner of the red house is English
+    my_member(house(red, english, _, _, _), Houses),
+    
+    % 2. The Spanish has a dog
+    my_member(house(_, spanish, _, _, dog), Houses),
+    
+    % 3. The owner of the green house drinks coffee
+    my_member(house(green, _, coffee, _, _), Houses),
+    
+    % 4. The Ukrainian drinks tea
+    my_member(house(_, ukrainian, tea, _, _), Houses),
+    
+    % 5. The green house is to the right of the ivory house
+    right_of(house(green, _, _, _, _), house(ivory, _, _, _, _), Houses),
+    
+    % 6. The snail owner smokes Winstons
+    my_member(house(_, _, _, winstons, snail), Houses),
+    
+    % 7. The yellow house owner smokes Kools
+    my_member(house(yellow, _, _, kools, _), Houses),
+    
+    % 8. The first house owner is Norwegian
+    nth1(1, Houses, house(_, norwegian, _, _, _)),
+    
+    % 9. The Chesterfields owner lives next door to the fox owner
+    next_to(house(_, _, _, chesterfields, _), house(_, _, _, _, fox), Houses),
+    
+    % 10. The Kools owner lives next door to the horse owner
+    next_to(house(_, _, _, kools, _), house(_, _, _, _, horse), Houses),
+    
+    % 11. The orange juice drinker smokes Lucky Strikes
+    my_member(house(_, _, orange_juice, lucky_strikes, _), Houses),
+    
+    % 12. The Japanese smoke Parliaments
+    my_member(house(_, japanese, _, parliaments, _), Houses),
+    
+    % 13. The Norwegian lives next to the blue house
+    next_to(house(_, norwegian, _, _, _), house(blue, _, _, _, _), Houses).
+
+houses([
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _)
+]).
+
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+
+query(zebra(Houses)).</Code_Block>
+<Report>The code block has several issues that need to be addressed. The main error is the missing implementation of 'nth1/3' predicate, which is causing the program to fail. Additionally, while the code structure follows the zebra puzzle requirements, there are potential logical constraints that might not be properly enforced. The code needs to include the 'nth1/3' predicate definition and ensure all puzzle constraints are correctly implemented. The current implementation also lacks proper variable scoping and some constraints might be redundant or missing.</Report>
+<HASH> Hash tag of code: 3AE99F0E </HASH>
+<Requirements> 	House arrangement: 		There are 5 houses, arranged in order (houses(Houses)). 	Rules: 		The owner of the red house is English. 		The Spanish has a dog. 		The owner of the green house drinks coffee. 		The Ukrainian drinks tea. 		The green house is to the right of the ivory house (right next to it). 		The snail owner smokes Winstons. 		The yellow house owner smokes Kools. 		The middle house drinks milk (the 3rd house). 		The first house owner is Norwegian. 		The Chesterfields owner lives next door to the fox owner. 		The Kools owner lives next door to the horse owner. 		The orange juice drinker smokes Lucky Strikes. 		The Japanese smoke Parliaments. 		The Norwegian lives next to the blue house. 		 		Someone has a zebra. 		Someone drink water. </Requirements></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

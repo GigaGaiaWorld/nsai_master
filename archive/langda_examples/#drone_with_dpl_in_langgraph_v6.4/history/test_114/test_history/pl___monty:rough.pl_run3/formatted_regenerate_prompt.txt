@@ -1,0 +1,160 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda>
+<Code_Block>open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    (   Prize = Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), Doors),
+        length(Doors, Len),
+        Len > 0,
+        random_select(Door, Doors)
+    ;   Prize \= Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), [Door])
+    ).</Code_Block>
+<Report>The `open_door/1` predicate has the following issues:
+1. **Syntax Error**: The conditional logic (`->`) is not properly formatted for ProbLog. ProbLog requires probabilistic constructs like `prob::` or `P::` for conditional probabilities, which are missing here.
+2. **Logical Flaws**: The implementation does not correctly model the 50% probability for randomly selecting one of the two empty doors. The `random_select/2` call lacks probabilistic weighting.
+3. **Deterministic Case**: The logic for the deterministic case (where one remaining door has a prize) is incomplete. The host should always open the empty door, but the current implementation does not enforce this rule.
+4. **Integration Issues**: The predicate relies on `select_door/1` and `prize/1`, but the logic does not fully align with the Monty Hall problem's requirements.
+
+Recommendations:
+- Replace `->` with ProbLog-compatible probabilistic constructs.
+- Explicitly model the 50% probability for random door selection using `P::` syntax.
+- Refine the deterministic case to always open the empty door.
+- Test the predicate in isolation to verify behavior before integration.</Report>
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda>
+<Code_Block>open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    (   Prize = Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), Doors),
+        length(Doors, Len),
+        Len > 0,
+        random_select(Door, Doors)
+    ;   Prize \= Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), [Door])
+    ).</Code_Block>
+<Report>The `open_door/1` predicate has the following issues:
+1. **Syntax Error**: The conditional logic (`->`) is not properly formatted for ProbLog. ProbLog requires probabilistic constructs like `prob::` or `P::` for conditional probabilities, which are missing here.
+2. **Logical Flaws**: The implementation does not correctly model the 50% probability for randomly selecting one of the two empty doors. The `random_select/2` call lacks probabilistic weighting.
+3. **Deterministic Case**: The logic for the deterministic case (where one remaining door has a prize) is incomplete. The host should always open the empty door, but the current implementation does not enforce this rule.
+4. **Integration Issues**: The predicate relies on `select_door/1` and `prize/1`, but the logic does not fully align with the Monty Hall problem's requirements.
+
+Recommendations:
+- Replace `->` with ProbLog-compatible probabilistic constructs.
+- Explicitly model the 50% probability for random door selection using `P::` syntax.
+- Refine the deterministic case to always open the empty door.
+- Test the predicate in isolation to verify behavior before integration.</Report>
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</origin_code>
+<generated_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+% Define open_door/1 predicate with probabilistic constructs
+open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    (   Prize = Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), Doors),
+        length(Doors, Len),
+        Len > 0,
+        0.5::door_prob(Door, Doors)
+    ;   Prize \= Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected), \+ prize(D)), [Door])
+    ).
+
+% Define probabilistic selection for doors
+0.5::door_prob(Door, Doors) :- random_select(Door, Doors).
+
+win_keep :-
+    select_door(A),
+    prize(A).
+win_switch :-
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    prize(A),
+    \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

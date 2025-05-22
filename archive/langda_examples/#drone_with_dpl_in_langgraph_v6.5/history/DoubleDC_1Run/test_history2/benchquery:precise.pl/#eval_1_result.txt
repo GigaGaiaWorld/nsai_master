@@ -1,0 +1,19 @@
+```report
+{
+  "HASH": "A37F4273",
+  "ErrorSummary": "Inequality too strict, leading to exclusion of valid pairs; redundant pairs in results",
+  "SuggestedFix": "Modify inequalities to '19 * D1 < 21 * D2' and '19 * D2 < 21 * D1'; add 'C1 @< C2' to avoid duplicates",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```
+
+```report
+{
+  "HASH": "3A3D0149",
+  "ErrorSummary": "No guard against zero/negative areas",
+  "SuggestedFix": "Add 'A > 0' to the density predicate to prevent division by zero or negative densities",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

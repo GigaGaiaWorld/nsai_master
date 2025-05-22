@@ -1,0 +1,5 @@
+[
+{
+"2DFC0CFD": "prove(implies(Goal1, Goal2)) :-\n    (prove(Goal1) -> prove(Goal2)).\n\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n\nprove(expand(Term, Result)) :-\n    expand(Term, Result).\n\nprove(includes(List, Elem)) :-\n    member(Elem, List).\n\nprove(extend(List, Elem, [Elem|List])).\n\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."
+}
+]

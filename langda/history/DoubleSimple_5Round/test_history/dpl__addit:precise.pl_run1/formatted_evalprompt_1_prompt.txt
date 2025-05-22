@@ -1,0 +1,52 @@
+System: You are a coding assistant.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+digit(img_1,1).
+digit(img_2,2).
+digit(img_3,3).
+digit(img_4,4).
+digit(img_5,5).
+digit(img_6,6).
+digit(img_7,7).
+digit(img_8,8).
+digit(img_9,9).
+digit(img_0,0).
+number([],Result,Result).
+<Langda>
+<Code_Block>number([Img|Imgs], Acc, Result) :- digit(Img, Nr), NewAcc is Acc * 10 + Nr, number(Imgs, NewAcc, Result).</Code_Block>
+<HASH> Hash tag of code: 6579E7BA </HASH>
+<Requirements> complete the number/3, it's function includes: 1.Convert the head image to the corresponding number Nr 2.Add the current number Nr to the "low bit" of the accumulated value Acc (the high bit is on the right) 3.Continue to recursively process the remaining images </Requirements></Langda>
+.
+number(X,Y) :- number(X,0,Y).
+multi_addition(X,Y,Z) :- 
+<Langda>
+<Code_Block>multi_addition(X, Y, Z) :- number(X, XVal), number(Y, YVal), Z is XVal + YVal.</Code_Block>
+<HASH> Hash tag of code: 4A9D0B2A </HASH>
+<Requirements>Parse the image list from left to right into numbers. For example: number([img_3,img_4], 0, R) will eventually get R = 34. </Requirements></Langda>
+.
+query(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+multi_addition([img_7, img_9],[img_3, img_1, img_2],391) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "NonGroundProbabilisticClause error due to ungrounded probabilistic clause; unsupported if-then-else construct; incomplete recursive rule",
+  "SuggestedFix": "1. Replace probabilistic clause with grounded versions: 'coin(1) :- make_coin(1, 0.8).' and 'coin(0) :- make_coin(0, 0.2).' 2. Replace if-then-else with pattern matching: '(C = 1, NewSC is SC + 1 ; C \\= 1, NewSC = SC).' 3. Ensure recursive rule has proper termination: 'coins_r(SC, SC, 0).' and handle all cases in recursive step.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

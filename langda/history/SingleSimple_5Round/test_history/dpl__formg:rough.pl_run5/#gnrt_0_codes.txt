@@ -1,0 +1,5 @@
+[
+{
+"418D2062": "split([],[],[]).\nsplit([X],[X],[]).\nsplit([X,Y|Xs],[X|Left],[Y|Right]) :- split(Xs,Left,Right).\n\nmerge([],L,L).\nmerge(L,[],L).\nmerge([X|Xs],[Y|Ys],[X|Zs]) :- X =< Y, merge(Xs,[Y|Ys],Zs).\nmerge([X|Xs],[Y|Ys],[Y|Zs]) :- X > Y, merge([X|Xs],Ys,Zs).\n\nmerge_sort([],[]).\nmerge_sort([X],[X]).\nmerge_sort(List,Sorted) :- \n    split(List,Left,Right),\n    merge_sort(Left,SortedLeft),\n    merge_sort(Right,SortedRight),\n    merge(SortedLeft,SortedRight,Sorted).\n\nquery(merge_sort([3,1,2,5,7,12],X))."
+}
+]
