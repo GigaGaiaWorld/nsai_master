@@ -1,0 +1,123 @@
+** Manuall Fix Part: benchquery:rough.pl they all get the correct result, get the correct country pairs
+  but the llm has been too critical to the form of the result, so I fixed them to "true".
+(There may be other misjudgments, but I haven't had time to fix them yet)
+** Brief Statistics: 
+  - DoubleDC: => (The only model has one error because of the search tool)
+    * Time:37167s *
+    "form_accuracy": 0.805,
+    "result_accuracy": 0.712 [146/205]
+
+  - SingleDC:
+    * Time:12788s *
+    "form_accuracy": 0.756,
+    "result_accuracy": 0.668 [137/205]
+
+  - DoubleSimple:
+    * Time:17185s *
+    "form_accuracy": 0.727,
+    "result_accuracy": 0.668 [137/205]
+
+  - SingleSimple:
+    * Time:7364s *
+    "form_accuracy": 0.585,
+    "result_accuracy": 0.580 [119/205]
+
+  - Baseline:
+    * Time:9577s *
+    "form_accuracy": 0.678,
+    "result_accuracy": 0.595 [122/205]
+
+** DoubleDC ** (with improved prompt and report tool)
+{
+  "summary": {
+    "total_files": 41,
+    "repeat_count": 5,
+    "total_runs": 205,
+    "total_process_time": 37167.87762639029,
+    "average_process_time": 181.30672012873313,
+    "success_form_count": 165,
+    "success_result_count": 146,
+    "invalid_form_count": 39,
+    "invalid_result_count": 58,
+    "error_count": 1,
+    "form_accuracy": 0.8048780487804879,
+    "result_accuracy": 0.7121951219512195,
+  }
+}
+** SingleDC ** (with improved prompt and report tool)
+{
+  "summary": {
+    "total_files": 41,
+    "repeat_count": 5,
+    "total_runs": 205,
+    "total_process_time": 12788.736860990524,
+    "average_process_time": 62.384082248734266,
+    "success_form_count": 155,
+    "success_result_count": 137,
+    "invalid_form_count": 50,
+    "invalid_result_count": 68,
+    "error_count": 0,
+    "form_accuracy": 0.7560975609756098,
+    "result_accuracy": 0.6682926829268293,
+  }
+}
+
+
+** DoubleSimple ** (with improved prompt)
+{
+  "summary": {
+    "total_files": 41,
+    "repeat_count": 5,
+    "total_runs": 205,
+    "total_process_time": 17185.84219765663,
+    "average_process_time": 83.83337657393479,
+    "success_form_count": 149,
+    "success_result_count": 137,
+    "invalid_form_count": 56,
+    "invalid_result_count": 68,
+    "error_count": 0,
+    "form_accuracy": 0.7268292682926829,
+    "result_accuracy": 0.6682926829268293,
+  }
+}
+
+** SingleSimple ** (with improved prompt)
+{
+  "summary": {
+    "total_files": 41,
+    "repeat_count": 5,
+    "total_runs": 205,
+    "total_process_time": 7364.508973121643,
+    "average_process_time": 35.924434015227526,
+    "success_form_count": 120,
+    "success_result_count": 119,
+    "invalid_form_count": 85,
+    "invalid_result_count": 86,
+    "error_count": 0,
+    "form_accuracy": 0.5853658536585366,
+    "result_accuracy": 0.5804878048780487,
+  }
+}
+
+
+# Baseline has as **easier** job, just because it only need to generate the full code.
+And all the models above need to parse each code block into a {"Hash Tag":"code content"} dictionary, 
+for the long-term maintenance and code stability.
+
+** Baseline ** (system prompt only)
+{
+  "summary": {
+    "total_files": 41,
+    "repeat_count": 5,
+    "total_runs": 205,
+    "total_process_time": 9577.482794046402,
+    "average_process_time": 46.719428263640985,
+    "success_form_count": 139,
+    "success_result_count": 122,
+    "invalid_form_count": 66,
+    "invalid_result_count": 83,
+    "error_count": 0,
+    "form_accuracy": 0.6780487804878049,
+    "result_accuracy": 0.5951219512195122,
+  }
+}

@@ -1,6 +1,6 @@
 import json
 from typing import List
-from config import paths
+from ..config import paths
 from langchain.schema import Document
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OllamaEmbeddings

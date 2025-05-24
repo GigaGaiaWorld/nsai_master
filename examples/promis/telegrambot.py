@@ -1,15 +1,15 @@
 import re
+import sys
 import os
 from telegram import Update, Bot
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
-from agent import (
-    LangdaAgentSingleSimple, 
-    LangdaAgentDoubleSimple,
-    LangdaAgentDoubleDC,
-    LangdaAgentDCSimple,
-    LangdaAgentSingleDC,
-)
 from config import paths
+from pathlib import Path
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+from langda import langda_solve
 from promis_execute import promis_execution
 
 TOKEN = "7802169894:AAFimcnhTr0mI8MK0icoSZ0_hOeIf445Rfs"
@@ -73,7 +73,7 @@ def process_command(message_text):
         "actions": []  # 存储需要在异步环境中执行的操作
     }
     
-    local_promis_png = paths.get_abscase_path("history/mission_landscape.png")
+    local_promis_png = paths.get_abscase_path("data/mission_landscape.png")
     
     # 添加确认消息动作
     response["actions"].append({
@@ -90,48 +90,39 @@ def process_command(message_text):
     }
     
     try:
-        promis_path = paths.get_abscase_path("rules/promis_telegram_prompt.pl")
         model_name = "deepseek-chat"
-        
-        with open(promis_path, "r") as f:
+        prmis_prompt = paths.get_abscase_path("promis_telegram_prompt.pl")
+        with open(prmis_prompt, "r") as f:
             rules_string = f.read()
         
         # 执行 Agent:
         logger.info("Starting call_langda_workflow")
-        agent = Langda_Agent(rules_string, model_name, addition_input=addition)
-        agent.call_langda_workflow()  
+        result = langda_solve("double_dc",rules_string, model_name, additional_input=addition)
         logger.info("Finished call_langda_workflow")
-        
-        result_path = paths.get_abscase_path("history/final/telegram_bot_final_code.pl")
-        
-        if os.path.exists(result_path):
-            with open(result_path, "r") as f:
-                result = f.read()
             
-            # 执行 Promis:
-            logger.info("Starting promis_execution")
-            promis_execution(result)
-            logger.info("Finished promis_execution")
-            
-            # 添加发送完成消息动作
+        # 执行 Promis:
+        logger.info("Starting promis_execution")
+        promis_execution(result)
+        logger.info("Finished promis_execution")
+        
+        # 添加发送完成消息动作
+        response["actions"].append({
+            "type": "send_message",
+            "message": "Process finished, creating image..."
+        })
+        
+        # 添加发送图片动作
+        if os.path.exists(local_promis_png):
             response["actions"].append({
-                "type": "send_message",
-                "message": "Process finished, creating image..."
+                "type": "send_photo",
+                "path": local_promis_png,
+                "caption": "mission_landscape.png"
             })
             
-            # 添加发送图片动作
-            if os.path.exists(local_promis_png):
-                response["actions"].append({
-                    "type": "send_photo",
-                    "path": local_promis_png,
-                    "caption": "mission_landscape.png"
-                })
-                
-                response["result"] = "Image created successfully!"
-            else:
-                response["result"] = "Process completed, but image file was not found."
+            response["result"] = "Image created successfully!"
         else:
-            response["result"] = "Process completed, but result file was not found."
+            response["result"] = "Process completed, but image file was not found."
+
     
     except Exception as e:
         logger.error(f"Error while processing command: {e}", exc_info=True)

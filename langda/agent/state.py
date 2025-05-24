@@ -1,7 +1,7 @@
 from typing import List, Dict, Protocol, Optional, runtime_checkable, Any
 from typing_extensions import TypedDict
 from enum import Enum
-from utils import LangdaDict
+from ..utils import LangdaDict
 class TaskStatus(str, Enum):
     INIT = "init" # Initial state
     GNRT = "code_generating" # Generate new code
@@ -37,7 +37,8 @@ class BasicState(TypedDict):
     lann_dicts: List[Dict[str,str]] # the dict that contains detail informations about network
     langda_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
     lann_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
-
+    query_ext:str
+    
     # Dynamic parameters:
     srttime: float = 0.0
     endtime: float  = 0.0
@@ -47,7 +48,6 @@ class BasicState(TypedDict):
     regenerate_info: str # 
     temp_full_codes: list # New code generated
     generated_codes: list # New code generated (does not include fest code)
-    error_report: str # New report generated
     final_result: dict
     test_analysis: list
 

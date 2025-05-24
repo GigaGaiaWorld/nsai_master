@@ -1,0 +1,67 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+operation(X,Y,Z) :- 
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 6FBBDE1D </HASH>
+<Requirements>Please calculate the sum of X and Y based on digit of network </Requirements></Langda>
+.
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+operation(X,Y,Z) :- 
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 6FBBDE1D </HASH>
+<Requirements>Please calculate the sum of X and Y based on digit of network </Requirements></Langda>
+.
+
+</origin_code>
+<generated_code>
+
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+
+operation(X,Y,Z) :-
+    arabic_digit(X, DigitX),
+    arabic_digit(Y, DigitY),
+    Z is DigitX + DigitY.
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

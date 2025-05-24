@@ -288,130 +288,17 @@ def _find_all_blocks(type: Literal["report", "code", "final"], text: str) -> Lis
     
     return blocks
 
-
-"""
-def _old_find_all_blocks(type: Literal["report", "code", "other"], text: str, ext_mark: str = "") -> List[dict]:
-
-    blocks: List[dict] = []
+def _deep2normal(problog_code: str, user_query:str) -> str:
+    """
+    remove nn term and add query and facts from user.
+    """
+    lines = problog_code.split('\n')
+    filtered_lines = []
     
-    # 根据类型选择正则表达式
-    if type == "other" or type == "report":
-        pattern = r"```(?:report|[a-z]*)?\n(.*?)```"
-    elif type == "code":
-        pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
-    else:
-        raise ValueError("you must choose from ['report','code','other']")
+    for line in lines:
+        if re.match(r'^\s*nn\s*\(.*\)\s*::\s*\w+.*\.\s*$', line):
+            continue
+        filtered_lines.append(line)
+    filtered_lines.append(user_query)
     
-    matches = re.findall(pattern, text, re.DOTALL)
-    
-    if not matches:
-        pattern = r"```(?:json|[a-z]*)?\n(.*?)```"
-        matches = re.findall(pattern, text, re.DOTALL)
-    
-    for match in matches:
-        match = match.strip()
-        
-        try:
-            # 直接尝试解析JSON
-            match_json = json.loads(match)
-        except json.JSONDecodeError:
-
-            # # 智能处理转义序列
-            try:
-                # 创建一个映射来临时替换特殊序列
-                replacements = {
-                    r'\\\\=': '___DOUBLE_BACKSLASH_EQUALS___',
-                    r'\\=': '___BACKSLASH_EQUALS___',
-                    r'\\n': '___BACKSLASH_N___',
-                    '\n': '\\n',  # 将实际的换行符替换为转义的换行符
-                }
-                
-                processed_match = match
-                
-                # 首先处理实际的换行符
-                processed_match = processed_match.replace('\n', '\\n')
-                
-                # 然后处理其他特殊序列（按长度降序，确保先处理长的）
-                for pattern, replacement in sorted(replacements.items(), key=lambda x: len(x[0]), reverse=True):
-                    if pattern != '\n':  # 跳过已处理的换行符
-                        processed_match = processed_match.replace(pattern, replacement)
-                
-                # 尝试解析JSON
-                match_json = json.loads(processed_match)
-                
-                # 还原特殊序列
-                if isinstance(match_json, dict) and "Code" in match_json:
-                    code = match_json["Code"]
-                    # 还原顺序也很重要
-                    for pattern, replacement in replacements.items():
-                        if pattern != '\n':  # 不需要还原换行符
-                            code = code.replace(replacement, pattern)
-                    match_json["Code"] = code
-                
-            except json.JSONDecodeError as e:
-                print(f"JSON parsing failed: {e}")
-                print(f"Original content: {repr(match)}")
-                print(f"Processed content: {repr(processed_match)}")
-                continue
-        
-        # 根据类型处理解析结果
-        if type == "other":
-            blocks.append({ext_mark: match_json})
-        elif type == "code":
-            if isinstance(match_json, dict) and "HASH" in match_json and "Code" in match_json:
-                blocks.append({match_json["HASH"]: match_json["Code"]})
-            else:
-                blocks.append({"unknown": f"code: invalid structure - {match_json}"})
-        elif type == "report":
-            if isinstance(match_json, dict) and "HASH" in match_json:
-                blocks.append({match_json["HASH"]: match_json})
-            else:
-                blocks.append({"unknown": f"report: invalid structure - {match_json}"})
-    
-    return blocks
-
-def _print_stream(stream):
-    for s in stream:
-        messages = s["messages"][-1]
-        print(f"Stream item type: {type(s)}")
-        print(f"Stream item content: {s}")
-        if "tool_calls" in s:
-            print(f"Tool calls: {s['tool_calls']}")
-        if "tool_results" in s:
-            print(f"Tool results: {s['tool_results']}")
-        
-        if isinstance(messages, tuple):
-            print(f"Tuple message: {messages}")
-        else:
-            try:
-                print(f"Message content: {messages.content}")
-                messages.pretty_print()
-            except AttributeError:
-                print(f"Cannot pretty print: {messages}")
-
-def _select_mode(state:BasicState, langda_dict):
-    keys = set(langda_dict.keys())
-    if not "NET" in keys and not "LLM" in keys:
-        if len(keys) >= 1:
-            state["mode"] = Mode.PURE_PAR
-        else:
-            raise KeyError("forget to set langda parameter?")
-
-    elif not "NET" in keys and "LLM" in keys:
-        if len(keys) > 1:
-            state["mode"] = Mode.PARA_LLM
-        else:
-            state["mode"] = Mode.PURE_LLM
-
-    elif "NET" in keys and not "LLM" in keys:
-        if len(keys) > 1:
-            state["mode"] = Mode.FULL_LLM  
-        else:
-            state["mode"] = Mode.PURE_NET
-
-    else:
-        if len(keys) > 2:
-            state["mode"] = Mode.FULL_LLM  
-        else:
-            state["mode"] = Mode.ELSE
-"""
+    return '\n'.join(filtered_lines)

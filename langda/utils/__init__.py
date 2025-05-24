@@ -14,6 +14,7 @@ from .format_tools import (
     _compute_random_md5, 
     _parse_simple_dictonary, 
     _langda_list_to_dict,
+    _deep2normal,
 )
 from .agent_tools import TOOL_REGISTRY
 from .test_tools import with_timeout, _problog_test
@@ -33,6 +34,7 @@ __all__ = [
     '_replace_placeholder',
     'with_timeout',
     'problog_test_tool',
+    '_deep2normal',
 ]
 
 def problog_test_tool(model, file_basename,timeout=120):
@@ -43,7 +45,7 @@ def problog_test_tool(model, file_basename,timeout=120):
         return f"ERROR: {str(e)}"
    
 
-def invoke_agent(agent_type:Literal["react","simple","doublechain","baseline"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
+def invoke_agent(agent_type:Literal["react","simple","doublechain"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
     """
     Returns the corresponding LangdaAgentExecutor instance or its react version based on the parameters passed in when calling.
     Args:
@@ -52,7 +54,7 @@ def invoke_agent(agent_type:Literal["react","simple","doublechain","baseline"], 
         prompt_type: One of ["evaluate", "generate", "regenerate"]
         input: dictonary to fill all the placeholders in prompt
         config: configs of agent for example: {"configurable": {"thread_id": "2"}}
-    """ 
+    """
     executor = LangdaAgentExecutor(model_name=model_name,tools=get_tools(tools, input["test_analysis"]))
     if agent_type == "react":
         return executor.invoke_react_agent(prompt_type,input,config)
@@ -60,9 +62,6 @@ def invoke_agent(agent_type:Literal["react","simple","doublechain","baseline"], 
         return executor.invoke_simple_agent(prompt_type,input,config)
     elif agent_type == "doublechain":
         return executor.invoke_doublechain_agent(prompt_type,input,config)
-    elif agent_type == "baseline":
-        # In this special case, prompt_type is your rule string with langda
-        return executor.invoke_baseline_agent(prompt_type,config)
 
 def get_tools(tool_list: List[str], test_analysis:List[str]) -> List[BaseTool]:
     """

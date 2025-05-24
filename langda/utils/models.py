@@ -22,7 +22,7 @@ from langchain.agents import (
     create_tool_calling_agent,
     AgentExecutor,
 )
-from config import paths
+from ..config import paths
 paths.load_my_env()
 
 class NoOpOutputParser(BaseOutputParser[str]):
@@ -218,6 +218,9 @@ class LangdaAgentExecutor(BaseModel):
             input: dictionary to fill all the placeholders in prompt
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
             ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
+
+        returns:
+            Tuple of (resulting output, formatted prompt)
         """
         # Get the appropriate prompt template
         if not ext_prompt:
@@ -282,28 +285,3 @@ class LangdaAgentExecutor(BaseModel):
         second_result = format_chain.invoke(input=second_input, config=config)
 
         return second_result, first_formatted_prompt + "\n\n**split**\n\n" + second_formatted_prompt, extracted_result
-    
-
-
-    # ========================= BASELINE AGRNT ========================= #
-    def invoke_baseline_agent(self, rule_string:str, config:Dict[str,str]) -> str:
-        """
-        invoke a regular agent
-        args:
-            rule_string: it only need rule_string as input
-            config: configs of agent for example: {"configurable": {"thread_id": "2"}}
-        """
-
-        chatprompt_template = ChatPromptTemplate.from_messages([
-            ("system", """You are a coding assistant. Please replace langda with actual code. The generated code should be formatted as follows:
-// other contents
-```problog
-//the completed code here
-```"""),
-            ("human", rule_string)
-        ])
-
-        new_llm = self.get_model()        
-        chain:Runnable = chatprompt_template | new_llm | StrOutputParser()
-        result = chain.invoke(input={}, config=config)
-        return result, "", ""

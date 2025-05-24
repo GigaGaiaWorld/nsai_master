@@ -6,7 +6,6 @@ from .langda_agent import (
     LangdaAgentDoubleDC,
     LangdaAgentDCSimple,
     LangdaAgentSingleDC,
-    LangdaAgentBaseline,
 )
 from .state import LangdaAgentProtocol
 # from .generate_nodes import GenerateNodes
@@ -27,7 +26,4 @@ __all__ = [
     "LangdaAgentDoubleDC",
     # GenerateNodes:double_chain_agent, EvaluateNodes:simple_agent, GeneralNodes
     "LangdaAgentDCSimple",
-
-    # Τhe noble baseline model
-    "LangdaAgentBaseline",
 ]

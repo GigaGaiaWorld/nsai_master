@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from config import paths
+from .config import paths
 
 class DBConfig(BaseSettings):
     """

@@ -1,5 +1,5 @@
 from typing import List, Dict, Tuple
-from utils import (
+from ..utils import (
     _parse_simple_dictonary,
     _langda_list_to_dict,
 )

@@ -1,13 +1,13 @@
 from typing import List
-from agent.requirements_builder import RequirementsBuilder
-from utils import (
+from .requirements_builder import RequirementsBuilder
+from ..utils import (
     _find_all_blocks, 
     _replace_placeholder, 
     invoke_agent,
     _parse_simple_dictonary,
 )
-from agent.state import BasicState, TaskStatus
-from config import paths
+from .state import BasicState, TaskStatus
+from ..config import paths
 import logging
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ class GenerateNodes:
         else:
             raise ValueError(f"iter_count has a invalid value: {state['iter_count']}")
 
-        generated_result, formatted_prompt,_ = invoke_agent(
+        generated_result, formatted_prompt, _ = invoke_agent(
             agent_type=state["agent_type"]["generate"], 
             model_name=state["model_name"], 
             tools=state["tools"], 

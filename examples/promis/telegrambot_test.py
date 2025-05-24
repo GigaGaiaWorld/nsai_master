@@ -1,16 +1,17 @@
 import re
+import sys
+import os
 import asyncio
+from pathlib import Path
 from telegram import Update, Bot
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
-from agent import (
-    LangdaAgentSingleSimple, 
-    LangdaAgentDoubleSimple,
-    LangdaAgentDoubleDC,
-    LangdaAgentDCSimple,
-    LangdaAgentSingleDC,
-)
 from config import paths
-from promis_execute import promis_execution
+
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+from langda import langda_solve
+from promis_execute2 import promis_execution
 
 TOKEN = "7802169894:AAFimcnhTr0mI8MK0icoSZ0_hOeIf445Rfs"
 # CHAT_ID = 6639340625  # 目标聊天 ID，可是群组、频道或个人
@@ -59,29 +60,24 @@ async def forward_to_local_code(message_text, update:Update=None, context:Contex
     """
     This function handles sending the message content to local code.
     """
-    local_promis_png = paths.get_abscase_path("history/mission_landscape.png")
+    local_promis_png = paths.get_abscase_path("data/mission_landscape.png")
     msg_dict = process_msg_from_bot(message_text)
+    print("process_msg_from_bot:",msg_dict)
     if msg_dict:
         update.message.reply_text("Received your command, processing...")
         addition = {
             "prefix": "telegram_bot",  # Will be updated for each file
             "langda_ext": msg_dict,  # Will be updated for each file
-            "error_report": "",
             "config": {"configurable": {"thread_id": "42"}},
             "user_context": ""
         }
-        promis_path = paths.get_abscase_path("rules/promis_telegram_prompt.pl")
+        promis_path = paths.get_abscase_path("promis_telegram_prompt.pl")
         model_name = "deepseek-chat"
         with open(promis_path, "r") as f:
             rules_string = f.read()
 
         # Execute Agent:
-        agent = Langda_Agent(rules_string, model_name, addition_input=addition)
-        agent.call_langda_workflow()  
-
-        with open(paths.get_abscase_path("history/final/telegram_bot_final_code.pl"), "r") as f:
-            result = f.read()
-
+        result = langda_solve("single_dc",rules_string, model_name, additional_input=addition)
         # Execute Promis:
         promis_execution(result)
 
@@ -122,7 +118,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     # Check if the message uses our special format
     if msg_dict:
         # Forward to local code and get response
-        response = forward_to_local_code(message_text, update, context)
+        response = await forward_to_local_code(message_text, update, context)
         await update.message.reply_text(response)
 
 def main() -> None:

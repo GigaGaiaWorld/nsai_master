@@ -1,14 +1,15 @@
 from typing import List
-from agent.requirements_builder import RequirementsBuilder
-from utils import (
+from .requirements_builder import RequirementsBuilder
+from ..utils import (
     _find_all_blocks, 
     _replace_placeholder, 
     invoke_agent,
     _parse_simple_dictonary,
     problog_test_tool,
+    _deep2normal
 )
-from agent.state import BasicState, TaskStatus
-from config import paths
+from .state import BasicState, TaskStatus
+from ..config import paths
 import logging
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,12 @@ class EvaluateNodes:
         if state["has_query"]: # need to do a test first
             test_result = problog_test_tool(constructed_code,state["prefix"],timeout=120)
             paths.save_as_file(test_result, "result", f"test_history/{state['prefix']}/#test_results", mode="a")
-
+        elif state["query_ext"]:
+            print("starting query_ext")
+            test_result = problog_test_tool(_deep2normal(constructed_code, state["query_ext"]),state["prefix"],timeout=120)
+            paths.save_as_file(test_result, "result", f"test_history/{state['prefix']}/#test_results", mode="a")
+        else:
+            print("Warning, evaluate without test result. Maybe you should set query_ext first.")
         # TEST:
         test_result_info, report_info = RequirementsBuilder.build_all_report_info(state["generated_codes"],state["langda_dicts"], test_result)
         test_prompt_template = _replace_placeholder(raw_prompt_template, report_info) + "\n" + test_result_info

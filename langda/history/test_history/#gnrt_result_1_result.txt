@@ -1,0 +1,6 @@
+```problog
+{"HASH": "6FBBDE1D","Code": "operation(X,Y,Z) :- \n    arabic_digit(X, DigitX),\n    arabic_digit(Y, DigitY),\n    Z is DigitX + DigitY."}
+```
+```problog
+{"HASH": "6FBBDE1D","Code": "operation(X,Y,Z) :-\n      arabic_digit(X, DigitX),\n      arabic_digit(Y, DigitY),\n      between(0, 9, DigitX),\n      between(0, 9, DigitY),\n      Z is DigitX + DigitY."}
+```

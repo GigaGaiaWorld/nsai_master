@@ -1,10 +1,9 @@
-import sys
 from pydantic import BaseModel, Field
 from typing import Any, List, Optional, Type, ClassVar, Dict
 from problog.program import PrologString
 from problog import get_evaluatable, evaluator
 
-from langchain.tools import BaseTool, Tool
+from langchain.tools import BaseTool
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain.callbacks.manager import AsyncCallbackManagerForToolRun, CallbackManagerForToolRun
 from langchain.schema import Document

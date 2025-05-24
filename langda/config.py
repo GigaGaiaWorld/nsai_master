@@ -23,7 +23,7 @@ class ProjectPaths(BaseModel):
     """
     
     # Project directory:
-    proj_dir: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[1])
+    proj_dir: Path = Field(default_factory=lambda: Path(__file__).parent.parent.parent)
     base_dir: Path = Field(default_factory=lambda: Path(os.path.dirname(os.path.abspath(__file__))))
 
     # Relative path configurations:
