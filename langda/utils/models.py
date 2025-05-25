@@ -269,9 +269,7 @@ class LangdaAgentExecutor(BaseModel):
         elif prompt_type == "generate" or prompt_type == "regenerate":
             pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
             matches = re.findall(pattern, first_result, re.DOTALL)
-            for match in matches:
-                extracted_result += match
-                extracted_result += "\n\n"
+            extracted_result = matches[-1]
 
         second_input = {
             "template_code": input["prompt_template"],

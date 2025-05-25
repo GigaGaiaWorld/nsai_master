@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6388F281",
+  "ErrorSummary": "Undefined '->/2' operator in ProbLog conditional logic causing evaluation failure",
+  "SuggestedFix": "Replace the '->/2' operator with ProbLog-compatible syntax. For example, rewrite the anomaly_detection rule as: anomaly_detection(Digit1, Digit2, Result) :- number(Digit1, X), number(Digit2, Y), (X =:= Y, Result = 1; X =\= Y, Result = 0).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

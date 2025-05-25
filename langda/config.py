@@ -23,7 +23,7 @@ class ProjectPaths(BaseModel):
     """
     
     # Project directory:
-    proj_dir: Path = Field(default_factory=lambda: Path(__file__).parent.parent.parent)
+    proj_dir: Path = Field(default_factory=lambda: Path(__file__).parent.parent)
     base_dir: Path = Field(default_factory=lambda: Path(os.path.dirname(os.path.abspath(__file__))))
 
     # Relative path configurations:
@@ -117,42 +117,19 @@ class ProjectPaths(BaseModel):
         # Ensure parent directory exists before returning file path
         path.mkdir(parents=True, exist_ok=True)
         return path / file_name
-        
 
-    def get_data_path(self, dataset: str, file_type: str) -> Path:
-        """
-        Get path for data files with specific type and dataset.
-        Args:
-            dataset: One of ["origin", "biased"]
-            file_type: One of ["result_train", "result_test", "happen_train", "happen_test"]
-        """
-        valid_datasets = ["origin", "biased"]
-        valid_file_types = list(self.data_files.keys())
-        
-        if dataset not in valid_datasets:
-            raise ValueError(f"Unknown dataset: {dataset}. Valid datasets: {valid_datasets}")
-        
-        if file_type not in valid_file_types:
-            raise ValueError(f"Unknown file type: {file_type}. Valid file types: {valid_file_types}")
-        
-        dataset_path = f"{dataset}_data"
-        file_name = self.data_files[file_type]
-        
-        return self._get_path(dataset_path, file_name)
 
-    def load_data(self, dataset: str, file_type: str) -> str:
+    def load_snapshot(self, name: str) -> str:
         """
         Load data content from file.
         Args:
-            dataset: One of ["origin", "biased"]
-            file_type: One of ["result_train", "result_test", "happen_train", "happen_test"]
+            name: file name
         """
-        path = self.get_data_path(dataset, file_type)
+        path = self.get_abscase_path(f"history/snapshots/{name}_final_code.pl")
         try:
             with open(path, "r", encoding="utf-8") as f:
                 return f.read()
-        except FileNotFoundError:
-            logging.error(f"Data file not found: {path}")
+        except FileNotFoundError as e:
             raise
 
     def save_as_file(self, content: Union[list, str, Any], filetype: str, prefix: str = "", mode: str = "w"):

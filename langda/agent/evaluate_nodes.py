@@ -31,11 +31,11 @@ class EvaluateNodes:
         # problog_test_tool:
         if state["has_query"]: # need to do a test first
             test_result = problog_test_tool(constructed_code,state["prefix"],timeout=120)
-            paths.save_as_file(test_result, "result", f"test_history/{state['prefix']}/#test_results", mode="a")
+            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a")
         elif state["query_ext"]:
             print("starting query_ext")
             test_result = problog_test_tool(_deep2normal(constructed_code, state["query_ext"]),state["prefix"],timeout=120)
-            paths.save_as_file(test_result, "result", f"test_history/{state['prefix']}/#test_results", mode="a")
+            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a")
         else:
             print("Warning, evaluate without test result. Maybe you should set query_ext first.")
         # TEST:
@@ -44,7 +44,7 @@ class EvaluateNodes:
 
         input={
             "prompt_template": test_prompt_template,
-            "test_analysis":state["test_analysis"],
+            "test_analysis":[],
         }
 
         evaluated_result, formatted_prompt, evaluated_middle_result = invoke_agent(
@@ -55,10 +55,10 @@ class EvaluateNodes:
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(formatted_prompt,"prompt",f"test_history/{state['prefix']}/formatted_evalprompt_{state['iter_count']}")
-        paths.save_as_file(evaluated_result, "result",f"test_history/{state['prefix']}/#eval_result_{state['iter_count']}")
+        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_evalprompt_{state['iter_count']}")
+        paths.save_as_file(evaluated_result, "result",f"steps/{state['prefix']}/#eval_result_{state['iter_count']}")
         if evaluated_middle_result:
-            paths.save_as_file(evaluated_middle_result, "result",f"test_history/{state['prefix']}/#eval_mid_{state['iter_count']}")
+            paths.save_as_file(evaluated_middle_result, "result",f"steps/{state['prefix']}/#test_analysis_{state['iter_count']}")
 
         origin_fest_codes = state["fest_codes"]
         evaluated_codes = _find_all_blocks("report",evaluated_result) # [{report:"",need_regenerate:"True"},...]

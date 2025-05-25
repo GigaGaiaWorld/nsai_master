@@ -55,8 +55,8 @@ class GenerateNodes:
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(formatted_prompt,"prompt",f"test_history/{state['prefix']}/formatted_gnrtprompt_{state['iter_count']}")
-        paths.save_as_file(generated_result,"result",f"test_history/{state['prefix']}/#gnrt_result_{state['iter_count']}")
+        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_gnrtprompt_{state['iter_count']}")
+        paths.save_as_file(generated_result,"result",f"steps/{state['prefix']}/#gnrt_result_{state['iter_count']}")
 
         generated_codes = _find_all_blocks('code',generated_result)     # [{"hash":"generated code"},{"hash":"generated code"},..]
         origin_fest_codes = state["fest_codes"]
@@ -75,7 +75,7 @@ class GenerateNodes:
                 temp_full_codes.append(fest_item)
 
 
-        paths.save_as_file(targeted_codes,"codes",f"test_history/{state['prefix']}/#gnrt_{state['iter_count']}")
+        paths.save_as_file(targeted_codes,"codes",f"steps/{state['prefix']}/#gnrt_{state['iter_count']}")
 
         if generated_codes:
             return {

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6388F281",
+  "ErrorSummary": "Unsupported '->' operator in ProbLog for conditional logic, causing 'anomaly_detection' to fail",
+  "SuggestedFix": "Replace the '->' operator with ProbLog-compatible conditional logic (e.g., 'if-then-else' or auxiliary predicates). Example fix:\nanomaly_detection(Digit1, Digit2, Result) :- \n    number(Digit1, Num1),\n    number(Digit2, Num2),\n    Sum is Num1 + Num2,\n    (Sum > 150, Result = 1; Sum =< 150, Result = 0).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

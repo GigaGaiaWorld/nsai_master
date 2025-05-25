@@ -20,13 +20,15 @@ class Mode(str, Enum):
 
 class BasicState(TypedDict):
     # User inputs:
-    config: dict
-    prefix: str
     model_name: str
     rule_string: str # User-provided context
-    true_string: str # User-provided context
-    langda_ext: dict # User-provided context
     agent_type:dict
+
+    config: dict # session configs
+    prefix: str  # the name of current file
+    load:bool    # load from previous snapshots
+    langda_ext: dict # User-provided context
+    query_ext:str
 
     # Prompting static parameters:
     tools: list
@@ -37,7 +39,6 @@ class BasicState(TypedDict):
     lann_dicts: List[Dict[str,str]] # the dict that contains detail informations about network
     langda_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
     lann_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
-    query_ext:str
     
     # Dynamic parameters:
     srttime: float = 0.0

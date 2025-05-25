@@ -38,7 +38,18 @@ class GeneralNodes:
             langda_dicts: langda informations
         """
         print("### =========== processing init_node =========== ###")
-
+        if state["load"]:
+            try:
+                return {
+                    "final_result":{
+                        "final_result":paths.load_snapshot(state["prefix"]),
+                        "running_time":0,
+                        "iter_count":state["iter_count"],
+                    }
+                }
+            except:
+                print(f"Snapshot file not found: {state['prefix']}, start generating...")
+                pass
         state["status"] = TaskStatus.INIT
         fest_codes:List[dict] = []      # {"hash1":"code1","hash2":"code2",...}
         langda_dicts:List[LangdaDict] = []
@@ -77,7 +88,7 @@ class GeneralNodes:
                 else:
                     raise ValueError("The value of FUP term should be one of [True,true,T,False,false,F]")
         print(fest_codes)
-        paths.save_as_file(langda_dicts,"prompt",f"test_history/{state['prefix']}/langda_dict")
+        paths.save_as_file(langda_dicts,"prompt",f"steps/{state['prefix']}/langda_dict")
 
         langda_reqs  = RequirementsBuilder.build_all_langda_info(langda_dicts)
         return {"prompt_template":raw_prompt_template,             # the string that only leave needed "{LANGDA}" slot for prompting
@@ -111,8 +122,8 @@ class GeneralNodes:
             langdaDB.sync_with_dict(sync_dict)
             print(langdaDB.get_all_items())
 
-        # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new} \n\n***Report:***\nValidity_form:{Validity_form}\Validity_result:{Validity_result}\n{final_report}","final_code",f"test_history/_final/{state['prefix']}")
-        paths.save_as_file(final_code + f"\n\n%%% Result %%% \n{result_new}","final_code",f"test_history/_final/{state['prefix']}")
+        # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new} \n\n***Report:***\nValidity_form:{Validity_form}\Validity_result:{Validity_result}\n{final_report}","final_code",f"steps/_final/{state['prefix']}")
+        paths.save_as_file(final_code + f"\n/* %%% Result %%% \n{result_new}\n*/","final_code",f"snapshots/{state['prefix']}")
         # ================== THIS IS ONLY FOR TESTING ================== #
 
         state["endtime"] = time.time()
@@ -133,16 +144,18 @@ class GeneralNodes:
     @staticmethod
     def _decide_next_init(state:BasicState):
         print("processing _decide_next_init ...")
+        if state["load"] and state["final_result"]:
+                print("Snapshot loaded...")
+                return "END"
         count_need_generated = 0
         for fest_code in state["fest_codes"]:
             _, value = _parse_simple_dictonary(fest_code)
             if value == None:
                 count_need_generated += 1
 
-        if not(count_need_generated > 0):
-            state["error_report"] = "No langda needs to be updated"
-            print(f"{state['error_report']}, process end now...")
 
+        if not(count_need_generated > 0):
+            print(f"No langda needs to be updated, process end now...")
             return "summary_node"
         else:
             return "generate_node"

@@ -1,7 +1,7 @@
 import time
 from typing import Protocol, Dict, Any, Optional
 from langgraph.checkpoint.memory import MemorySaver
-from langgraph.graph import StateGraph
+from langgraph.graph import StateGraph, END
 
 from .state import BasicState
 from .generate_nodes import GenerateNodes
@@ -44,9 +44,11 @@ class LangdaAgentBase:
         # User inputs
         self.state["model_name"] = model_name
         self.state["rule_string"] = rule_string
+        self.state["final_result"] = ""
         # addition_input:
         self.state["config"] = addition_input.get("config", {"configurable": {"thread_id": "42"}})
-        self.state["prefix"] = addition_input.get("prefix", "")
+        self.state["prefix"] = addition_input.get("prefix", "main")
+        self.state["load"] = addition_input.get("load", False)
         self.state["langda_ext"] = addition_input.get("langda_ext", "")
         self.state["query_ext"] = addition_input.get("query_ext", "")
 
@@ -81,11 +83,11 @@ class LangdaAgentSingleSimple(LangdaAgentBase):
         langda_workflow.add_node("generate_node", GenerateNodes.generate_node)
         langda_workflow.add_node("summary_node", GeneralNodes.summary_node)
 
-
         langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
                 "generate_node": "generate_node",
-                "summary_node": "summary_node"
+                "summary_node": "summary_node",
+                "END": END
             })
         langda_workflow.add_edge("generate_node", "summary_node")
         langda_workflow.set_finish_point("summary_node")
@@ -119,7 +121,8 @@ class LangdaAgentSingleDC(LangdaAgentBase):
         langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
                 "generate_node": "generate_node",
-                "summary_node": "summary_node"
+                "summary_node": "summary_node",
+                "END": END
             })
         langda_workflow.add_edge("generate_node", "summary_node")
         langda_workflow.set_finish_point("summary_node")
@@ -158,7 +161,8 @@ class LangdaAgentDoubleDC(LangdaAgentBase):
         langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
                 "generate_node": "generate_node",
-                "summary_node": "summary_node"
+                "summary_node": "summary_node",
+                "END": END
             })
         langda_workflow.add_conditional_edges("generate_node", GenerateNodes._decide_next_gnrt, 
             {
@@ -202,7 +206,8 @@ class LangdaAgentDoubleSimple(LangdaAgentBase):
         langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
                 "generate_node": "generate_node",
-                "summary_node": "summary_node"
+                "summary_node": "summary_node",
+                "END": END
             })
         langda_workflow.add_conditional_edges("generate_node", GenerateNodes._decide_next_gnrt, 
             {
@@ -250,7 +255,8 @@ class LangdaAgentDCSimple(LangdaAgentBase):
         langda_workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
                 "generate_node": "generate_node",
-                "summary_node": "summary_node"
+                "summary_node": "summary_node",
+                "END": END
             })
         langda_workflow.add_conditional_edges("generate_node", GenerateNodes._decide_next_gnrt, 
             {
