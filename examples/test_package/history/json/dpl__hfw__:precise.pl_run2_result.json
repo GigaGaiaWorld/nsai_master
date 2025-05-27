@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__hfw__:precise.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": "203.83s",
+  "process_time": 203.8340048789978,
+  "final_result": "detect_number(image_0, 0).\ndetect_number(image_1, 1).\ndetect_number(image_2, 2).\ndetect_number(image_3, 3).\ndetect_number(image_4, 4).\ndetect_number(image_5, 5).\ndetect_number(image_6, 6).\ndetect_number(image_7, 7).\ndetect_number(image_8, 8).\ndetect_number(image_9, 9).\ndetect_operator(image_plus, +).\ndetect_operator(image_minus, -).\ndetect_operator(image_multiply, *).\ndetect_operator(image_divide, /).\ndetect_all([N], [N2]) :- \n detect_number(N, N2).\ndetect_all([N,O|T], [N2,O2|T2]) :- \n detect_number(N, N2), \n detect_operator(O, O2), \n detect_all(T, T2).\n \nalmost_equal(X, Y) :- \n ground(Y), \n abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n var(Y), \n Y is float(X).\nexpression(Images, Result) :- \n detect_all(Images, Symbols), \n parse(Symbols, Result).\nparse([N], R) :- \n almost_equal(N, R).\nparse([N1, +, N2 | T], R) :- \n    almost_equal(N1 + N2, Temp),\n    parse([Temp | T], R).\nparse([N1, -, N2 | T], R) :- \n    almost_equal(N1 - N2, Temp),\n    parse([Temp | T], R).\nparse([N1, *, N2 | T], R) :- \n    almost_equal(N1 * N2, Temp),\n    parse([Temp | T], R).\nparse([N1, /, N2 | T], R) :- \n    N2 =\\= 0,\n    almost_equal(N1 / N2, Temp),\n    parse([Temp | T], R).\n% calculate with almost equal: 2 / (3 + 3) - 2 * 7\nquery(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).",
+  "final_report": "The generated code modifies the parsing logic for arithmetic operations, which leads to incorrect results. Specifically, it processes operations in a left-associative manner without proper handling of operator precedence, unlike the original code which correctly handles expressions like '2 / (3 + 3) - 2 * 7'. The generated code's result (11.666...) is incorrect compared to the original code's result (-10.333...). The form of the generated code is valid, but its logic is flawed."
+}

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incorrect operator precedence in parse/2 predicates leading to wrong arithmetic evaluation",
+  "SuggestedFix": "Restructure parse/2 to handle multiplication and division before addition and subtraction. For example, split parsing into two phases: (1) process all */ operations, then (2) process +/- operations. Alternatively, use a grammar-based approach with operator precedence declarations.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

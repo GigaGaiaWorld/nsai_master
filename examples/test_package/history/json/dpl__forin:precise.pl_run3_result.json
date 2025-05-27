@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin:precise.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "80.22s",
+  "process_time": 80.21515798568726,
+  "final_result": "insertion_sort([], []).\ninsertion_sort([H|T], Sorted) :-\n \n\n    insertion_sort(T, SortedTail),\n    insert_element(H, SortedTail, Sorted).\ninsert_element(X, [], [X]).\ninsert_element(X, [H|T], [X,H|T]) :-\n X =< H.\ninsert_element(X, [H|T], [H|RT]) :-\n X > H,\n insert_element(X, T, RT).\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally equivalent to the original code. Both implement insertion sort correctly, with the same logic for sorting and inserting elements. The only differences are minor formatting changes (whitespace and line breaks), which do not affect the code's functionality. The running results of both codes are identical, producing the correct sorted list [1, 2, 3, 5, 7, 12] for the input [3, 1, 2, 5, 7, 12]."
+}

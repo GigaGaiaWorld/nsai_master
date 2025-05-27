@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6931D64E",
+  "ErrorSummary": "Operator priority clash at line 9, column 44. Likely due to a syntax conflict with the built-in `sort/2` predicate.",
+  "SuggestedFix": "Rename the custom `sort` operation to avoid conflict with the built-in `sort/2` predicate. For example, change `stack_op(sort, ...)` to `stack_op(sort_stack, ...)` and update all references accordingly.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

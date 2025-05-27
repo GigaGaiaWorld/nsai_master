@@ -1,0 +1,3 @@
+```report
+{"HASH": "EA5E8D55", "ErrorSummary": "Unmatched character '(' in the coins_r/3 predicate causing a syntax error", "SuggestedFix": "Fix the parentheses in the coins_r/3 rule. The corrected code should be: 'coins_r(SC,S,CNT) :- CNT > 0, CNT1 is CNT - 1, (coin(CNT), SC1 is SC + 1, coins_r(SC1, S, CNT1); \+ coin(CNT), coins_r(SC, S, CNT1)).'", "Dependencies": [], "NeedRegenerate": true}
+```

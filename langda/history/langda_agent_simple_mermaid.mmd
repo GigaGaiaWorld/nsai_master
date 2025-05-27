@@ -11,9 +11,7 @@ graph TD;
 	__end__([<p>__end__</p>]):::last
 	__start__ --> init_node;
 	generate_node --> summary_node;
-	summary_node --> __end__;
+	init_node -. &nbsp;END&nbsp; .-> __end__;
 	init_node -.-> generate_node;
 	init_node -.-> summary_node;
-	classDef default fill:#f2f0ff,line-height:1.2
-	classDef first fill-opacity:0
-	classDef last fill:#bfb6fc
+	summary_node --> __end__;

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6931D64E",
+  "ErrorSummary": "Parsing error due to incomplete/malformed `sort` predicate definition. The predicate is missing proper termination or has incorrect syntax.",
+  "SuggestedFix": "Complete the `sort` predicate by ensuring it has proper syntax and handles the sorting logic correctly. For example:\nstack_op(sort, [X,Y,Z|Stack], SortedStack) :-\n    sort([X,Y,Z], [A,B,C]),\n    SortedStack = [A,B,C|Stack].",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

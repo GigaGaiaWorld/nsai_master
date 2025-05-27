@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "run_index": 4,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "297.16s",
+  "process_time": 297.1600351333618,
+  "final_result": "forth_sort(L, L2) :- bubblesort(L, [], L2).\nbubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- bubble(T, H, [Acc], TempList), bubblesort(TempList, [], Sorted).\nbubble([], X, Acc, [X|Acc]).\nbubble([H|T], X, Acc, Result) :- (X =< H -> bubble(T, H, [X|Acc], Result) ; bubble(T, X, [H|Acc], Result)).\nquery(forth_sort([3,1,2,5,7,12], X)).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is not valid as it results in an error during execution. The error indicates that there are no clauses found for a specific operation, suggesting that the implementation of the sorting logic is incorrect or incomplete. The original code successfully sorts the list using a bubble sort algorithm, while the generated code fails to execute due to syntax or logical errors. The generated code does not maintain the consistency with the original code's functionality."
+}

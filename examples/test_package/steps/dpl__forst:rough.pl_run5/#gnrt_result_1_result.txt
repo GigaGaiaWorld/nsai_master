@@ -1,0 +1,17 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> block in the origin code:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(sort, Stack, SortedStack) :- is_list(Stack), (   length(Stack, L), L >= 3 -> get_top_n(Stack, 3, Elements, RestStack), quicksort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack) ;   SortedStack = Stack )."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "get_top_n(Stack, N, Elements, Rest) :- length(Elements, N), append(Elements, Rest, Stack)."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "quicksort([], []). quicksort([Pivot|Rest], Sorted) :- partition(Rest, Pivot, Left, Right), quicksort(Left, SortedLeft), quicksort(Right, SortedRight), append(SortedLeft, [Pivot|SortedRight], Sorted)."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "partition([], _, [], []). partition([X|Rest], Pivot, [X|Left], Right) :- X =< Pivot, partition(Rest, Pivot, Left, Right). partition([X|Rest], Pivot, Left, [X|Right]) :- X > Pivot, partition(Rest, Pivot, Left, Right)."}
+```

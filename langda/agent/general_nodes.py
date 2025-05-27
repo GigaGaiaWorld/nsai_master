@@ -66,17 +66,26 @@ class GeneralNodes:
                 """
                 if state["langda_ext"]: # If has "dynamic content": for example /* Secure */, parse the content
                     langda_ext_dict = state["langda_ext"]
-                    for raw_langda_dict in raw_langda_dicts:
-                        langda_ext_pattern = r'/\*\s*(\w+)\s*\*/'
-                        ext_match = re.search(langda_ext_pattern, raw_langda_dict["LLM"])
-                        if ext_match:
-                            try:
-                                raw_langda_dict["LLM"] = langda_ext_dict[ext_match[1]]
+                    llm_content = langda["LLM"]
+                    langda_ext_pattern = r'/\*\s*(\w+)\s*\*/'
+                    ext_matches = re.finditer(langda_ext_pattern, llm_content)
+
+                    replaced_content = llm_content
+                    for ext_match in ext_matches:
+                        try:
+                            key = ext_match.group(1)
+                            if key in langda_ext_dict:
+                                replaced_content = replaced_content.replace(ext_match.group(0), langda_ext_dict[key])
                                 print("prompt from external received:",langda_ext_dict[ext_match[1]])
-                            except:
-                                print("The external message is incorrect or there's unfullfilled /* Code */ in langda code...")
-                                raise ValueError("The external message is incorrect or there's unfullfilled /* Code */ in langda code...")
+                            else:
+                                print(f"Warning: Key '{key}' not found in langda_ext")
                             
+                        except:
+                            print("The external message is incorrect or there's unfullfilled /* Code */ in langda code...")
+                            raise ValueError("The external message is incorrect or there's unfullfilled /* Code */ in langda code...")
+                        
+                    langda["LLM"] = replaced_content
+    
                 if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T":
                     fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)

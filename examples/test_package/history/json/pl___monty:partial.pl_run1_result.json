@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___monty:partial.pl",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "86.18s",
+  "process_time": 86.17574191093445,
+  "final_result": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n0.5::open_door(A) ; 0.5::open_door(B) :-\n \n select_door(Selected), member(A, [1,2,3]), member(B, [1,2,3]), A \\= Selected, B \\= Selected, A \\= B, \\+ prize(A), \\+ prize(B).\nopen_door(A) :-\n \n select_door(Selected), member(A, [1,2,3]), A \\= Selected, \\+ prize(A), member(B, [1,2,3]), B \\= Selected, B \\= A, prize(B).\nwin_keep :-\n \n select_door(A), prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch).",
+  "final_report": "The generated code is correct and consistent with the original code in terms of functionality and results. It simplifies the conditions for opening a door by explicitly stating the constraints (A \\= Selected, B \\= Selected, A \\= B) which makes the code clearer while maintaining the same probabilistic behavior. The running results of both codes are identical, confirming that the generated code meets the expectations."
+}

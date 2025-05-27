@@ -1,0 +1,7 @@
+Based on the given origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> block in the origin_code. The <langda> block requested the definition of game rules for rock-paper-scissors, which in the generated_code is implemented by the 'play' predicate.
+
+Here's the formatted JSON output:
+
+```problog
+{"HASH": "CFA63C1E","Code": "play([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P1, P2), Result = win, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P2, P1), Result = lose, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    \+ beats(P1, P2), \+ beats(P2, P1), Result = draw, play(P1Moves, P2Moves, Results)."}
+```

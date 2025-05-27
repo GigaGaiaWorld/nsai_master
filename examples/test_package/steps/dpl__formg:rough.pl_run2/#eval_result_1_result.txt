@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "418D2062",
+  "ErrorSummary": "Incorrect merging of sublists due to lexicographic comparison (`@=<` and `@>`) instead of numeric comparison (`=<` and `>`). Output list is not sorted correctly.",
+  "SuggestedFix": "Replace `@=<` and `@>` with `=<` and `>` in the `merge/3` predicate (lines 10–17) to ensure numeric comparison. For example:\n\n```prolog\nmerge([LeftHead|LeftTail], [RightHead|RightTail], [LeftHead|Merged]) :-\n    LeftHead =< RightHead,\n    merge(LeftTail, [RightHead|RightTail], Merged).\nmerge([LeftHead|LeftTail], [RightHead|RightTail], [RightHead|Merged]) :-\n    LeftHead > RightHead,\n    merge([LeftHead|LeftTail], RightTail, Merged).\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

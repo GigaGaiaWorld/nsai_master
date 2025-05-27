@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "The '->/2' operator is not recognized in ProbLog, causing the conditional logic in bubblesort/3 to fail.",
+  "SuggestedFix": "Replace the '->/2' operator with ProbLog-compatible conditional logic (e.g., using 'if/3' or restructuring the predicate to avoid conditionals). The corrected bubblesort/3 predicate should be:\n\nbubblesort(L, Acc, Sorted) :-\n    ( swap(L, L1) ->\n        bubblesort(L1, [], Sorted)\n    ; \n        append(Acc, L, Sorted)\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

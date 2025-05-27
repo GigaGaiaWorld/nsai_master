@@ -1,0 +1,10 @@
+{
+  "file_name": "benchzebra:rough.pl",
+  "run_index": 1,
+  "Validity_form": "ERROR",
+  "Validity_result": "ERROR",
+  "running_time": "None",
+  "process_time": 190.5887701511383,
+  "final_result": "Agent execution error: list index out of range",
+  "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/test_package/main_stable.py\", line 129, in process_all\n    result_rule = langda_solve(\n                  ^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/__init__.py\", line 68, in langda_solve\n    result = agent.call_langda_workflow()\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/agent/langda_agent.py\", line 180, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2719, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2436, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/agent/generate_nodes.py\", line 50, in generate_node\n    generated_result, formatted_prompt, _ = invoke_agent(\n                                            ^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/utils/__init__.py\", line 64, in invoke_agent\n    return executor.invoke_doublechain_agent(prompt_type,input,config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/utils/models.py\", line 272, in invoke_doublechain_agent\n    extracted_result = matches[-1]\n                       ~~~~~~~^^^^\nIndexError: list index out of range\nDuring task with name 'generate_node' and id '9901ba14-a198-f078-8335-9107cedefe29'\n"
+}

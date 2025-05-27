@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "is_list([]).\nis_list([_|T]) :- is_list(T).\n\nswap([X, Y | T], true, [Y, X | T]) :- X > Y.\nswap([X, Y | T], false, [X, Y | T]) :- X =< Y.\n\nbubble([], [], _).\nbubble([X], [], X).\nbubble([X, Y | T], [Y | Rest], X) :- X > Y, bubble([X | T], Rest, Y).\nbubble([X, Y | T], [X | Rest], Y) :- X =< Y, bubble([Y | T], Rest, X).\n\nbubblesort([], L, L).\nbubblesort(L, Acc, Sorted) :-\n    bubble(L, NewL, _),\n    bubblesort(NewL, Acc, Sorted).\n\nforth_sort(L, L2) :-\n    is_list(L),\n    bubblesort(L, [], L2)."
+}
+]

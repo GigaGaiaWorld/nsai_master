@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "9BA21093",
+  "ErrorSummary": "Non-ground comparison in `almost_equal/2` predicate causing CallModeError due to uninstantiated variables during arithmetic comparison.",
+  "SuggestedFix": "Modify `almost_equal/2` to ensure both arguments are ground before comparison. For example:\n```prolog\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    Y is float(X).\n```\nAlso, ensure `parse/2` predicates handle intermediate non-ground results by restructuring the recursion to ground variables before comparison.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

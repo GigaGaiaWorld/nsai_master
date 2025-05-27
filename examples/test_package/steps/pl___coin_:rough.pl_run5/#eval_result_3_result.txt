@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause in `make_coin(C, PH)` causing evaluation failure. The variable `C` is uninstantiated, violating ProbLog's requirement for ground probabilistic facts.",
+  "SuggestedFix": "1. Replace `PH::make_coin(C, PH)` with ground facts (e.g., `0.8::make_coin(heads). 0.2::make_coin(tails).`). 2. Update `coin(C)` to use these ground facts (e.g., `coin(heads). coin(tails).`). 3. Add a guard clause in `coins_r/3` to ensure `CNT` is non-negative.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3AE99F0E",
+  "ErrorSummary": "Missing 'member/2' predicate definition in ProbLog context, causing execution failure",
+  "SuggestedFix": "Add the following definition to the code:\n\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n\nAlternatively, use a ProbLog-compatible alternative if available.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

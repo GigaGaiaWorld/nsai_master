@@ -1,0 +1,14 @@
+Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 17:21.% Problog Inference Result：
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000
+determine_winner([rock, rock, rock],[paper, paper, scissor],draw) = 1.0000
+determine_winner([rock, rock, rock],[paper, paper, scissor],player1) = 1.0000Error evaluating Problog model:
+    return self.collapse(string, tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1282, in collapse
+    raise UnmatchedCharacter(string, expr_stack[-1].start.location)
+problog.parser.UnmatchedCharacter: Unmatched character '(' at 17:5.

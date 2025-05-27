@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "418D2062",
+  "ErrorSummary": "Incorrect merging logic in `merge/3` predicate, producing unsorted output. The conditions for merging (`LeftHead @=< RightHead` and `LeftHead @> RightHead`) are not producing the correct order.",
+  "SuggestedFix": "Replace the `merge/3` predicate with the following corrected version:\n```prolog\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([LeftHead|LeftTail], [RightHead|RightTail], [LeftHead|Merged]) :-\n    LeftHead =< RightHead,\n    merge(LeftTail, [RightHead|RightTail], Merged).\nmerge([LeftHead|LeftTail], [RightHead|RightTail], [RightHead|Merged]) :-\n    LeftHead > RightHead,\n    merge([LeftHead|LeftTail], RightTail, Merged).\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

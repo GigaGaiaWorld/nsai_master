@@ -1,0 +1,148 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+% Neural network definitions for different languages
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(kannada_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: kannada_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
+% Convert digit list to number
+number([],Result,Result).
+number([H|T],Acc,Result) :- 
+ 
+ 
+    arabic_digit(H,Nr), 
+    Acc2 is Nr+10*Acc, 
+    number(T,Acc2,Result).
+number(X,Y) :- number(X,0,Y).
+% Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
+anomaly_detection(Digit1, Digit2, 1) :- 
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 79CDA518 </HASH>
+<Requirements>
+Based on the geographic coordinate of user, determine which anomaly detection logic to use, 
+1. If the user is in Saudi Arabia, check engine overheating anomaly:
+ - If Temperature ≥ 80°C AND Flow rate ≤ 20 L/min, there's anomaly
+ - number(Digit1, Temp), number(Digit2, Flow)
+2. If the user is in Iraq, check storage tank Level anomaly:
+ - If LiquidLevel ≥ 90% AND Pressure ≥ 8 bar, there's anomaly
+ - number(Digit1, LiquidLevel), number(Digit2, Pressure)
+3. If the user is in India, check power overload anomaly:
+ - If sum of branch currents > 150A, there's anomaly
+ - number(Digit1, Current1), number(Digit2, Current2)
+4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:
+ - If the source IP equals destination IP, there's anomaly
+ - number(Digit1, SourceIP), number(Digit2, DestIP)
+The current coordinate of user: (33.3152° N, 44.3661° E) ,Pay attention to the language used by locals.
+Generate the complete anomaly detection rule using the appropriate logic and digit conversion. </Requirements></Langda>
+.
+anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+3. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Neural network definitions for different languages
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(kannada_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: kannada_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
+% Convert digit list to number
+number([],Result,Result).
+number([H|T],Acc,Result) :- 
+ 
+ 
+    arabic_digit(H,Nr), 
+    Acc2 is Nr+10*Acc, 
+    number(T,Acc2,Result).
+number(X,Y) :- number(X,0,Y).
+% Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
+anomaly_detection(Digit1, Digit2, 1) :- 
+ 
+<Langda> Information:
+<HASH> Hash tag of code: 79CDA518 </HASH>
+<Requirements>
+Based on the geographic coordinate of user, determine which anomaly detection logic to use, 
+1. If the user is in Saudi Arabia, check engine overheating anomaly:
+ - If Temperature ≥ 80°C AND Flow rate ≤ 20 L/min, there's anomaly
+ - number(Digit1, Temp), number(Digit2, Flow)
+2. If the user is in Iraq, check storage tank Level anomaly:
+ - If LiquidLevel ≥ 90% AND Pressure ≥ 8 bar, there's anomaly
+ - number(Digit1, LiquidLevel), number(Digit2, Pressure)
+3. If the user is in India, check power overload anomaly:
+ - If sum of branch currents > 150A, there's anomaly
+ - number(Digit1, Current1), number(Digit2, Current2)
+4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:
+ - If the source IP equals destination IP, there's anomaly
+ - number(Digit1, SourceIP), number(Digit2, DestIP)
+The current coordinate of user: (33.3152° N, 44.3661° E) ,Pay attention to the language used by locals.
+Generate the complete anomaly detection rule using the appropriate logic and digit conversion. </Requirements></Langda>
+.
+anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
+
+</origin_code>
+<generated_code>
+
+% Neural network definitions for different languages
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(kannada_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: kannada_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
+
+% Convert digit list to number
+number([],Result,Result).
+number([H|T],Acc,Result) :-
+    arabic_digit(H,Nr),
+    Acc2 is Nr+10*Acc,
+    number(T,Acc2,Result).
+number(X,Y) :- number(X,0,Y).
+
+% Anomaly detection logic for Iraq (storage tank level anomaly)
+anomaly_detection(Digit1, Digit2, 1) :-
+    number(Digit1, LiquidLevel),
+    number(Digit2, Pressure),
+    LiquidLevel >= 90,
+    Pressure >= 8.
+
+anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "623E07CC",
+  "ErrorSummary": "The `sumdigit` logic in `query_sum` does not correctly handle the carry-over operations for the cryptoaddition puzzle AB + BCD = CDE, resulting in no valid solutions.",
+  "SuggestedFix": "Revise the `query_sum` predicate to correctly model the addition with carry-over. For example:\n\n```prolog\nquery_sum([A,B,C,D,E]) :-\n    leftdigit(A), leftdigit(B), leftdigit(C),\n    all_different([A,B,C,D,E]),\n    sumdigit(0, B, D, E, Carry1),\n    sumdigit(Carry1, A, C, D, Carry2),\n    sumdigit(Carry2, 0, B, C, _).\n```\n\nEnsure the carry from the previous column is correctly passed to the next column.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,209 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>is_list([]).
+is_list([_|T]) :- is_list(T).
+
+swap([X, Y | T], true, [Y, X | T]) :- X > Y.
+swap([X, Y | T], false, [X, Y | T]) :- X =< Y.
+
+bubble([], [], _).
+bubble([X], [], X).
+bubble([X, Y | T], [Y | Rest], X) :- X > Y, bubble([X | T], Rest, Y).
+bubble([X, Y | T], [X | Rest], Y) :- X =< Y, bubble([Y | T], Rest, X).
+
+bubblesort([], L, L).
+bubblesort(L, Acc, Sorted) :-
+    bubble(L, NewL, _),
+    bubblesort(NewL, Acc, Sorted).
+
+forth_sort(L, L2) :-
+    is_list(L),
+    bubblesort(L, [], L2).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    define_index = self._add_head(head)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/clausedb.py", line 281, in _add_head
+    raise AccessError("Can not overwrite built-in '%s'." % head.signature)
+problog.clausedb.AccessError: Can not overwrite built-in 'is_list/1'..
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Prolog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>is_list([]).
+is_list([_|T]) :- is_list(T).
+
+swap([X, Y | T], true, [Y, X | T]) :- X > Y.
+swap([X, Y | T], false, [X, Y | T]) :- X =< Y.
+
+bubble([], [], _).
+bubble([X], [], X).
+bubble([X, Y | T], [Y | Rest], X) :- X > Y, bubble([X | T], Rest, Y).
+bubble([X, Y | T], [X | Rest], Y) :- X =< Y, bubble([Y | T], Rest, X).
+
+bubblesort([], L, L).
+bubblesort(L, Acc, Sorted) :-
+    bubble(L, NewL, _),
+    bubblesort(NewL, Acc, Sorted).
+
+forth_sort(L, L2) :-
+    is_list(L),
+    bubblesort(L, [], L2).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    define_index = self._add_head(head)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/clausedb.py", line 281, in _add_head
+    raise AccessError("Can not overwrite built-in '%s'." % head.signature)
+problog.clausedb.AccessError: Can not overwrite built-in 'is_list/1'..
+</Result>
+
+</original_code>
+
+### **Evaluation Report: ProbLog Bubblesort Implementation**
+
+---
+
+#### **1. Document Title**
+**Analysis of Bubblesort Implementation in ProbLog**
+
+---
+
+#### **2. Background and Purpose**
+The provided code implements a bubblesort algorithm in ProbLog, a probabilistic extension of Prolog. The goal is to evaluate the correctness of the implementation, verify test results, and analyze potential issues in both classical and probabilistic contexts.
+
+---
+
+#### **3. Test Results Summary**
+- **Query Tested**: `forth_sort([3,1,2,5,7,12], X)`
+- **Result**: The test failed with an error message:  
+  `AccessError: Can not overwrite built-in 'is_list/1'.`
+
+**Conclusion**: The test did not execute successfully due to a conflict with a built-in predicate.
+
+---
+
+#### **4. Failure Localization**
+- **Failed Query**: `forth_sort([3,1,2,5,7,12], X)`
+- **Error Location**: The predicate `is_list/1` is a built-in in ProbLog, and the code attempts to redefine it, causing an `AccessError`.
+- **Code Line**: The issue stems from the definition of `is_list/1` in the provided code.
+
+---
+
+#### **5. Root Cause Analysis**
+- **Classical Prolog Context**:
+  - The logical correctness of the bubblesort algorithm (`bubble/3`, `bubblesort/3`) appears sound, assuming the input is a valid list.
+  - Recursive termination is ensured for valid lists, as the base cases (`[]` and `[X]`) are correctly defined.
+- **ProbLog Context**:
+  - The error is unrelated to probabilistic reasoning but highlights a namespace conflict with built-in predicates.
+  - No probabilistic facts or implications are used in the code, so no further analysis is required here.
+- **DeepProbLog**:
+  - The code does not use any DeepProbLog features (e.g., `nn/3`, `tensor/…`).  
+    **Report**: "DeepProbLog feature not used."
+
+---
+
+#### **6. Overall Analysis**
+- **Functional Requirements**:
+  - **Classical Reasoning**: The bubblesort logic is correctly implemented for classical Prolog, but the `is_list/1` conflict prevents execution.
+  - **Probabilistic Reasoning**: Not applicable in this case.
+  - **Neural Network Integration**: Not used.
+- **Edge Cases**:
+  - **Non-list Input**: The `is_list/1` check is redundant due to the built-in conflict, but the code does not handle non-list inputs gracefully.
+  - **Deep Recursion**: The recursion depth is proportional to the list length, which is typical for bubblesort but could be inefficient for large lists.
+
+---
+
+#### **7. Error Summary**
+
+| No. | Problem                          | Impact                          | Suggestion                          |
+|-----|----------------------------------|---------------------------------|-------------------------------------|
+| 1   | Redefinition of `is_list/1`      | Prevents execution of the code  | Remove or rename the `is_list/1` predicate. |
+| 2   | No handling of non-list inputs   | Potential runtime errors        | Add input validation if needed.     |
+| 3   | No probabilistic features used   | Limited to classical reasoning  | Extend with probabilistic facts if required. |
+
+---
+
+#### **8. Final Remarks**
+The code's logical structure for bubblesort is correct, but the redefinition of `is_list/1` causes a fatal error. Addressing this conflict and ensuring input validation would resolve the immediate issues. The implementation does not leverage ProbLog's probabilistic features or DeepProbLog's neural network integration. Future work could explore these extensions if needed.
+
+**Word Count**: ~400 words.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

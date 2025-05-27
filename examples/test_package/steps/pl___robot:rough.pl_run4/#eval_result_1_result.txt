@@ -1,0 +1,11 @@
+```report
+{"HASH": "D92532A0","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "E4953E37","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+
+```report
+{"HASH": "8EB675E6","ErrorSummary": "Syntax error due to improperly separated predicates in the `at/3` definition","SuggestedFix": "Separate the two `at/3` predicates with a newline or semicolon. Correct format: `at(robot,Pos,s(T)) :- goto_action(T), goto_succeeds(T), do(goto(Pos), T). at(robot,Pos,s(T)) :- goto_action(T), goto_fails(T), at(robot,Pos,T).`","Dependencies": [],"NeedRegenerate": true}
+```

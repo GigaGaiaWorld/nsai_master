@@ -1,0 +1,10 @@
+{
+  "file_name": "benchrps__:precise.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "178.14s",
+  "process_time": 178.13665390014648,
+  "final_result": "% -------------------------\n% Basic rules of rock-paper-scissors\n% -------------------------\n% Three gestures\nmove(rock).\nmove(paper).\nmove(scissor).\n% Win-lose relationship: X beats Y\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock).\n% -------------------------\n% Calculate the result of the game\n% -------------------------\n% Same gestures are considered a draw\nresult(X, X, draw) :-\n move(X).\n \n% If X beats Y, then X wins\nresult(X, Y, win) :-\nbeats(X, Y).\n% If Y beats X, then X loses\nresult(X, Y, lose) :-\nbeats(Y, X).\n \n% End of recursion: empty list corresponds to empty result\nplay([], [], []).\n% Recursive advancement: take out each round of gestures, calculate the results, and continue\nplay([P1|P1T], [P2|P2T], [R|Rs]) :-\n% The correct call is result(P1,P2,R), not semicolon\nresult(P1, P2, R),\n% (Optional) Update the score according to R\nplay(P1T, P2T, Rs).\n \ncompute_score([], 0).\ncompute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.\ncompute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.\ncompute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.\ndetermine_winner(P1Moves,P2Moves,Winner) :- \n \n play(P1Moves, P2Moves, Results), compute_score(Results, Score), (Score > 0, Winner = 'Player 1'; Score < 0, Winner = 'Player 2'; Score =:= 0, Winner = 'Draw').\nquery(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).",
+  "final_report": "The generated code is largely consistent with the original code in terms of functionality and logic. Both codes correctly implement the rock-paper-scissors game rules, result calculation, and winner determination. The main difference lies in the formatting and the naming of the winner ('Player 2' vs 'player2'), which does not affect the logic or outcome. The generated code is valid and meets the requirements."
+}

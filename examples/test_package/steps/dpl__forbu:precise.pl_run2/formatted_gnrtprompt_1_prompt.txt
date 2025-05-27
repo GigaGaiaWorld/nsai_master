@@ -1,0 +1,115 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda> Information:
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+3. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+hole(X,Y,X,Y):-
+ swap(X,Y,no_swap).
+hole(X,Y,Y,X):-
+ swap(X,Y,swap).
+bubble([X],[],X).
+bubble([H1,H2|T],[X1|T1],X):-
+ hole(H1,H2,X1,X2),
+ bubble([X2|T],T1,X).
+bubblesort([],L,L).
+bubblesort(L,L3,Sorted) :-
+ 
+
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+<Langda> Information:
+<HASH> Hash tag of code: 5CBF7C6A </HASH>
+<Requirements>The logical predicate that determines whether to exchange </Requirements></Langda>
+.
+ 
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+hole(X, Y, X, Y) :-
+    swap(X, Y, no_swap).
+hole(X, Y, Y, X) :-
+    swap(X, Y, swap).
+
+swap(X, Y, swap) :- X > Y.
+swap(X, Y, no_swap) :- X =< Y.
+
+bubble([X], [], X).
+bubble([H1, H2 | T], [X1 | T1], X) :-
+    hole(H1, H2, X1, X2),
+    bubble([X2 | T], T1, X).
+
+bubblesort([], L, L).
+bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+
+query(forth_sort([3, 1, 2, 5, 7, 12], X)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

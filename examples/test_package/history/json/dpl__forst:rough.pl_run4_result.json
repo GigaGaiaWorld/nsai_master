@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": "117.08s",
+  "process_time": 117.0778238773346,
+  "final_result": "stack_op(push(X), Stack, [X | Stack]).\nstack_op(pop, [X | Stack], Stack).\nstack_op(dup, [X | Stack], [X, X | Stack]).\nstack_op(swap, [X, Y | Stack], [Y, X | Stack]).\nstack_op(over, [X, Y | Stack], [Y, X, Y | Stack]).\nstack_op(rot, [X, Y, Z | Stack], [Y, Z, X | Stack]).\nstack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Elements, RestStack),\n    insertion_sort(Elements, SortedElements),\n    append(SortedElements, RestStack, SortedStack).\n\nget_top_n(Stack, N, Elements, Rest) :-\n    length(Elements, N),\n    append(Elements, Rest, Stack).\n\ninsertion_sort(List, Sorted) :-\n    insertion_sort_aux(List, [], Sorted).\n\ninsertion_sort_aux([], Acc, Acc).\ninsertion_sort_aux([H | T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort_aux(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y | T], [X, Y | T]) :- X =< Y.\ninsert(X, [Y | T], [Y | NewT]) :- X > Y, insert(X, T, NewT).\nstack_op(sort, Stack, SortedStack) :-\n get_top_n(Stack, 3, Elements, RestStack),\n insertion_sort(Elements, SortedElements),\n append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is mostly correct and consistent with the original code, but there is a critical error in the 'rot' operation. The original code correctly rotates the top three elements as [Z,X,Y|Stack], while the generated code incorrectly rotates them as [Y,Z,X|Stack]. This results in inconsistent run results for the 'rot' operation. The rest of the operations (push, pop, dup, swap, over) and the sorting logic are correctly implemented and produce consistent results."
+}

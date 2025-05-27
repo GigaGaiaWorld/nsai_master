@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "109.21s",
+  "process_time": 109.2094509601593,
+  "final_result": "swap(X, Y, Y, X) :- X > Y.\nswap(X, Y, X, Y) :- X =< Y.\n\nbubble([X], [], X).\nbubble([H1, H2 | T], [X1 | T1], X) :-\n    swap(H1, H2, X1, X2),\n    bubble([X2 | T], T1, X).\n\nbubblesort([], L, L).\nbubblesort(L, L3, Sorted) :-\n    bubble(L, L2, X),\n    bubblesort(L2, [X | L3], Sorted).\n\nforth_sort(L, L2) :- bubblesort(L, [], L2).\n\nquery(forth_sort([3, 1, 2, 5, 7, 12], X)).",
+  "final_report": "The generated code is correct and meets the requirements. It maintains the same functionality as the original code, implementing a bubble sort algorithm. The main difference is in the 'swap' predicate, which in the generated code directly swaps the elements if X > Y, whereas the original code uses a 'hole' predicate with a swap/no_swap flag. Despite this difference in implementation, the logic remains consistent, and the sorting behavior is identical. Both codes produce the same sorted output for the given input."
+}

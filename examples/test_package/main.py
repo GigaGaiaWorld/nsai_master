@@ -1,11 +1,11 @@
-from langda import langda_solve
+from langda import langda_solve, _problog_test
 
 import os
 import json
 import time
 from tqdm import tqdm
 
-def process_all(test_directory_path, answer_directory_path, output_json_dir
+def process_all(test_directory_path, answer_directory_path, output_json_dir,
                 agent_type, model_name, addition_input, ):
     all_results = []
     final_result_path = os.path.join(output_json_dir,"_final_result.json")

@@ -1,0 +1,5 @@
+[
+{
+"58E6FAB7": "density(Country, Density) :- pop(Country, Pop), area(Country, Area), Density is Pop / Area. approximately_equal(Density1, Density2) :- Diff is abs(Density1 - Density2), Threshold is 0.05 * max(Density1, Density2), Diff =< Threshold. query_pop([Country1, Density1, Country2, Density2]) :- density(Country1, Density1), density(Country2, Density2), Country1 @< Country2, approximately_equal(Density1, Density2)."
+}
+]

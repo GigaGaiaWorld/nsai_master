@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Missing 'bubblesort/3' predicate, causing the program to fail during execution",
+  "SuggestedFix": "Implement the 'bubblesort/3' predicate to recursively sort the list using the 'swap/4' predicate. For example:\n\nbubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- swap_pass([H|T], L), bubblesort(L, [H|Acc], Sorted).\nswap_pass([X,Y|T], [Y,X|T]) :- X > Y.\nswap_pass([X,Y|T], [X|Rest]) :- X =< Y, swap_pass([Y|T], Rest).\nswap_pass([X], [X]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

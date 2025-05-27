@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "0805B4F6",
+  "ErrorSummary": "Invalid argument types for 'between/3' due to unevaluated arithmetic expression 'N-1'",
+  "SuggestedFix": "Modify the predicate to precompute the arithmetic: 'bb(N) :- Max is N-1, between(1, Max, I), pick(I, b), pick(I+1, b).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

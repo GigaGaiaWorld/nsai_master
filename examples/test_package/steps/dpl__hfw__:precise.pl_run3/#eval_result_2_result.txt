@@ -1,0 +1,3 @@
+```report
+{"HASH": "9BA21093", "ErrorSummary": "Missing parse rules for subtraction (-), multiplication (*), and division (/)", "SuggestedFix": "Add the following predicates to the parse/2 rules:\n1. For subtraction: parse([N1, - | T], R) :- parse(T, R1), R is N1 - R1.\n2. For multiplication: parse([N1, * | T], R) :- parse(T, R1), R is N1 * R1.\n3. For division: parse([N1, / | T], R) :- parse(T, R1), R is N1 / R1.", "Dependencies": [], "NeedRegenerate": true}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CFA63C1E",
+  "ErrorSummary": "Unsupported '->' operator in ProbLog causing 'UnknownClause' error in the 'play/3' predicate",
+  "SuggestedFix": "Replace the 'play/3' predicate with ProbLog-compatible syntax:\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P1, P2), Result = win, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P2, P1), Result = lose, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    \\+ beats(P1, P2), \\+ beats(P2, P1), Result = draw, play(P1Moves, P2Moves, Results).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,280 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+% Aircraft Flap Controller
+% This example is inspired by one in Filieri et al, Reliability Analysis in Symbolic Pathfinder, ICSE 2013
+% the range of the flap
+legal_flap_position(FP) :- between(0,10,FP).
+% the strength of the actuators
+actuator_strength(a,2).
+actuator_strength(b,1).
+% random prior on which actuator to use
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+% wind strength model
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+% the flap is moved to an attempted position if that is legal
+flap_position(Time,Pos) :-
+ Time > 0,
+ attempted_flap_position(Time,Pos),
+ legal_flap_position(Pos).
+% an overrun exception occurs else
+overrun_exception(Time) :-
+ attempted_flap_position(Time,Pos),
+ \+ legal_flap_position(Pos).
+% did we reach the goal?
+goal_reached(Time) :-
+ goal(G),
+ flap_position(Time,G).
+% if the previous position was not the goal, attempt a new position
+% the position depends on the chosen actuator and the current wind
+attempted_flap_position(Time,Pos) :-
+ Time > 0,
+ Prev is Time-1,
+ 
+<Langda>
+<Code_Block>attempted_flap_position(Time,Pos) :- Time > 0, Prev is Time-1, flap_position(Prev, Old), \+ goal_reached(Prev), use_actuator(Time, A), actuator_strength(A, AS), goal(GP), AE is sign(GP - Old) * AS, wind_effect(Time, WE), Pos is Old + AE + WE.</Code_Block>
+<HASH> Hash tag of code: 62719B9D </HASH>
+<Requirements>  1. Check if the goal has been reached:  If Old already satisfies goal(Old), no new trial position is calculated.    2.Determine the current actuator and its strength:  Select actuator A (use_actuator) according to time Time, and get its thrust AS from actuator_strength(A).    3. Calculate the direction and contribution of the actuator  Take the global target position GP (goal(GP)), and compare the difference direction between GP and Old:  - If the target is in front of the current direction, AE = +AS; if in the opposite direction, AE = −AS;  - Specific calculation: AE = sign(GP − Old) × AS.    4. Superimpose wind interference:  Take the additional effect WE of the wind force on the position at that moment from wind_effect(Time).    Combine the trial position of this step:  Add the three parts and get the current attempt flapping position Pos. </Requirements></Langda>
+.
+% we want to go from 6 to 4, i.e., move two steps left
+flap_position(0,6).
+goal(4).
+% restrict attention to first five steps
+at(5).
+query(goal_reached(T)) :- at(S),between(1,S,T).
+query(overrun_exception(T)) :- at(S),between(1,S,T).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+goal_reached(1) = 0.2625
+goal_reached(2) = 0.1873
+goal_reached(3) = 0.1269
+goal_reached(4) = 0.0841
+goal_reached(5) = 0.0570
+overrun_exception(1) = 0.0000
+overrun_exception(2) = 0.0030
+overrun_exception(3) = 0.0110
+overrun_exception(4) = 0.0127
+overrun_exception(5) = 0.0114
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Prolog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+% Aircraft Flap Controller
+% This example is inspired by one in Filieri et al, Reliability Analysis in Symbolic Pathfinder, ICSE 2013
+% the range of the flap
+legal_flap_position(FP) :- between(0,10,FP).
+% the strength of the actuators
+actuator_strength(a,2).
+actuator_strength(b,1).
+% random prior on which actuator to use
+0.5::use_actuator(T,a); 0.5::use_actuator(T,b).
+% wind strength model
+0.7::wind(weak); 0.3::wind(strong).
+0.25::wind_effect(T,-1); 0.5::wind_effect(T,0); 0.25::wind_effect(T,1) :- wind(weak).
+0.2::wind_effect(T,-3); 0.3::wind_effect(T,-2); 0.3::wind_effect(T,2); 0.2::wind_effect(T,3) :- wind(strong).
+% the flap is moved to an attempted position if that is legal
+flap_position(Time,Pos) :-
+ Time > 0,
+ attempted_flap_position(Time,Pos),
+ legal_flap_position(Pos).
+% an overrun exception occurs else
+overrun_exception(Time) :-
+ attempted_flap_position(Time,Pos),
+ \+ legal_flap_position(Pos).
+% did we reach the goal?
+goal_reached(Time) :-
+ goal(G),
+ flap_position(Time,G).
+% if the previous position was not the goal, attempt a new position
+% the position depends on the chosen actuator and the current wind
+attempted_flap_position(Time,Pos) :-
+ Time > 0,
+ Prev is Time-1,
+ 
+<Langda>
+<Code_Block>attempted_flap_position(Time,Pos) :- Time > 0, Prev is Time-1, flap_position(Prev, Old), \+ goal_reached(Prev), use_actuator(Time, A), actuator_strength(A, AS), goal(GP), AE is sign(GP - Old) * AS, wind_effect(Time, WE), Pos is Old + AE + WE.</Code_Block>
+<HASH> Hash tag of code: 62719B9D </HASH>
+<Requirements>  1. Check if the goal has been reached:  If Old already satisfies goal(Old), no new trial position is calculated.    2.Determine the current actuator and its strength:  Select actuator A (use_actuator) according to time Time, and get its thrust AS from actuator_strength(A).    3. Calculate the direction and contribution of the actuator  Take the global target position GP (goal(GP)), and compare the difference direction between GP and Old:  - If the target is in front of the current direction, AE = +AS; if in the opposite direction, AE = −AS;  - Specific calculation: AE = sign(GP − Old) × AS.    4. Superimpose wind interference:  Take the additional effect WE of the wind force on the position at that moment from wind_effect(Time).    Combine the trial position of this step:  Add the three parts and get the current attempt flapping position Pos. </Requirements></Langda>
+.
+% we want to go from 6 to 4, i.e., move two steps left
+flap_position(0,6).
+goal(4).
+% restrict attention to first five steps
+at(5).
+query(goal_reached(T)) :- at(S),between(1,S,T).
+query(overrun_exception(T)) :- at(S),between(1,S,T).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+goal_reached(1) = 0.2625
+goal_reached(2) = 0.1873
+goal_reached(3) = 0.1269
+goal_reached(4) = 0.0841
+goal_reached(5) = 0.0570
+overrun_exception(1) = 0.0000
+overrun_exception(2) = 0.0030
+overrun_exception(3) = 0.0110
+overrun_exception(4) = 0.0127
+overrun_exception(5) = 0.0114
+</Result>
+
+</original_code>
+
+### **Aircraft Flap Controller Code Evaluation Report**
+
+---
+
+#### **1. Document Title**  
+**Evaluation of ProbLog Aircraft Flap Controller Code**
+
+---
+
+#### **2. Background and Purpose**  
+The provided ProbLog code models an aircraft flap controller system, where the flap position is adjusted based on actuator strength and wind effects. The goal is to move the flap from position 6 to 4 within 5 time steps. The evaluation aims to verify the correctness of the probabilistic reasoning, logical constraints, and adherence to the specified requirements.
+
+---
+
+#### **3. Test Results Summary**  
+The test results include the probabilities of `goal_reached` and `overrun_exception` for each time step from 1 to 5:
+
+- **`goal_reached` Probabilities**:
+  - `goal_reached(1) = 0.2625`
+  - `goal_reached(2) = 0.1873`
+  - `goal_reached(3) = 0.1269`
+  - `goal_reached(4) = 0.0841`
+  - `goal_reached(5) = 0.0570`
+
+- **`overrun_exception` Probabilities**:
+  - `overrun_exception(1) = 0.0000`
+  - `overrun_exception(2) = 0.0030`
+  - `overrun_exception(3) = 0.0110`
+  - `overrun_exception(4) = 0.0127`
+  - `overrun_exception(5) = 0.0114`
+
+**Conclusion**: All tests passed (no failures). The results align with the expected behavior, where the probability of reaching the goal decreases over time, and the likelihood of overrun exceptions remains low.
+
+---
+
+#### **4. Failure Localization**  
+No failures were detected in the test results. The predicates and rules are correctly implemented, including:
+- `legal_flap_position/1` (line 2).
+- `actuator_strength/2` (lines 4-5).
+- `use_actuator/2` (line 7).
+- `wind_effect/2` (lines 10-11).
+- `flap_position/2` (lines 14-16).
+- `overrun_exception/1` (lines 18-20).
+- `goal_reached/1` (lines 22-24).
+- `attempted_flap_position/2` (lines 27-33).
+
+---
+
+#### **5. Root Cause Analysis**  
+
+##### **Classical Prolog Scenarios**  
+- **Logical Correctness**: The code correctly implements the logic for calculating the flap position, considering actuator strength, wind effects, and goal conditions.
+- **Recursive Termination**: The recursion terminates as the time steps are bounded by `at(5)`.
+
+##### **ProbLog Probabilistic Scenarios**  
+- **Probabilistic Facts**: The probabilities for `use_actuator`, `wind`, and `wind_effect` comply with the rules of probability (e.g., `P(¬A) = 1−P(A)`).
+- **Negations/Implications**: The negation in `\+ legal_flap_position(Pos)` is correctly handled.
+
+##### **DeepProbLog Integration**  
+- **Verification**: No DeepProbLog features (e.g., `nn/3`, `tensor/…`) are used in the code.  
+  **Report**: "DeepProbLog feature not used."
+
+---
+
+#### **6. Overall Analysis**  
+
+##### **Functional Requirements**  
+- **Classical Reasoning**: Fully met. The code correctly implements the logical constraints for flap movement.
+- **Probabilistic Reasoning**: Fully met. The probabilistic facts and their interactions are correctly modeled.
+- **Neural Network Integration**: Not applicable (no DeepProbLog features used).
+
+##### **Edge Cases**  
+- **Undefined `expand/2`**: Not applicable in this context.
+- **Non-list Input**: The input is well-defined (e.g., integers for positions).
+- **Deep Recursive Performance**: The recursion depth is limited to 5 steps, ensuring performance is not an issue.
+
+---
+
+#### **7. Error Summary**  
+
+| Number | Problem | Impact | Suggestion |
+|--------|---------|--------|------------|
+| 1      | None    | None   | None       |
+
+**Conclusion**: The code is well-structured, adheres to the requirements, and passes all tests. No issues were identified.  
+
+**Word Count**: 450 words.  
+
+--- 
+
+**End of Report**
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

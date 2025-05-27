@@ -1,0 +1,5 @@
+[
+{
+"CFA63C1E": "play([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P1, P2), Result = win, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    beats(P2, P1), Result = lose, play(P1Moves, P2Moves, Results).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    \\+ beats(P1, P2), \\+ beats(P2, P1), Result = draw, play(P1Moves, P2Moves, Results)."
+}
+]

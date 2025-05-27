@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "5E40E418",
+  "ErrorSummary": "Missing implementations for stack operations (push, pop, dup, swap, over, rot). Only the 'sort' operation is implemented.",
+  "SuggestedFix": "Add predicates for the missing operations. For example:\n- push(Element, Stack, NewStack): append [Element] to Stack.\n- pop([Top|Rest], Top, Rest).\n- dup(Stack, [Top|Stack]): Top is the head of Stack.\n- swap([A,B|Rest], [B,A|Rest]).\n- over([A,B|Rest], [A,B,A|Rest]).\n- rot([A,B,C|Rest], [B,C,A|Rest]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

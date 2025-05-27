@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "D39CF159",
+  "ErrorSummary": "Parsing error due to improper syntax in the 'anomaly_detection' predicate. The 'Langda' block is not integrated correctly into ProbLog syntax.",
+  "SuggestedFix": "Rewrite the 'anomaly_detection' predicate to adhere to ProbLog syntax. For example: 'anomaly_detection(Digit1, Digit2, Result) :- number(Digit1, Num1), number(Digit2, Num2), (Num1 + Num2 > 150 -> Result = 1 ; Result = 0).' Ensure proper parentheses and operator usage.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

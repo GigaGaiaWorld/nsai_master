@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incomplete parse/2 predicate; missing rules for operator cases and operator precedence handling",
+  "SuggestedFix": "Add the following rules to parse/2:\n1. parse([N1, Op, N2 | T], R) :- almost_equal(N1, X1), almost_equal(N2, X2), evaluate(Op, X1, X2, Temp), parse([Temp | T], R).\n2. evaluate(+, X, Y, Z) :- Z is X + Y.\n3. evaluate(-, X, Y, Z) :- Z is X - Y.\n4. evaluate(*, X, Y, Z) :- Z is X * Y.\n5. evaluate(/, X, Y, Z) :- Y =\= 0, Z is X / Y.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

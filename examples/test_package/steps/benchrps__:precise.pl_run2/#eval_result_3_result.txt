@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CE4B5362",
+  "ErrorSummary": "The `->/2` operator is not supported in ProbLog, causing the predicate to fail during execution.",
+  "SuggestedFix": "Replace the `->/2` operator with ProbLog-compatible conditional logic. For example, rewrite the last line of `determine_winner` as: `(Score > 0, Winner = 'Player 1'; Score < 0, Winner = 'Player 2'; Score =:= 0, Winner = 'Draw').`",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

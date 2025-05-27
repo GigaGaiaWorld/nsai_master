@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "9BA21093",
+  "ErrorSummary": "Missing parse/2 rules for subtraction (-), multiplication (*), and division (/) operations. Only addition (+) is implemented.",
+  "SuggestedFix": "Add the following predicates to parse/2:\n1. parse([N1, - | T], R) :- parse(T, R1), almost_equal(R, N1 - R1).\n2. parse([N1, * | T], R) :- parse(T, R1), almost_equal(R, N1 * R1).\n3. parse([N1, / | T], R) :- parse(T, R1), almost_equal(R, N1 / R1).\nAlso, add a check for division by zero in the division rule.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

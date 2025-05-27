@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "swap([X, Y | T], [Y, X | T]) :- X > Y.\nswap([X | T], [X | T1]) :- swap(T, T1).\n\nbubblesort(L, Acc, Sorted) :-\n    ( swap(L, L1) ->\n        bubblesort(L1, [], Sorted)\n    ; \n        append(Acc, L, Sorted)\n    ).\n\nforth_sort(L, Sorted) :- bubblesort(L, [], Sorted).\n\nquery(forth_sort([3,1,2,5,7,12], X))."
+}
+]

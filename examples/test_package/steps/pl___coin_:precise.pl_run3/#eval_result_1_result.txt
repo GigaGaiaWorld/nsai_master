@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Undefined '->/2' operator in ProbLog context causing evaluation failure",
+  "SuggestedFix": "Replace the '->/2' operator with ProbLog-compatible syntax. Modify the recursive rule to use explicit probabilistic facts and rules. For example: 'coins_r(SC,S,CNT) :- CNT > 0, CNT1 is CNT - 1, (0.8::coin(CNT)) -> SC1 is SC + 1, coins_r(SC1, S, CNT1); coins_r(SC, S, CNT1).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

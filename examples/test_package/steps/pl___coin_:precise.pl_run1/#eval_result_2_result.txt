@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Unknown 'if/3' predicate used for conditional branching, causing execution failure",
+  "SuggestedFix": "Replace 'if/3' with Prolog's conditional operator '->/2' or ProbLog-compatible syntax. Example fix:\nCNT1 is CNT - 1,\n(coin(CNT) -> \n    (SC1 is SC + 1, coins_r(SC1, S, CNT1)); \n    coins_r(SC, S, CNT1)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

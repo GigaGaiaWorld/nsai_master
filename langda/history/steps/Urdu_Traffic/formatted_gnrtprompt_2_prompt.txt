@@ -1,0 +1,119 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y)./*Here are services in different countries:
+1. Arab: If the temperature in the engine cooling circuit is too high and the coolant flow is too low, there is a serious risk of overheating.
+Anomaly: Temperature ≥ 80 ℃ and Flow rate ≤ 20 L/min. Digit1 is Temperature, Digit2 is Flow, they are numbers of each corresponding parameter.
+2. India: In a power distribution cabinet, if the sum of the currents of two branches exceeds 150A, the overload protection may be triggered.
+Digit1 and Digit2 are values of each branch.
+3. Pakistan: In network security monitoring, we usually regard packets in network traffic where "source IP (X) equals destination IP (Y)" as abnormal
+Digit1 and Digit2 are values of each current.
+*/
+% Please use number/2 to transform digits to real numbers
+number([], Result, Result).
+number([H|T], Acc, Result) :- arabic_digit(H, Nr), Acc2 is Nr + 10 * Acc, number(T, Acc2, Result).
+number(X, Y) :- number(X, 0, Y).
+% If there's anomaly, Result is 1, otherwise, Result is 0.
+anomaly_detection(Digit1, Digit2, Result) :- 
+ % langda will give the current geographic coordinates. Based on the language used in the current coordinate country, choose to use corresponding digits for the task.
+ 
+<Langda> Information:
+<HASH> Hash tag of code: D39CF159 </HASH>
+<Requirements>(31.5204 N, 74.3587 E) </Requirements></Langda>
+.
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+3. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y)./*Here are services in different countries:
+1. Arab: If the temperature in the engine cooling circuit is too high and the coolant flow is too low, there is a serious risk of overheating.
+Anomaly: Temperature ≥ 80 ℃ and Flow rate ≤ 20 L/min. Digit1 is Temperature, Digit2 is Flow, they are numbers of each corresponding parameter.
+2. India: In a power distribution cabinet, if the sum of the currents of two branches exceeds 150A, the overload protection may be triggered.
+Digit1 and Digit2 are values of each branch.
+3. Pakistan: In network security monitoring, we usually regard packets in network traffic where "source IP (X) equals destination IP (Y)" as abnormal
+Digit1 and Digit2 are values of each current.
+*/
+% Please use number/2 to transform digits to real numbers
+number([], Result, Result).
+number([H|T], Acc, Result) :- arabic_digit(H, Nr), Acc2 is Nr + 10 * Acc, number(T, Acc2, Result).
+number(X, Y) :- number(X, 0, Y).
+% If there's anomaly, Result is 1, otherwise, Result is 0.
+anomaly_detection(Digit1, Digit2, Result) :- 
+ % langda will give the current geographic coordinates. Based on the language used in the current coordinate country, choose to use corresponding digits for the task.
+ 
+<Langda> Information:
+<HASH> Hash tag of code: D39CF159 </HASH>
+<Requirements>(31.5204 N, 74.3587 E) </Requirements></Langda>
+.
+
+</origin_code>
+<generated_code>
+
+nn(arabic_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: arabic_digit(X,Y).
+nn(telugu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: telugu_digit(X,Y).
+nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
+
+% Transform digits to real numbers
+number([], Result, Result).
+number([H|T], Acc, Result) :- 
+    arabic_digit(H, Nr), 
+    Acc2 is Nr + 10 * Acc, 
+    number(T, Acc2, Result).
+number(X, Y) :- number(X, 0, Y).
+
+% Anomaly detection based on geographic coordinates
+anomaly_detection(Digit1, Digit2, Result) :-
+    % Coordinates: (31.5204 N, 74.3587 E) corresponds to Pakistan
+    % Use urdu_digit for Pakistan
+    number(Digit1, Num1),
+    number(Digit2, Num2),
+    (
+        % Pakistan scenario: source IP equals destination IP
+        (Num1 =:= Num2) -> Result is 1
+        ; Result is 0
+    ).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

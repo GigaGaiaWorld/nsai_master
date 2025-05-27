@@ -270,7 +270,7 @@ class LangdaAgentExecutor(BaseModel):
             pattern = r"```(?:problog|[a-z]*)?\n(.*?)```"
             matches = re.findall(pattern, first_result, re.DOTALL)
             extracted_result = matches[-1]
-
+            print("*** Generated New Code ***\n",extracted_result)
         second_input = {
             "template_code": input["prompt_template"],
             "first_chain_output": extracted_result.strip()

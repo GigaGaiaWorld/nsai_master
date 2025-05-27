@@ -1,0 +1,8 @@
+[
+{
+"852FE6E2": "number([H|T],Acc,Result) :- \n    arabic_digit(H,Nr), \n    Acc2 is Nr+10*Acc, \n    number(T,Acc2,Result)."
+},
+{
+"79CDA518": "anomaly_detection(Digit1, Digit2, 1) :- \n    number(Digit1, LiquidLevel), \n    number(Digit2, Pressure), \n    LiquidLevel >= 90, \n    Pressure >= 8."
+}
+]

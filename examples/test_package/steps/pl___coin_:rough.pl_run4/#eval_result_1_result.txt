@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Operator priority clash (ParseError) in the conditional statement due to incorrect syntax for ProbLog's probabilistic facts and implications.",
+  "SuggestedFix": "Rewrite the conditional statement to properly structure the probabilistic fact and implication. For example:\n\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    coin(C),\n    (PH::make_coin(C,PH)),\n    (PH =:= 1 -> NSC is SC + 1 ; NSC = SC),\n    NCNT is CNT - 1,\n    coins_r(NSC,S,NCNT).\n\nEnsure parentheses and operators are correctly placed for ProbLog's parser.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

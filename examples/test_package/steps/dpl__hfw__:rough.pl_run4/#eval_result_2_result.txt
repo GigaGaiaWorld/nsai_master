@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incorrect use of '->/2' operator in parse/2 predicate, leading to evaluation failure. Operator precedence not handled.",
+  "SuggestedFix": "Replace the '->/2' operator with explicit condition checks and restructure the parse/2 predicate to handle operator precedence. For example:\nparse([N1, O, N2 | T], R) :-\n    (O = * ; O = /),\n    almost_equal(N1, V1),\n    almost_equal(N2, V2),\n    (O = *, R1 is V1 * V2 ; O = /, R1 is V1 / V2),\n    parse([R1 | T], R).\nparse([N1, O, N2 | T], R) :-\n    (O = + ; O = -),\n    parse([N2 | T], R1),\n    almost_equal(N1, V1),\n    (O = +, R is V1 + R1 ; O = -, R is V1 - R1).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CE4B5362",
+  "ErrorSummary": "Syntax error in the conditional statement of 'determine_winner' predicate, causing the predicate to fail execution.",
+  "SuggestedFix": "Correct the syntax of the conditional statement in 'determine_winner' as follows: 'determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, Score), (Score > 0 -> Winner = 'Player 1' ; (Score < 0 -> Winner = 'Player 2' ; Winner = 'Draw')).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

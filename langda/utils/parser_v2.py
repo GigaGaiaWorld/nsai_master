@@ -468,7 +468,7 @@ class Parser(object):
                     single_langda.append(code)
                     single_comment.append(comment)
                     # Create the full langda term and its dict representation
-                    full_langda_term = " ".join(single_langda)
+                    full_langda_term = "\n".join(single_langda)
 
                     full_langda_content = full_langda_term[7:-1]
                     langda_dict_content = self._parse_lann_or_langda_content_to_dicts(full_langda_content)

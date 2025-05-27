@@ -7,11 +7,19 @@ from .agent import (
 )
 from typing import Literal
 from .utils.parser_v2 import integrated_code_parser
-
+from .utils.test_tools import _problog_test
+from .utils.format_tools import _find_all_blocks
+from .utils import invoke_agent
 __version__ = "6.5"
 __all__ = [
     'langda_solve',
+    'invoke_agent',
+
+    '_problog_test',
     'integrated_code_parser',
+    '_find_all_blocks',
+
+    # As type:
     'LangdaAgentSingleSimple',
     'LangdaAgentDoubleSimple', 
     'LangdaAgentDoubleDC',

@@ -1,0 +1,5 @@
+[
+{
+"36651955": "number([], Acc, Acc).\nnumber([H|T], Acc, Result) :-\n    (arabic_digit(H, Nr); telugu_digit(H, Nr); urdu_digit(H, Nr)),\n    Acc2 is Nr + 10 * Acc,\n    number(T, Acc2, Result).\nnumber(X, Y) :- number(X, 0, Y)."
+}
+]

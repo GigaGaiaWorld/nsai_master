@@ -1,0 +1,3 @@
+```problog
+{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :-\n    bubble([H|T], [], L1),\n    bubblesort(L1, [H|Acc], Sorted).\n\nbubble([], Acc, Acc).\nbubble([H1, H2|T], Acc, Result) :-\n    (H1 =< H2 ->\n        bubble([H2|T], [H1|Acc], Result)\n    ;\n        bubble([H1|T], [H2|Acc], Result)\n    )."}
+```

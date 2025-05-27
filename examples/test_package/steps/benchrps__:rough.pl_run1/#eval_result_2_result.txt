@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "CFA63C1E",
+  "ErrorSummary": "Mutual exclusivity violation in the play/3 predicate, leading to incorrect probability distribution in results.",
+  "SuggestedFix": "Modify the play/3 predicate to enforce mutual exclusivity by using if-then-else constructs or cuts (!) to ensure only one outcome is possible per move. For example:\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    (beats(P1, P2) -> Result = win\n    ; beats(P2, P1) -> Result = lose\n    ; Result = draw\n    ),\n    play(P1Moves, P2Moves, Results).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```
