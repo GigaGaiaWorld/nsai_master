@@ -26,6 +26,7 @@ class BasicState(TypedDict):
 
     config: dict # session configs
     prefix: str  # the name of current file
+    db_root: str # the path to database
     load:bool    # load from previous snapshots
     langda_ext: dict # User-provided context
     query_ext:str
@@ -37,8 +38,8 @@ class BasicState(TypedDict):
     prompt_template: str # the string that only leave "{LLM}" slot for prompting
     langda_dicts: List[LangdaDict] # the dict that contains detail informations about langda
     lann_dicts: List[Dict[str,str]] # the dict that contains detail informations about network
-    langda_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
-    lann_reqs: str # Prompt part reconstructed from langda_dicts and lann_dicts
+    langda_reqs: str # Prompt part reconstructed from langda_dicts
+    lann_reqs: str # Prompt part reconstructed from lann_dicts
     
     # Dynamic parameters:
     srttime: float = 0.0

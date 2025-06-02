@@ -50,8 +50,8 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
     # Process each prompt file
     for idx, prompt_file in enumerate(prompt_files, start=1):
         # This is for skipping:
-        # if idx < 40:
-        #     continue
+        if idx < 40:
+            continue
         file_basename = prompt_file.name
         file_results = []  # Store results for this file only
         
@@ -411,7 +411,7 @@ if __name__ == "__main__":
             answer_directory_path=answer_path, 
             output_json_dir=output_json_dir, 
             output_pl_dir=output_pl_dir, 
-            agent_type="double_dc",
+            agent_type="single_react",
             model_name="deepseek-chat", 
             addition_input=addition, 
             repeat_count=repeat_count  

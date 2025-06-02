@@ -54,9 +54,9 @@ class GenerateNodes:
             prompt_type=prompt_type, 
             input=input, 
             config=state["config"])
-
-        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_gnrtprompt_{state['iter_count']}")
-        paths.save_as_file(generated_result,"result",f"steps/{state['prefix']}/#gnrt_result_{state['iter_count']}")
+ 
+        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_gnrtprompt_{state['iter_count']}",save_dir=state["save_dir"])
+        paths.save_as_file(generated_result,"result",f"steps/{state['prefix']}/#gnrt_result_{state['iter_count']}",save_dir=state["save_dir"])
 
         generated_codes = _find_all_blocks('code',generated_result)     # [{"hash":"generated code"},{"hash":"generated code"},..]
         origin_fest_codes = state["fest_codes"]
@@ -67,7 +67,6 @@ class GenerateNodes:
             if not value:
                 if key not in generated_codes[iter]:
                     logger.warning(f"generate_node: key '{key}' does not exist in generated_codes[{iter}]")
-                    raise ValueError
                 targeted_codes.append(generated_codes[iter])
                 temp_full_codes.append(generated_codes[iter])
                 iter += 1
@@ -75,7 +74,7 @@ class GenerateNodes:
                 temp_full_codes.append(fest_item)
 
 
-        paths.save_as_file(targeted_codes,"codes",f"steps/{state['prefix']}/#gnrt_{state['iter_count']}")
+        paths.save_as_file(targeted_codes,"codes",f"steps/{state['prefix']}/#gnrt_{state['iter_count']}",save_dir=state["save_dir"])
 
         if generated_codes:
             return {

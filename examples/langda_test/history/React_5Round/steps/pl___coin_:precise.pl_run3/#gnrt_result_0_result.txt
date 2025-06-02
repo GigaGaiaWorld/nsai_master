@@ -1,0 +1,13 @@
+```problog
+{"HASH": "A88642CF", "Code": "coin(CNT), CNT1 is CNT - 1, coins_r(SC1, S, CNT1), SC1 is SC + 1;"}
+```
+```problog
+{"HASH": "A88642CF", "Code": "\+coin(CNT), CNT1 is CNT - 1, coins_r(SC, S, CNT1)."}
+```
+
+### Explanation:
+1. The first clause handles the case where `coin(CNT)` is true (heads). It increments `SC` by 1, decrements `CNT` by 1, and recurses.
+2. The second clause handles the case where `coin(CNT)` is false (tails). It leaves `SC` unchanged, decrements `CNT` by 1, and recurses.
+3. The recursion continues until `CNT = 0`, at which point the base case returns the accumulated `SC` as `S`.
+
+This satisfies the requirements of accumulating the count of successful coin flips over 4 trials (as specified in `total(S) :- coins_r(0, S, 4).`).

@@ -38,24 +38,13 @@ class GeneralNodes:
             langda_dicts: langda informations
         """
         print("### =========== processing init_node =========== ###")
-        if state["load"]:
-            try:
-                return {
-                    "final_result":{
-                        "final_result":paths.load_snapshot(state["prefix"]),
-                        "running_time":0,
-                        "iter_count":state["iter_count"],
-                    }
-                }
-            except:
-                print(f"Snapshot file not found: {state['prefix']}, start generating...")
-                pass
+
         state["status"] = TaskStatus.INIT
         fest_codes:List[dict] = []      # {"hash1":"code1","hash2":"code2",...}
         langda_dicts:List[LangdaDict] = []
 
         raw_prompt_template, lann_dicts, raw_langda_dicts, has_query = integrated_code_parser(state["rule_string"])
-        with DictDB() as langdaDB:
+        with DictDB(db_root=state["save_dir"], db_prefix=state["prefix"]) as langdaDB:
             print(langdaDB.get_all_items())
 
             for idx, langda in enumerate(raw_langda_dicts):
@@ -89,15 +78,17 @@ class GeneralNodes:
                 if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T":
                     fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)
-                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F":
+                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F" or state["load"]:
                     code = langdaDB.get_item(langda["HASH"])
                     fest_codes.append({langda["HASH"]:code})
                     if not code: 
                         langda_dicts.append(langda)
+                        if state["load"]:
+                            print("Incomplete langda found, continue to generate...")
                 else:
                     raise ValueError("The value of FUP term should be one of [True,true,T,False,false,F]")
         print(fest_codes)
-        paths.save_as_file(langda_dicts,"prompt",f"steps/{state['prefix']}/langda_dict")
+        paths.save_as_file(langda_dicts,"prompt",f"steps/{state['prefix']}/langda_dict",save_dir=state["save_dir"])
 
         langda_reqs  = RequirementsBuilder.build_all_langda_info(langda_dicts)
         return {"prompt_template":raw_prompt_template,             # the string that only leave needed "{LANGDA}" slot for prompting
@@ -132,7 +123,7 @@ class GeneralNodes:
             print(langdaDB.get_all_items())
 
         # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new} \n\n***Report:***\nValidity_form:{Validity_form}\Validity_result:{Validity_result}\n{final_report}","final_code",f"steps/_final/{state['prefix']}")
-        paths.save_as_file(final_code + f"\n/* %%% Result %%% \n{result_new}\n*/","final_code",f"snapshots/{state['prefix']}")
+        paths.save_as_file(final_code + f"\n/* %%% Result %%% \n{result_new}\n*/","final_code",f"snapshots/{state['prefix']}",save_dir=state["save_dir"])
         # ================== THIS IS ONLY FOR TESTING ================== #
 
         state["endtime"] = time.time()

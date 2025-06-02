@@ -132,7 +132,7 @@ class ProjectPaths(BaseModel):
         except FileNotFoundError as e:
             raise
 
-    def save_as_file(self, content: Union[list, str, Any], filetype: str, prefix: str = "", mode: str = "w"):
+    def save_as_file(self, content: Union[list, str, Any], filetype: str, prefix: str = "", mode: str = "w", save_dir=""):
         """
         Save the content as a file (with optional prefix).
         Args:
@@ -154,16 +154,19 @@ class ProjectPaths(BaseModel):
         else:
             contentstr = str(content)
 
-        # Determine the save path
-        if filetype in self.workflow_files:
-            # Use predefined workflow file path
-            filename = f"{prefix}_{self.workflow_files[filetype]}" if prefix else self.workflow_files[filetype]
-            path = self._get_path("history", filename)
+        if save_dir:
+            path = save_dir
         else:
-            # Use custom path
-            path = self.get_abscase_path(filetype)
-            logging.info(f"Using custom file path: {path}")
-        
+            # Determine the save path
+            if filetype in self.workflow_files:
+                # Use predefined workflow file path
+                filename = f"{prefix}_{self.workflow_files[filetype]}" if prefix else self.workflow_files[filetype]
+                path = self._get_path("history", filename)
+            else:
+                # Use custom path
+                path = self.get_abscase_path(filetype)
+                logging.info(f"Using custom file path: {path}")
+
         # Ensure directory exists
         path.parent.mkdir(parents=True, exist_ok=True)
         

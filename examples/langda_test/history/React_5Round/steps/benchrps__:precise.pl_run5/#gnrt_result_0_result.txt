@@ -1,0 +1,12 @@
+```problog
+{"HASH": "FB0E8901","Code": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."}
+```
+```problog
+{"HASH": "4E6CE90A","Code": "play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    (Score > 0 -> Winner = player1;\n     Score < 0 -> Winner = player2;\n     Winner = draw)."}
+```
+
+The second block (133D6BEE) was already correctly implemented in the original code with:
+```problog
+compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
+```
+so it doesn't need modification.

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "run_index": 3,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "41.57s",
+  "process_time": 41.56665396690369,
+  "final_result": "bubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, NewList, Swapped),\n    (Swapped == true ->\n        bubblesort(NewList, Acc, Sorted)\n    ;\n        append(Acc, NewList, Sorted)\n    ).\n\nbubble_pass([X,Y|T], [Y|Rest], true) :-\n    X > Y,\n    bubble_pass([X|T], Rest, _).\nbubble_pass([X,Y|T], [X|Rest], Swapped) :-\n    X =< Y,\n    bubble_pass([Y|T], Rest, Swapped).\nbubble_pass([X], [X], false).\nbubble_pass([], [], false).\n\nappend([], L, L).\nappend([H|T], L, [H|R]) :- append(T, L, R).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code attempts to implement a bubble sort algorithm but contains syntax errors and logical inconsistencies. The main issue is the incorrect use of the '->' operator in the bubblesort predicate, which leads to an 'UnknownClause' error during execution. The original code successfully sorts the list using a different approach with hole/4 and swap/3 predicates, while the generated code fails to execute due to these errors. The generated code's structure differs significantly from the original, particularly in how it handles swaps and termination conditions."
+}

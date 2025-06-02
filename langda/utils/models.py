@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
-
+import time
 import re
 from .format_tools import (
     _replace_placeholder, 
@@ -24,6 +24,21 @@ from langchain.agents import (
 )
 from ..config import paths
 paths.load_my_env()
+
+def retry_agent(max_attempts):
+    # Allow the doublcdc agent retry 2 times
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt < max_attempts:
+                        time.sleep(1)
+                    else:
+                        raise e
+        return wrapper
+    return decorator
 
 class NoOpOutputParser(BaseOutputParser[str]):
     def parse(self, text: str) -> str:
@@ -142,6 +157,7 @@ class LangdaAgentExecutor(BaseModel):
             verbose=True,
             output_parser=NoOpOutputParser(),
             handle_parsing_errors=True,
+            max_iterations = 5
             )
         return executor
 
@@ -153,17 +169,20 @@ class LangdaAgentExecutor(BaseModel):
             input: dictonary to fill all the placeholders in prompt
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
         """
-        raw_prompt_template = self.load_prompt(prompt_type, "react") # use our own prompt
-        react_prompt_template = _replace_placeholder(raw_prompt_template, input["input"],placeholder="{input}")
+        react_input = {
+            # "input": self.build_doublechain_regenerate_prompt(input["constructed_code"],input["test_analysis"],input["prompt_template"]),
+            "input": input["prompt_template"],
+            "agent_scratchpad": ""
+        }
 
         agent_executor = self.get_react_executor(prompt_type)
         result = agent_executor.invoke(
-            input=input, 
+            input=react_input, 
             config=config, 
             handle_parsing_errors=True,
             )
 
-        return result.get("output"), react_prompt_template, ""
+        return result.get("output"), "", ""
 
 
     # ========================= SIMPLE AGRNT ========================= #
@@ -209,6 +228,7 @@ class LangdaAgentExecutor(BaseModel):
         item_lines.append(test_analysis) # <Result>...<Result><Analysis>...<Analysis>
         return "\n".join(item_lines)
     
+    @retry_agent(max_attempts=3)
     def invoke_doublechain_agent(self, prompt_type: str, input: Dict[str, str], config: Dict[str, str], ext_prompt=False) -> Tuple[str, str]:
         """
         Invoke a double-chain agent that separates code generation and formatting
@@ -220,7 +240,7 @@ class LangdaAgentExecutor(BaseModel):
             ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
 
         returns:
-            Tuple of (resulting output, formatted prompt)
+            Tuple of (resulting output, formatted prompt, result from first chain)
         """
         # Get the appropriate prompt template
         if not ext_prompt:

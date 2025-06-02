@@ -1,0 +1,5 @@
+[
+{
+"3F5BA02C": "% 1. Implication (A → B) holds if both A and B are provable\nimplies(A, B) :- prove(A), prove(B).\n\n% 2. Opposite holds when the goal cannot be proved\nopposite(Goal) :- \\+ prove(Goal).\n\n% 3. Expand term using predefined rules (clause/2 lookup)\nexpand(Term, Result) :- clause(expand(Term, Result), Body), prove(Body).\n\n% 4. List inclusion via member/2\nincludes(List, Elem) :- member(Elem, List).\n\n% 5. Extend list by prepending element\nextend(List, Elem, [Elem|List]).\n\n% 6. Refutation (synonym for opposite)\nrefute(Goal) :- \\+ prove(Goal)."
+}
+]

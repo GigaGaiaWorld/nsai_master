@@ -1,0 +1,16 @@
+```problog
+{"HASH": "E2FA63E7","Code": "select_door(D), member(A, [1,2,3]), member(B, [1,2,3]), A < B, \\+ select_door(A), \\+ select_door(B), \\+ prize(A), \\+ prize(B)."}
+```
+```problog
+{"HASH": "B4161B21","Code": "select_door(D), member(A, [1,2,3]), \\+ select_door(A), \\+ prize(A), member(P, [1,2,3]), \\+ select_door(P), prize(P), P \\= A."}
+```
+
+### Explanation:
+1. **First Block (E2FA63E7)**:
+   - The rule checks for two unselected doors (`A` and `B`, where `A < B` to avoid duplicates) that do not contain the prize (`\+ prize(A), \+ prize(B)`).
+   - The host then randomly opens one of them (`0.5::open_door(A) ; 0.5::open_door(B)`).
+
+2. **Second Block (B4161B21)**:
+   - The rule checks for the only unselected door (`A`) that does not contain the prize (`\+ prize(A)`).
+   - The other unselected door (`P`) must contain the prize (`prize(P)`).
+   - The host opens the empty door (`A`) with certainty (`open_door(A)`).

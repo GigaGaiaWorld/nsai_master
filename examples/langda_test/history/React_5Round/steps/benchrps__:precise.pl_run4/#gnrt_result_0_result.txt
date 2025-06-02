@@ -1,0 +1,11 @@
+```problog
+{"HASH": "FB0E8901","Code": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."}
+```
+```problog
+{"HASH": "133D6BEE","Code": "compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1."}
+```
+```problog
+{"HASH": "4E6CE90A","Code": "play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    ((Score > 0, Winner = player1);\n     (Score < 0, Winner = player2);\n     (Score =:= 0, Winner = draw))."}
+```
+
+Note: For the determine_winner predicate, I've used the disjunction (;) with explicit conditions since the if-then (->) construct is not supported in ProbLog, as noted in the syntax guidelines. Each condition is explicitly stated with its corresponding action.

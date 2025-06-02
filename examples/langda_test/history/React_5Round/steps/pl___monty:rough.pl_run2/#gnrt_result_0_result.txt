@@ -1,0 +1,11 @@
+```problog
+{"HASH": "751033ED","Code": "open_door(D) :-\n    select_door(S),\n    prize(P),\n    findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), Doors),\n    (Doors=[A,B] -> 0.5::open_door(A), 0.5::open_door(B)\n    ; Doors=[A] -> open_door(A)\n    )."}
+```
+
+This implementation:
+1. Uses `findall` to collect all valid doors Monty could open (not selected and not containing prize)
+2. Uses a conditional structure to handle both cases:
+   - When there are two valid doors (A and B), creates probabilistic choices with equal probability
+   - When there's only one valid door (A), creates a deterministic fact
+3. Follows ProbLog syntax for probabilistic facts (using `::`) and deterministic rules
+4. Maintains logical consistency with the Monty Hall problem requirements

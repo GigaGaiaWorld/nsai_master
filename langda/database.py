@@ -14,7 +14,10 @@ class DBConfig(BaseSettings):
         default=paths.get_abscase_path("history/langda.db"),
         description="SQLite path to the dictionary storage database"
     )
-
+    db_prefix: str = Field(
+        default="langda",
+        description="Database file prefix"
+    )
     model_config = SettingsConfigDict(
         env_prefix="LANGDADB_",
         env_file=".env",
@@ -34,7 +37,7 @@ class DictDB:
     """
     def __init__(self):
         self.config = DBConfig()
-        self.conn = sqlite3.connect(str(self.config.db_path))
+        self.conn = sqlite3.connect(str(self.config.db_path / self.config.db_prefix))
         self._create_table()
         
     def __enter__(self):

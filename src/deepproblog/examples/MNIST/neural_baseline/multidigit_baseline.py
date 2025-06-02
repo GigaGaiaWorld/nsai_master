@@ -34,7 +34,6 @@ def test_addition(dset):
     print("Accuracy: ", acc)
     return acc
 
-
 test_dataset = addition(2, "test")
 
 Train = namedtuple("Train", ["logger"])

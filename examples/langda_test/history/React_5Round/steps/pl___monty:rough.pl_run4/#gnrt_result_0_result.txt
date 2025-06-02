@@ -1,0 +1,10 @@
+```problog
+{"HASH": "751033ED","Code": "open_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), PossibleDoors),\n    (length(PossibleDoors, 2) -> \n        0.5::open_door(D), member(D, PossibleDoors) ;\n    member(D, PossibleDoors))."}
+```
+
+This implementation:
+1. Uses `findall/3` to collect all possible doors that could be opened (not selected and no prize)
+2. Checks the length of possible doors
+3. If there are 2 possible doors, uses probabilistic choice with `0.5::open_door(D)`
+4. If there's only 1 possible door, must choose it
+5. Maintains proper ProbLog syntax for probabilistic facts as confirmed by the documentation

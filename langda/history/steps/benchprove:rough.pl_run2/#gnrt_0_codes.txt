@@ -1,0 +1,5 @@
+[
+{
+"3F5BA02C": "% Prove Goal1 implies Goal2: prove Goal2 if Goal1 is provable\nprove(implies(Goal1, Goal2)) :-\n    prove(Goal1),\n    prove(Goal2).\n\n% Prove the opposite of Goal: succeed if Goal is not provable\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n\n% Expand Term into ExpandedTerm using defined rules\nprove(expand(Term, ExpandedTerm)) :-\n    expand(Term, ExpandedTerm).\n\n% Prove that Elem is included in List\nprove(includes(List, Elem)) :-\n    member(Elem, List).\n\n% Extend List by adding Elem to the head\nprove(extend(List, Elem, [Elem|List])).\n\n% Refute Goal: succeed if Goal is not provable\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."
+}
+]

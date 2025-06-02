@@ -1,0 +1,11 @@
+```problog
+{"HASH": "ECE2B24A","Code": "bb(N) :- Max is N-1, between(1, Max, I), pick(I, b), pick(I+1, b)."}
+```
+
+### Explanation:
+- `Max is N-1` calculates the maximum starting position for adjacent pairs.
+- `between(1, Max, I)` generates values of `I` from `1` to `Max`.
+- `pick(I, b), pick(I+1, b)` checks if both positions `I` and `I+1` have the character `b`.
+- If any such pair exists, `bb(N)` succeeds. Otherwise, it fails. 
+
+This implementation aligns with the requirements provided in the `<Langda>` block.

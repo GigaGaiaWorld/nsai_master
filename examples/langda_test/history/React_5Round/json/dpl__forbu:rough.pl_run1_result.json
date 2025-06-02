@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "34.01s",
+  "process_time": 34.00692105293274,
+  "final_result": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :-\n    bubble(H, T, NT, Max),\n    bubblesort(NT, [Max|Acc], Sorted).\n\nbubble(X, [], [], X).\nbubble(X, [Y|T], [X|NT], Max) :-\n    X =< Y,\n    bubble(Y, T, NT, Max).\nbubble(X, [Y|T], [Y|NT], Max) :-\n    X > Y,\n    bubble(X, T, NT, Max).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code correctly implements a bubble sort algorithm, similar to the original code but with a different structure. The original code uses a 'hole' predicate to handle swaps, while the generated code directly compares and swaps elements within the 'bubble' predicate. Both codes produce the same sorted result for the given input, indicating functional consistency. The generated code is valid and meets the requirements, with a cleaner and more straightforward implementation."
+}

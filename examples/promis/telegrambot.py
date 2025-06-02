@@ -77,12 +77,11 @@ def process_command(message_text):
     
     addition = {
         "prefix": "telegram_bot",
+        "load":True,
         "langda_ext": msg_dict,
-        "error_report": "",
         "config": {"configurable": {"thread_id": "42"}},
-        "user_context": ""
     }
-    
+
     try:
         model_name = "deepseek-chat"
         promis_prompt = current_dir / "promis_normal_drone.pl"

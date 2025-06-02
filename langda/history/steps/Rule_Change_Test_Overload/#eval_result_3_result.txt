@@ -1,3 +1,0 @@
-```report
-{"HASH": "6388F281","ErrorSummary": "Undefined '->/2' operator in ProbLog context causing anomaly detection to fail","SuggestedFix": "Replace the '->/2' operator with an explicit if-then-else construct or auxiliary predicates. For example: anomaly_detection(Digit1, Digit2, Result) :- number(Digit1, Num1), number(Digit2, Num2), TotalCurrent is Num1 + Num2, (TotalCurrent > 150, Result = 1 ; TotalCurrent =< 150, Result = 0).","Dependencies": [],"NeedRegenerate": true}
-```

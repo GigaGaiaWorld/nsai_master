@@ -1,6 +1,0 @@
-```report
-{"HASH": "852FE6E2","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```
-```report
-{"HASH": "79CDA518","ErrorSummary": "Anomaly detection logic does not match the geographic context (India) and language (Kannada)","SuggestedFix": "Replace the current anomaly_detection rule with the India-specific power overload logic: anomaly_detection(Digit1, Digit2, 1) :- number(Digit1, Current1), number(Digit2, Current2), Sum is Current1 + Current2, Sum > 150. Also ensure digit conversion uses kannada_digit for consistency with the user's location.","Dependencies": ["852FE6E2"],"NeedRegenerate": true}
-```

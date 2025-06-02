@@ -1,0 +1,6 @@
+```report
+{"HASH": "852FE6E2","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "79CDA518","ErrorSummary": "Language-specific digit predicates are not dynamically selected based on geographic coordinates","SuggestedFix": "Modify the anomaly_detection rule to dynamically select the appropriate digit predicate (e.g., arabic_digit, urdu_digit) based on the user's coordinates before calling number/3. Example: \n1. Add a coordinate check predicate (e.g., user_location(Country)). \n2. Use if-then-else or separate rules for each country's digit predicate.","Dependencies": [],"NeedRegenerate": true}
+```

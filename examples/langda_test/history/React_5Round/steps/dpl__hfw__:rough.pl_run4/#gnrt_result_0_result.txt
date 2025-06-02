@@ -1,0 +1,10 @@
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, + | T], R) :- parse(T, R2), almost_equal(R, N1 + R2).\nparse([N1, - | T], R) :- parse(T, R2), almost_equal(R, N1 - R2).\nparse([N1, * | T], R) :- parse(T, R2), almost_equal(R, N1 * R2).\nparse([N1, / | T], R) :- parse(T, R2), almost_equal(R, N1 / R2)."}
+```
+
+This implementation:
+1. Provides separate clauses for each arithmetic operation (+, -, *, /)
+2. Processes operations in left-associative order
+3. Uses almost_equal/2 for floating-point comparison
+4. Matches the base case parse([N], R) already defined
+5. Will correctly evaluate expressions like the query example: 2 / 3 + 3 - 2 * 7

@@ -1,0 +1,5 @@
+[
+{
+"CFA63C1E": "% Play one round of the game\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2), Result = win\n    ; beats(P2, P1), Result = lose\n    ; \\+ beats(P1, P2), \\+ beats(P2, P1), Result = draw\n    ),\n    play(P1s, P2s, Results)."
+}
+]

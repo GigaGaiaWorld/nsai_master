@@ -122,6 +122,7 @@ def promis_execution(generated_logic:str, bomb_location:tuple, operator_location
 
     set_path(operator_location[0], operator_location[1], save_dir)
 
+    return True
 
 def get_confidence_at_point(landscape, east: float, north: float) -> float:
 
@@ -167,12 +168,17 @@ def set_path(x_pt, y_pt, save_dir):
                 valid = False
             else:
                 confidence_list.append(confidence)
+        if valid:
+            marker = "."
+        else:
+            marker = "x"
         plt.plot(*zip(*path), 
-                marker='.',
+                marker=marker,
                 markersize=5,
                 linewidth=1.5,
                 alpha=0.8,
-                label=f'Path{i}')
+                # label=f'Path{i}'
+                )
         
         print(f"Path{i}: {valid}",confidence_list)
     

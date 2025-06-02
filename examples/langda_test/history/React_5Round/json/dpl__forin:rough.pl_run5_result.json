@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin:rough.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "29.38s",
+  "process_time": 29.3832368850708,
+  "final_result": "insertion_sort(List,Sorted) :- insertion_sort(List,[],Sorted).\n\ninsertion_sort([],Acc,Acc).\ninsertion_sort([H|T],Acc,Sorted) :-\n    insert(H,Acc,NAcc),\n    insertion_sort(T,NAcc,Sorted).\n\ninsert(X,[],[X]).\ninsert(X,[Y|T],[Y|NT]) :- X > Y, insert(X,T,NT).\ninsert(X,[Y|T],[X,Y|T]) :- X =< Y.\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code correctly implements the insertion sort algorithm, similar to the original code but using an accumulator for tail recursion optimization. Both codes produce the same sorted list for the given input. The generated code is more efficient due to tail recursion but maintains the same logic and outcome as the original."
+}

@@ -144,7 +144,7 @@ def generate_final_report_from_json(json_directory, output_final_path=None):
     # Save final result
     with open(output_final_path, 'w', encoding='utf-8') as f:
         json.dump(final_result, f, indent=2, ensure_ascii=False)
-    
+    print("file saved to:",output_final_path)
     if repeat_count > 1:
         print(f"- Overall success form rate: {summary['overall_success_form_rate']*100:.1f}%")
         print(f"- Overall success result rate: {summary['overall_success_result_rate']*100:.1f}%")
@@ -156,4 +156,4 @@ if __name__ == "__main__":
 
     output_json_dir = Path("history/json")
 
-    generate_final_report_from_json(output_json_dir, os.path.join(output_json_dir,"_final_result.json"))
+    final_result = generate_final_report_from_json(output_json_dir, os.path.join(output_json_dir,"_final_result.json"))

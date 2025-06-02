@@ -13,7 +13,7 @@ import torch
 
 name = 'sys_gen_0'
 clutrr = CLUTRR(name)
- 
+
 embed_size = 32
 lstm = Encoder(clutrr.get_vocabulary(), embed_size, p_drop=0.0)
 lstm_net = Network(lstm, "encoder", optimizer=torch.optim.Adam(lstm.parameters(), lr=1e-2))

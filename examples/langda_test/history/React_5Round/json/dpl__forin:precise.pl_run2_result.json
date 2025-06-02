@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin:precise.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "32.51s",
+  "process_time": 32.51175093650818,
+  "final_result": "insertion_sort([], []).\ninsertion_sort([H|T], Sorted) :-\n \ninsertion_sort(T, SortedT), insert_element(H, SortedT, Sorted).\ninsert_element(X, [], [X]).\ninsert_element(X, [H|T], [X,H|T]) :-\n X =< H.\ninsert_element(X, [H|T], [H|RT]) :-\n X > H,\n insert_element(X, T, RT).\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally equivalent to the original code, producing the same correct sorted output for the given input. The only difference is a minor formatting issue where the second line of the insertion_sort predicate is split across two lines without proper indentation, which does not affect the code's execution or correctness."
+}

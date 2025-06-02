@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__hfw__:partial.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "56.76s",
+  "process_time": 56.76417112350464,
+  "final_result": "detect_number(image_0, 0).\ndetect_number(image_1, 1).\ndetect_number(image_2, 2).\ndetect_number(image_3, 3).\ndetect_number(image_4, 4).\ndetect_number(image_5, 5).\ndetect_number(image_6, 6).\ndetect_number(image_7, 7).\ndetect_number(image_8, 8).\ndetect_number(image_9, 9).\ndetect_operator(image_plus, +).\ndetect_operator(image_minus, -).\ndetect_operator(image_multiply, *).\ndetect_operator(image_divide, /).\ndetect_all([N], [N2]) :- \n detect_number(N, N2).\ndetect_all([N,O|T], [N2,O2|T2]) :- \n \ndetect_number(N, N2), detect_operator(O, O2), detect_all(T, T2).\nalmost_equal(X, Y) :- \n ground(Y), \n abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n var(Y), \n Y is float(X).\nexpression(Images, Result) :- \n \ndetect_all(Images, Symbols), parse(Symbols, Result).\nparse([N], R) :- \n almost_equal(N, R).\nparse([N1,+|T], R) :-\n parse(T, R2),\n almost_equal(N1 + R2, R).\nparse([N1,-|T], R) :-\n parse([-1, *|T], R2),\n almost_equal(N1 + R2, R).\nparse([N1,*,N2|T], R) :-\n N3 is N1 * N2,\n parse([N3|T], R).\nparse([N1,/,N2|T], R) :-\n N2 \\== 0,\n N3 is N1 / N2,\n parse([N3|T], R).\n% calculate: 2 / (3 + 3) - 2 * 7\nquery(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).",
+  "final_report": "The generated code is functionally identical to the original code, with only minor formatting differences such as line breaks and spacing. The logic and structure of the code remain unchanged, ensuring the same behavior and results. Both codes correctly parse and evaluate the given expression, producing the same output. No functional or logical issues are present in the generated code."
+}

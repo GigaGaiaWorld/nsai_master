@@ -1,7 +1,0 @@
-```problog
-{"HASH": "853762A7","Code": "number([], Result, Result).\nnumber([H|T], Acc, Result) :- arabic_digit(H, Nr), Acc2 is Nr + 10 * Acc, number(T, Acc2, Result).\nnumber(X, Y) :- number(X, 0, Y)."}
-```
-
-```problog
-{"HASH": "D39CF159","Code": "anomaly_detection(Digit1, Digit2, Result) :-\n    urdu_digit(Digit1, Num1),\n    urdu_digit(Digit2, Num2),\n    (Num1 =:= Num2 -> Result = 1 ; Result = 0)."}
-```

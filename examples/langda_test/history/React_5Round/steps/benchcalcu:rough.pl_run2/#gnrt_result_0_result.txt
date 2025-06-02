@@ -1,0 +1,12 @@
+```problog
+{"HASH": "35747D5A","Code": "leftdigit(A), leftdigit(C),\n    digit(B), digit(D), digit(E),\n    all_different([A,B,C,D,E]),\n    sumdigit(0, B, D, E, Cout1),\n    sumdigit(Cout1, A, C, D, Cout2),\n    sumdigit(Cout2, 0, B, C, _)."}
+```
+
+This code:
+1. Uses `leftdigit/1` to ensure A and C are not zero
+2. Uses `digit/1` for all variables
+3. Enforces all digits are different with `all_different/1`
+4. Performs the column-wise addition with carry using `sumdigit/5`:
+   - First column (units place): B + D = E
+   - Second column (tens place): A + C + carry = D
+   - Third column (hundreds place): 0 + B + carry = C

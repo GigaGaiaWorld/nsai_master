@@ -3,7 +3,7 @@ initial_charge ~ normal(90, 5).
 charge_cost ~ normal(-0.1, 0.2).
 weight ~ normal(0.2, 0.1).
 % Real-time weather conditions:
-weather(clear, 3.5, 15).
+weather(clear, 5.0, 22).
 battery_efficiency(Efficiency) :-
  weather(_, _, Temp),
  (Temp < 0, Efficiency = 0.8; % Very cold
@@ -30,7 +30,7 @@ can_return(X) :-
  D is distance(X, operator), 0 < B + (2 * O * D * W / E).
 sensitive_section(X) :-
  
- distance(X, bomb) >= 20.
+ distance(X, bomb) < 20.
 % Permits related to local features
 permits(X) :- 
  distance(X, service) < 15; distance(X, primary) < 15;

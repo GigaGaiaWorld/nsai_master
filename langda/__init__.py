@@ -3,6 +3,8 @@ from .agent import (
     LangdaAgentDoubleSimple,
     LangdaAgentDoubleDC,
     LangdaAgentSingleDC,
+    LangdaAgentSingleReact,
+    LangdaAgentDoubleReact,
     LangdaAgentProtocol
 )
 from typing import Literal
@@ -22,18 +24,31 @@ __all__ = [
     # As type:
     'LangdaAgentSingleSimple',
     'LangdaAgentDoubleSimple', 
-    'LangdaAgentDoubleDC',
     'LangdaAgentSingleDC',
+    'LangdaAgentDoubleDC',
+    'LangdaAgentSingleReact',
+    'LangdaAgentDoubleReact',
     'LangdaAgentProtocol'
 ]
-def langda_solve(agent_type:Literal["simple", "double", "double_dc", "single_dc"], 
+def langda_solve(agent_type:Literal["simple", "double", "single_dc", "double_dc", "single_react", "double_react"], 
                  rule_string:str, 
                  model_name:str="deepseek-chat", 
-                 additional_input:dict={
-                    "config":{"configurable": {"thread_id": "42"}}, # session configuration
-                    "prefix":"",        # changable prefix, only for differentiate files
-                    "langda_ext":{},    # If there's docking content in langda, for example /* Secure */
-                }) -> str:
+
+                 config:dict={},
+                 prefix:str="",
+                 save_dir:str="",
+                 load:bool=False,
+                 langda_ext:dict={},
+                 query_ext:str="",
+
+                #  additional_input:dict={
+                #     "config":{"configurable": {"thread_id": "42"}}, # session configuration
+                #     "prefix":"",        # changable prefix, only for differentiate files
+                #     "load":False,
+                #     "langda_ext":{},    # If there's docking content in langda, for example /* Secure */
+                #     "query_ext": "",
+                # }
+) -> str:
     """
     Create a Langda agent of the specified type.
     Args:
@@ -44,7 +59,10 @@ def langda_solve(agent_type:Literal["simple", "double", "double_dc", "single_dc"
         model_name: LLM model to use
         additional_input: 
             - config: session configuration
-            - prefix: changable prefix, only for differentiate files
+            - prefix: changable prefix, only for differentiate files and database
+            - db_root: path to database
+            - load: Regardless of whether there is continuously updated code, read directly from database
+            - query_ext: for deepproblog file, you need to add facts and query yourself if you want langda test properly.
             - about langda_ext
                 1. you could use langda(LLM:"/* Mark */"). to accept dynamic prompt words as 'port'
                 2. Then you could give all the dynamic prompts in form of {"Mark":"your real prompt",...}
@@ -56,14 +74,26 @@ def langda_solve(agent_type:Literal["simple", "double", "double_dc", "single_dc"
     agent_map = {
         "simple": LangdaAgentSingleSimple,
         "double": LangdaAgentDoubleSimple,
-        "double_dc": LangdaAgentDoubleDC,
         "single_dc": LangdaAgentSingleDC,
+        "double_dc": LangdaAgentDoubleDC,
+        "single_react": LangdaAgentSingleReact,
+        "double_react": LangdaAgentDoubleReact,
     }
     
     if agent_type not in agent_map:
         raise ValueError(f"Unknown agent type: {agent_type}. Available types: {list(agent_map.keys())}")
     
     agent_class = agent_map[agent_type]
+
+    additional_input:dict={
+        "config":config, # session configuration
+        "prefix":prefix,        # changable prefix, only for differentiate files
+        "save_dir":save_dir,        # changable prefix, only for differentiate files
+        "load":load,
+        "langda_ext":langda_ext,    # If there's docking content in langda, for example /* Secure */
+        "query_ext": query_ext,
+    }
+
     agent:LangdaAgentProtocol = agent_class(rule_string, model_name, additional_input)
     result = agent.call_langda_workflow()
     return result['final_result']

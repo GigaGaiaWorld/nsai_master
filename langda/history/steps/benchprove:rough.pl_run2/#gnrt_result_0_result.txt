@@ -1,0 +1,25 @@
+```problog
+{"HASH": "3F5BA02C","Code": "% Prove Goal1 implies Goal2: prove Goal2 if Goal1 is provable
+prove(implies(Goal1, Goal2)) :-
+    prove(Goal1),
+    prove(Goal2).
+
+% Prove the opposite of Goal: succeed if Goal is not provable
+prove(opposite(Goal)) :-
+    \+ prove(Goal).
+
+% Expand Term into ExpandedTerm using defined rules
+prove(expand(Term, ExpandedTerm)) :-
+    expand(Term, ExpandedTerm).
+
+% Prove that Elem is included in List
+prove(includes(List, Elem)) :-
+    member(Elem, List).
+
+% Extend List by adding Elem to the head
+prove(extend(List, Elem, [Elem|List])).
+
+% Refute Goal: succeed if Goal is not provable
+prove(refute(Goal)) :-
+    \+ prove(Goal)."}
+```

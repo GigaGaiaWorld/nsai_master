@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst:rough.pl",
+  "run_index": 5,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "15.34s",
+  "process_time": 15.335013151168823,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n get_top_n(Stack, 3, Elements, RestStack),\n insertion_sort(Elements, SortedElements),\n append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is incomplete as it misses several stack operation predicates (pop, dup, swap, over, rot) that were present in the original code. This results in incorrect or missing outputs for those operations, as seen in the run results where most queries return 0.0000 probability. The generated code only correctly handles the 'push' and 'sort' operations."
+}

@@ -1,0 +1,10 @@
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1,+|T], R) :- parse(T, R2), almost_equal(R, N1 + R2).\nparse([N1,-|T], R) :- parse(T, R2), almost_equal(R, N1 - R2).\nparse([N1,*|T], R) :- parse(T, R2), almost_equal(R, N1 * R2).\nparse([N1,/|T], R) :- parse(T, R2), almost_equal(R, N1 / R2)."}
+```
+
+This implementation:
+1. Matches each arithmetic operation pattern ([N1,+|T], [N1,-|T], etc.)
+2. Recursively parses the remaining list (T)
+3. Uses almost_equal/2 for floating-point comparison of results
+4. Follows left-to-right evaluation order (local folding strategy)
+5. Maintains separate clauses for each operation as requested

@@ -31,11 +31,11 @@ class EvaluateNodes:
         # problog_test_tool:
         if state["has_query"]: # need to do a test first
             test_result = problog_test_tool(constructed_code,state["prefix"],timeout=120)
-            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a")
+            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a",save_dir=state["save_dir"])
         elif state["query_ext"]:
             print("starting query_ext")
             test_result = problog_test_tool(_deep2normal(constructed_code, state["query_ext"]),state["prefix"],timeout=120)
-            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a")
+            paths.save_as_file(test_result, "result", f"steps/{state['prefix']}/#test_results", mode="a",save_dir=state["save_dir"])
         else:
             print("Warning, evaluate without test result. Maybe you should set query_ext first.")
         # TEST:
@@ -55,10 +55,10 @@ class EvaluateNodes:
             input=input, 
             config=state["config"])
 
-        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_evalprompt_{state['iter_count']}")
-        paths.save_as_file(evaluated_result, "result",f"steps/{state['prefix']}/#eval_result_{state['iter_count']}")
+        paths.save_as_file(formatted_prompt,"prompt",f"steps/{state['prefix']}/formatted_evalprompt_{state['iter_count']}",save_dir=state["save_dir"])
+        paths.save_as_file(evaluated_result, "result",f"steps/{state['prefix']}/#eval_result_{state['iter_count']}",save_dir=state["save_dir"])
         if evaluated_middle_result:
-            paths.save_as_file(evaluated_middle_result, "result",f"steps/{state['prefix']}/#test_analysis_{state['iter_count']}")
+            paths.save_as_file(evaluated_middle_result, "result",f"steps/{state['prefix']}/#test_analysis_{state['iter_count']}",save_dir=state["save_dir"])
 
         origin_fest_codes = state["fest_codes"]
         evaluated_codes = _find_all_blocks("report",evaluated_result) # [{report:"",need_regenerate:"True"},...]

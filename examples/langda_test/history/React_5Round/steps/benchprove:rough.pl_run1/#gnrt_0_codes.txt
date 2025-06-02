@@ -1,0 +1,5 @@
+[
+{
+"3F5BA02C": "% Prove Goal1 implies Goal2: succeed if Goal2 can be proven from Goal1\nimplies(Goal1, Goal2) :-\n    clause(Goal1, Body),\n    prove(Body),\n    clause(Goal2, Body2),\n    prove(Body2).\n\n% Prove the opposite of Goal: succeed if the negation of Goal can be proven\nopposite(Goal) :-\n    not(prove(Goal)).\n\n% Expand Term1 into Term2 using already defined rules\nexpand(Term1, Term2) :-\n    clause(expand(Term1, Term2), Body),\n    prove(Body).\n\n% Prove that Elem is included in List\nincludes(List, Elem) :-\n    member(Elem, List).\n\n% Extend List by adding Elem to the head\nextend(List, Elem, [Elem|List]).\n\n% Refute Goal: succeed if Goal cannot be proven\nrefute(Goal) :-\n    not(prove(Goal))."
+}
+]

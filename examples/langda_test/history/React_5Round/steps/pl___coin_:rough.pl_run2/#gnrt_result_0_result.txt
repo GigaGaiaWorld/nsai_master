@@ -1,0 +1,12 @@
+```problog
+{"HASH": "DF1FDC54","Code": "coin(C), (C -> NewSC is SC + 1; NewSC is SC),\n    CNT1 is CNT - 1,\n    coins_r(NewSC, S, CNT1)."}
+```
+
+### Explanation:
+1. The code samples a coin using `coin(C)` (which has 0.8 probability of being true/heads)
+2. If the coin is heads (C is true), it increments the head count (SC + 1), otherwise keeps the count unchanged
+3. It decrements the remaining coin count (CNT - 1)
+4. Recursively calls coins_r/3 with the updated counts
+5. The base case (coins_r(SC,SC,0)) handles the termination when CNT reaches 0
+
+This implements the required behavior of counting heads in CNT independent coin tosses, where each coin has a 0.8 probability of landing heads.

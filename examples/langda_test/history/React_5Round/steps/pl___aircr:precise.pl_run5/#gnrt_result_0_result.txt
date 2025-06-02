@@ -1,0 +1,3 @@
+```problog
+{"HASH": "064BF451","Code": " flap_position(Prev,Old),\n \+ goal_reached(Prev),\n goal(GP),\n use_actuator(Time,A),\n actuator_strength(A,AS),\n AE is sign(GP - Old) * AS,\n wind_effect(Time,WE),\n Pos is Old + AE + WE"}
+```

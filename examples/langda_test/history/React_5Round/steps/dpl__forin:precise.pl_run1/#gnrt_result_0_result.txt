@@ -1,0 +1,22 @@
+```problog
+{"HASH": "DA97FB01", "Code": "insertion_sort(T, SortedTail), insert_element(H, SortedTail, Sorted)."}
+```  
+
+This completes the `insertion_sort` predicate by first sorting the tail (`T`) recursively and then inserting the head (`H`) into the sorted tail list using `insert_element`.  
+
+The full completed code would be:  
+```problog
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).
+
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+    X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+    X > H,
+    insert_element(X, T, RT).
+
+query(insertion_sort([3,1,2,5,7,12],X)).
+```

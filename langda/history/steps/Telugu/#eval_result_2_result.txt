@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "6388F281",
-  "ErrorSummary": "Digit order reversal in `number/3` predicate causes incorrect numerical conversion (e.g., [img_5, img_1] becomes 15 instead of 51).",
-  "SuggestedFix": "Modify `number/3` to accumulate digits in the correct order. Replace `Acc2 is Nr + 10*Acc` with `Acc2 is Acc * 10 + Nr` to preserve digit sequence.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

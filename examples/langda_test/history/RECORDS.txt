@@ -27,6 +27,11 @@
     "form_accuracy": 0.678,
     "result_accuracy": 0.595 [122/205]
 
+  - React:
+    * Time:7534s *
+    "form_accuracy": 0.60,
+    "result_accuracy": 0.54 [106/205]
+
 ** DoubleDC ** (with improved prompt and report tool)
 {
   "summary": {
@@ -99,6 +104,23 @@
   }
 }
 
+** React **
+{
+  "summary": {
+    "total_files": 40,
+    "repeat_count": 5,
+    "total_runs": 197,
+    "total_process_time": 7534.663270711899,
+    "average_process_time": 38.2470216787406,
+    "success_form_count": 118,
+    "success_result_count": 106,
+    "invalid_form_count": 53,
+    "invalid_result_count": 65,
+    "error_count": 26,
+    "overall_success_form_rate": 0.5989847715736041,
+    "overall_success_result_rate": 0.5380710659898477,
+  }
+}
 
 # Baseline has as **easier** job, just because it only need to generate the full code.
 And all the models above need to parse each code block into a {"Hash Tag":"code content"} dictionary, 

@@ -1,0 +1,10 @@
+{
+  "file_name": "benchcalcu:partial.pl",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "51.58s",
+  "process_time": 51.581692934036255,
+  "final_result": "% Cryptoaddition:\n% Find the unique answer to:\n% Define available digits\ndigit(0).\n digit(1).\n digit(2).\n digit(3).\n digit(4).\ndigit(5).\n digit(6).\n digit(7).\n digit(8).\n digit(9).\n% The first digit of a multi-digit number cannot be 0\nleftdigit(D) :- digit(D), D =\\= 0.\n% All elements are different\nall_different([]).\nall_different([H|T]) :- \\+ member(H, T), all_different(T).\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% Simulate a column addition: Cin is the input carry, Cout is the output carry\nsumdigit(Cin, A, B, Sum, Cout) :-\n X is Cin + A + B,\n ( X < 10, Sum = X, Cout = 0\n ; \n X >= 10, Sum is X - 10, Cout = 1 ).\n% Main predicate: AB + BCD = CDE\nquery_sum([A,B,C,D,E]) :-\n \nleftdigit(A), digit(B), leftdigit(C), digit(D), digit(E)\n,\n \nsumdigit(0, B, D, E, Cout1)\n,\n \nsumdigit(Cout1, A, C, D, Cout2)\n,\n \nsumdigit(Cout2, 0, B, C, _)\n,\n \nall_different([A,B,C,D,E])\n.\n% Initiate query example:\nquery(query_sum([A,B,C,D,E])).",
+  "final_report": "The generated code is largely consistent with the original code in terms of functionality and logic. Both codes aim to solve the same cryptoaddition problem (AB + BCD = CDE) with the same constraints. The generated code correctly maintains the digit definitions, leftdigit constraints, sumdigit logic, and all_different checks. The main difference is in the formatting and minor syntactic variations (like spacing and line breaks), which do not affect the logic or execution. The running results of both codes are identical, producing the same set of valid solutions."
+}

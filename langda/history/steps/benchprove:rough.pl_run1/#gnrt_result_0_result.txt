@@ -1,0 +1,3 @@
+```problog
+{"HASH": "3F5BA02C","Code": "% Prove Goal1 implies Goal2: succeed if Goal2 is provable whenever Goal1 is provable\nimplies(Goal1, Goal2) :-\n\tprove(Goal1) -> prove(Goal2).\n\n% Prove the opposite of Goal: succeed if Goal is not provable\nopposite(Goal) :-\n\t\\+ prove(Goal).\n\n% Expand Term using already defined rules\nexpand(Term, Expanded) :-\n\tclause(Term, Body),\n\tprove(Body),\n\tExpanded = Term.\n\n% Check if Elem is included in List\nincludes(List, Elem) :-\n\tmember(Elem, List).\n\n% Add Elem to the head of List\nextend(List, Elem, Extended) :-\n\tExtended = [Elem|List].\n\n% Refute Goal: succeed if Goal is not provable\nrefute(Goal) :-\n\t\\+ prove(Goal)."}
+```

@@ -1,0 +1,5 @@
+[
+{
+"35747D5A": "leftdigit(A), leftdigit(C),\n    digit(B), digit(D), digit(E),\n    all_different([A,B,C,D,E]),\n    % AB + BCD = CDE\n    % Break down into column-wise addition\n    % Units place: B + D = E (with possible carry)\n    sumdigit(0, B, D, E, C1),\n    % Tens place: A + C = D (with carry from units and possible new carry)\n    sumdigit(C1, A, C, D, C2),\n    % Hundreds place: 0 + B = C (with carry from tens)\n    sumdigit(C2, 0, B, C, _)."
+}
+]

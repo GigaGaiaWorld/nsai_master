@@ -1,0 +1,9 @@
+```problog
+{"HASH": "751033ED","Code": "open_door(D) :-\n    select_door(S),\n    prize(P),\n    findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), Doors),\n    (Doors = [A,B] -> \n        0.5::open_door(A), 0.5::open_door(B)\n    ;\n        Doors = [A] -> open_door(A)\n    )."}
+```
+
+This implementation:
+1. Uses `findall/3` to collect all valid doors Monty could open (not selected and not containing prize)
+2. Checks if there are two valid doors ([A,B]) - if so, creates probabilistic choices with equal probability
+3. If only one valid door ([A]) exists, creates a deterministic opening of that door
+4. Maintains proper Problog syntax with the `::` operator for probabilistic choices and standard Prolog syntax for deterministic cases

@@ -1,0 +1,5 @@
+```problog
+{"HASH": "0805B4F6","Code": "bb(N) :- between(1, N-1, I), pick(I, b), pick(I+1, b)."}
+```
+
+This code defines `bb(N)` to succeed if there exists an `I` between 1 and `N-1` such that both position `I` and `I+1` pick the character `b`. The `between/3` predicate is used to generate values of `I` in the range 1 to `N-1`, and then we check if both `pick(I, b)` and `pick(I+1, b)` are true. If any such pair exists, `bb(N)` will succeed.

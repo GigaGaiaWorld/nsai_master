@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin:rough.pl",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "32.27s",
+  "process_time": 32.26941704750061,
+  "final_result": "insertion_sort(List,Sorted) :- insertion_sort(List,[],Sorted).\n\ninsertion_sort([],Acc,Acc).\ninsertion_sort([H|T],Acc,Sorted) :-\n    insert(H,Acc,NAcc),\n    insertion_sort(T,NAcc,Sorted).\n\ninsert(X,[],[X]).\ninsert(X,[Y|T],[Y|NT]) :- X > Y, insert(X,T,NT).\ninsert(X,[Y|T],[X,Y|T]) :- X =< Y.\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code correctly implements the insertion sort algorithm, similar to the original code. Both versions produce the same sorted output for the given input. The generated code uses an accumulator pattern, which is a different but valid approach compared to the original's recursive insertion. The logic for inserting elements is consistent between both versions, with minor syntactic differences. Both codes are valid and produce identical results."
+}

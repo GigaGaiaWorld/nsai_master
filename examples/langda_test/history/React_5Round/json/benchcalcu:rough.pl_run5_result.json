@@ -1,0 +1,10 @@
+{
+  "file_name": "benchcalcu:rough.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "86.19s",
+  "process_time": 86.1933240890503,
+  "final_result": "% Cryptoaddition:\n% Find the unique answer to:\n% Define available digits\ndigit(0).\n digit(1).\n digit(2).\n digit(3).\n digit(4).\ndigit(5).\n digit(6).\n digit(7).\n digit(8).\n digit(9).\n% The first digit of a multi-digit number cannot be 0\nleftdigit(D) :- digit(D), D =\\= 0.\n% All elements are different\nall_different([]).\nall_different([H|T]) :- \\+ member(H, T), all_different(T).\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% Simulate a column addition: Cin is the input carry, Cout is the output carry\nsumdigit(Cin, A, B, Sum, Cout) :-\n X is Cin + A + B,\n ( X < 10, Sum = X, Cout = 0\n ; \n X >= 10, Sum is X - 10, Cout = 1 ).\n% Main predicate: AB + BCD = CDE\nquery_sum([A,B,C,D,E]) :-\n \nleftdigit(A), leftdigit(C),\n    digit(B), digit(D), digit(E),\n    all_different([A,B,C,D,E]),\n    % Units place: B + D = E (with possible carry)\n    sumdigit(0, B, D, E, C1),\n    % Tens place: A + C + C1 = D (with possible carry)\n    sumdigit(C1, A, C, D, C2),\n    % Hundreds place: B + C2 = C\n    sumdigit(C2, 0, B, C, _).\n% Initiate query example:\nquery(query_sum([A,B,C,D,E])).",
+  "final_report": "The generated code is mostly correct and consistent with the original code. It correctly implements the cryptoaddition problem with the same constraints and logic. However, there are minor formatting issues (unnecessary line breaks in digit definitions) and a slight change in the order of constraints in the query_sum predicate, which does not affect functionality. The generated code produces the same results as the original code, indicating correct logic implementation."
+}

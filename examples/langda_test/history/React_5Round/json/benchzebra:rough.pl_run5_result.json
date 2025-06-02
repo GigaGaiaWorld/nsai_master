@@ -1,0 +1,10 @@
+{
+  "file_name": "benchzebra:rough.pl",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "84.57s",
+  "process_time": 84.57110714912415,
+  "final_result": "zebra(Houses) :-\n\thouses(Houses),\n\tmy_member(house(red, english, _, _, _), Houses),\n\tmy_member(house(_, spanish, dog, _, _), Houses),\n\tmy_member(house(green, _, _, coffee, _), Houses),\n\tmy_member(house(_, ukrainian, _, tea, _), Houses),\n\tright_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),\n\tmy_member(house(_, _, snails, _, winstons), Houses),\n\tmy_member(house(yellow, _, _, _, kools), Houses),\n\tHouses = [_, _, house(_, _, _, milk, _), _,_],\n\tHouses = [house(_, norwegian, _, _, _)|_],\n\tnext_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),\n\tnext_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),\n\tmy_member(house(_, _, _, orange_juice, lucky_strikes), Houses),\n\tmy_member(house(_, japanese, _, _, parliaments), Houses),\n\tnext_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),\n\tmy_member(house(_, _, zebra, _, _), Houses),\n\tmy_member(house(_, _, _, water, _), Houses).\nhouses([\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _)\n]).\nmy_member(X, [X|_]).\nmy_member(X, [_|T]) :- my_member(X, T).\nnext_to(X, Y, [X,Y|_]).\nnext_to(X, Y, [Y,X|_]).\nnext_to(X, Y, [_|T]) :- next_to(X, Y, T).\nright_of(X, Y, [Y,X|_]).\nright_of(X, Y, [_|T]) :- right_of(X, Y, T).\nquery(zebra(Houses)).",
+  "final_report": "The generated code is correct and consistent with the original code. It maintains all the constraints and logic of the original zebra puzzle solution. The predicates and their implementations (my_member, next_to, right_of) are identical in functionality, just with slight syntactic variations (e.g., variable names). The running results of both codes are identical, confirming that the generated code meets the expectations."
+}

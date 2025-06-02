@@ -1,0 +1,10 @@
+```problog
+{"HASH": "DA97FB01","Code": "insertion_sort(T, SortedT), insert_element(H, SortedT, Sorted)."}
+```
+
+This implementation:
+1. First recursively sorts the tail (T) into SortedT using insertion_sort
+2. Then inserts the head element (H) into the sorted tail (SortedT) using the provided insert_element predicate
+3. The base case (empty list) is already provided in the original code
+
+The completed predicate works with the existing insert_element clauses to properly sort the list using insertion sort algorithm.
