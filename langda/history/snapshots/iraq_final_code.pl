@@ -7,15 +7,14 @@ nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
 number([],Result,Result).
 number([H|T],Acc,Result) :- 
  
- 
-    arabic_digit(H,Nr), 
-    Acc2 is Nr+10*Acc, 
-    number(T,Acc2,Result).
+ arabic_digit(H, Nr), Acc2 is Nr + 10 * Acc, number(T, Acc2, Result).
 number(X,Y) :- number(X,0,Y).
 % Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
 anomaly_detection(Digit1, Digit2, 1) :- 
  
- number(Digit1, LiquidLevel), number(Digit2, Pressure), LiquidLevel >= 90, Pressure >= 8.
+ 
+    number(Digit1, LiquidLevel), number(Digit2, Pressure),
+    (LiquidLevel >= 75 ; Pressure >= 15).
 anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
 /* %%% Result %%% 
 % Problog Inference Result：

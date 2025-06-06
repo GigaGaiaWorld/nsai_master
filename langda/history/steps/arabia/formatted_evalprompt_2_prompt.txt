@@ -11,17 +11,33 @@ nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
 number([],Result,Result).
 number([H|T],Acc,Result) :- 
  
-<Langda>
-<Code_Block>arabic_digit(H,Nr)</Code_Block>
-<HASH> Hash tag of code: 852FE6E2 </HASH>
-<Requirements>replace the 'digit(H,Nr)' here, with the appropriate language-specific digit predicate </Requirements></Langda>
-, 
- Acc2 is Nr+10*Acc, number(T,Acc2,Result).
+ arabic_digit(H,Nr), Acc2 is Nr+10*Acc, number(T,Acc2,Result).
 number(X,Y) :- number(X,0,Y).
 % Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
 anomaly_detection(Digit1, Digit2, 1) :- 
  
-number(Digit1, Temp), number(Digit2, Flow), Temp >= 80, Flow =< 20.
+<Langda>
+<Code_Block>anomaly_detection(Digit1, Digit2, 1) :- 
+    number(Digit1, Temp), number(Digit2, Flow),
+    Temp >= 60, Flow =< 20.</Code_Block>
+<HASH> Hash tag of code: 20226698 </HASH>
+<Requirements>
+Based on the geographic coordinate of user, determine which anomaly detection logic to use, 
+1. If the user is in Saudi Arabia, check machine overheating anomaly:
+ - If Temperature ≥ 60°C AND Flow rate ≤ 20 L/min, there's anomaly
+ - number(Digit1, Temp), number(Digit2, Flow)
+2. If the user is in Iraq, check storage tank Level anomaly:
+ - If LiquidLevel ≥ 75% OR Pressure ≥ 15 bar, there's anomaly
+ - number(Digit1, LiquidLevel), number(Digit2, Pressure)
+3. If the user is in India, check power overload anomaly:
+ - If sum of branch currents > 120A, there's anomaly
+ - number(Digit1, Current1), number(Digit2, Current2)
+4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:
+ - If the source IP equals destination IP, there's anomaly
+ - number(Digit1, SourceIP), number(Digit2, DestIP)
+The current coordinate of user: (24.7136° N, 46.6753° E) ,Pay attention to the language used by locals.
+Generate the complete anomaly detection rule using the appropriate logic and digit conversion. </Requirements></Langda>
+.
 anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
 <Result>
  Here are the testing result of code:
@@ -33,7 +49,7 @@ anomaly_detection([img_9, img_5],[img_5, img_9],1) = 0.0000
 </Code>
 
 <Evaluation_Instructions>
-
+ 
 1. **Test Results Verification**
 - List all queries and their return values ​​(including probability results).
 - If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
@@ -87,17 +103,33 @@ nn(urdu_net,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: urdu_digit(X,Y).
 number([],Result,Result).
 number([H|T],Acc,Result) :- 
  
-<Langda>
-<Code_Block>arabic_digit(H,Nr)</Code_Block>
-<HASH> Hash tag of code: 852FE6E2 </HASH>
-<Requirements>replace the 'digit(H,Nr)' here, with the appropriate language-specific digit predicate </Requirements></Langda>
-, 
- Acc2 is Nr+10*Acc, number(T,Acc2,Result).
+ arabic_digit(H,Nr), Acc2 is Nr+10*Acc, number(T,Acc2,Result).
 number(X,Y) :- number(X,0,Y).
 % Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
 anomaly_detection(Digit1, Digit2, 1) :- 
  
-number(Digit1, Temp), number(Digit2, Flow), Temp >= 80, Flow =< 20.
+<Langda>
+<Code_Block>anomaly_detection(Digit1, Digit2, 1) :- 
+    number(Digit1, Temp), number(Digit2, Flow),
+    Temp >= 60, Flow =< 20.</Code_Block>
+<HASH> Hash tag of code: 20226698 </HASH>
+<Requirements>
+Based on the geographic coordinate of user, determine which anomaly detection logic to use, 
+1. If the user is in Saudi Arabia, check machine overheating anomaly:
+ - If Temperature ≥ 60°C AND Flow rate ≤ 20 L/min, there's anomaly
+ - number(Digit1, Temp), number(Digit2, Flow)
+2. If the user is in Iraq, check storage tank Level anomaly:
+ - If LiquidLevel ≥ 75% OR Pressure ≥ 15 bar, there's anomaly
+ - number(Digit1, LiquidLevel), number(Digit2, Pressure)
+3. If the user is in India, check power overload anomaly:
+ - If sum of branch currents > 120A, there's anomaly
+ - number(Digit1, Current1), number(Digit2, Current2)
+4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:
+ - If the source IP equals destination IP, there's anomaly
+ - number(Digit1, SourceIP), number(Digit2, DestIP)
+The current coordinate of user: (24.7136° N, 46.6753° E) ,Pay attention to the language used by locals.
+Generate the complete anomaly detection rule using the appropriate logic and digit conversion. </Requirements></Langda>
+.
 anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
 <Result>
  Here are the testing result of code:
@@ -109,82 +141,83 @@ anomaly_detection([img_9, img_5],[img_5, img_9],1) = 0.0000
 
 </original_code>
 
-### ProbLog Code Evaluation Report
+### **Code Evaluation Report: Anomaly Detection in ProbLog**
 
 ---
 
 #### **1. Document Title**  
-**Evaluation of ProbLog Code for Anomaly Detection in Multi-Language Digit Recognition**
+**Evaluation of Anomaly Detection Logic in ProbLog for Geographic-Specific Rules**
 
 ---
 
 #### **2. Background and Purpose**  
-The provided ProbLog code defines neural networks for digit recognition in four languages (Arabic, Telugu, Kannada, Urdu) and includes logic for anomaly detection based on digit sequences. The purpose of this evaluation is to verify the correctness of the code, analyze its test results, and ensure compliance with ProbLog and DeepProbLog standards.
+The provided ProbLog code defines a system for detecting anomalies based on geographic coordinates and digit inputs. The anomaly detection logic varies depending on the user's location (e.g., Saudi Arabia, Iraq, India, or Urdu regions). The purpose of this evaluation is to:  
+- Verify the correctness of the test results.  
+- Analyze the logical and probabilistic aspects of the code.  
+- Ensure compliance with functional requirements and edge cases.
 
 ---
 
 #### **3. Test Results Summary**  
-The following test cases were executed:  
+The test results provided are as follows:  
+1. `anomaly_detection([img_9, img_1], [img_1, img_5], 1) = 1.0000`  
+2. `anomaly_detection([img_5, img_1], [img_5, img_1], 1) = 0.0000`  
+3. `anomaly_detection([img_9, img_5], [img_5, img_9], 1) = 0.0000`  
 
-1. `anomaly_detection([img_9, img_1], [img_1, img_5], 1)`  
-   - **Result:** `1.0000` (Pass)  
-2. `anomaly_detection([img_5, img_1], [img_5, img_1], 1)`  
-   - **Result:** `0.0000` (Pass)  
-3. `anomaly_detection([img_9, img_5], [img_5, img_9], 1)`  
-   - **Result:** `0.0000` (Pass)  
-
-**Conclusion:** All tests passed (no failures). The anomaly detection logic correctly identifies anomalies when the first digit sequence sums to 80 or more and the second sums to 20 or less.
+**Conclusion:** All tests passed (no failures). The results align with the expected behavior for the given geographic coordinate (24.7136° N, 46.6753° E), which corresponds to Saudi Arabia. The anomaly detection logic for Saudi Arabia checks if `Temp ≥ 60°C` and `Flow ≤ 20 L/min`, which explains the test outcomes.
 
 ---
 
 #### **4. Failure Localization**  
 No failures were detected in the test results. The following predicates and rules were verified:  
 - `number/3` and `number/2`: Correctly convert digit lists to numbers.  
-- `anomaly_detection/3`: Correctly implements the anomaly condition (`Temp >= 80, Flow =< 20`).  
+- `anomaly_detection/3`: Correctly implements the geographic-specific logic for Saudi Arabia.  
+
+**Expansion Predicates:**  
+No expansion predicates (e.g., `implies/2`, `opposite/1`) were used in the provided code.  
 
 ---
 
 #### **5. Root Cause Analysis**  
-
 **Classical ProbLog Scenarios:**  
-- **Logical Correctness:** The recursive predicate `number/3` terminates correctly for empty lists and non-empty lists.  
-- **Anomaly Detection:** The logic for anomaly detection is sound and aligns with the requirements.  
+- The recursive predicate `number/3` terminates correctly when the input list is empty.  
+- The anomaly detection logic is deterministic and adheres to the geographic requirements.  
 
 **Probabilistic Scenarios:**  
-- The code does not explicitly use probabilistic facts or negations. However, the neural network outputs (`nn/4`) are implicitly probabilistic.  
-- **DeepProbLog Integration:** The `nn/4` predicates integrate neural network outputs into ProbLog reasoning. The fusion is correct, as evidenced by the test results.  
+- The code does not use probabilistic facts or negations. The results are purely deterministic.  
 
-**DeepProbLog Feature Usage:**  
-- The `nn/4` predicates are used to define digit recognition for each language, confirming the use of DeepProbLog features.  
+**DeepProbLog Integration:**  
+- The `nn/4` predicates (e.g., `arabic_net`, `telugu_net`) are defined but not used in the anomaly detection logic.  
+- **Report:** "DeepProbLog feature not used."  
 
 ---
 
 #### **6. Overall Analysis**  
-
 **Functional Requirements:**  
-1. **Classical Reasoning:** Met. The `number/3` and `anomaly_detection/3` predicates perform classical reasoning correctly.  
-2. **Probabilistic Reasoning:** Partially met. The code does not explicitly use probabilistic facts but relies on neural network outputs.  
-3. **Neural Network Integration:** Met. The `nn/4` predicates correctly integrate neural network outputs.  
+- **Classical Reasoning:** Met. The logic correctly implements geographic-specific anomaly detection.  
+- **Probabilistic Reasoning:** Not applicable (no probabilistic facts used).  
+- **Neural Network Integration:** Not used in the anomaly detection logic.  
 
 **Edge Cases:**  
-- **Non-list Input:** The `number/3` predicate assumes list input. Non-list inputs would cause errors.  
-- **Deep Recursion:** The recursion in `number/3` is shallow and unlikely to cause performance issues.  
-- **Undefined Predicates:** No undefined predicates were detected.  
+- **Undefined Inputs:** The code assumes valid digit inputs (e.g., `img_9`). Non-list inputs or invalid digits would cause errors.  
+- **Recursive Performance:** The `number/3` predicate handles lists of arbitrary length but could face performance issues with very long lists.  
 
 ---
 
 #### **7. Error Summary**  
 
-| No. | Problem                  | Impact | Suggestion |
-|-----|--------------------------|--------|------------|
-| 1   | Non-list input handling  | Medium | Add input validation for `number/3`. |
-| 2   | Probabilistic facts      | Low    | Explicitly define probabilistic facts if needed. |
+| Number | Problem | Impact | Suggestion |
+|--------|---------|--------|------------|
+| 1      | DeepProbLog not used | Limited functionality | Integrate `nn/4` outputs into anomaly detection. |
+| 2      | No input validation | Potential runtime errors | Add checks for valid digit inputs. |
+| 3      | Geographic logic limited to Saudi Arabia | Incomplete for other regions | Extend logic for Iraq, India, and Urdu regions. |
 
 ---
 
 **Word Count:** 450 words  
 
-**Final Verdict:** The code meets its functional requirements and passes all tests. Minor improvements can be made for robustness.
+**Final Remarks:**  
+The code meets the requirements for the given geographic coordinate (Saudi Arabia) but lacks extensibility for other regions and input validation. DeepProbLog features are unused, limiting the system's potential. Addressing these gaps would enhance robustness and functionality.
 
 <Evaluation_Instructions>
 For each <langda> code module (identified by its HASH):

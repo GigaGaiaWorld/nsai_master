@@ -1,6 +1,7 @@
 ```problog
-{"HASH": "852FE6E2","Code": "kannada_digit(H,Nr)"}
+{"HASH": "852FE6E2","Code": "number([H|T],Acc,Result) :- \n    kannada_digit(H,Nr),\n    Acc2 is Nr+10*Acc, \n    number(T,Acc2,Result)."}
 ```
+
 ```problog
-{"HASH": "79CDA518","Code": "number(Digit1, Current1), number(Digit2, Current2), Sum is Current1 + Current2, Sum > 150"}
+{"HASH": "20226698","Code": "anomaly_detection(Digit1, Digit2, 1) :- \n    number(Digit1, Current1),\n    number(Digit2, Current2),\n    Sum is Current1 + Current2,\n    Sum > 120."}
 ```

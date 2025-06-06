@@ -354,7 +354,7 @@ class Parser(object):
         return result_dict
 
 
-    def replace_langda_and_lann_terms(self,text_list:List[Tuple[str, str, str]]) -> Tuple[List[str],List[dict],List[LangdaDict]]:
+    def replace_langda_and_lann_terms(self,text_list:List[Tuple[str, str, str]], placeholder="{{LANGDA}}") -> Tuple[List[str],List[dict],List[LangdaDict]]:
         """
         Replace langda and lann predicates in the given text list.
         And store informations in dictonary
@@ -398,8 +398,6 @@ class Parser(object):
                 # if code == ".":
                 #     idl += 1
                 #     continue # ignore the pure "." line ==> this is actually for the llm code to prevent from generate double "."
-
-
 
             in_lan = not(predicate_status==PredicateState.NONE.value)
 
@@ -461,7 +459,7 @@ class Parser(object):
                 if predicate_status == PredicateState.BODY.value:
                     single_langda.append(code)
                     single_comment.append(comment)
-                
+
                 # End of langda predicate
                 elif predicate_status == PredicateState.END.value:
                     # Add the current segment
@@ -485,10 +483,10 @@ class Parser(object):
 
                     langda_dict_content["HASH"] = langda_md5_digits
                     langda_dicts.append(langda_dict_content)
-                    
+
                     # Filter out empty comments before joining
                     filtered_comments = [c for c in single_comment if c]
-                    joined_comments = "\n".join(filtered_comments) + "{{LANGDA}}"
+                    joined_comments = "\n".join(filtered_comments) + placeholder
                     
                     # Replace all items from langda_start to idl with a single item containing our joined comments
                     # text_list_copy[langda_start:idl+1] = [(joined_comments, "", "NONE")]
@@ -506,8 +504,8 @@ class Parser(object):
         # return [item[0] for item in text_list_copy], lann_dict, langda_dicts
 
 # =============================== FINAL PARSER API =============================== #
-def integrated_code_parser(text:str) -> Tuple[str, List[dict], List[LangdaDict], bool]:
+def integrated_code_parser(text:str, placeholder) -> Tuple[str, List[dict], List[LangdaDict], bool]:
     parser = Parser()
     text_list, has_query = parser.get_dense_code_with_comments(text)
-    result_text, lann_dicts, langda_dicts = parser.replace_langda_and_lann_terms(text_list)
+    result_text, lann_dicts, langda_dicts = parser.replace_langda_and_lann_terms(text_list, placeholder)
     return "\n".join(result_text), lann_dicts, langda_dicts, has_query

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Incorrect probability accumulation and negation handling in recursive coin toss logic. The disjunction does not account for independent events, leading to wrong probabilities for total heads (S).",
+  "SuggestedFix": "Rewrite the recursive rule to correctly compute joint probabilities:\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    (make_coin(c1,0.8) -> NewSC is SC + 1, P = 0.8 ; NewSC = SC, P = 0.2),\n    NewCNT is CNT - 1,\n    coins_r(NewSC,S,NewCNT),\n    S is SC * P.  % Multiply probabilities of independent events",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

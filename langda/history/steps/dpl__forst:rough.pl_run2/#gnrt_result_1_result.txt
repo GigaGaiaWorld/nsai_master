@@ -1,0 +1,21 @@
+```problog
+{"HASH": "5E40E418","Code": "stack_op(sort, Stack, SortedStack) :- ( length(Stack, L), L >= 3 -> get_top_n(Stack, 3, Elements, RestStack), insertion_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack) ; SortedStack = Stack )."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(push(X), Stack, [X|Stack])."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(pop, [X|Rest], Rest)."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(dup, [X|Rest], [X,X|Rest])."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(swap, [X,Y|Rest], [Y,X|Rest])."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(over, [X,Y|Rest], [Y,X,Y|Rest])."}
+```
+```problog
+{"HASH": "5E40E418","Code": "stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest])."}
+```

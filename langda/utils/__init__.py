@@ -43,9 +43,8 @@ def problog_test_tool(model, file_basename,timeout=120):
     except Exception as e:
         print(f"Error in problog_test_tool: {e}")
         return f"ERROR: {str(e)}"
-   
 
-def invoke_agent(agent_type:Literal["react","simple","doublechain"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict) -> tuple[str,str]:
+def invoke_agent(agent_type:Literal["react","simple","doublechain"], model_name:str, tools:List[str], prompt_type:Literal["evaluate", "generate", "regenerate"], input:dict, config:dict={"configurable": {"thread_id": "2"}}) -> tuple[str,str]:
     """
     Returns the corresponding LangdaAgentExecutor instance or its react version based on the parameters passed in when calling.
     Args:

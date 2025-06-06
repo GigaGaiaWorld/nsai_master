@@ -34,7 +34,7 @@ def langda_solve(agent_type:Literal["simple", "double", "single_dc", "double_dc"
                  rule_string:str, 
                  model_name:str="deepseek-chat", 
 
-                 config:dict={},
+                 config:dict=None,
                  prefix:str="",
                  save_dir:str="",
                  load:bool=False,

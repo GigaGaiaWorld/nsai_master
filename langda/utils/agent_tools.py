@@ -46,53 +46,67 @@ class CustomSearchTool(BaseTool):
 
 
 class RetrieverInput(BaseModel):
-    query: str = Field(description="The query string to search for in the knowledge base")
+    query: str = Field(
+        description=(
+            "The query string to search for in the local ProbLog documentation knowledge base. "
+            "Queries should be about ProbLog syntax, built-in predicates, libraries, or example models "
+            "covered in the provided KB. Do not use this tool for questions outside the scope of the KB."
+        )
+    )
 
 class RetrieverTool(BaseTool):
     name: ClassVar[str] = "retriever_tool"
-    description: ClassVar[str] = f"""Useful for searching the ProbLog official documentation for syntax and predicate informations."""
+    description: ClassVar[str] = (
+        "Use this tool only to retrieve information that exists in the local ProbLog documentation KB. "
+        "It can answer questions about ProbLog syntax, probabilistic facts, annotated disjunctions, "
+        "built-in predicates, libraries (e.g., lists, apply, aggregate, etc.), and the example models "
+        "provided. Do not attempt to answer or ask about topics not present in that KB."
+    )
     args_schema: Type[BaseModel] = RetrieverInput
 
-    def _run(self, 
-            query: str, 
-            run_manager: Optional[CallbackManagerForToolRun] = None) -> List[dict]:
+    def _run(
+        self, 
+        query: str, 
+        run_manager: Optional[CallbackManagerForToolRun] = None
+    ) -> List[dict]:
         """
         Run the retriever tool to get relevant documents from the vector store.
+        Only returns items that match the content of the KB.
         """
-        print(" Running retriever tool...")
-        # Perform similarity search
+        print("Running retriever tool...")
         try:
             vector_store = LangdaVectorStore()
             return vector_store.similarity_search_with_scores(query, k=3)
-        except:
-            return {"error": f"Source not found"}
-
-class ProblogTestInput(BaseModel):
-    model: str = Field(description="The full problog model string to evaluate")
-
-class ProblogTestTool(BaseTool):
-    name: ClassVar[str] = "problog_test_tool"
-    description: ClassVar[str] = "Evaluate Problog models and queries to get probability results, you should use this tool whenever you are give a full problog code with 'query' term"
-    args_schema: Type[BaseModel] = ProblogTestInput
-    
-    def _run(self, 
-             model: str,
-             run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
-        """Run the Problog evaluation tool."""
-        try:
-            result = []
-            evaluatable:Type[evaluator.Evaluatable] = get_evaluatable().create_from(PrologString(model))
-            results:(dict | Any) = evaluatable.evaluate()
-            
-            print("% ProbLog Inference Result：")
-            for query_key, probability in results.items():
-                result_line = f"{query_key} = {probability:.4f}"
-                result.append(result_line)
-                print(result_line)
-
-            return "\n".join(result)
         except Exception as e:
-            return f"Error evaluating Problog model: {str(e)}"
+            return {"error": f"Source not found: {e}"}
+
+
+# class ProblogTestInput(BaseModel):
+#     model: str = Field(description="The full problog model string to evaluate")
+
+# class ProblogTestTool(BaseTool):
+#     name: ClassVar[str] = "problog_test_tool"
+#     description: ClassVar[str] = "Evaluate Problog models and queries to get probability results, you should use this tool whenever you are give a full problog code with 'query' term"
+#     args_schema: Type[BaseModel] = ProblogTestInput
+    
+#     def _run(self, 
+#              model: str,
+#              run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
+#         """Run the Problog evaluation tool."""
+#         try:
+#             result = []
+#             evaluatable:Type[evaluator.Evaluatable] = get_evaluatable().create_from(PrologString(model))
+#             results:(dict | Any) = evaluatable.evaluate()
+            
+#             print("% ProbLog Inference Result：")
+#             for query_key, probability in results.items():
+#                 result_line = f"{query_key} = {probability:.4f}"
+#                 result.append(result_line)
+#                 print(result_line)
+
+#             return "\n".join(result)
+#         except Exception as e:
+#             return f"Error evaluating Problog model: {str(e)}"
 
 
 
@@ -115,6 +129,6 @@ class FinishTool(BaseTool):
 TOOL_REGISTRY:Dict[str, BaseTool] = {
     "search_tool": CustomSearchTool,
     "retriever_tool": RetrieverTool,
-    "problog_test_tool": ProblogTestTool,
+    # "problog_test_tool": ProblogTestTool,
     "finish_tool": FinishTool,
 }

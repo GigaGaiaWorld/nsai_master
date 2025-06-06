@@ -1,0 +1,5 @@
+Based on the provided origin_code and generated_code, here's the extracted and formatted code block corresponding to the <langda> section:
+
+```problog
+{"HASH": "751033ED","Code": "open_door(D) :-    select_door(Selected),    findall(X, (member(X, [1,2,3]), Doors),    findall(Y, (member(Y, Doors), \\+ prize(Y), \\+ Y = Selected), ValidDoors),    (   length(ValidDoors, 2) ->        member(D, ValidDoors),        0.5::open_door(D)    ;   length(ValidDoors, 1) ->        member(D, ValidDoors)    )."}
+```

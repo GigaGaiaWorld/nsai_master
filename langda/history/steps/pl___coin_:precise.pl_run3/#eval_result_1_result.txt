@@ -1,0 +1,3 @@
+```report
+{"HASH": "A88642CF", "ErrorSummary": "Undefined '->/2' operator in ProbLog context; probabilistic implications not correctly implemented", "SuggestedFix": "Replace the line '(coin(CNT) -> NewSC is SC + 1 ; NewSC = SC)' with explicit probabilistic handling, e.g., 'prob_coin(CNT, P), (P > 0.5 -> NewSC is SC + 1 ; NewSC = SC)' and ensure 'prob_coin/2' is defined elsewhere.", "Dependencies": [], "NeedRegenerate": true}
+```

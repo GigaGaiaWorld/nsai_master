@@ -1,0 +1,123 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</origin_code>
+<generated_code>
+
+% Stack operations
+stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    ( length(Stack, L), L >= 3 ->
+        get_top_n(Stack, 3, Elements, RestStack),
+        insertion_sort(Elements, SortedElements),
+        append(SortedElements, RestStack, SortedStack)
+    ; SortedStack = Stack
+    ).
+
+% Helper predicates
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+
+% Insertion sort for the top N elements
+insertion_sort([], []).
+insertion_sort([X|Xs], Sorted) :-
+    insertion_sort(Xs, SortedXs),
+    insert(X, SortedXs, Sorted).
+
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).
+
+% Example queries
+query(stack_op(push(1), [2,3,4], Y)).
+query(stack_op(pop, [1,2,3,4], Y)).
+query(stack_op(dup, [1,2,3,4], Y)).
+query(stack_op(swap, [1,2,3,4], Y)).
+query(stack_op(over, [1,2,3,4], Y)).
+query(stack_op(rot, [1,2,3,4], Y)).
+query(stack_op(sort, [4,2,3,1], Y)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

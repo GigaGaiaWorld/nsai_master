@@ -10,9 +10,9 @@
 {
 "LOT": null,
 "NET": null,
-"LLM": "\nBased on the geographic coordinate of user, determine which anomaly detection logic to use, \n1. If the user is in Saudi Arabia, check engine overheating anomaly:\n - If Temperature ≥ 80°C AND Flow rate ≤ 20 L/min, there's anomaly\n - number(Digit1, Temp), number(Digit2, Flow)\n2. If the user is in Iraq, check storage tank Level anomaly:\n - If LiquidLevel ≥ 90% AND Pressure ≥ 8 bar, there's anomaly\n - number(Digit1, LiquidLevel), number(Digit2, Pressure)\n3. If the user is in India, check power overload anomaly:\n - If sum of branch currents > 150A, there's anomaly\n - number(Digit1, Current1), number(Digit2, Current2)\n4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:\n - If the source IP equals destination IP, there's anomaly\n - number(Digit1, SourceIP), number(Digit2, DestIP)\nThe current coordinate of user: (33.3152° N, 44.3661° E) ,Pay attention to the language used by locals.\nGenerate the complete anomaly detection rule using the appropriate logic and digit conversion.",
+"LLM": "\nBased on the geographic coordinate of user, determine which anomaly detection logic to use, \n1. If the user is in Saudi Arabia, check machine overheating anomaly:\n - If Temperature ≥ 60°C AND Flow rate ≤ 20 L/min, there's anomaly\n - number(Digit1, Temp), number(Digit2, Flow)\n2. If the user is in Iraq, check storage tank Level anomaly:\n - If LiquidLevel ≥ 75% OR Pressure ≥ 15 bar, there's anomaly\n - number(Digit1, LiquidLevel), number(Digit2, Pressure)\n3. If the user is in India, check power overload anomaly:\n - If sum of branch currents > 120A, there's anomaly\n - number(Digit1, Current1), number(Digit2, Current2)\n4. If the user is in Urdu regions (Pakistan), check network traffic anomaly:\n - If the source IP equals destination IP, there's anomaly\n - number(Digit1, SourceIP), number(Digit2, DestIP)\nThe current coordinate of user: (33.3152° N, 44.3661° E) ,Pay attention to the language used by locals.\nGenerate the complete anomaly detection rule using the appropriate logic and digit conversion.",
 "FUP": "True",
 "HEAD": "",
-"HASH": "79CDA518"
+"HASH": "20226698"
 }
 ]

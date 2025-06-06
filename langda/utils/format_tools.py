@@ -249,7 +249,7 @@ def _find_all_blocks(type: Literal["report", "code", "final"], text: str) -> Lis
                     # Unescape the code
                     code_value = code_value.replace('\\\\', '\\').replace('\\"', '"').replace('\\n', '\n')
                     blocks.append({hash_value: code_value})
-                
+
                 elif type == "report":
                     hash_value = re.search(r'"HASH":\s*"([^"]+)"', match_str).group(1)
                     error_summary = re.search(r'"ErrorSummary":\s*"((?:[^"\\]|\\.)*)"', match_str).group(1)

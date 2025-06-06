@@ -1,0 +1,22 @@
+Error evaluating Problog model:
+    return self.collapse(string, tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1282, in collapse
+    raise UnmatchedCharacter(string, expr_stack[-1].start.location)
+problog.parser.UnmatchedCharacter: Unmatched character '(' at 6:96.Error evaluating Problog model:
+    return self.collapse(string, tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1282, in collapse
+    raise UnmatchedCharacter(string, expr_stack[-1].start.location)
+problog.parser.UnmatchedCharacter: Unmatched character '(' at 6:53.Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 6:130.% Problog Inference Result：
+prize(1) = 0.3333
+prize(2) = 0.3333
+prize(3) = 0.3333
+select_door(1) = 1.0000
+win_keep = 0.3333
+win_switch = 0.6667

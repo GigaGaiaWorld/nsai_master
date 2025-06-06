@@ -26,7 +26,7 @@ class BasicState(TypedDict):
 
     config: dict # session configs
     prefix: str  # the name of current file
-    db_root: str # the path to database
+    save_dir: str # the path to database
     load:bool    # load from previous snapshots
     langda_ext: dict # User-provided context
     query_ext:str

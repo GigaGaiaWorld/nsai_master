@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause in 'make_coin(C,PH)' prevents probabilistic reasoning. The variable 'C' is uninstantiated, violating ProbLog's requirement for ground probabilistic facts.",
+  "SuggestedFix": "Replace 'PH::make_coin(C,PH).' with a ground probabilistic fact (e.g., '0.8::make_coin(c1).'). Alternatively, instantiate 'C' by enumerating possible coins (e.g., 'PH::make_coin(c1,PH).'). Line 1 requires modification.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

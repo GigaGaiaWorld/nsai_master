@@ -1,0 +1,15 @@
+```problog
+{"HASH": "F91C6038","Code": "leftdigit(A), % A cannot be 0\n    leftdigit(B), % B cannot be 0\n    leftdigit(C), % C cannot be 0\n    digit(D),\n    digit(E)"}
+```
+```problog
+{"HASH": "A8860BE4","Code": "sumdigit(0, D, B, E, Carry1)"}
+```
+```problog
+{"HASH": "702CD838","Code": "sumdigit(Carry1, C, A, D, Carry2)"}
+```
+```problog
+{"HASH": "57FD427B","Code": "sumdigit(Carry2, B, 0, C, Carry3)"}
+```
+```problog
+{"HASH": "0DE8749E","Code": "all_different([A,B,C,D,E])"}
+```

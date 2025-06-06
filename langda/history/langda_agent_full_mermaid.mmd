@@ -12,7 +12,6 @@ graph TD;
 	__end__([<p>__end__</p>]):::last
 	__start__ --> init_node;
 	generate_node -.-> test_node;
-	init_node -. &nbsp;END&nbsp; .-> __end__;
 	init_node -.-> generate_node;
 	init_node -.-> summary_node;
 	test_node -.-> generate_node;

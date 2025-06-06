@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Syntax error in `->/2` operator and incorrect nesting of conditions in `open_door/1` predicate, preventing execution of all queries.",
+  "SuggestedFix": "Rewrite the `open_door/1` predicate into two separate clauses:\n1. For two available doors (uniformly random):\n   ```prolog\n   open_door(A) :-\n       select_door(Selected),\n       findall(X, (member(X, [1,2,3]), \+ prize(X), \+ (X = Selected)), Doors),\n       Doors = [A, B],\n       Prob is 0.5,\n       Prob::open_door(A),\n       Prob::open_door(B).\n   ```\n2. For one available door (must open it):\n   ```prolog\n   open_door(A) :-\n       select_door(Selected),\n       findall(X, (member(X, [1,2,3]), \+ prize(X), \+ (X = Selected)), Doors),\n       Doors = [A].\n   ```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

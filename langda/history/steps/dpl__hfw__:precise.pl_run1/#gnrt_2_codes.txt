@@ -1,0 +1,5 @@
+[
+{
+"DA5E8955": "parse([N1, +, N2 | T], R) :- \n    Temp is N1 + N2,\n    parse([Temp | T], R).\n\nparse([N1, -, N2 | T], R) :- \n    Temp is N1 - N2,\n    parse([Temp | T], R).\n\nparse([N1, *, N2 | T], R) :- \n    Temp is N1 * N2,\n    parse([Temp | T], R).\n\nparse([N1, /, N2 | T], R) :- \n    Temp is N1 / N2,\n    parse([Temp | T], R).\n\nparse(['(', Expr, ')'], R) :- \n    parse(Expr, R)."
+}
+]

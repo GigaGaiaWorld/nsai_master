@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground comparison in `almost_equal/2` predicate causes evaluation failure for nested expressions due to arguments not being ground when `<` operator is called.",
+  "SuggestedFix": "Modify the `parse/2` predicates to ensure intermediate results are ground before comparison. For example, restructure the parsing logic to compute intermediate results first and then compare them. Alternatively, use `ground/1` checks before calling `almost_equal/2`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

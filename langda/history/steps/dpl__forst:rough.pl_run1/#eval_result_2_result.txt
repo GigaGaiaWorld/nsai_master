@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "5E40E418",
+  "ErrorSummary": "Missing predicates for stack operations (push, pop, dup, swap, over, rot) and incorrect implementation of get_top_n predicate",
+  "SuggestedFix": "1. Implement missing predicates for all stack operations (push, pop, dup, swap, over, rot). 2. Correct get_top_n predicate to properly extract top N elements from the stack. Example fix for get_top_n: get_top_n(Stack, N, Elements, Rest) :- length(Stack, Len), Len >= N, split_list(Stack, N, Elements, Rest).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -43,8 +43,8 @@ class GeneralNodes:
         fest_codes:List[dict] = []      # {"hash1":"code1","hash2":"code2",...}
         langda_dicts:List[LangdaDict] = []
 
-        raw_prompt_template, lann_dicts, raw_langda_dicts, has_query = integrated_code_parser(state["rule_string"])
-        with DictDB(db_root=state["save_dir"], db_prefix=state["prefix"]) as langdaDB:
+        raw_prompt_template, lann_dicts, raw_langda_dicts, has_query = integrated_code_parser(state["rule_string"], state["placeholder"])
+        with DictDB(db_path=state["save_dir"], db_prefix=f"history/{state['prefix']}_langda.db") as langdaDB:
             print(langdaDB.get_all_items())
 
             for idx, langda in enumerate(raw_langda_dicts):
@@ -75,10 +75,10 @@ class GeneralNodes:
                         
                     langda["LLM"] = replaced_content
     
-                if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T":
+                if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T" or not state["load"]:
                     fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)
-                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F" or state["load"]:
+                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F":
                     code = langdaDB.get_item(langda["HASH"])
                     fest_codes.append({langda["HASH"]:code})
                     if not code: 
@@ -118,7 +118,7 @@ class GeneralNodes:
         result_new = problog_test_tool(final_code,state["prefix"],timeout = 120)
 
         # Don't delete! Database part!
-        with DictDB() as langdaDB:
+        with DictDB(db_path=state["save_dir"], db_prefix=f"history/{state['prefix']}_langda.db") as langdaDB:
             langdaDB.sync_with_dict(sync_dict)
             print(langdaDB.get_all_items())
 
@@ -144,9 +144,6 @@ class GeneralNodes:
     @staticmethod
     def _decide_next_init(state:BasicState):
         print("processing _decide_next_init ...")
-        if state["load"] and state["final_result"]:
-                print("Snapshot loaded...")
-                return "END"
         count_need_generated = 0
         for fest_code in state["fest_codes"]:
             _, value = _parse_simple_dictonary(fest_code)

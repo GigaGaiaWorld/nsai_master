@@ -1,0 +1,165 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	my_member(house(green, _, _, coffee, _), Houses),
+	my_member(house(_, ukrainian, _, tea, _), Houses),
+	right_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),
+	my_member(house(_, _, snails, _, winstons), Houses),
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+my_member(X, [X|_]).
+my_member(X, [_|T]) :- my_member(X, T).
+<Langda> Information:
+<HASH> Hash tag of code: 3C24DB80 </HASH>
+<Requirements>define the next_to/3 predicate. </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: 8660991C </HASH>
+<Requirements>define the right_of/3 predicate. </Requirements></Langda>
+.
+query(zebra(Houses)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	my_member(house(green, _, _, coffee, _), Houses),
+	my_member(house(_, ukrainian, _, tea, _), Houses),
+	right_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),
+	my_member(house(_, _, snails, _, winstons), Houses),
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+my_member(X, [X|_]).
+my_member(X, [_|T]) :- my_member(X, T).
+<Langda> Information:
+<HASH> Hash tag of code: 3C24DB80 </HASH>
+<Requirements>define the next_to/3 predicate. </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: 8660991C </HASH>
+<Requirements>define the right_of/3 predicate. </Requirements></Langda>
+.
+query(zebra(Houses)).
+
+</origin_code>
+<generated_code>
+
+zebra(Houses) :-
+    houses(Houses),
+    my_member(house(red, english, _, _, _), Houses),
+    my_member(house(_, spanish, dog, _, _), Houses),
+    my_member(house(green, _, _, coffee, _), Houses),
+    my_member(house(_, ukrainian, _, tea, _), Houses),
+    right_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),
+    my_member(house(_, _, snails, _, winstons), Houses),
+    my_member(house(yellow, _, _, _, kools), Houses),
+    Houses = [_, _, house(_, _, _, milk, _), _,_],
+    Houses = [house(_, norwegian, _, _, _)|_],
+    next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+    next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+    my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+    my_member(house(_, japanese, _, _, parliaments), Houses),
+    next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+    my_member(house(_, _, zebra, _, _), Houses),
+    my_member(house(_, _, _, water, _), Houses).
+
+houses([
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _)
+]).
+
+my_member(X, [X|_]).
+my_member(X, [_|T]) :- my_member(X, T).
+
+% Define the next_to/3 predicate
+next_to(X, Y, List) :- append(_, [X,Y|_], List).
+next_to(X, Y, List) :- append(_, [Y,X|_], List).
+
+% Define the right_of/3 predicate
+right_of(X, Y, List) :- append(_, [Y,X|_], List).
+
+% Define the append/3 predicate
+append([], L, L).
+append([H|T], L, [H|R]) :- append(T, L, R).
+
+query(zebra(Houses)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -15,7 +15,7 @@ number(X,Y) :- number(X,0,Y).
 % Anomaly detection logic - Result is 1 if anomaly detected, 0 otherwise
 anomaly_detection(Digit1, Digit2, 1) :- 
  
- number(Digit1, Current1), number(Digit2, Current2), Sum is Current1 + Current2, Sum > 150.
+ number(Digit1, Current1), number(Digit2, Current2), Sum is Current1 + Current2, Sum > 120.
 anomaly_detection(Digit1, Digit2, 0) :- \+ anomaly_detection(Digit1, Digit2, 1).
 /* %%% Result %%% 
 % Problog Inference Result：

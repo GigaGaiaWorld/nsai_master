@@ -1,0 +1,3 @@
+```report
+{"HASH": "751033ED", "ErrorSummary": "Undefined 'random_member/2' and unsupported '->/2' syntax in ProbLog, causing runtime errors", "SuggestedFix": "Replace 'random_member/2' with ProbLog's probabilistic choice (e.g., 'prob::uniform/1') and restructure the 'open_door/1' predicate to use ProbLog-compatible control logic. Example fix:\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, (member(D, [1,2,3]), \\+ prize(D), \\+ (D = Selected)), Doors),\n    length(Doors, Len),\n    (Len = 2 -> prob::uniform(Door, Doors) ; Len = 1 -> member(Door, Doors)).", "Dependencies": [], "NeedRegenerate": true}
+```

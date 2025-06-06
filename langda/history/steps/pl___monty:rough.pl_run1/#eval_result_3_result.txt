@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Syntax error in the conditional logic of `open_door/1` predicate, causing parsing failure. The `->` operator is not properly formatted.",
+  "SuggestedFix": "Rewrite the `open_door/1` predicate with correct Prolog syntax for conditionals. Example fix:\n```prolog\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ X = Selected), Doors),\n    (Doors = [A, B] -> 0.5::open_door(A) ; 0.5::open_door(B) ;\n     Doors = [A] -> open_door(A)).\n```\nEnsure proper grouping and termination of conditional branches.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

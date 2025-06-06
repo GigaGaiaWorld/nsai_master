@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Unsupported '->/2' operator in ProbLog, causing execution failure",
+  "SuggestedFix": "Replace the line '(make_coin(c1,0.8) -> (NewSC is SC + 1) ; NewSC = SC)' with ProbLog-compatible logical disjunction: '(make_coin(c1,0.8), NewSC is SC + 1 ; \\+ make_coin(c1,0.8), NewSC = SC)'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

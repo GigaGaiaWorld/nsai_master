@@ -252,19 +252,15 @@ class LangdaAgentExecutor(BaseModel):
 
         # *** First chain: Generate the Problog code with tools *** 
         first_chain_prompt_template, second_chain_prompt_template = self.split_doublechain_prompt(raw_prompt_template)
-        if prompt_type == "regenerate":
+        if prompt_type == "generate" or prompt_type == "regenerate":
             system_prompt = ("system", "You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.")
-            first_input = {
-                # "input": self.build_doublechain_regenerate_prompt(input["constructed_code"],input["test_analysis"],input["prompt_template"]),
-                "input": input["prompt_template"],
-                "agent_scratchpad": ""
-            }
-        elif prompt_type == "generate" or prompt_type == "evaluate":
+        elif  prompt_type == "evaluate":
             system_prompt = ("system", "You are a coding assistant. You should use the available tools to complete the task.")
-            first_input = {
-                "input": input["prompt_template"],
-                "agent_scratchpad": ""
-            }
+
+        first_input = {
+            "input": input["prompt_template"],
+            "agent_scratchpad": ""
+        }
         
         prompt_msgs = [
             system_prompt,

@@ -35,9 +35,14 @@ class DictDB:
     """
     A manager for dictionary storage using SQLite and Pydantic for data validation.
     """
-    def __init__(self):
-        self.config = DBConfig()
-        self.conn = sqlite3.connect(str(self.config.db_path / self.config.db_prefix))
+    def __init__(self, db_path="", db_prefix=""):
+        if db_path:
+            database_path = db_path / db_prefix
+        else:
+            self.config = DBConfig()
+            database_path = Path(self.config.db_path).resolve()
+
+        self.conn = sqlite3.connect(str(database_path))
         self._create_table()
         
     def __enter__(self):

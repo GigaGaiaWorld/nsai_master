@@ -38,7 +38,7 @@ class LangdaAgentProtocol(Protocol):
 class LangdaAgentBase:
     """Base class for all Langda agents with common initialization"""
     
-    def __init__(self, rule_string, model_name, addition_input:dict):
+    def __init__(self, rule_string, model_name, addition_input:dict=None):
         
         self.state = BasicState()
         # User inputs
@@ -46,7 +46,7 @@ class LangdaAgentBase:
         self.state["rule_string"] = rule_string
         self.state["final_result"] = ""
         # addition_input:
-        self.state["config"] = addition_input.get("config", {"configurable": {"thread_id": "42"}})
+        self.state["config"] = {"configurable": {"thread_id": "42"}}
         self.state["prefix"] = addition_input.get("prefix", "main")
         self.state["load"] = addition_input.get("load", False)
         self.state["langda_ext"] = addition_input.get("langda_ext", "")

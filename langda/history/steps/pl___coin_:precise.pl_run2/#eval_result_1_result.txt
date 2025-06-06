@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "Undefined '->/2' operator in ProbLog, causing conditional logic to fail",
+  "SuggestedFix": "Replace the conditional logic '(coin(CNT) -> NewSC is SC + 1 ; NewSC = SC)' with ProbLog-compatible constructs, such as using auxiliary predicates or probabilistic facts to model the coin toss behavior. For example, define a separate predicate to handle the increment logic based on the coin result.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

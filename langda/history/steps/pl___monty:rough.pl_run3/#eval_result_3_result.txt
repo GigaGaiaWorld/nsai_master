@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "ParseError due to nested probabilistic facts in the open_door/1 predicate. Probabilistic annotations (0.5::open_door(A)) cannot be embedded within a rule body.",
+  "SuggestedFix": "Move probabilistic facts to the top level and restructure the open_door/1 predicate. Example fix:\n1. Add top-level probabilistic facts: `0.5::monty_opens(1); 0.5::monty_opens(2).`\n2. Rewrite open_door/1 as:\n   ```prolog\n   open_door(A) :-\n       select_door(Selected),\n       findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ (X = Selected)), Doors),\n       Doors = [A, B],\n       monty_opens(A).\n   ```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__formg:precise.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "84.58s",
+  "process_time": 84.57636404037476,
+  "final_result": "merge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n \nlength(List, Len),\n    Len > 1,\n    split_list(List, Left, Right)\n,\n \nmerge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted)\n.\nsplit_list(List, Left, Right) :-\n length(List, Len),\n Half is Len // 2,\n length(Left, Half),\n append(Left, Right, List).\nmerge([], List, List).\nmerge(List, [], List).\nmerge([H1|T1], [H2|T2], [H1|Merged]) :-\n H1 =< H2,\n merge(T1, [H2|T2], Merged).\nmerge([H1|T1], [H2|T2], [H2|Merged]) :-\n H1 > H2,\n merge([H1|T1], T2, Merged).\n \nappend([], L, L).\nappend([H|T], L2, [H|R]) :-\n append(T, L2, R).\nquery(merge_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally identical to the original code, producing the same correct sorted output for the given input. The only differences are in formatting (whitespace and line breaks), which do not affect the code's execution or logic. Both codes correctly implement the merge sort algorithm in Prolog, including the base cases, splitting, merging, and recursive sorting steps."
+}
