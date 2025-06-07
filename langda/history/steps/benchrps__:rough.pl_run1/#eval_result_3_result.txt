@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "Incorrect aggregation of results in `determine_winner/3` leading to contradictory probabilities (sum > 1.0). Non-list input not handled.",
-  "SuggestedFix": "1. Modify `compute_score/2` to ensure probabilities sum to 1.0. Example fix:\n   ```prolog\n   compute_score([], 0).\n   compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1, normalize(S).\n   compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1, normalize(S).\n   compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1, normalize(S).\n   normalize(S) :- S =< 1.0.\n   ```\n2. Add input validation for lists in `determine_winner/3`.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

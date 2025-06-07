@@ -1,0 +1,3 @@
+```report
+{"HASH": "751033ED", "ErrorSummary": "Syntax error in findall/3 call (unmatched parentheses and incorrect variable usage), missing Doors variable definition", "SuggestedFix": "Correct the findall/3 calls and define Doors variable. The fixed code should be:\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, member(D, [1,2,3]), Doors),\n    findall(D, (member(D, Doors), \\+ prize(D), D \\= Selected), AvailableDoors),\n    length(AvailableDoors, Len),\n    (Len =:= 2 ->\n        random_member(Door, AvailableDoors)\n    ;\n        Len =:= 1,\n        member(Door, AvailableDoors)\n    ).", "Dependencies": [], "NeedRegenerate": true}
+```

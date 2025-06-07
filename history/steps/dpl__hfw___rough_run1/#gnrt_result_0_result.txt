@@ -1,0 +1,5 @@
+Here are the extracted and formatted code blocks corresponding to the `<Langda>` section in the `<origin_code>`:
+
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, +, N2 | Rest], R) :- \n    almost_equal(N1 + N2, Temp),\n    parse([Temp | Rest], R).\n\nparse([N1, -, N2 | Rest], R) :- \n    almost_equal(N1 - N2, Temp),\n    parse([Temp | Rest], R).\n\nparse([N1, *, N2 | Rest], R) :- \n    almost_equal(N1 * N2, Temp),\n    parse([Temp | Rest], R).\n\nparse([N1, /, N2 | Rest], R) :- \n    almost_equal(N1 / N2, Temp),\n    parse([Temp | Rest], R)."}
+```

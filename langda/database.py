@@ -5,13 +5,12 @@ from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from .config import paths
-
 class DBConfig(BaseSettings):
     """
     Database configurations, supports environment variable overrides.
     """
     db_path: Path = Field(
-        default=paths.get_abscase_path("history/langda.db"),
+        default=Path(paths.base_dir) / "database",
         description="SQLite path to the dictionary storage database"
     )
     db_prefix: str = Field(
@@ -37,10 +36,20 @@ class DictDB:
     """
     def __init__(self, db_path="", db_prefix=""):
         if db_path:
-            database_path = db_path / db_prefix
+            base_dir = Path(db_path)
+            prefix = db_prefix if db_prefix else self.config.db_prefix
         else:
             self.config = DBConfig()
-            database_path = Path(self.config.db_path).resolve()
+            base_dir = Path(self.config.db_path)
+            prefix = db_prefix if db_prefix else self.config.db_prefix
+
+        db_filename = f"{prefix}.db"
+        database_path = base_dir / db_filename
+        
+        try:
+            base_dir.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            raise RuntimeError(f"Failed to create database directory {base_dir}: {e}")
 
         self.conn = sqlite3.connect(str(database_path))
         self._create_table()

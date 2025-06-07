@@ -10,10 +10,9 @@ from ..utils import (
     _list_to_dict,
 )
 from .state import BasicState, TaskStatus
-from ..config import paths
 from ..database import DictDB
 from typing import List, Any, Type, Tuple
-
+from ..config import paths
 class LangdaDict(TypedDict):
     HEAD: str
     HASH: str
@@ -44,7 +43,7 @@ class GeneralNodes:
         langda_dicts:List[LangdaDict] = []
 
         raw_prompt_template, lann_dicts, raw_langda_dicts, has_query = integrated_code_parser(state["rule_string"], state["placeholder"])
-        with DictDB(db_path=state["save_dir"], db_prefix=f"history/{state['prefix']}_langda.db") as langdaDB:
+        with DictDB(db_path=state["save_dir"], db_prefix=f"{state['prefix']}") as langdaDB:
             print(langdaDB.get_all_items())
 
             for idx, langda in enumerate(raw_langda_dicts):
@@ -118,12 +117,12 @@ class GeneralNodes:
         result_new = problog_test_tool(final_code,state["prefix"],timeout = 120)
 
         # Don't delete! Database part!
-        with DictDB(db_path=state["save_dir"], db_prefix=f"history/{state['prefix']}_langda.db") as langdaDB:
+        with DictDB(db_path=state["save_dir"], db_prefix=f"{state['prefix']}") as langdaDB:
             langdaDB.sync_with_dict(sync_dict)
             print(langdaDB.get_all_items())
 
         # paths.save_as_file(final_code + f"\n\n*** Result:*** \n{result_new} \n\n***Report:***\nValidity_form:{Validity_form}\Validity_result:{Validity_result}\n{final_report}","final_code",f"steps/_final/{state['prefix']}")
-        paths.save_as_file(final_code + f"\n/* %%% Result %%% \n{result_new}\n*/","final_code",f"snapshots/{state['prefix']}",save_dir=state["save_dir"])
+        paths.save_as_file(final_code + f"\n/* %%% Result %%% \n{result_new}\n*/","final_code",f"{state['prefix']}",save_dir=state["save_dir"])
         # ================== THIS IS ONLY FOR TESTING ================== #
 
         state["endtime"] = time.time()

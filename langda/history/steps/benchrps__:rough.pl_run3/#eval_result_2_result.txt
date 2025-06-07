@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "The `->/2` operator is not recognized in ProbLog, causing a syntax error in the `play/3` predicate.",
-  "SuggestedFix": "Replace the `->/2` operator with ProbLog-compatible conditionals. For example, rewrite the `play/3` predicate as follows:\n\n```prolog\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    (beats(P1, P2), Result = win ;\n     beats(P2, P1), Result = lose ;\n     Result = draw),\n    play(P1Moves, P2Moves, Results).\n```\nThis avoids the `->/2` operator and uses standard Prolog disjunction (`;`) instead.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

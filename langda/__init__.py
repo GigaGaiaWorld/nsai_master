@@ -12,6 +12,8 @@ from .utils.parser_v2 import integrated_code_parser
 from .utils.test_tools import _problog_test
 from .utils.format_tools import _find_all_blocks
 from .utils import invoke_agent
+from uuid import uuid4
+
 __version__ = "6.5"
 __all__ = [
     'langda_solve',
@@ -34,7 +36,13 @@ def langda_solve(agent_type:Literal["simple", "double", "single_dc", "double_dc"
                  rule_string:str, 
                  model_name:str="deepseek-chat", 
 
-                 config:dict=None,
+                 config:dict={
+                    "configurable": {
+                        "thread_id": str(uuid4),       # ID
+                        "checkpoint_ns": "langda",       # namespace
+                        "checkpoint_id": None,           # checkpoint ID
+                    }
+                 },
                  prefix:str="",
                  save_dir:str="",
                  load:bool=False,

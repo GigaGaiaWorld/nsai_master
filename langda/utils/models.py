@@ -5,9 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 import time
 import re
-from .format_tools import (
-    _replace_placeholder, 
-)
+
 from langchain.tools import BaseTool
 from langchain.schema import BaseOutputParser
 from langchain.schema.runnable import Runnable
@@ -22,8 +20,8 @@ from langchain.agents import (
     create_tool_calling_agent,
     AgentExecutor,
 )
-from ..config import paths
-paths.load_my_env()
+
+from dotenv import find_dotenv
 
 def retry_agent(max_attempts):
     # Allow the doublcdc agent retry 2 times
@@ -33,7 +31,7 @@ def retry_agent(max_attempts):
                 try:
                     return func(*args, **kwargs)
                 except Exception as e:
-                    if attempt < max_attempts:
+                    if attempt < max_attempts - 1:
                         time.sleep(1)
                     else:
                         raise e
@@ -50,22 +48,22 @@ class NoOpOutputParser(BaseOutputParser[str]):
 class LLMConfig(BaseModel):
     model: str
     api_key: str
-    api_typ: str
-    api_ver: str
-    temperature: float = 0.21
+    api_typ: str = "Bearer"
+    api_ver: str = "2024-01-01"
+    temperature: float = 0.2
 
 class AgentSettings(BaseSettings):
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=find_dotenv(),
         env_file_encoding="utf-8",
-        env_prefix="gnrt_",
+        # env_prefix="gnrt_",
         env_nested_delimiter="_",
         env_nested_max_split = 1,
         extra="ignore"
     )
     deepseek: LLMConfig # 1. subconfig：DeepSeek
-    openai: LLMConfig   # 2. subconfig：OpenAI # I have no api key... 
+    openai: LLMConfig   # 2. subconfig：OpenAI
     groq: LLMConfig     # 3. subconfig：GroqCloud
 
 class LangdaAgentExecutor(BaseModel):
@@ -85,7 +83,6 @@ class LangdaAgentExecutor(BaseModel):
         "final_test": "zfinaltest_prompt_simple.txt",
     })
 
-
     def get_prompt_path(self, prompt_type: str, agent_type:str) -> Path:
         """
         Get path for prompt files.
@@ -94,9 +91,8 @@ class LangdaAgentExecutor(BaseModel):
         """
         if prompt_type not in self.prompt_format:
             raise FileExistsError(f"Unknown prompt: {prompt_type}.")
-        return paths._get_path("prompts", self.prompt_format[prompt_type].format(agent_type))
+        return Path(__file__).parent.parent / "prompts" / self.prompt_format[prompt_type].format(agent_type)
 
-    
     def load_prompt(self, prompt: Literal["evaluate", "generate", "regenerate", "final_test"], agent_type:str) -> str:
         """
         Load prompt content from file.

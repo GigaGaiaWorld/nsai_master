@@ -55,9 +55,10 @@ class BasicState(TypedDict):
 
 @runtime_checkable
 class LangdaAgentProtocol(Protocol):
+    """The interface protocol of LangdaAgent"""
+    
     def __init__(self, 
                 rule_string: str, 
-                true_string: str, 
                 model_name: str, 
                 addition_input: Optional[Dict[str, Any]] = None) -> None:
         ...

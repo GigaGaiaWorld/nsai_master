@@ -122,18 +122,18 @@ class RequirementsBuilder:
         
         return fest_code_list, regenerate_info
 
-    @staticmethod
-    def build_regenerate_prompt(constructed_code:str, test_analysis:str, raw_prompt_template_constructed:str) -> List[str]:
-        item_lines = []
-        item_lines.append("// Get information from generated code and its reports:")
-        item_lines.append("<Generated_Code>")
-        item_lines.append(constructed_code)
-        item_lines.append(test_analysis)
-        item_lines.append("</Generated_Code>")
-        item_lines.append("\n")
-        item_lines.append("// Regenerate the complete code based on the user's requirements in each <langda> block:")
-        item_lines.append(raw_prompt_template_constructed)
-        return "\n".join(item_lines)
+    # @staticmethod
+    # def build_regenerate_prompt(constructed_code:str, test_analysis:str, raw_prompt_template_constructed:str) -> List[str]:
+    #     item_lines = []
+    #     item_lines.append("// Get information from generated code and its reports:")
+    #     item_lines.append("<Generated_Code>")
+    #     item_lines.append(constructed_code)
+    #     item_lines.append(test_analysis)
+    #     item_lines.append("</Generated_Code>")
+    #     item_lines.append("\n")
+    #     item_lines.append("// Regenerate the complete code based on the user's requirements in each <langda> block:")
+    #     item_lines.append(raw_prompt_template_constructed)
+    #     return "\n".join(item_lines)
 
     # @staticmethod
     # def build_regenerate_info(idx, code_value:str, error_summary:str, suggested_fix:str, langda_reqs_dict:dict) -> str:

@@ -23,13 +23,11 @@ class ProjectPaths(BaseModel):
     """
     
     # Project directory:
-    proj_dir: Path = Field(default_factory=lambda: Path(__file__).parent.parent)
-    base_dir: Path = Field(default_factory=lambda: Path(os.path.dirname(os.path.abspath(__file__))))
+    # base_dir: Path = os.path.dirname(__file__)
+    base_dir: Path = os.getcwd()
 
     # Relative path configurations:
     rel_paths: Dict[str, str] = Field(default={
-        "origin_data": "data/origin",
-        "biased_data": "data/biased",
         "rules": "rules",
         "models": "models",
         "history": "history",
@@ -46,46 +44,9 @@ class ProjectPaths(BaseModel):
         "image": "image.png",
     })
     
-    # Data file names
-    data_files: Dict[str, str] = Field(default={
-        "result_train": "result_train_data.txt",
-        "result_test": "result_test_data.txt",
-        "happen_train": "in_train_data.txt",
-        "happen_test": "in_test_data.txt"
-    })
-    
     class Config:
         """Pydantic configuration."""
         arbitrary_types_allowed = True  # Enable Path objects
-    
-    def load_my_env(self, override: bool = False) -> None:
-        """
-        Load environment variables from .env file. 
-        (.env file should be in the root dir or case dir(The .env in current example folder has a higher priority))
-        Args:
-            override: Whether to override the system environment variables with the variables from the .env file.
-        """
-        dotenv_proj_path = self.proj_dir / ".env"
-        dotenv_case_path = self.base_dir / ".env"
-        if dotenv_case_path.exists():
-            env_path = dotenv_case_path
-        else:
-            if dotenv_proj_path.exists():
-                env_path = dotenv_proj_path
-            else:
-                logging.warning(f"Environment file not found: {dotenv_proj_path}")
-                return
-
-        load_dotenv(dotenv_path=str(env_path), override=override)
-        logging.info(f"Loaded environment from: {env_path}")
-
-    def get_absproj_path(self, rel_path: Union[str, Path]) -> Path:
-        """
-        Get absolute path from the root of the project.
-        Args:
-            rel_path: Relative path
-        """
-        return self.proj_dir / Path(rel_path)
 
     def get_abscase_path(self, rel_path: Union[str, Path]) -> Path:
         """
@@ -95,7 +56,6 @@ class ProjectPaths(BaseModel):
         """
         return self.base_dir / Path(rel_path)
     
-
 
     def _get_path(self, category: str, file_name: Optional[str] = None) -> Path:
         """
@@ -117,20 +77,6 @@ class ProjectPaths(BaseModel):
         # Ensure parent directory exists before returning file path
         path.mkdir(parents=True, exist_ok=True)
         return path / file_name
-
-
-    def load_snapshot(self, name: str) -> str:
-        """
-        Load data content from file.
-        Args:
-            name: file name
-        """
-        path = self.get_abscase_path(f"history/snapshots/{name}_final_code.pl")
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                return f.read()
-        except FileNotFoundError as e:
-            raise
 
     def save_as_file(self, content: Union[list, str, Any], filetype: str, prefix: str = "", mode: str = "w", save_dir=""):
         """
@@ -187,6 +133,5 @@ class ProjectPaths(BaseModel):
             path.mkdir(parents=True, exist_ok=True)
             logging.info(f"Ensured directory exists: {path}")
 
-
 # Create a singleton instance
-paths = ProjectPaths()
+paths = ProjectPaths() 

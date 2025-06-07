@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Missing parse/2 rules for arithmetic operations (addition, subtraction, multiplication, division) and incomplete recursive parsing logic.",
+  "SuggestedFix": "Add the following rules to parse/2:\n1. parse([N1, '+', N2 | T], R) :- R_temp is N1 + N2, parse([R_temp | T], R).\n2. parse([N1, '-', N2 | T], R) :- R_temp is N1 - N2, parse([R_temp | T], R).\n3. parse([N1, '*', N2 | T], R) :- R_temp is N1 * N2, parse([R_temp | T], R).\n4. parse([N1, '/', N2 | T], R) :- R_temp is N1 / N2, parse([R_temp | T], R).\nEnsure these rules are added under separate parse/2 predicates as required.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

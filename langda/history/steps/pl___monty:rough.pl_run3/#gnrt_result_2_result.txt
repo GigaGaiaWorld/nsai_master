@@ -1,8 +1,0 @@
-Here are the extracted code blocks from the <generated_code> that correspond to the <langda> blocks in <origin_code>, formatted in the requested JSON format:
-
-```problog
-{"HASH": "751033ED","Code": "open_door(A) :-    select_door(Selected),    findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ (X = Selected)), Doors),    Doors = [A, B],    0.5::open_door(A),    0.5::open_door(B)."}
-```
-```problog
-{"HASH": "751033ED","Code": "open_door(A) :-    select_door(Selected),    findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ (X = Selected)), Doors),    Doors = [A]."}
-```

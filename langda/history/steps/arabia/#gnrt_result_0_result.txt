@@ -1,7 +1,0 @@
-```problog
-{"HASH": "852FE6E2","Code": "number([H|T],Acc,Result) :- arabic_digit(H,Nr), Acc2 is Nr+10*Acc, number(T,Acc2,Result)."}
-```
-
-```problog
-{"HASH": "20226698","Code": "anomaly_detection(Digit1, Digit2, 1) :- number(Digit1, Temp), number(Digit2, Flow), Temp >= 60, Flow =< 20."}
-```

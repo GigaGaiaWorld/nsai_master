@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DA5E8955",
-  "ErrorSummary": "Incorrect operator precedence handling in parse/2 predicate, leading to wrong arithmetic results",
-  "SuggestedFix": "Redefine parse/2 to handle operator precedence. For example, split into separate predicates for additive and multiplicative operations, and ensure parentheses are handled. Example fix:\nparse([N1, *, N2 | T], R) :- parse([N1 * N2 | T], R).\nparse([N1, /, N2 | T], R) :- parse([N1 / N2 | T], R).\nparse([N1, +, N2 | T], R) :- parse([N1 + N2 | T], R).\nparse([N1, -, N2 | T], R) :- parse([N1 - N2 | T], R).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

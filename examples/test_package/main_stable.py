@@ -52,7 +52,9 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
         # This is for skipping:
         if idx < 40:
             continue
-        file_basename = prompt_file.name
+        file_basename = (prompt_file.name).split(".")[0]
+        part1, part2 = file_basename.split(":")
+        file_basename = f"{part1}_{part2}"
         file_results = []  # Store results for this file only
         
         # Find corresponding answer file

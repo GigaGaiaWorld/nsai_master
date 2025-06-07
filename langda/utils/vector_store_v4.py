@@ -1,6 +1,6 @@
 import json
 from typing import List
-from ..config import paths
+from pathlib import Path
 from langchain.schema import Document
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OllamaEmbeddings
@@ -13,7 +13,7 @@ class LangdaVectorStore:
     Creates and manages a FAISS vector store from JSON data
     """
     def __init__(self):
-        self.json_dir = paths.get_abscase_path("utils")
+        self.json_dir = Path(__file__).parent
         self.vs_dir = self.json_dir / "vector_store"
 
         self.vs_dir.mkdir(parents=True, exist_ok=True)
