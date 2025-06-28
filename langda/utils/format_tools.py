@@ -285,7 +285,7 @@ def _find_all_blocks(type: Literal["report", "code", "final"], text: str) -> Lis
                 print(f"Parsing failed: {e}")
                 print(f"Original content: {repr(match_str)}")
                 continue
-    
+
     return blocks
 
 def _deep2normal(problog_code: str, user_query:str) -> str:

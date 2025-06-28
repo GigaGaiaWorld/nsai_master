@@ -6,7 +6,7 @@ from ..utils import (
     invoke_agent,
     _parse_simple_dictonary,
     problog_test_tool,
-    _deep2normal
+    _deep2normal,
 )
 from .state import BasicState, TaskStatus
 from ..config import paths
@@ -20,15 +20,14 @@ class EvaluateNodes:
     """
 
     @staticmethod
-    def test_node(state:BasicState):
+    def evaluate_node(state:BasicState):
         print(f"### =========== ### current round: {state['iter_count']} ### =========== ###")
-        print("### =========== processing test_node =========== ###")
+        print("### =========== processing evaluate_node =========== ###")
         state["status"] = TaskStatus.TEST
         test_result:str = ""
-        regenerate_info:List[str] = []
         constructed_code = _replace_placeholder(state["prompt_template"],state["temp_full_codes"])
         raw_prompt_template = _replace_placeholder(state["prompt_template"], state["fest_codes"], state["placeholder"])
-
+        print(constructed_code)
         # problog_test_tool:
         if state["has_query"]: # need to do a test first
             test_result = problog_test_tool(constructed_code,state["prefix"],timeout=120)
@@ -45,9 +44,8 @@ class EvaluateNodes:
 
         input={
             "prompt_template": test_prompt_template,
-            "test_analysis":[],
+            "test_analysis":[], #### Changed for test!!!
         }
-
         evaluated_result, formatted_prompt, evaluated_middle_result = invoke_agent(
             agent_type=state["agent_type"]["evaluate"], 
             model_name=state["model_name"], 
@@ -64,7 +62,7 @@ class EvaluateNodes:
         origin_fest_codes = state["fest_codes"]
         evaluated_codes = _find_all_blocks("report",evaluated_result) # [{report:"",need_regenerate:"True"},...]
 
-        new_fest_codes, regenerate_info = RequirementsBuilder.build_all_regenerate_info(
+        new_fest_codes, langda_reqs = RequirementsBuilder.build_all_regenerate_info(
             state["generated_codes"],
             evaluated_codes, 
             state["langda_dicts"],
@@ -76,8 +74,8 @@ class EvaluateNodes:
             if not value:
                 key_new, value_new = _parse_simple_dictonary(new_fest_codes[iter])
                 if not key == key_new:
-                    logger.warning(f"test_node: Key '{key}' doesn't match in {new_fest_codes[iter]}, set as none")
-                    raise ValueError
+                    logger.warning(f"evaluate_node: Key '{key}' doesn't match in {new_fest_codes[iter]}, set as none")
+                    # raise ValueError
                     origin_fest_codes[i][key] = None
                 else:
                     origin_fest_codes[i][key] = value_new
@@ -89,14 +87,14 @@ class EvaluateNodes:
         if evaluated_codes:
             return {
                 "fest_codes":origin_fest_codes,
-                "regenerate_info":regenerate_info,
+                "langda_reqs":langda_reqs,
                 "test_analysis":test_analysis,
             }
         else:
-            logger.warning(f"test_node: Generated report no found...")
+            logger.warning(f"evaluate_node: Generated report no found...")
             return {
                 "fest_codes":origin_fest_codes,
-                "regenerate_info":regenerate_info,
+                "langda_reqs":langda_reqs,
             }
 
     @staticmethod

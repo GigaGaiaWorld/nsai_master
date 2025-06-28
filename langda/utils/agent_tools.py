@@ -76,7 +76,7 @@ class RetrieverTool(BaseTool):
         print("Running retriever tool...")
         try:
             vector_store = LangdaVectorStore()
-            return vector_store.similarity_search_with_scores(query, k=3)
+            return vector_store.similarity_search_with_scores(query, k=1)
         except Exception as e:
             return {"error": f"Source not found: {e}"}
 
@@ -130,5 +130,5 @@ TOOL_REGISTRY:Dict[str, BaseTool] = {
     "search_tool": CustomSearchTool,
     "retriever_tool": RetrieverTool,
     # "problog_test_tool": ProblogTestTool,
-    "finish_tool": FinishTool,
+    # "finish_tool": FinishTool,
 }

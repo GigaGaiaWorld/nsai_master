@@ -74,10 +74,10 @@ class GeneralNodes:
                         
                     langda["LLM"] = replaced_content
     
-                if langda["FUP"] == "True" or langda["FUP"] == "true" or langda["FUP"] == "T" or not state["load"]:
+                if langda["FUP"].lower() == "true" and not state["load"]:
                     fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)
-                elif langda["FUP"] == "False" or langda["FUP"] == "false" or langda["FUP"] == "F":
+                elif langda["FUP"].lower() == "false":
                     code = langdaDB.get_item(langda["HASH"])
                     fest_codes.append({langda["HASH"]:code})
                     if not code: 

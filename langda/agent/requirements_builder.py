@@ -22,7 +22,7 @@ class RequirementsBuilder:
     
     LANGDATERMS = [
         ("HASH", "<HASH> Hash tag of code: {} </HASH>"),
-        # ("LOT", "Tools that you could use"),
+        ("LOT", "<Tool>Tool that you should use for this task: {} </Tool>"),
         # ("NET", "Network Requirements"),
         ("LLM", "<Requirements>{} </Requirements>"),
         ] # FUP term is not used for prompting, so it doesn't show here
@@ -56,7 +56,7 @@ class RequirementsBuilder:
         report_info:List[str] = []
         if test_result:
             test_result_info = "<Result>\n Here are the testing result of code:\n {}\n</Result>".format(test_result)
-
+ 
         for idx, code_item in enumerate(code_list, start=1):
             key, value = _parse_simple_dictonary(code_item)
             # if not(key == langda_dict["HASH"]):

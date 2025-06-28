@@ -225,10 +225,15 @@ class Parser(object):
 
                     ### 4.Continuely processing -------------------------------- #
                     elif in_multiline_comment:
-                        # gather multiline comments
-                        if idc == 0:  # whole line
-                            current_comment += "\n" + line
-                            break  # jump!
+                        if idc == 0:  
+                            end_pos = line.find('*/', idc)
+                            if end_pos != -1:
+
+                                idc += 1
+                                continue
+                            else:
+                                current_comment += "\n" + line
+                                break
                         idc += 1
                         continue
 
@@ -268,10 +273,12 @@ class Parser(object):
 
             # -----%---- # new line # -----%---- #
             idl += 1
-            # dcwc_save = []
-            # for code, comment, is_langda in dense_code_with_comments:
-            #         dcwc_save.append(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
-            # print(dcwc_save)
+
+        # dcwc_save = []
+        # for code, comment, is_langda in dense_code_with_comments:
+        #         dcwc_save.append(f"LANGDA:{is_langda}||CODE:{code}|      COMMENT: {comment}")
+        # print("\n".join(dcwc_save))
+
         return dense_code_with_comments, has_query # [(code,comment,is_langda),...]
 
 
@@ -475,7 +482,7 @@ class Parser(object):
                         ["LOT", "NET", "LLM", "FUP"],
                         [None,None,None,"True"])
                     langda_dict_content["HEAD"] = predicate_head
-                
+
                     langda_dict_content_for_hash = self.clean_result_fields(
                         langda_dict_content, 
                         ["HEAD", "LOT", "NET", "LLM"])

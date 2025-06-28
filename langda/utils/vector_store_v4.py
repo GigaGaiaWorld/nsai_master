@@ -18,7 +18,7 @@ class LangdaVectorStore:
 
         self.vs_dir.mkdir(parents=True, exist_ok=True)
 
-        self.index_name = "problog_syntax_docs"
+        self.index_name = "problog_docs"
         self.json_file_path = self.json_dir / f"{self.index_name}.json"
 
         self.vs_index_name = self.index_name

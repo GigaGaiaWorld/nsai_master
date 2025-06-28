@@ -78,7 +78,8 @@ def get_tools(tool_list: List[str], test_analysis:List[str]) -> List[BaseTool]:
             description="Get a historical analysis report to help you regenerate your code. This tool receives a single string 'learn from history' as input.",
         )
         tools.append(get_report_tool)
-
+    if not tool_list:
+        return tools
     for tool_name in tool_list:
         entry = TOOL_REGISTRY.get(tool_name)
         if entry is None:
@@ -90,5 +91,4 @@ def get_tools(tool_list: List[str], test_analysis:List[str]) -> List[BaseTool]:
             tools.append(entry)
         else:
             raise ModuleNotFoundError(f"Warning: Tool '{tool_name}' not found in registry")
-
     return tools

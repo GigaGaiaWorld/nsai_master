@@ -65,7 +65,7 @@ class LangdaAgentBase:
         workflow.add_node("init_node", GeneralNodes.init_node)
         workflow.add_node("generate_node", GenerateNodes.generate_node)
         workflow.add_node("summary_node", GeneralNodes.summary_node)
-        workflow.add_node("test_node", EvaluateNodes.test_node)
+        workflow.add_node("evaluate_node", EvaluateNodes.evaluate_node)
         # Add conditional edges from init_node
         workflow.add_conditional_edges("init_node", GeneralNodes._decide_next_init, 
             {
@@ -81,9 +81,9 @@ class LangdaAgentBase:
             workflow.add_conditional_edges("generate_node", GenerateNodes._decide_next_gnrt, 
                 {
                     "generate_node": "generate_node",
-                    "test_node": "test_node"
+                    "evaluate_node": "evaluate_node"
                 })
-            workflow.add_conditional_edges("test_node", EvaluateNodes._decide_next_eval, 
+            workflow.add_conditional_edges("evaluate_node", EvaluateNodes._decide_next_eval, 
                 {
                     "generate_node": "generate_node",
                     "summary_node": "summary_node"

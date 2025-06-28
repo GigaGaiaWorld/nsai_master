@@ -24,14 +24,14 @@ from langchain.agents import (
 from dotenv import find_dotenv
 
 def retry_agent(max_attempts):
-    # Allow the doublcdc agent retry 2 times
+    # Allow the agent retry 2 times
     def decorator(func):
         def wrapper(*args, **kwargs):
             for attempt in range(max_attempts):
                 try:
                     return func(*args, **kwargs)
                 except Exception as e:
-                    if attempt < max_attempts - 1:
+                    if attempt < max_attempts:
                         time.sleep(1)
                     else:
                         raise e
@@ -132,6 +132,38 @@ class LangdaAgentExecutor(BaseModel):
         raise TypeError(f"unsupported model: {self.model_name}")
 
 
+    # ========================= SIMPLE AGRNT ========================= #
+    @retry_agent(max_attempts=3)
+    def invoke_simple_agent(self, prompt_type:str, input:Dict[str,str], config:Dict[str,str], ext_prompt=False) -> str:
+        """
+        invoke a regular agent
+        args:
+            prompt_type: One of ["evaluate", "generate", "regenerate","final_test"], if ext_prompt = True, you should fill your own prompt here
+            input: dictonary to fill all the placeholders in prompt
+            config: configs of agent for example: {"configurable": {"thread_id": "2"}}
+            ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
+        """
+        if not ext_prompt:
+            raw_prompt_template = self.load_prompt(prompt_type, "simple")
+        else:
+            raw_prompt_template = prompt_type
+        chatprompt_template = ChatPromptTemplate.from_messages([
+            ("system", "You are an expert programmer proficient in Problog and DeepProbLog. You could complete the task with your knowledge."),
+            ("human", raw_prompt_template)
+        ])
+        if not(prompt_type == "final_test"):
+            simple_input = {"input":input["prompt_template"]}
+        else:
+            simple_input = input
+
+        formatted_prompt = chatprompt_template.format_prompt(**simple_input).to_string()
+
+        new_llm = self.get_model()
+        chain:Runnable = chatprompt_template | new_llm | StrOutputParser()
+        result = chain.invoke(input=simple_input, config=config)
+        return result, formatted_prompt, ""
+    
+
     # ========================= REACT AGRNT ========================= #
     def get_react_executor(self, prompt_type:str):
         """
@@ -157,6 +189,7 @@ class LangdaAgentExecutor(BaseModel):
             )
         return executor
 
+    @retry_agent(max_attempts=3)
     def invoke_react_agent(self, prompt_type:str, input:Dict[str,str], config:Dict[str,str]) -> dict:
         """
         invoke a react agent
@@ -166,7 +199,6 @@ class LangdaAgentExecutor(BaseModel):
             config: configs of agent for example: {"configurable": {"thread_id": "2"}}
         """
         react_input = {
-            # "input": self.build_doublechain_regenerate_prompt(input["constructed_code"],input["test_analysis"],input["prompt_template"]),
             "input": input["prompt_template"],
             "agent_scratchpad": ""
         }
@@ -181,48 +213,10 @@ class LangdaAgentExecutor(BaseModel):
         return result.get("output"), "", ""
 
 
-    # ========================= SIMPLE AGRNT ========================= #
-    def invoke_simple_agent(self, prompt_type:str, input:Dict[str,str], config:Dict[str,str], ext_prompt=False) -> str:
-        """
-        invoke a regular agent
-        args:
-            prompt_type: One of ["evaluate", "generate", "regenerate","final_test"], if ext_prompt = True, you should fill your own prompt here
-            input: dictonary to fill all the placeholders in prompt
-            config: configs of agent for example: {"configurable": {"thread_id": "2"}}
-            ext_prompt: when using other prompt --> True, in this case, prompt_type = prompt_string
-        """
-        if not ext_prompt:
-            raw_prompt_template = self.load_prompt(prompt_type, "simple")
-        else:
-            raw_prompt_template = prompt_type
-        chatprompt_template = ChatPromptTemplate.from_messages([
-            ("system", "You are a coding assistant."),
-            ("human", raw_prompt_template)
-        ])
-        if not(prompt_type == "final_test"):
-            simple_input = {"input":input["prompt_template"]}
-        else:
-            simple_input = input
-
-        formatted_prompt = chatprompt_template.format_prompt(**simple_input).to_string()
-
-        new_llm = self.get_model()        
-        chain:Runnable = chatprompt_template | new_llm | StrOutputParser()
-        result = chain.invoke(input=simple_input, config=config)
-        return result, formatted_prompt, ""
-    
     # ========================= DOUBLECHAIN AGRNT ========================= #
     def split_doublechain_prompt(self,prompt_template:str):
         lines = prompt_template.split("*** split ***")
         return lines[0], lines[1]
-    
-    def build_doublechain_regenerate_prompt(self,constructed_code:str,test_analysis:str,prompt_template:str) -> str:
-        item_lines = []
-        item_lines.append("<Code_with_Issue>")
-        item_lines.append(constructed_code)
-        item_lines.append("</Code_with_Issue>")
-        item_lines.append(test_analysis) # <Result>...<Result><Analysis>...<Analysis>
-        return "\n".join(item_lines)
     
     @retry_agent(max_attempts=3)
     def invoke_doublechain_agent(self, prompt_type: str, input: Dict[str, str], config: Dict[str, str], ext_prompt=False) -> Tuple[str, str]:
@@ -246,18 +240,34 @@ class LangdaAgentExecutor(BaseModel):
 
         new_llm = self.get_model()
 
+
         # *** First chain: Generate the Problog code with tools *** 
+
+        # TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK
         first_chain_prompt_template, second_chain_prompt_template = self.split_doublechain_prompt(raw_prompt_template)
-        if prompt_type == "generate" or prompt_type == "regenerate":
-            system_prompt = ("system", "You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.")
-        elif  prompt_type == "evaluate":
-            system_prompt = ("system", "You are a coding assistant. You should use the available tools to complete the task.")
+        if prompt_type == "generate":
+            system_prompt = ("system", "You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task.")
+        elif prompt_type == "evaluate":
+            system_prompt = ("system", "You are an expert code evaluator specialized in ProbLog and DeepProbLog. You could use the available tools to complete the task.")
+        elif prompt_type == "regenerate":
+            system_prompt = ("system", "You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task. You should always use 'get_report_tool' first to gain more information.")
+
+        # *** Test double chain without tools: *** #
+        # first_chain_prompt_template, second_chain_prompt_template = self.split_doublechain_prompt(raw_prompt_template)
+        # if prompt_type == "generate":
+        #     system_prompt = ("system", "You are an expert programmer proficient in Problog and DeepProbLog. You should complete the task.")
+        # elif prompt_type == "evaluate":
+        #     system_prompt = ("system", "You are an expert code evaluator specialized in ProbLog and DeepProbLog. You should complete the task.")
+        # elif prompt_type == "regenerate":
+        #     system_prompt = ("system", "You are an expert programmer proficient in Problog and DeepProbLog. You should always use 'get_report_tool' first to gain more information.")
+
+        # TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK
 
         first_input = {
             "input": input["prompt_template"],
             "agent_scratchpad": ""
         }
-        
+
         prompt_msgs = [
             system_prompt,
             ("human", first_chain_prompt_template),
@@ -267,12 +277,22 @@ class LangdaAgentExecutor(BaseModel):
         first_formatted_prompt = first_chain_prompt.format_prompt(**first_input).to_string()
         # Create the model for generation
 
-        agent = create_tool_calling_agent(new_llm, self.tools, first_chain_prompt)
-        agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
-        # Execute the first chain
+        # TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK
+        # *** CASE1: Test double chain without tools: *** # 
         print("Executing first chain: Code generation with tools...")
-        first_result_raw = agent_executor.invoke(input=first_input, config=config)
-        first_result = first_result_raw.get("output", "")
+        if prompt_type == "evaluate":
+            format_chain_first = first_chain_prompt | new_llm | StrOutputParser()
+            first_result = format_chain_first.invoke(input=first_input, config=config)
+        elif prompt_type == "generate" or "regenerate":
+            agent = create_tool_calling_agent(new_llm, self.tools, first_chain_prompt)
+            agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
+            # Execute the first chain
+            first_result_raw = agent_executor.invoke(input=first_input, config=config)
+            first_result = first_result_raw.get("output", "")
+        # *** CASE2: Test double chain with tools: *** #
+        # agent = create_tool_calling_agent(new_llm, self.tools, first_chain_prompt)
+        # agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
+        # TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK ====== TEST BLOCK
 
         # *** Second chain: Format the code output correctly ***
         extracted_result = ""
@@ -295,3 +315,5 @@ class LangdaAgentExecutor(BaseModel):
         second_result = format_chain.invoke(input=second_input, config=config)
 
         return second_result, first_formatted_prompt + "\n\n**split**\n\n" + second_formatted_prompt, extracted_result
+
+
