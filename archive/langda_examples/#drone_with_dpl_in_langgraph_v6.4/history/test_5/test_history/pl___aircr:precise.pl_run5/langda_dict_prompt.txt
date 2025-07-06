@@ -1,0 +1,10 @@
+[
+{
+"LOT": null,
+"NET": null,
+"LLM": "At time Time, the aircraft flaps attempt to move to the Pos position:  1. Get the actual flap position Old of the previous step  2. If Old is already the target position, no more attempts to move  3. Randomly select an actuator A (a or b)  4. Find the thrust/strength AS of this actuator (a:2, b:1)  5. Get the target position GP (GP = 4 in this example)  6. Calculate the ideal movement AE:  % sign(GP-Old) gives –1/0/+1 depending on whether the target is on the left or right,  % and then multiply by AS to get the amplitude of the left or right movement  7. Get a random wind disturbance WE (possibly positive or negative) according to the wind model  8. Subtract the ideal movement AE The wind disturbance WE is added to Old to get the trial position Pos.",
+"FUP": "True",
+"HEAD": "attempted_flap_position(Time,Pos) ",
+"HASH": "5BCD04E8"
+}
+]

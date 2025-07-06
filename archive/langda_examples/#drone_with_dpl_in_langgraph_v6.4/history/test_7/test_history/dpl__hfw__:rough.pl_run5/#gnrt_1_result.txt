@@ -1,0 +1,7 @@
+Based on the given origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> section in the origin_code. The only code block that was completed is the `parse/2` predicate, which now includes a division by zero check.
+
+Here's the formatted JSON output:
+
+```problog
+{"HASH": "190031BC","Code": "parse([N], N).\nparse([N1, '+', N2 | T], Result) :-\n    parse([N2 | T], Temp),\n    Result is N1 + Temp.\nparse([N1, '-', N2 | T], Result) :-\n    parse([N2 | T], Temp),\n    Result is N1 - Temp.\nparse([N1, '*', N2 | T], Result) :-\n    parse([N2 | T], Temp),\n    Result is N1 * Temp.\nparse([N1, '/', N2 | T], Result) :-\n    parse([N2 | T], Temp),\n    Temp \\= 0,\n    Result is N1 / Temp."}
+```

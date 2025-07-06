@@ -1,0 +1,18 @@
+```report
+{"HASH": "F91C6038","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "A8860BE4","ErrorSummary": "Incorrect carry propagation logic; does not account for digit placement in the addition","SuggestedFix": "Replace with direct arithmetic check: `AB is 10*A + B, BCD is 100*B + 10*C + D, CDE is 100*C + 10*D + E, AB + BCD =:= CDE`","Dependencies": ["702CD838", "57FD427B"],"NeedRegenerate": true}
+```
+```report
+{"HASH": "702CD838","ErrorSummary": "Incorrect carry propagation logic; does not account for digit placement in the addition","SuggestedFix": "Replace with direct arithmetic check (see above)","Dependencies": ["A8860BE4", "57FD427B"],"NeedRegenerate": true}
+```
+```report
+{"HASH": "57FD427B","ErrorSummary": "Incorrect carry propagation logic; does not account for digit placement in the addition","SuggestedFix": "Replace with direct arithmetic check (see above)","Dependencies": ["A8860BE4", "702CD838"],"NeedRegenerate": true}
+```
+```report
+{"HASH": "0DE8749E","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "GLOBAL","ErrorSummary": "Multiple invalid solutions due to incorrect arithmetic modeling","SuggestedFix": "Replace all `sumdigit` calls with direct arithmetic checks and add `AB + BCD =:= CDE` constraint","Dependencies": ["A8860BE4", "702CD838", "57FD427B"],"NeedRegenerate": true}
+```

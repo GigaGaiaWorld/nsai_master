@@ -1,0 +1,26 @@
+[
+{
+"LOT": null,
+"NET": null,
+"LLM": "Based on the given Cards (four cards) and House (bottom card), distribute the first two cards to the player (own), and the last two cards to the opponent (opponent), calculate and return the respective optimal hand types H1 and H2.",
+"FUP": "True",
+"HEAD": "game(Cards,House,H1,H2) ",
+"HASH": "D38F9F68"
+},
+{
+"LOT": null,
+"NET": null,
+"LLM": "Similar to the above, but only returns the result Outcome ∈ {win, loss, draw}, Determine the winner by comparing the rank values ​​of the player and opponent's best cards.",
+"FUP": "True",
+"HEAD": "game(Cards,House,Outcome) ",
+"HASH": "EF02D81B"
+},
+{
+"LOT": null,
+"NET": null,
+"LLM": "Without specifying House, a hole card is randomly drawn from the probability distribution house_rank/1, and then the above game/3 is called to return the final result.",
+"FUP": "True",
+"HEAD": "game(Cards,Outcome) ",
+"HASH": "C53A4763"
+}
+]

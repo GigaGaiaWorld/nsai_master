@@ -1,0 +1,11 @@
+{
+  "file_name": "benchcalcu:partial.pl",
+  "run_index": 3,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 518,
+  "iter_count": 5,
+  "process_time": 518.2755451202393,
+  "final_result": "Error evaluating Problog model:\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 887, in _builtin_is\n    check_mode((a, b), [\"*g\"], functor=\"is\", **k)\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+X2+0), expected: (any, ground) at 30:4.",
+  "final_report": "The generated code has several issues. First, it introduces an unnecessary variable C4 and incorrectly reuses sumdigit predicates, leading to redundancy. Second, the final sumdigit call with arguments (C4, 0, 0, 0, _) is invalid and causes a runtime error due to incorrect argument types. The original code correctly solves the cryptarithmetic problem, while the generated code fails to execute properly."
+}

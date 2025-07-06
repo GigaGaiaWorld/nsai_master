@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "5E40E418",
+  "ErrorSummary": "Missing implementations for stack operations (pop, dup, swap, over, rot). Only 'push' is implemented.",
+  "SuggestedFix": "Add the following predicates to the code block:\n1. stack_op(pop, [X|Rest], Rest).\n2. stack_op(dup, [X|Rest], [X,X|Rest]).\n3. stack_op(swap, [X,Y|Rest], [Y,X|Rest]).\n4. stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\n5. stack_op(rot, [X,Y,Z|Rest], [Z,X,Y|Rest]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,55 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Current_Code> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+<Langda> Information of 1st Placeholder:
+<Current_Code>stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Top3, Rest),
+    sort(0, @=<, Top3, SortedTop3),
+    append(SortedTop3, Rest, SortedStack).
+
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).</Current_Code>
+<Report>{'6931D64E': {'HASH': '6931D64E', 'Report': "The code defines a custom stack operation 'sort' that sorts the top 3 elements of a stack in ascending order. The implementation uses two predicates: 'stack_op' and 'get_top_n'. The 'get_top_n' predicate correctly extracts the top N elements from the stack and separates them from the rest. The 'stack_op' predicate then sorts these top 3 elements and appends them back to the rest of the stack. However, the error message indicates a priority clash in the Problog parser, likely due to the use of the '@=<' operator in the 'sort' predicate. This suggests that the syntax for sorting may need adjustment to comply with Problog's operator precedence rules.", 'Need_regenerate': 'true'}}</Report>
+<HASH> Hash tag of code: 6931D64E </HASH>
+<LLM> Requirements of Rules: A custom stack operation: sort, which sorts the three elements at the top of the stack in ascending order and then puts them back to the original stack. </LLM></Langda>
+.
+stack_op(pop, [_|Stack], Stack).
+stack_op(dup, [X|Stack], [X,X|Stack]).
+stack_op(swap, [X,Y|Stack], [Y,X|Stack]).
+stack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).
+stack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).
+stack_op(sort, Stack, SortedStack) :-
+ 
+{{LANGDA}}
+.
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+</Code>
+<Final_Answer>
+Please regenerate the block content that needs to be regenerated according to the analysis report in JSON form, for each code block using a single problog block of the following form:
+
+For the first Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```problog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+</Final_Answer>

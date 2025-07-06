@@ -1,0 +1,7 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the original code:
+
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, Stack, SortedStack) :-\n    (   length(Stack, L), L >= 3\n    ->  get_top_n(Stack, 3, [A,B,C], Rest),\n        sort([A,B,C], SortedTop),\n        append(SortedTop, Rest, SortedStack)\n    ;   SortedStack = Stack\n    )."}
+```
+
+This is the only code block that was marked with <langda> in the origin_code, and it's the implementation of the `sort` operation for the stack. The JSON includes the hash provided in the original report and the complete code snippet that implements the sorting functionality.

@@ -1,0 +1,7 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Case 1: Random door opening (50% probability)\n    (   Selected \\= PrizeDoor, PrizeDoor \\= Door ->\n        0.5::open_door(Door) ; 0.5::open_door(OtherDoor)\n    % Case 2: Deterministic door opening (host must open the empty door)\n    ;   Selected \\= PrizeDoor, PrizeDoor = Door ->\n        true\n    )."}
+```
+
+Note: There was only one <langda> block in the origin_code, so only one code block needed to be extracted. The HASH value is preserved from the original <langda> block to maintain correspondence.

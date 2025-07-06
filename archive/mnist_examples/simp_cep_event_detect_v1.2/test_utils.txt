@@ -1,0 +1,12 @@
+
+===========================1741118491.276236===========================
+labels_dict:{'happensAt': {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}, 'detectEvent': {'sequence=0': 0, 'sequence=1': 1, 'sequence=2': 2, 'sequence=3': 3}, 'event': {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4}}
+get_target:<function get_target_initiated_at at 0x16832c820>, query_trans:<function query_transformation_initiated_at at 0x16832c8b0>, get_result:<function get_result_initiated_at at 0x16832c940>
+target:sequence=2, query:detectEvent(sequence=Y,336), output:{detectEvent(sequence=2,336): (0.9999998807907104, {('mnist_net2', [326]): array([0., 0.]), ('mnist_net1', [326]): array([0., 1.])}), detectEvent(sequence=3,336): (0.9999862909317017, {('mnist_net2', [326]): array([0., 1.]), ('mnist_net1', [326]): array([0., 0.])})},
+ result:sequence=2, labels:{'sequence=0': 0, 'sequence=1': 1, 'sequence=2': 2, 'sequence=3': 3}, 
+confusion:
+[[70  0  0  0]
+ [ 0  0 99  0]
+ [ 0  0 86  0]
+ [11  0 70  0]]
+F1 detectEvent: [0.92715232        nan 0.50728863        nan]Accuracy detectEvent: 0.4658753709198813

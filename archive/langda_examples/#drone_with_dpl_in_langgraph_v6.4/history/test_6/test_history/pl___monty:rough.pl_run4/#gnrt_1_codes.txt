@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    (   Prize = Selected ->\n        % Randomly open one of the remaining two doors (neither selected nor prize)\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), Doors),\n        length(Doors, Len),\n        (   Len = 2 ->\n            % 50% probability for each door\n            0.5::door_choice(1) ; 0.5::door_choice(2),\n            nth1(Choice, Doors, Door),\n            door_choice(Choice)\n        ;   % Fallback if unexpected length\n            fail\n        )\n    ;   % Deterministically open the empty door\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), [Door])\n    )."
+}
+]

@@ -1,0 +1,23 @@
+[
+{
+"3F277A35": "result(X, X, draw) :- move(X), move(X)."
+},
+{
+"D91BB7A0": "result(X, Y, win) :- beats(X, Y)."
+},
+{
+"0940BB04": "result(X, Y, lose) :- beats(Y, X)."
+},
+{
+"583E41B6": "compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1."
+},
+{
+"D324979D": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."
+},
+{
+"FD850DEC": "compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1."
+},
+{
+"3FEB17D7": "determine_winner(P1Moves,P2Moves,Winner) :- play(P1Moves, P2Moves, Results),"
+}
+]

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Undefined predicate 'heads/1' causing execution failure. The predicate is used to check coin flip outcomes but is not defined.",
+  "SuggestedFix": "Add a probabilistic fact to define 'heads/1'. For example: '0.8::heads(_).' to represent an 80% chance of landing heads for any coin. Alternatively, define it explicitly if deterministic behavior is desired.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

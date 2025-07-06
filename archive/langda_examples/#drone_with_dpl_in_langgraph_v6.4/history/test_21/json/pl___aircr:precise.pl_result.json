@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___aircr:precise.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 36,
+  "iter_count": 1,
+  "process_time": 35.80053687095642,
+  "final_result": "% Problog Inference Result：\ngoal_reached(1) = 0.0000\ngoal_reached(2) = 0.0000\ngoal_reached(3) = 0.0000\ngoal_reached(4) = 0.0000\ngoal_reached(5) = 0.0000\noverrun_exception(1) = 0.0000\noverrun_exception(2) = 0.0000\noverrun_exception(3) = 0.0000\noverrun_exception(4) = 0.0000\noverrun_exception(5) = 0.0000",
+  "final_report": "The generated code is not correct. It contains a duplicated and malformed clause for 'attempted_flap_position' which breaks the logic. The original code checks if the previous position was not the goal using '\\+ goal(Old)', while the generated code incorrectly uses '\\+ goal_reached(Prev)'. This change in logic causes the system to never reach the goal and never trigger overrun exceptions, as shown by the all-zero results."
+}

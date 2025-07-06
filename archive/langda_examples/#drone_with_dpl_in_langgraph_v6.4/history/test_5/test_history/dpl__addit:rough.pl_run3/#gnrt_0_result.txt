@@ -1,0 +1,9 @@
+Based on the origin_code and generated_code provided, I'll extract and format the code block that corresponds to the <langda> placeholder in the origin_code.
+
+The <langda> block requested a definition of the `number` predicate to convert a list of image IDs to their corresponding integer values. Here's the extracted and formatted code:
+
+```problog
+{"HASH": "06576BEB", "Code": "number([], 0).\nnumber([H|T], N) :-\n    digit(H, D),\n    number(T, N1),\n    N is N1 * 10 + D."}
+```
+
+This is the only code block that was missing from the origin_code (marked by <langda>) and was completed in the generated_code. The other parts of the code were already present in the origin_code.

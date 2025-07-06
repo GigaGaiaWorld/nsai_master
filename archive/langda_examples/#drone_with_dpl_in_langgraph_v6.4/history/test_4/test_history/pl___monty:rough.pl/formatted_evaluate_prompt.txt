@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for \'\'->\'/2\' at 9:26.</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    (   Prize = Selected ->\n        % Randomly open one of the two empty doors\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ prize(D)), Doors),\n        random_member(Door, Doors)\n    ;   % Host must open the empty door\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ (D = Prize)), [Door])\n    ).</Current_Code>\n<HASH> Hash tag of code: 592D75CA </HASH>\n<LLM> Requirements of Rules: Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

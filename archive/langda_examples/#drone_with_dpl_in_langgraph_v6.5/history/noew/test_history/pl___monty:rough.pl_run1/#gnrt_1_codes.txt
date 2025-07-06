@@ -1,0 +1,5 @@
+[
+{
+"55F6DA26": "open_door(Door) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    member(B, [1,2,3]),\n    A \\= B,\n    \\+ prize(A),\n    \\+ prize(B),\n    \\+ (A = Selected),\n    \\+ (B = Selected),\n    (Door = A ; Door = B)."
+}
+]

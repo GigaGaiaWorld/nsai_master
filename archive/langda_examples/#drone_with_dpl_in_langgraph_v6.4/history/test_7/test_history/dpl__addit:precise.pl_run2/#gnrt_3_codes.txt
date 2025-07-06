@@ -1,0 +1,5 @@
+[
+{
+"6579E7BA": "number([Head|Tail], Acc, Result) :- \n    digit(Head, Nr), \n    NewAcc is Acc + Nr * (10 ^ length(Tail)), \n    number(Tail, NewAcc, Result)."
+}
+]

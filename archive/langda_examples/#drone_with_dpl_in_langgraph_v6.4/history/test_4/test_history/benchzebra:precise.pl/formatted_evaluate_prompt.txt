@@ -1,0 +1,30 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <code_list>
+I need you to generate a report for the features in my DeepProblog code. Below I will give the code with <langda> blocks, please evaluate if the code in <langda> blocks are valid, and generate the report as required.
+
+['<Result> Here are the testing result of code:\n % Problog Inference Result：\nzebra([house(X87,X88,X89,X90,X91), house(X92,X93,X94,X95,X96), house(X97,X98,X99,X100,X101), house(X102,X103,X104,X105,X106), house(X107,X108,X109,X110,X111)]) = 1.0000</Result>', '<Langda> The 1st Code Block That You Should Analyse:\n<Current_Code>    % House arrangement: 5 houses in order\n    houses([\n        house(1, _, _, _, _),\n        house(2, _, _, _, _),\n        house(3, _, _, _, _),\n        house(4, _, _, _, _),\n        house(5, _, _, _, _)\n    ]).\n\n    % Rules\n    % The owner of the red house is English.\n    my_member(house(_, english, _, red, _), Houses).\n\n    % The Spanish has a dog.\n    my_member(house(_, spanish, dog, _, _), Houses).\n\n    % The owner of the green house drinks coffee.\n    my_member(house(_, _, _, green, coffee), Houses).\n\n    % The Ukrainian drinks tea.\n    my_member(house(_, ukrainian, _, _, tea), Houses).\n\n    % The green house is to the right of the ivory house (right next to it).\n    right_of(house(_, _, _, green, _), house(_, _, _, ivory, _), Houses).\n\n    % The snail owner smokes Winstons.\n    my_member(house(_, _, snail, _, winstons), Houses).\n\n    % The yellow house owner smokes Kools.\n    my_member(house(_, _, _, yellow, kools), Houses).\n\n    % The middle house drinks milk (the 3rd house).\n    my_member(house(3, _, _, _, milk), Houses).\n\n    % The first house owner is Norwegian.\n    my_member(house(1, norwegian, _, _, _), Houses).\n\n    % The Chesterfields owner lives next door to the fox owner.\n    next_to(house(_, _, _, _, chesterfields), house(_, _, fox, _, _), Houses).\n\n    % The Kools owner lives next door to the horse owner.\n    next_to(house(_, _, _, _, kools), house(_, _, horse, _, _), Houses).\n\n    % The orange juice drinker smokes Lucky Strikes.\n    my_member(house(_, _, _, _, lucky_strikes), Houses) :-\n        my_member(house(_, _, _, _, orange_juice), Houses).\n\n    % The Japanese smoke Parliaments.\n    my_member(house(_, japanese, _, _, parliaments), Houses).\n\n    % The Norwegian lives next to the blue house.\n    next_to(house(1, norwegian, _, _, _), house(_, _, _, blue, _), Houses).\n\n    % Someone has a zebra.\n    my_member(house(_, _, zebra, _, _), Houses).\n\n    % Someone drinks water.\n    my_member(house(_, _, _, _, water), Houses).</Current_Code>\n<HASH> Hash tag of code: CD409C7B </HASH>\n<LLM> Requirements of Rules:  \tHouse arrangement: \t\tThere are 5 houses, arranged in order (houses(Houses)). \t\t \tRules: \t\tThe owner of the red house is English. \t\tThe Spanish has a dog. \t\tThe owner of the green house drinks coffee. \t\tThe Ukrainian drinks tea. \t\tThe green house is to the right of the ivory house (right next to it). \t\tThe snail owner smokes Winstons. \t\tThe yellow house owner smokes Kools. \t\tThe middle house drinks milk (the 3rd house). \t\tThe first house owner is Norwegian. \t\tThe Chesterfields owner lives next door to the fox owner. \t\tThe Kools owner lives next door to the horse owner. \t\tThe orange juice drinker smokes Lucky Strikes. \t\tThe Japanese smoke Parliaments. \t\tThe Norwegian lives next to the blue house. \t\t \t\tSomeone has a zebra. \t\tSomeone drink water. </LLM></Langda>']
+
+</code_list>
+<requirements>
+Please evaluate the correctness of the code listing and generate a report in JSON form, for each code block using a single report block of the following form:
+
+For the first Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Report": "// Your analysis of first code here",
+    "Need_regenerate": "[true | false]" // true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Report": "// Your analysis of second code here",
+    "Need_regenerate": [True|False] // Set to true if the code needs to be regenerated; otherwise, false.
+}
+```
+
+# This is really important! Please make sure the code fits completely inside the placeholder.
+</requirements>

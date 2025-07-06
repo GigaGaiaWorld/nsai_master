@@ -1,0 +1,9 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
+
+```problog
+{"HASH": "A4F0EAE2", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :-\n    select_door(S),\n    \+ prize(A),\n    \+ prize(B),\n    \+ select_door(A),\n    \+ select_door(B),\n    A < B."}
+```
+
+```problog
+{"HASH": "F0FDE8AB", "Code": "open_door(A) :-\n    select_door(S),\n    \+ prize(A),\n    \+ select_door(A),\n    member(B, [1,2,3]),\n    B \\= A,\n    B \\= S,\n    prize(B)."}
+```

@@ -1,0 +1,185 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda>
+<Code_Block>insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).</Code_Block>
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> Please output a complete report in the following structure (using Markdown):
+1. **Document title**
+2. **Background and purpose** (brief description of functions and scenarios)
+3. **Original code excerpt** (with line numbers)
+4. **Overall analysis** (brief evaluation)
+5. **Error summary** (in tabular form: number/problem/impact/suggestion)
+6. **Improvement suggestions** (including specific code examples)
+
+After the first draft is completed, please check and improve:
+- Does it include examples of handling zero or negative values?
+- Are the table format and code blocks correct?
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+insertion_sort([], []).
+insertion_sort([H|T], Sorted) :-
+ 
+<Langda>
+<Code_Block>insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert_element(H, SortedTail, Sorted).</Code_Block>
+<HASH> Hash tag of code: DA97FB01 </HASH>
+<Requirements>1.recursively sort the tail list, 2.insert the head element H into the sorted list </Requirements></Langda>
+.
+insert_element(X, [], [X]).
+insert_element(X, [H|T], [X,H|T]) :-
+ X =< H.
+insert_element(X, [H|T], [H|RT]) :-
+ X > H,
+ insert_element(X, T, RT).
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result>
+
+</original_code>
+
+### Code Evaluation Report: Insertion Sort in ProbLog
+
+---
+
+#### **1. Document Title**
+**Evaluation of Insertion Sort Implementation in ProbLog**
+
+---
+
+#### **2. Background and Purpose**
+The provided code implements an insertion sort algorithm in ProbLog, a probabilistic logic programming language. The purpose of this evaluation is to:
+- Verify the correctness of the implementation.
+- Ensure the code meets the specified requirements (recursively sorting the tail list and inserting the head element into the sorted list).
+- Identify any logical or structural issues in the code.
+
+---
+
+#### **3. Original Code Excerpt**
+```prolog
+1. insertion_sort([], []).
+2. insertion_sort([H|T], Sorted) :-
+3.     insertion_sort(T, SortedTail),
+4.     insert_element(H, SortedTail, Sorted).
+5.
+6. insert_element(X, [], [X]).
+7. insert_element(X, [H|T], [X,H|T]) :-
+8.     X =< H.
+9. insert_element(X, [H|T], [H|RT]) :-
+10.     X > H,
+11.     insert_element(X, T, RT).
+12.
+13. query(insertion_sort([3,1,2,5,7,12],X)).
+```
+
+---
+
+#### **4. Overall Analysis**
+The code successfully implements the insertion sort algorithm as evidenced by the test result:
+- `insertion_sort([3, 1, 2, 5, 7, 12], [1, 2, 3, 5, 7, 12])` returns a probability of `1.0000`, indicating correctness for this input.
+
+However, the evaluation should also consider edge cases (e.g., empty lists, lists with zero or negative values) to ensure robustness.
+
+---
+
+#### **5. Error Summary**
+| No. | Problem                     | Impact                          | Suggestion                                                                 |
+|-----|-----------------------------|---------------------------------|----------------------------------------------------------------------------|
+| 1   | No handling of duplicates   | May not work for duplicate values | Add a clause to handle `X = H` in `insert_element`.                        |
+| 2   | No edge case testing        | Unverified robustness           | Test with empty lists, lists with zero/negative values, and duplicates.    |
+
+---
+
+#### **6. Improvement Suggestions**
+1. **Handling Duplicates**:
+   Modify the `insert_element` predicate to explicitly handle cases where `X = H`:
+   ```prolog
+   insert_element(X, [H|T], [X,H|T]) :-
+       X =< H.
+   insert_element(X, [H|T], [H|RT]) :-
+       X > H,
+       insert_element(X, T, RT).
+   ```
+
+2. **Edge Case Testing**:
+   Add test cases to verify the code's robustness:
+   ```prolog
+   query(insertion_sort([], X)). % Empty list
+   query(insertion_sort([0, -1, -2], X)). % Negative values
+   query(insertion_sort([3, 3, 1], X)). % Duplicates
+   ```
+
+3. **Code Formatting**:
+   Ensure consistent indentation and spacing for readability.
+
+---
+
+#### **Final Checks**
+- **Handling Zero/Negative Values**: The current implementation should work for zero and negative values, but explicit testing is recommended.
+- **Table Format and Code Blocks**: Verified for correctness.
+
+---
+
+This report confirms the correctness of the insertion sort implementation for the given test case but recommends additional testing and minor improvements for robustness.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

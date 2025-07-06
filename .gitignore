@@ -1,24 +1,37 @@
+# 忽略所有文件
 *
 
-# 但这些文件要上传（用 ! 取消忽略）
+# 顶层允许的文件
 !.gitignore
+!README.md
+!requirements.txt
+
+# 允许 langda 和 archive
 !langda/
+!langda/**
+
 !archive/
+!archive/**
+
+# 允许 rules 文件
 !rules
 
+# 正确解锁 examples 目录（必须逐级写）
+!examples/
+!examples/**/
+!examples/mixmnist/
 !examples/mixmnist/example_mixmnist.ipynb
 !examples/mixmnist/example_mixmnist_case2.ipynb
 
+!examples/promis/
 !examples/promis/promis_execute_new.py
 !examples/promis/telegrambot_new_fix.py
 !examples/promis/promis_normal_drone.pl
 !examples/promis/README.md
 
+!examples/test_package/
 !examples/test_package/main_stable.py
 !examples/test_package/main_brutal.py
 !examples/test_package/main_baseline.py
 !examples/test_package/get_final_report.py
 !examples/test_package/README.md
-
-!requirements.txt
-!README.md

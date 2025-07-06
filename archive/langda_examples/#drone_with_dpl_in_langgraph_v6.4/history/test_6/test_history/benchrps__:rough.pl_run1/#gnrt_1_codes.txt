@@ -1,0 +1,5 @@
+[
+{
+"CFA63C1E": "compute_score([], 0).\ncompute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.\ncompute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.\ncompute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.\n\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    ( beats(P1, P2) -> Result = win\n    ; beats(P2, P1) -> Result = lose\n    ; Result = draw\n    ),\n    play(P1Moves, P2Moves, Results).\n\ndetermine_winner(P1Moves, P2Moves, Winner) :-\n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, S),\n    ( S > 0, Winner = player1\n    ; S < 0, Winner = player2\n    ; S = 0, Winner = draw\n    ).\n\nquery(determine_winner([rock, rock, rock], [paper, paper, scissor], W))."
+}
+]

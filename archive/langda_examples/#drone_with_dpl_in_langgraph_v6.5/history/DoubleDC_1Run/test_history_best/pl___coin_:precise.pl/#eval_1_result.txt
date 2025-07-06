@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "Unsupported if-then-else (->) construct in ProbLog, causing syntax error",
+  "SuggestedFix": "Replace the if-then-else construct with ProbLog-compatible logic. For example:\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    (coin(CNT), NewSC is SC + 1, NewCNT is CNT - 1, coins_r(NewSC, S, NewCNT)\n    ;\n    (\\+ coin(CNT), NewCNT is CNT - 1, coins_r(SC, S, NewCNT)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

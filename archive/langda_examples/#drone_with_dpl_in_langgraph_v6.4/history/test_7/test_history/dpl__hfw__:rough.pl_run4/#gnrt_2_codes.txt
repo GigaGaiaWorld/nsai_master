@@ -1,0 +1,5 @@
+[
+{
+"190031BC": "parse([N], N).\nparse(Expr, Result) :-\n    parse_add_sub(Expr, Result).\n\nparse_add_sub(Expr, Result) :-\n    parse_mul_div(Expr, Left),\n    parse_add_sub_tail(Left, Expr, Result).\n\nparse_add_sub_tail(Left, [Op, Right | Rest], Result) :-\n    (Op == '+' ; Op == '-'),\n    parse_mul_div(Rest, RightResult),\n    (Op == '+' -> Temp is Left + RightResult ; Temp is Left - RightResult),\n    parse_add_sub_tail(Temp, Rest, Result).\nparse_add_sub_tail(Left, Expr, Left) :-\n    parse_mul_div(Expr, _).\n\nparse_mul_div([N], N).\nparse_mul_div([Left, Op, Right | Rest], Result) :-\n    (Op == '*' ; Op == '/'),\n    (Op == '*' -> Temp is Left * Right ; (Right =:= 0 -> fail ; Temp is Left / Right)),\n    parse_mul_div([Temp | Rest], Result).\nparse_mul_div([Left, Op | Rest], Result) :-\n    (Op == '+' ; Op == '-'),\n    parse_mul_div([Left | Rest], Result)."
+}
+]

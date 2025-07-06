@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FA856BCD",
+  "ErrorSummary": "The `bb(N)` predicate is incomplete and lacks the logic to iterate over adjacent positions and check for the character `b`.",
+  "SuggestedFix": "Complete the `bb(N)` predicate with the following logic:\n```prolog\nbb(N) :-\n    Max is N - 1,\n    between(1, Max, I),\n    pick(I, b),\n    J is I + 1,\n    pick(J, b).\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

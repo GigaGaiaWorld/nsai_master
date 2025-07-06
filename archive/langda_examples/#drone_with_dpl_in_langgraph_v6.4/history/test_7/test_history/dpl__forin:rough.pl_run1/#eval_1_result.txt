@@ -1,0 +1,8 @@
+```report
+{
+    "HASH": "501F546D",
+    "Report": "The ProbLog insertion sort implementation contains a logical error in the `insert/3` predicate. The second clause incorrectly places elements in the list without ensuring the rest of the list remains sorted, leading to an incorrect output. The test result shows the failure with the input `[3,1,2,5,7,12]` producing `[1,12,2,3,5,7]` instead of the expected `[1,2,3,5,7,12]`. The issue lies in the implementation of the insertion logic, which disrupts the sorting process. The code needs to be regenerated to fix the `insert/3` predicate to correctly maintain the sorted order during insertion.",
+    "Need_regenerate": true,
+    "Dependencies": []
+}
+```

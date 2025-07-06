@@ -1,0 +1,15 @@
+```problog
+{"HASH": "8DB938FD","Code": "detect_number(image_5, 5)."}
+```
+```problog
+{"HASH": "AC455839","Code": "detect_number(image_6, 6)."}
+```
+```problog
+{"HASH": "D4DBFF84","Code": "detect_number(image_7, 7)."}
+```
+```problog
+{"HASH": "C9C18691","Code": "detect_all([N,O|T], [N2,O2|T2]) :- \n    detect_number(N, N2),\n    detect_operator(O, O2),\n    detect_all(T, T2)."}
+```
+```problog
+{"HASH": "DB25F467","Code": "expression(Images, Result) :- \n    detect_all(Images, Parsed),\n    parse(Parsed, Result)."}
+```

@@ -1,0 +1,118 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</origin_code>
+<generated_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+% Define open_door/1 Predicate
+open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    % Random Door Opening Rules
+    (   Prize \= Selected,
+        member(Door, [1,2,3]),
+        Door \= Selected,
+        Door \= Prize,
+        0.5::open_door(Door)
+    ) ;
+    % Deterministic Door Opening Rules
+    (   Prize \= Selected,
+        member(Door, [1,2,3]),
+        Door \= Selected,
+        (   Door = Prize -> fail ; true ),
+        open_door(Door)
+    ).
+
+win_keep :-
+    select_door(A),
+    prize(A).
+win_switch :-
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    prize(A),
+    \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

@@ -1,0 +1,107 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+% Insertion Sort in Problog
+
+% Base case: an empty list is already sorted
+insertion_sort([], []).
+
+% Recursive case: insert the head into the sorted tail
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert(H, SortedTail, Sorted).
+
+% Insert an element into a sorted list
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :- X =< Y.
+insert(X, [Y|T], [Y|SortedT]) :- X > Y, insert(X, T, SortedT).
+
+% Query example
+query(insertion_sort([3,1,2,5,7,12], X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>
+
+**FIRST RESULT:
+Here is the completed Problog code for an interpretable `insertion_sort/2` algorithm:
+
+```problog
+% Insertion Sort in Problog
+
+% Base case: an empty list is already sorted
+insertion_sort([], []).
+
+% Recursive case: insert the head into the sorted tail
+insertion_sort([H|T], Sorted) :-
+    insertion_sort(T, SortedTail),
+    insert(H, SortedTail, Sorted).
+
+% Insert an element into a sorted list
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :- X =< Y.
+insert(X, [Y|T], [Y|SortedT]) :- X > Y, insert(X, T, SortedT).
+
+% Query example
+query(insertion_sort([3,1,2,5,7,12], X)).
+```
+
+### Explanation:
+1. **Base Case**: The empty list `[]` is already sorted, so `insertion_sort([], [])` holds.
+2. **Recursive Case**: The list `[H|T]` is sorted by first sorting the tail `T` recursively (`insertion_sort(T, SortedTail)`), and then inserting the head `H` into the sorted tail using the `insert/3` predicate.
+3. **Insert Predicate**:
+   - If the list is empty, the element `X` is inserted as a single-element list `[X]`.
+   - If `X` is less than or equal to the head `Y` of the sorted list, it is inserted at the front.
+   - If `X` is greater than `Y`, it is recursively inserted into the tail of the list.
+4. **Query**: The example query `insertion_sort([3,1,2,5,7,12], X)` will return the sorted list `X = [1, 2, 3, 5, 7, 12]`.

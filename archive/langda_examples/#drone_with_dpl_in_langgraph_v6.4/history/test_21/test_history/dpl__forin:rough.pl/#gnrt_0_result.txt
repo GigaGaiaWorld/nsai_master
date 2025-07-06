@@ -1,0 +1,5 @@
+Here's the DeepProbLog code for the interpretable insertion sort algorithm:
+
+```problog
+{"HASH": "501F546D","Code": "%% Insertion Sort in ProbLog\n\n% Base case: sorting an empty list results in an empty list\ninsertion_sort([], []).\n\n% Recursive case: insert the head into the sorted tail\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert(H, SortedTail, Sorted).\n\n% Inserting into an empty list\ninsert(X, [], [X]).\n\n% Inserting into a non-empty list\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs).\n\n% Query example\nquery(insertion_sort([3,1,2,5,7,12],X))."}
+```

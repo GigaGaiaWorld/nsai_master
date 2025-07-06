@@ -1,0 +1,5 @@
+[
+{
+"779B4ADF": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(Pos),\n cumulative_effect(Time, Pos).\n\n% Helper predicate to account for cumulative positioning behavior\ncumulative_effect(Time, Pos) :-\n Time > 0,\n Prev is Time - 1,\n flap_position(Prev, OldPos),\n (Pos =:= OldPos -> true ; cumulative_effect(Prev, OldPos))."
+}
+]

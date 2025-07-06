@@ -1,0 +1,11 @@
+{
+  "file_name": "benchprove:partial.pl",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": 207,
+  "iter_count": 2,
+  "process_time": 207.48568296432495,
+  "final_result": "% Problog Inference Result：\nprove(implies(parent(alice,bob),ancestor(alice,bob))) = 1.0000\nprove(opposite(parent(carol,alice))) = 1.0000\nprove(expand(double(3),6)) = 1.0000\nprove(includes([a, b, c],b)) = 1.0000\nprove(extend([1, 2],3,[3, 1, 2])) = 1.0000",
+  "final_report": "The generated code is largely correct and consistent with the original code. It maintains all the core functionalities, including the meta-interpreter and extended logic processing. The only notable difference is the addition of 'number(X)' in the expand rule for 'double(X)', which adds a type check but does not affect the functionality in the given examples. The running results of both codes are identical, confirming their equivalence in behavior."
+}

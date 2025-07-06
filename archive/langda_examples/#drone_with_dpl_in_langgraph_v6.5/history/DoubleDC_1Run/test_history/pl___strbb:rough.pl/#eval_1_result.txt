@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "0805B4F6",
+  "ErrorSummary": "Invalid argument types for 'between/3' due to non-ground arithmetic expression 'N-1'. The predicate does not fully account for the probabilistic nature of the string generation.",
+  "SuggestedFix": "Replace 'between(1, N-1, I)' with 'M is N-1, between(1, M, I)' to ensure ground integer arguments. Ensure 'pick/2' calls are correctly grounded in the probabilistic context.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

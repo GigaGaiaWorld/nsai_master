@@ -1,0 +1,9 @@
+Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in `<origin_code>`:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op = '+' -> Temp is N1 + N2\n    ; Op = '-' -> Temp is N1 - N2\n    ; Op = '*' -> Temp is N1 * N2\n    ; Op = '/' -> (N2 =:= 0 -> fail ; Temp is N1 / N2)\n    ),\n    parse([Temp | Rest], Result)."}
+```
+
+The JSON contains:
+1. The original hash tag from the `<langda>` section
+2. The completed code for the `parse/2` predicate, which now includes division by zero handling (the only modification from the original template)

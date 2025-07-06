@@ -1,0 +1,5 @@
+[
+{
+"2DFC0CFD": "% implies/2: P implies Q\nprove(implies(P, Q)) :-\n    (prove(P), prove(Q)) ; (\\+ prove(P)).\n\n% opposite/1: Negation of a goal\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n\n% expand/2: Use already defined rules to expand a term\nprove(expand(Term, Result)) :-\n    expand(Term, Result).\n\n% includes/2: Check if an element is in a list\nprove(includes(List, Elem)) :-\n    member(Elem, List).\n\n% extend/2: Add Elem to the head of List\nprove(extend(List, Elem, [Elem|List])).\n\n% refute/1: Prove the negation of a goal\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."
+}
+]

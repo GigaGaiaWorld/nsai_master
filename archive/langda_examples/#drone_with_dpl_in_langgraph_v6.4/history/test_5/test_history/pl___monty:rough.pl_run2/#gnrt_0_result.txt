@@ -1,0 +1,3 @@
+```problog
+{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    findall(D, (member(D, [1,2,3]), \\+ select_door(D), \\+ prize(D)), EmptyDoors),\n    (   Prize = Selected ->\n        % Randomly open one of the two empty doors with 50% probability\n        member(Door, EmptyDoors),\n        0.5::open_door(Door)\n    ;   % Host must open the empty door\n        member(Door, EmptyDoors),\n        Door \\= Prize,\n        open_door(Door)\n    )."}
+```

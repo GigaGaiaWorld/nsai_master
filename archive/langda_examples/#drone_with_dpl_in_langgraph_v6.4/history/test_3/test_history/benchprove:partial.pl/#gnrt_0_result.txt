@@ -1,0 +1,33 @@
+Here are the generated code blocks in JSON form:
+
+For the first placeholder (implies):
+```problog
+{
+    "HASH": "99C92279",
+    "Code": "prove(implies(P,Q)) :-\n\t(\\+ prove(P); prove(Q))."
+}
+```
+
+For the second placeholder (opposite):
+```problog
+{
+    "HASH": "1405B337",
+    "Code": "prove(opposite(P)) :-\n\t\\+ prove(P)."
+}
+```
+
+For the third placeholder (extend):
+```problog
+{
+    "HASH": "C68F7B35",
+    "Code": "prove(extend(List,Elem,Extended)) :-\n\tExtended = [Elem|List]."
+}
+```
+
+For the fourth placeholder (expand):
+```problog
+{
+    "HASH": "0F69CE0F",
+    "Code": "expand(double(X), Y) :-\n\tY is X*2."
+}
+```

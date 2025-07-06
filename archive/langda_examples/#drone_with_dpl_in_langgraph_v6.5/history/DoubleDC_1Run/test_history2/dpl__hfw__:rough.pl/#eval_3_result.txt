@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incorrect operator precedence in parse/2 rules leading to wrong arithmetic results (e.g., 2/3+3-2*7 evaluates to -0.25 instead of -10.333...). Division by zero is not fully handled.",
+  "SuggestedFix": "Modify parse/2 to handle operator precedence (multiplication/division before addition/subtraction). Add explicit checks for division by zero. Example fix:\nparse([N1, *, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 * V2, R).\nparse([N1, /, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    (V2 =:= 0 -> fail ; almost_equal(V1 / V2, R)).\nparse([N1, +, N2 | T], R) :-\n    parse([N1], V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 + V2, R).\nparse([N1, -, N2 | T], R) :-\n    parse([N1], V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 - V2, R).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

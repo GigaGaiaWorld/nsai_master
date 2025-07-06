@@ -1,0 +1,5 @@
+Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` block in the `<origin_code>`:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    Op == '+',\n    parse([N2 | Rest], Temp),\n    Result is N1 + Temp.\nparse([N1, Op, N2 | Rest], Result) :-\n    Op == '-',\n    parse([N2 | Rest], Temp),\n    Result is N1 - Temp.\nparse([N1, Op, N2 | Rest], Result) :-\n    Op == '*',\n    parse([N2 | Rest], Temp),\n    Result is N1 * Temp.\nparse([N1, Op, N2 | Rest], Result) :-\n    Op == '/',\n    parse([N2 | Rest], Temp),\n    Result is N1 / Temp."}
+```

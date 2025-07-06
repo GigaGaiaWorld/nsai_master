@@ -1,0 +1,3 @@
+```report
+{"HASH": "E659D458", "ErrorSummary": "Missing implementation for `sort` operation; helper predicates `get_top_n` and `sort3` are defined but not integrated", "SuggestedFix": "Integrate `get_top_n` and `sort3` into `stack_op(sort, Stack, SortedStack)` as follows:\nstack_op(sort, Stack, SortedStack) :-\n    length(Stack, L),\n    (L >= 3,\n     get_top_n(Stack, 3, [A, B, C], Rest),\n     sort3(A, B, C, SortedElements),\n     append(SortedElements, Rest, SortedStack)\n    ;\n     L < 3,\n     SortedStack = Stack\n    ).", "Dependencies": [], "NeedRegenerate": true}
+```

@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Case 1: Random door opening (50% probability)\n    (   Selected \\= PrizeDoor, PrizeDoor \\= Door ->\n        0.5::open_door(Door) ; 0.5::open_door(OtherDoor)\n    % Case 2: Deterministic door opening (host must open the empty door)\n    ;   Selected \\= PrizeDoor, PrizeDoor = Door ->\n        true\n    )."
+}
+]

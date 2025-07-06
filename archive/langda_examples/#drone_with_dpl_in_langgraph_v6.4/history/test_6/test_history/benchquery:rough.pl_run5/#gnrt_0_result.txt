@@ -1,0 +1,13 @@
+Here are the extracted and formatted code blocks from the <generated_code> that correspond to the <Langda> blocks in the <origin_code>:
+
+```problog
+{"HASH": "5738285A", "Code": "% Define density predicate to calculate population density\ndensity(Country, Density) :-\n    pop(Country, Population),\n    area(Country, Area),\n    Density is Population / Area."}
+```
+
+```problog
+{"HASH": "5738285A", "Code": "% Define query_pop to find countries with approximately equal population density (not larger than 5%)\nquery_pop(Pairs) :-\n    findall((Country1, Country2), (\n        density(Country1, Density1),\n        density(Country2, Density2),\n        Country1 \\= Country2,\n        abs(Density1 - Density2) / Density1 =< 0.05\n    ), Pairs)."}
+```
+
+These two code blocks implement the requirements specified in the <Langda> section:
+1. The `density` predicate that calculates population density
+2. The `query_pop` predicate that finds countries with approximately equal population density (within 5% difference)

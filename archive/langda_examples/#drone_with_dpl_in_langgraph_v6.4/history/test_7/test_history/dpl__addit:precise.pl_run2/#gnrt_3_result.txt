@@ -1,0 +1,7 @@
+Here is the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "6579E7BA", "Code": "number([Head|Tail], Acc, Result) :- \n    digit(Head, Nr), \n    NewAcc is Acc + Nr * (10 ^ length(Tail)), \n    number(Tail, NewAcc, Result)."}
+```
+
+This is the only code block that was marked with <langda> in the origin_code and needed to be completed. The generated code provides the correct implementation that adds the current number to the "low bit" (left side) of the accumulated value by using `Nr * (10 ^ length(Tail))` to properly position the digit.

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "EA5E8D55",
+  "ErrorSummary": "1. Incorrect use of `coin(CNT)` instead of probabilistic fact `heads(CNT)`. 2. Recursive logic does not correctly accumulate success count due to improper predicate usage. 3. Probabilities do not match expected binomial distribution for 4 trials with p=0.8.",
+  "SuggestedFix": "1. Replace `coin(CNT)` with `heads(CNT)` where `heads(CNT)` is defined as a probabilistic fact (e.g., `0.8::heads(CNT).`). 2. Ensure the recursive predicate correctly checks `heads(CNT)` and accumulates the success count. Example fix:\n```prolog\ncoins_r(SC, SC, 0).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    heads(CNT),\n    SC1 is SC + 1,\n    CNT1 is CNT - 1,\n    coins_r(SC1, S, CNT1).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    \\+ heads(CNT),\n    CNT1 is CNT - 1,\n    coins_r(SC, S, CNT1).\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

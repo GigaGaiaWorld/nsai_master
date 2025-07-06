@@ -1,0 +1,5 @@
+[
+{
+"A5C06F43": "flap_position(Prev, PrevPos),\n \\+ goal_reached(Prev),\n use_actuator(Time, Actuator),\n actuator_strength(Actuator, Strength),\n goal(G),\n wind_effect(Time, WindEffect),\n (G > PrevPos, Pos is PrevPos + Strength + WindEffect) ; \n (G =< PrevPos, Pos is PrevPos - Strength + WindEffect)."
+}
+]

@@ -1,0 +1,189 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+
+</origin_code>
+<generated_code>
+
+% Stack operations
+stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+
+stack_op(push(X), Stack, [X|Stack]).
+
+stack_op(pop, [Top|Rest], Rest) :-
+    Top = Top. % Dummy unification to ensure the head matches
+
+stack_op(dup, [Top|Rest], [Top, Top|Rest]).
+
+stack_op(swap, [X, Y|Rest], [Y, X|Rest]).
+
+stack_op(over, [X, Y|Rest], [Y, X, Y|Rest]).
+
+stack_op(rot, [X, Y, Z|Rest], [Y, Z, X|Rest]).
+
+% Helper predicates
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([H|T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort_aux(T, NewAcc, Sorted).
+
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X, Y|Ys]) :-
+    X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :-
+    X > Y,
+    insert(X, Ys, Zs).
+
+% Example queries
+query(stack_op(push(1), [2, 3, 4], Y)).
+query(stack_op(pop, [1, 2, 3, 4], Y)).
+query(stack_op(dup, [1, 2, 3, 4], Y)).
+query(stack_op(swap, [1, 2, 3, 4], Y)).
+query(stack_op(over, [1, 2, 3, 4], Y)).
+query(stack_op(rot, [1, 2, 3, 4], Y)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>
+
+**FIRST RESULT:
+The provided code snippet is incomplete and lacks implementations for several stack operations (`push`, `pop`, `dup`, `swap`, `over`, `rot`). Below is the completed code with all the required stack operations implemented in Prolog:
+
+```problog
+% Stack operations
+stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+
+stack_op(push(X), Stack, [X|Stack]).
+
+stack_op(pop, [Top|Rest], Rest) :-
+    Top = Top. % Dummy unification to ensure the head matches
+
+stack_op(dup, [Top|Rest], [Top, Top|Rest]).
+
+stack_op(swap, [X, Y|Rest], [Y, X|Rest]).
+
+stack_op(over, [X, Y|Rest], [Y, X, Y|Rest]).
+
+stack_op(rot, [X, Y, Z|Rest], [Y, Z, X|Rest]).
+
+% Helper predicates
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([H|T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort_aux(T, NewAcc, Sorted).
+
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X, Y|Ys]) :-
+    X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :-
+    X > Y,
+    insert(X, Ys, Zs).
+
+% Example queries
+query(stack_op(push(1), [2, 3, 4], Y)).
+query(stack_op(pop, [1, 2, 3, 4], Y)).
+query(stack_op(dup, [1, 2, 3, 4], Y)).
+query(stack_op(swap, [1, 2, 3, 4], Y)).
+query(stack_op(over, [1, 2, 3, 4], Y)).
+query(stack_op(rot, [1, 2, 3, 4], Y)).
+```
+
+### Explanation:
+1. **`push(X)`**: Adds `X` to the top of the stack.
+2. **`pop`**: Removes the top element of the stack.
+3. **`dup`**: Duplicates the top element of the stack.
+4. **`swap`**: Swaps the top two elements of the stack.
+5. **`over`**: Copies the second element to the top of the stack.
+6. **`rot`**: Rotates the top three elements of the stack.
+7. **`sort`**: Sorts the top three elements of the stack using insertion sort.
+
+The helper predicates (`get_top_n`, `insertion_sort`, etc.) are included to support the operations. The example queries demonstrate how to use each operation.

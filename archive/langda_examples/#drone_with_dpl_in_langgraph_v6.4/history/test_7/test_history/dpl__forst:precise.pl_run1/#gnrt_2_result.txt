@@ -1,0 +1,16 @@
+Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in the `<origin_code>`:
+
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, [X,Y,Z|Stack], SortedStack) :- \n    sort([X,Y,Z], [A,B,C]), \n    SortedStack = [A,B,C|Stack]."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, [X,Y|Stack], SortedStack) :- \n    sort([X,Y], [A,B]), \n    SortedStack = [A,B|Stack]."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, [X|Stack], SortedStack) :- \n    sort([X], [A]), \n    SortedStack = [A|Stack]."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, [], [])."}
+```
+
+Note: All these code blocks share the same HASH value since they all implement different cases of the same `stack_op(sort, ...)` predicate that was originally incomplete in the `<origin_code>`.

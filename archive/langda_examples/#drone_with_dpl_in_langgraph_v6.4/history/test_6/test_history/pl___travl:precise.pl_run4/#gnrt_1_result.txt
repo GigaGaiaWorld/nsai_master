@@ -1,0 +1,11 @@
+Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
+
+```problog
+{"HASH": "E09B4F54","Code": "0.1::inf(X) :- initialInf(X).\n0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X)."}
+```
+
+This includes:
+1. The original simple infection rule (0.1 probability)
+2. The contact transmission rules with different probabilities for susceptible/non-susceptible cases (0.6 and 0.8)
+3. The travel risk rule (0.2 probability)
+4. The same HASH value from the original <Langda> block to maintain correspondence

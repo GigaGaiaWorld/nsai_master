@@ -1,0 +1,29 @@
+Here are the completed code blocks in JSON form:
+
+For the first code:
+```problog
+{
+    "HASH": "6579E7BA",
+    "Code": "number([H|T], Acc, Result) :- digit(H, Nr), NewAcc is Acc * 10 + Nr, number(T, NewAcc, Result)."
+}
+```
+
+For the second code:
+```problog
+{
+    "HASH": "4A9D0B2A",
+    "Code": "multi_addition(X, Y, Z) :- number(X, XNum), number(Y, YNum), Z is XNum + YNum."
+}
+```
+
+The first code completes the number/3 predicate by:
+1. Taking the head of the list and converting it to a digit using digit/2
+2. Adding it to the "low bit" (right side) of the accumulated value by multiplying the accumulator by 10 and adding the new digit
+3. Recursively processing the tail of the list with the new accumulator
+
+The second code implements multi_addition by:
+1. Converting both image lists to numbers using number/2
+2. Adding the two resulting numbers together
+3. Unifying the result with Z
+
+The example query would correctly calculate 79 + 312 = 391.

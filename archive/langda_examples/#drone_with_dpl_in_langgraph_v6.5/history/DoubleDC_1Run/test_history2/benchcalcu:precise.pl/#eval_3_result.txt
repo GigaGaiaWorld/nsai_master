@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "623E07CC",
+  "ErrorSummary": "Timeout due to inefficient digit assignment and redundant checks in query_sum/1. The all_different/1 predicate is not optimized for performance.",
+  "SuggestedFix": "1. Replace all_different/1 with maplist(dif(H), T). 2. Add early constraints like A < C to narrow the search space. 3. Reorder constraints to check AB + BCD =:= CDE before sumdigit calls.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

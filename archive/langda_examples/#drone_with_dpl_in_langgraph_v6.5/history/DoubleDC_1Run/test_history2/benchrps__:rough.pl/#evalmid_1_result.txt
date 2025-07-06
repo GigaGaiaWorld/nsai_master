@@ -1,0 +1,102 @@
+### 1. **Document Title**  
+**Evaluation Report: Rock-Paper-Scissors Game in ProbLog**
+
+---
+
+### 2. **Background and Purpose**  
+The provided ProbLog code defines the rules of the rock-paper-scissors game and implements a system to determine the winner of a series of moves between two players. The purpose is to evaluate the correctness of the implementation and identify any logical or structural issues in the code.
+
+---
+
+### 3. **Original Code Excerpt**  
+```prolog
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+move(scissor).
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+beats(scissor, paper).
+beats(paper, rock).
+
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+play_round(P1Move, P2Move, Result) :- beats(P1Move, P2Move), Result = win ; beats(P2Move, P1Move), Result = lose ; Result = draw.
+
+play([], [], []).
+play([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :- play_round(P1, P2, Result), play(P1Moves, P2Moves, Results).
+
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
+
+determine_winner(P1Moves,P2Moves,Winner) :- 
+    play(P1Moves,P2Moves,Results), 
+    compute_score(Results,S), 
+    ( S > 0, Winner = player1 
+    ; S < , Winner = player2 
+    ; S = 0, Winner = draw 
+    ).
+
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+```
+
+---
+
+### 4. **Overall Analysis**  
+The code defines the basic rules of rock-paper-scissors and implements a scoring system to determine the winner of a series of moves. However, the test results show inconsistencies, as the query returns multiple conflicting results (`player2`, `draw`, and `player1` with probability 1.0000 each). This indicates a logical flaw in the implementation.
+
+---
+
+### 5. **Error Summary**  
+
+| No. | Problem | Impact | Suggestion |
+|-----|---------|--------|-------------|
+| 1   | Typo in `beats(rock, scissor)` (spelled as `scissor` vs. `scissor` in `move/1`). | Incorrect win-lose relationship. | Correct the spelling to `scissor` in `beats/2`. |
+| 2   | Logical flaw in `determine_winner/3`: Multiple results are returned for the same query. | Ambiguous winner determination. | Ensure the predicate returns a single result by fixing the logic. |
+| 3   | Missing handling for invalid moves (e.g., non-defined moves). | Potential runtime errors. | Add validation for moves before processing. |
+
+---
+
+### 6. **Improvement Suggestions**  
+
+#### **Fix Typo in `beats/2`**  
+```prolog
+beats(rock, scissor).  % Corrected spelling
+```
+
+#### **Revise `determine_winner/3` for Unambiguous Results**  
+```prolog
+determine_winner(P1Moves, P2Moves, Winner) :- 
+    play(P1Moves, P2Moves, Results), 
+    compute_score(Results, S), 
+    ( S > 0 -> Winner = player1 
+    ; S < 0 -> Winner = player2 
+    ; Winner = draw 
+    ).
+```
+
+#### **Add Move Validation**  
+```prolog
+valid_move(Move) :- move(Move).
+
+play_round(P1Move, P2Move, Result) :- 
+    valid_move(P1Move), valid_move(P2Move),
+    ( beats(P1Move, P2Move) -> Result = win 
+    ; beats(P2Move, P1Move) -> Result = lose 
+    ; Result = draw 
+    ).
+```
+
+---
+
+### **Final Checks**  
+- **Zero/Negative Values**: The `compute_score/2` predicate already handles zero and negative scores correctly.  
+- **Table Format and Code Blocks**: Verified for correctness.  
+
+This revised implementation ensures unambiguous results and handles edge cases like invalid moves.

@@ -1,0 +1,23 @@
+
+
+```prolog
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+coin1(ID1, T) :-
+    happensAt(X,Y,T), 
+    event1(X, ID1).
+Coin2(ID2, T) :-
+    happensAt(X,Y,T), 
+    event2(Y, ID2).
+
+outcome(T, Result) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    Result = 1 << (abs(ID1 - ID2) =:= 2).
+
+result(Result, T) :-
+    outcome(T, Result).
+```% 
+% When the absolute value of the difference between the outputs of e1 and e2 is 2, the game output is 1, otherwise the game output is 0
+% 

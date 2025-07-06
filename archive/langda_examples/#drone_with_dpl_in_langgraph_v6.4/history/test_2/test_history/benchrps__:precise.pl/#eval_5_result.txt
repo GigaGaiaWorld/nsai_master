@@ -1,0 +1,28 @@
+Here are the reports for each code block in JSON format:
+
+For the first Code:
+```report
+{
+    "HASH": "3F277A35",
+    "Report": "The code 'move(X).' is too generic and doesn't implement the required rule about same gestures being a draw. It only declares possible moves without any game logic.",
+    "Need_regenerate": true
+}
+```
+
+For the second Code:
+```report
+{
+    "HASH": "D91BB7A0",
+    "Report": "The code 'beats(X, Y).' is incomplete as it doesn't specify which moves beat others. It needs concrete facts like 'beats(paper, rock).' to properly implement the 'If X beats Y, then X wins' rule.",
+    "Need_regenerate": true
+}
+```
+
+For the third Code:
+```report
+{
+    "HASH": "0940BB04",
+    "Report": "The code 'beats(Y, X).' is similarly incomplete as the second block and doesn't properly implement the inverse relationship needed for 'If Y beats X, then X loses'. It needs concrete facts about which moves beat others.",
+    "Need_regenerate": true
+}
+```

@@ -1,0 +1,3 @@
+```report
+{"HASH": "623E07CC", "ErrorSummary": "ParseError: Empty statement found at line 40:1, likely due to incomplete or malformed predicate definition", "SuggestedFix": "Ensure the `query_sum` predicate is properly closed and formatted. Example fix:\nquery_sum([A,B,C,D,E]) :-\n    leftdigit(A),\n    leftdigit(B),\n    leftdigit(C),\n    all_different([A,B,C,D,E]),\n    sumdigit(0, B, D, E, Carry1),\n    sumdigit(Carry1, A, C, D, Carry2),\n    sumdigit(Carry2, 0, B, C, Carry3),\n    Carry3 = 0.", "Dependencies": [], "NeedRegenerate": true}
+```

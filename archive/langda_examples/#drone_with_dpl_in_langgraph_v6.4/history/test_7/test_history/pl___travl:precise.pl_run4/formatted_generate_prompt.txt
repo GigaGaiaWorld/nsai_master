@@ -1,0 +1,75 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+<Langda> Information:
+<HASH> Hash tag of code: E09B4F54 </HASH>
+<Requirements>inf/1 predicate logic summary Initial infection: Each person has a 0.1 probability of being infected at the beginning Contact transmission: If X has contact with infected person Y, then If X is not susceptible, he will be infected with a probability of 0.6 If X is susceptible, he will be infected with a probability of 0.8 Travel risk: Each person has an additional probability of 0.2 of infection due to high-risk travel </Requirements></Langda>
+.
+query(inf(_)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+<Langda> Information:
+<HASH> Hash tag of code: E09B4F54 </HASH>
+<Requirements>inf/1 predicate logic summary Initial infection: Each person has a 0.1 probability of being infected at the beginning Contact transmission: If X has contact with infected person Y, then If X is not susceptible, he will be infected with a probability of 0.6 If X is susceptible, he will be infected with a probability of 0.8 Travel risk: Each person has an additional probability of 0.2 of infection due to high-risk travel </Requirements></Langda>
+.
+query(inf(_)).
+
+</origin_code>
+<generated_code>
+
+person(a).
+person(b).
+0.1::initialInf(X) :- person(X).
+0.1::contact(X,Y) :- person(X), person(Y).
+0.1::riskyTravel(X) :- person(X).
+0.1::susceptible(X) :- person(X).
+
+% Define the infection logic
+inf(X) :- initialInf(X).
+inf(X) :- contact(X,Y), inf(Y), \+susceptible(X), 0.6::inf(X).
+inf(X) :- contact(X,Y), inf(Y), susceptible(X), 0.8::inf(X).
+inf(X) :- riskyTravel(X), 0.2::inf(X).
+
+query(inf(_)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

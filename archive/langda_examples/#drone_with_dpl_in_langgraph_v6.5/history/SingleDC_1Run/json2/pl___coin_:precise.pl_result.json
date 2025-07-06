@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___coin_:precise.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 38,
+  "iter_count": 1,
+  "process_time": 38.40062403678894,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 8:16.",
+  "final_report": "The generated code attempts to simplify the original code by using an if-then-else construct (->/2), but this syntax is not valid in standard Prolog or DeepProbLog. The original code correctly uses a disjunction (;) for probabilistic choice, while the generated code's syntax causes an error. The generated code fails to run due to the unsupported '->' operator, making it invalid for DeepProbLog."
+}

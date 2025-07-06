@@ -1,0 +1,13 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> blocks in the origin_code:
+
+```problog
+{"HASH": "B79F5C58", "Code": "flap_position(Time,Pos) :-\n Time > 0,\n attempted_flap_position(Time,Pos),\n legal_flap_position(Pos)."}
+```
+
+```problog
+{"HASH": "E185A34B", "Code": "overrun_exception(Time) :-\n Time > 0,\n attempted_flap_position(Time,Pos),\n \\+ legal_flap_position(Pos)."}
+```
+
+```problog
+{"HASH": "779B4ADF", "Code": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(Pos)."}
+```

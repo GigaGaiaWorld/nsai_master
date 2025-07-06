@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause (`make_coin(C,PH)`) and missing base case for `CNT <= 0`.",
+  "SuggestedFix": "1. Replace `PH::make_coin(C,PH)` with a ground fact (e.g., `0.8::heads(1)`). 2. Add base case: `coins_r(SC, SC, CNT) :- CNT =< 0.` 3. Simplify `coin(C)` to directly use `heads(1)`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,10 @@
+<think>
+Okay, I need to help the user by translating their event descriptions into formal logic-based anomaly detection rules using the given structure. Let me start by understanding each of the three points they provided.
+
+First, the user wants to detect when the temperature exceeds 26°C and the CPU utilization is over 75%. So, I'll create an event for each condition. For the temperature, I'll check if the mean value is above 26. For the CPU, I'll check if the mean CPU load exceeds 0.75. Then, the anomaly will trigger if both events occur together.
+
+Next, the second point is about the average temperature being below 24 degrees and humidity above 0.85. I'll create events for each of these conditions. The temperature event will check if the mean is below 24, and the humidity event will check if the mean is above 0.85. The anomaly will be when both are true.
+
+The third point is about a large difference between weather temperature and room temperature. I'll create an event that checks the absolute difference between the two temperatures. If it's above a certain threshold, say 2.0, then the anomaly is triggered.
+
+I need to make sure each event is correctly defined with the right sensor and parameters. Then, the anomaly predicates will combine these events using logical AND. I'll structure each part step by step, ensuring the syntax matches the examples provided.

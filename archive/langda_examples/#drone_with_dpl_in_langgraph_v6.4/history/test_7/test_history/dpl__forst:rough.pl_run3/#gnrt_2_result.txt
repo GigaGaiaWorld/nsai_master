@@ -1,0 +1,10 @@
+Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n    ( length(Stack, L), L >= 3 ->\n        get_top_n(Stack, 3, Elements, RestStack),\n        sort(Elements, SortedElements),\n        append(SortedElements, RestStack, SortedStack)\n    ; SortedStack = Stack\n    )."}
+```
+
+Note that I've:
+1. Used the same HASH value from the original <langda> block (5E40E418)
+2. Included the completed version of the stack operations from the generated code
+3. Formatted it in the requested JSON format with the code as a single string with newlines preserved

@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> section in the origin_code. Here's the JSON formatted result:
+
+```problog
+{"HASH": "190031BC","Code": "parse([N], N).\nparse([N1, '+', N2 | T], Result) :-\n    parse([N2 | T], R),\n    Result is N1 + R.\nparse([N1, '-', N2 | T], Result) :-\n    parse([N2 | T], R),\n    Result is N1 - R.\nparse([N1, '*', N2 | T], Result) :-\n    parse([N2 | T], R),\n    Result is N1 * R.\nparse([N1, '/', N2 | T], Result) :-\n    parse([N2 | T], R),\n    (R =:= 0 -> fail ; Result is N1 / R)."}
+```
+
+Note that the generated code includes an improvement over the original by adding a check for division by zero (`(R =:= 0 -> fail ; Result is N1 / R)`), which addresses part of the issues mentioned in the <Report> section of the origin_code.

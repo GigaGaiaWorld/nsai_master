@@ -1,0 +1,8 @@
+Here's the complete DeepProbLog code for the interpretable merge_sort/2 algorithm in the requested JSON format:
+
+```problog
+{
+    "HASH": "418D2062",
+    "Code": "% Merge Sort in ProbLog\n\n% Base case: empty list is already sorted\nmerge_sort([], []).\n\n% Single element list is already sorted\nmerge_sort([X], [X]).\n\n% Recursive case: split, sort halves, then merge\nmerge_sort(List, Sorted) :-\n    length(List, Len),\n    Len > 1,\n    split(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\n\n% Split list into two halves\nsplit(List, Left, Right) :-\n    length(List, Len),\n    Half is Len // 2,\n    length(Left, Half),\n    append(Left, Right, List).\n\n% Merge two sorted lists\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([L|Ls], [R|Rs], [L|Rest]) :-\n    L =< R,\n    merge(Ls, [R|Rs], Rest).\nmerge([L|Ls], [R|Rs], [R|Rest]) :-\n    L > R,\n    merge([L|Ls], Rs, Rest).\n\n% Helper append predicate\nappend([], L, L).\nappend([H|T], L2, [H|R]) :-\n    append(T, L2, R).\n\n% Example query\nquery(merge_sort([3,1,2,5,7,12],X))."
+}
+```

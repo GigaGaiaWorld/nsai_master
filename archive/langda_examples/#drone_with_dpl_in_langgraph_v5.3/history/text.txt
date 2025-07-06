@@ -1,0 +1,66 @@
+'========================result_text========================'
+
+
+nn(mnist_net1,[M],N,[0,1,"None"])
+ :: event1(M,N). 
+
+nn(mnist_net2,[X],Y,[2,3,"dog","horn"])
+ 
+:: funfunf(X,Y). 
+% net work haha
+% X and what Y: this Y! stop, lann(X,Y)
+nn(mnist_net3,[R],S,["this","thas","was","isss"])
+ 
+:: digit232(R,S). 
+initial_langda_content[i]ge ~ normal(90, 5).
+langda_content[i]ge_cost ~ normal(-0.1, 0.2).
+weight ~ normal(0.2, 0.1).
+1/10::fog; 9/10::clear.
+vlos(X) :-
+fog, distance(X, operator) < 50;
+clear, distance(X, operator) < 100;
+clear, over(X, bay), distance(X, operator) < 400.
+
+{{LANGDA}}
+. 
+
+{{LANGDA}}
+/*
+% Sufficient langda_content[i]ge to return to operator
+can_return(X) :- 
+    B is initial_langda_content[i]ge, O is langda_content[i]ge_cost,
+    D is distance(X, operator), 0 < B + (2 * O * D), langda(LLM:"how about this?")
+*/
+{{LANGDA}}
+ 
+
+{{LANGDA}}
+ % Permits related to local features
+{{LANGDA}}
+permits(X) :-
+distance(X, service) < 15; distance(X, primary) < 15;
+distance(X, secondary) < 10; distance(X, tertiary) < 5;
+distance(X, crossing) < 5; distance(X, rail) < 5;
+over(X, park).
+valid_drone_flight(X) :- (
+
+{{LANGDA}}
+, vlos(X));(can_return(X));
+
+{{LANGDA}}
+coin_win() :-
+% a langda code for new stuff
+{{LANGDA}}
+ 
+,permits(X), 
+% nothing useful % so quit!
+{{LANGDA}}
+. coin_this(X,Y,3) :- 
+
+{{LANGDA}}
+, 
+predicate(sd, X), asd(MMMA)
+.
+landscape(X) :-
+vlos(X), weight < 25, can_return(X);
+permits(X), can_return(X).

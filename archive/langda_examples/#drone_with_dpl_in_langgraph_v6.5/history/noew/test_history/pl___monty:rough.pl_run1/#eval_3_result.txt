@@ -1,0 +1,3 @@
+```report
+{"HASH": "55F6DA26","ErrorSummary": "Unsupported if-then-else construct in ProbLog and incomplete implementation of open_door/1 requirements","SuggestedFix": "Replace if-then-else with disjunction and explicitly handle the two cases for open_door/1. Modify the predicate as follows:\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, (member(D, [1,2,3]), \+ prize(D), D \\= Selected), Doors),\n    length(Doors, N),\n    (N = 2, random_member(Door, Doors) ; N = 1, Doors = [Door]).","Dependencies": [],"NeedRegenerate": true}
+```

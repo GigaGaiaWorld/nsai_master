@@ -1,0 +1,5 @@
+[
+{
+"62719B9D": "% if the previous position was not the goal, attempt a new position\\n% the position depends on the chosen actuator and the current wind\\nattempted_flap_position(Time,Pos) :-\\n    Time > 0,\\n    Prev is Time-1,\\n    flap_position(Prev,Old),\\n    \\+ goal_reached(Prev),\\n    use_actuator(Time,A),\\n    actuator_strength(A,AS),\\n    goal(GP),\\n    Direction is sign(GP - Old),\\n    AE is Direction * AS,\\n    wind_effect(Time,WE),\\n    % Add damping factor to wind effect and ensure position stays within bounds\\n    DampedWE is WE * 0.5,\\n    RawPos is Old + AE + DampedWE,\\n    % Ensure position doesn't overshoot the goal\\n    ((Direction > 0, RawPos > GP) -> Pos = GP;\\n     (Direction < 0, RawPos < GP) -> Pos = GP;\\n     Pos = round(RawPos))."
+}
+]

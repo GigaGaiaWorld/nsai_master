@@ -1,0 +1,128 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 11FB8FD3 </HASH>
+<LLM> Requirements of Rules:   % Find the unique answer to:  % CROSS  % + ROADS  % -------  % DANGER   </LLM></Langda>
+.
+<Langda> Information of 2nd Placeholder:
+<HASH> Hash tag of code: 9D7ABC12 </HASH>
+<LLM> Requirements of Rules: additional rules to complete query_sum/1 </LLM></Langda>
+.
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+ 
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: 11FB8FD3 </HASH>
+<LLM> Requirements of Rules:   % Find the unique answer to:  % CROSS  % + ROADS  % -------  % DANGER   </LLM></Langda>
+.
+<Langda> Information of 2nd Placeholder:
+<HASH> Hash tag of code: 9D7ABC12 </HASH>
+<LLM> Requirements of Rules: additional rules to complete query_sum/1 </LLM></Langda>
+.
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+</origin_code>
+<generated_code>
+% Cryptoaddition:
+% Find the unique answer to:
+query_sum([S,E,N,D,M,O,R,Y]) :-
+    leftdigit(S),
+    leftdigit(M),
+    digit(E), digit(N), digit(D), digit(O), digit(R), digit(Y),
+    all_different([S,E,N,D,M,O,R,Y]),
+    Send is 1000*S + 100*E + 10*N + D,
+    More is 1000*M + 100*O + 10*R + E,
+    Money is 10000*M + 1000*O + 100*N + 10*E + Y,
+    Money is Send + More.
+
+digit(0).
+digit(1).
+digit(2).
+digit(3).
+digit(4).
+digit(5).
+digit(6).
+digit(7).
+digit(8).
+digit(9).
+
+leftdigit(D) :- digit(D), D \= 0.
+
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+
+query(query_sum(X)).
+<generated_code>
+<Final_Answer> Each code block SHOULD ONLY CONTAINS THE EXACT CONTENT of <langda> blocks, for example:
+for the following original code:
+<Code>
+head(X) :-
+<Langda> Information of 1st Placeholder:
+<HASH> Hash tag of code: XXXXABCD </HASH>
+<LLM> Requirements of Rules:...  </LLM></Langda>
+//other contents...
+</Code>
+if you extracted code contains "head(X) :-", it's wrong, because it's OUTSIDE the <langda> block
+
+For each code block , extract it and format it as follows:
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

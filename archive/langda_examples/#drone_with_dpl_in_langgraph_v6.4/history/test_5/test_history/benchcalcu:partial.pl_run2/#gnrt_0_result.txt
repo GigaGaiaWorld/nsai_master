@@ -1,0 +1,13 @@
+Based on the given origin_code and generated_code, I'll extract and format the completed code block that corresponds to the <Langda> placeholder in the origin_code.
+
+The placeholder indicates we need to complete the predicate logic for the cryptoaddition problem. Here's the extracted and formatted code:
+
+```problog
+{"HASH": "1039E900", "Code": "digit(M), all_different([M,R,N,Y,E,D]),\n digit(O), all_different([O,M,R,N,Y,E,D]),\n sumdigit(C2, E, O, N, C3),\n digit(S), leftdigit(S), all_different([S,E,N,D,M,O,R,Y]),\n sumdigit(C3, S, M, O, C4),\n C4 = M,"}
+```
+
+This completes the predicate logic by:
+1. Adding digits M and O with uniqueness constraints
+2. Performing sumdigit operations for the remaining columns
+3. Ensuring S is a left digit (non-zero)
+4. Adding the final constraint that the carry C4 must equal M

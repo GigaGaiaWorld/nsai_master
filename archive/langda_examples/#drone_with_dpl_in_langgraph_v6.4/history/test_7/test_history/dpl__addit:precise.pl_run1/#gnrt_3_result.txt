@@ -1,0 +1,7 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "6579E7BA", "Code": "number([H|T], Acc, Result) :- \n    digit(H, Nr), \n    NewAcc is Acc + Nr * (10 ^ length(T)), \n    number(T, NewAcc, Result)."}
+```
+
+This is the only code block that was completed in the generated_code to replace the <langda> block from the origin_code. The hash matches the one provided in the origin_code's <HASH> tag, and the code implements the requirements of processing digits with the high bit on the right by using `Nr * (10 ^ length(T))` for proper positional value calculation.

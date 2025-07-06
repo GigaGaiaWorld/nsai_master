@@ -1,0 +1,226 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	
+<Langda>
+<Code_Block>my_member(house(yellow, _, _, _, kools), Houses),
+    Houses = [_, _, house(_, _, _, milk, _), _,_],
+    Houses = [house(_, norwegian, _, _, _)|_],
+    next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+    next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+    my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+    my_member(house(_, japanese, _, _, parliaments), Houses),
+    next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+    my_member(house(_, _, zebra, _, _), Houses),
+    my_member(house(_, _, _, water, _), Houses).</Code_Block>
+<HASH> Hash tag of code: 0F506A43 </HASH>
+<Requirements>please complete the rules </Requirements></Langda>
+,
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,zebra,orange_juice,lucky_strikes), house(X656,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,zebra,orange_juice,lucky_strikes), house(X656,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X655,kools), house(red,english,horse,X656,chesterfields), house(blue,spanish,dog,milk,X657), house(X658,norwegian,zebra,orange_juice,lucky_strikes), house(X653,japanese,X654,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,X656,orange_juice,lucky_strikes), house(X657,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,X656,orange_juice,lucky_strikes), house(X657,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(blue,spanish,dog,milk,X656), house(X657,norwegian,X658,orange_juice,lucky_strikes), house(X653,japanese,zebra,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(X656,spanish,dog,milk,X657), house(X658,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X653,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,X657,orange_juice,lucky_strikes), house(blue,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,X657,orange_juice,lucky_strikes), house(blue,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,X654,chesterfields), house(X655,spanish,dog,milk,X656), house(X657,norwegian,X658,orange_juice,lucky_strikes), house(blue,japanese,zebra,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,zebra,X656,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,zebra,X656,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,X654,chesterfields), house(X655,spanish,dog,milk,X656), house(blue,japanese,zebra,water,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,X656,X657,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,X656,X657,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(X656,spanish,dog,milk,X657), house(blue,japanese,X653,water,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X648,chesterfields), house(blue,spanish,dog,milk,kools), house(X649,norwegian,zebra,orange_juice,lucky_strikes), house(X650,japanese,X651,X652,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X648,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,kools), house(X649,norwegian,zebra,orange_juice,lucky_strikes), house(X650,japanese,X651,X652,parliaments)]) = 1.0000
+ ...<other results>... </Result>
+</Code>
+
+<Evaluation_Instructions>
+First, analyze the entire codebase and test results to identify errors and potential issues. Consider:
+1. Syntax correctness: Is the ProbLog code syntactically valid?
+2. Logical correctness: Does the code implement the specified requirements?
+3. Error analysis: What specific issues are causing any test failures?
+4. Integration: Do the code blocks properly work together?
+
+Create a comprehensive report that identifies all issues and explains their causes.
+</Evaluation_Instructions>
+
+<Final_Answer> The evaluation report should be structured as follows:
+```report
+<Overall_Analysis> "Overall assessment of the code quality and test results" </Overall_Analysis>
+<Error_Summary> "Summary of identified errors and their root causes (if any)" </Error_Summary>
+<Code_Block_Issues>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for first code]",
+        "Report": "// Your analysis of first code here"</Code>
+    <Code>"HASH": "[Use the exact HASH provided in the requirements for second code]",
+        "Report": "// Your analysis of second code here"</Code>
+    // other code blocks...
+</Code_Block_Issues>
+<Recommendations>"Recommendations for fixing the issues" </Recommendations>
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+zebra(Houses) :-
+	houses(Houses),
+	my_member(house(red, english, _, _, _), Houses),
+	my_member(house(_, spanish, dog, _, _), Houses),
+	
+<Langda>
+<Code_Block>my_member(house(yellow, _, _, _, kools), Houses),
+    Houses = [_, _, house(_, _, _, milk, _), _,_],
+    Houses = [house(_, norwegian, _, _, _)|_],
+    next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+    next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+    my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+    my_member(house(_, japanese, _, _, parliaments), Houses),
+    next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+    my_member(house(_, _, zebra, _, _), Houses),
+    my_member(house(_, _, _, water, _), Houses).</Code_Block>
+<HASH> Hash tag of code: 0F506A43 </HASH>
+<Requirements>please complete the rules </Requirements></Langda>
+,
+	my_member(house(yellow, _, _, _, kools), Houses),
+	Houses = [_, _, house(_, _, _, milk, _), _,_],
+	Houses = [house(_, norwegian, _, _, _)|_],
+	next_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),
+	next_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),
+	my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),
+	my_member(house(_, japanese, _, _, parliaments), Houses),
+	next_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses),
+	my_member(house(_, _, zebra, _, _), Houses),
+	my_member(house(_, _, _, water, _), Houses).
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,zebra,orange_juice,lucky_strikes), house(X656,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,zebra,orange_juice,lucky_strikes), house(X656,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X655,kools), house(red,english,horse,X656,chesterfields), house(blue,spanish,dog,milk,X657), house(X658,norwegian,zebra,orange_juice,lucky_strikes), house(X653,japanese,X654,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,X656,orange_juice,lucky_strikes), house(X657,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,X654), house(X655,norwegian,X656,orange_juice,lucky_strikes), house(X657,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(blue,spanish,dog,milk,X656), house(X657,norwegian,X658,orange_juice,lucky_strikes), house(X653,japanese,zebra,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X657,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(X656,spanish,dog,milk,X657), house(X658,norwegian,zebra,orange_juice,lucky_strikes), house(blue,japanese,X653,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,X657,orange_juice,lucky_strikes), house(blue,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(X656,norwegian,X657,orange_juice,lucky_strikes), house(blue,japanese,zebra,X658,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,X654,chesterfields), house(X655,spanish,dog,milk,X656), house(X657,norwegian,X658,orange_juice,lucky_strikes), house(blue,japanese,zebra,water,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,zebra,X656,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,zebra,X656,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,X654,chesterfields), house(X655,spanish,dog,milk,X656), house(blue,japanese,zebra,water,parliaments), house(X657,norwegian,X658,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X653,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,X656,X657,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X653,kools), house(red,english,horse,water,chesterfields), house(X654,spanish,dog,milk,X655), house(blue,japanese,X656,X657,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X654,kools), house(red,english,horse,X655,chesterfields), house(X656,spanish,dog,milk,X657), house(blue,japanese,X653,water,parliaments), house(X658,norwegian,zebra,orange_juice,lucky_strikes)]) = 1.0000
+zebra([house(yellow,norwegian,fox,water,kools), house(red,english,horse,X648,chesterfields), house(blue,spanish,dog,milk,kools), house(X649,norwegian,zebra,orange_juice,lucky_strikes), house(X650,japanese,X651,X652,parliaments)]) = 1.0000
+zebra([house(yellow,norwegian,fox,X648,kools), house(red,english,horse,water,chesterfields), house(blue,spanish,dog,milk,kools), house(X649,norwegian,zebra,orange_juice,lucky_strikes), house(X650,japanese,X651,X652,parliaments)]) = 1.0000
+ ...<other results>... </Result>
+
+</original_code>
+<Analysis>
+
+<Overall_Analysis> 
+The code is a ProbLog implementation of the classic "Zebra Puzzle," which aims to solve the puzzle by defining constraints on the attributes of houses. The test results show multiple valid solutions, indicating that the code is logically sound and correctly implements the puzzle's requirements. However, there are some redundancies and potential improvements in the code structure.
+</Overall_Analysis>
+
+<Error_Summary> 
+1. **Redundant Code**: The `zebra` predicate is duplicated in the code, which is unnecessary and could lead to confusion.
+2. **Incomplete Constraints**: Some constraints (e.g., the `next_to` and `my_member` predicates) are repeated, which could be streamlined for clarity.
+3. **Variable Naming**: The use of generic variable names (e.g., `X653`, `X654`) in the test results makes it harder to interpret the solutions.
+4. **Missing Documentation**: The code lacks comments or explanations for the constraints, making it less maintainable.
+</Error_Summary>
+
+<Code_Block_Issues>
+    <Code>"HASH": "0F506A43",
+        "Report": "The code block is incomplete and lacks proper closing for the `zebra` predicate. The constraints are logically correct but could be organized more clearly. The `houses` predicate is correctly defined, but the `right_of` and `next_to` predicates are repeated, which is redundant."
+    </Code>
+</Code_Block_Issues>
+
+<Recommendations>
+1. **Remove Redundancies**: Eliminate the duplicated `zebra` predicate and streamline the constraints.
+2. **Improve Variable Naming**: Use descriptive variable names in the output for better readability.
+3. **Add Documentation**: Include comments to explain the purpose of each constraint.
+4. **Optimize Constraints**: Combine repeated predicates (e.g., `next_to`) into a single definition for clarity.
+5. **Validate Output**: Ensure the test results align with the puzzle's expected solutions by cross-checking with known valid configurations.
+</Recommendations>
+
+</Analysis>
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> 
+For each code block, format it's report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__poker:precise.pl",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 176,
+  "iter_count": 1,
+  "process_time": 175.8241069316864,
+  "final_result": "Error evaluating Problog model:\n    if current is None or type(current) == int:\n                          ^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/LANGDA/#drone_with_dpl_in_langgraph_v6.4/utils/test_tools.py\", line 17, in timeout_handler\n    raise TimeoutError(f\"Function timed out while processing file: {file_basename}\")\nTimeoutError: Function timed out while processing file: dpl__poker:precise.pl_run1",
+  "final_report": "The generated code has several issues. First, it introduces undefined variables 'OwnCards' and 'OpponentCards' in the 'game(Cards,House,Outcome)' clause, which were not properly passed from the previous 'game(Cards,House,H1,H2)' call. Second, the code structure is less readable due to inconsistent spacing and formatting. These issues cause the code to fail during execution, resulting in a timeout error, unlike the original code which runs successfully and produces expected results."
+}

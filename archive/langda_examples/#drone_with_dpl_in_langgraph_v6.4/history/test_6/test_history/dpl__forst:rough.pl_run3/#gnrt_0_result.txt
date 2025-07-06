@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "insertion_sort(List, Sorted) :-\n    insertion_sort_aux(List, [], Sorted).\n\ninsertion_sort_aux([], Acc, Acc).\ninsertion_sort_aux([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort_aux(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs)."}
+```
+
+Note: The first JSON contains all the basic stack operations that were implemented (push, pop, dup, swap, over, rot), and the second JSON contains the insertion sort implementation that was used in the sort operation. Both are part of completing the requirements for the stack operations mentioned in the <langda> block.

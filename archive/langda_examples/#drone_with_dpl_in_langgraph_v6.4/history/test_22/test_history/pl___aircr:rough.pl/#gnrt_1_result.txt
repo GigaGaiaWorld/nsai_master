@@ -1,0 +1,3 @@
+```problog
+{"HASH": "A5C06F43","Code": "attempted_flap_position(Time,Pos) :-\n Time > 0,\n Prev is Time-1,\n flap_position(Prev,PrevPos),\n \+ goal_reached(Prev),\n use_actuator(Time,Actuator),\n actuator_strength(Actuator,Strength),\n goal(Target),\n wind_effect(Time,WindEffect),\n Direction is Target - PrevPos,\n (Direction > 0 -> Sign = 1 ; Sign = -1),\n Pos is PrevPos + Sign * Strength + WindEffect."}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "62719B9D",
+  "ErrorSummary": "Unsupported 'if-then-else' construct (->) in ProbLog at line 38:15, causing 'UnknownClause' runtime error",
+  "SuggestedFix": "Replace the if-then-else logic with ProbLog-compatible conjunctions/disjunctions. Example fix:\nflap_position(Prev, Old),\n    \+ goal_reached(Prev),\n    use_actuator(Time, A),\n    actuator_strength(A, AS),\n    goal(GP),\n    (GP > Old, AE is AS ; GP =< Old, AE is -AS),\n    wind_effect(Time, WE),\n    Pos is Old + AE + WE.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

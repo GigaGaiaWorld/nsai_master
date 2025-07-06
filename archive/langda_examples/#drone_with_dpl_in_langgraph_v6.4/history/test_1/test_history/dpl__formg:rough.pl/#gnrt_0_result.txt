@@ -1,0 +1,16 @@
+Here's the complete DeepProbLog code for the interpretable merge_sort/2 algorithm in JSON form:
+
+```problog
+{
+    "HASH": "418D2062",
+    "Code": "split([],[],[]).\nsplit([X],[X],[]).\nsplit([X,Y|Xs],[X|Ls],[Y|Rs]) :- split(Xs,Ls,Rs).\n\nmerge([],L,L).\nmerge(L,[],L).\nmerge([X|Xs],[Y|Ys],[X|Zs]) :- X =< Y, merge(Xs,[Y|Ys],Zs).\nmerge([X|Xs],[Y|Ys],[Y|Zs]) :- X > Y, merge([X|Xs],Ys,Zs).\n\nmerge_sort([],[]).\nmerge_sort([X],[X]).\nmerge_sort(List,Sorted) :-\n    split(List,L1,L2),\n    merge_sort(L1,S1),\n    merge_sort(L2,S2),\n    merge(S1,S2,Sorted).\n\nquery(merge_sort([3,1,2,5,7,12],X))."
+}
+```
+
+This implementation includes:
+1. split/3 predicate to divide the list into two halves
+2. merge/3 predicate to combine two sorted lists
+3. merge_sort/2 predicate that recursively splits, sorts, and merges
+4. The example query from your original code
+
+The algorithm is interpretable as each step clearly shows the divide-and-conquer approach of merge sort. The base cases handle empty and single-element lists, while the recursive case splits, recursively sorts, and then merges the results.

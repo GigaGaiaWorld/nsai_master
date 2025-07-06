@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, here are the extracted and formatted code blocks that correspond to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "E09B4F54", "Code": "0.1::inf(X) :- initialInf(X).\n0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X)."}
+```
+
+Note: I've combined all the inf/1 predicate rules into a single code block since they all relate to the same logical component (infection probability calculation) that was missing in the original incomplete code. The hash remains the same as it was provided in the original <langda> block.

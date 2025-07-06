@@ -1,0 +1,17 @@
+```report
+{
+  "HASH": "47D659C8",
+  "Report": "The `bubblesort/3` predicate uses Prolog-specific constructs like `->/2` and `append/3`, which are not valid in ProbLog. The logic of the algorithm is correct for Prolog but needs adaptation for ProbLog syntax. The `bubble_pass/3` predicate is also affected by this issue. The code block needs regeneration to replace Prolog-specific constructs with ProbLog-compatible alternatives.",
+  "Need_regenerate": true,
+  "Dependencies": []
+}
+```
+
+```report
+{
+  "HASH": "N/A",
+  "Report": "The `forth_sort/2` predicate is a simple wrapper for `bubblesort/3` and cannot be properly tested or validated until the `bubblesort/3` predicate is regenerated for ProbLog compatibility. The query `forth_sort([3,1,2,5,7,12],X)` fails due to the syntax error in the `bubblesort/3` predicate. This code block depends on the regeneration of the `bubblesort/3` predicate (HASH: 47D659C8).",
+  "Need_regenerate": true,
+  "Dependencies": ["47D659C8"]
+}
+```

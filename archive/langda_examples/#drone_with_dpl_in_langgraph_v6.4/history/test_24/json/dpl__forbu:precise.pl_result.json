@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:precise.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 48,
+  "iter_count": 1,
+  "process_time": 48.08929896354675,
+  "final_result": "Error evaluating Problog model:\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 830, in _builtin_le\n    check_mode((arg1, arg2), [\"gg\"], functor=\"=<\", **k)\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to '=</2': arguments: (X1, X2), expected: (ground, ground) at 16:24.",
+  "final_report": "The generated code has several issues. First, there is a syntax error in the 'bubblesort' predicate where the body is split incorrectly. Second, the 'swap' conditions are reversed compared to the original code, which changes the logic. Third, the error message indicates a problem with the '=<' operator not handling uninstantiated variables correctly. The generated code does not produce the same result as the original and fails to run due to these errors."
+}

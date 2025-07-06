@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__forin:rough.pl",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 58,
+  "iter_count": 1,
+  "process_time": 57.939688205718994,
+  "final_result": "% Problog Inference Result：\ninsertion_sort([3, 1, 2, 5, 7, 12],[1, 12, 2, 3, 5, 7]) = 1.0000",
+  "final_report": "The generated code is valid in form and follows a similar structure to the original code, using an accumulator for the insertion sort. However, the running result is incorrect as it does not produce a sorted list. The issue lies in the 'insert' predicate where the comparison operators '@=<' and '@>' are used instead of '=<' and '>', leading to incorrect element ordering. The original code correctly sorts the list, while the generated code does not."
+}

@@ -1,0 +1,5 @@
+[
+{
+"FA856BCD": "bb(N) :- N >= 2, Max is N - 1, bb_helper(1, Max). bb_helper(I, Max) :- I =< Max, pick(I, b), pick(I+1, b). bb_helper(I, Max) :- I < Max, NextI is I + 1, bb_helper(NextI, Max). bb(N) :- N < 2, fail."
+}
+]

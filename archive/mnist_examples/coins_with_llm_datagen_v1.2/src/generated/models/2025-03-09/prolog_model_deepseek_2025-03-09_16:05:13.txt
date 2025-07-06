@@ -1,0 +1,67 @@
+
+
+```prolog
+% Define neural networks for event1 and event2
+nn(mnist_net1,[X],Y,[0,1]) :: event1(X,Y).
+nn(mnist_net2,[X],Y,[2,3]) :: event2(X,Y).
+
+% Define coin predicates to extract event labels at specific timestamps
+coin1(ID1, T) :-
+    happensAt(X,_,T), 
+    event1(X, ID1).
+
+coin2(ID2, T) :-
+    happensAt(_,Y,T), 
+    event2(Y, ID2).
+
+% Event table mapping combinations of event1 and event2 labels to event IDs
+event_table(ID1,ID2,0) :- ID1=0, ID2=2.
+event_table(ID1,ID2,1) :- ID1=0, ID2=3.
+event_table(ID1,ID2,2) :- ID1=1, ID2=2.
+event_table(ID1,ID2,3) :- ID1=1, ID2=3.
+
+% Detect combined event at specific timestamp
+detectEvent(EventID, T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    event_table(ID1,ID2,EventID).
+
+% Calculate absolute difference between event1 and event2 labels
+diff_event(ID1, ID2, Diff) :-
+    Diff =:= abs(ID1 - ID2).
+
+% Main result predicate based on absolute difference
+result(win=1, T) :-
+    detectEvent(EventID, T),
+    coin1(ID1, T),
+    coin2(ID2, T),
+    diff_event(ID1, ID2, 2).
+
+result(win=0, T) :-
+    detectEvent(EventID, T),
+    coin1(ID1, T),
+    coin2(ID2, T),
+    diff_event(ID1, ID2, Diff),
+    Diff \= 2.
+
+% Additional rule 1: Timestamp between 50 and 250, event1=1, event2=3
+result(win=0, T) :-
+    T >= 50,
+    T =< 250,
+    coin1(1, T),
+    coin2(3, T).
+
+% Additional rule 2: Timestamp between 100 and 300, event1=0, event2=3
+result(win=1, T) :-
+    T >= 100,
+    T =< 300,
+    coin1(0, T),
+    coin2(3, T).
+```% 
+% # When the absolute value of the difference between the outputs of e1 and e2 is 2, the win output is 1, otherwise the game output is 0
+% 
+% 
+% Additional Rules:
+% when the timestamp is between 50 and 250, if the event1 and event2 are classified as 1 and 3, the win output is 0
+% when the timestamp is between 100 and 300, if the event1 and event2 are classified as 0 and 3, the win output is 1
+% 

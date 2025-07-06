@@ -1,0 +1,79 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+% Win-lose relationship: X beats Y
+{{LANGDA}}
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+% The correct call is result(P1,P2,R), not semicolon
+result(P1, P2, R),
+% (Optional) Update the score according to R
+play(P1T, P2T, Rs).
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder
+Hash tag of code, please use it actually for generation: 8934D879
+Requirements of Rules: We define new rules for rock-paper-scissors:  1. mammals restrain arthropods and fishes  2. arthropods restrain lizards  3. lizards restrain mammals and birds  4. birds restrain arthropods and fishes  5. fishes restrain arthropods.
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

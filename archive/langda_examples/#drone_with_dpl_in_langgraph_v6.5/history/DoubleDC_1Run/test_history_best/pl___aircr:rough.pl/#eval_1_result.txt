@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A5C06F43",
+  "ErrorSummary": "Incomplete predicate definition for 'attempted_flap_position/2' causing a ParseError (missing binary operator). The predicate lacks logic to compute the new flap position based on actuator, wind effect, and previous position.",
+  "SuggestedFix": "Complete the 'attempted_flap_position/2' predicate by adding the following logic after line 31:\n\n  flap_position(Prev, PrevPos),\n  goal(G),\n  PrevPos \\= G,\n  use_actuator(Time, Actuator),\n  actuator_strength(Actuator, Strength),\n  wind_effect(Time, WindEffect),\n  Pos is PrevPos + (Sign * Strength) + WindEffect,\n  (G > PrevPos -> Sign = 1; Sign = -1).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

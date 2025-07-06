@@ -1,0 +1,9 @@
+Based on the origin_code and generated_code provided, I'll extract and format the code block that corresponds to the <langda> block in the origin_code. The <langda> block in origin_code has the hash D92532A0 and requirements to "Pick up the key."
+
+Looking at the generated_code, the corresponding completed code snippet is the rule for `at(robot,Pos,s(T))` that includes the `goto_succeeds(T)` condition, which was missing in the origin_code.
+
+Here's the formatted JSON output:
+
+```problog
+{"HASH": "D92532A0", "Code": "at(robot,Pos,s(T)) :-\n    goto_succeeds(T),\n    do(goto(Pos), T)."}
+```

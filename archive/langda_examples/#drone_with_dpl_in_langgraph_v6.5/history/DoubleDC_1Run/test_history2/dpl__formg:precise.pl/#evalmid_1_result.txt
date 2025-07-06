@@ -1,0 +1,99 @@
+### Code Evaluation Report: Merge Sort in ProbLog
+
+---
+
+#### 1. **Document Title**  
+**Evaluation of Merge Sort Implementation in ProbLog**
+
+---
+
+#### 2. **Background and Purpose**  
+The provided code implements the merge sort algorithm in ProbLog, a probabilistic logic programming language. The purpose is to sort a list of integers in ascending order. The algorithm recursively splits the list into halves, sorts each half, and merges them back together. The test case confirms the correctness of the implementation for a specific input.
+
+---
+
+#### 3. **Original Code Excerpt**  
+```prolog
+1. merge_sort([], []).
+2. merge_sort([X], [X]).
+3. merge_sort(List, Sorted) :-
+4.     length(List, Len),
+5.     Len > 1,
+6.     split_list(List, Left, Right),
+7.     merge_sort(Left, SortedLeft),
+8.     merge_sort(Right, SortedRight),
+9.     merge(SortedLeft, SortedRight, Sorted).
+10. 
+11. split_list(List, Left, Right) :-
+12.     length(List, Len),
+13.     Half is Len // 2,
+14.     length(Left, Half),
+15.     append(Left, Right, List).
+16. 
+17. merge([], List, List).
+18. merge(List, [], List).
+19. merge([H1|T1], [H2|T2], [H1|Merged]) :-
+20.     H1 =< H2,
+21.     merge(T1, [H2|T2], Merged).
+22. merge([H1|T1], [H2|T2], [H2|Merged]) :-
+23.     H1 > H2,
+24.     merge([H1|T1], T2, Merged).
+25. 
+26. append([], L, L).
+27. append([H|T], L2, [H|R]) :-
+28.     append(T, L2, R).
+29. 
+30. query(merge_sort([3,1,2,5,7,12],X)).
+```
+
+---
+
+#### 4. **Overall Analysis**  
+The code successfully implements the merge sort algorithm and passes the provided test case. However, there are potential issues with edge cases (e.g., empty lists, lists with negative numbers, or non-integer inputs) that are not explicitly tested. The code adheres to the requirements, including recursive boundary checks and splitting logic.
+
+---
+
+#### 5. **Error Summary**  
+
+| **No.** | **Problem**                          | **Impact**                          | **Suggestion**                                                                 |
+|---------|--------------------------------------|-------------------------------------|--------------------------------------------------------------------------------|
+| 1       | No handling of negative numbers     | May produce incorrect results       | Ensure the merge predicate correctly compares negative numbers.                |
+| 2       | No test for empty input             | Unverified behavior for edge cases  | Add test cases for empty lists and single-element lists.                       |
+| 3       | Potential inefficiency in `split_list` | Unnecessary list traversal        | Optimize `split_list` to avoid redundant `length` calls.                       |
+
+---
+
+#### 6. **Improvement Suggestions**  
+
+##### **Handling Negative Numbers**  
+Ensure the `merge` predicate correctly handles negative numbers by verifying the comparison logic. No changes are needed for the current implementation, as the comparison operators (`=<`, `>`) work for negative numbers.
+
+##### **Edge Case Testing**  
+Add test cases for edge cases:  
+```prolog
+query(merge_sort([], X)). % Should return []
+query(merge_sort([-1, -2, -3], X)). % Should return [-3, -2, -1]
+```
+
+##### **Optimizing `split_list`**  
+The current `split_list` predicate calls `length` twice, which is inefficient. Optimize it as follows:  
+```prolog
+split_list(List, Left, Right) :-
+    length(List, Len),
+    Half is Len // 2,
+    split_at(List, Half, Left, Right).
+
+split_at(List, 0, [], List).
+split_at([H|T], N, [H|Left], Right) :-
+    N > 0,
+    N1 is N - 1,
+    split_at(T, N1, Left, Right).
+```
+
+---
+
+#### **Final Checks**  
+- **Handling Zero or Negative Values**: The current implementation handles them correctly, but additional test cases are recommended.  
+- **Table Format and Code Blocks**: Verified and corrected for clarity.  
+
+This report provides a comprehensive evaluation and actionable suggestions for improving the code.

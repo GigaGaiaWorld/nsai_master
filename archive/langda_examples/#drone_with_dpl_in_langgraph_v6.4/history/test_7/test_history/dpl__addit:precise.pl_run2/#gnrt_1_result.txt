@@ -1,0 +1,11 @@
+Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> blocks in the origin_code:
+
+```problog
+{"HASH": "6579E7BA", "Code": "number([Head|Tail], Acc, Result) :- \n    digit(Head, Nr), \n    NewAcc is Acc * 10 + Nr, \n    number(Tail, NewAcc, Result)."}
+```
+
+```problog
+{"HASH": "6579E7BA", "Code": "number([], Result, Result)."}
+```
+
+Note that I've included both the recursive case (which was explicitly marked in the <langda> block) and the base case (which was referenced in the requirements and report). Both share the same hash since they're part of the same logical unit in the original code.

@@ -1,0 +1,7 @@
+Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "5BCD04E8", "Code": "attempted_flap_position(Time,Pos) :-\n    Time > 0,\n    Prev is Time-1,\n    flap_position(Prev,Old),\n    goal(G),\n    Old \\= G,\n    use_actuator(Time,A),\n    actuator_strength(A,AS),\n    (G > Old, Sign is 1 ; G < Old, Sign is -1),\n    AE is Sign * AS,\n    wind_effect(Time,WE),\n    TempPos is Old + AE + WE,\n    (legal_flap_position(TempPos) -> Pos = TempPos ; Pos = Old)."}
+```
+
+Note that the generated code includes an additional safety check (`TempPos is Old + AE + WE, (legal_flap_position(TempPos) -> Pos = TempPos ; Pos = Old)`) that wasn't present in the original <langda> block, which helps prevent overrun exceptions by reverting to the old position if the new position would be illegal.

@@ -1,0 +1,7 @@
+```report
+{"HASH": "6579E7BA","ErrorSummary": "Unsupported if-then-else (`->`) construct in ProbLog and incomplete handling of invalid inputs","SuggestedFix": "Replace `->` with declarative alternatives and ensure the predicate handles invalid inputs gracefully. Revised code:\nnumber([H|T], Acc, Result) :-\n    (digit(H, Nr),\n     NewAcc is Acc * 10 + Nr,\n     number(T, NewAcc, Result))\n    ; Result = invalid.","Dependencies": [],"NeedRegenerate": true}
+```
+
+```report
+{"HASH": "4A9D0B2A","ErrorSummary": "Unsupported if-then-else (`->`) construct in ProbLog","SuggestedFix": "Replace `->` with declarative alternatives. Revised code:\nmulti_addition(X, Y, Z) :-\n    number(X, XNum),\n    number(Y, YNum),\n    (XNum \\= invalid, YNum \\= invalid,\n     Z is XNum + YNum)\n    ; Z = invalid.","Dependencies": ["6579E7BA"],"NeedRegenerate": true}
+```

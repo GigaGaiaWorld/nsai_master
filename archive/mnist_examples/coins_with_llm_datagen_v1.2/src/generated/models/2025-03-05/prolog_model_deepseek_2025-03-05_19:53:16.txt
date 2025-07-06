@@ -1,0 +1,34 @@
+
+
+```prolog
+% ================= %% ================= %% ================= %% ================= %
+
+
+% New outcome rules based on user instructions
+outcome(0, ID1, ID2) :-
+    T >= 50,
+    T <= 250,
+    ID1 = 1,
+    ID2 = 3.
+
+outcome(1, ID1, ID2) :-
+    T >= 100,
+    T <= 300,
+    ID1 = 0,
+    ID2 = 3.
+
+% Existing outcome rules
+outcome(1, ID1, ID2) :- (abs(ID1 - ID2) =:= 2).
+outcome(0, ID1, ID2) :- (abs(ID1 - ID2) =\= 2).
+
+
+detectEvent(sequence=EventID,T) :-
+    coin1(ID1, T),
+    coin2(ID2, T),
+    outcome(EventID, ID1, ID2).
+
+% ================= %% ================= %% ================= %% ================= %%
+```% 
+% when the timestamp is between 50 and 250, if the event1 and event2 are classified as 1 and 3, the sequence should equals 0
+% when the timestamp is between 100 and 300, if the event1 and event2 are classified as 0 and 3, the sequence should equals 1
+% 

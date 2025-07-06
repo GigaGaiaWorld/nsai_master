@@ -1,0 +1,239 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+<Langda> Information:
+<HASH> Hash tag of code: 0C388A60 </HASH>
+<Requirements>move of paper </Requirements></Langda>
+.
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+beats(paper, rock).
+<Langda> Information:
+<HASH> Hash tag of code: BF964057 </HASH>
+<Requirements>move of scissor </Requirements></Langda>
+.
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+% The correct call is result(P1,P2,R), not semicolon
+result(P1, P2, R),
+% (Optional) Update the score according to R
+play(P1T, P2T, Rs).
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S).
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+<Regenerate_format>
+
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+3. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+<Langda> Information:
+<HASH> Hash tag of code: 0C388A60 </HASH>
+<Requirements>move of paper </Requirements></Langda>
+.
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+beats(paper, rock).
+<Langda> Information:
+<HASH> Hash tag of code: BF964057 </HASH>
+<Requirements>move of scissor </Requirements></Langda>
+.
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+move(X).
+% If X beats Y, then X wins
+result(X, Y, win) :-
+beats(X, Y).
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+beats(Y, X).
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+% The correct call is result(P1,P2,R), not semicolon
+result(P1, P2, R),
+% (Optional) Update the score according to R
+play(P1T, P2T, Rs).
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S).
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+
+</origin_code>
+<generated_code>
+
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+move(scissors).  % Fixed typo from 'scissor' to 'scissors'
+
+% Win-lose relationship: X beats Y
+beats(rock, scissors).  % Fixed typo from 'scissor' to 'scissors'
+beats(paper, rock).
+beats(scissors, paper).  % Fixed typo from 'scissor' to 'scissors'
+
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+% Same gestures are considered a draw
+result(X, X, draw) :-
+    move(X).
+
+% If X beats Y, then X wins
+result(X, Y, win) :-
+    beats(X, Y).
+
+% If Y beats X, then X loses
+result(X, Y, lose) :-
+    beats(Y, X).
+
+% Validate moves
+valid_move(X) :- move(X).
+result(X, Y, _) :- \+ valid_move(X); \+ valid_move(Y), fail.
+
+% -------------------------
+% Play the game and compute results
+% -------------------------
+% End of recursion: empty list corresponds to empty result
+play([], [], []).
+
+% Recursive advancement: take out each round of gestures, calculate the results, and continue
+play([P1|P1T], [P2|P2T], [R|Rs]) :-
+    result(P1, P2, R),
+    play(P1T, P2T, Rs).
+
+% Compute the score
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S).
+
+% Determine the winner
+determine_winner([], [], draw).  % Handle empty lists
+determine_winner(P1Moves, P2Moves, Winner) :-
+    (P1Moves = []; P2Moves = []), 
+    Winner = draw.
+determine_winner(P1Moves, P2Moves, Winner) :- 
+    play(P1Moves, P2Moves, Results), 
+    compute_score(Results, S), 
+    ( S > 0, Winner = player1 
+    ; S < 0, Winner = player2 
+    ; S = 0, Winner = draw 
+    ).
+
+% Example queries
+query(determine_winner([rock, rock, rock], [paper, paper, scissors], W)).
+query(determine_winner([], [], W)).  % Test with empty lists
+query(determine_winner([rock, invalid], [paper, rock], W)).  % Test with invalid moves
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

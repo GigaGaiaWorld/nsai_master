@@ -1,0 +1,80 @@
+# Problem Context:
+
+[[CONTEXT]]
+
+# nn predicates:
+
+In DeepProbLog the nn predicate is the mechanism that “plugs in” a neural network into a logic program. It is a reserved construct that defines a neural predicate whose truth is not given by a fixed probability but by the output of a neural network. In other words, it allows the logic program to obtain probabilistic estimates from a neural model.
+The typical syntax is: nn(Network, [InputArgs], Output, [OutputDomain]) :: Predicate(InputArgs, Output).
+
+### Here’s what each part means:
+
+Network: A unique identifier for the neural network model (which includes its architecture and parameters).
+[InputArgs]: The list of arguments that the neural network takes as input. These are usually raw data (e.g., an image) or features derived from it.
+Output: The variable that will be instantiated with the predicted label or value.
+[OutputDomain]: A list of all possible output values (the domain) that the network can predict. The network’s softmax (or sigmoid in the binary case) output is interpreted as a probability distribution over this domain.
+
+### for example:
+
+nn(m_digit, [X], Y, [0,1,2,3,4,5,6,7,8,9]) :: digit(X,Y).
+
+means that the predicate digit(X,Y) is defined by the neural network m_digit which, when given an input X (such as an image of a handwritten digit), outputs a probability distribution over the digits 0 through 9. The outcome is then used as a probabilistic fact in the logic program.
+
+# Facts: (always given, you should not create this part)
+
+There are two different types of facts write as predicates: "happensAt" and "event". Whenever you use facts inside a rule, you should follow the following form:
+
+1\. happensAt are always given in following forms together with rules:
+
+ happensAt(Event, Timestamp). 
+
+ means the event that happens at time Timestamp.
+
+ ### for example:
+
+ happensAt(boy, alien, 12). means there's two events(boy and alien) happens at timestamp 12.
+
+2\. events are always given in following forms together with rules, you should not create this part:
+
+ event<Event_name>(Event, Label).
+
+ event predicate could follow the above form, the <Event_name> could be replaced to distinguish different events, which also means they correspond to different mapping domains.
+
+ ### for example:
+
+ event1(14243, 2). could have one of the Label1 from [0,1,2,3], means event 14243 will be classified as class 2.
+
+ event2(dog, black). could have one of the Label2 from [black,white], means event dog will be classified as class black.
+
+
+# Task:
+
+### Your task is to generate new DeepProblog code based on the following existing DeepProblog code and the user's instructions. Please first analyze the structure and logic of the existing code, and then create additional code according to the user's instructions so that it conforms to the DeepProblog syntax. Please add necessary comments in the code to explain the function of each part. As a supplement to the existing code, the new code should be compatible with the existing code in terms of content, but it cannot make any modifications to the existing code.
+
+### The existing DeepProblog code that you should refer to is below:
+
+[[RULE_SET]]
+
+### Here are some examples of facts, other facts also follows the same form:
+
+[[FACTS]]
+
+### Here are some examples of queries, other queries also follows the same form:
+
+[[QUERIES]]
+
+### Below is the demand of user that you need to fullfill with your generated new code:
+
+[[QUESTION]]
+
+\-----
+
+# Note:
+
+1. Make sure you capture all the information from the context in the translation.
+    
+2. Make sure you follow the instruction and example to translate the information.
+    
+3. Please ensure your answer together with current code is directly executable.
+    
+4. Do not generate any descriptive content.

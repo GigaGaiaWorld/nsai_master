@@ -1,0 +1,5 @@
+[
+{
+"E09B4F54": "inf(X) :- initialInf(X).\ninf(X) :- contact(X,Y), inf(Y), \\+susceptible(X), 0.6::inf(X).\ninf(X) :- contact(X,Y), inf(Y), susceptible(X), 0.8::inf(X).\ninf(X) :- riskyTravel(X), 0.2::inf(X)."
+}
+]

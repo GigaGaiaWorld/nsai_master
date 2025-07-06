@@ -1,0 +1,295 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_information>
+<Code_with_Issue>
+% member/2 for ProbLog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+% --------- Basic meta-interpreter ---------
+% Prove "true" always succeeds
+prove(true).
+prove(Goal) :-
+	% For all other goals, use the clause/2 facts/rules defined in the program
+	clause(Goal, Body),
+	prove(Body).
+% Prove compound goal A,B: prove A first, then prove B
+prove((A,B)) :-
+	prove(A),
+	prove(B).
+% --------- Extended logic processing ---------
+prove(implies(P,Q)) :-
+	
+
+	(\+ prove(P)) ; prove(Q).
+prove(opposite(P)) :-
+	
+
+\t\+ prove(P).
+prove(expand(A,B)) :-
+	
+
+	expand(A, B).
+prove(includes(Set,X)) :-
+	
+
+	member(X, Set).
+prove(extend(List,Elem,Extended)) :-
+	
+
+	Extended = [Elem|List].
+% 6. refute(P): refute, equivalent to "unprovable"
+prove(refute(P)) :-
+	\+ prove(P).
+% --------- Examples ---------- %
+% Define some expand rules:
+expand(double(X), Y) :- Y is X*2.
+expand(square(X), Y) :- Y is X*X.
+parent(alice, bob).
+parent(bob, carol).
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).
+% --------- Queries ---------- %
+query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
+query(prove(opposite(parent(carol,alice)))).
+query(prove(expand(double(3),6))).
+query(prove(includes([a,b,c],b))).
+query(prove(extend([1,2],3,[3,1,2]))).
+</Code_with_Issue>
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    toks = self.label_tokens(string, root_tokens)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1186, in label_tokens
+    raise ParseError(string, "Expected binary operator", t.location)
+problog.parser.ParseError: Expected binary operator at 23:3.
+</Result>
+<Analysis>
+
+</Analysis>
+</Regenerate_information>
+
+<Regenerate_format>
+% member/2 for ProbLog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+% --------- Basic meta-interpreter ---------
+% Prove "true" always succeeds
+prove(true).
+prove(Goal) :-
+	% For all other goals, use the clause/2 facts/rules defined in the program
+	clause(Goal, Body),
+	prove(Body).
+% Prove compound goal A,B: prove A first, then prove B
+prove((A,B)) :-
+	prove(A),
+	prove(B).
+% --------- Extended logic processing ---------
+prove(implies(P,Q)) :-
+	
+<Langda> Information:
+<HASH> Hash tag of code: 99C92279 </HASH>
+<Requirements>P ⇒ Q, when P is unprovable or Q is provable </Requirements></Langda>
+.
+prove(opposite(P)) :-
+	
+
+\t\+ prove(P).
+prove(expand(A,B)) :-
+	
+
+	expand(A, B).
+prove(includes(Set,X)) :-
+	
+
+	member(X, Set).
+prove(extend(List,Elem,Extended)) :-
+	
+
+	Extended = [Elem|List].
+% 6. refute(P): refute, equivalent to "unprovable"
+prove(refute(P)) :-
+	\+ prove(P).
+% --------- Examples ---------- %
+% Define some expand rules:
+expand(double(X), Y) :- Y is X*2.
+expand(square(X), Y) :- Y is X*X.
+parent(alice, bob).
+parent(bob, carol).
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).
+% --------- Queries ---------- %
+query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
+query(prove(opposite(parent(carol,alice)))).
+query(prove(expand(double(3),6))).
+query(prove(includes([a,b,c],b))).
+query(prove(extend([1,2],3,[3,1,2]))).
+<Regenerate_format>
+
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Regenerate_Instructions>
+1. In <Regenerate_information> you will receive the code with issue, its test result and its analysis.
+2. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+3. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+4. Your could take the advise in <Analysis>
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% member/2 for ProbLog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+% --------- Basic meta-interpreter ---------
+% Prove "true" always succeeds
+prove(true).
+prove(Goal) :-
+	% For all other goals, use the clause/2 facts/rules defined in the program
+	clause(Goal, Body),
+	prove(Body).
+% Prove compound goal A,B: prove A first, then prove B
+prove((A,B)) :-
+	prove(A),
+	prove(B).
+% --------- Extended logic processing ---------
+prove(implies(P,Q)) :-
+	
+<Langda> Information:
+<HASH> Hash tag of code: 99C92279 </HASH>
+<Requirements>P ⇒ Q, when P is unprovable or Q is provable </Requirements></Langda>
+.
+prove(opposite(P)) :-
+	
+
+\t\+ prove(P).
+prove(expand(A,B)) :-
+	
+
+	expand(A, B).
+prove(includes(Set,X)) :-
+	
+
+	member(X, Set).
+prove(extend(List,Elem,Extended)) :-
+	
+
+	Extended = [Elem|List].
+% 6. refute(P): refute, equivalent to "unprovable"
+prove(refute(P)) :-
+	\+ prove(P).
+% --------- Examples ---------- %
+% Define some expand rules:
+expand(double(X), Y) :- Y is X*2.
+expand(square(X), Y) :- Y is X*X.
+parent(alice, bob).
+parent(bob, carol).
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).
+% --------- Queries ---------- %
+query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
+query(prove(opposite(parent(carol,alice)))).
+query(prove(expand(double(3),6))).
+query(prove(includes([a,b,c],b))).
+query(prove(extend([1,2],3,[3,1,2]))).
+
+</origin_code>
+<generated_code>
+
+% member/2 for ProbLog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+% --------- Basic meta-interpreter ---------
+% Prove "true" always succeeds
+prove(true).
+prove(Goal) :-
+	% For all other goals, use the clause/2 facts/rules defined in the program
+	clause(Goal, Body),
+	prove(Body).
+% Prove compound goal A,B: prove A first, then prove B
+prove((A,B)) :-
+	prove(A),
+	prove(B).
+% --------- Extended logic processing ---------
+prove(implies(P,Q)) :-
+    (\+ prove(P)) ; prove(Q).
+prove(opposite(P)) :-
+    \+ prove(P).
+prove(expand(A,B)) :-
+    expand(A, B).
+prove(includes(Set,X)) :-
+    member(X, Set).
+prove(extend(List,Elem,Extended)) :-
+    Extended = [Elem|List].
+% 6. refute(P): refute, equivalent to "unprovable"
+prove(refute(P)) :-
+    \+ prove(P).
+% --------- Examples ---------- %
+% Define some expand rules:
+expand(double(X), Y) :- Y is X*2.
+expand(square(X), Y) :- Y is X*X.
+parent(alice, bob).
+parent(bob, carol).
+ancestor(X,Y) :- parent(X,Y).
+ancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).
+% --------- Queries ---------- %
+query(prove(implies(parent(alice,bob), ancestor(alice,bob)))).
+query(prove(opposite(parent(carol,alice)))).
+query(prove(expand(double(3),6))).
+query(prove(includes([a,b,c],b))).
+query(prove(extend([1,2],3,[3,1,2]))).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

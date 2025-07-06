@@ -1,0 +1,7 @@
+Based on the provided origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <Langda> block in the origin_code:
+
+```problog
+{"HASH": "E09B4F54", "Code": "% Regenerated inf/1 predicate with combined probabilities\n% Initial infection\n0.1::inf(X) :- initialInf(X).\n% Contact transmission\n0.8::inf(X) :- contact(X, Y), inf(Y), susceptible(X).\n0.6::inf(X) :- contact(X, Y), inf(Y), \\+susceptible(X).\n% Travel risk\n0.2::inf(X) :- riskyTravel(X)."}
+```
+
+Note that this is the only code block that corresponds to a <Langda> section in the origin_code. The generated_code shows the completed version of this block (without the undefined predicates mentioned in the Report), which I've included in the JSON output with its original hash tag.

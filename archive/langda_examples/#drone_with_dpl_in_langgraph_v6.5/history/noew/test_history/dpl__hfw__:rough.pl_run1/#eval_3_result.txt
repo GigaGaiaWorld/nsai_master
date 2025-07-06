@@ -1,0 +1,3 @@
+```report
+{"HASH": "FB41E2F7", "ErrorSummary": "Missing arithmetic operations (subtraction, multiplication, division) and incorrect evaluation order (operator precedence not handled)", "SuggestedFix": "Add parse/2 clauses for all operations (-, *, /) and restructure parsing logic to handle operator precedence (e.g., evaluate * and / before + and -). Example additions:\nparse([N1, -, N2 | T], R) :- almost_equal(N1, X), parse([N2 | T], Y), R is X - Y.\nparse([N1, *, N2 | T], R) :- almost_equal(N1, X), parse([N2 | T], Y), R is X * Y.\nparse([N1, /, N2 | T], R) :- almost_equal(N1, X), parse([N2 | T], Y), R is X / Y.", "Dependencies": [], "NeedRegenerate": true}
+```

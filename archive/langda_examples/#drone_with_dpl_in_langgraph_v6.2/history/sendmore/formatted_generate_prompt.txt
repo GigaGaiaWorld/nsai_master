@@ -1,0 +1,66 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with placeholders and the requirements, please generate the report as required.
+
+
+<\context>
+<ruleset>
+### The original rule set with placeholder is as follows, make sure you capture all the information from the code: 
+% Cryptoaddition:
+% Find the unique answer to:
+% SEND
+% + MORE
+% -------
+% MONEY
+query_sum([C,R,O,S,S,R,O,A,D,S]) :-
+ 
+{{LANGDA}}
+digit(0).
+ digit(1).
+ digit(2).
+ digit(3).
+ digit(4).
+digit(5).
+ digit(6).
+ digit(7).
+ digit(8).
+ digit(9).
+leftdigit(D) :- digit(D), D =\= 0.
+all_different([]).
+all_different([H|T]) :- \+ member(H, T), all_different(T).
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+query(query_sum(X)).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could fit in the {LANGDA} placeholder based on following requirements, and nothing more. 
+
+The Information for Generating Code of 1st Placeholder, inside the Parent Predicate: query_sum([C,R,O,S,S,R,O,A,D,S])
+Hash tag of code, please use it actually for generation: E8F86752
+Requirements of Rules: % Cryptoaddition:  % Find the unique answer to:  % CROSS  % + ROADS  % -------  % DANGER
+
+
+Please generate each code in JSON form for each code block using a single prolog block of the following form:
+
+For the first Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for first code]",
+    "Code": "// Your fixed code here"
+}
+```
+
+For the second Code:
+```prolog 
+{
+    "HASH": "[Use the exact HASH provided in the requirements for second code]",
+    "Code": "// Your fixed code here"
+}
+``` 
+
+### This is really important! Also make sure to use the correct syntax. Please make sure your code fits completely inside the placeholder.
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

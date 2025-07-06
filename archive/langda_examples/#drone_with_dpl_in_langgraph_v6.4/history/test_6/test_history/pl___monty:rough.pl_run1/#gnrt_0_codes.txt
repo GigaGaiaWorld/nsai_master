@@ -1,0 +1,5 @@
+[
+{
+"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    (   Selected \\= PrizeDoor, Selected \\= Door, PrizeDoor \\= Door ->\n        0.5::open_door(Door) ; 0.5::open_door(OtherDoor)\n    ;   Selected \\= Door, PrizeDoor \\= Door ->\n        true\n    )."
+}
+]

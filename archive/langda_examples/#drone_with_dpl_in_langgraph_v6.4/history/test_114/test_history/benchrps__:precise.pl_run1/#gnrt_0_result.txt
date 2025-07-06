@@ -1,0 +1,29 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
+
+```problog
+{"HASH": "3F277A35", "Code": "result(X, X, draw) :- move(X)."}
+```
+
+```problog
+{"HASH": "D91BB7A0", "Code": "result(X, Y, win) :- beats(X, Y)."}
+```
+
+```problog
+{"HASH": "0940BB04", "Code": "result(X, Y, lose) :- beats(Y, X)."}
+```
+
+```problog
+{"HASH": "583E41B6", "Code": "compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1."}
+```
+
+```problog
+{"HASH": "D324979D", "Code": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."}
+```
+
+```problog
+{"HASH": "FD850DEC", "Code": "compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1."}
+```
+
+```problog
+{"HASH": "3FEB17D7", "Code": "determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw )."}
+```

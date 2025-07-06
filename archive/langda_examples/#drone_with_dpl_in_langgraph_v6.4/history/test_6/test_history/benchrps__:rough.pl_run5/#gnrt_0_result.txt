@@ -1,0 +1,13 @@
+Based on the given origin_code and generated_code, here's the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
+
+```problog
+{"HASH": "CFA63C1E", "Code": "play([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2) -> Result = win;\n     beats(P2, P1) -> Result = lose;\n     Result = draw),\n    play(P1s, P2s, Results)."}
+```
+
+This code defines the game rules for rock-paper-scissors by implementing the `play/3` predicate which:
+1. Takes two lists of moves (one for each player)
+2. Compares each corresponding pair of moves
+3. Determines the result (win/lose/draw) based on the `beats/2` relationships
+4. Recursively processes all moves to produce a list of results
+
+The hash CFA63C1E matches the one specified in the <langda> block of the origin_code.

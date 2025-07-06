@@ -1,0 +1,312 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Symbols, Result) :-
+    parse_expression(Symbols, Result).
+
+parse_expression(Symbols, Result) :-
+    shunting_yard(Symbols, RPN),
+    evaluate_rpn(RPN, Result).
+
+% Shunting-yard algorithm to convert infix to RPN
+shunting_yard(Symbols, RPN) :-
+    shunting_yard(Symbols, [], [], RPN).
+
+shunting_yard([], Operators, Output, RPN) :-
+    append(Output, Operators, RPN).
+shunting_yard([X|Xs], Operators, Output, RPN) :-
+    (   number(X) ->
+        shunting_yard(Xs, Operators, [X|Output], RPN)
+    ;   operator(X, Precedence, _),
+        process_operator(X, Precedence, Operators, NewOperators, Output, NewOutput),
+        shunting_yard(Xs, NewOperators, NewOutput, RPN)
+    ).
+
+process_operator(Op, Precedence, [], [Op], Output, Output).
+process_operator(Op, Precedence, [Top|Ops], NewOperators, Output, NewOutput) :-
+    operator(Top, TopPrecedence, _),
+    (   Precedence =< TopPrecedence ->
+        process_operator(Op, Precedence, Ops, NewOperators, [Top|Output], NewOutput)
+    ;   NewOperators = [Op, Top|Ops],
+        NewOutput = Output
+    ).
+
+% Evaluate RPN expression
+evaluate_rpn([X], X).
+evaluate_rpn(RPN, Result) :-
+    evaluate_rpn(RPN, [], Result).
+
+evaluate_rpn([], [Result], Result).
+evaluate_rpn([X|Xs], Stack, Result) :-
+    (   number(X) ->
+        evaluate_rpn(Xs, [X|Stack], Result)
+    ;   operator(X, _, Op),
+        pop_two(Stack, A, B, NewStack),
+        compute(Op, B, A, Value),
+        evaluate_rpn(Xs, [Value|NewStack], Result)
+    ).
+
+pop_two([A, B|Stack], B, A, Stack).
+
+compute('+', A, B, Result) :- Result is A + B.
+compute('-', A, B, Result) :- Result is A - B.
+compute('*', A, B, Result) :- Result is A * B.
+compute('/', A, B, Result) :- B \= 0, Result is A / B.
+
+operator('+', 1, '+').
+operator('-', 1, '-').
+operator('*', 2, '*').
+operator('/', 2, '/').</Code_Block>
+<Report>The code block implements the shunting-yard algorithm and RPN evaluator correctly for arithmetic operations. However, there are two main issues: 1) The `operator/3` predicate is missing the division operator (`/`) with correct precedence and associativity, causing the 'Unknown Clause' error. 2) The `compute/4` predicate for division lacks proper error handling for division by zero. The logic for parsing and evaluation is otherwise sound.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+<Langda>
+<Code_Block>parse([N], N).
+parse(Symbols, Result) :-
+    parse_expression(Symbols, Result).
+
+parse_expression(Symbols, Result) :-
+    shunting_yard(Symbols, RPN),
+    evaluate_rpn(RPN, Result).
+
+% Shunting-yard algorithm to convert infix to RPN
+shunting_yard(Symbols, RPN) :-
+    shunting_yard(Symbols, [], [], RPN).
+
+shunting_yard([], Operators, Output, RPN) :-
+    append(Output, Operators, RPN).
+shunting_yard([X|Xs], Operators, Output, RPN) :-
+    (   number(X) ->
+        shunting_yard(Xs, Operators, [X|Output], RPN)
+    ;   operator(X, Precedence, _),
+        process_operator(X, Precedence, Operators, NewOperators, Output, NewOutput),
+        shunting_yard(Xs, NewOperators, NewOutput, RPN)
+    ).
+
+process_operator(Op, Precedence, [], [Op], Output, Output).
+process_operator(Op, Precedence, [Top|Ops], NewOperators, Output, NewOutput) :-
+    operator(Top, TopPrecedence, _),
+    (   Precedence =< TopPrecedence ->
+        process_operator(Op, Precedence, Ops, NewOperators, [Top|Output], NewOutput)
+    ;   NewOperators = [Op, Top|Ops],
+        NewOutput = Output
+    ).
+
+% Evaluate RPN expression
+evaluate_rpn([X], X).
+evaluate_rpn(RPN, Result) :-
+    evaluate_rpn(RPN, [], Result).
+
+evaluate_rpn([], [Result], Result).
+evaluate_rpn([X|Xs], Stack, Result) :-
+    (   number(X) ->
+        evaluate_rpn(Xs, [X|Stack], Result)
+    ;   operator(X, _, Op),
+        pop_two(Stack, A, B, NewStack),
+        compute(Op, B, A, Value),
+        evaluate_rpn(Xs, [Value|NewStack], Result)
+    ).
+
+pop_two([A, B|Stack], B, A, Stack).
+
+compute('+', A, B, Result) :- Result is A + B.
+compute('-', A, B, Result) :- Result is A - B.
+compute('*', A, B, Result) :- Result is A * B.
+compute('/', A, B, Result) :- B \= 0, Result is A / B.
+
+operator('+', 1, '+').
+operator('-', 1, '-').
+operator('*', 2, '*').
+operator('/', 2, '/').</Code_Block>
+<Report>The code block implements the shunting-yard algorithm and RPN evaluator correctly for arithmetic operations. However, there are two main issues: 1) The `operator/3` predicate is missing the division operator (`/`) with correct precedence and associativity, causing the 'Unknown Clause' error. 2) The `compute/4` predicate for division lacks proper error handling for division by zero. The logic for parsing and evaluation is otherwise sound.</Report>
+<HASH> Hash tag of code: 190031BC </HASH>
+<Requirements>Recursive expression evaluator: parse/2, which can perform the following operations:  Addition processing  Subtraction processing  Multiplication processing  Division processing. </Requirements></Langda>
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+
+</origin_code>
+<generated_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, '+').
+detect_operator(image_minus, '-').
+detect_operator(image_multiply, '*').
+detect_operator(image_divide, '/').
+
+detect_all([N], [N2]) :- 
+    detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+    detect_number(N, N2), 
+    detect_operator(O, O2), 
+    detect_all(T, T2).
+
+almost_equal(X, Y) :- 
+    ground(Y), 
+    abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+    var(Y), 
+    Y is float(X).
+
+expression(Images, Result) :- 
+    detect_all(Images, Symbols), 
+    parse(Symbols, Result).
+
+parse([N], N).
+parse(Symbols, Result) :-
+    parse_expression(Symbols, Result).
+
+parse_expression(Symbols, Result) :-
+    shunting_yard(Symbols, RPN),
+    evaluate_rpn(RPN, Result).
+
+% Shunting-yard algorithm to convert infix to RPN
+shunting_yard(Symbols, RPN) :-
+    shunting_yard(Symbols, [], [], RPN).
+
+shunting_yard([], Operators, Output, RPN) :-
+    append(Output, Operators, RPN).
+shunting_yard([X|Xs], Operators, Output, RPN) :-
+    (   number(X) ->
+        shunting_yard(Xs, Operators, [X|Output], RPN)
+    ;   operator(X, Precedence, _),
+        process_operator(X, Precedence, Operators, NewOperators, Output, NewOutput),
+        shunting_yard(Xs, NewOperators, NewOutput, RPN)
+    ).
+
+process_operator(Op, Precedence, [], [Op], Output, Output).
+process_operator(Op, Precedence, [Top|Ops], NewOperators, Output, NewOutput) :-
+    operator(Top, TopPrecedence, _),
+    (   Precedence =< TopPrecedence ->
+        process_operator(Op, Precedence, Ops, NewOperators, [Top|Output], NewOutput)
+    ;   NewOperators = [Op, Top|Ops],
+        NewOutput = Output
+    ).
+
+% Evaluate RPN expression
+evaluate_rpn([X], X).
+evaluate_rpn(RPN, Result) :-
+    evaluate_rpn(RPN, [], Result).
+
+evaluate_rpn([], [Result], Result).
+evaluate_rpn([X|Xs], Stack, Result) :-
+    (   number(X) ->
+        evaluate_rpn(Xs, [X|Stack], Result)
+    ;   operator(X, _, Op),
+        pop_two(Stack, A, B, NewStack),
+        compute(Op, B, A, Value),
+        evaluate_rpn(Xs, [Value|NewStack], Result)
+    ).
+
+pop_two([A, B|Stack], B, A, Stack).
+
+compute('+', A, B, Result) :- Result is A + B.
+compute('-', A, B, Result) :- Result is A - B.
+compute('*', A, B, Result) :- Result is A * B.
+compute('/', A, B, Result) :- B \= 0, Result is A / B.
+
+operator('+', 1, '+').
+operator('-', 1, '-').
+operator('*', 2, '*').
+operator('/', 2, '/').
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

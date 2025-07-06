@@ -1,0 +1,273 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Analyze the provided code and test results to identify any errors and suggest fixes.
+
+<Code>
+<Langda>
+<Code_Block>stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    Stack \= [],
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Stack, StackSize),
+    (StackSize >= N ->
+        length(Elements, N),
+        append(Elements, Rest, Stack)
+    ;
+        Elements = Stack,
+        Rest = []
+    ).
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([X|Xs], Acc, Sorted) :-
+    insert(X, Acc, NewAcc),
+    insertion_sort_aux(Xs, NewAcc, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).</Code_Block>
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+stack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000
+stack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000
+stack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000
+stack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000
+stack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000
+stack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000
+</Result> 
+</Code>
+
+<Evaluation_Instructions>
+1. **Test Failures**: Identify which tests (from <Result>) failed and locate the source of each failure in the code (e.g., specific predicate or rule).
+2. **Root Cause Analysis**: Identify the root cause of failures in the code (logical, structural, or semantic issues).
+3. **Overall Analysis**: Analyze whether the overall code meets the requirements
+</Evaluation_Instructions>
+
+<Final_Answer> Please output a complete report in the following structure (using Markdown):
+1. **Document title**
+2. **Background and purpose** (brief description of functions and scenarios)
+3. **Original code excerpt** (with line numbers)
+4. **Overall analysis** (brief evaluation)
+5. **Error summary** (in tabular form: number/problem/impact/suggestion)
+6. **Improvement suggestions** (including specific code examples)
+
+After the first draft is completed, please check and improve:
+- Does it include examples of handling zero or negative values?
+- Are the table format and code blocks correct?
+
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    Stack \= [],
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Stack, StackSize),
+    (StackSize >= N ->
+        length(Elements, N),
+        append(Elements, Rest, Stack)
+    ;
+        Elements = Stack,
+        Rest = []
+    ).
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([X|Xs], Acc, Sorted) :-
+    insert(X, Acc, NewAcc),
+    insertion_sort_aux(Xs, NewAcc, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).</Code_Block>
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+stack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000
+stack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000
+stack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000
+stack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000
+stack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000
+stack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000
+</Result>
+
+</original_code>
+
+### Code Evaluation Report: Stack Operations in ProbLog
+
+---
+
+#### 1. **Document Title**
+**Evaluation of Stack Operations Implementation in ProbLog**
+
+---
+
+#### 2. **Background and Purpose**
+The provided code implements a series of stack operations (`push`, `pop`, `dup`, `swap`, `over`, `rot`, and `sort`) in ProbLog. These operations are fundamental for manipulating a stack data structure, where elements are added or removed in a last-in-first-out (LIFO) manner. The purpose of this evaluation is to verify the correctness of the implementation and identify any logical or structural issues.
+
+---
+
+#### 3. **Original Code Excerpt**
+```prolog
+stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    Stack \= [],
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Stack, StackSize),
+    (StackSize >= N ->
+        length(Elements, N),
+        append(Elements, Rest, Stack)
+    ;
+        Elements = Stack,
+        Rest = []
+    ).
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([X|Xs], Acc, Sorted) :-
+    insert(X, Acc, NewAcc),
+    insertion_sort_aux(Xs, NewAcc, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).
+```
+
+---
+
+#### 4. **Overall Analysis**
+The code generally meets the requirements for basic stack operations (`push`, `pop`, `dup`, `swap`, `over`, `rot`), as evidenced by the successful test results. However, the `sort` operation and its helper predicates (`get_top_n` and `insertion_sort`) have potential issues, especially when handling edge cases (e.g., empty stacks or stacks with fewer than 3 elements). The current implementation lacks robustness in these scenarios.
+
+---
+
+#### 5. **Error Summary**
+
+| **No.** | **Problem**                          | **Impact**                          | **Suggestion**                                                                 |
+|---------|--------------------------------------|-------------------------------------|--------------------------------------------------------------------------------|
+| 1       | `get_top_n` fails for `N > StackSize` | Incorrect behavior for small stacks | Add a check to ensure `N` is valid (e.g., `N > 0` and `N =< StackSize`).       |
+| 2       | `sort` fails for empty stacks        | Unhandled edge case                 | Add a guard clause for empty stacks: `stack_op(sort, [], []).`                 |
+| 3       | `insertion_sort` lacks generality    | Only sorts top 3 elements           | Modify `get_top_n` to handle variable `N` or sort the entire stack.            |
+
+---
+
+#### 6. **Improvement Suggestions**
+
+##### **Handling Edge Cases**
+1. **Empty Stack in `sort`:**
+   ```prolog
+   stack_op(sort, [], []).
+   ```
+
+2. **Invalid `N` in `get_top_n`:**
+   ```prolog
+   get_top_n(Stack, N, Elements, Rest) :-
+       length(Stack, StackSize),
+       (N > 0, N =< StackSize ->
+           length(Elements, N),
+           append(Elements, Rest, Stack)
+       ;
+           Elements = Stack,
+           Rest = []
+       ).
+   ```
+
+##### **Generalizing `sort`**
+To sort the entire stack:
+```prolog
+stack_op(sort, Stack, SortedStack) :-
+    insertion_sort(Stack, SortedStack).
+```
+
+##### **Example of Handling Zero or Negative Values**
+The current implementation does not handle negative values in the stack. If required, add a check:
+```prolog
+stack_op(push(X), Stack, [X|Stack]) :- number(X), X >= 0.
+```
+
+---
+
+#### **Final Checks**
+- **Examples of Edge Cases:** Added for empty stacks and invalid `N`.
+- **Table Format and Code Blocks:** Verified for correctness.
+
+This report provides a comprehensive analysis and actionable suggestions for improving the code. Let me know if further refinements are needed!
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

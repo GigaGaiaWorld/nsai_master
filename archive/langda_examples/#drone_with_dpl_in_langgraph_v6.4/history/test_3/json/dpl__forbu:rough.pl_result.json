@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu:rough.pl",
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 78,
+  "iter_count": 2,
+  "process_time": 78.31524014472961,
+  "final_result": "Error evaluating Problog model:\n    return exec_func(node_id=node_id, node=node, **kwdargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py\", line 839, in eval_call\n    raise UnknownClause(origin, location=loc)\nproblog.engine.UnknownClause: No clauses found for ''->'/2' at 7:22.",
+  "final_report": "The generated code attempts to implement a bubblesort algorithm compatible with DeepProbLog but contains several issues. The main problem is the use of an unsupported '->' operator in the bubblesort predicate, which causes the execution error. The original code successfully implements a working bubblesort, while the generated code fails to run due to syntax errors. The generated code also includes unnecessary elements like a dummy probabilistic fact that don't contribute to the sorting functionality."
+}

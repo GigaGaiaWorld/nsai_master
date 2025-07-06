@@ -1,0 +1,7 @@
+Here's the extracted and formatted code block from the `<generated_code>` that corresponds to the `<langda>` block in the `<origin_code>`:
+
+```problog
+{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    (Op = '+', Temp is N1 + N2\n    ; Op = '-', Temp is N1 - N2\n    ; Op = '*', Temp is N1 * N2\n    ; Op = '/', (N2 =:= 0 -> fail ; Temp is N1 / N2)\n    ),\n    parse([Temp | Rest], Result)."}
+```
+
+Note: There was only one code block to extract in this case, corresponding to the single `<langda>` block in the original code. The hash "190031BC" was taken from the `<HASH>` tag in the original `<langda>` section.

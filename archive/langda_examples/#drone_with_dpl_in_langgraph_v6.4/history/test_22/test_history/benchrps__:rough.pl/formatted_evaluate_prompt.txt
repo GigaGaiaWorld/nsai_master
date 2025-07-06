@@ -1,0 +1,83 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: You are an expert code evaluator specialized in Problog and DeepProbLog. Your task is to thoroughly analyze the code in <Code> block, evaluate test results in <Result> block, and identify issues that need to be fixed.
+
+<Code>
+% -------------------------
+% Basic rules of rock-paper-scissors
+% -------------------------
+% Three gestures
+move(rock).
+move(paper).
+move(scissor).
+% Win-lose relationship: X beats Y
+beats(rock, scissor).
+beats(scissor, paper).
+beats(paper, rock).
+% -------------------------
+% Calculate the result of the game
+% -------------------------
+<Langda>
+<Code_Block>% Game rules for rock-paper-scissors
+move(rock).
+move(paper).
+move(scissor).
+
+% Win-lose relationships
+beats(rock, scissor).
+beats(scissor, paper).
+beats(paper, rock).
+
+% Play a single round
+play_round(P1, P2, win) :- beats(P1, P2).
+play_round(P1, P2, lose) :- beats(P2, P1).
+play_round(P, P, draw).
+
+% Play multiple rounds
+play([], [], []).
+play([P1|P1s], [P2|P2s], [R|Rs]) :-
+    play_round(P1, P2, R),
+    play(P1s, P2s, Rs).</Code_Block>
+<HASH> Hash tag of code: CFA63C1E </HASH>
+<Requirements>please define the game rules of rock-paper-scissors. </Requirements></Langda>
+.
+compute_score([], 0).
+compute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.
+compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.
+compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.
+determine_winner(P1Moves,P2Moves,Winner) :- 
+play(P1Moves,P2Moves,Results), 
+compute_score(Results,S), 
+( S > 0, Winner = player1 
+; S < 0, Winner = player2 
+; S = 0, Winner = draw 
+).
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+<Result> Here are the testing result of code:
+ % Problog Inference Result：
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000</Result>
+</Code>
+
+<Evaluation_Instructions>
+For each <langda> code block in the original code:
+1. Identify the corresponding HASH value
+2. Analyze whether it has issues based on the analysis
+3. Determine if it needs regeneration
+4. Provide detailed reasoning for your decision
+5. If there are dependencies between code blocks, identify them
+
+Consider:
+- Syntax and logical correctness
+- Integration with other code blocks
+- Test failures related to this code block
+- Implementation of requirements
+</Evaluation_Instructions>
+
+<Final_Answer> 
+For each code block, format it's report in the following JSON format:
+```report
+{"HASH": "XXXX1234","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": ["HASH5678", "HASH9101"] // Only include if this code block depends on others that also need regeneration}
+```
+```report
+{"HASH": "XXXX5678","Report": "Detailed analysis of issues and recommendations for this specific code block","Need_regenerate": true|false,"Dependencies": [] // Empty if no dependencies need regeneration}
+```
+</Final_Answer>

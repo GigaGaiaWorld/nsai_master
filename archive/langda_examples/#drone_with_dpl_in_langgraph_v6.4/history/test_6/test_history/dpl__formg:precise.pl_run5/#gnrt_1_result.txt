@@ -1,0 +1,13 @@
+Based on the origin_code and generated_code provided, I'll extract and format the code block that corresponds to the <Langda> section in the origin_code.
+
+The <Langda> section in origin_code was replaced by a more efficient implementation of split_list in the generated_code. Here's the formatted JSON for the corresponding code:
+
+```problog
+{"HASH": "95E704F2", "Code": "split_list([H1, H2 | T], [H1 | Left], [H2 | Right]) :-\n    split_list(T, Left, Right).\nsplit_list([], [], []).\nsplit_list([X], [X], [])."}
+```
+
+This code block:
+1. Replaces the original inefficient split_list implementation
+2. Directly splits the list by taking alternate elements
+3. Handles all three cases: empty list, single element list, and lists with two or more elements
+4. Matches the HASH from the original <Langda> block (95E704F2)

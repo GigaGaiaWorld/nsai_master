@@ -1,0 +1,11 @@
+{
+  "file_name": "dpl__hfw__:rough.pl",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": 123,
+  "iter_count": 1,
+  "process_time": 122.87113809585571,
+  "final_result": "% Problog Inference Result：\nexpression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],11.666666666666668) = 1.0000",
+  "final_report": "The generated code simplifies the parsing logic by introducing an arithmetic_operation predicate, which is a valid approach. However, it fails to correctly handle the subtraction operation as in the original code (which treated subtraction as adding a negative product). This leads to different results for the same query. The generated code's result (11.666...) is incorrect compared to the original code's result (-10.333...). The form is valid but the logic differs."
+}

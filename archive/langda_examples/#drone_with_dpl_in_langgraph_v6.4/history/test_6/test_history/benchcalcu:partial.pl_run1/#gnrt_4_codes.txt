@@ -1,0 +1,5 @@
+[
+{
+"1039E900": "digit(O), all_different([O,R,N,Y,E,D]),\nsumdigit(C2, E, O, N, C3),\n\ndigit(M), all_different([M,O,R,N,Y,E,D]),\nsumdigit(C3, S, M, O, C4),\n\ndigit(S), leftdigit(S), all_different([S,M,O,R,N,Y,E,D]),\nsumdigit(C4, 0, 0, M, 0),\n\n% Final check for SEND + MORE = MONEY\nSEND is 1000*S + 100*E + 10*N + D,\nMORE is 1000*M + 100*O + 10*R + E,\nMONEY is 10000*M + 1000*O + 100*N + 10*E + Y,\nSEND + MORE =:= MONEY."
+}
+]

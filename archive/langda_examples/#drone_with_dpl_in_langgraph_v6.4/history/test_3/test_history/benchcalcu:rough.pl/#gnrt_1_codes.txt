@@ -1,0 +1,5 @@
+[
+{
+"11FB8FD3": "% Find the unique answer to:\n%   CROSS\n% + ROADS\n% -------\n% DANGER\nquery_sum([C,R,O,S,A,D,N,G,E]) :-\n    leftdigit(C),\n    leftdigit(R),\n    leftdigit(D),\n    digit(O),\n    digit(S),\n    digit(A),\n    digit(N),\n    digit(G),\n    digit(E),\n    all_different([C,R,O,S,A,D,N,G,E]),\n    S1 is (S + S),\n    R1 is S1 div 10,\n    S2 is S1 mod 10,\n    O1 is (O + A + R1),\n    R2 is O1 div 10,\n    O2 is O1 mod 10,\n    S3 is (S + D + R2),\n    R3 is S3 div 10,\n    S4 is S3 mod 10,\n    R4 is (R + O + R3),\n    R5 is R4 div 10,\n    R6 is R4 mod 10,\n    C1 is (C + R + R5),\n    D is C1 mod 10,\n    D1 is C1 div 10,\n    D =:= N,\n    D1 =:= 0."
+}
+]

@@ -1,0 +1,171 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+0.5::open_door(A) ; 0.5::open_door(B) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: A4F0EAE2 </HASH>
+<Requirements>If there are two doors that are not selected and neither of them hides a prize  Let the two doors be numbered A and B (and A < B ensures that each pair is counted only once).  When faced with two empty doors, the host randomly and fairly chooses one to open. </Requirements></Langda>
+.
+open_door(A) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: F0FDE8AB </HASH>
+<Requirements>If only one door is not selected and does not contain a prize.   This means that the other unselected door is exactly the one that contains the prize.  Then this rule will match the only empty door A and open it with certainty (probability 1). </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</Code>
+<Syntax_Notes>
+ProbLog supports a subset of Prolog's control constructs (logical connectives and meta-predicates) that do not break the logical (declarative) semantics. 
+It excludes features like cuts and imperative control that have no meaning in a probabilistic setting.
+
+Supported control predicates:
+- Conjunction: P, Q (both P and Q must succeed).
+- Disjunction: P; Q (either P or Q succeeds).
+- true/0 (always succeeds).
+- fail/0 (always fails) and synonym false/0.
+- Negation-as-failure: \+/1 (or its alias not/1).
+- Meta-call: call/1 (invoke a goal at runtime) and call/N for N up to 9 (for calling predicates with N-1 additional arguments).
+- You can also write a goal directly as a term (which is equivalent to call/1).
+
+Supported arithmetic evaluation and comparison: 
+- X is Y (evaluate expression Y and unify with X).
+- Comparison Operators X < Y, X =< Y (or <=), X > Y, X >= Y, as well as numeric equality X =:= Y and inequality X =\\= Y (which compare numerical values after evaluation).
+
+Not supported control constructs:
+- The cut !/0 is not supported (no hard cut in ProbLog; see the Cut library for an alternative soft cut mechanism).
+- The if-then (->) and if-then-else (*->) constructs are not supported. (You can achieve a similar effect using (Condition, Action) ; (\+ Condition, Alternative).)
+
+** Other situations can be obtained by calling the tool
+</Syntax_Notes>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+0.5::open_door(A) ; 0.5::open_door(B) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: A4F0EAE2 </HASH>
+<Requirements>If there are two doors that are not selected and neither of them hides a prize  Let the two doors be numbered A and B (and A < B ensures that each pair is counted only once).  When faced with two empty doors, the host randomly and fairly chooses one to open. </Requirements></Langda>
+.
+open_door(A) :-
+ 
+<Langda> Information:
+<HASH> Hash tag of code: F0FDE8AB </HASH>
+<Requirements>If only one door is not selected and does not contain a prize.   This means that the other unselected door is exactly the one that contains the prize.  Then this rule will match the only empty door A and open it with certainty (probability 1). </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</origin_code>
+<generated_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+% If there are two doors that are not selected and neither of them hides a prize
+% Let the two doors be numbered A and B (and A < B ensures that each pair is counted only once).
+% When faced with two empty doors, the host randomly and fairly chooses one to open.
+0.5::open_door(A) ; 0.5::open_door(B) :-
+    select_door(Selected),
+    member(A, [1,2,3]),
+    member(B, [1,2,3]),
+    A < B,
+    \+ select_door(A),
+    \+ select_door(B),
+    \+ prize(A),
+    \+ prize(B).
+
+% If only one door is not selected and does not contain a prize.
+% This means that the other unselected door is exactly the one that contains the prize.
+% Then this rule will match the only empty door A and open it with certainty (probability 1).
+open_door(A) :-
+    select_door(Selected),
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    \+ prize(A),
+    member(Other, [1,2,3]),
+    \+ select_door(Other),
+    Other \= A,
+    prize(Other).
+
+win_keep :-
+    select_door(A),
+    prize(A).
+win_switch :-
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    prize(A),
+    \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -1,0 +1,25 @@
+Here are the JSON-formatted code blocks for each part:
+
+For the first code block (digit facts):
+```problog
+{
+    "HASH": "06576BEB",
+    "Code": "digit(img_1,1).\ndigit(img_2,2).\ndigit(img_3,3).\ndigit(img_4,4).\ndigit(img_5,5).\ndigit(img_6,6).\ndigit(img_7,7).\ndigit(img_8,8).\ndigit(img_9,9).\ndigit(img_0,0)."
+}
+```
+
+For the second code block (number predicate and multi_addition):
+```problog
+{
+    "HASH": "06576BEB",
+    "Code": "number([], 0).\nnumber([H|T], N) :- digit(H,D), number(T, NT), N is NT + D * (10^length(T)).\n\nmulti_addition(X,Y,Z) :- number(X,X2), number(Y,Y2), Z is X2+Y2.\nquery(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z))."
+}
+```
+
+The number predicate is defined recursively to convert a list of image IDs into their corresponding integer value by:
+1. Handling the base case (empty list returns 0)
+2. For non-empty lists, getting the digit value of the head image
+3. Recursively processing the tail
+4. Calculating the final number by adding the current digit multiplied by the appropriate power of 10 based on its position
+
+The multi_addition predicate remains the same but now works with the properly defined number predicate.

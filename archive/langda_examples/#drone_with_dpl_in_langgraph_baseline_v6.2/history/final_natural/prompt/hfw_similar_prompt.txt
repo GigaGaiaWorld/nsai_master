@@ -1,0 +1,41 @@
+System: You are a helpful assistant that helps the user to generate deepproblog code.
+Human: <context>
+I need you to generate the code in my DeepProblog code. Below I will give the the code with langda term that includes natural language requirements, please generate the report as required.
+
+
+
+<\context>
+<ruleset>
+### The original rule set with natural language is as follows, make sure you capture all the information from the code: 
+
+nn(net1,[X],Y,[0,1,2,3,4,5,6,7,8,9]) :: detect_number(X,Y).
+nn(net2,[X],Y,[+,-,*,/]) :: detect_operator(X,Y).
+detect_all([N],[N2]) :- detect_number(N,N2).
+detect_all([N,O|T],[N2,O2|T2]) :- detect_number(N,N2), detect_operator(O,O2), detect_all(T,T2).
+define almost_equal/2 with a precision of 0.0001
+expression(Images,Result) :- detect_all(Images,Symbols),parse(Symbols,Result).
+parse([N],R) :-almost_equal(N,R).
+parse([N1,+|T], R) :-
+parse(T,R2),
+almost_equal(N1+R2,R).
+parse([N1,-|T], R) :-
+parse([-1,*|T],R2),
+almost_equal(N1+R2,R).
+parse([N1,*,N2|T], R) :-
+N3 is N1*N2,
+parse([N3|T],R).
+parse([N1,/,N2|T], R) :-
+N2 \== 0,
+N3 is N1/N2,
+parse([N3|T],R).
+
+</ruleset>
+<requirements>
+To complete the Prolog-style rule code according to the following Problog Code, Please generate the code that could replace the langda term and nothing more. 
+
+Please generate the complete new code.
+
+</requirements>
+<annotations>
+# Important: Please do not use the '->' symbol in your answer.
+</annotations>

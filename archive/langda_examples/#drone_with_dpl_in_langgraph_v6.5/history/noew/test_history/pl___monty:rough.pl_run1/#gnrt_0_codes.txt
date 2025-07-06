@@ -1,0 +1,5 @@
+[
+{
+"55F6DA26": "% Clause 1: If there are two doors A and B, neither of which has a prize, and neither of which is the door chosen by the player, then Monty will open a door uniformly at random between A and B.\nopen_door(Door) :-\n    select_door(Selected),\n    member(Door, [A, B]),\n    \\+ prize(A),\n    \\+ prize(B),\n    \\+ (A = Selected),\n    \\+ (B = Selected),\n    (Door = A ; Door = B)."
+}
+]

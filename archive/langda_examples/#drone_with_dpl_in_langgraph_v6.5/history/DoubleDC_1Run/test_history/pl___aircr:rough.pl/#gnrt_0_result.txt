@@ -1,0 +1,7 @@
+Here's the extracted and formatted code block corresponding to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "A5C06F43", "Code": "flap_position(Prev, PrevPos),\n \+ goal_reached(Prev),\n use_actuator(Time, Actuator),\n actuator_strength(Actuator, Strength),\n goal(G),\n wind_effect(Time, WindEffect),\n Pos is PrevPos + (G > PrevPos -> Strength ; -Strength) + WindEffect."}
+```
+
+Note: I noticed there was a small typo in the generated code ("actuator_strength" was misspelled as "actuator_strength"), but I've preserved the exact code as it appeared in the generated version.

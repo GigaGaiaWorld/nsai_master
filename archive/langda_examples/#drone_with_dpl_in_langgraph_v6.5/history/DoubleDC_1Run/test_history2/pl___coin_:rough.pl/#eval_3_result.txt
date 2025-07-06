@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Missing 'heads/1' predicate and no handling for CNT <= 0",
+  "SuggestedFix": "1. Add 'heads(1) :- coin(_).' and 'heads(0) :- \\+ heads(1).' to simulate coin toss outcomes. 2. Add a base case 'coins_r(SC,SC,CNT) :- CNT =< 0.' to handle edge cases.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

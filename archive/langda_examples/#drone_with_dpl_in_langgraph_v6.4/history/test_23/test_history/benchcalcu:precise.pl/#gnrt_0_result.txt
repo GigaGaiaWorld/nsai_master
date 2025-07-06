@@ -1,0 +1,3 @@
+```problog
+{"HASH": "623E07CC","Code": "query_sum([A,B,C,D,E]) :-\n    leftdigit(A), % A is the first digit of AB\n    leftdigit(B), % B is the first digit of BCD\n    leftdigit(C), % C is the first digit of CDE\n    all_different([A,B,C,D,E]), % All letters must represent different digits\n    % Column-wise addition with carry\n    sumdigit(0, B, D, E, Carry1), % Units place\n    sumdigit(Carry1, A, C, D, Carry2), % Tens place\n    sumdigit(Carry2, 0, B, C, Carry3), % Hundreds place\n    Carry3 = 0. % No overflow in the thousands place"}
+```

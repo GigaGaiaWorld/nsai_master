@@ -1,0 +1,12 @@
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, +, N2 | T], R) :-\n almost_equal(N1, X1),\n parse([N2 | T], X2),\n R is X1 + X2."}
+```
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, -, N2 | T], R) :-\n almost_equal(N1, X1),\n parse([N2 | T], X2),\n R is X1 - X2."}
+```
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, *, N2 | T], R) :-\n almost_equal(N1, X1),\n parse([N2 | T], X2),\n R is X1 * X2."}
+```
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, /, N2 | T], R) :-\n almost_equal(N1, X1),\n parse([N2 | T], X2),\n R is X1 / X2."}
+```

@@ -1,0 +1,14 @@
+Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
+
+```problog
+{
+  "HASH": "501F546D",
+  "Code": "% Corrected insertion sort implementation in ProbLog\n\n% Base case: an empty list is already sorted\ninsertion_sort([], []).\n\n% Recursive case: insert the head into the sorted tail\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert(H, SortedTail, Sorted).\n\n% Insert an element into a sorted list\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :-\n    X =< Y.\ninsert(X, [Y|T], [Y|SortedT]) :-\n    X > Y,\n    insert(X, T, SortedT)."
+}
+```
+
+Note that I've:
+1. Used the same HASH value from the original code (501F546D)
+2. Included the complete corrected implementation of the insertion sort algorithm
+3. Maintained all comments and structure from the generated code
+4. Formatted it in the requested JSON format with the "problog" language identifier

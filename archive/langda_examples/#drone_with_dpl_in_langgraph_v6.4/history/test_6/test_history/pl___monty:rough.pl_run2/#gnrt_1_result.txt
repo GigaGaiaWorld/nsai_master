@@ -1,0 +1,12 @@
+Based on the provided `<origin_code>` and `<generated_code>`, I'll extract and format the code block that corresponds to the `<Langda>` section in the origin code. Since the `<generated_code>` section is empty in your input, I'll assume you want the corrected version of the `<Langda>` block from the origin code.
+
+Here's the formatted JSON for the corrected `open_door/1` predicate:
+
+```problog
+{
+  "HASH": "592D75CA",
+  "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Random Door Opening Rules\n    (   PrizeDoor = Selected ->\n        % Scenario: The remaining two doors are neither selected by the player nor have any prizes.\n        % Behavior: The host randomly opens one of the two \"empty doors\" with a 50% probability.\n        member(Door, [1,2,3]),\n        \\+ (Door = Selected),\n        \\+ (Door = PrizeDoor),\n        0.5::open_door(Door) ; true\n    ;   % Deterministic Door Opening Rules\n        % Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not.\n        % Behavior: The host must open the \"empty door\".\n        member(Door, [1,2,3]),\n        \\+ (Door = Selected),\n        \\+ (Door = PrizeDoor)\n    )."
+}
+```
+
+Note: This is the original code block from the `<Langda>` section. If you have a specific corrected version in the `<generated_code>` that you'd like me to extract instead, please provide the content of the `<generated_code>` section.

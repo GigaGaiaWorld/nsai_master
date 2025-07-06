@@ -1,0 +1,170 @@
+System: You are a coding assistant. Use the tools as needed to complete the ProbLog code.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to regenerate the code in each <langda> block inside <Code>
+in each <langda> block, <Report> shows why the <Code_Block> need to be regenerated, please regenerate the code according based on these information.
+<Code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda>
+<Code_Block>open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    ( (Prize = Selected) ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), Doors),
+        length(Doors, 2),
+        0.5::door_choice(1) ; 0.5::door_choice(2),
+        nth1(Choice, Doors, Door),
+        door_choice(Choice)
+    ; \+ (Prize = Selected) ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize), [Door])
+    ).</Code_Block>
+<Report>The `open_door/1` predicate has critical issues requiring regeneration:
+1. **Syntax Errors**: Unmatched parentheses and incorrect syntax in the `findall` call (missing closing parenthesis and incorrect list construction).
+2. **Logical Errors**: 
+   - Fails to properly implement 50% probability for random door selection when player's door has prize
+   - Incorrect handling of deterministic case (host should open only empty door when player's selection is wrong)
+   - Missing proper integration of probabilistic choice (door_choice/1)
+3. **Requirement Violations**: Does not fully comply with specified behavior for both random and deterministic scenarios.
+4. **Test Impact**: Directly causes parsing failure in test results.
+
+Recommendations:
+- Rewrite predicate with proper syntax
+- Separate logic for random vs deterministic cases
+- Properly implement probability distribution
+- Add clear comments for each scenario</Report>
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</Code>
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda>
+<Code_Block>open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    ( (Prize = Selected) ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), Doors),
+        length(Doors, 2),
+        0.5::door_choice(1) ; 0.5::door_choice(2),
+        nth1(Choice, Doors, Door),
+        door_choice(Choice)
+    ; \+ (Prize = Selected) ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize), [Door])
+    ).</Code_Block>
+<Report>The `open_door/1` predicate has critical issues requiring regeneration:
+1. **Syntax Errors**: Unmatched parentheses and incorrect syntax in the `findall` call (missing closing parenthesis and incorrect list construction).
+2. **Logical Errors**: 
+   - Fails to properly implement 50% probability for random door selection when player's door has prize
+   - Incorrect handling of deterministic case (host should open only empty door when player's selection is wrong)
+   - Missing proper integration of probabilistic choice (door_choice/1)
+3. **Requirement Violations**: Does not fully comply with specified behavior for both random and deterministic scenarios.
+4. **Test Impact**: Directly causes parsing failure in test results.
+
+Recommendations:
+- Rewrite predicate with proper syntax
+- Separate logic for random vs deterministic cases
+- Properly implement probability distribution
+- Add clear comments for each scenario</Report>
+<HASH> Hash tag of code: 592D75CA </HASH>
+<Requirements>Define open_door/1 Predicate: Random Door Opening Rules Scenario: The remaining two doors are neither selected by the player nor have any prizes. Behavior: The host randomly opens one of the two "empty doors" with a 50% probability. Deterministic Door Opening Rules Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not. Behavior: The host must open the "empty door". </Requirements></Langda>
+.
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</origin_code>
+<generated_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+% Regenerated open_door/1 predicate with corrected syntax and logic
+open_door(Door) :-
+    select_door(Selected),
+    prize(Prize),
+    % Case 1: Player's door has the prize (random choice between two empty doors)
+    ( Prize = Selected ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), Doors),
+        length(Doors, 2),
+        0.5::door_choice(1),
+        0.5::door_choice(2),
+        nth1(Choice, Doors, Door),
+        door_choice(Choice)
+    % Case 2: Player's door does not have the prize (deterministic choice of the empty door)
+    ; \+ (Prize = Selected) ->
+        findall(D, (member(D, [1,2,3]), \+ (D = Selected ; D = Prize)), [EmptyDoor]),
+        Door = EmptyDoor
+    ).
+
+win_keep :-
+    select_door(A),
+    prize(A).
+win_switch :-
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    prize(A),
+    \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+</Final_Answer>

@@ -1,0 +1,11 @@
+{
+  "file_name": "benchcalcu:partial.pl",
+  "run_index": 4,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": 467,
+  "iter_count": 5,
+  "process_time": 466.92815804481506,
+  "final_result": "Error evaluating Problog model:\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 887, in _builtin_is\n    check_mode((a, b), [\"*g\"], functor=\"is\", **k)\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py\", line 630, in check_mode\n    raise CallModeError(functor, args, accepted, location=location)\nproblog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 1+X2+1), expected: (any, ground) at 24:4.",
+  "final_report": "The generated code has several issues. First, it incorrectly uses 'sumdigit(C2, E, N, E, C3)' which should be 'sumdigit(C2, E, O, N, C3)' as in the original code. Second, the line 'sumdigit(C4, 0, 0, M, 0)' is incorrect and causes a runtime error. The original code correctly sums 'S, M, O' to get 'M' with carry. The generated code fails to produce a valid result due to these errors."
+}
