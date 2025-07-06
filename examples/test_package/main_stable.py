@@ -10,7 +10,7 @@ from langda.utils.test_tools import _problog_test
 from langda.utils import invoke_agent, _find_all_blocks
 
 def process_all(test_directory_path, answer_directory_path, output_json_dir, output_pl_dir,
-                agent_type, model_name, addition_input, repeat_count):
+                agent_type, model_name, repeat_count):
     
     # Convert string paths to Path objects
     test_directory_path = Path(test_directory_path)
@@ -50,7 +50,7 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
     # Process each prompt file
     for idx, prompt_file in enumerate(prompt_files, start=1):
         # This is for skipping:
-        if idx < 40:
+        if idx < 20:
             continue
         file_basename = (prompt_file.name).split(".")[0]
         part1, part2 = file_basename.split(":")
@@ -105,10 +105,6 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
             repeat_suffix = f"[{repeat_idx+1}/{repeat_count}]" if repeat_count > 1 else ""
             pbar.set_description(f"*** Processing {file_basename} [{idx}/{total_files}] {repeat_suffix} ***")
             file_name = f"{file_basename}_run{repeat_idx+1}"
-
-            # Update the prefix in addition_input
-            file_specific_input = addition_input.copy()
-            file_specific_input["prefix"] = file_name
             
             # Initialize result dict
             result = {
@@ -132,7 +128,7 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
                     agent_type=agent_type,
                     rule_string=rules_string,
                     model_name=model_name,
-                    additional_input=file_specific_input
+                    prefix=file_name,
                 )
                 
                 process_time = time.time() - start_time
@@ -153,9 +149,8 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
                     tools=[], 
                     prompt_type="final_test", 
                     input=input_data,
-                    config=file_specific_input["config"]
                 )
-                
+                    
                 # Parse final result
                 final_blocks = _find_all_blocks("final", final_result)
                 if final_blocks:
@@ -349,55 +344,7 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
     print(f"Success result rate: {final_summary['success_result_rate']*100:.1f}%")
     print(f"Average time per run: {final_summary['avg_time_per_run']:.2f}s")
 
-def generate_final_report_from_json(output_json_dir, final_result_path):
-    """Generate a final report from the JSON results"""
-    try:
-        output_json_dir = Path(output_json_dir)
-        
-        # Read the final result
-        with open(final_result_path, 'r', encoding='utf-8') as f:
-            final_data = json.load(f)
-        
-        # Generate report
-        report_path = output_json_dir / "final_report.txt"
-        with open(report_path, 'w', encoding='utf-8') as f:
-            f.write("LANGDA TESTING FINAL REPORT\n")
-            f.write("=" * 50 + "\n\n")
-            
-            if final_data.get("test_completed"):
-                f.write(f"Test Status: COMPLETED\n")
-                f.write(f"Total Files: {final_data.get('total_files', 0)}\n")
-                f.write(f"Repeat Count: {final_data.get('repeat_count', 0)}\n")
-                f.write(f"Total Runs: {final_data.get('total_runs', 0)}\n")
-                f.write(f"Total Time: {final_data.get('overall_process_time', 0):.2f}s\n")
-                f.write(f"Success Form Rate: {final_data.get('success_form_rate', 0)*100:.1f}%\n")
-                f.write(f"Success Result Rate: {final_data.get('success_result_rate', 0)*100:.1f}%\n")
-                f.write(f"Avg Time/Run: {final_data.get('avg_time_per_run', 0):.2f}s\n\n")
-                
-                f.write("FILE SUMMARIES:\n")
-                f.write("-" * 30 + "\n")
-                for file_summary in final_data.get('file_summaries', []):
-                    f.write(f"File: {file_summary['file_name']}\n")
-                    f.write(f"Success Form Rate: {file_summary['success_form_rate']*100:.1f}%\n")
-                    f.write(f"Success Result Rate: {file_summary['success_result_rate']*100:.1f}%\n")
-                    f.write(f"Avg Time: {file_summary['avg_process_time']:.2f}s\n")
-                    f.write(f"Runs: {file_summary['runs']}\n\n")
-            else:
-                f.write("Test Status: INCOMPLETE\n")
-        
-        print(f"Final report saved to: {report_path}")
-        
-    except Exception as e:
-        print(f"Error generating final report: {str(e)}")
-
 if __name__ == "__main__":
-    addition = {
-        "prefix": "",  # Will be updated for each file
-        "langda_ext": {},  # Fixed: should be dict, not string
-        "error_report": "",
-        "config": {"configurable": {"thread_id": "42"}},
-        "user_context": ""
-    }
 
     test_path = "rules/test_prompt"
     answer_path = "rules/test_answer"
@@ -407,23 +354,17 @@ if __name__ == "__main__":
     # Set repeat count
     repeat_count = 5  # Default 5 times, can be adjusted as needed
     
-    try:
-        process_all(
-            test_directory_path=test_path, 
-            answer_directory_path=answer_path, 
-            output_json_dir=output_json_dir, 
-            output_pl_dir=output_pl_dir, 
-            agent_type="single_react",
-            model_name="deepseek-chat", 
-            addition_input=addition, 
-            repeat_count=repeat_count  
-        )
-        print(f"JSON results saved to {output_json_dir}")
-        
-        # Generate final report
-        final_result_path = Path(output_json_dir) / "_final_result.json"
-        generate_final_report_from_json(output_json_dir, final_result_path)
-        
-    except Exception as e:
-        print(f"Critical error in main execution: {str(e)}")
-        traceback.print_exc()
+    process_all(
+        test_directory_path=test_path, 
+        answer_directory_path=answer_path, 
+        output_json_dir=output_json_dir, 
+        output_pl_dir=output_pl_dir, 
+        agent_type="double_dc",
+        model_name="deepseek-chat", 
+        repeat_count=repeat_count  
+    )
+    print(f"JSON results saved to {output_json_dir}")
+    
+    # Generate final report
+    final_result_path = Path(output_json_dir) / "_final_result.json"
+    

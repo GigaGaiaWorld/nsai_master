@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "5E40E418",
+  "ErrorSummary": "1. Missing implementations for required stack operations (push, pop, dup, swap, over, rot) 2. Sort operation requires parameter N but queried without one 3. No probabilistic rules defined 4. No input validation",
+  "SuggestedFix": "1. Add missing operation predicates (push, pop, dup, swap, over, rot) 2. Modify sort to handle default N or add error checking 3. Add probabilistic facts/rules if needed 4. Add input validation. Example fixes:\nstack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Rest], Rest).\nstack_op(dup, [X|Rest], [X,X|Rest]).\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(rot, [X,Y,Z|Rest], [Z,X,Y|Rest]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

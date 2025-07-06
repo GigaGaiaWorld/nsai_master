@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu_rough",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "251.33s",
+  "process_time": 251.32959485054016,
+  "final_result": "is_sorted([]).\nis_sorted([_]).\nis_sorted([X,Y|T]) :- X =< Y, is_sorted([Y|T]).\n\nbubble_pass([], []).\nbubble_pass([X], [X]).\nbubble_pass([X,Y|T], [X|Rest]) :- X =< Y, bubble_pass([Y|T], Rest).\nbubble_pass([X,Y|T], [Y|Rest]) :- X > Y, bubble_pass([X|T], Rest).\n\nbubblesort(L, L2) :- is_sorted(L), L2 = L.\nbubblesort(L, L2) :- bubble_pass(L, L1), bubblesort(L1, L2).\n\nforth_sort(L, L2) :- bubblesort(L, L2).\n\nquery(forth_sort([3,1,2,5,7,12],X)).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code introduces a new approach to bubble sort by using 'is_sorted' and 'bubble_pass' predicates, which differs from the original code's method of using 'hole' and 'swap'. However, the generated code contains an error due to the incorrect use of 'bubblesort/3' instead of 'bubblesort/2', leading to a runtime error. The original code correctly implements bubble sort and produces the expected sorted list."
+}

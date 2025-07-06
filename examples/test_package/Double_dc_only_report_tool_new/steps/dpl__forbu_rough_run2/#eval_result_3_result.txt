@@ -1,0 +1,3 @@
+```report
+{"HASH": "47D659C8","ErrorSummary": "Missing bubble/2 predicate causing complete failure of sorting functionality","SuggestedFix": "Implement the bubble/2 predicate as follows:\nbubble([X,Y|T], [Y|Rest]) :- X > Y, bubble([X|T], Rest).\nbubble([X,Y|T], [X|Rest]) :- X =< Y, bubble([Y|T], Rest).\nbubble([X], [X]).\nbubble([], []).","Dependencies": [],"NeedRegenerate": true}
+```

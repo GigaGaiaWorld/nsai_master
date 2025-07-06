@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "Undefined '->/2' operator in recursive rule, preventing proper evaluation of conditional logic",
+  "SuggestedFix": "Replace the '->/2' operator with separate clauses for the conditional logic. Modify the recursive rule to:\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    coin(CNT),\n    SC1 is SC + 1,\n    coins_r(SC1, S, CNT1).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    \\+ coin(CNT),\n    coins_r(SC, S, CNT1).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

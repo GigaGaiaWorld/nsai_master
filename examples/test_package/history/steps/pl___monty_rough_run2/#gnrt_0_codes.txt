@@ -1,0 +1,5 @@
+[
+{
+"751033ED": "open_door(Door) :-    select_door(Selected),    findall(D, (member(D,[1,2,3]), \\+ prize(D), D \\= Selected), AvailableDoors),    length(AvailableDoors, Len),    (Len =:= 2 ->         member(Door, AvailableDoors),         0.5::open_door(Door) ;         Len =:= 1 ->             [Door] = AvailableDoors    )."
+}
+]

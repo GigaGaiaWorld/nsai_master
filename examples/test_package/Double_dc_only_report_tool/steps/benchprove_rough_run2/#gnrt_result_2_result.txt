@@ -1,0 +1,25 @@
+Here are the extracted code blocks from the <generated_code> that correspond to the <langda> blocks in <origin_code>, formatted in the requested JSON format:
+
+```problog
+{"HASH": "3F5BA02C","Code": "implies(A, B) :- \\+ A; B.\nprove(implies(A, B)) :- implies(A, B)."}
+```
+
+```problog
+{"HASH": "3F5BA02C","Code": "opposite(A) :- \\+ A.\nprove(opposite(A)) :- opposite(A)."}
+```
+
+```problog
+{"HASH": "3F5BA02C","Code": "expand(double(X), Y) :- Y is X*2.\nexpand(square(X), Y) :- Y is X*X.\nprove(expand(X, Y)) :- expand(X, Y)."}
+```
+
+```problog
+{"HASH": "3F5BA02C","Code": "includes(List, Elem) :- member(Elem, List).\nprove(includes(List, Elem)) :- includes(List, Elem)."}
+```
+
+```problog
+{"HASH": "3F5BA02C","Code": "extend(List, Elem, [Elem|List]).\nprove(extend(List, Elem, Result)) :- extend(List, Elem, Result)."}
+```
+
+```problog
+{"HASH": "3F5BA02C","Code": "refute(Goal) :- \\+ Goal.\nprove(refute(Goal)) :- refute(Goal)."}
+```

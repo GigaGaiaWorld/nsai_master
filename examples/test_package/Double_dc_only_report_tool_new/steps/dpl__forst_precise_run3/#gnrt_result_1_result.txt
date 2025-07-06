@@ -1,0 +1,6 @@
+```problog
+{"HASH": "6931D64E","Code": "stack_op(sort, Stack, SortedStack) :- \n    get_top_n(Stack, 3, [X,Y,Z], Rest),\n    sort3(X, Y, Z, S1, S2, S3),\n    SortedStack = [S1,S2,S3|Rest]."}
+```
+```problog
+{"HASH": "6931D64E","Code": "sort3(X, Y, Z, Min, Mid, Max) :-\n    Min is min(X, min(Y, Z)),\n    Max is max(X, max(Y, Z)),\n    Mid is X + Y + Z - Min - Max."}
+```

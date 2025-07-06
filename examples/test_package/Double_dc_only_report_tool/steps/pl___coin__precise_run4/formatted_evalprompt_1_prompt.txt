@@ -1,0 +1,210 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda>
+<Code_Block>CNT1 is CNT - 1,
+    (coin(CNT) -> 
+        SC1 is SC + 1,
+        coins_r(SC1, S, CNT1)
+    ; 
+        coins_r(SC, S, CNT1)
+    ).</Code_Block>
+<HASH> Hash tag of code: A88642CF </HASH>
+<Requirements>With the counter CNT decreasing to 0, each step:
+ If the CNTth coin coin(CNT) turns up heads, the success count SC increases by 1;
+ Otherwise, it remains unchanged;
+ Finally, all steps are accumulated to S. </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 8:16.
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+PH::make_coin(C,PH).
+coin(C) :- make_coin(C,0.8).
+coins_r(SC,SC,0).
+coins_r(SC,S,CNT) :-
+ CNT > 0,
+ 
+<Langda>
+<Code_Block>CNT1 is CNT - 1,
+    (coin(CNT) -> 
+        SC1 is SC + 1,
+        coins_r(SC1, S, CNT1)
+    ; 
+        coins_r(SC, S, CNT1)
+    ).</Code_Block>
+<HASH> Hash tag of code: A88642CF </HASH>
+<Requirements>With the counter CNT decreasing to 0, each step:
+ If the CNTth coin coin(CNT) turns up heads, the success count SC increases by 1;
+ Otherwise, it remains unchanged;
+ Finally, all steps are accumulated to S. </Requirements></Langda>
+.
+total(S) :- coins_r(0,S,4).
+query(total(_)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 8:16.
+</Result>
+
+</original_code>
+
+### Code Evaluation Report: ProbLog and DeepProbLog Analysis
+
+---
+
+#### **1. Document Title**
+**Evaluation of ProbLog Code for Coin Toss Simulation**
+
+---
+
+#### **2. Background and Purpose**
+The provided ProbLog code simulates a coin toss scenario where a counter `CNT` decrements from 4 to 0. For each decrement, the code checks if the `CNT`th coin toss results in heads (with a probability of 0.8) and increments a success counter `SC` accordingly. The final result `S` accumulates the total successes. The purpose of this evaluation is to verify the logical and probabilistic correctness of the code and identify any failures or edge cases.
+
+---
+
+#### **3. Test Results Summary**
+- **Query:** `query(total(_))`
+- **Result:** The test failed with the error: `UnknownClause: No clauses found for ''->'/2' at 8:16`.
+
+**Failed Queries:**
+1. `query(total(_))`  
+   - **Expected:** A probabilistic result for the total number of successful coin tosses.  
+   - **Actual:** Error due to an undefined `->/2` operator in the recursive rule.
+
+---
+
+#### **4. Failure Localization**
+- **Failed Predicate/Rule:** The recursive rule `coins_r/3` (lines 4–12) contains an undefined `->/2` operator.
+- **Code Block with Error:**
+  ```prolog
+  coins_r(SC,S,CNT) :-
+      CNT > 0,
+      CNT1 is CNT - 1,
+      (coin(CNT) -> 
+          SC1 is SC + 1,
+          coins_r(SC1, S, CNT1)
+      ; 
+          coins_r(SC, S, CNT1)
+      ).
+  ```
+- **Issue:** The `->/2` operator is not recognized in the ProbLog context, leading to the `UnknownClause` error.
+
+---
+
+#### **5. Root Cause Analysis**
+- **Logical Correctness:** The recursive logic is sound, but the use of `->/2` is not supported in ProbLog for conditional branching. ProbLog requires explicit probabilistic handling.
+- **Probabilistic Rules:** The code attempts to use a deterministic conditional (`->/2`) instead of probabilistic implications (`P(A⇒B)`). This violates ProbLog's probabilistic reasoning framework.
+- **Recursive Termination:** The recursion terminates correctly when `CNT` reaches 0.
+- **DeepProbLog Feature:** Not used in this code.
+
+---
+
+#### **6. Overall Analysis**
+- **Functional Requirements:**
+  - **Classical Reasoning:** Partially met (recursive logic is correct, but conditional branching is flawed).
+  - **Probabilistic Reasoning:** Not met (incorrect use of `->/2` instead of probabilistic implications).
+  - **Neural Network Integration:** Not applicable (DeepProbLog not used).
+- **Edge Cases:**
+  - Undefined `->/2` operator in ProbLog.
+  - Non-probabilistic handling of coin tosses.
+
+---
+
+#### **7. Error Summary**
+
+| No. | Problem                          | Impact                          | Suggestion                                  |
+|-----|----------------------------------|---------------------------------|--------------------------------------------|
+| 1   | Undefined `->/2` operator        | Code fails to execute           | Replace `->/2` with ProbLog-compatible probabilistic implications. |
+| 2   | Non-probabilistic branching      | Incorrect probabilistic results | Use `probabilistic_if/2` or similar ProbLog constructs. |
+
+---
+
+### **Final Remarks**
+The code fails due to the misuse of the `->/2` operator in a ProbLog context. To fix this, replace the conditional with ProbLog-compatible probabilistic constructs. The recursive logic is otherwise correct, and the edge cases are limited to the conditional branching issue. No DeepProbLog features are used. 
+
+**Word Count:** 450 words.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A5C06F43",
+  "ErrorSummary": "Conditional operator '->/2' not supported in ProbLog, causing evaluation failure",
+  "SuggestedFix": "Replace the conditional operator '->/2' with a ProbLog-compatible construct like 'if/3'. Modify the line: '( Delta > 0 -> Direction = 1 ; Direction = -1 )' to use 'if(Delta > 0, Direction = 1, Direction = -1)'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

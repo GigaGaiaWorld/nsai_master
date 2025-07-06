@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "Missing predicates: opposite/1, includes/2, extend/3; expand/2 not integrated into prove/1",
+  "SuggestedFix": "Add the following predicates to the code:\n1. opposite(Goal) :- \\+ Goal.\n2. includes(List, Elem) :- member(Elem, List).\n3. extend(List, Elem, [Elem|List]).\n4. Add prove(expand(X, Y)) :- expand(X, Y). to link expand/2 to prove/1.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

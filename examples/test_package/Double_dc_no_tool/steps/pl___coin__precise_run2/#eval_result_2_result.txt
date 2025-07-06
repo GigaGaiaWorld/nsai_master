@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "Improper if-then-else syntax in ProbLog causing compilation failure",
+  "SuggestedFix": "Replace the standard Prolog if-then-else construct with ProbLog-compatible syntax:\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    problog_conditional(coin(CNT), NSC is SC + 1, NSC is SC),\n    CNT1 is CNT - 1,\n    coins_r(NSC,S,CNT1).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,5 @@
+[
+{
+"501F546D": "insertion_sort([], []).\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert(H, SortedTail, Sorted).\ninsert(X, [], [X]).\ninsert(X, [H|T], [X,H|T]) :-\n    X =< H.\ninsert(X, [H|T], [H|SortedT]) :-\n    X > H,\n    insert(X, T, SortedT)."
+}
+]

@@ -1,5 +1,0 @@
-[
-{
-"418D2062": "merge_sort([], []).\nmerge_sort([X], [X]) :- number(X).\nmerge_sort(List, Sorted) :-\n    is_list(List),\n    length(List, Len),\n    Len > 1,\n    split(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\n\nsplit([], [], []).\nsplit([X], [X], []).\nsplit([X, Y | Tail], [X | Left], [Y | Right]) :-\n    split(Tail, Left, Right).\n\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([X | Left], [Y | Right], [X | Merged]) :-\n    X =< Y,\n    merge(Left, [Y | Right], Merged).\nmerge([X | Left], [Y | Right], [Y | Merged]) :-\n    X > Y,\n    merge([X | Left], Right, Merged)."
-}
-]

@@ -1,0 +1,5 @@
+[
+{
+"3F5BA02C": "prove(implies(A, B)) :- \\+ (prove(A), \\+ prove(B)).\nprove(opposite(A)) :- \\+ prove(A).\nprove(expand(X, Y)) :- expand(X, Y).\nprove(includes(List, Elem)) :- member(Elem, List).\nprove(extend(List, Elem, [Elem|List])).\nprove(refute(A)) :- \\+ prove(A)."
+}
+]

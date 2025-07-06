@@ -283,7 +283,7 @@ class LangdaAgentExecutor(BaseModel):
         if prompt_type == "evaluate":
             format_chain_first = first_chain_prompt | new_llm | StrOutputParser()
             first_result = format_chain_first.invoke(input=first_input, config=config)
-        elif prompt_type == "generate" or "regenerate":
+        elif prompt_type == "generate" or prompt_type == "regenerate":
             agent = create_tool_calling_agent(new_llm, self.tools, first_chain_prompt)
             agent_executor = AgentExecutor(agent=agent, tools=self.tools, verbose=True)
             # Execute the first chain

@@ -1,0 +1,10 @@
+{
+  "file_name": "benchzebra_partial",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "156.25s",
+  "process_time": 156.2502589225769,
+  "final_result": "zebra(Houses) :-\n\thouses(Houses),\n\t\nmy_member(house(red, english, _, _, _), Houses)\n,\n\t\nmy_member(house(_, spanish, dog, _, _), Houses)\n,\n\t\nmy_member(house(green, _, _, coffee, _), Houses)\n,\n\tmy_member(house(_, ukrainian, _, tea, _), Houses),\n\tright_of(house(green,_,_,_,_), house(ivory,_,_,_,_), Houses),\n\t\nmy_member(house(_, _, snail, _, winstons), Houses)\n,\n\tmy_member(house(yellow, _, _, _, kools), Houses),\n\t\nHouses = [_, _, house(_, _, _, milk, _), _, _]\n,\n\tHouses = [house(_, norwegian, _, _, _)|_],\n\tnext_to(house(_,_,_,_,chesterfields), house(_,_,fox,_,_), Houses),\n\tnext_to(house(_,_,_,_,kools), house(_,_,horse,_,_), Houses),\n\tmy_member(house(_, _, _, orange_juice, lucky_strikes), Houses),\n\tmy_member(house(_, japanese, _, _, parliaments), Houses),\n\t\nnext_to(house(_,norwegian,_,_,_), house(blue,_,_,_,_), Houses)\n,\n\t\nmy_member(house(_, _, zebra, _, _), Houses)\n,\n\t\nmy_member(house(_, _, _, water, _), Houses)\n.\nhouses([\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _)\n]).\nright_of(A, B, [B, A | _]).\nright_of(A, B, [_ | Y]) :- right_of(A, B, Y).\nnext_to(A, B, [A, B | _]).\nnext_to(A, B, [B, A | _]).\nnext_to(A, B, [_ | Y]) :- next_to(A, B, Y).\nmy_member(X, [X|_]).\nmy_member(X, [_|Y]) :- my_member(X, Y).\nquery(zebra(Houses)).",
+  "final_report": "The generated code is mostly consistent with the original code, with one notable difference: 'snails' was mistakenly written as 'snail' in the generated code. Despite this typo, the running results of both codes are identical, suggesting that the error did not affect the final solution. The generated code maintains the same structure and logic as the original, correctly implementing the zebra puzzle constraints."
+}

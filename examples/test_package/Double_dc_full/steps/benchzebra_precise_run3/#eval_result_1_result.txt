@@ -1,0 +1,3 @@
+```report
+{"HASH": "3EFED622", "ErrorSummary": "Missing 'member/2' predicate causing program failure", "SuggestedFix": "Add the following 'member/2' predicate definition:\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).", "Dependencies": [], "NeedRegenerate": true}
+```

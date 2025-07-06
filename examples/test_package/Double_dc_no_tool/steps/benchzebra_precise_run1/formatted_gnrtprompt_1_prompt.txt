@@ -1,0 +1,172 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda> Information:
+<HASH> Hash tag of code: 3EFED622 </HASH>
+<Requirements>
+	House arrangement:
+		There are 5 houses, arranged in order (houses(Houses)).
+	Rules:
+		The owner of the red house is English.
+		The Spanish has a dog.
+		The owner of the green house drinks coffee.
+		The Ukrainian drinks tea.
+		The green house is to the right of the ivory house (right next to it).
+		The snail owner smokes Winstons.
+		The yellow house owner smokes Kools.
+		The middle house drinks milk (the 3rd house).
+		The first house owner is Norwegian.
+		The Chesterfields owner lives next door to the fox owner.
+		The Kools owner lives next door to the horse owner.
+		The orange juice drinker smokes Lucky Strikes.
+		The Japanese smoke Parliaments.
+		The Norwegian lives next to the blue house.
+		
+		Someone has a zebra.
+		Someone drink water. </Requirements></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+zebra(Houses) :-
+	houses(Houses),
+	
+<Langda> Information:
+<HASH> Hash tag of code: 3EFED622 </HASH>
+<Requirements>
+	House arrangement:
+		There are 5 houses, arranged in order (houses(Houses)).
+	Rules:
+		The owner of the red house is English.
+		The Spanish has a dog.
+		The owner of the green house drinks coffee.
+		The Ukrainian drinks tea.
+		The green house is to the right of the ivory house (right next to it).
+		The snail owner smokes Winstons.
+		The yellow house owner smokes Kools.
+		The middle house drinks milk (the 3rd house).
+		The first house owner is Norwegian.
+		The Chesterfields owner lives next door to the fox owner.
+		The Kools owner lives next door to the horse owner.
+		The orange juice drinker smokes Lucky Strikes.
+		The Japanese smoke Parliaments.
+		The Norwegian lives next to the blue house.
+		
+		Someone has a zebra.
+		Someone drink water. </Requirements></Langda>
+.
+houses([
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _),
+	house(_, _, _, _, _)
+]).
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+query(zebra(Houses)).
+
+</origin_code>
+<generated_code>
+
+zebra(Houses) :-
+    houses(Houses),
+    
+    % House attributes: Nationality, Color, Drink, Smoke, Pet
+    my_member(house(english, red, _, _, _), Houses),
+    my_member(house(spanish, _, _, _, dog), Houses),
+    my_member(house(_, green, coffee, _, _), Houses),
+    my_member(house(ukrainian, _, tea, _, _), Houses),
+    right_of(house(_, green, _, _, _), house(_, ivory, _, _, _), Houses),
+    my_member(house(_, _, _, winstons, snail), Houses),
+    my_member(house(_, yellow, _, kools, _), Houses),
+    Houses = [_, _, house(_, _, milk, _, _), _, _],
+    Houses = [house(norwegian, _, _, _, _)|_],
+    next_to(house(_, _, _, chesterfields, _), house(_, _, _, _, fox), Houses),
+    next_to(house(_, _, _, kools, _), house(_, _, _, _, horse), Houses),
+    my_member(house(_, _, orange_juice, lucky_strikes, _), Houses),
+    my_member(house(japanese, _, _, parliaments, _), Houses),
+    next_to(house(norwegian, _, _, _, _), house(_, blue, _, _, _), Houses),
+    my_member(house(_, _, water, _, _), Houses),
+    my_member(house(_, _, _, _, zebra), Houses).
+
+houses([
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _),
+    house(_, _, _, _, _)
+]).
+
+right_of(A, B, [B, A | _]).
+right_of(A, B, [_ | Y]) :- right_of(A, B, Y).
+next_to(A, B, [A, B | _]).
+next_to(A, B, [B, A | _]).
+next_to(A, B, [_ | Y]) :- next_to(A, B, Y).
+my_member(X, [X|_]).
+my_member(X, [_|Y]) :- my_member(X, Y).
+
+query(zebra(Houses)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

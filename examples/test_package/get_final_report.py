@@ -152,7 +152,6 @@ def generate_final_report_from_json(json_directory, output_final_path=None):
     return final_result
 
 if __name__ == "__main__":
-    folder = "DoubleDC_5Round"
 
     output_json_dir = Path("history/json")
 

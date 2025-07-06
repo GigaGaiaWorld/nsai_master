@@ -1,0 +1,98 @@
+System: You are a coding assistant. You could use the available tools to complete the task, you should always use 'get_report_tool' first to gain more information.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+<Langda> Information:
+<HASH> Hash tag of code: 418D2062 </HASH>
+<Requirements>This Prolog program should implement an interpretable merge_sort/2 algorithm </Requirements></Langda>
+.
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 418D2062 </HASH>
+<Requirements>This Prolog program should implement an interpretable merge_sort/2 algorithm </Requirements></Langda>
+.
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+% Base case for empty list
+merge_sort([], []).
+
+% Base case for single-element list
+merge_sort([X], [X]).
+
+% Recursive case: split the list, sort the sublists, and merge them
+merge_sort([X, Y | Rest], Sorted) :-
+    split([X, Y | Rest], Left, Right),
+    merge_sort(Left, SortedLeft),
+    merge_sort(Right, SortedRight),
+    merge(SortedLeft, SortedRight, Sorted).
+
+% Split the list into two halves
+split([], [], []).
+split([X], [X], []).
+split([X, Y | Rest], [X | Left], [Y | Right]) :-
+    split(Rest, Left, Right).
+
+% Merge two sorted lists into one sorted list
+merge([], Right, Right).
+merge(Left, [], Left).
+merge([LeftHead | LeftTail], [RightHead | RightTail], [LeftHead | Merged]) :-
+    LeftHead =< RightHead,
+    merge(LeftTail, [RightHead | RightTail], Merged).
+merge([LeftHead | LeftTail], [RightHead | RightTail], [RightHead | Merged]) :-
+    LeftHead > RightHead,
+    merge([LeftHead | LeftTail], RightTail, Merged).
+
+% Example query
+query(merge_sort([3, 1, 2, 5, 7, 12], X)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

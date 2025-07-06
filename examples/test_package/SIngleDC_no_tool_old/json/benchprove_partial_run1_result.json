@@ -1,0 +1,10 @@
+{
+  "file_name": "benchprove_partial",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "38.68s",
+  "process_time": 38.683635234832764,
+  "final_result": "% member/2 for ProbLog\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% --------- Basic meta-interpreter ---------\n% Prove \"true\" always succeeds\nprove(true).\nprove(Goal) :-\n\t% For all other goals, use the clause/2 facts/rules defined in the program\n\tclause(Goal, Body),\n\tprove(Body).\n% Prove compound goal A,B: prove A first, then prove B\nprove((A,B)) :-\n\tprove(A),\n\tprove(B).\n% --------- Extended logic processing ---------\nprove(implies(P,Q)) :-\n\t\n \\+ prove(P); prove(Q).\nprove(opposite(P)) :-\n\t\n \\+ prove(P).\nprove(expand(A,B)) :-\n\texpand(A,B).\nprove(includes(Set,X)) :-\n\tmember(X,Set).\nprove(extend(List,Elem,Extended)) :-\n\t\n Extended = [Elem|List].\nprove(refute(P)) :-\n\t\\+ prove(P).\n% --------- Examples ---------- %\n% Define some expand rules:\nexpand(double(X), Y) :- Y is X*2.\nparent(alice, bob).\nparent(bob, carol).\nancestor(X,Y) :- parent(X,Y).\nancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).\n% --------- Queries ---------- %\nquery(prove(implies(parent(alice,bob), ancestor(alice,bob)))).\nquery(prove(opposite(parent(carol,alice)))).\nquery(prove(expand(double(3),6))).\nquery(prove(includes([a,b,c],b))).\nquery(prove(extend([1,2],3,[3,1,2]))).",
+  "final_report": "The generated code is largely correct and consistent with the original code. It maintains all the essential components of the original, including the meta-interpreter, extended logic processing, and example queries. The only minor discrepancy is the formatting and spacing in some parts, which does not affect functionality. The generated code omits the 'square(X)' expand rule from the original, but since it wasn't used in any queries, this doesn't impact the results."
+}

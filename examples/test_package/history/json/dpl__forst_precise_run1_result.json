@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_precise",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "236.60s",
+  "process_time": 236.59967708587646,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [_|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n \nstack_op(sort, [X,Y,Z|Stack], SortedStack) :-\n    sort([X,Y,Z], SortedElements),\n    append(SortedElements, Stack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code has syntax errors and is not valid Problog code. The main issue is an incomplete 'sort' predicate definition (missing body before the second clause) and a misplaced clause for 'get_top_n'. The original code correctly implements stack operations and sorting, while the generated code fails to parse due to these errors. The generated code does not produce any results due to the syntax errors, making it invalid both in form and result compared to the original."
+}

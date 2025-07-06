@@ -1,9 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
-
-```problog
-{"HASH": "55F6DA26","Code": "open_door(Door) :- select_door(Selected), member(Door, [1,2,3]), \+ prize(Door), \+ (Door = Selected), findall(OtherDoor, (member(OtherDoor, [1,2,3]), \+ prize(OtherDoor), \+ (OtherDoor = Selected), Doors), length(Doors, 2), member(Door, Doors), 0.5::open_door(Door)."}
-```
-
-```problog
-{"HASH": "55F6DA26","Code": "open_door(Door) :- select_door(Selected), member(Door, [1,2,3]), \+ prize(Door), \+ (Door = Selected), findall(OtherDoor, (member(OtherDoor, [1,2,3]), \+ prize(OtherDoor), \+ (OtherDoor = Selected), Doors), length(Doors, 1), member(Door, Doors)."}
-```

@@ -1,0 +1,3 @@
+```report
+{"HASH": "22D05CCC", "ErrorSummary": "Type mismatch in expand/2 predicate causing CallModeError when evaluating arithmetic expressions", "SuggestedFix": "Modify the expand/2 rule to properly handle arithmetic operations by ensuring the second argument is evaluated before comparison. Change to: prove(expand(A,B)) :- expand(A, Expanded), B =:= Expanded, prove(Expanded).", "Dependencies": [], "NeedRegenerate": true}
+```

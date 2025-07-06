@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "The `open_door/1` predicate uses Prolog-style conditionals (`->/2`) unsupported in ProbLog, leading to an `UnknownClause` error. The probabilistic logic for uniform distribution is also incorrect.",
+  "SuggestedFix": "Replace the conditional logic with ProbLog-compatible rules. For example:\n1. Split into separate clauses for each case (2 doors or 1 door).\n2. Use `prob::uniform/2` to model randomness between doors.\n3. Replace `\+` with probabilistic negation (e.g., `1 - P(A)`).\nExample fix:\n```\nopen_door(A) :-\n    select_door(Selected),\n    findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ select_door(X)), Doors),\n    Doors = [A, B],\n    prob::uniform(Open, [A, B]),\n    Open = A.\n\nopen_door(A) :-\n    select_door(Selected),\n    findall(X, (member(X, [1,2,3]), \\+ prize(X), \\+ select_door(X)), Doors),\n    Doors = [A].\n```",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

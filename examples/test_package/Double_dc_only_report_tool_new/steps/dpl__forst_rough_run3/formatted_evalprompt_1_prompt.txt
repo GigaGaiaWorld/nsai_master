@@ -1,0 +1,236 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([H|T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort_aux(T, NewAcc, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :- X =< Y.
+insert(X, [Y|T], [Y|NT]) :- X > Y, insert(X, T, NT).</Code_Block>
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+stack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000
+stack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000
+stack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000
+stack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000
+stack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000
+stack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [X|Rest], Rest).
+stack_op(dup, [X|Rest], [X,X|Rest]).
+stack_op(swap, [X,Y|Rest], [Y,X|Rest]).
+stack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).
+stack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).
+stack_op(sort, Stack, SortedStack) :-
+    get_top_n(Stack, 3, Elements, RestStack),
+    insertion_sort(Elements, SortedElements),
+    append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+    length(Elements, N),
+    append(Elements, Rest, Stack).
+insertion_sort(List, Sorted) :-
+    insertion_sort_aux(List, [], Sorted).
+insertion_sort_aux([], Acc, Acc).
+insertion_sort_aux([H|T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort_aux(T, NewAcc, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|T], [X,Y|T]) :- X =< Y.
+insert(X, [Y|T], [Y|NT]) :- X > Y, insert(X, T, NT).</Code_Block>
+<HASH> Hash tag of code: 5E40E418 </HASH>
+<Requirements>Implemented a series of stack operations </Requirements></Langda>
+.
+stack_op(sort, Stack, SortedStack) :-
+ get_top_n(Stack, 3, Elements, RestStack),
+ insertion_sort(Elements, SortedElements),
+ append(SortedElements, RestStack, SortedStack).
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+stack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000
+stack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000
+stack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000
+stack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000
+stack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000
+stack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000
+</Result>
+
+</original_code>
+
+# Code Evaluation Report: Stack Operations in ProbLog
+
+## Background and Purpose
+This report evaluates a ProbLog implementation of stack operations including push, pop, dup, swap, over, rot, and sort. The purpose is to verify the correctness of the implementation against specified requirements and identify any potential issues in both classical and probabilistic contexts.
+
+## Test Results Summary
+All test cases passed successfully with probability 1.0000:
+```
+stack_op(push(1),[2, 3, 4],[1, 2, 3, 4]) = 1.0000
+stack_op(pop,[1, 2, 3, 4],[2, 3, 4]) = 1.0000
+stack_op(dup,[1, 2, 3, 4],[1, 1, 2, 3, 4]) = 1.0000
+stack_op(swap,[1, 2, 3, 4],[2, 1, 3, 4]) = 1.0000
+stack_op(over,[1, 2, 3, 4],[2, 1, 2, 3, 4]) = 1.0000
+stack_op(rot,[1, 2, 3, 4],[2, 3, 1, 4]) = 1.0000
+```
+
+**Conclusion:** All tests passed (no failures)
+
+## Failure Localization
+No test failures were detected. All stack operations behave as expected:
+- Basic operations (push/pop) correctly modify the stack
+- Complex operations (dup/swap/over/rot) properly manipulate stack elements
+- The sort operation (though not tested) appears correctly implemented through auxiliary predicates
+
+## Root Cause Analysis
+In classical ProbLog context:
+1. **Logical Correctness**: All predicates follow correct logical patterns
+2. **Recursive Termination**: The `insertion_sort_aux/3` and `insert/3` predicates properly terminate
+3. **Probabilistic Rules**: Since no probabilistic facts are used, standard deterministic logic applies
+
+In probabilistic aspects:
+- No probabilistic facts or rules are present in this implementation
+- All operations are deterministic with probability 1.0000
+- DeepProbLog feature not used (no neural network integration)
+
+## Overall Analysis
+**Requirements Met:**
+- Classical reasoning: Fully implemented and correct
+- Probabilistic reasoning: Not applicable (no probabilistic facts)
+- Neural network integration: Not implemented (not required)
+
+**Edge Cases Consideration:**
+1. **Undefined Inputs**: The code doesn't handle non-list inputs gracefully
+2. **Empty Stack**: Operations like pop/dup/swap on empty stack would fail
+3. **Sort Limitations**: Only sorts top 3 elements (as designed)
+4. **Performance**: Recursive sorting could be inefficient for large stacks
+
+**Suggestions for Improvement:**
+1. Add input validation for stack arguments
+2. Implement error handling for stack underflow
+3. Consider more efficient sorting for larger stacks
+4. Add documentation for each operation's behavior
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | No input validation | May crash on invalid inputs | Add type checking |
+| 2 | No underflow handling | Fails on empty stack operations | Add error conditions |
+| 3 | Limited sort depth | Only sorts top 3 elements | Make N configurable |
+| 4 | No probabilistic aspects | Limited to deterministic use | Consider adding probabilistic rules |
+
+**Word Count:** 423 words
+
+The implementation correctly fulfills its basic requirements for stack operations in a classical ProbLog context. While robust for the tested cases, it would benefit from additional error handling and documentation for production use.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

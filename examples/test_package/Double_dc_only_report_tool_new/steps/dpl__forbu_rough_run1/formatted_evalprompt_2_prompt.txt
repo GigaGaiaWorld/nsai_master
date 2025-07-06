@@ -1,0 +1,213 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>bubblesort(List, Sorted) :- bubblesort(List, [], Sorted).
+
+bubblesort([], Acc, Acc).
+bubblesort(List, Acc, Sorted) :-
+    bubble_pass(List, NewList, Swapped),
+    if(Swapped == true,
+       bubblesort(NewList, Acc, Sorted),
+       append(Acc, NewList, Sorted)).
+
+bubble_pass([X, Y | Rest], [Y | NewRest], true) :-
+    X > Y,
+    bubble_pass([X | Rest], NewRest, _).
+bubble_pass([X, Y | Rest], [X | NewRest], Swapped) :-
+    X =< Y,
+    bubble_pass([Y | Rest], NewRest, Swapped).
+bubble_pass([X], [X], false).
+bubble_pass([], [], false).
+
+append([], L, L).
+append([H | T], L, [H | R]) :- append(T, L, R).
+
+forth_sort(L, L2) :- bubblesort(L, L2).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for 'if/3' at 6:5.
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>bubblesort(List, Sorted) :- bubblesort(List, [], Sorted).
+
+bubblesort([], Acc, Acc).
+bubblesort(List, Acc, Sorted) :-
+    bubble_pass(List, NewList, Swapped),
+    if(Swapped == true,
+       bubblesort(NewList, Acc, Sorted),
+       append(Acc, NewList, Sorted)).
+
+bubble_pass([X, Y | Rest], [Y | NewRest], true) :-
+    X > Y,
+    bubble_pass([X | Rest], NewRest, _).
+bubble_pass([X, Y | Rest], [X | NewRest], Swapped) :-
+    X =< Y,
+    bubble_pass([Y | Rest], NewRest, Swapped).
+bubble_pass([X], [X], false).
+bubble_pass([], [], false).
+
+append([], L, L).
+append([H | T], L, [H | R]) :- append(T, L, R).
+
+forth_sort(L, L2) :- bubblesort(L, L2).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for 'if/3' at 6:5.
+</Result>
+
+</original_code>
+
+# Problog Bubblesort Implementation Evaluation Report
+
+## Background and Purpose
+This report evaluates a Prolog bubblesort implementation adapted for ProbLog compatibility. The code aims to provide an interpretable sorting algorithm through the `bubblesort/3` predicate, with a wrapper `forth_sort/2` for direct list sorting. The evaluation focuses on classical Prolog functionality and ProbLog compatibility.
+
+## Test Results Summary
+The test query `forth_sort([3,1,2,5,7,12],X)` failed with an error:
+```
+problog.engine.UnknownClause: No clauses found for 'if/3' at 6:5
+```
+No successful test results were recorded due to this fundamental error preventing execution.
+
+## Failure Localization
+The error occurs in the `bubblesort/3` predicate (lines 5-7) where it attempts to use an undefined `if/3` construct. The problematic code section:
+```prolog
+bubblesort(List, Acc, Sorted) :-
+    bubble_pass(List, NewList, Swapped),
+    if(Swapped == true,           % Line 6 - Error location
+       bubblesort(NewList, Acc, Sorted),
+       append(Acc, NewList, Sorted)).
+```
+
+## Root Cause Analysis
+1. **Classical Prolog Issues**:
+   - The implementation incorrectly assumes `if/3` is a built-in predicate
+   - Standard Prolog uses `(Condition -> Then ; Else)` for conditional branching
+   - Recursive termination appears correct in the base cases (lines 3-4)
+
+2. **ProbLog Compatibility**:
+   - The code doesn't contain any probabilistic facts or rules
+   - No DeepProbLog features (neural network integration) are used
+   - The error prevents any probabilistic evaluation from occurring
+
+3. **Missing Requirements**:
+   - The `if/3` predicate is neither defined nor available in standard ProbLog
+   - No expansion predicates (`implies/2`, `opposite/1`, etc.) are present or needed
+
+## Overall Analysis
+1. **Functional Requirements**:
+   - ❌ Classical reasoning: Not met due to undefined `if/3`
+   - ❌ Probabilistic reasoning: Not applicable (no probabilistic elements)
+   - ❌ Neural network integration: Not used (DeepProbLog feature not used)
+
+2. **Edge Cases**:
+   - Non-list input handling not tested (error prevented execution)
+   - Empty list case appears correct in base case (line 3)
+   - Performance with large lists untested due to fundamental error
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | Undefined `if/3` predicate | Complete failure of all functionality | Replace with Prolog's `(Condition -> Then ; Else)` construct |
+| 2 | No probabilistic elements | Limited to classical Prolog functionality | Add probabilistic facts if probabilistic sorting is desired |
+| 3 | No input validation | Potential runtime errors with non-list input | Add type checking for list arguments |
+
+**Recommended Fix**:
+```prolog
+bubblesort(List, Acc, Sorted) :-
+    bubble_pass(List, NewList, Swapped),
+    (Swapped == true ->
+       bubblesort(NewList, Acc, Sorted)
+    ; append(Acc, NewList, Sorted)).
+```
+
+The evaluation reveals a fundamental incompatibility with ProbLog due to the undefined `if/3` predicate. The core sorting logic appears correct but cannot execute without this fix. The implementation currently provides no probabilistic functionality and doesn't utilize any DeepProbLog features.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

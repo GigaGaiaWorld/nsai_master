@@ -1,0 +1,3 @@
+```problog
+{"HASH": "B4161B21", "Code": "open_door(A) :-\n    select_door(Selected),\n    member(A, [1,2,3]),\n    \+ select_door(A),\n    \+ prize(A),\n    findall(Other, (member(Other,[1,2,3]), Other \\= Selected, Other \\= A), Others),\n    all_empty(Others).\n\nall_empty([]).\nall_empty([H|T]) :- \+ prize(H), all_empty(T)."}
+```

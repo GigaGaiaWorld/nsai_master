@@ -1,0 +1,60 @@
+# Code Analysis Report: ProbLog Anomaly Detection System
+
+## Background and Purpose
+This report analyzes a ProbLog program designed for multi-language digit recognition and anomaly detection. The system uses neural networks to classify digits from different languages (Arabic, Telugu, Kannada, Urdu) and implements logic to detect anomalies when temperature is high (≥60) and flow is low (≤20).
+
+## Test Results Summary
+The test results show three queries with their outcomes:
+1. `anomaly_detection([img_9, img_1],[img_1, img_5],1)` = 1.0000 ✅
+2. `anomaly_detection([img_5, img_1],[img_5, img_1],1)` = 0.0000 ✅  
+3. `anomaly_detection([img_9, img_5],[img_5, img_9],1)` = 0.0000 ✅
+
+**Conclusion:** All tests passed (no failures). The system correctly identifies anomalies when temperature exceeds 60 and flow drops below 20, and returns normal status (0) otherwise.
+
+## Failure Localization
+No test failures were detected. The system correctly implements:
+- Language-specific digit recognition (lines 1-4)
+- Number conversion from digit lists (lines 6-9)
+- Anomaly detection logic (lines 11-13)
+
+## Root Cause Analysis
+1. **Logical Correctness**: 
+   - The recursive `number/3` predicate correctly converts digit lists to numbers with proper termination (`number([],Result,Result)`)
+   - Anomaly detection uses simple threshold checks with correct negation handling
+
+2. **Probabilistic Rules**:
+   - Neural network outputs are properly defined with `nn/4` predicates
+   - Probability computations follow standard rules (P(¬A)=1−P(A))
+
+3. **DeepProbLog Integration**:
+   - Neural networks are correctly declared but not actively used in test cases
+   - **Note:** DeepProbLog feature declared but not exercised in testing
+
+## Overall Analysis
+1. **Requirements Met**:
+   - Classical reasoning: Fully implemented for number conversion and threshold checks
+   - Probabilistic reasoning: Properly structured but not deeply tested
+   - Neural integration: Declared but not verified in test cases
+
+2. **Edge Cases**:
+   - Undefined behavior for non-digit inputs
+   - No handling for empty or malformed lists
+   - Potential performance issues with long digit lists (deep recursion)
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | Untested neural integration | Medium risk | Add test cases with actual nn calls |
+| 2 | No input validation | Low risk | Add type checking for digit lists |
+| 3 | Deep recursion risk | Low risk | Consider iterative number conversion |
+
+```prolog
+% Key working predicates (verified)
+anomaly_detection(Digit1, Digit2, 1) :- 
+    number(Digit1, Temp), number(Digit2, Flow), 
+    Temp >= 60, Flow =< 20.
+```
+
+**Word Count:** 423  
+**Final Assessment:** The core functionality works correctly for tested scenarios, but would benefit from expanded test coverage of neural network integration and edge case handling.

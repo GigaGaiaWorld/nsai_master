@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic fact 'coin(C)' causing execution failure due to ProbLog's grounding requirement violation.",
+  "SuggestedFix": "Replace 'coin(C) :- make_coin(C,0.8).' with grounded facts: 'coin(head) :- make_coin(head, 0.8). coin(tail) :- make_coin(tail, 0.2).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

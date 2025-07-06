@@ -1,0 +1,16 @@
+Error evaluating Problog model:
+    result = self.handle_nonground(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 905, in handle_nonground
+    raise NonGroundProbabilisticClause(location=database.lineno(node.location))
+problog.engine.NonGroundProbabilisticClause: Encountered a non-ground probabilistic clause at 1:5.Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 9:25.% Problog Inference Result：
+total(4) = 0.8000
+total(3) = 0.8000
+total(2) = 0.8000
+total(1) = 0.8000
+total(0) = 0.8000

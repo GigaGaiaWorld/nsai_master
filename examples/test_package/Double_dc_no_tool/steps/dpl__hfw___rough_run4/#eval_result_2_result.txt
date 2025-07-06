@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Unground comparison in almost_equal/2 predicate causes CallModeError when evaluating arithmetic expressions. The predicate attempts numeric comparison before ensuring both values are ground, violating ProbLog's mode restrictions.",
+  "SuggestedFix": "Modify almost_equal/2 to ensure groundness before comparison:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), ground(X), \n    Y is float(X).\nAlso add explicit failure case for division by zero in parse/2.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

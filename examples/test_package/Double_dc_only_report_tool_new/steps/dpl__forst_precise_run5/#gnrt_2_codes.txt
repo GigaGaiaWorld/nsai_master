@@ -1,0 +1,5 @@
+[
+{
+"6931D64E": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [X, Y, Z], Rest),\n    sort3(X, Y, Z, SortedElements),\n    append(SortedElements, Rest, SortedStack).\n\nsort3(X, Y, Z, [A, B, C]) :-\n    min_list([X, Y, Z], A),\n    max_list([X, Y, Z], C),\n    (   (A == X, C == Y) -> B = Z\n    ;   (A == X, C == Z) -> B = Y\n    ;   (A == Y, C == X) -> B = Z\n    ;   (A == Y, C == Z) -> B = X\n    ;   (A == Z, C == X) -> B = Y\n    ;   (A == Z, C == Y) -> B = X\n    )."
+}
+]

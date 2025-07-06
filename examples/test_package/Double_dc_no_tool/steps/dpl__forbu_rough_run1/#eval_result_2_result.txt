@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Ungrounded comparison in bubblesort predicate causing CallModeError, incorrect implementation of bubble sort algorithm",
+  "SuggestedFix": "1. Restructure bubblesort/3 to ensure variables are ground before comparison\n2. Correct the bubble sort logic to properly implement the algorithm\n3. Add proper base cases and recursive cases\nExample fix:\nbubblesort([], []).\nbubblesort([H], [H]).\nbubblesort([H1,H2|T], Sorted) :-\n    (H1 > H2 ->\n        bubblesort([H2|T], SortedRest),\n        Sorted = [H1|SortedRest]\n    ;\n        bubblesort([H1|T], SortedRest),\n        Sorted = [H2|SortedRest]\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

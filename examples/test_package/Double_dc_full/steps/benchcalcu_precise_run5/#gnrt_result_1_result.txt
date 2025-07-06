@@ -1,0 +1,3 @@
+```problog
+{"HASH": "6EAA2098","Code": "query_sum([A,B,C,D,E]) :- leftdigit(A), leftdigit(B), leftdigit(C), digit(B), digit(D), digit(E), all_different([A,B,C,D,E]), sumdigit(0, B, D, E, Carry1), sumdigit(Carry1, A, C, D, Carry2), sumdigit(Carry2, 0, B, C, Carry3), Carry3 = 0."}
+```

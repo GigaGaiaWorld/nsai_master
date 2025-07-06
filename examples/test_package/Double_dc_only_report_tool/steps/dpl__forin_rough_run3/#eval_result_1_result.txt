@@ -1,0 +1,14 @@
+```report
+{
+  "HASH": "501F546D",
+  "ErrorSummary": "No issues found in the core logic. Edge case: non-list input not handled.",
+  "SuggestedFix": "Add input validation to ensure the first argument is a list. Example: \ninsertion_sort(List, SortedList) :- is_list(List), insertion_sort(List, [], SortedList).",
+  "Dependencies": [],
+  "NeedRegenerate": false
+}
+``` 
+
+### Explanation:
+1. **ErrorSummary**: The code works correctly for valid inputs (lists) but lacks handling for non-list inputs.
+2. **SuggestedFix**: A simple guard clause (`is_list/1`) is added to the main predicate to prevent runtime errors.
+3. **NeedRegenerate**: Set to `false` because the core logic is correct, and the edge case fix is trivial (does not require full regeneration). The fix can be manually applied if desired.

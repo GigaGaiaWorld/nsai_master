@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Unground variable comparison in almost_equal/2 predicate causes CallModeError when processing nested expressions. Evaluation order issues in parse/2 predicates.",
+  "SuggestedFix": "1. Restructure almost_equal/2 to handle unground variables:\n   almost_equal(X, Y) :- var(Y), Y is float(X).\n   almost_equal(X, Y) :- nonvar(Y), abs(X - Y) < 0.0001.\n2. Modify parse/2 predicates to ensure proper evaluation order:\n   parse([N1,+|T], R) :- parse(T, R1), R is N1 + R1.\n   (similar changes for other operators)\n3. Add input validation for division by zero cases.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

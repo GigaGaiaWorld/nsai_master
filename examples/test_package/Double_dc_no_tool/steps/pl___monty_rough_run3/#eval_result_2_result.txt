@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "1. Invalid probabilistic fact placement in rule body 2. Malformed conditional structure 3. Infinite recursion risk 4. Incorrect probabilistic negation handling",
+  "SuggestedFix": "Replace the open_door/1 predicate with:\n\n0.5::open_door_a(1); 0.5::open_door_a(2) :- \n    findall(X, (member(X,[1,2,3]), X \\= Selected, \+ prize(X)), [A,B]),\n    select_door(Selected).\n\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \+ prize(X)), Doors),\n    (Doors = [A,B] -> open_door_a(D)\n    ; Doors = [A] -> D = A\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

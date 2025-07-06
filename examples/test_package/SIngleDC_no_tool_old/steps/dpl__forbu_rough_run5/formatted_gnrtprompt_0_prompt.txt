@@ -1,0 +1,83 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+% Bubblesort implementation with accumulator
+bubblesort([], Acc, Acc).
+bubblesort(List, Acc, Sorted) :-
+    bubble(List, NewList),  % Perform one pass of bubbling
+    NewList \= List,        % Check if any swaps occurred
+    !,                      % Cut to prevent backtracking
+    bubblesort(NewList, Acc, Sorted).
+bubblesort(List, Acc, [List|Acc]).  % If no swaps, prepend to accumulator
+
+% Bubble step: move largest element to end
+bubble([X,Y|Rest], [Y|NewRest]) :-
+    X > Y,
+    !,
+    bubble([X|Rest], NewRest).
+bubble([X,Y|Rest], [X|NewRest]) :-
+    bubble([Y|Rest], NewRest).
+bubble([X], [X]).
+bubble([], []).
+
+% Wrapper predicate
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+
+% Query example
+query(forth_sort([3,1,2,5,7,12],X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

@@ -1,0 +1,12 @@
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1, +, N2 | T], R) :- almost_equal(N1 + N2, Temp), parse([Temp | T], R)."}
+```
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1, -, N2 | T], R) :- almost_equal(N1 - N2, Temp), parse([Temp | T], R)."}
+```
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1, *, N2 | T], R) :- almost_equal(N1 * N2, Temp), parse([Temp | T], R)."}
+```
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1, /, N2 | T], R) :- N2 =\\= 0, almost_equal(N1 / N2, Temp), parse([Temp | T], R)."}
+```

@@ -1,0 +1,3 @@
+```report
+{"HASH": "A88642CF", "ErrorSummary": "Incorrect conditional syntax in ProbLog, dual usage of coin(CNT) as both test and call, missing proper probability propagation", "SuggestedFix": "Replace with:\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    (coin(CNT, _) -> NSC is SC + 1 ; NSC = SC),\n    CNT1 is CNT - 1,\n    coins_r(NSC,S,CNT1).", "Dependencies": [], "NeedRegenerate": true}
+```

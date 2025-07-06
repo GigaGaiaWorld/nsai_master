@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "B56DC140",
+  "ErrorSummary": "Syntax error due to misplaced semicolon and closing parenthesis in the merge_sort rule",
+  "SuggestedFix": "Correct the merge_sort rule by removing the misplaced semicolon and closing parenthesis. The corrected rule should be: merge_sort(List, Sorted) :- length(List, Len), Len > 1, split_list(List, Left, Right), merge_sort(Left, SortedLeft), merge_sort(Right, SortedRight), merge(SortedLeft, SortedRight, Sorted).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

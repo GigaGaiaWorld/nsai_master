@@ -1,0 +1,5 @@
+[
+{
+"6931D64E": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [X, Y, Z], Rest),\n    sort([X, Y, Z], [A, B, C]),\n    SortedStack = [A, B, C | Rest].\nstack_op(sort, Stack, Stack) :-\n    length(Stack, L),\n    L < 3."
+}
+]

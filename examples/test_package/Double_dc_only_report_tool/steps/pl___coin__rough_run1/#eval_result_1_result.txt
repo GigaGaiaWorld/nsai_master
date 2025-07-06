@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause in 'coin(C)' prevents probabilistic evaluation. The variable 'C' is uninstantiated when the probabilistic fact is called.",
+  "SuggestedFix": "Replace 'coin(C)' with a ground probabilistic fact (e.g., 'coin(c1) :- make_coin(c1, 0.8).') and update the recursive clause to use 'c1' instead of 'C'.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

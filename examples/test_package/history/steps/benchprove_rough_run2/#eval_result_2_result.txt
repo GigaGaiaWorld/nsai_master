@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "Missing implementations for 5 required predicates (implies/2, opposite/1, includes/2, extend/3, expand/2) despite being listed in requirements. Only refute/1 is implemented.",
+  "SuggestedFix": "Add the following predicate implementations:\n1. implies(A, B) :- \\+ A; B.\n2. opposite(A) :- \\+ A.\n3. includes(List, Elem) :- member(Elem, List).\n4. extend(List, Elem, [Elem|List]).\n5. expand/2 is already defined in the examples section but should be moved to the extended logic processing section.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

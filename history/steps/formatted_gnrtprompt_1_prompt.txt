@@ -1,0 +1,80 @@
+System: You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task. You should always use 'get_report_tool' first to gain more information.
+Human: Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+0.8::weather_yesterday(sunny); 0.2::weather_yesterday(rainy).
+% mupping the floor could cause the floor wet
+0.9::cleaner_fired(true); 0.1::cleaner_fired(false).
+% Causation: Analyzing cause and effect based on above all informations
+<Langda> Information:
+<HASH> Hash tag of code: A912216E </HASH>
+<Requirements>Figure out if the ground is wet or not </Requirements></Langda>
+.
+query(ground_wet).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+0.8::weather_yesterday(sunny); 0.2::weather_yesterday(rainy).
+% mupping the floor could cause the floor wet
+0.9::cleaner_fired(true); 0.1::cleaner_fired(false).
+% Causation: Analyzing cause and effect based on above all informations
+<Langda> Information:
+<HASH> Hash tag of code: A912216E </HASH>
+<Requirements>Figure out if the ground is wet or not </Requirements></Langda>
+.
+query(ground_wet).
+
+</origin_code>
+<generated_code>
+
+0.8::weather_yesterday(sunny); 0.2::weather_yesterday(rainy).
+0.9::cleaner_fired(true); 0.1::cleaner_fired(false).
+
+% Define the mop_floor predicate
+0.5::mop_floor(true); 0.5::mop_floor(false).
+
+% Causation: Ground is wet if it rained yesterday or the floor was mopped
+ground_wet :- weather_yesterday(rainy).
+ground_wet :- mop_floor(true).
+
+query(ground_wet).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

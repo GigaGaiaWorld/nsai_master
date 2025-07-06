@@ -1,0 +1,81 @@
+# Evaluation Report: Insertion Sort in Prolog
+
+## 1. Background and Purpose
+This report evaluates a Prolog implementation of the insertion sort algorithm (`insertion_sort/2`). The purpose is to verify the correctness of the implementation against test cases and analyze its compliance with Prolog's logical programming paradigm.
+
+## 2. Test Results Summary
+The provided test case was:
+```prolog
+query(insertion_sort([3,1,2,5,7,12],X)).
+```
+**Result:**
+```
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+```
+**Conclusion:** All tests passed (no failures). The implementation correctly sorts the input list `[3,1,2,5,7,12]` into `[1,2,3,5,7,12]` with 100% probability.
+
+## 3. Failure Localization
+No failures were detected in the test case. The implementation correctly handles:
+- Base case (empty list)
+- Recursive case (inserting elements in order)
+- Comparison operations (`=<` and `>`)
+
+## 4. Root Cause Analysis
+**Logical Correctness:**
+- The algorithm follows standard insertion sort logic:
+  1. Starts with an empty accumulator (line 2)
+  2. Inserts each element in order (lines 5-6)
+  3. Uses proper comparison predicates (lines 9-12)
+
+**Recursive Termination:**
+- The recursion terminates properly when the input list is empty (line 4)
+- Each recursive call reduces the problem size (line 6)
+
+**Probabilistic Aspects:**
+- The result shows probability 1.0000, indicating deterministic behavior
+- No probabilistic facts or rules are used in this implementation
+- DeepProbLog feature not used
+
+## 5. Overall Analysis
+**Requirements Met:**
+- Classical reasoning: Fully implemented and correct
+- Probabilistic reasoning: Not applicable (pure deterministic implementation)
+- Neural network integration: Not used
+
+**Edge Cases Consideration:**
+1. Empty list: Handled by base case (line 4)
+2. Single-element list: Handled by `insert/3` base case (line 8)
+3. Already sorted list: Handled by comparison clauses (lines 9-12)
+4. Non-list input: Not explicitly handled (would cause type errors)
+5. Duplicate elements: Handled correctly via `=<` comparison
+
+## 6. Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None | None | None |
+
+**Code Quality Observations:**
+1. The implementation is clean and follows Prolog idioms
+2. Could add type checking for non-list inputs
+3. Could optimize tail recursion further (though current implementation is correct)
+
+**Word Count:** 398
+
+```prolog
+% Correct implementation for reference
+insertion_sort(List, Sorted) :-
+    insertion_sort(List, [], Sorted).
+
+insertion_sort([], Acc, Acc).
+insertion_sort([H|T], Acc, Sorted) :-
+    insert(H, Acc, NewAcc),
+    insertion_sort(T, NewAcc, Sorted).
+
+insert(X, [], [X]).
+insert(X, [Y|Ys], [X,Y|Ys]) :-
+    X =< Y.
+insert(X, [Y|Ys], [Y|Zs]) :-
+    X > Y,
+    insert(X, Ys, Zs).
+```

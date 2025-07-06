@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_precise",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "274.36s",
+  "process_time": 274.36203479766846,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [_|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n \n\n    get_top_n(Stack, 3, [X,Y,Z], Rest),\n    sort3(X, Y, Z, Sorted),\n    append(Sorted, Rest, SortedStack).\n\nsort3(X, Y, Z, [A,B,C]) :-\n    max_list([X,Y,Z], C),\n    min_list([X,Y,Z], A),\n    (   member(B, [X,Y,Z]), B \\= A, B \\= C -> true\n    ;   B = A\n    ).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is mostly correct and consistent with the original code. It correctly implements stack operations like push, pop, dup, swap, over, and rot. The sorting operation has been modified to use a custom sort3 predicate instead of insertion_sort, which is a valid approach. However, the sort3 predicate has a logical flaw in determining the middle value (B), which could lead to incorrect sorting in some cases. Despite this, the provided test cases do not cover the sort operation, so the issue is not apparent in the results."
+}

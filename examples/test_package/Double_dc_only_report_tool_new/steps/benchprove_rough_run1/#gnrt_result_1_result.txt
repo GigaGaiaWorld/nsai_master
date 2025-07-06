@@ -1,0 +1,3 @@
+```problog
+{"HASH": "3F5BA02C","Code": "prove(implies(A, B)) :- \\+ prove(A).\nprove(implies(A, B)) :- prove(A), prove(B).\nprove(opposite(A)) :- \\+ prove(A).\nprove(expand(Term, Result)) :- expand(Term, Result).\nprove(includes(List, Elem)) :- member(Elem, List).\nprove(extend(List, Elem, [Elem | List])).\nprove(refute(A)) :- \\+ prove(A)."}
+```

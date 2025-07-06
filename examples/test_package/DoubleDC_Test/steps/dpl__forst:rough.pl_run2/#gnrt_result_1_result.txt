@@ -1,5 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> section in the origin code:
-
-```problog
-{"HASH": "5E40E418","Code": "stack_op(sort, Stack, SortedStack) :- is_list(Stack), length(Stack, Len), Len >= 3, get_top_n(Stack, 3, Elements, RestStack), quick_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :- length(Elements, N), append(Elements, Rest, Stack).\nquick_sort([], []).\nquick_sort([Pivot | Tail], Sorted) :- partition(Tail, Pivot, Left, Right), quick_sort(Left, SortedLeft), quick_sort(Right, SortedRight), append(SortedLeft, [Pivot | SortedRight], Sorted).\npartition([], _, [], []).\npartition([X | Tail], Pivot, [X | Left], Right) :- X =< Pivot, partition(Tail, Pivot, Left, Right).\npartition([X | Tail], Pivot, Left, [X | Right]) :- X > Pivot, partition(Tail, Pivot, Left, Right)."}
-```

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__formg_rough",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "193.85s",
+  "process_time": 193.8515739440918,
+  "final_result": "merge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n    length(List, Len),\n    Len > 1,\n    Half is Len // 2,\n    length(FirstHalf, Half),\n    append(FirstHalf, SecondHalf, List),\n    merge_sort(FirstHalf, SortedFirst),\n    merge_sort(SecondHalf, SortedSecond),\n    merge(SortedFirst, SortedSecond, Sorted).\nmerge([], L, L).\nmerge(L, [], L).\nmerge([X|Xs], [Y|Ys], [X|Zs]) :-\n    X =< Y,\n    merge(Xs, [Y|Ys], Zs).\nmerge([X|Xs], [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    merge([X|Xs], Ys, Zs).\nappend([], L, L).\nappend([H|T], L2, [H|R]) :-\n append(T, L2, R).\nquery(merge_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is correct and consistent with the original code in functionality. It successfully implements the merge sort algorithm, splitting the list into halves, recursively sorting them, and then merging the sorted halves. The generated code simplifies the original by inlining the split_list predicate directly into the merge_sort predicate, which does not affect the logic or outcome. Both codes produce the same sorted list for the given query."
+}

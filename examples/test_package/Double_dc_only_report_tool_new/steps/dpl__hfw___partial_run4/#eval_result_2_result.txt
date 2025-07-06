@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DB25F467",
+  "ErrorSummary": "Incorrect subtraction implementation in parse/2 predicate causing wrong calculation results",
+  "SuggestedFix": "Change the addition operation to subtraction in the subtraction rule: parse([N1,-|T], R) :- parse([-1, *|T], R2), almost_equal(N1 - R2, R).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

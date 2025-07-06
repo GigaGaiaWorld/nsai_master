@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "1. Unmatched parenthesis at line 7 causing parser failure. 2. Malformed conditional statement breaking logical flow. 3. Probabilistic fact not properly utilized in the coin toss logic.",
+  "SuggestedFix": "1. Fix syntax by properly formatting the if-then-else structure. 2. Use proper ProbLog conditional syntax: '(Condition -> Then ; Else)'. 3. Ensure the PH parameter is properly connected to the coin toss by modifying the recursive rule to: coins_r(SC,S,CNT) :- CNT > 0, (make_coin(CNT,0.8) -> NewSC is SC + 1, NewCNT is CNT - 1, coins_r(NewSC,S,NewCNT) ; NewCNT is CNT - 1, coins_r(SC,S,NewCNT)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

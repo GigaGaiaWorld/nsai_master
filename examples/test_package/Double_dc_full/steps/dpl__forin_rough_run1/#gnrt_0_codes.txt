@@ -1,0 +1,5 @@
+[
+{
+"501F546D": "insertion_sort([], []).\ninsertion_sort([Head|Tail], Sorted) :-\n    insertion_sort(Tail, SortedTail),\n    insert(Head, SortedTail, Sorted).\ninsert(Element, [], [Element]).\ninsert(Element, [Head|Tail], [Element, Head|Tail]) :-\n    Element =< Head.\ninsert(Element, [Head|Tail], [Head|SortedTail]) :-\n    Element > Head,\n    insert(Element, Tail, SortedTail)."
+}
+]

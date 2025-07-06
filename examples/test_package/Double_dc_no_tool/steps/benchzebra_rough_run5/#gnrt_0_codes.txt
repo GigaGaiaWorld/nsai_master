@@ -1,0 +1,11 @@
+[
+{
+"AA4D04D8": "my_member(X, [X|_]).\nmy_member(X, [_|T]) :- my_member(X, T)."
+},
+{
+"3C24DB80": "next_to(X, Y, List) :- right_of(X, Y, List).\nnext_to(X, Y, List) :- right_of(Y, X, List)."
+},
+{
+"8660991C": "right_of(X, Y, [Y,X|_]).\nright_of(X, Y, [_|Rest]) :- right_of(X, Y, Rest)."
+}
+]

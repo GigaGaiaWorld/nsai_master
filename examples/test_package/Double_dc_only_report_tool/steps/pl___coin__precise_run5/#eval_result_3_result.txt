@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "Undefined '->/2' operator in ProbLog context, causing recursive logic to fail",
+  "SuggestedFix": "Replace the '->/2' operator with a ProbLog-compatible conditional construct (e.g., 'if_then_else/3'). Modify the recursive rule to: 'coins_r(SC,S,CNT) :- CNT > 0, CNT1 is CNT - 1, if_then_else(coin(CNT), SC1 is SC + 1, SC1 = SC), coins_r(SC1,S,CNT1).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

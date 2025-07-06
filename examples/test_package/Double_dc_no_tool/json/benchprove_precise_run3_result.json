@@ -1,0 +1,10 @@
+{
+  "file_name": "benchprove_precise",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "71.58s",
+  "process_time": 71.58210515975952,
+  "final_result": "% member/2 for ProbLog\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% --------- Basic meta-interpreter ---------\n% Prove \"true\" always succeeds\nprove(true).\nprove(Goal) :-\n\t% For all other goals, use the clause/2 facts/rules defined in the program\n\tclause(Goal, Body),\n\tprove(Body).\n% Prove compound goal A,B: prove A first, then prove B\nprove((A,B)) :-\n\tprove(A),\n\tprove(B).\n% --------- Extended logic processing ---------\nprove(implies(P,Q)) :-\n\t\n (\\+ prove(P); prove(Q)).\nprove(opposite(P)) :-\n\t\n \\+ prove(P).\nprove(expand(A,B)) :-\n\t\n expand(A,B).\nprove(includes(Set,X)) :-\n\t\n member(X,Set).\nprove(extend(List,Elem,Extended)) :-\n\t\n Extended = [Elem|List].\n% 6. refute(P): refute, equivalent to \"unprovable\"\nprove(refute(P)) :-\n\t\\+ prove(P).\n% --------- Examples ---------- %\n% Define some expand rules:\nexpand(double(X), Y) :- Y is X*2.\nexpand(square(X), Y) :- Y is X*X.\nparent(alice, bob).\nparent(bob, carol).\nancestor(X,Y) :- parent(X,Y).\nancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).\n% --------- Queries ---------- %\nquery(prove(implies(parent(alice,bob), ancestor(alice,bob)))).\nquery(prove(opposite(parent(carol,alice)))).\nquery(prove(expand(double(3),6))).\nquery(prove(includes([a,b,c],b))).\nquery(prove(extend([1,2],3,[3,1,2]))).",
+  "final_report": "The generated code is correct and consistent with the original code. It maintains all the functionalities and logic of the original code, including the meta-interpreter, extended logic processing, and example queries. The formatting and structure are slightly different but do not affect the functionality. The running results of both codes are identical, confirming that the generated code meets the expectations."
+}

@@ -1,0 +1,6 @@
+```problog
+{"HASH": "CFA63C1E","Code": "outcome(Move1, Move2, Result) :- beats(Move1, Move2), Result = win ; beats(Move2, Move1), Result = lose ; Move1 = Move2, Result = draw."}
+```
+```problog
+{"HASH": "CFA63C1E","Code": "play([], [], []). play([Move1 | Rest1], [Move2 | Rest2], [Result | Results]) :- outcome(Move1, Move2, Result), play(Rest1, Rest2, Results)."}
+```

@@ -1,0 +1,3 @@
+```problog
+{"HASH": "4E6CE90A","Code": "determine_winner(P1Moves,P2Moves,Winner) :- \n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    (Score > 0 -> Winner = 'Player 1';\n     Score < 0 -> Winner = 'Player 2';\n     Winner = 'Draw')."}
+```

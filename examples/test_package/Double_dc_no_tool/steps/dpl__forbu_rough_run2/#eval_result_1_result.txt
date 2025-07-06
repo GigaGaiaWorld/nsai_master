@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Syntax error in conditional statement (->/2 operator) causing execution failure, missing proper if-then-else structure",
+  "SuggestedFix": "Rewrite the conditional in bubblesort/3 predicate (lines 4-7) using proper Prolog syntax:\n\nbubblesort(List, Acc, Sorted) :-\n    bubble(List, NewList, Swapped),\n    (   Swapped == true\n    ->  bubblesort(NewList, Acc, Sorted)\n    ;   append(NewList, Acc, Sorted)\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -101,7 +101,18 @@ class ProjectPaths(BaseModel):
             contentstr = str(content)
 
         if save_dir:
-            path = save_dir
+            # FIX: Convert save_dir to Path object if it's a string
+            if isinstance(save_dir, str):
+                save_dir = Path(save_dir)
+            
+            # Determine the save path
+            if filetype in self.workflow_files:
+                filename = f"{prefix}_{self.workflow_files[filetype]}" if prefix else self.workflow_files[filetype]
+                path = save_dir / filename
+            else:
+                # Use custom path within save_dir
+                path = save_dir / filetype
+                logging.info(f"Using custom file path: {path}")
         else:
             # Determine the save path
             if filetype in self.workflow_files:

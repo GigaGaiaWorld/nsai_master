@@ -1,0 +1,14 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> block in the original code:
+
+```problog
+{"HASH": "6931D64E", "Code": "stack_op(sort, [X,Y,Z|Stack], SortedStack) :- sort3(X, Y, Z, S1, S2, S3), SortedStack = [S1,S2,S3|Stack]."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "sort3(A, B, C, X, Y, Z) :- min(A, B, ABmin), max(A, B, ABmax), min(ABmin, C, X), max(ABmax, C, Z), (X == ABmin -> Middle is min(ABmax, C) ; Middle is ABmin), (Z == C -> Y is ABmax ; Y is C)."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "min(X, Y, X) :- X =< Y. min(X, Y, Y) :- Y < X."}
+```
+```problog
+{"HASH": "6931D64E", "Code": "max(X, Y, X) :- X >= Y. max(X, Y, Y) :- Y > X."}
+```

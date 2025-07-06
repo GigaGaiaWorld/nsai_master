@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Incorrect predicate usage (`open_door/2` instead of `open_door/1`) and missing handling for single-door scenario",
+  "SuggestedFix": "Replace `open_door/2` with `open_door/1` and define it as follows:\n1. For two doors: `0.5::open_door(A) ; 0.5::open_door(B)` where `A` and `B` are the available doors.\n2. For one door: `open_door(Door)` where `Door` is the only available door.\nLine 11 should be corrected to use `open_door/1`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

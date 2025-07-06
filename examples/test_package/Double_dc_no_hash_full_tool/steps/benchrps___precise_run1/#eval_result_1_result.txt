@@ -1,0 +1,9 @@
+```report
+{"HASH": "FB0E8901","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "133D6BEE","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "4E6CE90A","ErrorSummary": "Incomplete predicate definition causing ProbLog engine error","SuggestedFix": "Complete the definition of determine_winner/3 as follows: determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, Score), (Score > 0 -> Winner = 'Player 1'; Score < 0 -> Winner = 'Player 2'; Winner = 'Draw').","Dependencies": [],"NeedRegenerate": true}
+```

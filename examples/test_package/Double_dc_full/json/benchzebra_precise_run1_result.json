@@ -1,0 +1,10 @@
+{
+  "file_name": "benchzebra_precise",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "318.74s",
+  "process_time": 318.7383930683136,
+  "final_result": "zebra(Houses) :-\n\thouses(Houses),\n\t\nmember(house(english, red, _, _, _), Houses),\n    member(house(spanish, _, dog, _, _), Houses),\n    member(house(_, green, _, coffee, _), Houses),\n    member(house(ukrainian, _, _, tea, _), Houses),\n    right_of(house(_, green, _, _, _), house(_, ivory, _, _, _), Houses),\n    member(house(_, _, snail, _, winstons), Houses),\n    member(house(yellow, _, _, _, kools), Houses),\n    Houses = [_, _, house(_, _, _, milk, _), _, _],\n    Houses = [house(norwegian, _, _, _, _) | _],\n    next_to(house(_, _, _, _, chesterfields), house(_, _, fox, _, _), Houses),\n    next_to(house(_, _, _, _, kools), house(_, _, horse, _, _), Houses),\n    member(house(_, _, _, orange_juice, lucky_strikes), Houses),\n    member(house(japanese, _, _, _, parliaments), Houses),\n    next_to(house(norwegian, _, _, _, _), house(_, blue, _, _, _), Houses),\n    member(house(_, _, zebra, _, _), Houses),\n    member(house(_, _, _, water, _), Houses).\nhouses([\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _)\n]).\nright_of(A, B, [B, A | _]).\nright_of(A, B, [_ | Y]) :- right_of(A, B, Y).\nnext_to(A, B, [A, B | _]).\nnext_to(A, B, [B, A | _]).\nnext_to(A, B, [_ | Y]) :- next_to(A, B, Y).\nmy_member(X, [X|_]).\nmy_member(X, [_|Y]) :- my_member(X, Y).\nquery(zebra(Houses)).",
+  "final_report": "The generated code has several issues. First, it uses 'member/2' instead of 'my_member/2', which causes an error since 'member/2' is not defined. Second, the order of attributes in some house predicates is incorrect (e.g., 'house(english, red, _, _, _)' should be 'house(red, english, _, _, _)'). These inconsistencies make the generated code invalid and prevent it from producing the same result as the original code."
+}

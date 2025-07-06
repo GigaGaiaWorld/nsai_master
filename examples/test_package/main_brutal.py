@@ -5,6 +5,7 @@ import statistics  # For calculating statistical data
 from pathlib import Path
 from tqdm import tqdm
 from langda import langda_solve
+# from langda_nohash import langda_solve
 from langda.utils.test_tools import _problog_test
 from langda.utils import invoke_agent, _find_all_blocks
 
@@ -48,9 +49,11 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
     
     # Process each prompt file
     for idx, prompt_file in enumerate(prompt_files, start=1):
+        
         # This is for skipping:
-        if idx < 12:
-            continue
+        # if idx < 20:
+        #     continue
+
         file_basename = (prompt_file.name).split(".")[0]
         part1, part2 = file_basename.split(":")
         file_basename = f"{part1}_{part2}"
@@ -305,53 +308,19 @@ def process_all(test_directory_path, answer_directory_path, output_json_dir, out
     print(f"Success result rate: {final_summary['success_result_rate']*100:.1f}%")
     print(f"Average time per run: {final_summary['avg_time_per_run']:.2f}s")
 
-def generate_final_report_from_json(output_json_dir, final_result_path):
-    """Generate a final report from the JSON results"""
-    output_json_dir = Path(output_json_dir)
-    
-    # Read the final result
-    with open(final_result_path, 'r', encoding='utf-8') as f:
-        final_data = json.load(f)
-    
-    # Generate report
-    report_path = output_json_dir / "final_report.txt"
-    with open(report_path, 'w', encoding='utf-8') as f:
-        f.write("LANGDA TESTING FINAL REPORT\n")
-        f.write("=" * 50 + "\n\n")
-        
-        if final_data.get("test_completed"):
-            f.write(f"Test Status: COMPLETED\n")
-            f.write(f"Total Files: {final_data.get('total_files', 0)}\n")
-            f.write(f"Repeat Count: {final_data.get('repeat_count', 0)}\n")
-            f.write(f"Total Runs: {final_data.get('total_runs', 0)}\n")
-            f.write(f"Total Time: {final_data.get('overall_process_time', 0):.2f}s\n")
-            f.write(f"Success Form Rate: {final_data.get('success_form_rate', 0)*100:.1f}%\n")
-            f.write(f"Success Result Rate: {final_data.get('success_result_rate', 0)*100:.1f}%\n")
-            f.write(f"Avg Time/Run: {final_data.get('avg_time_per_run', 0):.2f}s\n\n")
-            
-            f.write("FILE SUMMARIES:\n")
-            f.write("-" * 30 + "\n")
-            for file_summary in final_data.get('file_summaries', []):
-                f.write(f"File: {file_summary['file_name']}\n")
-                f.write(f"Success Form Rate: {file_summary['success_form_rate']*100:.1f}%\n")
-                f.write(f"Success Result Rate: {file_summary['success_result_rate']*100:.1f}%\n")
-                f.write(f"Avg Time: {file_summary['avg_process_time']:.2f}s\n")
-                f.write(f"Runs: {file_summary['runs']}\n\n")
-        else:
-            f.write("Test Status: INCOMPLETE\n")
-    
-    print(f"Final report saved to: {report_path}")
 
 if __name__ == "__main__":
 
+    # 注意当前测试的是langda no hash
     test_path = "rules/test_prompt"
+    # test_path = "rules/again"
     answer_path = "rules/test_answer"
     output_json_dir = "history/json"
     output_pl_dir = "history/result"
     
     # Set repeat count
-    repeat_count = 3  # Default 5 times, can be adjusted as needed
-    
+    repeat_count = 2  # Default 5 times, can be adjusted as needed
+
     process_all(
         test_directory_path=test_path, 
         answer_directory_path=answer_path, 
@@ -365,4 +334,3 @@ if __name__ == "__main__":
     
     # Generate final report
     final_result_path = Path(output_json_dir) / "_final_result.json"
-    generate_final_report_from_json(output_json_dir, final_result_path)

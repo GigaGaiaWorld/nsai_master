@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin_rough",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "82.12s",
+  "process_time": 82.11707711219788,
+  "final_result": "insertion_sort([], []).\ninsertion_sort([Head|Tail], Sorted) :-\n    insertion_sort(Tail, SortedTail),\n    insert(Head, SortedTail, Sorted).\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs).\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is correct and consistent with the original code in functionality. Both codes implement the insertion sort algorithm in Prolog. The generated code uses slightly different variable names (e.g., 'Head' instead of 'H', 'Tail' instead of 'T') and renames 'insert_element' to 'insert', but the logic remains unchanged. The running results of both codes are identical, producing the same sorted list."
+}

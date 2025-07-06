@@ -1,0 +1,15 @@
+```report
+{"HASH": "99C92279","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "B6292BC0","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+```report
+{"HASH": "22D05CCC","ErrorSummary": "No protection against missing expand/2 rules","SuggestedFix": "Add existence check: prove(expand(A,B)) :- clause(expand(A,B),_), expand(A,B).","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "5AFBB985","ErrorSummary": "No input validation for list type","SuggestedFix": "Add type checking: prove(includes(Set,X)) :- is_list(Set), member(X,Set).","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "62B0CEA4","ErrorSummary": "No input validation for list type","SuggestedFix": "Add type checking: prove(extend(List,Elem,Extended)) :- is_list(List), Extended = [Elem|List].","Dependencies": [],"NeedRegenerate": true}
+```

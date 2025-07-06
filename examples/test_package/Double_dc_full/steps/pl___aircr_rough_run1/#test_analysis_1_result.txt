@@ -1,0 +1,80 @@
+### Evaluation Report: Aircraft Flap Controller in ProbLog
+
+---
+
+#### **1. Document Title**  
+**Analysis of Aircraft Flap Controller ProbLog Code and Test Results**
+
+---
+
+#### **2. Background and Purpose**  
+The provided ProbLog code models an aircraft flap controller system, inspired by Filieri et al.'s work. The system simulates the movement of a flap from an initial position to a goal position, considering actuator strength, wind effects, and probabilistic choices. The purpose of this evaluation is to verify the correctness of the code, analyze the test results, and ensure compliance with ProbLog's probabilistic and classical reasoning rules.
+
+---
+
+#### **3. Test Results Summary**  
+The test results include the probabilities of `goal_reached` and `overrun_exception` for the first five time steps:
+
+- **`goal_reached` Probabilities**:
+  - `goal_reached(1) = 0.2625`
+  - `goal_reached(2) = 0.2311`
+  - `goal_reached(3) = 0.1370`
+  - `goal_reached(4) = 0.0771`
+  - `goal_reached(5) = 0.0455`
+
+- **`overrun_exception` Probabilities**:
+  - `overrun_exception(1) = 0.0000`
+  - `overrun_exception(2) = 0.0030`
+  - `overrun_exception(3) = 0.0115`
+  - `overrun_exception(4) = 0.0124`
+  - `overrun_exception(5) = 0.0106`
+
+**Conclusion**: All tests passed (no failures). The results are consistent with the expected behavior of the system, where the probability of reaching the goal decreases over time, and the probability of overrun exceptions remains low.
+
+---
+
+#### **4. Failure Localization**  
+No failures were detected in the test results. The predicates and rules are correctly defined, and the probabilistic facts (e.g., `wind_effect`, `use_actuator`) are computed as expected. The code block for `attempted_flap_position` (lines 20–25) adheres to the requirements, calculating the flap position based on the actuator strength, wind effect, and previous position.
+
+---
+
+#### **5. Root Cause Analysis**  
+
+- **Classical ProbLog Scenarios**:  
+  - The recursive termination condition (`\+ goal_reached(Prev)`) ensures that the system stops attempting to move the flap once the goal is reached.  
+  - Logical correctness is maintained by the `legal_flap_position` check and the `overrun_exception` predicate.
+
+- **Probabilistic Scenarios**:  
+  - The probabilities of `wind_effect` and `use_actuator` comply with ProbLog rules (e.g., `P(¬A) = 1−P(A)`).  
+  - The negation in `\+ legal_flap_position(Pos)` is correctly handled in the probabilistic context.
+
+- **DeepProbLog Features**:  
+  - DeepProbLog features (e.g., `nn/3`, `tensor`) are not used in this code.  
+  - **Report**: "DeepProbLog feature not used."
+
+---
+
+#### **6. Overall Analysis**  
+
+- **Functional Requirements**:  
+  - **Classical Reasoning**: Met. The system correctly models the flap movement and checks for legal positions.  
+  - **Probabilistic Reasoning**: Met. The probabilities are computed as expected, and the system handles uncertainty (e.g., wind effects) correctly.  
+  - **Neural Network Integration**: Not applicable (no DeepProbLog features used).
+
+- **Edge Cases**:  
+  - The system handles edge cases such as illegal flap positions (`overrun_exception`) and ensures termination when the goal is reached.  
+  - No undefined predicates (e.g., `expand/2`) or non-list inputs are present in the code.
+
+---
+
+#### **7. Error Summary**  
+
+| No. | Problem | Impact | Suggestion |
+|-----|---------|--------|------------|
+| 1   | None    | None   | None       |
+
+**Word Count**: ~400 words.  
+
+--- 
+
+**Final Remarks**: The code is well-structured and meets all specified requirements. The test results confirm its correctness in both classical and probabilistic reasoning contexts. No improvements are necessary at this time.

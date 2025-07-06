@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Non-ground comparison in almost_equal/2 predicate causes evaluation failure when processing arithmetic expressions",
+  "SuggestedFix": "Modify almost_equal/2 to handle cases where either argument might be uninstantiated:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    Y is float(X).\nalmost_equal(X, Y) :- \n    var(X), \n    X is float(Y).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

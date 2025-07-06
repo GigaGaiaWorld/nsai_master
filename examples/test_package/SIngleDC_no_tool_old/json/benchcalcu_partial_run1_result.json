@@ -1,0 +1,10 @@
+{
+  "file_name": "benchcalcu_partial",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "55.00s",
+  "process_time": 54.995558738708496,
+  "final_result": "% Cryptoaddition:\n% Find the unique answer to:\n% Define available digits\ndigit(0).\n digit(1).\n digit(2).\n digit(3).\n digit(4).\ndigit(5).\n digit(6).\n digit(7).\n digit(8).\n digit(9).\n% The first digit of a multi-digit number cannot be 0\nleftdigit(D) :- digit(D), D =\\= 0.\n% All elements are different\nall_different([]).\nall_different([H|T]) :- \\+ member(H, T), all_different(T).\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n% Simulate a column addition: Cin is the input carry, Cout is the output carry\nsumdigit(Cin, A, B, Sum, Cout) :-\n X is Cin + A + B,\n ( X < 10, Sum = X, Cout = 0\n ; \n X >= 10, Sum is X - 10, Cout = 1 ).\n% Main predicate: AB + BCD = CDE\nquery_sum([A,B,C,D,E]) :-\n \nleftdigit(A),\n    leftdigit(B),\n    leftdigit(C),\n    digit(D),\n    digit(E)\n,\n \nsumdigit(0, B, D, E, Carry1)\n,\n \nsumdigit(Carry1, A, C, D, Carry2)\n,\n \nsumdigit(Carry2, 0, B, C, Carry3),\n    Carry3 = 0\n,\n \nall_different([A,B,C,D,E])\n.\n% Initiate query example:\nquery(query_sum([A,B,C,D,E])).",
+  "final_report": "The generated code is functionally equivalent to the original code, with only minor formatting differences and a slight reorganization of the constraints in the query_sum predicate. The logic remains unchanged, and the generated code correctly implements the cryptarithmetic puzzle solver for AB + BCD = CDE. Both codes produce identical results, indicating that the generated code meets the requirements."
+}

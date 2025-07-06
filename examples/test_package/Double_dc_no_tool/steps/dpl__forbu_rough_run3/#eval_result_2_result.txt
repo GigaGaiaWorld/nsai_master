@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "ProbLog engine cannot process standard Prolog conditional operator (->/2) in the bubblesort implementation",
+  "SuggestedFix": "Rewrite the conditional logic using separate predicate clauses instead of the -> operator. Replace lines 5-12 with:\n\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    X > Y,\n    bubblesort([X|Rest], Acc, NewAcc),\n    bubblesort([Y|NewAcc], [], Sorted).\n\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    X =< Y,\n    append(Acc, [X], NewAcc),\n    bubblesort([Y|Rest], NewAcc, Sorted).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

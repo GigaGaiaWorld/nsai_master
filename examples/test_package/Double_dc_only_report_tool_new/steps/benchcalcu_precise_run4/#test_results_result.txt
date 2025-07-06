@@ -1,0 +1,16 @@
+Error evaluating Problog model:
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 887, in _builtin_is
+    check_mode((a, b), ["*g"], functor="is", **k)
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_builtin.py", line 630, in check_mode
+    raise CallModeError(functor, args, accepted, location=location)
+problog.engine_builtin.CallModeError: Invalid argument types for call to 'is/2': arguments: (X1, 0+1+X2), expected: (any, ground) at 23:4.% Problog Inference Result：
+query_sum([4, 7, 8, 2, 9]) = 1.0000
+query_sum([4, 7, 8, 3, 0]) = 1.0000
+query_sum([5, 6, 7, 2, 8]) = 1.0000
+query_sum([5, 7, 8, 4, 1]) = 1.0000
+query_sum([6, 7, 8, 5, 2]) = 1.0000
+query_sum([7, 4, 5, 2, 6]) = 1.0000
+query_sum([7, 5, 6, 3, 8]) = 1.0000
+query_sum([8, 3, 4, 2, 5]) = 1.0000
+query_sum([8, 4, 5, 3, 7]) = 1.0000
+query_sum([8, 5, 6, 4, 9]) = 1.0000

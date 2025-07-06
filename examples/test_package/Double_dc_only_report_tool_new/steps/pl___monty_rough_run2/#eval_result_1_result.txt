@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Incorrect placement of probabilistic fact inside rule body, missing proper handling of probabilistic choice between doors",
+  "SuggestedFix": "Separate the probabilistic choice from the deterministic logic. Replace the current open_door/1 implementation with:\n\n0.5::open_door_a; 0.5::open_door_b.\n\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, (member(D,[1,2,3]), \+ prize(D), D \\= Selected), AvailableDoors),\n    length(AvailableDoors, Len),\n    (Len = 2 -> (open_door_a -> Door = AvailableDoors.1 ; Door = AvailableDoors.2)\n    ; Len = 1 -> [Door] = AvailableDoors).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

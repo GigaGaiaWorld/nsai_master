@@ -1,0 +1,3 @@
+```report
+{"HASH": "751033ED","ErrorSummary": "Malformed conditional syntax in open_door/1 predicate causing compilation error, incorrect placement of probabilistic fact","SuggestedFix": "Rewrite the open_door/1 predicate with proper ProbLog conditional syntax:\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), \+ prize(X), X \= Selected), Doors),\n    length(Doors, Len),\n    (Len =:= 2 -> \n        member(D, Doors),\n        0.5::open_door(D)\n    ;\n        Len =:= 1 ->\n        member(D, Doors)\n    ).","Dependencies": [],"NeedRegenerate": true}
+```

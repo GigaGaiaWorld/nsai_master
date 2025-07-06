@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Incorrect operator precedence handling in parse/2 predicates, leading to wrong arithmetic results (e.g., 2/3+3-2*7 evaluates to 11.666 instead of -10.333).",
+  "SuggestedFix": "Rewrite parse/2 to enforce operator precedence (e.g., process multiplication/division before addition/subtraction). Example fix:\n1. Split parsing into two phases: first parse */, then +-.\n2. Alternatively, use a shunting-yard algorithm to convert infix to postfix notation before evaluation.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

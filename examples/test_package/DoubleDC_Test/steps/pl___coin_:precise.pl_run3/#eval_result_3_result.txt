@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "EA5E8D55",
-  "ErrorSummary": "Unmatched parenthesis in the disjunction (`;`) causing parsing failure",
-  "SuggestedFix": "Replace the nested disjunction with a simpler structure or correct the parenthesis nesting. Example fix:\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    (coin(CNT) -> SC1 is SC + 1, coins_r(SC1, S, CNT1) ;\n    coins_r(SC, S, CNT1)).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

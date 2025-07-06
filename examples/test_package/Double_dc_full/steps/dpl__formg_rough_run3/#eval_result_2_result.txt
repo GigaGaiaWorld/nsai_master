@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "418D2062",
+  "ErrorSummary": "The merge/3 predicate incorrectly handles merging of sorted sublists, causing the merge_sort/2 query to fail with probability 0.0000.",
+  "SuggestedFix": "Replace the merge/3 predicate with the following corrected version:\nmerge([], L, L).\nmerge(L, [], L).\nmerge([X|Xs], [Y|Ys], [X|Zs]) :-\n    X =< Y,\n    merge(Xs, [Y|Ys], Zs).\nmerge([X|Xs], [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    merge([X|Xs], Ys, Zs).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

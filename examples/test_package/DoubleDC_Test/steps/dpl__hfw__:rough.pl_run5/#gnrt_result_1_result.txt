@@ -1,8 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the `<langda>` section in the `<origin_code>`:
-
-```problog
-{"HASH": "FB41E2F7","Code": "parse([N1, Op, N2 | Rest], R) :- (Op = * ; Op = /), almost_equal(N1, X1), almost_equal(N2, X2), (Op = * -> Temp is X1 * X2 ; Temp is X1 / X2), parse([Temp | Rest], R)."}
-```
-```problog
-{"HASH": "FB41E2F7","Code": "parse([N1, Op, N2 | Rest], R) :- (Op = + ; Op = -), almost_equal(N1, X1), almost_equal(N2, X2), (Op = + -> Temp is X1 + X2 ; Temp is X1 - X2), parse([Temp | Rest], R)."}
-```

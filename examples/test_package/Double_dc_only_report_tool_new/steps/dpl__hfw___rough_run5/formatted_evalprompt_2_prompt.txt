@@ -1,0 +1,237 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+parse([N], R) :- 
+ almost_equal(N, R).
+<Langda>
+<Code_Block></Code_Block>
+<HASH> Hash tag of code: FB41E2F7 </HASH>
+<Requirements>Define parse/2, it get a number followed with one of four operations(addition, subtraction, multiplication and division) in the form of a list, each rule is written under a separate parse/2 predicate.(consider almost equal) </Requirements></Langda>
+.
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],X2) = 0.0000
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+detect_number(image_0, 0).
+detect_number(image_1, 1).
+detect_number(image_2, 2).
+detect_number(image_3, 3).
+detect_number(image_4, 4).
+detect_number(image_5, 5).
+detect_number(image_6, 6).
+detect_number(image_7, 7).
+detect_number(image_8, 8).
+detect_number(image_9, 9).
+detect_operator(image_plus, +).
+detect_operator(image_minus, -).
+detect_operator(image_multiply, *).
+detect_operator(image_divide, /).
+detect_all([N], [N2]) :- 
+ detect_number(N, N2).
+detect_all([N,O|T], [N2,O2|T2]) :- 
+ detect_number(N, N2), 
+ detect_operator(O, O2), 
+ detect_all(T, T2).
+almost_equal(X, Y) :- 
+ ground(Y), 
+ abs(X - Y) < 0.0001.
+almost_equal(X, Y) :- 
+ var(Y), 
+ Y is float(X).
+expression(Images, Result) :- 
+ detect_all(Images, Symbols), 
+ parse(Symbols, Result).
+parse([N], R) :- 
+ almost_equal(N, R).
+<Langda>
+<Code_Block></Code_Block>
+<HASH> Hash tag of code: FB41E2F7 </HASH>
+<Requirements>Define parse/2, it get a number followed with one of four operations(addition, subtraction, multiplication and division) in the form of a list, each rule is written under a separate parse/2 predicate.(consider almost equal) </Requirements></Langda>
+.
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],X2) = 0.0000
+</Result>
+
+</original_code>
+
+# Code Evaluation Report: ProbLog Expression Parser
+
+## Background and Purpose
+This report evaluates a ProbLog program designed to parse mathematical expressions from image detection results. The program should handle sequences of numbers and operators, evaluating them correctly while accounting for floating-point precision via `almost_equal/2`.
+
+## Test Results Summary
+The test query was:
+```prolog
+query(expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7], X)).
+```
+
+Result:
+```
+expression([image_2, image_divide, image_3, image_plus, image_3, image_minus, image_2, image_multiply, image_7],X2) = 0.0000
+```
+
+**Test Status**: Failed. The query returned probability 0.0000 when it should have computed the expression (2/3 + 3 - 2*7).
+
+## Failure Localization
+The failure occurs because:
+1. The `parse/2` predicate only handles single-number cases (line 22-23)
+2. Missing rules for parsing operator sequences (required by the task)
+3. No implementation for operator precedence or chained operations
+
+Error location: Entire `parse/2` implementation is incomplete (lines 22-23)
+
+## Root Cause Analysis
+1. **Logical Structure**: The current implementation cannot parse compound expressions, only single numbers
+2. **Recursion**: Missing recursive cases for operator handling
+3. **Precision Handling**: `almost_equal/2` is correctly defined but unused in expression evaluation
+4. **Probabilistic Aspects**: No probabilistic facts/rules are used in this implementation
+5. **DeepProbLog**: Feature not used (no neural network integration)
+
+## Overall Analysis
+**Requirements Met**:
+- Basic number detection works
+- `almost_equal/2` correctly implemented
+
+**Requirements Missing**:
+- Expression parsing (main requirement)
+- Operator precedence handling
+- Chained operation support
+
+**Edge Cases Not Handled**:
+- Empty lists
+- Invalid operator sequences
+- Division by zero
+- Non-list inputs
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | Missing expression parsing rules | Complete failure of main functionality | Implement parse/2 for operator sequences |
+| 2 | No operator precedence handling | Incorrect evaluation order | Add parentheses handling or precedence rules |
+| 3 | No chained operation support | Can't evaluate multi-operator expressions | Add recursive parse cases for operator handling |
+| 4 | No input validation | May crash on invalid inputs | Add type/sequence checking |
+
+**Recommended Fixes**:
+1. Implement full `parse/2` with separate clauses for each operator
+2. Add proper recursive handling for chained operations
+3. Consider operator precedence rules
+4. Add input validation
+
+```prolog
+% Suggested parse/2 implementation
+parse([N,Op,M|T], R) :-
+    almost_equal(N, N2),
+    almost_equal(M, M2),
+    compute(Op, N2, M2, Temp),
+    parse([Temp|T], R).
+parse([N], R) :- almost_equal(N, R).
+
+compute(+, A, B, R) :- R is A + B.
+compute(-, A, B, R) :- R is A - B.
+compute(*, A, B, R) :- R is A * B.
+compute(/, A, B, R) :- R is A / B.
+```
+
+The current implementation scores 2/10 for meeting requirements, with the main functionality (expression parsing) completely missing. The fix would require about 20-30 lines of additional code to properly handle all required cases.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

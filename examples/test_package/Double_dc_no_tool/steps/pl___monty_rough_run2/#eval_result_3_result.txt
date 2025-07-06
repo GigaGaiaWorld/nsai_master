@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Syntax error in if-then-else construct, incorrect use of probabilistic facts in rule body, incomplete door handling logic",
+  "SuggestedFix": "Replace the open_door/1 predicate with:\nopen_door(A) :- \n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), Doors),\n    member(A, Doors),\n    uniform(Doors, A).\n\nuniform([X], X).\nuniform([X,Y], X) :- 0.5::; uniform([X,Y], Y).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

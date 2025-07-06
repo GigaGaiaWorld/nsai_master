@@ -1,0 +1,19 @@
+Error evaluating Problog model:
+    target, results = self._ground(db, term, target, silent_fail=False, **kwdargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py", line 439, in _ground
+    raise UnknownClause(term.signature, location=db.lineno(term.location))
+problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 59:7.Error evaluating Problog model:
+    target, results = self._ground(db, term, target, silent_fail=False, **kwdargs)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine.py", line 439, in _ground
+    raise UnknownClause(term.signature, location=db.lineno(term.location))
+problog.engine.UnknownClause: No clauses found for 'query_pop/1' at 59:7.% Problog Inference Result：
+query_pop([china, 2.440828402366864, france, 2.464788732394366]) = 1.0000
+query_pop([indonesia, 2.23859649122807, pakistan, 2.192926045016077]) = 1.0000
+query_pop([pakistan, 2.192926045016077, indonesia, 2.23859649122807]) = 1.0000
+query_pop([mexico, 0.760471204188482, ethiopia, 0.777142857142857]) = 1.0000
+query_pop([italy, 4.775862068965517, philippines, 4.611111111111111]) = 1.0000
+query_pop([france, 2.464788732394366, china, 2.440828402366864]) = 1.0000
+query_pop([philippines, 4.611111111111111, italy, 4.775862068965517]) = 1.0000
+query_pop([ethiopia, 0.777142857142857, mexico, 0.760471204188482]) = 1.0000

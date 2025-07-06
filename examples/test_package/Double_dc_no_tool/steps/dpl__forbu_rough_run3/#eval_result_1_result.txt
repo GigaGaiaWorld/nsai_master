@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "ProbLog incompatibility with Prolog's if-then-else syntax causing execution failure",
+  "SuggestedFix": "Replace the if-then-else construct with separate clauses:\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    X > Y,\n    bubblesort([X|Rest], [Y|Acc], Sorted).\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    X =< Y,\n    bubblesort([Y|Rest], [X|Acc], Sorted).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

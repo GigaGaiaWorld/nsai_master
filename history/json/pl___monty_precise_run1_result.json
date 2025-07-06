@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___monty_precise",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "26.78s",
+  "process_time": 26.77674102783203,
+  "final_result": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n0.5::open_door(A) ; 0.5::open_door(B) :-\n \n    select_door(Selected),    find_empty_doors(Selected, EmptyDoors),    length(EmptyDoors, 2),    EmptyDoors = [A,B],    A < B.\nopen_door(A) :-\n \n    select_door(Selected),    find_empty_doors(Selected, [A]).\nwin_keep :-\n select_door(A),\n prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch).",
+  "final_report": "The generated code is not correct as it introduces a new predicate 'find_empty_doors/2' which is not defined, leading to a runtime error. This predicate is not present in the original code, which uses direct checks for empty doors. The generated code fails to meet the requirements due to this undefined predicate, making it invalid. The original code runs successfully and produces expected probabilities for the Monty Hall problem, while the generated code does not execute at all."
+}

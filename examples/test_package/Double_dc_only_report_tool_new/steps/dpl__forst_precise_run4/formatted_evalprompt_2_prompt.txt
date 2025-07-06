@@ -1,0 +1,208 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [_|Stack], Stack).
+stack_op(dup, [X|Stack], [X,X|Stack]).
+stack_op(swap, [X,Y|Stack], [Y,X|Stack]).
+stack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).
+stack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).
+stack_op(sort, Stack, SortedStack) :-
+ 
+<Langda>
+<Code_Block>stack_op(sort, [X,Y,Z|Stack], SortedStack) :- 
+    sort([X,Y,Z], SortedElements),
+    append(SortedElements, Stack, SortedStack).</Code_Block>
+<HASH> Hash tag of code: 6931D64E </HASH>
+<Requirements>A custom stack operation: sort, which sorts the three elements at the top of the stack in ascending order and then puts them back to the original stack. </Requirements></Langda>
+.
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    rf = self.fold(
+         ^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
+    raise ParseError(
+problog.parser.ParseError: Operator priority clash at 9:44.
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+stack_op(push(X), Stack, [X|Stack]).
+stack_op(pop, [_|Stack], Stack).
+stack_op(dup, [X|Stack], [X,X|Stack]).
+stack_op(swap, [X,Y|Stack], [Y,X|Stack]).
+stack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).
+stack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).
+stack_op(sort, Stack, SortedStack) :-
+ 
+<Langda>
+<Code_Block>stack_op(sort, [X,Y,Z|Stack], SortedStack) :- 
+    sort([X,Y,Z], SortedElements),
+    append(SortedElements, Stack, SortedStack).</Code_Block>
+<HASH> Hash tag of code: 6931D64E </HASH>
+<Requirements>A custom stack operation: sort, which sorts the three elements at the top of the stack in ascending order and then puts them back to the original stack. </Requirements></Langda>
+.
+get_top_n(Stack, N, Elements, Rest) :-
+ length(Elements, N),
+ append(Elements, Rest, Stack).
+query(stack_op(push(1),[2,3,4],Y)).
+query(stack_op(pop,[1,2,3,4],Y)).
+query(stack_op(dup,[1,2,3,4],Y)).
+query(stack_op(swap,[1,2,3,4],Y)).
+query(stack_op(over,[1,2,3,4],Y)).
+query(stack_op(rot,[1,2,3,4],Y)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    rf = self.fold(
+         ^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
+    raise ParseError(
+problog.parser.ParseError: Operator priority clash at 9:44.
+</Result>
+
+</original_code>
+
+# Code Evaluation Report: ProbLog Stack Operations
+
+## Background and Purpose
+This report evaluates a ProbLog program implementing stack operations (push, pop, dup, swap, over, rot) with a custom `sort` operation. The purpose is to verify correct implementation of stack operations and identify any errors in the code or test execution.
+
+## Test Results Summary
+The evaluation encountered a parsing error during execution:
+```
+Error evaluating Problog model:
+    rf = self.fold(
+         ^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/parser.py", line 1101, in fold
+    raise ParseError(
+problog.parser.ParseError: Operator priority clash at 9:44.
+```
+
+No test results were produced due to this syntax error preventing execution. The error occurs before any queries can be processed.
+
+## Failure Localization
+The error originates from a syntax issue in the code structure. The main problems are:
+
+1. The `stack_op(sort,...)` predicate is incomplete (line 9) with a dangling `:-` operator
+2. The subsequent code block appears to be a correction but isn't properly integrated
+3. The `<Langda>` tags appear to be non-standard ProbLog syntax
+
+## Root Cause Analysis
+The fundamental issues are:
+
+1. **Syntax Error**: The parser encounters malformed ProbLog syntax with incomplete predicates and non-standard tags
+2. **Structural Problem**: The code mixes standard ProbLog with what appears to be documentation or correction blocks
+3. **Implementation Gap**: The `sort` operation, while conceptually defined, isn't properly integrated into the program
+
+Key observations:
+- No probabilistic facts or rules are present (pure classical Prolog-style code)
+- No DeepProbLog features (neural network integration) are used
+- The recursive termination appears correct for the visible stack operations
+
+## Overall Analysis
+**Functional Requirements:**
+- Basic stack operations: Partially implemented but untestable due to syntax errors
+- Custom sort operation: Concept exists but implementation is incomplete
+- Probabilistic reasoning: Not utilized
+- Neural network integration: Not present (DeepProbLog feature not used)
+
+**Edge Cases Not Handled:**
+- Empty stack conditions
+- Non-list inputs
+- Stack underflow scenarios
+- Type checking for stack elements
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | Incomplete predicate (sort) | Prevents compilation | Complete the sort predicate definition |
+| 2 | Non-standard tags (<Langda>) | Causes parser errors | Remove non-ProbLog markup |
+| 3 | Dangling operator (:-) | Syntax error | Ensure all predicates are properly terminated |
+| 4 | Missing test cases | Incomplete verification | Add tests for edge cases and sort operation |
+
+**Recommendations:**
+1. Remove all non-ProbLog markup from the code
+2. Complete the `sort` operation implementation
+3. Fix syntax errors before adding more test cases
+4. Consider adding probabilistic elements if needed
+5. Add error handling for stack underflow scenarios
+
+The current implementation cannot be properly evaluated until the syntax errors are resolved. The core stack operation logic appears correct for the visible portions, but the parse error prevents confirmation of this assessment.
+
+Word count: 423
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

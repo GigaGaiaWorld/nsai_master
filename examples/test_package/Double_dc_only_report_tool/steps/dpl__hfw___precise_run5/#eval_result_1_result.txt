@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "The `almost_equal/2` predicate fails with non-ground arguments during recursive parsing, causing a CallModeError when evaluating arithmetic expressions.",
+  "SuggestedFix": "Modify the `almost_equal/2` predicate to handle non-ground arguments during recursion. For example, ensure the predicate checks for groundness before performing arithmetic comparisons. Update the `parse/2` rules to ensure intermediate results are properly grounded before calling `almost_equal/2`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

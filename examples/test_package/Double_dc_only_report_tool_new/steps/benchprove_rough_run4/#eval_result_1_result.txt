@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "The meta-interpreter fails due to use of Prolog's '->' operator which isn't supported in ProbLog context. Also missing implementations for opposite/1, includes/2, extend/2, and refute/1 as required.",
+  "SuggestedFix": "1. Replace implies/2 implementation with:\nprove(implies(A, B)) :- \\+ prove(A).\nprove(implies(A, B)) :- prove(A), prove(B).\n2. Add missing predicates:\nprove(opposite(A)) :- \\+ prove(A).\nprove(includes(List, Elem)) :- member(Elem, List).\nprove(extend(List, Elem, NewList)) :- NewList = [Elem|List].\nprove(refute(A)) :- \\+ prove(A).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

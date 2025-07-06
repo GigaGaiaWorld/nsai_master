@@ -1,0 +1,11 @@
+[
+{
+"FB0E8901": "compute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1."
+},
+{
+"133D6BEE": "compute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1."
+},
+{
+"4E6CE90A": "determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, Score), (Score > 0 -> Winner = player1; Score < 0 -> Winner = player2; Winner = draw)."
+}
+]

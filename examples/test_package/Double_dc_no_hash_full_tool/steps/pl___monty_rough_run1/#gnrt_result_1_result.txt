@@ -1,0 +1,9 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> section in the <origin_code>:
+
+```problog
+{"HASH": "751033ED", "Code": "open_door(Door) :- select_door(Selected), findall(D, (member(D, [1,2,3]), Doors), findall(D, (member(D, Doors), \+ prize(D), D \= Selected), ValidDoors), length(ValidDoors, N), (N = 2 -> random_member(Door, ValidDoors) ; N = 1 -> member(Door, ValidDoors))."}
+```
+
+```problog
+{"HASH": "751033ED", "Code": "random_member(X, [X]). random_member(X, [_,_|_]) :- random_select(X, [_,_|_])."}
+```

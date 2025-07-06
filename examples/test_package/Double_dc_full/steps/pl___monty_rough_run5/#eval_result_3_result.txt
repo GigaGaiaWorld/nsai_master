@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Unsupported `->/2` operator in ProbLog causing `UnknownClause` error. The conditional logic in `open_door/1` is not valid in ProbLog.",
+  "SuggestedFix": "Replace the `->/2` operator with ProbLog-compatible logic. For example, split into two separate clauses: (1) `open_door(D) :- length(Doors, 2), member(D, Doors).` for the random case, and (2) `open_door(D) :- length(Doors, 1), member(D, Doors).` for the deterministic case. Ensure `Doors` is computed as `findall(X, (member(X,[1,2,3]), X \\= S, X \\= P), Doors)`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

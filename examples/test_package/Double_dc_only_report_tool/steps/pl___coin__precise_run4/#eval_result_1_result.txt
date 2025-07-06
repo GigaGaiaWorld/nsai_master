@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "Undefined '->/2' operator in ProbLog context and non-probabilistic branching",
+  "SuggestedFix": "Replace the conditional (->/2) with ProbLog's probabilistic implications. For example, rewrite the recursive rule as: 'coins_r(SC,S,CNT) :- CNT > 0, CNT1 is CNT - 1, problog_conditional(coin(CNT), SC1 is SC + 1, coins_r(SC1, S, CNT1).' and add a separate rule for the false case.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

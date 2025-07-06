@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "Missing predicates for opposite/1, includes/2, and extend/3. expand/2 is not properly integrated into the meta-interpreter.",
+  "SuggestedFix": "1. Add opposite(A) :- \\+ A. 2. Add includes(List, Elem) :- member(Elem, List). 3. Add extend(List, Elem, [Elem|List]). 4. Ensure expand/2 is called by prove/1 by adding prove(expand(A, B)) :- expand(A, B).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

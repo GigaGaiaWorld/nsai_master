@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Ungrounded comparison in almost_equal/2 predicate causes CallModeError during expression evaluation. The current implementation violates ProbLog's requirement that comparison operators must have grounded arguments.",
+  "SuggestedFix": "Revise almost_equal/2 to ensure both arguments are grounded before comparison:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    ground(X), \n    Y is float(X).\nAlso add division guard to parse/2:\nparse([N1, /, N2 | T], R) :-\n    N2 =\\= 0,\n    almost_equal(Res, N1 / N2),\n    parse([Res | T], R).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

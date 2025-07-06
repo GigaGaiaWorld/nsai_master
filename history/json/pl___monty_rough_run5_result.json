@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___monty_rough",
+  "run_index": 5,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "28.28s",
+  "process_time": 28.28005814552307,
+  "final_result": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\nopen_door(Door) :-    select_door(Selected),    findall(D, (member(D,[1,2,3]), \\+ prize(D), D \\= Selected), Available),    length(Available, Len),    (Len = 2 ->         random_member(Door, Available)    ;        Len = 1 ->         [Door] = Available    ).\nrandom_member(X, [X,_]) :- 0.5.\nrandom_member(X, [_,X]) :- 0.5.\nwin_keep :-\n select_door(A),\n prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch).",
+  "final_report": "The generated code attempts to replicate the Monty Hall problem logic but introduces errors. The main issue is with the 'random_member' predicate, which is incorrectly defined and causes a runtime error ('UnknownClause'). The original code uses probabilistic rules for door opening, while the generated code tries to implement a deterministic approach with random selection, but fails due to syntax/logic errors. The generated code does not produce valid results and is not consistent with the original code's behavior."
+}

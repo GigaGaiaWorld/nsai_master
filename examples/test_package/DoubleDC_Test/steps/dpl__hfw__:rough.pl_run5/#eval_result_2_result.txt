@@ -1,3 +1,0 @@
-```report
-{"HASH": "FB41E2F7", "ErrorSummary": "Missing clauses in parse/2 for addition (+) and subtraction (-) operations", "SuggestedFix": "Add the following clauses to parse/2:\nparse([N1, Op, N2 | Rest], R) :- \n  (Op = + ; Op = -), \n  almost_equal(N1, X1), \n  almost_equal(N2, X2), \n  (Op = + -> Temp is X1 + X2 ; Temp is X1 - X2), \n  parse([Temp | Rest], R).", "Dependencies": [], "NeedRegenerate": true}
-```

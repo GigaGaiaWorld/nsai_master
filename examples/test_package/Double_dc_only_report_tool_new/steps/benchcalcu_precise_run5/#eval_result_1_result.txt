@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6EAA2098",
+  "ErrorSummary": "Over-constrained carry conditions preventing valid solutions from being found. The final carry constraint (Carry3 = 0) may be too restrictive.",
+  "SuggestedFix": "Modify the query_sum predicate to either: (1) Remove the Carry3 = 0 constraint, or (2) Add alternative carry scenarios. For example:\nquery_sum([A,B,C,D,E]) :- \n    leftdigit(A), leftdigit(B), leftdigit(C), \n    all_different([A,B,C,D,E]), \n    sumdigit(0, B, D, E, Carry1), \n    sumdigit(Carry1, A, C, D, Carry2), \n    sumdigit(Carry2, 0, B, C, _).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

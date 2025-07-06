@@ -1,0 +1,9 @@
+```problog
+{"HASH": "47D659C8","Code": "bubblesort(L, Acc, Sorted) :- bubble(L, L1), (L == L1 -> append(Acc, L, Sorted) ; append(Acc, [Min|Rest], NewAcc), bubblesort(Rest, NewAcc, Sorted))."}
+```
+```problog
+{"HASH": "47D659C8","Code": "bubble([X, Y | T], [Y, X | T]) :- X > Y. bubble([X | T], [X | T1]) :- bubble(T, T1)."}
+```
+```problog
+{"HASH": "47D659C8","Code": "forth_sort(L, L2) :- bubblesort(L, [], L2)."}
+```

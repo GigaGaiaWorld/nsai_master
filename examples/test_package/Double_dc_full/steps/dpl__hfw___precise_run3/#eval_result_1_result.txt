@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground comparison in 'almost_equal/2' predicate causes runtime error due to arithmetic comparison on non-ground terms",
+  "SuggestedFix": "Modify 'almost_equal/2' to ensure comparisons are only performed on ground terms. Update the predicate as follows:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    Y is float(X).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

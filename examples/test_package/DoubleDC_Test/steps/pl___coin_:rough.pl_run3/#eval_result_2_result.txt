@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DF1FDC54",
-  "ErrorSummary": "UnknownClause error due to unsupported '->/2' operator in ProbLog for conditional branching",
-  "SuggestedFix": "Replace the conditional statement in coins_r/3 with ProbLog-compatible logic: 'coins_r(SC, S, CNT) :- CNT > 0, coin(c1), (coin(c1), NewSC is SC + 1 ; \\+ coin(c1), NewSC is SC), NewCNT is CNT - 1, coins_r(NewSC, S, NewCNT).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

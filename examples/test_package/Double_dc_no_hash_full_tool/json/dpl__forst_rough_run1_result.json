@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_rough",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "65.05s",
+  "process_time": 65.05037593841553,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n get_top_n(Stack, 3, Elements, RestStack),\n insertion_sort(Elements, SortedElements),\n append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is correct and fully consistent with the original code. It accurately replicates all stack operations (push, pop, dup, swap, over, rot) and the sorting operation. The logic and structure are preserved, and there are no syntax or semantic errors. The running results of both codes are identical, demonstrating perfect consistency."
+}

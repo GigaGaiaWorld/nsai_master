@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "The code block only defines `refute/1` but does not implement the required predicates (`implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/2`). All test queries fail due to missing definitions.",
+  "SuggestedFix": "Add the following predicates to the module:\n1. `implies(A, B) :- \\+ (A, \\+ B).`\n2. `opposite(A) :- \\+ A.`\n3. `includes(X, [X|_]). includes(X, [_|T]) :- includes(X, T).`\n4. `extend(List, Elem, [Elem|List]).`\n5. Ensure `expand/2` is integrated into `prove/1` by adding a clause: `prove(expand(X, Y)) :- expand(X, Y).`",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

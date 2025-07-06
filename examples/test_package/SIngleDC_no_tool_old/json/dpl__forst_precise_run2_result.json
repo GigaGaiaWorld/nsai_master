@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_precise",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "37.56s",
+  "process_time": 37.56214094161987,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [_|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n \n\n    get_top_n(Stack, 3, [A,B,C], Rest),\n    sort3(A, B, C, S1, S2, S3),\n    SortedStack = [S1,S2,S3|Rest].\n\nsort3(A, B, C, X, Y, Z) :-\n    min(A, B, MinAB),\n    max(A, B, MaxAB),\n    min(MinAB, C, X),\n    max(MinAB, C, Temp),\n    min(Temp, MaxAB, Y),\n    max(Temp, MaxAB, Z).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is correct and consistent with the original code in terms of functionality. It successfully implements all stack operations (push, pop, dup, swap, over, rot) and the sorting operation. The sorting operation in the generated code is more efficient as it directly sorts the top 3 elements using a custom sort3 predicate, whereas the original code uses a more general insertion sort. Both codes produce identical results for the given queries."
+}

@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___monty_precise",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "84.49s",
+  "process_time": 84.49118113517761,
+  "final_result": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n0.5::open_door(A) ; 0.5::open_door(B) :-\n \n    select_door(Selected),    member(A, [1,2,3]),    member(B, [1,2,3]),    A < B,    \\+ prize(A),    \\+ prize(B),    \\+ select_door(A),    \\+ select_door(B).\nopen_door(A) :-\n \n    select_door(Selected),    member(A, [1,2,3]),    \\+ select_door(A),    \\+ prize(A),    \\+ (member(Other, [1,2,3]),        Other \\= A,        \\+ select_door(Other),        \\+ prize(Other)).\nwin_keep :-\n select_door(A),\n prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch).",
+  "final_report": "The generated code is correct and maintains the same functionality as the original code. It correctly models the Monty Hall problem, with the same probability distributions for the prize, door selection, and outcomes (win_keep and win_switch). The modifications in the generated code, such as adding 'select_door(Selected)' in the conditions, do not affect the logic or results. Both codes produce identical results, confirming their equivalence."
+}

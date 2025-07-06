@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6931D64E",
+  "ErrorSummary": "No direct test coverage for sort operation; lacks error handling for stacks with fewer than 3 elements",
+  "SuggestedFix": "1. Add test cases for sort operation\n2. Add length check to sort implementation:\n   stack_op(sort, Stack, SortedStack) :-\n       length(Stack, L), L >= 3,\n       get_top_n(Stack, 3, [X, Y, Z], Rest),\n       sort3(X, Y, Z, SortedElements),\n       append(SortedElements, Rest, SortedStack).\n3. Add error case:\n   stack_op(sort, Stack, _) :- length(Stack, L), L < 3, fail.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,3 @@
+```report
+{"HASH": "3F5BA02C","ErrorSummary": "The 'implies/2' predicate uses Prolog's ->/2 operator which is unsupported in ProbLog, causing all test queries to fail","SuggestedFix": "Replace the implies/2 implementation with: prove(implies(A, B)) :- \\+ prove(A); prove(B). Also need to implement all other required predicates: opposite/1, includes/2, extend/2, and refute/1 as shown in the Recommended Fixes section","Dependencies": [],"NeedRegenerate": true}
+```

@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___monty_rough",
+  "run_index": 1,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "316.10s",
+  "process_time": 316.1023349761963,
+  "final_result": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\nopen_door(Door) :- select_door(Selected), findall(D, (member(D,[1,2,3]), \\+ prize(D), D \\= Selected), AvailableDoors), length(AvailableDoors, Len), (Len = 2 -> member(Door, AvailableDoors), 0.5::open_door(Door) ; Len = 1 -> member(Door, AvailableDoors)).\nwin_keep :-\n select_door(A),\n prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch).",
+  "final_report": "The generated code attempts to simplify the original Monty Hall problem implementation but introduces syntax errors. The main issue is in the 'open_door' rule where it incorrectly uses '0.5::open_door(Door)' within a conditional statement, which is not valid Problog syntax. The original code correctly handles the probabilistic door opening with separate clauses. The generated code fails to run due to this syntax error, while the original code produces correct probabilities for both keeping and switching choices (1/3 and 2/3 respectively)."
+}

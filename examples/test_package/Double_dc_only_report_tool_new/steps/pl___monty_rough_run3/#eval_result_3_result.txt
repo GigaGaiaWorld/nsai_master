@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Syntax error in conditional operator usage, undefined door_open/1 predicate, improper probabilistic fact placement",
+  "SuggestedFix": "Rewrite the open_door predicate as:\nopen_door(Door) :- \n    select_door(Selected),\n    findall(D, (member(D,[1,2,3]), \+ prize(D), D \\= Selected), AvailableDoors),\n    length(AvailableDoors, Len),\n    open_available(Len, AvailableDoors, Door).\n\nopen_available(2, [D1,D2], Door) :- \n    Prob is 1/2, \n    Prob::door_open(D1), \n    Prob::door_open(D2),\n    (door_open(D1) -> Door = D1 ; Door = D2).\nopen_available(1, [D], D).\n\nAlso add at top level:\n0.5::door_open(1).\n0.5::door_open(2).\n0.5::door_open(3).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

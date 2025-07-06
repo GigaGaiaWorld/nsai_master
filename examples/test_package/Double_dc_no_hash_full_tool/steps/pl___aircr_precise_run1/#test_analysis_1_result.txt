@@ -1,0 +1,72 @@
+### Aircraft Flap Controller Evaluation Report
+
+---
+
+#### **1. Document Title**  
+**Evaluation of Aircraft Flap Controller in ProbLog**
+
+---
+
+#### **2. Background and Purpose**  
+The provided ProbLog program models an aircraft flap controller, inspired by Filieri et al.'s work on reliability analysis. The system simulates the movement of a flap from an initial position to a goal position, considering actuator strength, wind effects, and potential overrun exceptions. The purpose of this evaluation is to verify the correctness of the implementation, analyze the probabilistic reasoning, and ensure compliance with the specified requirements.
+
+---
+
+#### **3. Test Results Summary**  
+The test results for the queries `goal_reached(T)` and `overrun_exception(T)` for `T = 1..5` are as follows:
+
+| Query               | Probability |
+|---------------------|-------------|
+| `goal_reached(1)`   | 0.2625      |
+| `goal_reached(2)`   | 0.1873      |
+| `goal_reached(3)`   | 0.1269      |
+| `goal_reached(4)`   | 0.0841      |
+| `goal_reached(5)`   | 0.0570      |
+| `overrun_exception(1)` | 0.0000      |
+| `overrun_exception(2)` | 0.0030      |
+| `overrun_exception(3)` | 0.0110      |
+| `overrun_exception(4)` | 0.0127      |
+| `overrun_exception(5)` | 0.0114      |
+
+**Conclusion:** All tests passed (no failures). The probabilities decrease over time for `goal_reached(T)`, which aligns with the increasing uncertainty due to wind effects and actuator choices. The `overrun_exception(T)` probabilities are low, as expected, since the flap positions are mostly legal.
+
+---
+
+#### **4. Failure Localization**  
+No failures were detected in the test results. The following predicates and rules were verified:
+- `legal_flap_position/1`: Ensures flap positions are within bounds.
+- `actuator_strength/2`: Defines actuator strengths.
+- `use_actuator/2`: Probabilistic selection of actuators.
+- `wind_effect/2`: Models wind interference.
+- `attempted_flap_position/2`: Correctly calculates the new position based on actuator strength, wind effect, and goal direction.
+
+---
+
+#### **5. Root Cause Analysis**  
+- **Logical Correctness:** The program adheres to the requirements. For example, the calculation of `AE` in `attempted_flap_position/2` correctly uses `sign(GP - Old) * AS` to determine the actuator's contribution.
+- **Probabilistic Reasoning:** The probabilities of `wind_effect/2` and `use_actuator/2` comply with probabilistic rules (e.g., `P(¬A) = 1−P(A)`). The results reflect the combined effects of these probabilities.
+- **DeepProbLog:** No neural network integration is used in this example. The report confirms: "DeepProbLog feature not used."
+
+---
+
+#### **6. Overall Analysis**  
+- **Functional Requirements:**  
+  - Classical reasoning: Satisfied (e.g., `legal_flap_position/1`).  
+  - Probabilistic reasoning: Satisfied (e.g., `wind_effect/2`).  
+  - Neural network integration: Not applicable.  
+
+- **Edge Cases:**  
+  - The program handles edge cases such as illegal flap positions (`overrun_exception/1`).  
+  - Recursive termination is ensured by the `Time > 0` condition in `attempted_flap_position/2`.  
+
+---
+
+#### **7. Error Summary**  
+
+| Number | Problem | Impact | Suggestion |
+|--------|---------|--------|------------|
+| 1      | None    | None   | None       |
+
+**Final Remarks:** The program is well-designed and meets all specified requirements. The probabilistic model accurately reflects the system's behavior under uncertainty. No improvements are necessary at this time.  
+
+**Word Count:** 450 words.  

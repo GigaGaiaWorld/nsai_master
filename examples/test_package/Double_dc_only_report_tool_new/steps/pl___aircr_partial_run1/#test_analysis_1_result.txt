@@ -1,0 +1,63 @@
+# Code Evaluation Report: Aircraft Flap Controller in ProbLog
+
+## Background and Purpose
+This report evaluates a ProbLog implementation of an aircraft flap controller system, inspired by Filieri et al.'s work. The system models actuator selection, wind effects, and flap position control with probabilistic outcomes. The purpose is to verify the correctness of both classical and probabilistic reasoning in the implementation.
+
+## Test Results Summary
+The test results show the following probability distributions:
+
+**Goal Reached Probabilities:**
+- goal_reached(1) = 0.2625
+- goal_reached(2) = 0.1873
+- goal_reached(3) = 0.1269
+- goal_reached(4) = 0.0841
+- goal_reached(5) = 0.0570
+
+**Overrun Exception Probabilities:**
+- overrun_exception(1) = 0.0000
+- overrun_exception(2) = 0.0030
+- overrun_exception(3) = 0.0110
+- overrun_exception(4) = 0.0127
+- overrun_exception(5) = 0.0114
+
+**Verification:** All tests passed (no failures). The results show consistent probability distributions that align with the system's design expectations.
+
+## Failure Localization
+No test failures were detected. All predicates are correctly defined:
+1. `legal_flap_position/1` correctly validates positions between 0-10
+2. `actuator_strength/2` properly defines actuator capabilities
+3. `use_actuator/2` shows correct probabilistic selection
+4. Wind effect distributions properly condition on wind strength
+5. Position update rules correctly account for actuator choice and wind effects
+
+## Root Cause Analysis
+The probabilistic reasoning is sound:
+1. Actuator selection probabilities (50/50) are correctly implemented
+2. Wind effect distributions properly use conditional probabilities
+3. Position updates correctly combine deterministic and probabilistic components
+4. The negation in `overrun_exception` correctly implements `P(¬legal_flap_position)`
+
+Probability rules are correctly followed:
+- `P(¬legal_flap_position) = 1 - P(legal_flap_position)`
+- All joint probabilities are properly calculated through ProbLog's inference
+
+**DeepProbLog Feature:** DeepProbLog feature not used (no neural network integration)
+
+## Overall Analysis
+The implementation successfully meets all requirements:
+1. **Classical Reasoning:** Correctly handles flap position validation and goal checking
+2. **Probabilistic Reasoning:** Properly models actuator selection and wind effects
+3. **Edge Cases:** Handles boundary conditions well (initial position, legal ranges)
+
+Potential edge cases to consider:
+- Very strong wind causing multiple position jumps
+- Consecutive actuator failures
+- Multiple overrun exceptions in sequence
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None | None | None |
+
+The implementation is correct and complete, with proper handling of both deterministic and probabilistic aspects of the flap control system. The probability distributions in the test results show expected behavior where the likelihood of reaching the goal decreases over time while the chance of overrun exceptions remains low but present.

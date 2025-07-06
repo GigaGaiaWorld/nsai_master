@@ -1,0 +1,64 @@
+System: You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task.
+Human: Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 579AFC1F </HASH>
+<Requirements>According to the user: My drone is hovering at  about 250m away northeast, 
+please extract or generate the points of the path and form as: fly([]).
+store all the points inside the list, for example[(0,0),(50,50)],
+if there's only a single point mentioned, use similar form as [(50,50)] </Requirements></Langda>
+.
+query(fly(_)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 579AFC1F </HASH>
+<Requirements>According to the user: My drone is hovering at  about 250m away northeast, 
+please extract or generate the points of the path and form as: fly([]).
+store all the points inside the list, for example[(0,0),(50,50)],
+if there's only a single point mentioned, use similar form as [(50,50)] </Requirements></Langda>
+.
+query(fly(_)).
+
+</origin_code>
+<generated_code>
+
+fly([(250, 250)]).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

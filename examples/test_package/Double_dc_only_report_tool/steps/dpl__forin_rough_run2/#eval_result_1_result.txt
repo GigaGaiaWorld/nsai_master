@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "501F546D",
+  "ErrorSummary": "No issues found in the core logic. Edge cases (non-list input, deep recursion) are not explicitly handled but do not affect correctness for valid inputs.",
+  "SuggestedFix": "Optional: Add input validation for lists and consider tail recursion optimization for large datasets. Example fix:\n\ninsertion_sort(List, Sorted) :- \n    is_list(List), !, \n    insertion_sort_impl(List, Sorted). \ninsertion_sort(_, _) :- fail.\n\ninsertion_sort_impl([], []).\ninsertion_sort_impl([H|T], Sorted) :- \n    insertion_sort_impl(T, SortedTail), \n    insert(H, SortedTail, Sorted).",
+  "Dependencies": [],
+  "NeedRegenerate": false
+}
+```

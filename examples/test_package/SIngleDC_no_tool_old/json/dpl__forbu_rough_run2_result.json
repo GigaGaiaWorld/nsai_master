@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu_rough",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "32.15s",
+  "process_time": 32.15365695953369,
+  "final_result": "bubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, NewList, Swapped),\n    (Swapped == true ->\n        bubblesort(NewList, Acc, Sorted)\n    ;\n        append(Acc, NewList, Sorted)\n    ).\nbubble_pass([X,Y|T], [X|Rest], Swapped) :-\n    X =< Y,\n    bubble_pass([Y|T], Rest, Swapped).\nbubble_pass([X,Y|T], [Y|Rest], true) :-\n    X > Y,\n    bubble_pass([X|T], Rest, _).\nbubble_pass([X], [X], false).\nbubble_pass([], [], false).\nforth_sort(L, L2) :- bubblesort(L, [], L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code attempts to implement a bubble sort algorithm but contains syntax errors and logical issues. The main problem is the incorrect use of the '->' operator in Prolog, which is causing the 'UnknownClause' error. The original code correctly implements bubble sort using a different approach with 'hole' and 'swap' predicates. The generated code's structure differs significantly from the original and fails to execute properly."
+}

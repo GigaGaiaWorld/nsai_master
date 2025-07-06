@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "5E40E418",
+  "ErrorSummary": "Missing implementations for push, pop, dup, swap, over, and rot operations. Only sort operation is implemented.",
+  "SuggestedFix": "Add the following predicates:\n1. push/3 to add elements to stack\n2. pop/3 to remove top element\n3. dup/3 to duplicate top element\n4. swap/3 to swap top two elements\n5. over/3 to copy second element to top\n6. rot/3 to rotate top three elements\n\nExample for push:\nstack_op(push(X), Stack, [X|Stack]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

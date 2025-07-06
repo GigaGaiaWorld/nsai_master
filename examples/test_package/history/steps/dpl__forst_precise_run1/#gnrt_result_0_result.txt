@@ -1,0 +1,6 @@
+```problog
+{"HASH": "E659D458","Code": "stack_op(push(X), Stack, [X|Stack])."}
+```
+```problog
+{"HASH": "6931D64E","Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [A,B,C], Rest),\n    sort0([A,B,C], [X,Y,Z]),\n    append([X,Y,Z], Rest, SortedStack).\n\nsort0([A,B,C], [X,Y,Z]) :-\n    permutation([A,B,C], [X,Y,Z]),\n    X =< Y,\n    Y =< Z."}
+```

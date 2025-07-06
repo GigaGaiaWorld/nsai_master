@@ -9,6 +9,10 @@ digit(img_8,8).
 digit(img_9,9).
 digit(img_0,0).
 
-addition(X,Y,Z) :- digit(X,X2), digit(Y,Y2), Z is X2+Y2.
+number([],Result,Result).
+number([H|T],Acc,Result) :- digit(H,Nr), Acc2 is Nr+10*Acc,number(T,Acc2,Result).
+number(X,Y) :- number(X,0,Y).
 
-query(addition(img_5,img_6,Z)).
+multi_addition(X,Y,Z) :- number(X,X2),number(Y,Y2), Z is X2+Y2.
+
+query(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z)).

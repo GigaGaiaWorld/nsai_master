@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "1. Invalid syntax in implies/2 definition using -> operator without proper predicate definition. 2. Missing implementations for opposite/1, includes/2, extend/3, and refute/1 as required. 3. Only expand/2 was partially implemented.",
+  "SuggestedFix": "1. Replace implies/2 with proper ProbLog syntax: 'prove(implies(A,B)) :- prove(not(A)); prove(A), prove(B).' 2. Implement all missing predicates: opposite/1 (negation handling), includes/2 (list membership), extend/3 (list prepend), refute/1 (proof refutation). 3. Complete expand/2 implementation with all required rules.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

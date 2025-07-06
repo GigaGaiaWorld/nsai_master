@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "The code uses an undefined '->/2' operator for conditional logic in ProbLog, which is not supported in this context. The error occurs in the line where the conditional update of NSC is attempted.",
+  "SuggestedFix": "Replace the imperative-style conditional (->) with ProbLog-compatible probabilistic logic. For example, use separate clauses or ProbLog's built-in probabilistic constructs to handle the coin toss outcomes. Modify the line to explicitly check the probabilistic fact 'coin(CNT)' and update NSC accordingly without using '->'.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

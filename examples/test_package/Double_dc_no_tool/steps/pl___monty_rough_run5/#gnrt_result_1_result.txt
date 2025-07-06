@@ -1,0 +1,3 @@
+```problog
+{"HASH": "751033ED","Code": "open_door(D) :- select_door(S), findall(X, (member(X,[1,2,3]), \+ prize(X), X \\= S), Doors), length(Doors, L), (L =:= 2 -> member(D, Doors), 0.5::open_door(D) ; member(D, Doors))."}
+```

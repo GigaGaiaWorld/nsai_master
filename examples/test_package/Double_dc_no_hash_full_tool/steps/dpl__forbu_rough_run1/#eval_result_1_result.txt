@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Syntax error in the conditional construct of the `bubble/3` predicate, causing the code to fail execution.",
+  "SuggestedFix": "Correct the syntax of the conditional construct in `bubble/3` by properly enclosing the `->` operator and its branches. The corrected version should be: `(H1 =< H2 -> X1 = H1, bubble([H2 | T], T1, X); X1 = H2, bubble([H1 | T], T1, X))`.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

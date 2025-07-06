@@ -1,0 +1,88 @@
+### Code Evaluation Report: Prolog Bubblesort Implementation
+
+---
+
+#### **1. Document Title**
+**Evaluation of Prolog Bubblesort Implementation with ProbLog Compatibility**
+
+---
+
+#### **2. Background and Purpose**
+The provided code implements a `bubblesort/3` algorithm in Prolog, intended to be interpretable in ProbLog. The goal is to verify its correctness, identify failures, and ensure compliance with ProbLog's probabilistic reasoning requirements.
+
+---
+
+#### **3. Test Results Summary**
+- **Query Tested**: `query(forth_sort([3,1,2,5,7,12],X))`.
+- **Result**: The test failed with the error:
+  ```
+  Error evaluating ProbLog model: No clauses found for 'if_then_else/3' at 4:5.
+  ```
+- **Conclusion**: The test failed due to an undefined predicate `if_then_else/3`.
+
+---
+
+#### **4. Failure Localization**
+- **Failed Query**: `forth_sort([3,1,2,5,7,12],X)`.
+- **Error Location**: 
+  - **Predicate**: `if_then_else/3`.
+  - **Code Block**: Line 4 in the `bubblesort/3` rule.
+- **Actual vs. Expected**:
+  - **Actual**: Error due to missing `if_then_else/3` definition.
+  - **Expected**: Successful sorting of the list `[3,1,2,5,7,12]`.
+
+---
+
+#### **5. Root Cause Analysis**
+- **Classical Prolog Context**:
+  - The `bubblesort/3` algorithm is logically correct but relies on `if_then_else/3`, which is not a built-in Prolog predicate. This causes the failure.
+  - **Recursive Termination**: The recursion is well-defined and terminates correctly for valid inputs.
+  
+- **ProbLog Context**:
+  - The error indicates that ProbLog does not recognize `if_then_else/3`. ProbLog requires explicit definitions for such predicates or the use of built-in constructs.
+  - **Probabilistic Rules**: Not applicable here as the issue is purely syntactic.
+
+- **DeepProbLog**: Not used in this code.
+
+---
+
+#### **6. Overall Analysis**
+- **Functional Requirements**:
+  - **Classical Reasoning**: Partially met (logically correct but missing predicate).
+  - **Probabilistic Reasoning**: Not met due to the undefined predicate.
+  - **Neural Network Integration**: Not applicable.
+
+- **Edge Cases**:
+  - **Undefined Predicate**: `if_then_else/3` is not defined.
+  - **Non-list Input**: The code does not handle non-list inputs gracefully.
+  - **Performance**: Deep recursion could lead to stack overflow for very large lists.
+
+---
+
+#### **7. Error Summary**
+| No. | Problem                  | Impact                          | Suggestion                          |
+|-----|--------------------------|---------------------------------|-------------------------------------|
+| 1   | Undefined `if_then_else/3` | Prevents execution of the sort. | Replace with Prolog's `(Condition -> Then ; Else)` or define the predicate. |
+| 2   | Non-list input handling  | May cause runtime errors.       | Add input validation.               |
+| 3   | Deep recursion           | Potential stack overflow.       | Optimize for tail recursion or use iterative methods. |
+
+---
+
+#### **8. Recommendations**
+1. Replace `if_then_else/3` with Prolog's built-in conditional construct:
+   ```prolog
+   bubblesort([X, Y | Rest], Acc, Sorted) :-
+       (X > Y -> 
+           bubblesort([X | Rest], [Y | Acc], Sorted)
+       ; 
+           bubblesort([Y | Rest], [X | Acc], Sorted)
+       ).
+   ```
+2. Add input validation for non-list inputs.
+3. Test with edge cases (e.g., empty list, single-element list, large lists).
+
+---
+
+**Word Count**: ~450 words.  
+**Tone**: Formal and analytical.  
+**Format**: Markdown with code blocks and tables.  

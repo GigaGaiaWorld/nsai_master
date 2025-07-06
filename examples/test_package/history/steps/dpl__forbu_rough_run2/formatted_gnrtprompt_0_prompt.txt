@@ -1,0 +1,76 @@
+System: You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task.
+Human: Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+bubblesort([], Acc, Acc).
+bubblesort(L, Acc, Sorted) :-
+    bubble(L, L1),
+    !,
+    bubblesort(L1, Acc, Sorted).
+bubblesort(L, Acc, Sorted) :-
+    append(Acc, L, Sorted).
+
+bubble([X, Y | T], [Y, X | T]) :-
+    X > Y,
+    !.
+bubble([X | T], [X | T1]) :-
+    bubble(T, T1).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+
+query(forth_sort([3,1,2,5,7,12],X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

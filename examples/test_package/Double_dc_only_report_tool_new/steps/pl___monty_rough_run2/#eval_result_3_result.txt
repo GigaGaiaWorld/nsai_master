@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Syntax error in conditional structure of open_door/1 predicate, improper handling of random selection between doors, unmatched parentheses",
+  "SuggestedFix": "Rewrite open_door/1 as:\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, (member(D, [1,2,3]), \\+ prize(D), D \\= Selected), AvailableDoors),\n    length(AvailableDoors, Len),\n    (Len = 2 -> \n        random(0.5, R),\n        (R < 0.5 -> nth0(0, AvailableDoors, Door) ; nth0(1, AvailableDoors, Door))\n    ;\n    Len = 1 -> \n        nth0(0, AvailableDoors, Door)\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

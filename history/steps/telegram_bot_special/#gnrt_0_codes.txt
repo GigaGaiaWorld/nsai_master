@@ -1,0 +1,11 @@
+[
+{
+"CE079308": "user_location(49.87500, 8.65639)."
+},
+{
+"2DA01CAA": "special_zone_location(49.873094, 8.658995)."
+},
+{
+"27C37B02": "relative_offset(NorthOffset, EastOffset) :- user_location(UserLat, UserLon), special_zone_location(ZoneLat, ZoneLon), meter_per_degree(MetersPerDegree), NorthOffset is (ZoneLat - UserLat) * MetersPerDegree, EastOffset is (ZoneLon - UserLon) * MetersPerDegree * cos(UserLat * pi / 180)."
+}
+]

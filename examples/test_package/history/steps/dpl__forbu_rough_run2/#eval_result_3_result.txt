@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Missing implementation of bubblesort/3 predicate causing runtime error",
+  "SuggestedFix": "Implement the complete bubblesort/3 predicate with proper recursive logic and base cases. Example implementation:\n\nbubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :- \n    bubble(H, T, NT, Max), \n    bubblesort(NT, [Max|Acc], Sorted).\n\nbubble(X, [], [], X).\nbubble(X, [Y|T], [Y|NT], Max) :- X > Y, bubble(X, T, NT, Max).\nbubble(X, [Y|T], [X|NT], Max) :- X =< Y, bubble(Y, T, NT, Max).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

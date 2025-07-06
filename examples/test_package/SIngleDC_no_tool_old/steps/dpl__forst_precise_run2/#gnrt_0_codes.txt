@@ -1,0 +1,8 @@
+[
+{
+"E659D458": "stack_op(push(X), Stack, [X|Stack])."
+},
+{
+"6931D64E": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [A,B,C], Rest),\n    sort3(A, B, C, S1, S2, S3),\n    SortedStack = [S1,S2,S3|Rest].\n\nsort3(A, B, C, X, Y, Z) :-\n    min(A, B, MinAB),\n    max(A, B, MaxAB),\n    min(MinAB, C, X),\n    max(MinAB, C, Temp),\n    min(Temp, MaxAB, Y),\n    max(Temp, MaxAB, Z)."
+}
+]

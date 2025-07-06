@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "4E6CE90A",
+  "ErrorSummary": "Malformed 'determine_winner' rule with incorrect syntax for conditional logic (->/2 operator). The rule fails to execute due to improper predicate definition.",
+  "SuggestedFix": "Replace the current implementation with the corrected rule:\n\ndetermine_winner(P1Moves, P2Moves, Winner) :-\n    play(P1Moves, P2Moves, Results),\n    compute_score(Results, Score),\n    (Score > 0 -> Winner = 'Player 1';\n     Score < 0 -> Winner = 'Player 2';\n     Winner = 'Draw').",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

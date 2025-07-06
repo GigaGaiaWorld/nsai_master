@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground comparison in `almost_equal/2` prevents evaluation of expressions with variables. The predicate fails when one of the arguments is not ground (e.g., during recursive evaluation).",
+  "SuggestedFix": "Modify `almost_equal/2` to ensure both arguments are ground before comparison. For example:\n```prolog\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    Y is float(X).\n```\nThis ensures the comparison only occurs when both arguments are instantiated.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

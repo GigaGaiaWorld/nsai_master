@@ -17,7 +17,7 @@ detect_operator(image_divide, /).
 detect_all([N], [N2]) :- 
     detect_number(N, N2).
 detect_all([N,O|T], [N2,O2|T2]) :- 
-    langda(LLM:"Recursively get the number and the symbol that follows.")
+    langda(LLM:"Recursively get the number and the symbol that follows.").
 
 almost_equal(X, Y) :- 
     ground(Y), 

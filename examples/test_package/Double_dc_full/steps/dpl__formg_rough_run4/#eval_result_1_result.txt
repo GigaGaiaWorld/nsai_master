@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "418D2062",
+  "ErrorSummary": "Invalid argument types for 'length/2' due to uninstantiated variable 'FirstHalf' in the recursive case of merge_sort/2.",
+  "SuggestedFix": "Modify the merge_sort/2 predicate to instantiate 'FirstHalf' before calling 'length/2'. For example, replace 'length(FirstHalf, Half)' with 'length(List, N), Half is N // 2, length(FirstHalf, Half), append(FirstHalf, SecondHalf, List)' to ensure 'FirstHalf' is properly instantiated.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

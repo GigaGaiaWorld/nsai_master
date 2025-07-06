@@ -1,0 +1,26 @@
+[
+{
+"LOT": null,
+"NET": null,
+"LLM": "If the result of the current round is lose:\nRecursively calculate the remaining result score S1\nThe current total score S is S1 - 1, which means adding one point to player2",
+"FUP": "True",
+"HEAD": "",
+"HASH": "FB0E8901"
+},
+{
+"LOT": null,
+"NET": null,
+"LLM": "If the current round is draw:\nA draw does not affect the score, and the previous round score S1 is directly passed.",
+"FUP": "True",
+"HEAD": "",
+"HASH": "133D6BEE"
+},
+{
+"LOT": null,
+"NET": null,
+"LLM": "Main predicate: Given two player action lists P1Moves and P2Moves, calculate the winner Winner.\n Firstly, call the play/3 rule to compare the two players' actions.\n Then, generate a Results list containing whether each round is win, lose, or draw",
+"FUP": "True",
+"HEAD": "",
+"HASH": "4E6CE90A"
+}
+]

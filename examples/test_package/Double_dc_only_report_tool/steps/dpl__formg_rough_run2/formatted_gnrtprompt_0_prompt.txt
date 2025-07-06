@@ -1,0 +1,98 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 418D2062 </HASH>
+<Requirements>This Prolog program should implement an interpretable merge_sort/2 algorithm </Requirements></Langda>
+.
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 418D2062 </HASH>
+<Requirements>This Prolog program should implement an interpretable merge_sort/2 algorithm </Requirements></Langda>
+.
+append([], L, L).
+append([H|T], L2, [H|R]) :-
+ append(T, L2, R).
+query(merge_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+% Base case: an empty list or a single-element list is already sorted
+merge_sort([], []).
+merge_sort([X], [X]).
+
+% Recursive case: split the list, sort the sublists, and merge them
+merge_sort(List, Sorted) :-
+    List = [_, _ | _], % Ensure the list has at least two elements
+    split(List, Left, Right),
+    merge_sort(Left, SortedLeft),
+    merge_sort(Right, SortedRight),
+    merge(SortedLeft, SortedRight, Sorted).
+
+% Split the list into two halves
+split([], [], []).
+split([X], [X], []).
+split([X, Y | Rest], [X | Left], [Y | Right]) :-
+    split(Rest, Left, Right).
+
+% Merge two sorted lists into one sorted list
+merge([], Right, Right).
+merge(Left, [], Left).
+merge([X | Left], [Y | Right], [X | Merged]) :-
+    X =< Y,
+    merge(Left, [Y | Right], Merged).
+merge([X | Left], [Y | Right], [Y | Merged]) :-
+    X > Y,
+    merge([X | Left], Right, Merged).
+
+% Append for auxiliary use (if needed)
+append([], L, L).
+append([H | T], L2, [H | R]) :-
+    append(T, L2, R).
+
+% Example query
+query(merge_sort([3, 1, 2, 5, 7, 12], X)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

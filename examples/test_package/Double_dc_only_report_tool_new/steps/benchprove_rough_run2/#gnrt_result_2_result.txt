@@ -1,0 +1,18 @@
+```problog
+{"HASH": "3F5BA02C","Code": "prove(implies(A, B)) :- prove(not(A)); prove(A), prove(B)."}
+```
+```problog
+{"HASH": "3F5BA02C","Code": "prove(opposite(A)) :- \\+ prove(A)."}
+```
+```problog
+{"HASH": "3F5BA02C","Code": "prove(expand(A, B)) :- expand(A, B)."}
+```
+```problog
+{"HASH": "3F5BA02C","Code": "prove(includes(List, Elem)) :- member(Elem, List)."}
+```
+```problog
+{"HASH": "3F5BA02C","Code": "prove(extend(List, Elem, NewList)) :- NewList = [Elem|List]."}
+```
+```problog
+{"HASH": "3F5BA02C","Code": "prove(refute(A)) :- \\+ prove(A)."}
+```

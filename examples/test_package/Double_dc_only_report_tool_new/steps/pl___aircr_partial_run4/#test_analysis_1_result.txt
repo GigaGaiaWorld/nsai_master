@@ -1,0 +1,69 @@
+# Code Evaluation Report: Aircraft Flap Controller in ProbLog
+
+## Background and Purpose
+This report evaluates a ProbLog implementation of an aircraft flap controller system, inspired by Filieri et al.'s work. The system models actuator selection, wind effects, and flap position control with probabilistic outcomes. The purpose is to verify the correctness of both classical and probabilistic reasoning in the implementation.
+
+## Test Results Summary
+The test results show the following probability distributions:
+
+**Goal Reached Probabilities:**
+- goal_reached(1) = 0.2625
+- goal_reached(2) = 0.1873
+- goal_reached(3) = 0.1269
+- goal_reached(4) = 0.0841
+- goal_reached(5) = 0.0570
+
+**Overrun Exception Probabilities:**
+- overrun_exception(1) = 0.0000
+- overrun_exception(2) = 0.0030
+- overrun_exception(3) = 0.0110
+- overrun_exception(4) = 0.0127
+- overrun_exception(5) = 0.0114
+
+**Verification:** All tests passed (no failures). The probabilities follow expected patterns where:
+1. Goal reach probability decreases over time as the system stabilizes
+2. Overrun exceptions only occur after the first time step
+3. All probabilities sum to valid values within the 0-1 range
+
+## Failure Localization
+No test failures were detected. All predicates are correctly defined:
+- `legal_flap_position/1` correctly restricts positions to 0-10
+- `actuator_strength/2` properly defines actuator capabilities
+- `use_actuator/2` shows correct probabilistic selection
+- Wind effect distributions properly condition on wind strength
+- Position update rules correctly account for actuator choice and wind effects
+
+## Root Cause Analysis
+The probabilistic reasoning is sound:
+1. All probabilistic facts properly sum to 1.0 (actuator selection, wind effects)
+2. Negation in `overrun_exception` correctly implements `P(¬legal) = 1-P(legal)`
+3. Joint probabilities are correctly computed through chaining of:
+   - Actuator selection (50/50)
+   - Wind strength (70/30)
+   - Wind effect distributions
+4. DeepProbLog feature not used (no neural network integration)
+
+## Overall Analysis
+**Requirements Met:**
+- Classical reasoning: Correct position validation and goal checking
+- Probabilistic reasoning: Proper handling of all probabilistic choices
+- Neural integration: Not applicable (no DeepProbLog features)
+
+**Edge Cases Verified:**
+- Position bounds (0-10) are properly enforced
+- Initial position (6) and goal (4) are valid
+- Time steps properly increment (1-5)
+- Wind effects can push positions out of bounds (handled by overrun)
+
+**Potential Improvements:**
+1. Add validation for actuator strength values
+2. Consider adding position history tracking
+3. Could add visualization of probability distributions over time
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None | None | None |
+
+The implementation correctly models the aircraft flap control system with proper probabilistic reasoning and handles all specified edge cases. The decreasing probability of reaching the goal over time reflects the system's increasing uncertainty as more time steps are considered.

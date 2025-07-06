@@ -1,0 +1,18 @@
+[
+{
+"LOT": "search",
+"NET": null,
+"LLM": "Please get current weather data for user position: Ich bin am Innenstadtcampus der Technischen Universität Darmstadt., and return in format:\nweather(Condition, WindSpeed, Temperature).\nWhere:\n- Condition: clear/cloudy/light_rain/heavy_rain\n- WindSpeed: current wind speed in m/s\n- Temperature: current temperature in Celsius",
+"FUP": "True",
+"HEAD": "",
+"HASH": "6AF84154"
+},
+{
+"LOT": null,
+"NET": null,
+"LLM": "\n According to the police: A UFO landed at 0.002248(latitude) north of the  Innenstadtcampus of TU Darmstadt. Evacuate 200 meters., what should we do about the zone? You need to use special_zone to refer to the zone, for example: distance(X, special_zone) < 100. \n If 'nothing happens' set the range to 0, for example distance(X, special_zone) < 0. \n If it is clearly stated that flying is prohibited outside the area, use for example distance(X, special_zone) > 100",
+"FUP": "True",
+"HEAD": "sensitive_section(X) ",
+"HASH": "6FC553F8"
+}
+]

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu_rough",
+  "run_index": 2,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "206.02s",
+  "process_time": 206.02059316635132,
+  "final_result": "forth_sort(L,L2) :- bubblesort(L,[],L2).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is incomplete and incorrect. It duplicates the 'forth_sort' predicate definition and omits all other necessary predicates ('bubble', 'bubblesort', 'hole', 'swap') that are required for the sorting functionality. This causes the Problog engine to fail with an 'UnknownClause' error, as it cannot find the definitions for 'bubblesort/3'. The generated code does not match the original code's functionality and fails to produce the expected sorting result."
+}

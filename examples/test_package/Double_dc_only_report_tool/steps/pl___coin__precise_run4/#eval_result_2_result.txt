@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "CallModeError due to non-ground variable 'CNT' in the '>' predicate during recursion",
+  "SuggestedFix": "Ensure 'CNT' is instantiated before the '>' check. Modify the recursive clause to: 'coins_r(SC,S,CNT) :- ground(CNT), CNT > 0, CNT1 is CNT - 1, (coin(CNT), SC1 is SC + 1, coins_r(SC1, S, CNT1)) ; (\\+ coin(CNT), coins_r(SC, S, CNT1)).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

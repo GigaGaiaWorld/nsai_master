@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_precise",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "29.02s",
+  "process_time": 29.02195715904236,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [_|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n \n\n    get_top_n(Stack, 3, Top3, Rest),\n    sort(Top3, SortedTop3),\n    append(SortedTop3, Rest, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is mostly correct and consistent with the original code. It correctly implements the stack operations (push, pop, dup, swap, over, rot) and the sorting operation. The main difference is the replacement of 'insertion_sort' with the built-in 'sort' predicate, which is functionally equivalent for this purpose. The generated code maintains the same logic for stack operations and produces identical results. No significant problems are detected."
+}

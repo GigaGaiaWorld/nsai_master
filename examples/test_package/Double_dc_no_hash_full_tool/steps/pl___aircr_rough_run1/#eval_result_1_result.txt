@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A5C06F43",
+  "ErrorSummary": "Invalid use of ';' in arithmetic expression causing ArithmeticError. The expression (G > PrevPos -> Strength ; -Strength) is not valid in ProbLog.",
+  "SuggestedFix": "Replace the arithmetic expression in attempted_flap_position with: Pos is PrevPos + ( (G > PrevPos) -> Strength ; -Strength ) + WindEffect. Alternatively, use a helper predicate to compute the direction.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

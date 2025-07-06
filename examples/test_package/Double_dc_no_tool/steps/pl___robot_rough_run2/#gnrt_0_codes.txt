@@ -1,0 +1,11 @@
+[
+{
+"D92532A0": "carrying(key,s(T)) :-    do(pickup(key),T),    pickup_succeeds(T)."
+},
+{
+"E4953E37": "carrying(key,s(T)) :-    carrying(key,T),    \\+ drops(key,T)."
+},
+{
+"8EB675E6": "at(robot,Pos,s(T)) :-    goto_action(T),    do(goto(Pos),T),    goto_succeeds(T).at(robot,Pos,s(T)) :-    goto_action(T),    do(goto(_),T),    goto_fails(T),    at(robot,Pos,T)."
+}
+]

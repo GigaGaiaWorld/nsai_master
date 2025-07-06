@@ -1,0 +1,15 @@
+```problog
+{"HASH": "F91C6038","Code": "leftdigit(A),  % AB is a 2-digit number\n    leftdigit(B),  % BCD is a 3-digit number\n    leftdigit(C),  % CDE is a 3-digit number\n    digit(B),\n    digit(C),\n    digit(D),\n    digit(E)"}
+```
+```problog
+{"HASH": "A8860BE4","Code": "sumdigit(0, D, B, E, Carry1)"}
+```
+```problog
+{"HASH": "702CD838","Code": "sumdigit(Carry1, C, C, D, Carry2)"}
+```
+```problog
+{"HASH": "57FD427B","Code": "sumdigit(0, B, Carry2, C, _)"}
+```
+```problog
+{"HASH": "0DE8749E","Code": "all_different([A,B,C,D,E])"}
+```

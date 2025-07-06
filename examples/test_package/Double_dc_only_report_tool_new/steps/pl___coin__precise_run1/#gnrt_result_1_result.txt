@@ -1,0 +1,3 @@
+```problog
+{"HASH": "A88642CF","Code": "coins_r(SC,S,CNT) :-\n    CNT > 0,\n    (coin(CNT) ->\n        NewSC is SC + 1,\n        NewCNT is CNT - 1,\n        coins_r(NewSC, S, NewCNT)\n    ;\n        NewCNT is CNT - 1,\n        coins_r(SC, S, NewCNT)\n    )."}
+```

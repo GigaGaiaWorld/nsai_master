@@ -1,0 +1,13 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> block in the <origin_code>:
+
+```problog
+{"HASH": "5E40E418", "Code": "stack_op(sort(N), Stack, SortedStack) :- get_top_n(Stack, N, Elements, RestStack), insertion_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack)."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "get_top_n(Stack, N, Elements, Rest) :- length(Elements, N), append(Elements, Rest, Stack)."}
+```
+
+```problog
+{"HASH": "5E40E418", "Code": "insertion_sort(List, Sorted) :- insertion_sort(List, [], Sorted). insertion_sort([], Acc, Acc). insertion_sort([H|T], Acc, Sorted) :- insert(H, Acc, NewAcc), insertion_sort(T, NewAcc, Sorted). insert(X, [], [X]). insert(X, [Y|Rest], [X, Y|Rest]) :- X =< Y. insert(X, [Y|Rest], [Y|NewRest]) :- X > Y, insert(X, Rest, NewRest)."}
+```

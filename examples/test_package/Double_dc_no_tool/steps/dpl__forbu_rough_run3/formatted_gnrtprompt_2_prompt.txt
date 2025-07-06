@@ -1,0 +1,87 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog.  Your task is to regenerate the code in each <langda> block inside <Regenerate_format>
+
+<Regenerate_format>
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Regenerate_format>
+
+<Regenerate_Instructions>
+1. In <Regenerate_format> you will see the code template format to be followed, and the <langda> block in the template marks the part that needs to be completed.
+2. Your task is to generate and output the complete Problog/DeepProbLog code according to the user's specific requirements for each <langda> block. The new code should fix the error in previous code.
+</Regenerate_Instructions>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed code here
+```
+</Final_Answer>
+
+
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+<Langda> Information:
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+
+</origin_code>
+<generated_code>
+
+% Interpretable bubblesort implementation in Problog
+
+bubblesort([], Acc, Acc).
+bubblesort(List, Acc, Sorted) :-
+    bubble(List, NewList),  % Perform one pass of bubble sort
+    NewList \= List,        % Check if any swaps occurred
+    bubblesort(NewList, Acc, Sorted).
+bubblesort(List, Acc, Acc) :-
+    bubble(List, List).     % No swaps occurred, list is sorted
+
+% Bubble a single element through the list
+bubble([X,Y|T], [Y|Rest]) :-
+    X > Y,
+    bubble([X|T], Rest).
+bubble([X,Y|T], [X|Rest]) :-
+    X =< Y,
+    bubble([Y|T], Rest).
+bubble([X], [X]).
+bubble([], []).
+
+% Helper predicate for sorting
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+
+% Query example
+query(forth_sort([3,1,2,5,7,12],X)).
+
+<generated_code>
+<Final_Answer> 
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

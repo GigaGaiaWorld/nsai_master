@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu_precise",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "74.97s",
+  "process_time": 74.96959900856018,
+  "final_result": "hole(X,Y,X,Y):-\n swap(X,Y,no_swap).\nhole(X,Y,Y,X):-\n swap(X,Y,swap).\nbubble([X],[],X).\nbubble([H1,H2|T],[X1|T1],X):-\n hole(H1,H2,X1,X2),\n bubble([X2|T],T1,X).\nbubblesort([],L,L).\nbubblesort(L,L3,Sorted) :-\n \n bubble(L, L2, X), bubblesort(L2, [X | L3], Sorted).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nswap(X, Y, swap) :- X > Y. swap(X, Y, no_swap) :- X =< Y.\n \nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally equivalent to the original code, producing the same sorted result for the given input. The main difference lies in the 'swap' predicate definition, where the generated code uses 'X > Y' and 'X =< Y' instead of the original's 'X < Y' and negation. This change is logically equivalent but expressed differently. The structure and logic of the sorting algorithm remain intact in the generated code."
+}

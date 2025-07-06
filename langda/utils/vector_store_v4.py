@@ -49,9 +49,9 @@ class LangdaVectorStore:
                 metadata = {
                     'id': item.get('id', ''),
                     'title': item.get('title', ''),
+                    'actual_content': item.get('content', ''),  # 添加真正的内容
                     'tags': item.get('tags', []),
                     'keywords': item.get('keywords', []),
-                    # Add any other fields as metadata
                 }
 
                 doc = Document(

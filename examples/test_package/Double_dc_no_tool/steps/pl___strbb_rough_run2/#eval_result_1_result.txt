@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "0805B4F6",
+  "ErrorSummary": "Invalid argument types in between/3 call (requires integers but gets arithmetic expression N-1) and uninstantiated variable N",
+  "SuggestedFix": "Replace 'between(1, N-1, I)' with proper arithmetic evaluation: 'Max is N-1, between(1, Max, I)' and ensure N is instantiated before the call by adding 'len(N)' at the start",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

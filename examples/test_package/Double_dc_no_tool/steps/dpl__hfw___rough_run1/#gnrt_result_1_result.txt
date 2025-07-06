@@ -1,0 +1,3 @@
+```problog
+{"HASH": "FB41E2F7","Code": "parse([N1, +, N2 | T], R) :-\n    almost_equal(Res, N1 + N2),\n    parse([Res | T], R).\nparse([N1, -, N2 | T], R) :-\n    almost_equal(Res, N1 - N2),\n    parse([Res | T], R).\nparse([N1, *, N2 | T], R) :-\n    almost_equal(Res, N1 * N2),\n    parse([Res | T], R).\nparse([N1, /, N2 | T], R) :-\n    almost_equal(Res, N1 / N2),\n    parse([Res | T], R)."}
+```

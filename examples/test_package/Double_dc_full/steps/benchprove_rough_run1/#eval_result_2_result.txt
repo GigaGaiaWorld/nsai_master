@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "1. Missing predicates: opposite/1, includes/2, extend/3, refute/1. 2. ProbLog engine error due to clause/2 returning a tuple instead of structured object.",
+  "SuggestedFix": "1. Implement missing predicates as per requirements. 2. Replace clause/2 usage with ProbLog-compatible fact/rule lookup (e.g., use ProbLog's internal database API). Example fix for implies/2: ensure it uses ProbLog's prove/1 correctly.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

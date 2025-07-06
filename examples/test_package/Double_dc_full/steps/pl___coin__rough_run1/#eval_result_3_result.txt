@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Non-ground probabilistic clause in `make_coin(C,0.8)` causing runtime error. Recursive logic is correct but requires grounding.",
+  "SuggestedFix": "1. Replace `make_coin(C,0.8)` with a grounded fact (e.g., `make_coin(coin1,0.8)`). 2. Add guard `CNT >= 0` in `coins_r/3` to handle edge cases.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

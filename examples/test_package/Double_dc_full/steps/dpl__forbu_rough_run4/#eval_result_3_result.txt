@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Unsupported '->/2' operator in ProbLog context causing conditional branching to fail",
+  "SuggestedFix": "Replace the line '(List == SwappedList -> SortedList = List ; bubblesort(SwappedList, SortedList)).' with ProbLog-compatible logic: '(List == SwappedList, SortedList = List ; bubblesort(SwappedList, SortedList)).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

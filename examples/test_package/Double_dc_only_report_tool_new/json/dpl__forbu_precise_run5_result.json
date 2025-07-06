@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forbu_precise",
+  "run_index": 5,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "57.76s",
+  "process_time": 57.76186203956604,
+  "final_result": "hole(X,Y,X,Y):-\n swap(X,Y,no_swap).\nhole(X,Y,Y,X):-\n swap(X,Y,swap).\nbubble([X],[],X).\nbubble([H1,H2|T],[X1|T1],X):-\n hole(H1,H2,X1,X2),\n bubble([X2|T],T1,X).\nbubblesort([],L,L).\nbubblesort(L,L3,Sorted) :-\n \n bubble(L,L2,X), bubblesort(L2,[X|L3],Sorted).\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nswap(X,Y,swap) :- X > Y. swap(X,Y,no_swap) :- X =< Y.\n \nquery(forth_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally equivalent to the original code, producing the same sorted output for the given input. The main difference lies in the implementation of the swap/3 predicate, where the generated code uses 'X > Y' and 'X =< Y' conditions instead of the original 'X < Y' and '\\+ swap(X,Y,no_swap)'. This change is logically equivalent and does not affect the outcome. Both codes correctly implement a bubble sort algorithm."
+}

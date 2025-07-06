@@ -1,3 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "swap([X, Y | T], true, [Y, X | T]) :- X > Y.\nswap([X, Y | T], false, [X, Y | T]) :- X =< Y.\n\nbubble([], [], []).\nbubble([X], [], [X]).\nbubble([X, Y | T], SwapFlag, [Z | Rest]) :-\n    swap([X, Y | T], SwapFlag, [Z | NewT]),\n    bubble(NewT, _, Rest).\n\nbubblesort([], Acc, Acc).\nbubblesort(L, Acc, Sorted) :-\n    bubble(L, SwapFlag, NewL),\n    (SwapFlag == true ->\n        bubblesort(NewL, Acc, Sorted)\n    ;\n        append(Acc, NewL, Sorted)\n    ).\n\nforth_sort(L, Sorted) :- bubblesort(L, [], Sorted)."}
-```

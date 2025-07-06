@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "1. Undefined '->/2' operator in implies/2 predicate. 2. Missing required predicates (opposite/1, includes/2, extend/2, refute/1). 3. expand/2 not properly integrated with meta-interpreter.",
+  "SuggestedFix": "1. Replace implies/2 with: prove(implies(A,B)) :- \\+ prove(A); prove(B).\n2. Add missing predicates:\n   prove(opposite(A)) :- \\+ prove(A).\n   prove(includes(List,Elem)) :- member(Elem,List).\n   prove(extend(List,Elem,[Elem|List])).\n   prove(refute(A)) :- \\+ prove(A).\n3. Add clause for expand/2: prove(expand(X,Y)) :- expand(X,Y).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

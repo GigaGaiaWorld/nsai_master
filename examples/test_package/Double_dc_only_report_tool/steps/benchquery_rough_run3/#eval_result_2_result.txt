@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6FC0DF89",
+  "ErrorSummary": "Missing predicate 'query_pop/1' required to compare population densities of countries within a 5% margin",
+  "SuggestedFix": "Add the following predicate definition:\nquery_pop([Country1, Density1, Country2, Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    abs(Density1 - Density2) / Density1 =< 0.05.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "47D659C8",
+  "ErrorSummary": "Unsupported '->/2' operator in ProbLog causing evaluation failure",
+  "SuggestedFix": "Replace the '->/2' operator with a ProbLog-compatible alternative, such as using separate clauses for the if-then-else logic. For example:\nbubblesort([H1, H2 | T], Acc, Sorted) :-\n    (H1 > H2,\n     append(Acc, [H2], NewAcc),\n     bubblesort([H1 | T], NewAcc, Sorted))\n    ;\n    (append(Acc, [H1], NewAcc),\n     bubblesort([H2 | T], NewAcc, Sorted)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

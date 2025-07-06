@@ -1,0 +1,5 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> section in the <origin_code>:
+
+```problog
+{"HASH": "DA5E8955","Code": "parse([N1,+|T], R) :-\n    parse(T, R2),\n    almost_equal(R, N1 + R2).\nparse([N1,-|T], R) :-\n    parse(T, R2),\n    almost_equal(R, N1 - R2).\nparse([N1,*|T], R) :-\n    parse(T, R2),\n    almost_equal(R, N1 * R2).\nparse([N1,/|T], R) :-\n    parse(T, R2),\n    almost_equal(R, N1 / R2)."}
+```

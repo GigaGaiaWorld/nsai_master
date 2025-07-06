@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "0805B4F6",
+  "ErrorSummary": "CallModeError in 'between/3' due to unevaluated arithmetic expression 'N-1' as an argument.",
+  "SuggestedFix": "Precompute 'N-1' before calling 'between/3'. Modify the predicate to: 'bb(N) :- M is N-1, between(1, M, I), pick(I, b), pick(I+1, b).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "The code block contains an incomplete implementation of 'implies/2' and lacks other required predicates ('opposite/1', 'expand/2', 'includes/2', 'extend/3', 'refute/1'). All test queries failed (returned 0.0000).",
+  "SuggestedFix": "1. Correct 'implies/2' to properly handle logical implications. 2. Add missing predicates: 'opposite(A) :- \\+ prove(A).', 'expand(Goal, Result) :- clause(Goal, Body), prove(Body), Result = Goal.', 'includes(List, Elem) :- member(Elem, List).', 'extend(List, Elem, [Elem|List]).', 'refute(Goal) :- \\+ prove(Goal).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

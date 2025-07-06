@@ -1,0 +1,3 @@
+```report
+{"HASH": "3F5BA02C","ErrorSummary": "Missing predicates (opposite/1, includes/2, extend/3) and incorrect probabilistic handling of implies/2","SuggestedFix": "1. Add missing predicates: opposite(P) :- \\+ P. includes(List, Elem) :- member(Elem, List). extend(List, Elem, [Elem|List]). 2. Redefine implies(P, Q) to handle probabilistic logic: implies(P, Q) :- prob_not(P, NotP), prob_and(P, Q, PAndQ), Prob is NotP + PAndQ.","Dependencies": [],"NeedRegenerate": true}
+```

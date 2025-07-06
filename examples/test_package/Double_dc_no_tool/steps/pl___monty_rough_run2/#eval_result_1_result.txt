@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Invalid probabilistic rule syntax in open_door/1 predicate. Attempts to use probabilistic choice (0.5::open_door(Door)) within rule body, which violates ProbLog syntax rules.",
+  "SuggestedFix": "Replace the current open_door/1 implementation with two separate clauses:\n1. For case with two available doors: random_select(D, [A,B], _)\n2. For case with one available door: simply unify with the available door\nFull fix:\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), \+ prize(X), X \= Selected), [A,B]),\n    random_select(D, [A,B], _).\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), \+ prize(X), X \= Selected), [D]).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

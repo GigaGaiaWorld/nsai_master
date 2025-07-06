@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forin_precise",
+  "run_index": 2,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "26.37s",
+  "process_time": 26.3711941242218,
+  "final_result": "insertion_sort([], []).\ninsertion_sort([H|T], Sorted) :-\n \n\n    insertion_sort(T, SortedTail),\n    insert_element(H, SortedTail, Sorted).\ninsert_element(X, [], [X]).\ninsert_element(X, [H|T], [X,H|T]) :-\n X =< H.\ninsert_element(X, [H|T], [H|RT]) :-\n X > H,\n insert_element(X, T, RT).\n \nquery(insertion_sort([3,1,2,5,7,12],X)).",
+  "final_report": "The generated code is functionally equivalent to the original code, producing the same correct sorted output for the given input. The logic of insertion sort is preserved, with identical predicate definitions and behavior. The only differences are minor formatting changes (extra whitespace and line breaks), which do not affect the code's functionality. Both codes correctly implement the insertion sort algorithm in Prolog."
+}

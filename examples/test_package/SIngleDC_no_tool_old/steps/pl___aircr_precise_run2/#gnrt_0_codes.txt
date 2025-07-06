@@ -1,0 +1,5 @@
+[
+{
+"064BF451": "attempted_flap_position(Time,Pos) :- Time > 0, Prev is Time-1, flap_position(Prev,Old), \\+ goal_reached(Prev), use_actuator(Time,A), actuator_strength(A,AS), goal(GP), Direction is sign(GP - Old), AE is Direction * AS, wind_effect(Time,WE), Pos is Old + AE + WE."
+}
+]

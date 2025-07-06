@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_rough",
+  "run_index": 1,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": "217.16s",
+  "process_time": 217.15675020217896,
+  "final_result": "stack_op(push(X), Stack, [X | Stack]).\nstack_op(pop, [X | Rest], Rest).\nstack_op(dup, [X | Rest], [X, X | Rest]).\nstack_op(swap, [X, Y | Rest], [Y, X | Rest]).\nstack_op(over, [X, Y | Rest], [Y, X, Y | Rest]).\nstack_op(rot, [X, Y, Z | Rest], [Y, Z, X | Rest]).\nstack_op(sort, Stack, SortedStack) :-\n get_top_n(Stack, 3, Elements, RestStack),\n insertion_sort(Elements, SortedElements),\n append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is mostly correct and consistent with the original code in terms of functionality. However, there is a discrepancy in the 'rot' operation. The original code rotates the top three elements as [Z,X,Y|Stack], while the generated code produces [Y,Z,X|Stack]. This results in different outputs for the 'rot' operation. All other operations (push, pop, dup, swap, over) produce identical results in both versions. The sorting operation is defined but not tested in the queries."
+}

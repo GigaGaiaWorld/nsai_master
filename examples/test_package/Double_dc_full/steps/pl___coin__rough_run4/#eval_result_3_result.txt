@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Invalid use of '->/2' operator in probabilistic context; ProbLog does not support deterministic branching for probabilistic facts.",
+  "SuggestedFix": "Replace the conditional branch with explicit probabilistic handling. Use two separate clauses for heads and tails cases:\n1. For heads: increment SC and recurse.\n2. For tails: recurse without incrementing SC.\nModified code:\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    coin(CNT),\n    NewSC is SC + 1,\n    NewCNT is CNT - 1,\n    coins_r(NewSC, S, NewCNT).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    \\+ coin(CNT),\n    NewCNT is CNT - 1,\n    coins_r(SC, S, NewCNT).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

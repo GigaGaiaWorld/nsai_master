@@ -1,0 +1,3 @@
+```report
+{"HASH": "3F5BA02C","ErrorSummary": "Missing implementations for required predicates (implies/2, opposite/1, includes/2, extend/3) and improper integration with prove/1 meta-interpreter","SuggestedFix": "1. Implement all missing predicates from requirements. 2. Add clause/2 facts for custom predicates or modify prove/1 to handle them directly. 3. Ensure expand/2 and refute/1 are properly integrated with the meta-interpreter. Example additions:\nimplies(A,B) :- refute(A); prove(B).\nopposite(A) :- refute(A).\nincludes(List,Elem) :- member(Elem,List).\nextend(List,Elem,[Elem|List]).","Dependencies": [],"NeedRegenerate": true}
+```

@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "Unmatched parenthesis in nested conditional statements causing syntax error",
-  "SuggestedFix": "Correct the syntax in the play/3 predicate by removing the extra parenthesis in the nested conditionals. The corrected code should be: play([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :- (beats(P1, P2) -> Result = win; beats(P2, P1) -> Result = lose; Result = draw), play(P1Moves, P2Moves, Results).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

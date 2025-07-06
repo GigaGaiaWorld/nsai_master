@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "1. Unmatched parenthesis in findall call 2. Undefined variable 'Doors' 3. Improper implementation of Monty Hall rules for door opening",
+  "SuggestedFix": "Replace the open_door predicate with:\nopen_door(Door) :-\n    select_door(Selected),\n    findall(D, (member(D,[1,2,3]), D \\= Selected, \\+ prize(D)), AvailableDoors),\n    length(AvailableDoors, Len),\n    open_available(Len, AvailableDoors, Door).\n\nopen_available(2, [A,B], Door) :-\n    0.5::door(A), 0.5::door(B), door(Door).\nopen_available(1, [A], A).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

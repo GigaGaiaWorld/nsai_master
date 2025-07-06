@@ -1,40 +1,28 @@
-import threading
-import time
-import os
+model = """
+digit(img_1,1).
+digit(img_2,2).
+digit(img_3,3).
+digit(img_4,4).
+digit(img_5,5).
+digit(img_6,6).
+langda(LLM:"digit 7, it as a probability of 0.8", FUP:"false").
+digit(img_8,8).
+digit(img_9,9).
+digit(img_0,0).
 
-def data_processor():
-    """持续处理数据，从文件读取参数"""
-    counter = 0
-    param_file = "param.txt"
-    
-    # 初始化参数文件
-    if not os.path.exists(param_file):
-        with open(param_file, 'w') as f:
-            f.write("1.0")
-    
-    while True:
-        try:
-            with open(param_file, 'r') as f:
-                current_param = float(f.read().strip())
-        except:
-            current_param = 1.0
-        
-        # 处理数据
-        result = counter * current_param
-        print(f"处理数据: {counter} * {current_param} = {result}")
-        counter += 1
-        time.sleep(1)
+number([],Result,Result).
+number([H|T],Acc,Result) :- digit(H,Nr), Acc2 is Nr+10*Acc,number(T,Acc2,Result).
+number(X,Y) :- number(X,0,Y).
 
-# 启动处理线程
-processor_thread = threading.Thread(target=data_processor, daemon=True)
-processor_thread.start()
+0.8::langda(LLM:"define multi_addition(X,Y,Z), it's logic is: number(X,X2), number(Y,Y2), Z is X2+Y2.",FUP:"false").
 
-# 主线程处理参数修改
-while True:
-    try:
-        new_param = float(input("输入新参数值: "))
-        with open("param.txt", 'w') as f:
-            f.write(str(new_param))
-        print(f"参数已写入文件: {new_param}")
-    except ValueError:
-        print("请输入有效数字")
+query(multi_addition([img_7,img_9],[img_3,img_1,img_2],Z)).
+"""
+
+from langda import langda_solve
+model_langda = langda_solve('double_dc',model)
+
+from problog.program import PrologString
+from problog import get_evaluatable
+evaluatable = get_evaluatable().create_from(PrologString(model_langda))
+results = evaluatable

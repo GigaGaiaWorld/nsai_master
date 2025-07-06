@@ -1,0 +1,61 @@
+# Code Evaluation Report: Aircraft Flap Controller in ProbLog
+
+## Background and Purpose
+This report evaluates a ProbLog implementation of an aircraft flap controller system. The model simulates flap position adjustments under actuator selection and wind effects, with probabilistic outcomes. The purpose is to verify correct implementation of probabilistic reasoning and classical logic in achieving the flap movement goal while handling potential overrun exceptions.
+
+## Test Results Summary
+All test queries returned probability values without errors:
+```
+goal_reached(1) = 0.2625
+goal_reached(2) = 0.1873
+goal_reached(3) = 0.1269
+goal_reached(4) = 0.0841
+goal_reached(5) = 0.0570
+overrun_exception(1) = 0.0000
+overrun_exception(2) = 0.0030
+overrun_exception(3) = 0.0110
+overrun_exception(4) = 0.0127
+overrun_exception(5) = 0.0114
+```
+**All tests passed (no failures)** - The results show consistent probability distributions that properly account for all possible actuator selections and wind effects.
+
+## Failure Localization
+No test failures were detected. The implementation correctly handles:
+1. Goal checking before position updates
+2. Actuator selection and strength application
+3. Wind effect integration
+4. Legal position validation
+5. Overrun exception detection
+
+## Root Cause Analysis
+The probabilistic reasoning correctly implements:
+- Actuator selection probabilities (50/50 split)
+- Wind strength distributions (70% weak/30% strong)
+- Wind effect distributions under each strength condition
+- Proper probability computation for compound events
+
+Key correct behaviors:
+1. `P(¬goal_reached) = 1 - P(goal_reached)` holds for all time steps
+2. Actuator selection and wind effects combine multiplicatively
+3. Overrun probabilities properly accumulate when positions exceed legal bounds
+
+**DeepProbLog feature not used** - No neural network integration present in this model.
+
+## Overall Analysis
+The implementation fully meets requirements for:
+- **Classical reasoning**: Correct handling of position updates and goal checking
+- **Probabilistic reasoning**: Proper combination of actuator and wind probabilities
+
+Edge cases properly handled:
+- Initial position (time 0) doesn't trigger updates
+- Goal checking prevents unnecessary movements
+- Position bounds (0-10) are enforced
+- Wind effects can push positions out of bounds
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None | None | None |
+
+The implementation shows robust probabilistic modeling with proper handling of all specified edge cases. The decreasing probability of goal_reached over time reflects the accumulating uncertainty from actuator choices and wind effects. Overrun probabilities emerge naturally when wind effects push positions beyond legal bounds.

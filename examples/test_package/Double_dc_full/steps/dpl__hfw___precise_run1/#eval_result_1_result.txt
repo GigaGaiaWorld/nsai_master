@@ -1,0 +1,3 @@
+```report
+{"HASH": "DA5E8955","ErrorSummary": "Missing operator cases in parse/2 predicate (only addition is implemented)","SuggestedFix": "Add the following rules to parse/2:\n1. parse([N1, - | T], R) :- parse(T, R1), almost_equal(R, N1 - R1).\n2. parse([N1, * | T], R) :- parse(T, R1), almost_equal(R, N1 * R1).\n3. parse([N1, / | T], R) :- parse(T, R1), almost_equal(R, N1 / R1).","Dependencies": [],"NeedRegenerate": true}
+```

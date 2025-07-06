@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "6AF84154",
+  "ErrorSummary": "Hardcoded weather data instead of using real-time weather information as required",
+  "SuggestedFix": "Replace the hardcoded weather fact with a dynamic weather lookup that queries current conditions for TU Darmstadt Innenstadtcampus. The format should match: weather(Condition, WindSpeed, Temperature) with valid condition types (clear/cloudy/light_rain/heavy_rain).",
+  "Dependencies": ["battery_efficiency/1", "vlos/1", "can_return/1"],
+  "NeedRegenerate": true
+}
+```

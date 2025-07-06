@@ -1,0 +1,15 @@
+```report
+{
+  "HASH": "3F5BA02C",
+  "ErrorSummary": "Incomplete implementation of required predicates (missing opposite/1, includes/2, extend/3, refute/1) and unconnected expand/2 rules",
+  "SuggestedFix": [
+    "Add opposite/1: 'prove(opposite(G)) :- \\+ prove(G).'",
+    "Add includes/2: 'prove(includes(L,X)) :- member(X,L).'",
+    "Add extend/3: 'prove(extend(L,X,NewL)) :- NewL = [X|L].'",
+    "Add refute/1: 'prove(refute(G)) :- \\+ prove(G).'",
+    "Connect expand/2: 'prove(expand(X,Y)) :- expand(X,Y).'"
+  ],
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

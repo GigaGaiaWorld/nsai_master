@@ -1,0 +1,209 @@
+System: You are a coding assistant. You should use the available tools to complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>insertion_sort([], []).
+insertion_sort([Head|Tail], Sorted) :-
+    insertion_sort(Tail, SortedTail),
+    insert(Head, SortedTail, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Tail], [X,Y|Tail]) :-
+    X =< Y.
+insert(X, [Y|Tail], [Y|SortedTail]) :-
+    X > Y,
+    insert(X, Tail, SortedTail).</Code_Block>
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>insertion_sort([], []).
+insertion_sort([Head|Tail], Sorted) :-
+    insertion_sort(Tail, SortedTail),
+    insert(Head, SortedTail, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Tail], [X,Y|Tail]) :-
+    X =< Y.
+insert(X, [Y|Tail], [Y|SortedTail]) :-
+    X > Y,
+    insert(X, Tail, SortedTail).</Code_Block>
+<HASH> Hash tag of code: 501F546D </HASH>
+<Requirements>This Prolog program should implement an interpretable insertion_sort/2 algorithm. </Requirements></Langda>
+.
+ 
+query(insertion_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ % Problog Inference Result：
+insertion_sort([3, 1, 2, 5, 7, 12],[1, 2, 3, 5, 7, 12]) = 1.0000
+</Result>
+
+</original_code>
+
+### Evaluation Report: Insertion Sort in ProbLog
+
+---
+
+#### **1. Document Title**  
+**Evaluation of `insertion_sort/2` in ProbLog: Logical Correctness and Test Verification**
+
+---
+
+#### **2. Background and Purpose**  
+The provided code implements an insertion sort algorithm in ProbLog, a probabilistic extension of Prolog. The purpose of this evaluation is to verify the correctness of the implementation, analyze its behavior in both classical and probabilistic contexts, and ensure compliance with the specified requirements.
+
+---
+
+#### **3. Test Results Summary**  
+The following test was executed:  
+```prolog
+query(insertion_sort([3,1,2,5,7,12], X)).
+```  
+**Result:**  
+```prolog
+insertion_sort([3, 1, 2, 5, 7, 12], [1, 2, 3, 5, 7, 12]) = 1.0000
+```  
+**Conclusion:**  
+- **All tests passed (no failures).** The output matches the expected sorted list `[1, 2, 3, 5, 7, 12]` with a probability of 1.0000, indicating deterministic correctness.
+
+---
+
+#### **4. Failure Localization**  
+No failures were detected in the provided test case. The predicates `insertion_sort/2` and `insert/3` function as intended.  
+
+**Verified Predicates:**  
+- `insertion_sort/2` (Lines 1–3)  
+- `insert/3` (Lines 4–8)  
+
+**Expansion Predicates:**  
+- No expansion predicates (e.g., `implies/2`, `opposite/1`) were used or required for this implementation.
+
+---
+
+#### **5. Root Cause Analysis**  
+
+**Classical Prolog Context:**  
+- **Logical Correctness:** The algorithm correctly implements insertion sort by recursively sorting the tail of the list and inserting the head into the sorted tail.  
+- **Recursive Termination:** The base case `insertion_sort([], [])` ensures termination for empty lists, and the recursive case reduces the problem size with each call.  
+
+**ProbLog Context:**  
+- **Probabilistic Facts:** No probabilistic facts or rules are used in this implementation. The result is deterministic (probability 1.0000).  
+- **Negations/Implications:** Not applicable here.  
+
+**DeepProbLog Integration:**  
+- **DeepProbLog Feature Not Used:** The code does not involve neural network calls (e.g., `nn/3`, `tensor/…`).
+
+---
+
+#### **6. Overall Analysis**  
+
+**Functional Requirements:**  
+- **Classical Reasoning:** Fully met. The algorithm correctly sorts the input list.  
+- **Probabilistic Reasoning:** Not applicable (no probabilistic facts).  
+- **Neural Network Integration:** Not used.  
+
+**Edge Cases:**  
+- **Non-list Input:** The code assumes input is a list. Non-list inputs would cause a type error.  
+- **Empty List:** Handled correctly by the base case.  
+- **Performance:** Deep recursion for large lists may lead to stack overflow (typical for Prolog).  
+
+---
+
+#### **7. Error Summary**  
+
+| Number | Problem | Impact | Suggestion |
+|--------|---------|--------|------------|
+| 1      | None    | None   | None       |
+
+**Code Block for Reference:**  
+```prolog
+insertion_sort([], []).
+insertion_sort([Head|Tail], Sorted) :-
+    insertion_sort(Tail, SortedTail),
+    insert(Head, SortedTail, Sorted).
+insert(X, [], [X]).
+insert(X, [Y|Tail], [X,Y|Tail]) :-
+    X =< Y.
+insert(X, [Y|Tail], [Y|SortedTail]) :-
+    X > Y,
+    insert(X, Tail, SortedTail).
+```
+
+---
+
+**Word Count:** ~400 words.  
+**Tone:** Formal and concise.  
+**Conclusion:** The implementation meets the requirements for classical reasoning and handles the provided test case correctly. No issues were identified.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

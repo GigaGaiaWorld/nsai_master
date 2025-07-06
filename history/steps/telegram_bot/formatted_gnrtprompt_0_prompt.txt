@@ -1,0 +1,95 @@
+System: You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task.
+Human: Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Earth constant: R * π / 180 -> 111194.93 meters/degree
+<Langda> Information:
+<HASH> Hash tag of code: D839738B </HASH>
+<Tool>Tool that you should use for this task: search with 'The geographical coordinates of ... is' </Tool>
+<Requirements>According to the user: Ich bin am Innenstadtcampus der Technischen Universität Darmstadt., the coordinate of the user is at:
+please form as: user_location(Lat,Lon). => 
+(Lat and Lon are latitude and longitude) </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: E53CEA28 </HASH>
+<Requirements>According to the police: A UFO landed at 0.002248(latitude) north of the  Innenstadtcampus of TU Darmstadt. Evacuate 200 meters., the coordinate of the special zone is at:
+please form as: special_zone_location(Lat,Lon).
+(Lat and Lon are latitude and longitude) </Requirements></Langda>
+.
+relative_offset(NorthOffset, EastOffset) :-
+ user_location(UserLat, UserLon), special_zone_location(ZoneLat, ZoneLon), NorthOffset is (ZoneLat - UserLat) * 111194.93, EastOffset is (ZoneLon - UserLon) * 111194.93 * cos(UserLat * pi / 180).
+query(user_location(_,_)).
+query(relative_offset(_,_)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Earth constant: R * π / 180 -> 111194.93 meters/degree
+<Langda> Information:
+<HASH> Hash tag of code: D839738B </HASH>
+<Tool>Tool that you should use for this task: search with 'The geographical coordinates of ... is' </Tool>
+<Requirements>According to the user: Ich bin am Innenstadtcampus der Technischen Universität Darmstadt., the coordinate of the user is at:
+please form as: user_location(Lat,Lon). => 
+(Lat and Lon are latitude and longitude) </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: E53CEA28 </HASH>
+<Requirements>According to the police: A UFO landed at 0.002248(latitude) north of the  Innenstadtcampus of TU Darmstadt. Evacuate 200 meters., the coordinate of the special zone is at:
+please form as: special_zone_location(Lat,Lon).
+(Lat and Lon are latitude and longitude) </Requirements></Langda>
+.
+relative_offset(NorthOffset, EastOffset) :-
+ user_location(UserLat, UserLon), special_zone_location(ZoneLat, ZoneLon), NorthOffset is (ZoneLat - UserLat) * 111194.93, EastOffset is (ZoneLon - UserLon) * 111194.93 * cos(UserLat * pi / 180).
+query(user_location(_,_)).
+query(relative_offset(_,_)).
+
+</origin_code>
+<generated_code>
+
+% Earth constant: R * π / 180 -> 111194.93 meters/degree
+user_location(49.87500, 8.65639). % Innenstadtcampus der Technischen Universität Darmstadt
+special_zone_location(49.877248, 8.65639). % UFO landing site (0.002248° north of the campus)
+
+relative_offset(NorthOffset, EastOffset) :-
+    user_location(UserLat, UserLon),
+    special_zone_location(ZoneLat, ZoneLon),
+    NorthOffset is (ZoneLat - UserLat) * 111194.93,
+    EastOffset is (ZoneLon - UserLon) * 111194.93 * cos(UserLat * pi / 180).
+
+query(user_location(_, _)).
+query(relative_offset(_, _)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

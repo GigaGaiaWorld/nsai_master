@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground comparison in almost_equal/2 during expression evaluation causes CallModeError",
+  "SuggestedFix": "Restructure almost_equal/2 to handle three cases: (1) both arguments ground, (2) first ground second variable, (3) first variable second ground. Ensure arithmetic evaluation occurs before comparison.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

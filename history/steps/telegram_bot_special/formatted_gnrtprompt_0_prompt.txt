@@ -1,0 +1,117 @@
+System: You are an expert programmer proficient in Problog and DeepProbLog. You could use the available tools to complete the task.
+Human: Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Your model here
+% Earth constant
+meter_per_degree(111194.93).
+ % R * π / 180 ≈ 111194.93 meters/degree
+<Langda> Information:
+<HASH> Hash tag of code: CE079308 </HASH>
+<Tool>Tool that you should use for this task: search with 'The geographical coordinates of ... is' </Tool>
+<Requirements>According to the user: Ich bin am Innenstadtcampus der Technischen Universität Darmstadt., the coordinate of the user is at:
+please form as: user_location(X,Y).
+(X and Y are longitude and latitude) </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: 2DA01CAA </HASH>
+<Requirements>According to the police: Today, the police found a bomb at (49.873094, 8.658995) coordinates. Please stay at least 50 meters away., the coordinate of the special zone is at:
+please form as: special_zone_location(X,Y).
+(X and Y are longitude and latitude) </Requirements></Langda>
+.
+relative_offset(NorthOffset, EastOffset) :-
+<Langda> Information:
+<HASH> Hash tag of code: 27C37B02 </HASH>
+<Requirements>The location of the danger zone relative to the user, in meters, calculated based on user_location and special_zone_location above
+The conversion of longitude should take into account the influence of latitude </Requirements></Langda>
+.
+query(relative_offset(NorthOffset, EastOffset)).
+query(user_location(North, East)).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Your model here
+% Earth constant
+meter_per_degree(111194.93).
+ % R * π / 180 ≈ 111194.93 meters/degree
+<Langda> Information:
+<HASH> Hash tag of code: CE079308 </HASH>
+<Tool>Tool that you should use for this task: search with 'The geographical coordinates of ... is' </Tool>
+<Requirements>According to the user: Ich bin am Innenstadtcampus der Technischen Universität Darmstadt., the coordinate of the user is at:
+please form as: user_location(X,Y).
+(X and Y are longitude and latitude) </Requirements></Langda>
+.
+<Langda> Information:
+<HASH> Hash tag of code: 2DA01CAA </HASH>
+<Requirements>According to the police: Today, the police found a bomb at (49.873094, 8.658995) coordinates. Please stay at least 50 meters away., the coordinate of the special zone is at:
+please form as: special_zone_location(X,Y).
+(X and Y are longitude and latitude) </Requirements></Langda>
+.
+relative_offset(NorthOffset, EastOffset) :-
+<Langda> Information:
+<HASH> Hash tag of code: 27C37B02 </HASH>
+<Requirements>The location of the danger zone relative to the user, in meters, calculated based on user_location and special_zone_location above
+The conversion of longitude should take into account the influence of latitude </Requirements></Langda>
+.
+query(relative_offset(NorthOffset, EastOffset)).
+query(user_location(North, East)).
+
+</origin_code>
+<generated_code>
+
+% Earth constant
+meter_per_degree(111194.93). % R * π / 180 ≈ 111194.93 meters/degree
+
+% User location at Innenstadtcampus der Technischen Universität Darmstadt
+user_location(49.87500, 8.65639).
+
+% Special zone location (bomb found by police)
+special_zone_location(49.873094, 8.658995).
+
+% Calculate relative offset in meters
+relative_offset(NorthOffset, EastOffset) :-
+    user_location(UserLat, UserLon),
+    special_zone_location(ZoneLat, ZoneLon),
+    meter_per_degree(MetersPerDegree),
+    NorthOffset is (ZoneLat - UserLat) * MetersPerDegree,
+    EastOffset is (ZoneLon - UserLon) * MetersPerDegree * cos(UserLat * pi / 180).
+
+% Queries
+query(relative_offset(NorthOffset, EastOffset)).
+query(user_location(North, East)).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

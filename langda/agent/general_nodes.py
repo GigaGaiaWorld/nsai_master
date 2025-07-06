@@ -12,6 +12,8 @@ from ..utils import (
 from .state import BasicState, TaskStatus
 from ..database import DictDB
 from typing import List, Any, Type, Tuple
+from pathlib import Path
+
 from ..config import paths
 class LangdaDict(TypedDict):
     HEAD: str
@@ -43,6 +45,7 @@ class GeneralNodes:
         langda_dicts:List[LangdaDict] = []
 
         raw_prompt_template, lann_dicts, raw_langda_dicts, has_query = integrated_code_parser(state["rule_string"], state["placeholder"])
+        print(raw_langda_dicts)
         with DictDB(db_path=state["save_dir"], db_prefix=f"{state['prefix']}") as langdaDB:
             print(langdaDB.get_all_items())
 
@@ -73,11 +76,10 @@ class GeneralNodes:
                             raise ValueError("The external message is incorrect or there's unfullfilled /* Code */ in langda code...")
                         
                     langda["LLM"] = replaced_content
-    
                 if langda["FUP"].lower() == "true" and not state["load"]:
                     fest_codes.append({langda["HASH"]:None})
                     langda_dicts.append(langda)
-                elif langda["FUP"].lower() == "false":
+                elif langda["FUP"].lower() == "false" or state["load"]:
                     code = langdaDB.get_item(langda["HASH"])
                     fest_codes.append({langda["HASH"]:code})
                     if not code: 

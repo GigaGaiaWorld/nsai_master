@@ -1,0 +1,67 @@
+# Rock-Paper-Scissors Game Analysis Report
+
+## Background and Purpose
+This report analyzes a Problog implementation of the classic rock-paper-scissors game. The program defines the game rules, calculates match results between two players, and determines the overall winner. The purpose is to verify the logical correctness, test coverage, and edge case handling of the implementation.
+
+## Test Results Summary
+The test case provided was:
+```prolog
+query(determine_winner([rock,rock,rock],[paper,paper,scissor],W)).
+```
+With result:
+```
+determine_winner([rock, rock, rock],[paper, paper, scissor],player2) = 1.0000
+```
+
+**All tests passed (no failures)**. The result correctly shows player2 winning with a perfect probability score (1.0000), which matches expectations since:
+- First round: paper beats rock (player2 wins)
+- Second round: paper beats rock (player2 wins)
+- Third round: rock beats scissor (player1 wins)
+The net score is -1 (2 losses vs 1 win for player1), so player2 is correctly declared the winner.
+
+## Failure Localization
+No failures were detected in the test case. All predicates function as intended:
+- `move/1` correctly defines all valid gestures (lines 2-5)
+- `beats/2` properly implements game rules (lines 8-10)
+- `result/3` accurately determines round outcomes (lines 14-21)
+- `play/3` and `compute_score/2` correctly process sequences (lines 24-35)
+- `determine_winner/3` properly interprets final scores (lines 36-40)
+
+## Root Cause Analysis
+In classical Prolog terms:
+- The logic is sound with proper recursive termination (base case `play([],[],[])`)
+- All predicates are deterministic with no unbound variables
+- The scoring system correctly accumulates results
+
+In probabilistic terms (though this is a deterministic scenario):
+- All probabilities are crisp (1.0 or 0.0)
+- No probabilistic facts or rules are used
+- The computation follows standard logical operations
+
+**DeepProbLog feature not used** - no neural network integration appears in this implementation.
+
+## Overall Analysis
+The implementation meets all functional requirements for classical reasoning:
+1. Correctly models game rules and relationships
+2. Accurately processes sequences of moves
+3. Properly calculates and interprets final scores
+
+Edge cases considered:
+- Empty input lists (handled by base case)
+- Draw scenarios (explicitly checked in `result/3`)
+- All valid move combinations (covered by `beats/2` rules)
+
+Potential improvements:
+1. Input validation for non-move atoms
+2. Handling of unequal length move lists
+3. Case sensitivity (currently `scissor` is used instead of more common `scissors`)
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None | None | Implementation correct |
+| 2 | N/A | N/A | Consider adding input validation |
+| 3 | N/A | N/A | Handle unequal move list lengths |
+
+Word count: 498

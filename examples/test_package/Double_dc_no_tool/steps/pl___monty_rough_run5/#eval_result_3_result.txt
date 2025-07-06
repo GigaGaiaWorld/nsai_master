@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "Malformed if-then-else syntax in open_door/1 predicate causing parsing failure",
+  "SuggestedFix": "Rewrite the open_door/1 predicate using proper ProbLog conditional syntax:\nopen_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), Doors),\n    (Doors = [A,B] -> \n        0.5::open_door(A), 0.5::open_door(B)\n    ; \n        Doors = [D]\n    ).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

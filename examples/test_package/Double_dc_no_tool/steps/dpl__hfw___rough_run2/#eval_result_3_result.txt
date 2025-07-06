@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "FB41E2F7",
+  "ErrorSummary": "Non-ground arithmetic comparison in almost_equal/2 predicate causing CallModeError when comparing floating-point results",
+  "SuggestedFix": "Revise almost_equal/2 to ensure ground arguments before comparison:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    ground(X),\n    Y is float(X).\nAlso add input validation to expression/2 predicate.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,124 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert programmer proficient in Problog and DeepProbLog. Your task is to generate the complete code based on the user's requirements in each <langda> block.
+<Code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda> Information:
+<HASH> Hash tag of code: 751033ED </HASH>
+<Requirements>Define two clauses of open_door/1:
+1. If there are two doors A and B, neither of which has a prize, and neither of which is the door chosen by the player, then Monty will open a door uniformly at random between A and B
+2. If there is only one door A that has no prize and is not the door chosen by the player, then Monty must open it` </Requirements></Langda>
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</Code>
+
+<Final_Answer> The generated completed code should be formatted as follows:
+// other contents
+```problog
+//the completed original code here
+```
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In section <origin_code> and <generated_code> you will be give two codes,
+- in <origin_code> there's incomplete code with <langda> blocks.
+- in <generated_code> there's completed code of <origin_code>.
+your task is to extract and format each code block in <generated_code> that corresponds to the <langda> blocks in <origin_code>
+<origin_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+<Langda> Information:
+<HASH> Hash tag of code: 751033ED </HASH>
+<Requirements>Define two clauses of open_door/1:
+1. If there are two doors A and B, neither of which has a prize, and neither of which is the door chosen by the player, then Monty will open a door uniformly at random between A and B
+2. If there is only one door A that has no prize and is not the door chosen by the player, then Monty must open it` </Requirements></Langda>
+win_keep :-
+ select_door(A),
+ prize(A).
+win_switch :-
+ member(A, [1,2,3]),
+ \+ select_door(A),
+ prize(A),
+ \+ open_door(A).
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+</origin_code>
+<generated_code>
+
+% Based on Monty Hall problem on https://github.com/friguzzi/cplint
+1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).
+select_door(1).
+
+member(X,[X|T]).
+member(X,[H|T]) :- member(X,T).
+
+% Open door clauses
+open_door(Door) :-
+    select_door(Selected),
+    findall(D, (member(D,[1,2,3]), \+ prize(D), D \= Selected), AvailableDoors),
+    length(AvailableDoors, Len),
+    (Len = 2 -> 
+        member(Door, AvailableDoors),
+        0.5::open_door(Door) ;  % Uniformly random between two available doors
+    Len = 1 -> 
+        member(Door, AvailableDoors) % Must open the only available door
+    ).
+
+win_keep :-
+    select_door(A),
+    prize(A).
+
+win_switch :-
+    member(A, [1,2,3]),
+    \+ select_door(A),
+    prize(A),
+    \+ open_door(A).
+
+query(prize(_)).
+query(select_door(_)).
+query(win_keep).
+query(win_switch).
+
+<generated_code>
+<Final_Answer>
+For each code block, extract it and format it in the following JSON format, please remove all code comments:
+
+```problog
+{"HASH": "XXXX1234","Code": "Completed code snippet 1"}
+```
+```problog
+{"HASH": "XXXX3456","Code": "Completed code snippet 2"}
+```
+
+If there's no corresponding code exist:
+```problog
+{"HASH": "XXXX7890","Code": ""}
+```
+</Final_Answer>

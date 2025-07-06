@@ -1,0 +1,5 @@
+[
+{
+"47D659C8": "bubblesort(L, L) :- is_sorted(L).\nbubblesort(L, Sorted) :-\n    bubble_pass(L, L1),\n    bubblesort(L1, Sorted).\nis_sorted([]).\nis_sorted([_]).\nis_sorted([X, Y | Rest]) :-\n    X =< Y,\n    is_sorted([Y | Rest]).\nbubble_pass([], []).\nbubble_pass([X], [X]).\nbubble_pass([X, Y | Rest], [Y | Rest1]) :-\n    X > Y,\n    bubble_pass([X | Rest], Rest1).\nbubble_pass([X, Y | Rest], [X | Rest1]) :-\n    X =< Y,\n    bubble_pass([Y | Rest], Rest1).\nforth_sort(L, L2) :- bubblesort(L, L2).\nquery(forth_sort([3, 1, 2, 5, 7, 12], X))."
+}
+]

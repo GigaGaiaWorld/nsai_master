@@ -1,0 +1,6 @@
+```problog
+{"HASH": "751033ED", "Code": "open_door(Door) :- select_door(Selected), findall(D, (member(D,[1,2,3]), \+ prize(D), D \\= Selected), Available), length(Available, Len), (Len =:= 2 -> random_select(Door, Available) ; Len =:= 1 -> [Door|_] = Available)."}
+```
+```problog
+{"HASH": "751033ED", "Code": "random_select(X, List) :- length(List, Length), random(1, Length, Index), nth1(Index, List, X)."}
+```

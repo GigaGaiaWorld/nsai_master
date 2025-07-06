@@ -1,0 +1,10 @@
+{
+  "file_name": "benchzebra_precise",
+  "run_index": 4,
+  "Validity_form": true,
+  "Validity_result": true,
+  "running_time": "232.64s",
+  "process_time": 232.63555788993835,
+  "final_result": "zebra(Houses) :-\n\thouses(Houses),\n\t\nmy_member(house(english, red, _, _, _), Houses),\n    my_member(house(spanish, _, dog, _, _), Houses),\n    my_member(house(_, green, _, coffee, _), Houses),\n    my_member(house(ukrainian, _, _, tea, _), Houses),\n    right_of(house(_, green, _, _, _), house(_, ivory, _, _, _), Houses),\n    my_member(house(_, _, snail, _, winstons), Houses),\n    my_member(house(_, yellow, _, _, kools), Houses),\n    Houses = [_, _, house(_, _, _, milk, _), _, _],\n    Houses = [house(norwegian, _, _, _, _) | _],\n    next_to(house(_, _, _, _, chesterfields), house(_, _, fox, _, _), Houses),\n    next_to(house(_, _, _, _, kools), house(_, _, horse, _, _), Houses),\n    my_member(house(_, _, _, orange_juice, lucky_strikes), Houses),\n    my_member(house(japanese, _, _, _, parliaments), Houses),\n    next_to(house(norwegian, _, _, _, _), house(_, blue, _, _, _), Houses),\n    my_member(house(_, _, zebra, _, _), Houses),\n    my_member(house(_, _, _, water, _), Houses)\n.\nhouses([\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _),\n\thouse(_, _, _, _, _)\n]).\nright_of(A, B, [B, A | _]).\nright_of(A, B, [_ | Y]) :- right_of(A, B, Y).\nnext_to(A, B, [A, B | _]).\nnext_to(A, B, [B, A | _]).\nnext_to(A, B, [_ | Y]) :- next_to(A, B, Y).\nmy_member(X, [X|_]).\nmy_member(X, [_|Y]) :- my_member(X, Y).\nquery(zebra(Houses)).",
+  "final_report": "The generated code is mostly correct but has some inconsistencies with the original code. The order of attributes in the house predicate is different (nationality and color are swapped), and 'snails' is misspelled as 'snail'. Despite these issues, the generated code produces a logically equivalent solution to the zebra puzzle, with the same relationships between houses and attributes. The result is consistent with the original code's output, just with the attributes in a different order."
+}

@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "The 'almost_equal/2' predicate fails when evaluating uninstantiated variables during recursive parsing, causing a CallModeError.",
+  "SuggestedFix": "Modify the 'almost_equal/2' predicate to handle uninstantiated variables by ensuring ground terms are passed or restructuring the parsing logic to evaluate intermediate results before comparison. For example, replace the current implementation with:\nalmost_equal(X, Y) :- \n  (ground(Y) -> abs(X - Y) < 0.0001; Y is float(X)).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

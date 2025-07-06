@@ -1,5 +1,0 @@
-[
-{
-"DF1FDC54": "coins_r(SC, S, CNT) :-\n    CNT > 0,\n    coin(CNT),\n    (make_coin(CNT, 0.8) -> NewSC is SC + 1 ; NewSC is SC),\n    NewCNT is CNT - 1,\n    coins_r(NewSC, S, NewCNT)."
-}
-]

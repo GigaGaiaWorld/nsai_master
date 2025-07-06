@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground comparison in almost_equal/2 causes CallModeError during complex expression evaluation. Left-to-right evaluation ignores standard operator precedence.",
+  "SuggestedFix": "1. Restructure almost_equal/2 to ensure groundness before comparison (see suggested fix in report). 2. Implement proper operator precedence handling by either: a) Using a proper parsing algorithm (e.g., Pratt parsing), or b) Adding parentheses handling and precedence rules. 3. Add input validation for expression format.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

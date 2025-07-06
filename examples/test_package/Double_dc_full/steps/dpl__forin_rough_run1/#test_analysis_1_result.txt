@@ -1,0 +1,86 @@
+### Code Evaluation Report: Insertion Sort in ProbLog
+
+---
+
+#### **1. Document Title**  
+**Evaluation of `insertion_sort/2` in ProbLog**
+
+---
+
+#### **2. Background and Purpose**  
+The provided code implements an insertion sort algorithm in ProbLog, a probabilistic extension of Prolog. The purpose of this evaluation is to verify the correctness of the implementation, analyze its behavior in both classical and probabilistic contexts, and ensure compliance with the specified requirements.
+
+---
+
+#### **3. Test Results Summary**  
+The following query was tested:  
+```prolog
+query(insertion_sort([3, 1, 2, 5, 7, 12], X)).
+```  
+**Result:**  
+```prolog
+insertion_sort([3, 1, 2, 5, 7, 12], [1, 2, 3, 5, 7, 12]) = 1.0000
+```  
+**Conclusion:**  
+- **All tests passed (no failures).**  
+  The query returned the correct sorted list with a probability of 1.0000, indicating perfect logical correctness for the given input.
+
+---
+
+#### **4. Failure Localization**  
+- **No failures detected.**  
+  The code correctly implements the `insertion_sort/2` and `insert/3` predicates. All rules are logically sound, and the recursion terminates as expected.  
+- **Expansion Predicates:**  
+  The code does not use any expansion predicates (e.g., `implies/2`, `opposite/1`, etc.), so this section is not applicable.
+
+---
+
+#### **5. Root Cause Analysis**  
+
+##### **Classical ProbLog Scenarios**  
+- **Logical Correctness:**  
+  The `insertion_sort/2` predicate recursively splits the input list, sorts the tail, and inserts the head into the sorted tail using `insert/3`. The `insert/3` predicate handles the insertion logic correctly, ensuring the list is sorted.  
+- **Recursive Termination:**  
+  The recursion terminates when the input list is empty (`insertion_sort([], []).`), which is the base case.  
+
+##### **Probabilistic Scenarios**  
+- The code does not use probabilistic facts or rules, so no probabilistic analysis is required.  
+- **DeepProbLog Features:**  
+  The code does not include any DeepProbLog-related calls (e.g., `nn/3`, `tensor/…`).  
+  **Report:** "DeepProbLog feature not used."
+
+---
+
+#### **6. Overall Analysis**  
+
+##### **Functional Requirements**  
+- **Classical Reasoning:**  
+  The requirement for an interpretable `insertion_sort/2` algorithm is fully met. The code correctly sorts the input list.  
+- **Probabilistic Reasoning:**  
+  Not applicable, as the code does not use probabilistic features.  
+- **Neural Network Integration:**  
+  Not applicable.  
+
+##### **Edge Cases**  
+- **Non-list Input:**  
+  The code does not handle non-list inputs (e.g., atoms or numbers). This could lead to runtime errors.  
+- **Performance:**  
+  The algorithm has a worst-case time complexity of \(O(n^2)\), which may be inefficient for large lists.  
+- **Undefined Predicates:**  
+  No undefined predicates are used in the code.
+
+---
+
+#### **7. Error Summary**  
+
+| Number | Problem                  | Impact                          | Suggestion                          |
+|--------|--------------------------|---------------------------------|-------------------------------------|
+| 1      | Non-list input handling  | Runtime errors for invalid input | Add input validation checks.        |
+| 2      | Performance for large lists | Inefficient sorting           | Consider alternative algorithms (e.g., quicksort). |
+
+---
+
+**Word Count:** ~400 words  
+
+**Final Remarks:**  
+The `insertion_sort/2` implementation is logically correct and meets the specified requirements for classical reasoning. However, it lacks robustness for edge cases like non-list inputs and may not scale well for large datasets. No probabilistic or DeepProbLog features are used.

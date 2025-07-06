@@ -1,0 +1,203 @@
+System: You are a coding assistant. You should complete the task.
+Human: You are an expert code evaluator specialized in ProbLog and DeepProbLog. Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>bubblesort([], Acc, Acc).
+bubblesort(L, Acc, Sorted) :-
+    bubble(L, L1),
+    (L == L1 ->
+        append(Acc, L, Sorted)
+    ;
+        append(Acc, [Min|Rest], NewAcc),
+        bubblesort(Rest, NewAcc, Sorted)
+    ).
+
+bubble([X], [X]).
+bubble([X,Y|Rest], [X|Rest1]) :-
+    X =< Y,
+    bubble([Y|Rest], Rest1).
+bubble([X,Y|Rest], [Y|Rest1]) :-
+    X > Y,
+    bubble([X|Rest], Rest1).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 4:14.
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>bubblesort([], Acc, Acc).
+bubblesort(L, Acc, Sorted) :-
+    bubble(L, L1),
+    (L == L1 ->
+        append(Acc, L, Sorted)
+    ;
+        append(Acc, [Min|Rest], NewAcc),
+        bubblesort(Rest, NewAcc, Sorted)
+    ).
+
+bubble([X], [X]).
+bubble([X,Y|Rest], [X|Rest1]) :-
+    X =< Y,
+    bubble([Y|Rest], Rest1).
+bubble([X,Y|Rest], [Y|Rest1]) :-
+    X > Y,
+    bubble([X|Rest], Rest1).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 4:14.
+</Result>
+
+</original_code>
+
+# Problog Bubblesort Implementation Evaluation Report
+
+## Background and Purpose
+This report evaluates a Prolog bubblesort implementation adapted for ProbLog. The code aims to provide an interpretable sorting algorithm through recursive bubble operations. The evaluation focuses on logical correctness, termination, and ProbLog compatibility.
+
+## Test Results Summary
+The test failed with the following error:
+```
+Error evaluating Problog model: No clauses found for ''->'/2' at 4:14
+```
+The query `forth_sort([3,1,2,5,7,12], X)` could not be executed due to syntax incompatibility with ProbLog.
+
+## Failure Localization
+The error occurs in the `bubblesort/3` predicate (lines 1-9), specifically at line 4 where the Prolog conditional operator `->` is used. ProbLog does not natively support this Prolog control structure.
+
+Problematic code segment:
+```prolog
+(L == L1 ->
+    append(Acc, L, Sorted)
+;
+    append(Acc, [Min|Rest], NewAcc),
+    bubblesort(Rest, NewAcc, Sorted)
+)
+```
+
+## Root Cause Analysis
+1. **Syntax Incompatibility**: ProbLog uses a restricted subset of Prolog and doesn't support the `->/2` conditional operator
+2. **Logical Structure**: The algorithm's core logic (bubble/2 predicate) is correctly implemented for standard Prolog
+3. **Termination**: The recursion appears logically sound with proper base cases
+4. **Probabilistic Aspects**: No probabilistic facts or neural network integration (DeepProbLog) are used in this implementation
+
+## Overall Analysis
+1. **Requirements Met**:
+   - Classical reasoning: Partially met (would work in standard Prolog)
+   - Probabilistic reasoning: Not implemented
+   - Neural network integration: Not used ("DeepProbLog feature not used")
+
+2. **Edge Cases**:
+   - Empty list input would work (base case exists)
+   - Non-list input would fail silently
+   - Performance with large lists could be problematic due to O(n²) complexity
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | ProbLog incompatible conditional operator | Complete failure | Replace `->` with ProbLog-compatible control structure |
+| 2 | No probabilistic elements | Limited to deterministic sorting | Add probabilistic facts or weighted alternatives |
+| 3 | No input validation | May fail unexpectedly | Add type checking for list inputs |
+
+**Recommendations**:
+1. Rewrite the conditional using ProbLog-compatible constructs (e.g., separate clauses)
+2. Consider adding probabilistic elements if uncertainty in sorting is needed
+3. Add input validation for proper list handling
+
+**Word Count**: 398 words
+
+The implementation shows correct bubble sort logic for standard Prolog but requires modification to work in ProbLog's more restricted syntax environment. The core sorting algorithm is sound but needs adaptation for probabilistic contexts.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

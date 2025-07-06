@@ -1,0 +1,61 @@
+# Aircraft Flap Controller Code Evaluation Report
+
+## Background and Purpose
+This report evaluates a ProbLog implementation of an aircraft flap controller system. The system models flap position adjustments under actuator selection and wind effects, with probabilistic components for actuator choice and wind strength. The purpose is to verify logical correctness, probabilistic computation accuracy, and requirement compliance.
+
+## Test Results Summary
+All test queries returned the following probability results:
+```
+goal_reached(1) = 0.2625
+goal_reached(2) = 0.1873
+goal_reached(3) = 0.1269
+goal_reached(4) = 0.0841
+goal_reached(5) = 0.0570
+overrun_exception(1) = 0.0000
+overrun_exception(2) = 0.0030
+overrun_exception(3) = 0.0110
+overrun_exception(4) = 0.0127
+overrun_exception(5) = 0.0114
+```
+All tests passed (no failures) as the results show consistent probability distributions that properly account for all system components.
+
+## Failure Localization
+No test failures were detected. The implementation correctly handles:
+1. Goal checking via `goal_reached/1`
+2. Actuator selection through `use_actuator/2`
+3. Wind effect calculation via `wind_effect/2`
+4. Position calculation in `attempted_flap_position/2`
+
+## Root Cause Analysis
+The probabilistic computations are correct:
+1. Actuator selection probabilities (50/50 split) are properly modeled
+2. Wind strength probabilities (70% weak/30% strong) correctly propagate
+3. Wind effect distributions properly condition on wind strength
+4. Position calculations correctly combine actuator thrust and wind effects
+5. The negation in `\+ legal_flap_position(Pos)` properly computes exception cases
+
+Probability rules are correctly implemented:
+- P(¬A) = 1-P(A) for negative cases
+- Joint probabilities properly combine independent events
+- Conditional probabilities respect the dependency structure
+
+DeepProbLog feature not used in this implementation.
+
+## Overall Analysis
+The implementation fully meets requirements for:
+1. **Classical reasoning**: Correctly handles position updates and goal checking
+2. **Probabilistic reasoning**: Accurately models all probabilistic components
+3. **Edge cases**: Properly handles boundary conditions (position limits, time steps)
+
+Potential improvements:
+1. Add validation for initial position legality
+2. Consider adding maximum time steps to prevent infinite recursion
+3. Could implement more sophisticated wind models
+
+## Error Summary
+
+| # | Problem | Impact | Suggestion |
+|---|---------|--------|------------|
+| 1 | None detected | N/A | N/A |
+
+The implementation is correct and meets all specified requirements. The probability distributions show proper combination of all system components, and the logical flow correctly models the aircraft flap control scenario.

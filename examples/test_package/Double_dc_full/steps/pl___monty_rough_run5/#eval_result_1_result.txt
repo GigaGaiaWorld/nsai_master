@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "751033ED",
+  "ErrorSummary": "The predicate `win_switch` incorrectly assumes the host does not open any door (`\+ open_door(A)`), leading to a zero probability for switching doors. The expected probability should be 0.6667.",
+  "SuggestedFix": "Redefine `win_switch` to account for the host's action. Example: `win_switch :- member(A, [1,2,3]), \+ select_door(A), prize(A), open_door(B), B \\= A.`",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

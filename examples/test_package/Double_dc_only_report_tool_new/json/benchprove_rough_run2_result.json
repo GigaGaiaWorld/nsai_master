@@ -1,0 +1,10 @@
+{
+  "file_name": "benchprove_rough",
+  "run_index": 2,
+  "Validity_form": "ERROR",
+  "Validity_result": "ERROR",
+  "running_time": "None",
+  "process_time": 221.20537304878235,
+  "final_result": "Agent execution error: list index out of range",
+  "final_report": "Stack trace: Traceback (most recent call last):\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/examples/test_package/main_stable.py\", line 127, in process_all\n    result_rule = langda_solve(\n                  ^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/__init__.py\", line 105, in langda_solve\n    result = agent.call_langda_workflow()\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/agent/langda_agent.py\", line 101, in call_langda_workflow\n    self.state = langda_agent.invoke(self.state, config=self.state[\"config\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2719, in invoke\n    for chunk in self.stream(\n  File \"/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/langgraph/pregel/__init__.py\", line 2436, in stream\n    for _ in runner.tick(\n  File \"/Users/zhenzhili/MASTERTHESIS/#Expert_System_Design/langda/agent/evaluate_nodes.py\", line 75, in test_node\n    key_new, value_new = _parse_simple_dictonary(new_fest_codes[iter])\n                                                 ~~~~~~~~~~~~~~^^^^^^\nIndexError: list index out of range\nDuring task with name 'test_node' and id '50fe8691-d3ab-80a7-94cb-43435543f8a6'\n"
+}

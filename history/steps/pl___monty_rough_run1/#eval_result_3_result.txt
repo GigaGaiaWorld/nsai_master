@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "751033ED",
-  "ErrorSummary": "Unknown clause `''->'/2'` and undefined predicate `random_member/2` in `open_door/1`",
-  "SuggestedFix": "Replace `random_member/2` with a ProbLog-compatible random selection method (e.g., `probabilistic choice`). Ensure correct syntax for conditional logic in `open_door/1` (lines 6–10). Example fix:\n```prolog\nopen_door(Door) :-\n    findall(X, (member(X, [1,2,3]), \+ prize(X), \+ select_door(X)), Doors),\n    length(Doors, Len),\n    (Len =:= 2 ->\n        Doors = [A, B], 0.5::door(A); 0.5::door(B)\n    ; Len =:= 1 ->\n        member(Door, Doors)\n    ).\n```",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

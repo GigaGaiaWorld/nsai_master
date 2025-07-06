@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "751033ED",
-  "ErrorSummary": "1. Typo in variable name 'OtherDoors' in length/2. 2. Invalid use of '->' operator for probabilistic choice. 3. Incorrect implementation of Monty's door selection logic (uniform probability not enforced).",
-  "SuggestedFix": "Replace the current open_door/1 definition with:\nopen_door(D) :-\n    select_door(Selected),\n    member(D, [1,2,3]),\n    \\+ prize(D),\n    \\+ (D = Selected),\n    findall(OtherDoor, (member(OtherDoor, [1,2,3]), \\+ prize(OtherDoor), \\+ (OtherDoor = Selected)), OtherDoors),\n    length(OtherDoors, L),\n    (L =:= 2 -> 0.5::open_door(D) ; L =:= 1 -> true).\nAlso ensure 'OtherDoors' is consistently spelled.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

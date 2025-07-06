@@ -1,0 +1,14 @@
+Here are the extracted and formatted code blocks corresponding to the <langda> section in the <origin_code>:
+
+```problog
+{"HASH": "751033ED","Code": "open_door(Door) :-    select_door(Selected),    find_available_doors(Selected, Available),    random_select(Available, Door)."}
+```
+```problog
+{"HASH": "751033ED","Code": "find_available_doors(Selected, Available) :-    findall(D, (member(D, [1,2,3]), \\+ prize(D), D \\= Selected), Doors),    (   length(Doors, 2) ->         Available = Doors    ;   length(Doors, 1) ->         Available = Doors    )."}
+```
+```problog
+{"HASH": "751033ED","Code": "random_select([A,B], D) :-    0.5::door_selected(A) ; 0.5::door_selected(B),    door_selected(D)."}
+```
+```problog
+{"HASH": "751033ED","Code": "random_select([A], A)."}
+```

@@ -1,0 +1,5 @@
+[
+{
+"751033ED": "open_door(Door) :-\n    select_door(Selected),\n    member(Door, [1,2,3]),\n    \\+ prize(Door),\n    \\+ (Door = Selected),\n    findall(OtherDoor, (member(OtherDoor, [1,2,3]), \\+ prize(OtherDoor), \\+ (OtherDoor = Selected), \\+ (OtherDoor = Door)), Doors),\n    length(Doors, 1),\n    member(OtherDoor, Doors),\n    0.5::open_door(Door) ; 0.5::open_door(OtherDoor).\n\nopen_door(Door) :-\n    select_door(Selected),\n    member(Door, [1,2,3]),\n    \\+ prize(Door),\n    \\+ (Door = Selected),\n    findall(OtherDoor, (member(OtherDoor, [1,2,3]), \\+ prize(OtherDoor), \\+ (OtherDoor = Selected)), Doors),\n    length(Doors, 1),\n    member(Door, Doors)."
+}
+]

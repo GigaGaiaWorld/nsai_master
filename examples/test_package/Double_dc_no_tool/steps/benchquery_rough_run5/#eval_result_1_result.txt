@@ -1,0 +1,3 @@
+```report
+{"HASH": "6FC0DF89","ErrorSummary": "Missing query_pop/1 predicate implementation and density comparison logic","SuggestedFix": "Add query_pop/1 predicate that uses density/2 to find country pairs with density differences <= 5%. Suggested implementation:\nquery_pop([Country1,Density1,Country2,Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    Diff is abs(Density1 - Density2),\n    MaxDiff is 0.05 * max(Density1, Density2),\n    Diff =< MaxDiff.","Dependencies": [],"NeedRegenerate": true}
+```

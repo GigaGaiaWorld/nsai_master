@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "0805B4F6",
+  "ErrorSummary": "Invalid between/3 call with arithmetic expression N-1 directly in arguments",
+  "SuggestedFix": "Modify bb(N) predicate to calculate N-1 before the between call: 'bb(N) :- M is N-1, between(1, M, I), pick(I, b), pick(I+1, b).'",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,5 @@
+[
+{
+"751033ED": "open_door(Door) :- select_door(Selected), find_available_doors(Selected, Available), random_select(Available, Door). find_available_doors(Selected, Available) :- findall(D, (member(D, [1,2,3]), \\+ prize(D), D \\= Selected), Available), length(Available, Len), (Len =:= 2 -> true ; length(Available, 1)). random_select([A,B], D) :- 0.5::door_choice(A) ; 0.5::door_choice(B), door_choice(D). random_select([A], A)."
+}
+]

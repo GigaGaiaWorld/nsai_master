@@ -1,0 +1,10 @@
+{
+  "file_name": "pl___robot_rough",
+  "run_index": 5,
+  "Validity_form": false,
+  "Validity_result": false,
+  "running_time": "79.43s",
+  "process_time": 79.43000602722168,
+  "final_result": "% source: David Poole. Abducing through negation as failure: stable models within the independent choice logic. JLP 2000.\ncarrying(key,s(T)) :-\n \n pickup_succeeds(T), at(key, Pos, T), at(robot, Pos, T).\ncarrying(key,s(T)) :-\n \n carrying(key, T), retains_key(T).\n \n0.7::pickup_succeeds(T); 0.3::pickup_fails(T).\n \ndrops(key,T) :-\n slippery(key,T),\n drop_slippery_key(T).\ndrops(key,T) :-\n \\+ slippery(key,T),\n fumbles_key(T).\n \n0.6::drop_slippery_key(T); 0.4::holds_slippery_key(T).\n0.2::fumbles_key(T); 0.8::retains_key(T).\n \nslippery(key,s(T)) :-\n slippery(key,T),\n stays_slippery(T).\nslippery(key,0) :-\n initially_slippery(key).\n \n0.75::stays_slippery(T); 0.25::stops_being_slippery(T).\n0.5::initially_slippery(key); 0.5::initially_unslippery(key).\n \nat(robot,Pos,s(T)) :- goto_succeeds(T), do(goto(Pos), T).\nat(robot,Pos,s(T)) :- \\+ goto_action(T), at(robot,Pos,T).\nat(key,Pos,T) :-\n carrying(key,T),\n at(robot,Pos,T).\nat(key,Pos,s(T)) :-\n \\+ carrying(key,s(T)),\n at(key,Pos,T).\n \n0.9::goto_succeeds(T); 0.1::goto_fails(T).\n \ngoto_action(T) :-\n do(goto(Pos),T).\n \ndo(goto(loc1),0).\ndo(pickup(key),s(0)).\ndo(goto(loc2),s(0)).\nat(key,loc1,0).\nat(robot,loc0,0).\n \nquery(carrying(key,s(s(s(0))))).\nquery(at(_,_,s(s(s(0))))).",
+  "final_report": "The generated code has several issues compared to the original. First, the 'carrying' predicate is simplified incorrectly, missing critical conditions like 'do(pickup(key),T)' and incorrectly using 'retains_key(T)' instead of the original negation checks. Second, the 'at(robot,Pos,s(T))' predicate is missing a case where the robot fails to move. The results differ significantly, with 'carrying(key,s(s(s(0))))' probability changing from 0.4331 to 0.5834, and some 'at' predicates are missing in the generated results."
+}

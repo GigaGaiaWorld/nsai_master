@@ -1,0 +1,3 @@
+```problog
+{"HASH": "418D2062","Code": "merge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n    List = [_, _ | _],\n    split(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\nsplit([], [], []).\nsplit([X], [X], []).\nsplit([X, Y | Rest], [X | Left], [Y | Right]) :-\n    split(Rest, Left, Right).\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([X | Left], [Y | Right], [X | Merged]) :-\n    X =< Y,\n    merge(Left, [Y | Right], Merged).\nmerge([X | Left], [Y | Right], [Y | Merged]) :-\n    X > Y,\n    merge([X | Left], Right, Merged)."}
+```

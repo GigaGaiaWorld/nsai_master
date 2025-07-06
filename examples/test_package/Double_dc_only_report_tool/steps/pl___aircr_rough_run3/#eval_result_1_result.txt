@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A5C06F43",
+  "ErrorSummary": "The '->/2' operator in the conditional logic of 'attempted_flap_position' is not supported, causing a clause not found error.",
+  "SuggestedFix": "Replace the conditional logic 'Delta > 0 -> Direction = 1 ; Direction = -1' with ProbLog-compatible syntax: '(Delta > 0, Direction = 1 ; Direction = -1)'.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

@@ -1,0 +1,3 @@
+```problog
+{"HASH": "6931D64E","Code": "stack_op(sort, [X,Y,Z|Stack], [A,B,C|Stack]) :- sort3(X,Y,Z,A,B,C).\nsort3(X,Y,Z,A,B,C) :- min_list([X,Y,Z], A), max_list([X,Y,Z], C), (A == X, B is min(Y,Z), C == max(Y,Z); A == Y, B is min(X,Z), C == max(X,Z); A == Z, B is min(X,Y), C == max(X,Y)))."}
+```

@@ -1,0 +1,10 @@
+{
+  "file_name": "dpl__forst_rough",
+  "run_index": 3,
+  "Validity_form": true,
+  "Validity_result": false,
+  "running_time": "57.11s",
+  "process_time": 57.11133098602295,
+  "final_result": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Rest], Rest).\nstack_op(dup, [X|Rest], [X,X|Rest]).\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).\nstack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Elements, RestStack),\n    insertion_sort(Elements, SortedElements),\n    append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n    length(Elements, N),\n    append(Elements, Rest, Stack).\ninsertion_sort(List, Sorted) :-\n    insertion_sort(List, [], Sorted).\ninsertion_sort([], Acc, Acc).\ninsertion_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort(T, NewAcc, Sorted).\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).\nstack_op(sort, Stack, SortedStack) :-\n get_top_n(Stack, 3, Elements, RestStack),\n insertion_sort(Elements, SortedElements),\n append(SortedElements, RestStack, SortedStack).\nget_top_n(Stack, N, Elements, Rest) :-\n length(Elements, N),\n append(Elements, Rest, Stack).\nquery(stack_op(push(1),[2,3,4],Y)).\nquery(stack_op(pop,[1,2,3,4],Y)).\nquery(stack_op(dup,[1,2,3,4],Y)).\nquery(stack_op(swap,[1,2,3,4],Y)).\nquery(stack_op(over,[1,2,3,4],Y)).\nquery(stack_op(rot,[1,2,3,4],Y)).",
+  "final_report": "The generated code is mostly correct and consistent with the original code, with the exception of the 'rot' operation. In the original code, 'rot' rotates the top three elements as [X,Y,Z] to [Z,X,Y], while the generated code rotates them to [Y,Z,X]. This discrepancy leads to different results for the 'rot' operation. The rest of the operations (push, pop, dup, swap, over) and the sorting logic are correctly implemented and produce consistent results. The generated code is valid in form but has a logical error in the 'rot' operation."
+}

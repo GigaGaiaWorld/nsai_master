@@ -1,0 +1,3 @@
+```report
+{"HASH": "4E6CE90A", "ErrorSummary": "Syntax error in determine_winner/3 predicate due to incorrect usage of -> and ; operators", "SuggestedFix": "Rewrite the predicate as: determine_winner(P1Moves, P2Moves, Winner) :- play(P1Moves, P2Moves, Results), compute_score(Results, Score), (Score > 0 -> Winner = 'Player 1' ; Score < 0 -> Winner = 'Player 2' ; Winner = 'Draw'). Ensure proper spacing around operators.", "Dependencies": [], "NeedRegenerate": true}
+```

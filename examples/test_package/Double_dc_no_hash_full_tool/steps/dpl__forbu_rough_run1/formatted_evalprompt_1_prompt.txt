@@ -1,0 +1,218 @@
+System: You are an expert code evaluator specialized in ProbLog and DeepProbLog. You could use the available tools to complete the task.
+Human: Your task is to analyze the provided code and its test results, strictly following the instructions below.
+
+<Code>
+<Langda>
+<Code_Block>bubble([], [], []).
+bubble([X], [], X).
+bubble([H1, H2 | T], [X1 | T1], X) :-
+    (H1 =< H2 -> X1 = H1, bubble([H2 | T], T1, X);
+     X1 = H2, bubble([H1 | T], T1, X)).
+
+bubblesort([], L, L).
+bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 4:15.
+</Result>
+</Code>
+
+<Evaluation_Instructions>
+ 
+1. **Test Results Verification**
+- List all queries and their return values ​​(including probability results).
+- If all tests pass, please clearly output "All tests passed (no failures)" and briefly explain why there are no failures.
+- If there are failures, point out the failed queries one by one and give the corresponding actual vs. expected results.
+
+2. **Failure Localization**
+- For each failed test, point out the specific predicate or rule with the error and the corresponding code line number interval.
+- If there is no failure, also verify that all expansion predicates (e.g., `implies/2`, `opposite/1`, `expand/2`, `includes/2`, `extend/3`, `refute/1`) are correctly defined in both classical and probabilistic contexts.
+
+3. **Root Cause Analysis**
+- In classical Problog scenarios, analyze logical correctness and recursive termination.
+- In ProbLog probabilistic scenarios, check whether the computation of probabilistic facts and negations/implications complies with probabilistic rules such as `P(¬A)=1−P(A)`, `P(A⇒B)=P(¬A)+P(A∧B)`.
+- If there are DeepProbLog related calls (e.g., `nn/3`, `tensor/…`), verify whether the fusion of neural network output and probabilistic reasoning is correct; if it is not used at all, report "DeepProbLog feature not used".
+
+4. **Overall Analysis**
+- For the functional requirements (classical reasoning, probabilistic reasoning, neural network integration), indicate whether they are met and briefly explain.
+- Comment on the easily overlooked edge cases (undefined `expand/2`, non-list input, deep recursive performance, etc.).
+
+5. **Report Format**
+- Use Markdown and include the following parts:
+1. **Document Title**
+2. **Background and Purpose**
+3. **Test Results Summary**
+4. **Failure Localization**
+5. **Root Cause Analysis**
+6. **Overall Analysis**
+7. **Error Summary** (tabular form: number | problem | impact | suggestion)
+- Must include code blocks and tables, and the word count should be between 300–500 words.
+- The tone should be formal and the logic should be clear.
+</Evaluation_Instructions>
+
+<Final_Answer>
+Please output the complete report according to the above structure.
+</Final_Answer>
+
+
+AI: 
+
+**split**
+
+
+In this phase, you'll receive the output from the first chain along with the original code blocks. Your task is to evaluate each <langda> code block individually and determine if it needs regeneration.
+<original_code>
+
+<Langda>
+<Code_Block>bubble([], [], []).
+bubble([X], [], X).
+bubble([H1, H2 | T], [X1 | T1], X) :-
+    (H1 =< H2 -> X1 = H1, bubble([H2 | T], T1, X);
+     X1 = H2, bubble([H1 | T], T1, X)).
+
+bubblesort([], L, L).
+bubblesort(L, L3, Sorted) :-
+    bubble(L, L2, X),
+    bubblesort(L2, [X | L3], Sorted).
+
+forth_sort(L, L2) :- bubblesort(L, [], L2).
+query(forth_sort([3,1,2,5,7,12], X)).</Code_Block>
+<HASH> Hash tag of code: 47D659C8 </HASH>
+<Requirements>This Prolog program should implement an interpretable bubblesort/3 algorithm. </Requirements></Langda>
+.
+forth_sort(L,L2) :- bubblesort(L,[],L2).
+query(forth_sort([3,1,2,5,7,12],X)).
+<Result>
+ Here are the testing result of code:
+ Error evaluating Problog model:
+    return exec_func(node_id=node_id, node=node, **kwdargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zhenzhili/miniforge3/envs/langda/lib/python3.11/site-packages/problog/engine_stack.py", line 839, in eval_call
+    raise UnknownClause(origin, location=loc)
+problog.engine.UnknownClause: No clauses found for ''->'/2' at 4:15.
+</Result>
+
+</original_code>
+
+### Evaluation Report: Prolog Bubble Sort Implementation
+
+---
+
+#### **1. Document Title**  
+**Analysis of Bubble Sort Implementation in Prolog**
+
+---
+
+#### **2. Background and Purpose**  
+The provided Prolog code aims to implement a bubble sort algorithm (`bubblesort/3`) and a wrapper predicate (`forth_sort/2`) to sort a list. The code was tested with the query `forth_sort([3,1,2,5,7,12], X)`, but an error occurred during execution. This report analyzes the test results, identifies the root cause of the failure, and evaluates the code's compliance with functional requirements.
+
+---
+
+#### **3. Test Results Summary**  
+- **Query Tested**: `forth_sort([3,1,2,5,7,12], X)`  
+- **Result**:  
+  ```plaintext
+  Error evaluating Problog model:
+  No clauses found for ''->'/2' at 4:15.
+  ```  
+- **Conclusion**: The test failed due to a syntax error in the code.
+
+---
+
+#### **4. Failure Localization**  
+- **Failed Query**: `forth_sort([3,1,2,5,7,12], X)`  
+- **Error Location**:  
+  - **Predicate**: `bubble/3`  
+  - **Line Number**: 4 (specifically, the `->` operator usage)  
+- **Actual vs. Expected**:  
+  - **Actual**: The code fails to execute due to incorrect usage of the `->` operator.  
+  - **Expected**: The `->` operator should be used within a valid conditional construct, but the syntax is malformed.
+
+---
+
+#### **5. Root Cause Analysis**  
+- **Logical Correctness**:  
+  - The `bubble/3` predicate attempts to implement a conditional swap using `->`, but the syntax is incorrect. The parentheses and semicolon (`;`) are misplaced, leading to a parsing error.  
+  - **Recursive Termination**: The base cases (`bubble([], [], [])` and `bubble([X], [], X)`) are correctly defined, but the recursive case is flawed.  
+
+- **Probabilistic Context**:  
+  - The code does not involve probabilistic facts or DeepProbLog features (e.g., `nn/3`, `tensor/…`).  
+  - **Report**: "DeepProbLog feature not used."  
+
+---
+
+#### **6. Overall Analysis**  
+- **Functional Requirements**:  
+  - **Classical Reasoning**: Partially met. The algorithm's logic is conceptually correct, but the implementation contains a syntax error.  
+  - **Probabilistic Reasoning**: Not applicable (no probabilistic facts).  
+  - **Neural Network Integration**: Not used.  
+
+- **Edge Cases**:  
+  - **Non-list Input**: The code does not handle non-list inputs gracefully.  
+  - **Deep Recursion**: The recursion depth is proportional to the input list length, which could lead to performance issues for large lists.  
+  - **Undefined Predicates**: No undefined predicates are used.  
+
+---
+
+#### **7. Error Summary**  
+
+| No. | Problem                          | Impact                          | Suggestion                                                                 |
+|-----|----------------------------------|---------------------------------|----------------------------------------------------------------------------|
+| 1   | Syntax error in `->` operator    | Code fails to execute           | Correct the syntax of the conditional construct in `bubble/3`.             |
+| 2   | No handling of non-list inputs   | Potential runtime errors        | Add input validation to ensure the argument is a list.                     |
+| 3   | Deep recursion for large lists   | Performance issues              | Optimize the algorithm or use tail recursion if possible.                  |
+
+---
+
+#### **8. Corrected Code**  
+Here is the corrected version of the `bubble/3` predicate:  
+```prolog
+bubble([], [], []).
+bubble([X], [], X).
+bubble([H1, H2 | T], [X1 | T1], X) :-
+    (H1 =< H2 -> 
+        X1 = H1, bubble([H2 | T], T1, X)
+    ; 
+        X1 = H2, bubble([H1 | T], T1, X)
+    ).
+```
+
+---
+
+#### **9. Conclusion**  
+The code fails due to a syntax error in the conditional construct of the `bubble/3` predicate. After correction, the algorithm should work as intended. Edge cases and performance considerations should be addressed for robustness.  
+
+**Word Count**: ~450 words.
+
+<Evaluation_Instructions>
+For each <langda> code module (identified by its HASH):
+1.Summarize the errors in that module in a brief *ErrorSummary*. If no errors, state "No issues found."
+2.Propose a *SuggestedFix* that specifically addresses the error(s) (e.g. add a missing predicate, correct a probability rule). Include line numbers or module names if helpful.
+3.List any *Dependencies* (by HASH) on other modules that must be modified together with this one (if none, use an empty list).
+4.Set *NeedRegenerate* to true if the module requires changes (errors present), or false if it’s correct.
+</Evaluation_Instructions>
+<Final_Answer> 
+Provide a JSON object for each code module with the keys "HASH", "ErrorSummary", "SuggestedFix", "Dependencies", "NeedRegenerate". Format the output as a JSON array or separate JSON blocks. For example:
+// Inside the ```report ... ``` blocks, make sure not to use the ``` symbol to prevent parsing errors
+```report
+{"HASH": "XXXX1234","ErrorSummary": "Missing base case in factorial predicate causing infinite recursion","SuggestedFix": "Add a base case predicate for factorial(0) = 1 to handle termination","Dependencies": [],"NeedRegenerate": true}
+```
+```report
+{"HASH": "XXXX5678","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
+```
+</Final_Answer>

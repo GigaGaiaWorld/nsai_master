@@ -1,0 +1,3 @@
+```report
+{"HASH": "3F5BA02C","ErrorSummary": "Missing implementations for 5 required predicates (implies/2, opposite/1, includes/2, extend/2, expand/2 handler) despite being listed in requirements","SuggestedFix": "Add the following predicates:\n1. prove(implies(A,B)) :- prove(A) -> prove(B).\n2. prove(opposite(A)) :- \\+ prove(A).\n3. prove(expand(X,Y)) :- expand(X,Y).\n4. prove(includes(List,Elem)) :- member(Elem,List).\n5. prove(extend(List,Elem,NewList)) :- NewList = [Elem|List].","Dependencies": [],"NeedRegenerate": true}
+```

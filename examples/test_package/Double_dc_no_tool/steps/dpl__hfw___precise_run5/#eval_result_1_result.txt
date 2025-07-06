@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DA5E8955",
+  "ErrorSummary": "Non-ground arguments in almost_equal/2 during expression evaluation causing CallModeError",
+  "SuggestedFix": "Replace almost_equal calls with direct evaluation using 'is' in parse rules. For example: parse([N1,+|T], R) :- parse(T, R2), R is N1 + R2.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

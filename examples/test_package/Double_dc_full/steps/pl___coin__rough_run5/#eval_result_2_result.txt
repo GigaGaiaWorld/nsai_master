@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "DF1FDC54",
+  "ErrorSummary": "Undefined implication operator ('->') in the recursive predicate 'coins_r/3' causing execution failure",
+  "SuggestedFix": "Replace the implication operator ('->') with a ProbLog-compatible construct. For example, rewrite the line as: 'if(coin(c1), NSC is SC + 1, NSC is SC)' or use a helper predicate to handle the conditional logic.",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```

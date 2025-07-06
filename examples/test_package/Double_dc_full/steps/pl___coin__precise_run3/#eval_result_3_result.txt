@@ -1,0 +1,9 @@
+```report
+{
+  "HASH": "A88642CF",
+  "ErrorSummary": "The recursive case does not correctly handle the probabilistic outcome of `coin(CNT)`. The predicate `coin(CNT)` is called but its result is not used to conditionally update `SC`, leading to incorrect probabilistic results.",
+  "SuggestedFix": "Modify the recursive case to conditionally update `SC` based on the outcome of `coin(CNT)`. For example:\n```prolog\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    (coin(CNT) -> \n        CNT1 is CNT - 1,\n        coins_r(SC1, S, CNT1),\n        SC is SC1 + 1\n    ; \n        CNT1 is CNT - 1,\n        coins_r(SC, S, CNT1)\n    ).\n```\nThis ensures `SC` is incremented only when `coin(CNT)` succeeds (heads).",
+  "Dependencies": [],
+  "NeedRegenerate": true
+}
+```
