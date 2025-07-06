@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "The `implies/2` predicate uses the Prolog `->/2` operator, which is not recognized in ProbLog, causing the meta-interpreter to fail.",
-  "SuggestedFix": "Replace the `implies/2` definition with ProbLog-compatible logic. For example: `prove(implies(A, B)) :- prove(A), prove(B).` (Line 16). Also, ensure all required predicates (`opposite/1`, `refute/1`, etc.) are implemented.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

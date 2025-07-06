@@ -1,9 +1,0 @@
-```problog
-{"HASH": "D92532A0","Code": "carrying(key,s(T)) :-    do(pickup(key), T),    pickup_succeeds(T)."}
-```
-```problog
-{"HASH": "E4953E37","Code": "carrying(key,s(T)) :-    carrying(key, T),    retains_key(T)."}
-```
-```problog
-{"HASH": "8EB675E6","Code": "at(robot,Pos,s(T)) :-    goto_action(T),    goto_succeeds(T),    do(goto(Pos), T).at(robot,Pos,s(T)) :-    goto_action(T),    goto_fails(T),    at(robot,Pos,T)."}
-```

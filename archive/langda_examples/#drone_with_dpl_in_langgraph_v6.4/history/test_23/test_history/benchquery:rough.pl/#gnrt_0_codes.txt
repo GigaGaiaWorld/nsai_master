@@ -1,5 +1,0 @@
-[
-{
-"58E6FAB7": "% Calculate population density (population / area)\ndensity(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is (Pop * 100000) / (Area * 1000). % Convert to people per square mile\n\n% Query pairs of countries with approximately equal population density (within 5%)\nquery_pop([Country1, Density1, Country2, Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    abs(Density1 - Density2) / min(Density1, Density2) =< 0.05. % 5% difference"
-}
-]

@@ -1,7 +1,0 @@
-Based on the given origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> block in the origin_code.
-
-The <langda> block in origin_code is located within the stack_op(sort, Stack, SortedStack) predicate, and its hash is E659D458. The corresponding completed code in generated_code is:
-
-```problog
-{"HASH": "E659D458", "Code": "stack_op(sort, Stack, SortedStack) :-\n    length(Stack, L),\n    (L >= 3,\n     get_top_n(Stack, 3, [A, B, C], Rest),\n     sort3(A, B, C, SortedElements),\n     append(SortedElements, Rest, SortedStack)\n    ;\n     L < 3,\n     SortedStack = Stack\n    ).\n\nsort3(A, B, C, [X, Y, Z]) :-\n    min_list([A, B, C], X),\n    max_list([A, B, C], Z),\n    (X =:= A, Z =:= B, Y = C;\n     X =:= A, Z =:= C, Y = B;\n     X =:= B, Z =:= A, Y = C;\n     X =:= B, Z =:= C, Y = A;\n     X =:= C, Z =:= A, Y = B;\n     X =:= C, Z =:= B, Y = A)."}
-```

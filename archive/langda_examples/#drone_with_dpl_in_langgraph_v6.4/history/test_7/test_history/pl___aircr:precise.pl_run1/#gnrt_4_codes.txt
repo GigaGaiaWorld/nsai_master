@@ -1,5 +1,0 @@
-[
-{
-"5BCD04E8": "attempted_flap_position(Time,Pos) :-\n Time > 0,\n Prev is Time-1,\n flap_position(Prev, Old),\n goal(GP),\n Old \\= GP,\n use_actuator(Time, A),\n actuator_strength(A, AS),\n AE is sign(GP - Old) * AS,\n wind_effect(Time, WE),\n TempPos is Old + AE + WE,\n (legal_flap_position(TempPos) -> Pos = TempPos ; overrun_exception(Time))."
-}
-]

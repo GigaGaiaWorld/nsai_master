@@ -1,5 +1,0 @@
-Based on the provided origin_code and generated_code, I'll extract and format the code blocks that correspond to the <langda> blocks in the origin_code. In this case, there's only one <langda> block in the origin_code, so I'll extract its corresponding completed code from the generated_code.
-
-```problog
-{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Z,X,Y|Stack]).\nstack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, Elements, RestStack),\n    insertion_sort(Elements, SortedElements),\n    append(SortedElements, RestStack, SortedStack)."}
-```

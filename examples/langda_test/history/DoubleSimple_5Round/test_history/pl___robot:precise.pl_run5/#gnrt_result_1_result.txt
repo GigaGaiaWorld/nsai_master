@@ -1,7 +1,0 @@
-Based on the requirements in the <langda> block, I need to add two `at/3` predicates for the key's position that weren't present in the original code. Here's the regenerated code:
-
-```problog
-{"HASH": "BCB17653","Code": "at(key,Pos,s(T)) :- carrying(key,T), at(robot,Pos,T).\nat(key,Pos,s(T)) :- \+ carrying(key,s(T)), at(key,Pos,T)."}
-```
-
-The first predicate implements the requirement that when the robot is carrying the key, the key's position matches the robot's position. The second predicate implements that when the robot isn't carrying the key in the next time step, the key remains where it was (stationary). These complement the existing robot movement rules while properly modeling the key's position behavior.

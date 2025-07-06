@@ -1,5 +1,0 @@
-[
-{
-"3F5BA02C": "prove(implies(A, B)) :- (prove(A) -> prove(B); true).\nprove(opposite(Goal)) :- \\+ prove(Goal).\nprove(expand(From, To)) :- expand(From, To).\nprove(includes(List, Element)) :- member(Element, List).\nprove(extend(List, Elem, NewList)) :- NewList = [Elem|List].\nprove(refute(Goal)) :- \\+ prove(Goal)."
-}
-]

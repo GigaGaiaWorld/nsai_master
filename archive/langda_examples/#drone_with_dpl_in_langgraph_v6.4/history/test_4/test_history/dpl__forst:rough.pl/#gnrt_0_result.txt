@@ -1,9 +1,0 @@
-Based on the instructions, I'll extract only the code blocks from <generated_code> that correspond to the <langda> placeholder in <origin_code>. In this case, there's only one <langda> block in the original code, and it corresponds to the stack operations implementation.
-
-Here's the extracted and formatted code block:
-
-```problog
-{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
-```
-
-Note that I only included the stack operation implementations that were missing in the original code (push, pop, dup, swap, over, rot) and matched them to the hash from the <langda> block. The sort operation was already partially implemented in the original code, so I didn't include it in the extracted block.

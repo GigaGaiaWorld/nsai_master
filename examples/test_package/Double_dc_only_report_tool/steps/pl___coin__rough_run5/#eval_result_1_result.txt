@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DF1FDC54",
-  "ErrorSummary": "Non-ground probabilistic clause (`make_coin/2` not defined) and no handling for `CNT <= 0`",
-  "SuggestedFix": "1. Replace `make_coin(C,0.8)` with grounded probabilistic facts (`0.8::coin(head).` and `0.2::coin(tail).`). 2. Add explicit handling for `CNT <= 0` in `coins_r/3` (already present in corrected code).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

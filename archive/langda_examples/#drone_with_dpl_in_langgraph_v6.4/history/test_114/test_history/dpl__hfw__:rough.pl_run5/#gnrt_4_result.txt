@@ -1,5 +1,0 @@
-Here are the extracted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in `<origin_code>`, formatted in the requested JSON format:
-
-```problog
-{"HASH": "190031BC","Code": "parse([N], N).\nparse(Expr, Result) :-\n    find_op(Expr, Op, Left, Right),\n    parse(Left, LVal),\n    parse(Right, RVal),\n    apply_op(Op, LVal, RVal, Result).\n\nfind_op([N1, Op, N2 | Rest], Op, [N1], [N2 | Rest]) :-\n    (Op = '*' ; Op = '/'), !.\nfind_op([N1, Op, N2 | Rest], Op, [N1], [N2 | Rest]) :-\n    (Op = '+' ; Op = '-'), !.\nfind_op([N1, Op1, N2, Op2 | Rest], Op, Left, Right) :-\n    (Op1 = '+' ; Op1 = '-'),\n    (Op2 = '*' ; Op2 = '/'),\n    find_op([N2, Op2 | Rest], Op, Mid, Right),\n    Left = [N1, Op1 | Mid].\n\napply_op('+', L, R, Result) :- Result is L + R.\napply_op('-', L, R, Result) :- Result is L - R.\napply_op('*', L, R, Result) :- Result is L * R.\napply_op('/', L, R, Result) :- Result is L / R."}
-```

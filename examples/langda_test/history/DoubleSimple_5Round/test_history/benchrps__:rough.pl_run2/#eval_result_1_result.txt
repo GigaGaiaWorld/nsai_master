@@ -1,3 +1,0 @@
-```report
-{"HASH": "CFA63C1E", "ErrorSummary": "Missing 'play/3' predicate which is called in determine_winner but never defined", "SuggestedFix": "Add the play/3 predicate to determine game outcomes between moves. For example:\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2) -> Result = win;\n    (beats(P2, P1) -> Result = lose;\n    Result = draw),\n    play(P1s, P2s, Results).", "Dependencies": [], "NeedRegenerate": true}
-```

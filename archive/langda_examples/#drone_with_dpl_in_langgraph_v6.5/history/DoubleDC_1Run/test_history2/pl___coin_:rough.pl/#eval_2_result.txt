@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DF1FDC54",
-  "ErrorSummary": "Missing 'heads/1' predicate causing program failure; no handling for CNT <= 0; unused 'make_coin/2' predicate",
-  "SuggestedFix": "1. Define 'heads/1' as 'heads(C) :- coin_heads(C).' with probabilistic facts for coin outcomes. 2. Add base case 'coins_r(SC, SC, CNT) :- CNT =< 0.' 3. Remove 'make_coin/2' or integrate it into 'heads/1'.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

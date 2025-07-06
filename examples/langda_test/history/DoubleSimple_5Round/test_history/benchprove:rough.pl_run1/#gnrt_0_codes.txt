@@ -1,5 +1,0 @@
-[
-{
-"2DFC0CFD": "prove(true).\nprove(Goal) :-\n\tclause(Goal, Body),\n\tprove(Body).\nprove((A,B)) :-\n\tprove(A),\n\tprove(B).\nprove(implies(A,B)) :- prove(A), prove(B).\nprove(opposite(A)) :- \\+prove(A).\nprove(expand(A,B)) :- expand(A,B).\nprove(includes(List,Elem)) :- member(Elem,List).\nprove(extend(List,Elem,Result)) :- Result = [Elem|List].\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\nexpand(double(X), Y) :- Y is X*2.\nexpand(square(X), Y) :- Y is X*X.\nparent(alice, bob).\nparent(bob, carol).\nancestor(X,Y) :- parent(X,Y).\nancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).\nquery(prove(implies(parent(alice,bob), ancestor(alice,bob)))).\nquery(prove(opposite(parent(carol,alice)))).\nquery(prove(expand(double(3),6))).\nquery(prove(includes([a,b,c],b))).\nquery(prove(extend([1,2],3,[3,1,2])))."
-}
-]

@@ -1,3 +1,0 @@
-```problog
-{"HASH": "E553CC07","Code": "prove(implies(A, B)) :-\n    prove(A),\n    prove(B).\n% opposite/1: Opposite of a goal\nprove(opposite(Goal)) :-\n    \\+ prove(Goal).\n% expand/2: Expand a term into another\nprove(expand(Term, Expanded)) :-\n    expand(Term, Expanded).\n% includes/2: Check if an element is in a list\nprove(includes(List, Element)) :-\n    member(Element, List).\n% extend/2: Extend a list with an element\nprove(extend(List, Element, Extended)) :-\n    Extended = [Element|List].\n% refute/1: Refute a goal\nprove(refute(Goal)) :-\n    \\+ prove(Goal)."}
-```

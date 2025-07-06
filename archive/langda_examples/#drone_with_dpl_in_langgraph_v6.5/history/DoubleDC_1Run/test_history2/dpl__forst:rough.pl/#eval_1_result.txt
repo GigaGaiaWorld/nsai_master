@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "5E40E418",
-  "ErrorSummary": "1. `sort` operation untested; 2. `get_top_n` assumes stack size >= N without validation; 3. No handling of edge cases (e.g., empty stack).",
-  "SuggestedFix": "1. Add test cases for `sort` (e.g., `query(stack_op(sort, [3,1,2,4], Y))`). 2. Modify `get_top_n` to handle stacks smaller than `N` by checking `length(Stack, StackSize)` and adding a conditional branch. 3. Add guards for edge cases (e.g., `stack_op(pop, [], []) :- !`).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

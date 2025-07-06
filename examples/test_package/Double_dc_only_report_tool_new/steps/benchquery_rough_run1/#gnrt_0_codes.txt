@@ -1,5 +1,0 @@
-[
-{
-"6FC0DF89": "density(Country, Density) :- pop(Country, Pop), area(Country, Area), Density is (Pop * 100000) / (Area * 1000). query_pop([Country1, Density1, Country2, Density2]) :- density(Country1, Density1), density(Country2, Density2), Country1 @< Country2, Ratio is Density1 / Density2, Ratio >= 0.95, Ratio =< 1.05."
-}
-]

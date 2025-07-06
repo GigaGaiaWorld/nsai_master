@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "parse([N], N).\nparse([N, O, M | T], Result) :-\n    (O == '/' -> (M =:= 0 -> Result = 'Error: Division by zero'; Op =.. [O, N, M], parse([Op | T], Result))\n    ; Op =.. [O, N, M], parse([Op | T], Result))."
-}
-]

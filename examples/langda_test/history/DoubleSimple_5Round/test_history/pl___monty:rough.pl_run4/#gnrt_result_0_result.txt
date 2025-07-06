@@ -1,3 +1,0 @@
-```problog
-{"HASH": "55F6DA26","Code": "1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\nopen_door(A) :-\n    select_door(Selected),\n    findall(Door, (member(Door,[1,2,3]), \\+ prize(Door), Door \\= Selected), Doors),\n    length(Doors, L),\n    (L = 2 -> \n        member(A, Doors),\n        0.5::open_door(A) ; \n    L = 1 -> \n        [A] = Doors,\n        open_door(A)).\nwin_keep :-\n select_door(A),\n prize(A).\nwin_switch :-\n member(A, [1,2,3]),\n \\+ select_door(A),\n prize(A),\n \\+ open_door(A).\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch)."}
-```

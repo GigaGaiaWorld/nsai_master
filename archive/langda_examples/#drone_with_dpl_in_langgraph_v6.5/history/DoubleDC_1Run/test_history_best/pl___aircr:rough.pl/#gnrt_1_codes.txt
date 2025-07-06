@@ -1,5 +1,0 @@
-[
-{
-"A5C06F43": "attempted_flap_position(Time,Pos) :- Time > 0, Prev is Time-1, flap_position(Prev, PrevPos), goal(G), use_actuator(Time, Actuator), actuator_strength(Actuator, Strength), wind_effect(Time, WindEffect), Pos is PrevPos + (G - PrevPos) * Strength + WindEffect."
-}
-]

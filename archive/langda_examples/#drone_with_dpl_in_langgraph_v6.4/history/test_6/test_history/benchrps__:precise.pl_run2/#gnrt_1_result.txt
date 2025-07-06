@@ -1,7 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in the `<origin_code>`:
-
-```problog
-{"HASH": "3FEB17D7", "Code": "determine_winner(P1Moves, P2Moves, Winner) :- length(P1Moves, L1), length(P2Moves, L2), L1 =:= L2, play(P1Moves, P2Moves, Results), compute_score(Results, S), ( S > 0, Winner = player1 ; S < 0, Winner = player2 ; S = 0, Winner = draw )."}
-```
-
-Note: The original `<langda>` block had a hash of `3FEB17D7`, so I've preserved that in the output. The generated code includes additional input validation for list lengths (`length(P1Moves, L1), length(P2Moves, L2), L1 =:= L2`) which wasn't present in the original placeholder code.

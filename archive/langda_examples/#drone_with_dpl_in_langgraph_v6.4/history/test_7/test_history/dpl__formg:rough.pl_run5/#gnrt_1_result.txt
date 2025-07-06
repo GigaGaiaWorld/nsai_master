@@ -1,3 +1,0 @@
-```problog
-{"HASH": "418D2062", "Code": "merge_sort([], []).\nmerge_sort([X], [X]).\n\nmerge_sort(List, Sorted) :-\n    length(List, Len),\n    Len > 1,\n    Half is Len // 2,\n    split(List, Half, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\n\nsplit([], _, [], []).\nsplit([X|Xs], N, [X|Left], Right) :-\n    N > 0,\n    N1 is N - 1,\n    split(Xs, N1, Left, Right).\nsplit(List, _, [], List).\n\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([X|Left], [Y|Right], [Z|Merged]) :-\n    (X =< Y -> Z = X, merge(Left, [Y|Right], Merged)\n    ; Z = Y, merge([X|Left], Right, Merged))."}
-```

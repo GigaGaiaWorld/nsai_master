@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "1. Unknown '->' operator in ProbLog in 'play_round' predicate. 2. Inconsistent spelling of 'scissor'/'scissors'.",
-  "SuggestedFix": "1. Replace '->' with ProbLog-compatible logic (e.g., nested 'if-then-else'). 2. Correct spelling to 'scissors' consistently. Updated code:\n\nplay_round(P1Move, P2Move, Result) :-\n    valid_move(P1Move), valid_move(P2Move),\n    ( beats(P1Move, P2Move), Result = win\n    ; beats(P2Move, P1Move), Result = lose\n    ; Result = draw\n    ).\n\nUpdate 'beats' facts:\nbeats(rock, scissors).\nbeats(scissors, paper).\nbeats(paper, rock).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

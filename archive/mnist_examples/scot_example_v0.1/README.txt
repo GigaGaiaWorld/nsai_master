@@ -1,1 +1,0 @@
-All historical development records, see the version number behind the folder in order

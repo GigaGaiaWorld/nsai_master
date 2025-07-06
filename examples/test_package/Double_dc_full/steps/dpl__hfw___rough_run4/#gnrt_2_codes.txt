@@ -1,5 +1,0 @@
-[
-{
-"FB41E2F7": "parse([N1, Op, N2 | Rest], R) :-\n    (Op = * ; Op = / ; Op = + ; Op = -),\n    almost_equal(N1, V1),\n    almost_equal(N2, V2),\n    (Op = * -> Temp is V1 * V2 ;\n     Op = / -> Temp is V1 / V2 ;\n     Op = + -> Temp is V1 + V2 ;\n     Op = - -> Temp is V1 - V2),\n    parse([Temp | Rest], R)."
-}
-]

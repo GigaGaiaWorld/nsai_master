@@ -1,3 +1,0 @@
-```report
-{"HASH": "D92532A0","ErrorSummary": "Inconsistent key location handling; negation-as-failure misuse allows key to be in multiple places simultaneously","SuggestedFix": "Revise the `at(key, Pos, s(T))` rule to account for all key states (carried, dropped, or moved). Add constraints for mutual exclusivity of key location. Example fix:\n```prolog\nat(key, Pos, s(T)) :-\n    carrying(key, s(T)),\n    at(robot, Pos, s(T)).\nat(key, Pos, s(T)) :-\n    \\+ carrying(key, s(T)),\n    drops(key, T),\n    at(robot, NewPos, T),\n    Pos \\= NewPos.\n```","Dependencies": [],"NeedRegenerate": true}
-```

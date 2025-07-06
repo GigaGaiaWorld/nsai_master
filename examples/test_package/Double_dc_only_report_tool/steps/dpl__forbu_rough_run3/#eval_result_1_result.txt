@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "47D659C8",
-  "ErrorSummary": "Unsupported '->/2' operator in ProbLog context causing execution failure",
-  "SuggestedFix": "Replace the conditional operator '->/2' with ProbLog-compatible constructs (e.g., 'if/3' or split into separate clauses). Modify the bubblesort/3 predicate as follows:\n\nbubblesort([H1, H2|T], Acc, Sorted) :-\n    (H1 > H2,\n        bubblesort([H2, H1|T], Acc, Sorted)\n    ;\n        bubblesort([H1|T], [H2|Acc], Sorted)\n    ).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

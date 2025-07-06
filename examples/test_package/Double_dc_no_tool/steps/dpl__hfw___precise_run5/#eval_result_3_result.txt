@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DA5E8955",
-  "ErrorSummary": "Non-ground comparison in almost_equal/2 causing CallModeError during arithmetic evaluation. The predicate attempts to compare uninstantiated variables which violates ProbLog's ground term requirement for numerical operations.",
-  "SuggestedFix": "Restructure the parse rules to ensure ground terms before comparison. Modify almost_equal/2 to:\nalmost_equal(X, Y) :- \n    ground(X), ground(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    ground(X), \n    Y is float(X).\nAlso add division by zero protection in the division parse rule.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

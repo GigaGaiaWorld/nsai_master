@@ -1,5 +1,0 @@
-[
-{
-"E09B4F54": "person(a).\nperson(b).\n\n0.1::initialInf(X) :- person(X).\n\n0.1::contact(X,Y) :- person(X), person(Y).\n\n0.1::susceptible(X) :- person(X).\n\n0.1::riskyTravel(X) :- person(X).\n\n% Initial infection\ninf(X) :- initialInf(X).\n\n% Contact transmission\n0.6::inf(X) :- contact(X,Y), inf(Y), \\+ susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n\n% Travel risk\n0.2::inf(X) :- riskyTravel(X).\n\nquery(inf(_))."
-}
-]

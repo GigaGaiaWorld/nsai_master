@@ -1,5 +1,0 @@
-[
-{
-"751033ED": "open_door(D) :-\n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), PossibleDoors),\n    (length(PossibleDoors, 2) -> \n        0.5::open_door(D), member(D, PossibleDoors) ;\n    member(D, PossibleDoors))."
-}
-]

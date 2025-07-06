@@ -1,7 +1,0 @@
-```report
-{"HASH": "47D659C8","Report": "The code block contains several issues: 1) Syntax error in the conditional statement (`->/2`) which isn't properly supported in ProbLog, 2) The `bubble_pass/3` predicate doesn't correctly handle all edge cases, 3) The logic for propagating the `Swapped` flag is flawed. The test failure confirms these issues. Recommendation: Rewrite using ProbLog-compatible conditionals and fix the sorting logic.","Need_regenerate": true,"Dependencies": []}
-```
-
-```report
-{"HASH": "N/A","Report": "The `forth_sort/2` predicate and query are syntactically correct but depend on the flawed `bubblesort/3` implementation (HASH: 47D659C8). No regeneration needed for this block itself, but it won't work correctly until the dependent bubblesort implementation is fixed.","Need_regenerate": false,"Dependencies": ["47D659C8"]}
-```

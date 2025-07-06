@@ -1,3 +1,0 @@
-```report
-{"HASH": "EA5E8D55", "ErrorSummary": "Incorrect use of probabilistic fact syntax, logical inconsistency in recursive case (using counter as coin identifier), missing coin definitions", "SuggestedFix": "1. Replace `coin(C) :- make_coin(C,0.8).` with `0.8::coin(C).`. 2. Define explicit coin identifiers (e.g., `coin(c1).`, `coin(c2).`). 3. Correct recursive logic to use proper coin identifiers or adjust the counter logic.", "Dependencies": [], "NeedRegenerate": true}
-```

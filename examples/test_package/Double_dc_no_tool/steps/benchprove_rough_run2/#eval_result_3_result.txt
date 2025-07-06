@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Invalid usage of ->/2 operator in implies/2 predicate causing all queries to fail",
-  "SuggestedFix": "Replace 'prove(implies(Goal1, Goal2)) :- prove(Goal1) -> prove(Goal2).' with 'prove(implies(Goal1, Goal2)) :- (prove(Goal1) -> prove(Goal2); true).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,3 +1,0 @@
-```report
-{"HASH": "418D2062", "ErrorSummary": "Incorrect merging logic in `merge/3` predicate, resulting in unsorted output", "SuggestedFix": "Rewrite the `merge/3` predicate to ensure correct merging of sorted lists. Replace lines 10-17 with:\nmerge([], L, L).\nmerge(L, [], L).\nmerge([X|Xs], [Y|Ys], [X|Zs]) :-\n    X =< Y,\n    merge(Xs, [Y|Ys], Zs).\nmerge([X|Xs], [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    merge([X|Xs], Ys, Zs).", "Dependencies": [], "NeedRegenerate": true}
-```

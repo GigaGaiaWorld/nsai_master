@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DA5E8955",
-  "ErrorSummary": "Missing operator precedence handling (PEMDAS rules) leading to incorrect evaluation order. Current implementation only supports left-associative evaluation.",
-  "SuggestedFix": "Restructure parse/2 predicates to implement proper precedence levels:\n1. Add parse_term/2 for multiplication/division\n2. Add parse_expression/2 for addition/subtraction\n3. Modify parse/2 to call these in correct order\n4. Add parenthesized expression handling with parse_parens/2",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

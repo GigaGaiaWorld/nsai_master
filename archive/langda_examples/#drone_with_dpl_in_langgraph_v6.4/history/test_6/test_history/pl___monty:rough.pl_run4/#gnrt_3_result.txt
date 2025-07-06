@@ -1,7 +1,0 @@
-Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <Langda> section in the origin_code. Here's the result:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    ( (Prize = Selected) ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), Doors),\n        length(Doors, 2),\n        0.5::door_choice(1) ; 0.5::door_choice(2),\n        nth1(Choice, Doors, Door),\n        door_choice(Choice)\n    ; \\+ (Prize = Selected) ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize), [Door])\n    )."}
-```
-
-Note that this is the only code block that corresponds to the <Langda> section in the origin_code. The generated code maintains the same hash (592D75CA) as specified in the origin_code's <Langda> section. The code implements the open_door/1 predicate with the required behavior for both random and deterministic door opening scenarios.

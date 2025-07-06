@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "The `->/2` operator is not supported in ProbLog, causing an `UnknownClause` error in the `play_round` predicate.",
-  "SuggestedFix": "Replace the `->/2` operator with ProbLog-compatible conditional logic. For example, rewrite `play_round` as: `play_round(P1Move, P2Move, Result) :- beats(P1Move, P2Move), Result = win. play_round(P1Move, P2Move, Result) :- beats(P2Move, P1Move), Result = lose. play_round(P1Move, P2Move, Result) :- \+ beats(P1Move, P2Move), \+ beats(P2Move, P1Move), Result = draw.`",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

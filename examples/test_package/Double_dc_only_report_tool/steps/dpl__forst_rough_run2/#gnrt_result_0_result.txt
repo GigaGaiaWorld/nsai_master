@@ -1,5 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> block in the <origin_code>:
-
-```problog
-{"HASH": "5E40E418", "Code": "stack_op(sort, Stack, SortedStack) :- get_top_n(Stack, 3, Elements, RestStack), insertion_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack).\nstack_op(push(X), Stack, [X | Stack]).\nstack_op(pop, [X | Rest], Rest).\nstack_op(dup, [X | Rest], [X, X | Rest]).\nstack_op(swap, [X, Y | Rest], [Y, X | Rest]).\nstack_op(over, [X, Y | Rest], [Y, X, Y | Rest]).\nstack_op(rot, [X, Y, Z | Rest], [Y, Z, X | Rest])."}
-```

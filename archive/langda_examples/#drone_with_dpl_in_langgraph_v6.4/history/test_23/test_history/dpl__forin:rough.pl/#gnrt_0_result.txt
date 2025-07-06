@@ -1,3 +1,0 @@
-```problog
-{"HASH": "501F546D","Code": "% Insertion Sort in Problog\n\n% Base case: an empty list is already sorted\ninsertion_sort([], []).\n\n% Recursive case: insert the head into the sorted tail\ninsertion_sort([H|T], Sorted) :-\n    insertion_sort(T, SortedTail),\n    insert(H, SortedTail, Sorted).\n\n% Insert an element into a sorted list\ninsert(X, [], [X]).\ninsert(X, [Y|T], [X,Y|T]) :- X =< Y.\ninsert(X, [Y|T], [Y|SortedT]) :- X > Y, insert(X, T, SortedT).\n\n% Query example\nquery(insertion_sort([3,1,2,5,7,12], X))."}
-```

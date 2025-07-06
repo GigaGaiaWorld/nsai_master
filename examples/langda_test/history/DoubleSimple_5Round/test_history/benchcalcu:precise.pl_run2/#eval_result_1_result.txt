@@ -1,3 +1,0 @@
-```report
-{"HASH": "623E07CC","ErrorSummary": "The code produces multiple solutions when it should find a unique solution for the cryptarithmetic puzzle AB + BCD = CDE. The constraints need to be strengthened to ensure uniqueness.","SuggestedFix": "Add additional constraints to ensure the sum AB + BCD equals CDE numerically. Modify the query_sum predicate to include: AB is 10*A + B, BCD is 100*B + 10*C + D, CDE is 100*C + 10*D + E, Sum is AB + BCD, Sum =:= CDE.","Dependencies": [],"NeedRegenerate": true}
-```

@@ -1,3 +1,0 @@
-```report
-{"HASH": "EA5E8D55","ErrorSummary": "The cut operator (!/0) is used incorrectly in the coins_r predicate, causing an UnknownClause error. Also, the coin(CNT) call should use a consistent variable naming.", "SuggestedFix": "Remove the cut operator and fix the coin call to use a consistent variable. Modify lines 8-9 to: 'coin(C), CNT1 is CNT - 1, coins_r(SC1,S,CNT1), SC is SC1 + 1.'", "Dependencies": [], "NeedRegenerate": true}
-```

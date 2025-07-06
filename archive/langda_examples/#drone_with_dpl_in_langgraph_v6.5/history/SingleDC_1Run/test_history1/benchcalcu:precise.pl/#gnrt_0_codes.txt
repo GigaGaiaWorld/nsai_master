@@ -1,5 +1,0 @@
-[
-{
-"623E07CC": "query_sum([A,B,C,D,E]) :-\n    leftdigit(A), % A is the first digit of AB\n    leftdigit(B), % B is the first digit of BCD\n    leftdigit(C), % C is the first digit of CDE\n    all_different([A,B,C,D,E]), % All letters must represent different digits\n    % Calculate AB + BCD = CDE\n    % Break down the numbers into their digits and perform column-wise addition\n    % AB is 10*A + B\n    % BCD is 100*B + 10*C + D\n    % CDE is 100*C + 10*D + E\n    % Perform the addition column-wise from right to left\n    % Column 1 (units place): B + D = E (with carry C1)\n    sumdigit(0, B, D, E, C1),\n    % Column 2 (tens place): A + C + C1 = D (with carry C2)\n    sumdigit(C1, A, C, D, C2),\n    % Column 3 (hundreds place): B + C2 = C (with carry C3)\n    sumdigit(0, B, C2, C, C3),\n    % The final carry must be 0 (no overflow)\n    C3 = 0."
-}
-]

@@ -1,3 +1,0 @@
-```report
-{"HASH": "751033ED","ErrorSummary": "Invalid probabilistic fact syntax in rule body, incomplete implementation of host's door selection logic, improper handling of deterministic case","SuggestedFix": "1. Replace the entire open_door/1 predicate with:\n   0.5::open_door(A) ; 0.5::open_door(B) :- \n     select_door(Selected), \n     findall(D, (member(D,[1,2,3]), \\+ prize(D), D \\= Selected), [A,B]), \n     length([A,B], 2).\n   open_door(A) :- \n     select_door(Selected), \n     findall(D, (member(D,[1,2,3]), \\+ prize(D), D \\= Selected), [A]), \n     length([A], 1).\n2. Remove the probabilistic annotation from within the rule body","Dependencies": [],"NeedRegenerate": true}
-```

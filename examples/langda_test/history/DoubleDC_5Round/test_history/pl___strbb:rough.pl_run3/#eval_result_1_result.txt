@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "0805B4F6",
-  "ErrorSummary": "Invalid call to 'between/3' due to unevaluated arithmetic expression 'N-1'.",
-  "SuggestedFix": "Precompute 'N-1' before calling 'between/3'. Modify the predicate to: 'bb(N) :- Len is N-1, between(1, Len, I), pick(I, b), pick(I+1, b).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

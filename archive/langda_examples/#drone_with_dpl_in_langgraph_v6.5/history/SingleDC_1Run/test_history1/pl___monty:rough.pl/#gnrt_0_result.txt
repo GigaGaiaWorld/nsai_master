@@ -1,9 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
-
-```problog
-{"HASH": "55F6DA26", "Code": "% Clause 1: If there are two doors A and B, neither of which has a prize, and neither of which is the door chosen by the player, then Monty will open a door uniformly at random between A and B.\nopen_door(Door) :-\n    select_door(Selected),\n    member(Door, [1,2,3]),\n    \+ prize(Door),\n    \+ (Door = Selected),\n    findall(OtherDoor, (member(OtherDoor, [1,2,3]), \+ prize(OtherDoor), \+ (OtherDoor = Selected), OtherDoor \\= Door), [A, B]),\n    0.5::open_door(A) ; 0.5::open_door(B)."}
-```
-
-```problog
-{"HASH": "55F6DA26", "Code": "% Clause 2: If there is only one door A that has no prize and is not the door chosen by the player, then Monty must open it.\nopen_door(Door) :-\n    select_door(Selected),\n    member(Door, [1,2,3]),\n    \+ prize(Door),\n    \+ (Door = Selected),\n    \+ (findall(OtherDoor, (member(OtherDoor, [1,2,3]), \+ prize(OtherDoor), \+ (OtherDoor = Selected), OtherDoor \\= Door), [_]))."}
-```

@@ -1,7 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in the `<origin_code>`:
-
-```problog
-{"HASH": "CFA63C1E", "Code": "play([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    ( beats(P1, P2) -> Result = win\n    ; beats(P2, P1) -> Result = lose\n    ; Result = draw\n    ),\n    play(P1Moves, P2Moves, Results)."}
-```
-
-This is the only new code block that was added in the `<generated_code>` to complete the missing functionality (the `play/3` predicate) from the `<origin_code>`. The other predicates (`compute_score/2` and `determine_winner/3`) were already present in the original code.

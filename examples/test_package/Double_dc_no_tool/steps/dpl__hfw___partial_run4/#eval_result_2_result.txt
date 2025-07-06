@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DB25F467",
-  "ErrorSummary": "Incorrect subtraction precedence handling in parse/2 predicate causing major calculation errors",
-  "SuggestedFix": "Revise the subtraction rule to: parse([N1,-|T], R) :- parse(T, R2), almost_equal(N1 - R2, R). This maintains proper arithmetic precedence.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

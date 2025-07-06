@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DF1FDC54",
-  "ErrorSummary": "Operator priority clash due to unsupported if-then-else syntax (`->`) in ProbLog",
-  "SuggestedFix": "Replace `(PH::make_coin(C,PH), PH = 1 -> NSC is SC + 1 ; NSC = SC)` with ProbLog-compatible syntax: `(PH::make_coin(C,PH), (PH = 1, NSC is SC + 1 ; NSC = SC))`",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

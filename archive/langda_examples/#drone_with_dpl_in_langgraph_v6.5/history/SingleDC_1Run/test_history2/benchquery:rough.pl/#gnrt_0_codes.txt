@@ -1,5 +1,0 @@
-[
-{
-"58E6FAB7": "density(Country, Density) :- pop(Country, Pop), area(Country, Area), Density is Pop / Area. query_pop([Country1, Density1, Country2, Density2]) :- density(Country1, Density1), density(Country2, Density2), Country1 \\= Country2, LowerBound is Density1 * 0.95, UpperBound is Density1 * 1.05, Density2 >= LowerBound, Density2 =< UpperBound."
-}
-]

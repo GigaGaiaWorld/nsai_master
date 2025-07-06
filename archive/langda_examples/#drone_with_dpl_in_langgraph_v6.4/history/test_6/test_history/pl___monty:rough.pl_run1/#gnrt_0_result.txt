@@ -1,7 +1,0 @@
-Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    (   Selected \\= PrizeDoor, Selected \\= Door, PrizeDoor \\= Door ->\n        0.5::open_door(Door) ; 0.5::open_door(OtherDoor)\n    ;   Selected \\= Door, PrizeDoor \\= Door ->\n        true\n    )."}
-```
-
-This is the only code block that was generated to replace the <langda> section in the original code. It implements the open_door/1 predicate according to the specified requirements, handling both the random and deterministic door opening scenarios.

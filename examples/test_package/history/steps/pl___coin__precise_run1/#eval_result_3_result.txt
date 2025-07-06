@@ -1,3 +1,0 @@
-```report
-{"HASH": "A88642CF","ErrorSummary": "Malformed implication syntax in probabilistic condition, incomplete probability integration","SuggestedFix": "Replace the implication operator with proper ProbLog probabilistic syntax. The recursive case should be rewritten as: coins_r(SC,S,CNT) :- CNT > 0, (make_coin(CNT,0.8) -> NSC is SC + 1 ; NSC = SC), CNT1 is CNT - 1, coins_r(NSC,S,CNT1). Also ensure PH::make_coin(C,PH) is properly declared.","Dependencies": [],"NeedRegenerate": true}
-```

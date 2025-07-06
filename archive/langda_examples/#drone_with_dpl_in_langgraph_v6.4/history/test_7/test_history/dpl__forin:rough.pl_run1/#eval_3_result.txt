@@ -1,8 +1,0 @@
-```report
-{
-  "HASH": "501F546D",
-  "Report": "The ProbLog insertion sort implementation contains a logical error in the `insert/3` predicate, causing incorrect sorting behavior. The test result [1, 12, 2, 3, 5, 7] proves the sorting fails to maintain order. The issue stems from flawed comparison logic in `insert/3` where elements are not being placed in correct positions during recursive insertion. The predicate needs complete restructuring to properly handle: 1) Base case termination 2) Recursive insertion positioning 3) Comparison operators. The current '@=<' and '@>' checks don't sufficiently maintain sorted order during insertion.",
-  "Need_regenerate": true,
-  "Dependencies": []
-}
-```

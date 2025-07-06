@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "47D659C8",
-  "ErrorSummary": "Invalid conditional syntax ('->') in bubblesort/3 predicate causing evaluation failure. No probabilistic elements used despite being a Problog implementation.",
-  "SuggestedFix": "Replace the conditional structure (lines 4-7) with Problog-compatible control flow. Example fix:\n\nbubblesort(L, Acc, Sorted) :-\n    bubble(L, L1),\n    (L == L1 ->\n        append(Acc, L, Sorted)\n    ;\n        append(Acc, [H|T], NewAcc),\n        bubblesort(L1, NewAcc, Sorted)\n    ).\n\nAlso consider adding probabilistic elements if required by the problem context.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

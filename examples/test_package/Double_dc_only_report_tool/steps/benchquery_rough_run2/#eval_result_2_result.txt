@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "6FC0DF89",
-  "ErrorSummary": "Missing implementation of 'query_pop/1' predicate, causing the query to fail.",
-  "SuggestedFix": "Implement 'query_pop/1' to compare densities of country pairs within a 5% margin. Example:\nquery_pop([Country1, Density1, Country2, Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    abs(Density1 - Density2) / Density1 =< 0.05.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

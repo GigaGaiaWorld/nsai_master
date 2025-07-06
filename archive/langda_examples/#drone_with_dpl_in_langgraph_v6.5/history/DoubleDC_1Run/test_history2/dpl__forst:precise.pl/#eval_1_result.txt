@@ -1,6 +1,0 @@
-```report
-{"HASH": "E659D458","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```
-```report
-{"HASH": "6931D64E","ErrorSummary": "Missing `sort3` predicate and no handling for insufficient stack elements","SuggestedFix": "1. Implement `sort3` predicate to sort three elements. 2. Add guards to check stack size before sorting. Example fix:\n```prolog\nsort3(X, Y, Z, [A, B, C]) :-\n    min_list([X, Y, Z], A),\n    max_list([X, Y, Z], C),\n    (   A = X, C = Y -> B = Z\n    ;   A = X, C = Z -> B = Y\n    ;   A = Y, C = X -> B = Z\n    ;   A = Y, C = Z -> B = X\n    ;   A = Z, C = X -> B = Y\n    ;   A = Z, C = Y -> B = X\n    ).\n\nstack_op(sort, Stack, SortedStack) :-\n    (   length(Stack, L), L >= 3 ->\n        get_top_n(Stack, 3, [X,Y,Z], Rest),\n        sort3(X, Y, Z, SortedElements),\n        append(SortedElements, Rest, SortedStack)\n    ;   SortedStack = Stack\n    ).\n```","Dependencies": [],"NeedRegenerate": true}
-```

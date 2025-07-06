@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "1. Invalid use of Prolog's ->/2 operator in ProbLog context (line 17). 2. Incorrect probabilistic semantics for negation and implication. 3. Missing type checking and recursion limits.",
-  "SuggestedFix": "1. Replace implies/2 with: prove(implies(A,B)) :- prove(opposite(A)); (prove(A), prove(B)). 2. For opposite/1 and refute/1, implement proper probabilistic negation. 3. Add input validation and recursion limits.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

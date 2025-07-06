@@ -1,3 +1,0 @@
-```problog
-{"HASH": "6FC0DF89","Code": "density(Country, Density) :-\n    pop(Country, Pop),\n    area(Country, Area),\n    Density is Pop / Area.\n\nquery_pop([Country1,Density1,Country2,Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 @< Country2,  % avoid duplicate pairs\n    Diff is abs(Density1 - Density2),\n    MaxDiff is 0.05 * min(Density1, Density2),\n    Diff =< MaxDiff."}
-```

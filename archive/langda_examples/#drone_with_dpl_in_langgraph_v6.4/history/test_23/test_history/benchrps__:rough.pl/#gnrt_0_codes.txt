@@ -1,5 +1,0 @@
-[
-{
-"CFA63C1E": "% Play a single round\nplay_round(P1Move, P2Move, Result) :-\n    beats(P1Move, P2Move), Result = win ;\n    beats(P2Move, P1Move), Result = lose ;\n    Result = draw.\n\n% Play a list of moves\nplay([], [], []).\nplay([P1Move | P1Moves], [P2Move | P2Moves], [Result | Results]) :-\n    play_round(P1Move, P2Move, Result),\n    play(P1Moves, P2Moves, Results)."
-}
-]

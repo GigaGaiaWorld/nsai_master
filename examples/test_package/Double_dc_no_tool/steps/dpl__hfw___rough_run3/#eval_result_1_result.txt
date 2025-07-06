@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "FB41E2F7",
-  "ErrorSummary": "Non-ground arithmetic comparison in almost_equal/2 predicate causes CallModeError during division operations",
-  "SuggestedFix": "Modify almost_equal/2 to handle non-ground intermediate results:\nalmost_equal(X, Y) :- \n    float(X), float(Y), \n    abs(X - Y) < 0.0001.\nalmost_equal(X, Y) :- \n    var(Y), \n    Y is float(X).\nAlso add division by zero protection in parse/2 for division case.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    % Random door opening rules\n    (   Prize = Selected ->\n        % Scenario: The remaining two doors are neither selected by the player nor have any prizes\n        member(Door, [1,2,3]),\n        \+ select_door(Door),\n        \+ prize(Door),\n        0.5::open_door(Door) ; true\n    ;   % Deterministic door opening rules\n        % Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not\n        member(Door, [1,2,3]),\n        \+ select_door(Door),\n        \+ prize(Door)\n    )."}
-```

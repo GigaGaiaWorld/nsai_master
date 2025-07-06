@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "1. Invalid use of Prolog's ->/2 operator in ProbLog context. 2. Missing required predicates (opposite/1, includes/2, extend/2, refute/1). 3. No implementation of probabilistic reasoning features.",
-  "SuggestedFix": "1. Replace implies/2 with: 'prove(implies(A, B)) :- \\+ prove(A); prove(B).' 2. Add missing predicates: opposite/1 for negation, includes/2 for list membership, extend/2 for list prepending, refute/1 for disproving. 3. Add probabilistic examples if needed for testing.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

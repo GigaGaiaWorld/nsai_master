@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "1. Uses unsupported Prolog '->' operator in ProbLog context 2. Missing implementations for required predicates (opposite/1, expand/2, includes/2, extend/2, refute/1) 3. No probabilistic handling",
-  "SuggestedFix": "1. Replace implies/2 with: 'prove(implies(A, B)) :- \\+ prove(A); prove(B).' 2. Add missing predicates: opposite/1 (negation), includes/2 (list membership), extend/2 (list prepend), refute/1 (negation proof) 3. Add probability handling where applicable",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

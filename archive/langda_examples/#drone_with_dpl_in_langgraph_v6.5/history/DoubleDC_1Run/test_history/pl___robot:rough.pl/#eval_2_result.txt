@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "D92532A0",
-  "ErrorSummary": "1. Inconsistent key retention with significant probability of key remaining at original location. 2. Probability mismatch in carrying success rate. 3. Redundant rules in key location predicates.",
-  "SuggestedFix": "1. Refine drops/2 predicate to cover all drop scenarios and adjust probabilities. 2. Review and adjust probabilities for pickup_succeeds/1 and related actions. 3. Simplify at/3 rules for key location to avoid ambiguity. Add debugging queries for tracing key state.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

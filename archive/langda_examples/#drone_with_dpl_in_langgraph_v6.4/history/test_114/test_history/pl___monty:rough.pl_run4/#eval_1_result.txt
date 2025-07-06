@@ -1,8 +1,0 @@
-```report
-{
-  "HASH": "592D75CA",
-  "Report": "The `open_door/1` predicate has significant issues that require regeneration. Key problems include: 1) Invalid ProbLog syntax for conditional logic (`->` operator not supported), 2) Incorrect implementation of deterministic/probabilistic cases (host behavior doesn't match Monty Hall rules), 3) Incompatible use of Prolog predicates (`findall`/`member`) in probabilistic context. The code fails to properly handle the 50% probability requirement when host has choice between two empty doors. The test failure confirms these implementation issues.",
-  "Need_regenerate": true,
-  "Dependencies": []
-}
-```

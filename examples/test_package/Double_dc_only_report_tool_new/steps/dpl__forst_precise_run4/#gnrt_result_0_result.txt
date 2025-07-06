@@ -1,6 +1,0 @@
-```problog
-{"HASH": "E659D458","Code": "stack_op(push(X), Stack, [X|Stack])."}
-```
-```problog
-{"HASH": "6931D64E","Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [A,B,C], Rest),\n    sort0([A,B,C], [SA,SB,SC]),\n    SortedStack = [SA,SB,SC|Rest].\n\nsort0([A,B,C], [SA,SB,SC]) :-\n    (A =< B, B =< C -> SA = A, SB = B, SC = C;\n     A =< C, C =< B -> SA = A, SB = C, SC = B;\n     B =< A, A =< C -> SA = B, SB = A, SC = C;\n     B =< C, C =< A -> SA = B, SB = C, SC = A;\n     C =< A, A =< B -> SA = C, SB = A, SC = B;\n     SA = C, SB = B, SC = A)."}
-```

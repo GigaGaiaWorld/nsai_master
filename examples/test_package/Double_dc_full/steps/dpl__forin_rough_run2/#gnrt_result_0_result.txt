@@ -1,3 +1,0 @@
-```problog
-{"HASH": "501F546D","Code": "insertion_sort([], []).\ninsertion_sort([Head|Tail], Sorted) :-\n    insertion_sort(Tail, SortedTail),\n    insert(Head, SortedTail, Sorted).\ninsert(X, [], [X]).\ninsert(X, [Y|Tail], [X,Y|Tail]) :-\n    X =< Y.\ninsert(X, [Y|Tail], [Y|SortedTail]) :-\n    X > Y,\n    insert(X, Tail, SortedTail)."}
-```

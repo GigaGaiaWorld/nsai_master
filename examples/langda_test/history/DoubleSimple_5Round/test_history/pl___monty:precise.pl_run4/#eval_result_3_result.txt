@@ -1,6 +1,0 @@
-```report
-{"HASH": "A4F0EAE2","ErrorSummary": "The open_door/1 rule is incomplete and incorrectly structured. The current implementation doesn't properly handle the case where there's only one unselected, non-prize door available.","SuggestedFix": "Replace the current open_door/1 rule with:\n\nopen_door(A) :-\n    select_door(Selected),\n    member(A,[1,2,3]),\n    \\+ prize(A),\n    \\+ select_door(A),\n    \\+ (member(B,[1,2,3]), B \\= A, \\+ prize(B), \\+ select_door(B)).\n\nAnd ensure the probabilistic version (0.5::open_door(A) ; 0.5::open_door(B)) handles the case when exactly two doors are available for opening.","Dependencies": [],"NeedRegenerate": true}
-```
-```report
-{"HASH": "GLOBAL","ErrorSummary": "No issues found in the global structure and other predicates","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```

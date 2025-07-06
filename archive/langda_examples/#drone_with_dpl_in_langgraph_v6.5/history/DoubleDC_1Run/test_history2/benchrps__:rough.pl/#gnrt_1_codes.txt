@@ -1,5 +1,0 @@
-[
-{
-"CFA63C1E": "valid_move(Move) :- move(Move).\n\nplay_round(P1Move, P2Move, Result) :-\n    valid_move(P1Move), valid_move(P2Move),\n    ( beats(P1Move, P2Move) -> Result = win\n    ; beats(P2Move, P1Move) -> Result = lose\n    ; Result = draw\n    ).\n\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :-\n    play_round(P1, P2, Result),\n    play(P1Moves, P2Moves, Results)."
-}
-]

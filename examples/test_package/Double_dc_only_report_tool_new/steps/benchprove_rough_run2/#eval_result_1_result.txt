@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "ProbLog cannot process '->' operator in meta-interpreter context, missing implementations for opposite/1 and refute/1",
-  "SuggestedFix": "1. Replace implies/2 with ProbLog-compatible version: 'prove(implies(A, B)) :- prove(not(A)); prove(A), prove(B).'\n2. Add missing predicates:\n   - opposite/1: 'prove(opposite(A)) :- prove(not(A)).'\n   - refute/1: 'prove(refute(A)) :- \+ prove(A).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

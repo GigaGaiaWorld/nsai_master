@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block corresponding to the `<Langda>` section in the `<origin_code>`:
-
-```problog
-{"HASH": "62719B9D", "Code": "flap_position(Prev, Old),\n    \+ goal_reached(Prev),\n    use_actuator(Time, A),\n    actuator_strength(A, AS),\n    goal(GP),\n    (GP > Old -> AE is AS ; AE is -AS),\n    wind_effect(Time, WE),\n    Pos is Old + AE + WE."}
-```

@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block from the `<generated_code>` that corresponds to the `<Langda>` section in the `<origin_code>`:
-
-```problog
-{"HASH": "1039E900", "Code": "digit(O), all_different([O,R,N,Y,E,D]),\n    sumdigit(C2, E, O, N, C3),\n    \n    digit(M), all_different([M,O,R,N,Y,E,D]),\n    sumdigit(C3, S, M, O, C4),\n    \n    digit(S), leftdigit(S), all_different([S,M,O,R,N,Y,E,D]),\n    sumdigit(C4, 0, 0, M, _),\n    \n    % Ensure the sum SEND + MORE = MONEY\n    SEND is 1000*S + 100*E + 10*N + D,\n    MORE is 1000*M + 100*O + 10*R + E,\n    MONEY is 10000*M + 1000*O + 100*N + 10*E + Y,\n    SEND + MORE =:= MONEY."}
-```

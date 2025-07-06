@@ -1,5 +1,0 @@
-[
-{
-"CFA63C1E": "play_round(P1, P2, Result) :- beats(P1, P2), Result = win ; beats(P2, P1), Result = lose ; Result = draw.\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :- play_round(P1, P2, Result), play(P1Moves, P2Moves, Results)."
-}
-]

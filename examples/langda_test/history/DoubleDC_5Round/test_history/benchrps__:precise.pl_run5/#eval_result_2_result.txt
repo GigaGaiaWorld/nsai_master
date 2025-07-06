@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CE4B5362",
-  "ErrorSummary": "Non-ground comparison in 'Score > 0' and 'Score < 0' causing CallModeError",
-  "SuggestedFix": "Ensure 'Score' is ground before comparison by modifying the 'compute_score' predicate to use 'is/2' for arithmetic operations. Example fix:\ncompute_score([], 0).\ncompute_score([win | Rs], S) :- compute_score(Rs, S1), S is S1 + 1.\ncompute_score([lose | Rs], S) :- compute_score(Rs, S1), S is S1 - 1.\ncompute_score([draw | Rs], S) :- compute_score(Rs, S1), S is S1.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

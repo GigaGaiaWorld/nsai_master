@@ -1,3 +1,0 @@
-```report
-{"HASH": "A5C06F43", "ErrorSummary": "Unsupported if-then-else construct ('->') in arithmetic expression causing ArithmeticError", "SuggestedFix": "Replace the line 'Pos is PrevPos + (G > PrevPos -> Strength ; -Strength) + WindEffect.' with 'Pos is PrevPos + ( (G > PrevPos, Strength) ; (\\+ (G > PrevPos), -Strength) ) + WindEffect.' to use ProbLog-supported disjunction and negation.", "Dependencies": [], "NeedRegenerate": true}
-```

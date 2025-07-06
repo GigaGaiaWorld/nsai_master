@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block corresponding to the <langda> placeholder in the <origin_code>:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Random Door Opening Rules\n    (   Selected \\= PrizeDoor ->\n        % Deterministic case: host opens the empty door\n        (   PrizeDoor =:= Selected ->\n            fail\n        ;   findall(D, (member(D, [1,2,3]), \\+ select_door(D), \\+ prize(D)), Doors),\n            member(Door, Doors)\n        )\n    ;   % Probabilistic case: host randomly opens one of the two empty doors\n        findall(D, (member(D, [1,2,3]), \\+ select_door(D), \\+ prize(D)), Doors),\n        length(Doors, L),\n        L > 0,\n        Prob is 1 / L,\n        Prob::member(Door, Doors)\n    )."}
-```

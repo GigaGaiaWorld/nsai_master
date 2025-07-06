@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "62719B9D",
-  "ErrorSummary": "1. Decreasing probability of goal_reached over time. 2. Non-zero overrun_exception probabilities due to unclamped position calculations. 3. Wind effects may cause positions to exceed legal bounds.",
-  "SuggestedFix": "1. Correct actuator_strength(b,1). 2. Modify attempted_flap_position to clamp Pos within [0,10]:\n   attempted_flap_position(Time,Pos) :-\n       Time > 0,\n       Prev is Time-1,\n       flap_position(Prev, Old),\n       \+ goal_reached(Prev),\n       use_actuator(Time, A),\n       actuator_strength(A, AS),\n       goal(GP),\n       AE is sign(GP - Old) * AS,\n       wind_effect(Time, WE),\n       TempPos is Old + AE + WE,\n       Pos is max(0, min(10, TempPos)).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

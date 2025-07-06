@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "1. Unsupported '->' operator in implies/2 predicate 2. Missing implementations for all required extended predicates (opposite/1, expand/2, includes/2, extend/2, refute/1)",
-  "SuggestedFix": "1. Replace implies/2 with: prove(implies(A,B)) :- \\+ prove(A); prove(B). 2. Add missing predicates: prove(opposite(A)) :- \\+ prove(A). prove(includes(List,Elem)) :- member(Elem,List). prove(extend(List,Elem,[Elem|List])). prove(refute(A)) :- \\+ prove(A). prove(expand(X,Y)) :- expand(X,Y).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

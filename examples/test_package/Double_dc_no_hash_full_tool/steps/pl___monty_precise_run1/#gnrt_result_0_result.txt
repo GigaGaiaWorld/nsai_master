@@ -1,6 +1,0 @@
-```problog
-{"HASH": "E2FA63E7","Code": "0.5::open_door(A) ; 0.5::open_door(B) :- member(A, [1,2,3]), member(B, [1,2,3]), A < B, \+ select_door(A), \+ select_door(B), \+ prize(A), \+ prize(B)."}
-```
-```problog
-{"HASH": "B4161B21","Code": "open_door(A) :- member(A, [1,2,3]), \+ select_door(A), \+ prize(A), \+ (member(B, [1,2,3]), B \= A, \+ select_door(B), \+ prize(B))."}
-```

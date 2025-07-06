@@ -1,5 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
-
-```problog
-{"HASH": "2DFC0CFD","Code": "% 1. implies/2: succeeds if the implication holds\nimplies(A, B) :- \\+ (A, \\+ B).\n\n% 2. opposite/1: succeeds if the negation holds\nopposite(Goal) :- \\+ Goal.\n\n% 3. expand/2: uses already defined rules\nexpand(Goal, Result) :- call(Goal, Result).\n\n% 4. includes/2: checks if an element is in a list\nincludes(List, Elem) :- member(Elem, List).\n\n% 5. extend/2: adds an element to the head of a list\nextend(List, Elem, [Elem|List]).\n\n% 6. refute/1: succeeds if the goal cannot be proven\nrefute(Goal) :- \\+ prove(Goal)."}
-```

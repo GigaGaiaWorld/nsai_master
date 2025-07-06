@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Missing implementations for all required extended predicates (implies/2, opposite/1, includes/2, extend/3) and incomplete expand/2 implementation",
-  "SuggestedFix": "Add the following implementations:\n1. implies(A,B) :- prove(A) -> prove(B).\n2. opposite(A) :- \\+prove(A).\n3. includes(List,Elem) :- member(Elem,List).\n4. extend(List,Elem,Result) :- Result = [Elem|List].\n5. Complete expand/2 with proper predicate definition before examples",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

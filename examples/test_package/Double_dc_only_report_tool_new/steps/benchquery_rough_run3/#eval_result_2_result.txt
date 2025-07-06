@@ -1,3 +1,0 @@
-```report
-{"HASH": "6FC0DF89","ErrorSummary": "Missing required query_pop/1 predicate and density comparison logic","SuggestedFix": "Add the following predicate:\nquery_pop([Country1,Density1,Country2,Density2]) :-\n    density(Country1, Density1),\n    density(Country2, Density2),\n    Country1 \\= Country2,\n    abs(Density1 - Density2) / min(Density1, Density2) =< 0.05.","Dependencies": [],"NeedRegenerate": true}
-```

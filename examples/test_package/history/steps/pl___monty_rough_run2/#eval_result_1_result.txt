@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "751033ED",
-  "ErrorSummary": "Multiple syntax errors in open_door/1 predicate including malformed conditional statements and incorrect probability annotation placement",
-  "SuggestedFix": "Restructure open_door/1 into separate clauses:\n1. open_door(Door) :- select_door(Selected), findall(D, (member(D,[1,2,3]), \+ prize(D), D \\= Selected), AvailableDoors), length(AvailableDoors, Len), open_available(Len, AvailableDoors, Door).\n2. open_available(2, [A,B], Door) :- 0.5::door_temp(A), 0.5::door_temp(B), door_temp(Door).\n3. open_available(1, [A], A).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

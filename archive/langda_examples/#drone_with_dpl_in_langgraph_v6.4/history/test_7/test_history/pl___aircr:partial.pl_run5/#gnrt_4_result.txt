@@ -1,7 +1,0 @@
-Here's the extracted and formatted code block from the `<generated_code>` that corresponds to the `<langda>` block in the `<origin_code>`:
-
-```problog
-{"HASH": "779B4ADF", "Code": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(GP),\n distance(Pos, GP, Distance),\n (Distance =:= 0 -> true ; flap_position(Time-1,PrevPos),\n distance(PrevPos, GP, PrevDistance),\n Distance < PrevDistance).\n\n% Helper predicate to calculate distance between current position and goal\ndistance(Pos, GP, Distance) :-\n Distance is abs(Pos - GP)."}
-```
-
-This includes both the completed `goal_reached` predicate and the new helper predicate `distance` that was added to support the goal tracking functionality. The code now properly checks if the current position is closer to the goal than the previous position, addressing the requirements mentioned in the original report.

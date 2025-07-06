@@ -1,5 +1,0 @@
-[
-{
-"06576BEB": "number([], 0).\nnumber([H|T], N) :-\n    digit(H, D),\n    number(T, N1),\n    N is N1 * 10 + D.\nnumber([H|_], _) :-\n    \\+ digit(H, _),\n    fail."
-}
-]

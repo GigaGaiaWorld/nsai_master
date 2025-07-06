@@ -1,5 +1,0 @@
-[
-{
-"501F546D": "% Insertion sort implementation in Problog\ninsertion_sort(List, Sorted) :-\n    insertion_sort_aux(List, [], Sorted).\n\n% Base case: when input list is empty, return accumulated sorted list\ninsertion_sort_aux([], Acc, Acc).\n\n% Recursive case: insert head into sorted position in accumulator\ninsertion_sort_aux([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort_aux(T, NewAcc, Sorted).\n\n% Insert an element into a sorted list\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs)."
-}
-]

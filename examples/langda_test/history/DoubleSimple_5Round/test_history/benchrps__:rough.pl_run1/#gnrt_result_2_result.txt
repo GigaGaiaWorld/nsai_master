@@ -1,5 +1,0 @@
-Based on the requirements in the <langda> block, we need to define the basic game rules of rock-paper-scissors. The current code is incomplete as it's missing the core game play rules. Here's the regenerated code:
-
-```problog
-{"HASH": "CFA63C1E","Code": "move(rock).\nmove(paper).\nmove(scissor).\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock).\n\ngame_result(player1, player2, win) :- beats(player1, player2).\ngame_result(player1, player2, lose) :- beats(player2, player1).\ngame_result(_, _, draw).\n\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [R|Rs]) :- game_result(P1, P2, R), play(P1s, P2s, Rs)."}
-```

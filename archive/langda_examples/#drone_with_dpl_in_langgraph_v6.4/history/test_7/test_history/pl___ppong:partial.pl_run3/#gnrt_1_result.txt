@@ -1,9 +1,0 @@
-Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> block in the origin_code.
-
-The only code block that was completed is the team_strength predicate for multiplayer teams, which uses the minimum strength approach as specified in the requirements.
-
-Here's the formatted JSON output:
-
-```problog
-{"HASH": "766936E0", "Code": "team_strength([P,P2|L],G,S) :- team_strength([P],G,S1), team_strength([P2|L],G,S2), min(S1,S2,S)."}
-```

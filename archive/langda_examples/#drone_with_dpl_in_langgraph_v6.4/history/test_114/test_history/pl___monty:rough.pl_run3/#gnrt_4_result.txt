@@ -1,9 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` block in `<origin_code>`:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    (   Prize = Selected ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ prize(D)), Doors),\n        length(Doors, Len),\n        Len > 0,\n        0.5::door_prob(Door, Doors)\n    ;   Prize \\= Selected ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ prize(D)), [Door])\n    )."}
-```
-
-```problog
-{"HASH": "592D75CA", "Code": "0.5::door_prob(Door, Doors) :- random_select(Door, Doors)."}
-```

@@ -1,3 +1,0 @@
-```report
-{"HASH": "47D659C8", "ErrorSummary": "Undefined predicate 'append/3' in ProbLog environment", "SuggestedFix": "Replace the call to 'append/3' with a custom implementation:\nappend([], L, L).\nappend([H|T], L, [H|R]) :- append(T, L, R).\nThis should be added to the code before the bubblesort/3 predicate.", "Dependencies": [], "NeedRegenerate": true}
-```

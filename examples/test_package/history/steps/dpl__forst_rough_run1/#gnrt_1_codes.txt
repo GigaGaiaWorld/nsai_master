@@ -1,5 +1,0 @@
-[
-{
-"5E40E418": "stack_op(push(X), Stack, [X | Stack]).\nstack_op(pop, [Top | Rest], Rest) :-\n    Top = Top.\nstack_op(dup, [Top | Rest], [Top, Top | Rest]).\nstack_op(swap, [X, Y | Rest], [Y, X | Rest]).\nstack_op(over, [X, Y | Rest], [Y, X, Y | Rest]).\nstack_op(rot, [X, Y, Z | Rest], [Y, Z, X | Rest])."
-}
-]

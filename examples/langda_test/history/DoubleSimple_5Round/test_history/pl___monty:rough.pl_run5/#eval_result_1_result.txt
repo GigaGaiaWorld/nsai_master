@@ -1,3 +1,0 @@
-```report
-{"HASH": "55F6DA26","ErrorSummary": "Missing predicate definition for random_select/2 which is used in open_door/1 clause","SuggestedFix": "Add the random_select/2 predicate definition before the open_door/1 clause. The implementation should randomly select an element from a list. Example:\n\nrandom_select(X, [X]).\nrandom_select(X, [Y|Ys]) :- random_select(X, Ys).","Dependencies": [],"NeedRegenerate": true}
-```

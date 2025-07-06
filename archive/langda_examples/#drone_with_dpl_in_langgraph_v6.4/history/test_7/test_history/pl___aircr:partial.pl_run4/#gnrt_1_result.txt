@@ -1,7 +1,0 @@
-Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> blocks in the original code:
-
-```problog
-{"HASH": "779B4ADF", "Code": "goal_reached(Time) :-\n flap_position(Time,Pos),\n goal(Pos),\n cumulative_effect(Time, Pos).\n\n% Helper predicate to account for cumulative positioning behavior\ncumulative_effect(Time, Pos) :-\n Time > 0,\n Prev is Time - 1,\n flap_position(Prev, OldPos),\n (Pos =:= OldPos -> true ; cumulative_effect(Prev, OldPos))."}
-```
-
-The generated code includes both the original goal_reached predicate (now enhanced with cumulative_effect) and the new helper predicate cumulative_effect that was added to improve the system's convergence behavior. The hash remains the same as in the original <langda> block since this is the corresponding generated version of that section.

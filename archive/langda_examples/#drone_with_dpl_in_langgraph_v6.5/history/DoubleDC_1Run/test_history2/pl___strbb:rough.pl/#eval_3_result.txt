@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "0805B4F6",
-  "ErrorSummary": "Syntax error in `bb(N)` definition due to improper clause separation and formatting. The predicate fails for `N=0` and `N=1` but is not correctly formatted.",
-  "SuggestedFix": "Correct the syntax by separating clauses properly:\n\n```prolog\nbb(0) :- fail.\nbb(1) :- fail.\nbb(N) :-\n    N > 1,\n    between(1, N-1, I),\n    pick(I, b),\n    pick(I + 1, b).\n```",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

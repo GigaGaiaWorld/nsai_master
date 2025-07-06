@@ -1,7 +1,0 @@
-```report
-{
-    "HASH": "DA97FB01",
-    "Report": "The code implements an insertion sort algorithm in Prolog. The error occurs because the comparison operators '=<' and '>' require both arguments to be ground terms (instantiated values), but in the recursive calls, one of the arguments is a variable (X1). This is a common issue in Prolog when trying to use arithmetic comparisons with uninstantiated variables. The logic of the sorting algorithm itself is correct, but it cannot be executed in this form in standard Prolog or ProbLog due to the arithmetic comparison restrictions. The code would work if all elements in the list were known at query time.",
-    "Need_regenerate": "true"
-}
-```

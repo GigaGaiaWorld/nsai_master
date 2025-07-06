@@ -1,5 +1,0 @@
-[
-{
-"9BA21093": "parse([N1, + | T], R) :- \n    parse(T, R1),\n    almost_equal(R, N1 + R1).\n\nparse([N1, - | T], R) :- \n    parse(T, R1),\n    almost_equal(R, N1 - R1).\n\nparse([N1, * | T], R) :- \n    parse(T, R1),\n    almost_equal(R, N1 * R1).\n\nparse([N1, / | T], R) :- \n    parse(T, R1),\n    almost_equal(R, N1 / R1)."
-}
-]

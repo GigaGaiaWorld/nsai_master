@@ -1,7 +1,0 @@
-Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
-
-```problog
-{"HASH": "47D659C8","Code": "% Define the append/3 predicate for list concatenation\nappend([], L, L).\nappend([H|T], L, [H|R]) :-\n    append(T, L, R).\n\n% Bubblesort implementation\nbubblesort([], Acc, Acc).\n\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, NewList, Swapped),\n    (Swapped = true,\n     bubblesort(NewList, Acc, Sorted)\n    ;\n     append(NewList, Acc, Sorted)\n    ).\n\nbubble_pass([], [], false).\n\nbubble_pass([X, Y | Rest], [Y | NewRest], true) :-\n    X > Y,\n    bubble_pass([X | Rest], NewRest, _).\n\nbubble_pass([X, Y | Rest], [X | NewRest], Swapped) :-\n    X =< Y,\n    bubble_pass([Y | Rest], NewRest, Swapped).\n\nbubble_pass([X], [X], false).\n\nforth_sort(L, L2) :- bubblesort(L, [], L2).\nquery(forth_sort([3,1,2,5,7,12], X))."}
-```
-
-Note: I've maintained the same HASH value "47D659C8" from the original code block since this is the completed version of that same code. The generated code includes the missing `append/3` predicate definition that was needed to make the bubblesort implementation work correctly.

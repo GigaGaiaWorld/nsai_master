@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DF1FDC54",
-  "ErrorSummary": "Undefined '->/2' operator in recursive rule, causing the clause to fail during evaluation.",
-  "SuggestedFix": "Replace the flawed recursive rule with: 'coins_r(SC, SC, 0). coins_r(SC, S, CNT) :- CNT > 0, (coin(c1) -> SC1 is SC + 1 ; SC1 is SC), CNT1 is CNT - 1, coins_r(SC1, S, CNT1).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

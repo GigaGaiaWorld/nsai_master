@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "2DFC0CFD",
-  "ErrorSummary": "1. Missing `prove(expand/2)` rule causing `expand(double(3),6` to fail. 2. Typo in `prove` (line 4).",
-  "SuggestedFix": "1. Add `prove(expand(A, B)) :- expand(A, B).` to handle `expand/2` queries. 2. Correct typo in meta-interpreter (`prove` to `prove`).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "2DFC0CFD",
-  "ErrorSummary": "Unsupported '->' operator in implies/2 predicate, causing ProbLog compatibility failure",
-  "SuggestedFix": "Replace 'implies(Goal1, Goal2) :- Goal1 -> prove(Goal2) ; \\+ prove(Goal1).' with 'implies(Goal1, Goal2) :- (prove(Goal1), prove(Goal2)) ; \\+ prove(Goal1).' to maintain ProbLog declarative semantics",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

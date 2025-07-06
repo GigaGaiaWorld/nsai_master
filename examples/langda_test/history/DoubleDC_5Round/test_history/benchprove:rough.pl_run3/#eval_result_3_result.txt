@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "2DFC0CFD",
-  "ErrorSummary": "Unsupported '->' operator in ProbLog for implies/2 predicate, causing parsing failure",
-  "SuggestedFix": "Replace 'implies(A, B) :- (A -> B ; \\+ A).' with 'implies(A, B) :- (prove(A), prove(B)) ; \\+ prove(A).' to comply with ProbLog syntax",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

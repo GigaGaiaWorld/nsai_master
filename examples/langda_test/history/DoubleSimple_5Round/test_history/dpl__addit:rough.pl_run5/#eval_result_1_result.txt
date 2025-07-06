@@ -1,3 +1,0 @@
-```report
-{"HASH": "06576BEB", "ErrorSummary": "Unknown function 'length'/1 called in number predicate. The length/1 predicate is not defined in the program.", "SuggestedFix": "Add a length/2 predicate definition before the number predicate. For example:\nlength([], 0).\nlength([_|T], L) :- length(T, LT), L is LT + 1.\n\nThen modify the number predicate to use length/2:\nnumber([], 0).\nnumber([H|T], N) :- digit(H, D), number(T, NT), length(T, L), N is NT + D * (10 ^ L).", "Dependencies": [], "NeedRegenerate": true}
-```

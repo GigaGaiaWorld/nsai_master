@@ -1,8 +1,0 @@
-[
-{
-"A4F0EAE2": "0.5::open_door(A) ; 0.5::open_door(B) :-\\n    select_door(Selected),\\n    member(A, [1,2,3]),\\n    member(B, [1,2,3]),\\n    A < B,\\n    \\+ prize(A),\\n    \\+ prize(B),\\n    \\+ select_door(A),\\n    \\+ select_door(B)."
-},
-{
-"F0FDE8AB": "open_door(A) :-\\n    select_door(Selected),\\n    member(A, [1,2,3]),\\n    \\+ prize(A),\\n    \\+ select_door(A),\\n    \\+ (member(Other, [1,2,3]), Other \\= A, Other \\= Selected, \\+ prize(Other))."
-}
-]

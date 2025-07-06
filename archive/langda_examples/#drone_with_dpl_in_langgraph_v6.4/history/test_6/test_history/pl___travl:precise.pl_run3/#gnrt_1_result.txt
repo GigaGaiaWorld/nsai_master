@@ -1,3 +1,0 @@
-```problog
-{"HASH": "E09B4F54","Code": "inf(X) :- \n    % Initial infection with probability 0.1\n    0.1::initialInf(X).\n\ninf(X) :-\n    % Contact transmission logic\n    contact(X, Y),\n    inf(Y),\n    (   susceptible(X) -> 0.8::true ; 0.6::true ).\n\ninf(X) :-\n    % Additional travel risk with probability 0.2\n    riskyTravel(X),\n    0.2::true."}
-```

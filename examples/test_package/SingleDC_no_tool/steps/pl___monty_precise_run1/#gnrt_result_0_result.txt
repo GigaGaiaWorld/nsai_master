@@ -1,8 +1,0 @@
-Here are the extracted and formatted code blocks corresponding to the <langda> blocks in the <origin_code>:
-
-```problog
-{"HASH": "E2FA63E7", "Code": "0.5::open_door(A) ; 0.5::open_door(B) :-    select_door(Selected),    find_empty_doors(Selected, EmptyDoors),    length(EmptyDoors, 2),    EmptyDoors = [A,B],    A < B."}
-```
-```problog
-{"HASH": "B4161B21", "Code": "open_door(A) :-    select_door(Selected),    find_empty_doors(Selected, [A])."}
-```

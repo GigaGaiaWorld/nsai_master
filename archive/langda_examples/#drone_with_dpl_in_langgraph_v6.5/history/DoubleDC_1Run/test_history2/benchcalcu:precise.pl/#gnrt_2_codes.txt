@@ -1,5 +1,0 @@
-[
-{
-"623E07CC": "query_sum([A,B,C,D,E]) :- leftdigit(A), leftdigit(B), leftdigit(C), digit(D), digit(E), all_different([A,B,C,D,E]), AB is 10*A + B, BCD is 100*B + 10*C + D, CDE is 100*C + 10*D + E, AB + BCD =:= CDE, sumdigit(0, B, D, E, Carry1), sumdigit(Carry1, A, C, D, Carry2), sumdigit(Carry2, 0, B, C, Carry3), Carry3 = 0."
-}
-]

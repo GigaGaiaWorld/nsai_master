@@ -1,5 +1,0 @@
-[
-{
-"501F546D": "insert_element(X,[],[X]).\ninsert_element(X,[Y|Ys],[X,Y|Ys]) :- X =< Y.\ninsert_element(X,[Y|Ys],[Y|Zs]) :- X > Y, insert_element(X,Ys,Zs).\n\ninsertion_sort([],[]).\ninsertion_sort([X|Xs],Sorted) :- insertion_sort(Xs,SortedTail), insert_element(X,SortedTail,Sorted).\n\n% Example query:\nquery(insertion_sort([3,1,2,5,7,12],X))."
-}
-]

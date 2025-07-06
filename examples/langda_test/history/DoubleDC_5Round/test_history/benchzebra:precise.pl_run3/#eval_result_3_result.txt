@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3AE99F0E",
-  "ErrorSummary": "Undefined 'member/2' predicate causing execution failure",
-  "SuggestedFix": "Add the following definition to the code:\n\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

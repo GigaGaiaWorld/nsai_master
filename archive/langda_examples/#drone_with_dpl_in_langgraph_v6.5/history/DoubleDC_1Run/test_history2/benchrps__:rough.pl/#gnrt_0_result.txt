@@ -1,3 +1,0 @@
-```problog
-{"HASH": "CFA63C1E","Code": "play_round(P1Move, P2Move, Result) :- beats(P1Move, P2Move), Result = win ; beats(P2Move, P1Move), Result = lose ; Result = draw.\n\nplay([], [], []).\nplay([P1 | P1Moves], [P2 | P2Moves], [Result | Results]) :- play_round(P1, P2, Result), play(P1Moves, P2Moves, Results)."}
-```

@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3AE99F0E",
-  "ErrorSummary": "Missing 'member/2' predicate in ProbLog context, causing the entire puzzle logic to fail",
-  "SuggestedFix": "Add the following definition to the code:\n\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n\nAlternatively, import the 'lists' module if available in ProbLog to access 'member/2'.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "5E40E418",
-  "ErrorSummary": "1. No empty stack handling 2. Sort limited to top 3 elements 3. No probabilistic features used 4. No type checking",
-  "SuggestedFix": "1. Add guard clauses for empty stack operations (e.g., stack_op(pop, [], _) :- fail). 2. Modify sort operation to handle entire stack by removing get_top_n limitation. 3. Consider adding probabilistic variants of operations (e.g., prob_push). 4. Add input validation (e.g., is_list(Stack) checks).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

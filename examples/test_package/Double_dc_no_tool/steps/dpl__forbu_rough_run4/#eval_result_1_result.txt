@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "47D659C8",
-  "ErrorSummary": "ProbLog syntax incompatibility with Prolog's conditional operator (->/2) causing execution failure",
-  "SuggestedFix": "Replace the conditional statements with ProbLog-compatible syntax. For the main conditional in bubblesort/3, rewrite as:\n(Swapped == true, bubblesort(NewList, Acc, Sorted); append(Acc, NewList, Sorted)).\nSimilarly modify the conditional in bubble_pass/4.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

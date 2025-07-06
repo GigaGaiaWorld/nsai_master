@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "6931D64E",
-  "ErrorSummary": "Operator priority clash in the 'sort' predicate due to ProbLog's parsing constraints",
-  "SuggestedFix": "Rewrite the 'sort' predicate to avoid operator clashes. Replace 'sort([X,Y,Z], SortedElements)' with a helper predicate 'sorted([X,Y,Z], SortedElements)' and define it separately. Ensure proper parenthesization if needed.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

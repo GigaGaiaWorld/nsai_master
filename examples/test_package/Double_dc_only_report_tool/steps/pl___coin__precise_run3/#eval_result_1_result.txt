@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "A88642CF",
-  "ErrorSummary": "Undefined '->/2' operator in ProbLog context, preventing probabilistic evaluation of the coin toss condition.",
-  "SuggestedFix": "Replace the '->/2' operator with ProbLog-compatible probabilistic handling. For example, rewrite the recursive rule as:\n\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    prob_coin(CNT, P),\n    P::coin_success(CNT),\n    (coin_success(CNT) ->\n        SC1 is SC + 1,\n        coins_r(SC1, S, CNT1)\n    ;\n        coins_r(SC, S, CNT1)\n    ).\n\nAlso, ensure 'prob_coin/2' is defined to map CNT to its probability (0.8).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

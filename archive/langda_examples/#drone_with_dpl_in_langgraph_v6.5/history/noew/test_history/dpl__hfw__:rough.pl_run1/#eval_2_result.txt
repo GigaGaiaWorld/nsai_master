@@ -1,3 +1,0 @@
-```report
-{"HASH": "FB41E2F7", "ErrorSummary": "Missing parse/2 predicates for subtraction (-), multiplication (*), and division (/). Incorrect handling of recursive operations in expressions.", "SuggestedFix": "Add the missing parse/2 rules for subtraction, multiplication, and division. Ensure recursive parsing of the entire list of symbols. For example:\nparse([N1, -, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    R is X - Y.\nparse([N1, *, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    R is X * Y.\nparse([N1, /, N2 | T], R) :-\n    almost_equal(N1, X),\n    parse([N2 | T], Y),\n    Y =\\= 0,\n    R is X / Y.", "Dependencies": [], "NeedRegenerate": true}
-```

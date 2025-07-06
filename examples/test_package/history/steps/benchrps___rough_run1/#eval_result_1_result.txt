@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "Unsupported conditional operator '->' in Problog causing execution failure",
-  "SuggestedFix": "Replace the conditional operator with separate clauses:\nplay([P1|P1s], [P2|P2s], [win|Results]) :- beats(P1, P2), play(P1s, P2s, Results).\nplay([P1|P1s], [P2|P2s], [lose|Results]) :- beats(P2, P1), play(P1s, P2s, Results).\nplay([P1|P1s], [P2|P2s], [draw|Results]) :- \\+ beats(P1, P2), \\+ beats(P2, P1), play(P1s, P2s, Results).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

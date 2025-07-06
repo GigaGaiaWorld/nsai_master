@@ -1,3 +1,0 @@
-```problog
-{"HASH": "9AE7BB23","Code": "relative_offset(EastOffset, NorthOffset) :-    user_location(UserLon, UserLat),    special_zone_location(ZoneLon, ZoneLat),    DeltaLat is ZoneLat - UserLat,    DeltaLon is ZoneLon - UserLon,    NorthOffset is DeltaLat * 111194.93,    EastOffset is DeltaLon * 111194.93 * cos(UserLat * pi / 180)."}
-```

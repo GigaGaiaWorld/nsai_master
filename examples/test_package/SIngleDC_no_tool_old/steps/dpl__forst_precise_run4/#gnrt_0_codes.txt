@@ -1,8 +1,0 @@
-[
-{
-"E659D458": "stack_op(push(X), Stack, [X|Stack])."
-},
-{
-"6931D64E": "stack_op(sort, Stack, SortedStack) :- \n    get_top_n(Stack, 3, [A,B,C], Rest),\n    sort3(A, B, C, Sorted),\n    append(Sorted, Rest, SortedStack).\n\nsort3(A, B, C, [X,Y,Z]) :-\n    permutation([A,B,C], [X,Y,Z]),\n    X =< Y, Y =< Z."
-}
-]

@@ -1,9 +1,0 @@
-Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> placeholder in the origin_code. The origin_code had one <langda> block with hash CFA63C1E, but the generated code doesn't actually contain any new code that wasn't already present in the origin_code (except for the play/3 predicate which is referenced but not defined).
-
-However, since the <langda> placeholder asked for "defining the game rules of rock-paper-scissors" and the generated code shows the basic rules at the top, I'll extract that portion:
-
-```problog
-{"HASH": "CFA63C1E","Code": "% Three gestures\nmove(rock).\nmove(paper).\nmove(scissor).\n% Win-lose relationship: X beats Y\nbeats(rock, scissor).\nbeats(scissor, paper).\nbeats(paper, rock)."}
-```
-
-Note: The generated code doesn't actually show any new implementation for the play/3 predicate that's referenced in the determine_winner predicate, which would be needed to make the code fully functional. The basic rules shown above were already present in the origin_code before the <langda> placeholder.

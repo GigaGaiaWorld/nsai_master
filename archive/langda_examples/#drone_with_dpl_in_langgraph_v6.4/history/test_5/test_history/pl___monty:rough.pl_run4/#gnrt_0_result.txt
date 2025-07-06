@@ -1,3 +1,0 @@
-```problog
-{"HASH": "592D75CA","Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), Doors),\n    (   Doors = [D1, D2] ->\n        0.5::open_door(D1) ; 0.5::open_door(D2)\n    ;   Doors = [D] ->\n        open_door(D)\n    )."}
-```

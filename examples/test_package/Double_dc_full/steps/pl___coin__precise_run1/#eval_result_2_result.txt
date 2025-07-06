@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "A88642CF",
-  "ErrorSummary": "Incorrect probability computation due to misuse of `*->` operator and failure to propagate probabilistic outcomes correctly. The result `total(0) = 1.0000` is invalid for the given scenario.",
-  "SuggestedFix": "Replace the recursive rule with explicit probabilistic handling. For example:\n\n```prolog\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    (coin(CNT), SC1 is SC + 1, coins_r(SC1, S, CNT1) ; \n    (not(coin(CNT)), coins_r(SC, S, CNT1)).\n```\n\nThis ensures both success and failure cases are properly evaluated and their probabilities are accumulated.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,5 +1,0 @@
-[
-{
-"35747D5A": "query_sum([A,B,C,D,E]) :-\n    leftdigit(A), % A cannot be 0\n    leftdigit(B), % B cannot be 0 (since it's the first digit of BCD)\n    leftdigit(C), % C cannot be 0 (since it's the first digit of CDE)\n    digit(D),\n    digit(E),\n    all_different([A,B,C,D,E]), % All letters must be unique\n    % Calculate AB + BCD = CDE\n    AB is 10 * A + B,\n    BCD is 100 * B + 10 * C + D,\n    CDE is 100 * C + 10 * D + E,\n    AB + BCD =:= CDE."
-}
-]

@@ -1,5 +1,0 @@
-[
-{
-"418D2062": "% Merge Sort in Problog\n\n% Base case for splitting a list into two halves\nsplit([], [], []).\nsplit([X], [X], []).\nsplit([X,Y|Xs], [X|Left], [Y|Right]) :-\n    split(Xs, Left, Right).\n\n% Merge two sorted lists into one sorted list\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([X|Left], [Y|Right], [X|Merged]) :-\n    X =< Y,\n    merge(Left, [Y|Right], Merged).\nmerge([X|Left], [Y|Right], [Y|Merged]) :-\n    X > Y,\n    merge([X|Left], Right, Merged).\n\n% Merge sort implementation\nmerge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n    split(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\n\n% Example query\nquery(merge_sort([3,1,2,5,7,12], X))."
-}
-]

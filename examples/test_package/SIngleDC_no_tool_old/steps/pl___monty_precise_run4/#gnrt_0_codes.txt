@@ -1,8 +1,0 @@
-[
-{
-"E2FA63E7": "0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), findall(D, (member(D,[1,2,3]), D \\= Selected, \\+ prize(D)), [A,B]), A < B."
-},
-{
-"B4161B21": "open_door(A) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), \\+ (member(B,[1,2,3]), B \\= Selected, B \\= A, \\+ prize(B))."
-}
-]

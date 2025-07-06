@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "2DFC0CFD",
-  "ErrorSummary": "Missing predicates (opposite/1, includes/2, extend/3) and incorrect implementation of expand/2",
-  "SuggestedFix": "1. Add opposite(A) :- \\+ A.\n2. Correct expand(double(X), Y) :- Y is X*2.\n3. Add includes(List, Elem) :- member(Elem, List).\n4. Add extend(List, Elem, [Elem|List]).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

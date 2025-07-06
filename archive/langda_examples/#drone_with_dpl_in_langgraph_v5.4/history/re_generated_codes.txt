@@ -1,6 +1,0 @@
-% Removed standalone constraint - will be integrated into landscape rule
-
-landscape(X) :-
-    ((vlos(X), weight < 0.3, can_return(X));
-    (permits(X), can_return(X))),
-    distance(X, bomb) >= 100.

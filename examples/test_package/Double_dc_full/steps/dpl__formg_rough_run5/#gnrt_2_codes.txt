@@ -1,5 +1,0 @@
-[
-{
-"418D2062": "merge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(Sorted, List) :-\n    length(List, N),\n    N > 1,\n    Half is N // 2,\n    length(FirstHalf, Half),\n    append(FirstHalf, SecondHalf, List),\n    merge_sort(SortedFirst, FirstHalf),\n    merge_sort(SortedSecond, SecondHalf),\n    merge(Sorted, SortedFirst, SortedSecond).\nmerge([], [], []).\nmerge([X|Xs], [], [X|Xs]).\nmerge([], [Y|Ys], [Y|Ys]).\nmerge([X|Xs], [Y|Ys], [X|Zs]) :-\n    X =< Y,\n    merge(Xs, [Y|Ys], Zs).\nmerge([X|Xs], [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    merge([X|Xs], Ys, Zs)."
-}
-]

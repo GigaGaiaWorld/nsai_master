@@ -1,3 +1,0 @@
-```report
-{"HASH": "DB25F467", "ErrorSummary": "Incorrect subtraction implementation and missing operator precedence handling leading to wrong calculation results", "SuggestedFix": "Replace the subtraction rule with: parse([N1,-|T], R) :- parse(T, R2), almost_equal(N1 - R2, R). Add operator precedence handling by implementing proper expression grouping or using an abstract syntax tree.", "Dependencies": [], "NeedRegenerate": true}
-```

@@ -1,5 +1,0 @@
-[
-{
-"47D659C8": "bubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble(List, NewList, Swapped),\n    (Swapped == true ->\n        bubblesort(NewList, Acc, Sorted)\n    ;\n        append(NewList, Acc, Sorted)\n    ).\n\nbubble([X, Y | T], [Y | NewT], true) :-\n    X > Y,\n    bubble([X | T], NewT, _).\nbubble([X, Y | T], [X | NewT], Swapped) :-\n    X =< Y,\n    bubble([Y | T], NewT, Swapped).\nbubble([X], [X], false).\n\nforth_sort(L, L2) :- bubblesort(L, [], L2).\n\nquery(forth_sort([3,1,2,5,7,12], X))."
-}
-]

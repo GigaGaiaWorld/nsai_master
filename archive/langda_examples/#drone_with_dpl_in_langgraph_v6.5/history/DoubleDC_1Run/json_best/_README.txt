@@ -1,1 +1,0 @@
-DoubleDC, one round, optimized evaluation prompt

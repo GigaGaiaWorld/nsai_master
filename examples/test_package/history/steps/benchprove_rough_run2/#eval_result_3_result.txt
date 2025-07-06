@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Missing implementations for 5 out of 6 required predicates (only refute/1 is implemented)",
-  "SuggestedFix": "Add the following predicates:\n1. implies(A,B) :- \\+ prove(A); prove(B).\n2. opposite(G) :- \\+ prove(G).\n3. includes(L,E) :- member(E,L).\n4. extend(L,E,[E|L]).\n5. Keep existing refute/1 implementation",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

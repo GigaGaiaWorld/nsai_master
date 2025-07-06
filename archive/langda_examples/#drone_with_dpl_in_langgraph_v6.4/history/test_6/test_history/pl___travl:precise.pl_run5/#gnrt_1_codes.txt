@@ -1,5 +1,0 @@
-[
-{
-"E09B4F54": "inf(X) :-\n    % Initial infection\n    0.1::initialInf(X);\n    % Contact transmission\n    (contact(X, Y), inf(Y), \n     (susceptible(X) -> 0.8::inf(X); 0.6::inf(X)));\n    % Travel risk\n    0.2::riskyTravel(X)."
-}
-]

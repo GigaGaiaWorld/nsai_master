@@ -1,3 +1,0 @@
-```problog
-{"HASH": "A5C06F43","Code": "attempted_flap_position(Time,Pos) :-\n Time > 0,\n Prev is Time-1,\n flap_position(Prev, PrevPos),\n goal(G),\n \+ goal_reached(Prev),\n use_actuator(Time, Actuator),\n actuator_strength(Actuator, Strength),\n wind_effect(Time, WindEffect),\n (\n     (G > PrevPos, TempPos is PrevPos + Strength + WindEffect, Pos is min(TempPos, G)) % Clamp to goal\n     ;\n     (G < PrevPos, TempPos is PrevPos - Strength + WindEffect, Pos is max(TempPos, G)) % Clamp to goal\n     ;\n     (G =:= PrevPos, Pos = PrevPos)\n )."}
-```

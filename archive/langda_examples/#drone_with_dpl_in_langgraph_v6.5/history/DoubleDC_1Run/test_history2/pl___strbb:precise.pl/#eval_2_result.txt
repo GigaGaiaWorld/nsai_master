@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "FA856BCD",
-  "ErrorSummary": "1. Use of unsupported cut operator (`!/0`) in ProbLog. 2. Use of non-standard `between/3` predicate. 3. Missing edge case handling for `N < 2`.",
-  "SuggestedFix": "1. Remove the cut operator. 2. Replace `between/3` with a recursive helper predicate (`bb_helper`). 3. Add a guard clause for `N < 2`. Revised code:\n\nbb(N) :-\n    N >= 2,\n    Max is N - 1,\n    bb_helper(1, Max).\n\nbb_helper(I, Max) :-\n    I =< Max,\n    pick(I, b),\n    pick(I+1, b).\nbb_helper(I, Max) :-\n    I < Max,\n    NextI is I + 1,\n    bb_helper(NextI, Max).\n\nbb(N) :-\n    N < 2,\n    fail.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

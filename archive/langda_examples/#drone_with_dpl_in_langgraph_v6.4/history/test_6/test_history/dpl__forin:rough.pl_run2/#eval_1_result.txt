@@ -1,8 +1,0 @@
-```report
-{
-    "HASH": "501F546D",
-    "Report": "The code block implements an insertion sort algorithm in Prolog but contains logical errors in the `insert/3` predicate. The second clause incorrectly places the element `X` before `Y` if `X @=< Y`, which disrupts the sorting order. The test result confirms this issue, as the output list is not correctly sorted. The third clause is correct but does not compensate for the earlier error. The `insertion_sort/2` predicate itself is correctly structured but relies on the flawed `insert/3` predicate.",
-    "Need_regenerate": true,
-    "Dependencies": []
-}
-```

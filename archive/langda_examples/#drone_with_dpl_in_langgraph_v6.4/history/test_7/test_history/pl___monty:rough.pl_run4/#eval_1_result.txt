@@ -1,8 +1,0 @@
-```report
-{
-  "HASH": "592D75CA",
-  "Report": "The `open_door/1` predicate has significant issues that require regeneration: 1. **Syntax Error**: Invalid use of probabilistic annotation (`0.5::open_door(Door)`) inside predicate definition. ProbLog requires probabilities at the top level. 2. **Logical Flaws**: The current implementation conflates random and deterministic scenarios without proper separation. 3. **Incomplete Implementation**: Missing clear handling of the host's decision logic for different cases. Recommendations: 1. Split into separate predicates for random/deterministic cases. 2. Move probability declarations to top level. 3. Add explicit conditions for each scenario per requirements.",
-  "Need_regenerate": true,
-  "Dependencies": []
-}
-```

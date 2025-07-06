@@ -1,7 +1,0 @@
-Based on the given origin_code and generated_code, here is the extracted and formatted code block that corresponds to the <langda> block in the origin_code:
-
-```problog
-{"HASH": "6931D64E", "Code": "stack_op(sort, Stack, SortedStack) :-\n    (   length(Stack, L), L >= 3\n    ->  get_top_n(Stack, 3, Top3, Rest),\n        sort(Top3, SortedTop3),\n        append(SortedTop3, Rest, SortedStack)\n    ;   SortedStack = Stack\n    )."}
-```
-
-This is the only code block that was marked with <langda> in the origin_code, and it has been completed in the generated_code. The JSON includes the hash from the original code and the completed implementation of the sort operation.

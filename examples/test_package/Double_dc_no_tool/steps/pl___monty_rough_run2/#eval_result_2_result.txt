@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "751033ED",
-  "ErrorSummary": "Invalid probability annotation in rule body, malformed conditional structure, and incorrect handling of probabilistic choices",
-  "SuggestedFix": "Restructure the open_door predicate to separate probabilistic choices from logical conditions. Replace with:\n\nopen_door(D) :- \n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), Doors),\n    length(Doors, Len),\n    (Len = 2 -> random_member(D, Doors) ; Len = 1 -> [D] = Doors).\n\n0.5::open_door_a(D) :- \n    select_door(Selected),\n    findall(X, (member(X,[1,2,3]), X \\= Selected, \\+ prize(X)), [A,B]),\n    member(D, [A,B]).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

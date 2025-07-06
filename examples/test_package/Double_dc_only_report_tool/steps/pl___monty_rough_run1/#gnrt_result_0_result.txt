@@ -1,6 +1,0 @@
-```problog
-{"HASH": "751033ED","Code": "open_door(Door) :- select_door(Selected), findall(X, (member(X, [1,2,3]), \+ prize(X), \+ X = Selected), Doors), length(Doors, 2), member(Door, Doors)."}
-```
-```problog
-{"HASH": "751033ED","Code": "open_door(Door) :- select_door(Selected), findall(X, (member(X, [1,2,3]), \+ prize(X), \+ X = Selected), [Door])."}
-```

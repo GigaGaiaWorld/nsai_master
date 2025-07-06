@@ -1,5 +1,0 @@
-[
-{
-"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    (   Prize = Selected ->\n        % Scenario: The remaining two doors are neither selected by the player nor have any prizes.\n        % Behavior: The host randomly opens one of the two \"empty doors\" with a 50% probability.\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ prize(D)), Doors),\n        length(Doors, Len),\n        Len > 0,\n        random_member(Door, Doors)\n    ;   % Scenario: The remaining two doors are neither selected by the player, one of which has a prize and the other does not.\n        % Behavior: The host must open the \"empty door\".\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected), \\+ prize(D)), [Door])\n    )."
-}
-]

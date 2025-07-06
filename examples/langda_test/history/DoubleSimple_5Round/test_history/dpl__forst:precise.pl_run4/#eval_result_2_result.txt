@@ -1,3 +1,0 @@
-```report
-{"HASH": "6931D64E","ErrorSummary": "Missing sort0 predicate definition and incomplete stack_op(sort) implementation","SuggestedFix": "Add the sort0 predicate definition and complete the stack_op(sort) implementation as follows:\nstack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [X,Y,Z], Rest),\n    sort0([X,Y,Z], [S1,S2,S3]),\n    append([S1,S2,S3], Rest, SortedStack).\n\nsort0(List, Sorted) :- sort(List, Sorted).","Dependencies": [],"NeedRegenerate": true}
-```

@@ -1,6 +1,0 @@
-```problog
-{"HASH": "55F6DA26","Code": "open_door(D) :- select_door(Selected), member(A, [1,2,3]), member(B, [1,2,3]), A \\= B, A \\= Selected, B \\= Selected, \\+ prize(A), \\+ prize(B), (D = A ; D = B)."}
-```
-```problog
-{"HASH": "55F6DA26","Code": "open_door(D) :- select_door(Selected), member(D, [1,2,3]), D \\= Selected, \\+ prize(D), \\+ (member(Other, [1,2,3]), Other \\= Selected, Other \\= D, \\+ prize(Other))."}
-```

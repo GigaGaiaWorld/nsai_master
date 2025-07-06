@@ -1,5 +1,0 @@
-Here's the complete DeepProbLog code for the interpretable bubblesort algorithm:
-
-```problog
-{"HASH": "47D659C8", "Code": "bubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble(List, NewList, Flag),\n    (Flag = 1 -> \n        bubblesort(NewList, Acc, Sorted)\n    ; \n        append(Acc, NewList, Sorted)\n    ).\n\nbubble([X,Y|T], [Y|Rest], 1) :- X > Y, bubble([X|T], Rest, _).\nbubble([X,Y|T], [X|Rest], Flag) :- X =< Y, bubble([Y|T], Rest, Flag).\nbubble([X], [], 0).\nbubble([], [], 0).\n\nforth_sort(L,L2) :- bubblesort(L,[],L2).\n\nquery(forth_sort([3,1,2,5,7,12],X))."}
-```

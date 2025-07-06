@@ -1,5 +1,0 @@
-[
-{
-"592D75CA": "open_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    % Random Door Opening Rules\n    (   Selected \\= Door, PrizeDoor \\= Door ->\n        0.5::open_door(Door) ; 0.5::open_door(OtherDoor)\n    ;   % Deterministic Door Opening Rules\n        Selected \\= Door, (PrizeDoor = Door -> fail ; true)\n    )."
-}
-]

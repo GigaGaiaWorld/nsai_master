@@ -1,3 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "swap([H1, H2 | T], [H2, H1 | T]) :- H1 > H2.\nswap([H1 | T], [H1 | T1]) :- swap(T, T1).\n\nbubble(L, L1) :- swap(L, L1).\nbubble([X], [X]).\n\nbubblesort([], []).\nbubblesort(L, Sorted) :-\n    bubble(L, L1),\n    L \\= L1,\n    bubblesort(L1, Sorted).\nbubblesort(L, L).\n\nforth_sort(L, Sorted) :- bubblesort(L, Sorted).\n\nquery(forth_sort([3,1,2,5,7,12],X))."}
-```

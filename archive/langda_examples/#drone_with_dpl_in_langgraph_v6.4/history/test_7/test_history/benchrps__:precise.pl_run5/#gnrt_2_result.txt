@@ -1,9 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in the `<origin_code>`:
-
-```problog
-{"HASH": "3FEB17D7", "Code": "determine_winner(P1Moves, P2Moves, Winner) :-\n % Validate inputs: ensure both are lists of valid moves and of equal length\n valid_moves(P1Moves),\n valid_moves(P2Moves),\n length(P1Moves, Len),\n length(P2Moves, Len),\n play(P1Moves, P2Moves, Results),\n compute_score(Results, S),\n ( S > 0, Winner = player1\n ; S < 0, Winner = player2\n ; S = 0, Winner = draw\n )."}
-```
-
-```problog
-{"HASH": "3FEB17D7", "Code": "% Helper predicate to validate moves\nvalid_moves([]).\nvalid_moves([Move|Rest]) :-\n move(Move),\n valid_moves(Rest)."}
-```

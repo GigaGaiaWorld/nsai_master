@@ -1,5 +1,0 @@
-[
-{
-"751033ED": "find_available_doors(Selected, Available) :-    findall(D, (member(D,[1,2,3]), \\+ prize(D), \\+ D=Selected), Available).\n\nopen_door(Door) :-    select_door(Selected),    find_available_doors(Selected, Available),    (length(Available, 2) ->         random_member(Door, Available)     ;         Available=[Door]    )."
-}
-]

@@ -1,3 +1,0 @@
-```report
-{"HASH": "3F5BA02C","ErrorSummary": "Missing implementation of required extended predicates (implies/2, opposite/1, includes/2, extend/3) and incomplete integration of expand/2","SuggestedFix": "Add the following predicates to the module:\nprove(implies(A,B)) :- prove((refute(A); B)).\nprove(opposite(A)) :- refute(A).\nprove(includes(List,Elem)) :- member(Elem,List).\nprove(extend(List,Elem,NewList)) :- NewList = [Elem|List].\nAnd ensure expand/2 is properly integrated with: prove(expand(X,Y)) :- expand(X,Y).","Dependencies": [],"NeedRegenerate": true}
-```

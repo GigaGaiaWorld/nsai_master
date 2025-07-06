@@ -1,6 +1,0 @@
-```problog
-{"HASH": "751033ED","Code": "open_door(D) :- select_door(S), prize(P), findall(X, (member(X,[1,2,3]), X \\= S, X \\= P), [A,B]), 0.5::open_door(A) ; 0.5::open_door(B)."}
-```
-```problog
-{"HASH": "751033ED","Code": "open_door(D) :- select_door(S), prize(P), findall(X, (member(X,[1,2,3]), X \\= S, X \\= P), [A]), open_door(A)."}
-```

@@ -1,9 +1,0 @@
-Based on the provided origin_code and generated_code, here are the extracted and formatted code blocks that correspond to the <langda> placeholder in the origin_code:
-
-```problog
-{"HASH": "E09B4F54", "Code": "0.6::inf(X) :- contact(X,Y), inf(Y), \\+susceptible(X).\n0.8::inf(X) :- contact(X,Y), inf(Y), susceptible(X).\n0.2::inf(X) :- riskyTravel(X).\ninf(X) :- initialInf(X)."}
-```
-
-This JSON object contains:
-1. The HASH value from the origin_code placeholder
-2. The completed code block from generated_code that implements the infection logic as specified in the requirements (contact transmission with different probabilities for susceptible/non-susceptible individuals, travel risk infection, and initial infection)

@@ -1,3 +1,0 @@
-```problog
-{"HASH": "501F546D", "Code": "% Insertion sort implementation in ProbLog\n\n% Base case: inserting an element into an empty list\ninsert(X, [], [X]).\n\n% Recursive case: inserting an element into a sorted list\ninsert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs).\n\n% Base case: sorting an empty list\ninsertion_sort([], []).\n\n% Recursive case: sorting a non-empty list\ninsertion_sort([X|Xs], Sorted) :-\n    insertion_sort(Xs, SortedXs),\n    insert(X, SortedXs, Sorted).\n\n% Query example\nquery(insertion_sort([3,1,2,5,7,12], X))."}
-```

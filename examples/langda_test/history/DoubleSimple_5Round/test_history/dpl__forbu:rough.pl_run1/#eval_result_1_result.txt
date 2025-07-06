@@ -1,3 +1,0 @@
-```report
-{"HASH": "47D659C8","ErrorSummary": "The error occurs due to the use of the '->' operator which is not supported in ProbLog. The code also has logical issues in the bubblesort implementation.","SuggestedFix": "Replace the '->' operator with standard Prolog predicates and fix the bubblesort logic. Here's the corrected version:\n\nbubblesort([], Acc, Acc).\nbubblesort([H], Acc, Sorted) :- append(Acc, [H], Sorted).\nbubblesort([X,Y|T], Acc, Sorted) :-\n    (X > Y,\n        bubblesort([X|T], Acc, NewAcc),\n        bubblesort([Y|NewAcc], [], Sorted)\n    );\n    (X =< Y,\n        bubblesort([Y|T], [X|Acc], Sorted)\n    ).\n\nforth_sort(L,L2) :- bubblesort(L,[],L2).\nquery(forth_sort([3,1,2,5,7,12],X)).","Dependencies": [],"NeedRegenerate": true}
-```

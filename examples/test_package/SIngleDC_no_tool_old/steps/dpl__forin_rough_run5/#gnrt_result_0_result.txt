@@ -1,3 +1,0 @@
-```problog
-{"HASH": "501F546D","Code": "insertion_sort(List, Sorted) :- \n    insertion_sort(List, [], Sorted).\n\ninsertion_sort([], Acc, Acc).\ninsertion_sort([H|T], Acc, Sorted) :-\n    insert(H, Acc, NewAcc),\n    insertion_sort(T, NewAcc, Sorted).\n\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :-\n    X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :-\n    X > Y,\n    insert(X, Ys, Zs)."}
-```

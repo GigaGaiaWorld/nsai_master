@@ -1,5 +1,0 @@
-Here's the completed code for the Monty Hall problem with the `open_door/1` predicate defined:
-
-```problog
-{"HASH": "245014E2","Code": "% Based on Monty Hall problem on https://github.com/friguzzi/cplint\n1/3::prize(1) ; 1/3::prize(2) ; 1/3::prize(3).\nselect_door(1).\nmember(X,[X|T]).\nmember(X,[H|T]) :- member(X,T).\n\n% Define open_door/1 predicate\nopen_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    member(Door, [1,2,3]),\n    Door \\= Selected,\n    Door \\= Prize.\n\nwin_keep :-\n    select_door(A),\n    prize(A).\n\nwin_switch :-\n    member(A, [1,2,3]),\n    \\+ select_door(A),\n    prize(A),\n    \\+ open_door(A).\n\nquery(prize(_)).\nquery(select_door(_)).\nquery(win_keep).\nquery(win_switch)."}
-```

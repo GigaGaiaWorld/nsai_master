@@ -1,3 +1,0 @@
-```report
-{"HASH": "0805B4F6", "ErrorSummary": "No handling for edge cases (N=0 or N=1) and inefficient use of between/3", "SuggestedFix": "Add base cases: bb(0) :- fail. and bb(1) :- fail. Optimize by replacing between/3 with direct iteration over I in [1, N-1].", "Dependencies": [], "NeedRegenerate": true}
-```

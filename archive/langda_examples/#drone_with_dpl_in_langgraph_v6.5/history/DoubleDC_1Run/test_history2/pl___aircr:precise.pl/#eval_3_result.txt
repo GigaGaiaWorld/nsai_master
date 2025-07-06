@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "62719B9D",
-  "ErrorSummary": "Low goal_reached probabilities due to inefficient actuator selection and wind effect handling. No syntax errors found.",
-  "SuggestedFix": "Adjust actuator selection probabilities to favor stronger actuator (a) more often: `0.7::use_actuator(T,a); 0.3::use_actuator(T,b).` and ensure wind effects are clamped to valid positions via `Pos is max(0, min(10, TempPos)).`",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

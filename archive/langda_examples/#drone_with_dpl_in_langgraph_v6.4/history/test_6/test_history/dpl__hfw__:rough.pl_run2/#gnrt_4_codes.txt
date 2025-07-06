@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "parse([N], N).\nparse(Symbols, Result) :-\n    split_at_lowest_precedence(Symbols, Left, Operator, Right),\n    parse(Left, LeftResult),\n    parse(Right, RightResult),\n    apply_operator(Operator, LeftResult, RightResult, Result)."
-}
-]

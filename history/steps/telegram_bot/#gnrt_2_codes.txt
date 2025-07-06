@@ -1,5 +1,0 @@
-[
-{
-"27C37B02": "relative_offset(NorthOffset, EastOffset) :-    user_location(UserLat, UserLon),    special_zone_location(ZoneLat, ZoneLon),    meter_per_degree(MetersPerDegree),    NorthOffset is (ZoneLat - UserLat) * MetersPerDegree,    EastOffset is (ZoneLon - UserLon) * MetersPerDegree * cos(UserLat * pi / 180)."
-}
-]

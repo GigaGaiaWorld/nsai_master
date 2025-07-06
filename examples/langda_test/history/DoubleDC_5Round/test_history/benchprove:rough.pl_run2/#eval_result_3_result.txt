@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "2DFC0CFD",
-  "ErrorSummary": "Unsupported '->/2' operator in 'implies/2' predicate causing UnknownClause error in ProbLog",
-  "SuggestedFix": "Replace 'prove(implies(Goal1, Goal2)) :- (prove(Goal1) -> prove(Goal2)) ; \+ prove(Goal1).' with 'prove(implies(Goal1, Goal2)) :- (prove(Goal1), prove(Goal2)) ; \+ prove(Goal1).' to avoid unsupported operator",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

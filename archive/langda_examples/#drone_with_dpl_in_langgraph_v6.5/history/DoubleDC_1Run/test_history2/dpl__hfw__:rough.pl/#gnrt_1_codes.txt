@@ -1,5 +1,0 @@
-[
-{
-"FB41E2F7": "parse([N1, +, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 + V2, R).\nparse([N1, -, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 - V2, R).\nparse([N1, *, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    almost_equal(V1 * V2, R).\nparse([N1, /, N2 | T], R) :-\n    almost_equal(N1, V1),\n    parse([N2 | T], V2),\n    V2 =\\= 0,\n    almost_equal(V1 / V2, R)."
-}
-]

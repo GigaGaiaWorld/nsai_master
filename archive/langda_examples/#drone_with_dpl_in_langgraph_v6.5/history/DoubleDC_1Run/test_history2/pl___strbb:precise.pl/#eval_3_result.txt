@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "FA856BCD",
-  "ErrorSummary": "The `bb` predicate does not enforce strict adjacency checks for 'b' pairs and lacks deterministic behavior. The test result `bb(5) = 0.6484` indicates non-deterministic output.",
-  "SuggestedFix": "Modify `bb_helper` to include a cut (`!`) for deterministic behavior and ensure strict adjacency checks. Add explicit edge case handling for `N < 2`. Example fix:\n```prolog\nbb_helper(I, Max) :-\n    I =< Max,\n    pick(I, b),\n    pick(I+1, b),\n    !.\n```",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

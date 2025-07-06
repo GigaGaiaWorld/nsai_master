@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block from the generated code that corresponds to the <langda> block in the origin_code:
-
-```problog
-{"HASH": "592D75CA","Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    % Case 1: Player's door has the prize (random choice between two empty doors)\n    ( Prize = Selected ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), Doors),\n        length(Doors, 2),\n        0.5::door_choice(1),\n        0.5::door_choice(2),\n        nth1(Choice, Doors, Door),\n        door_choice(Choice)\n    % Case 2: Player's door does not have the prize (deterministic choice of the empty door)\n    ; \\+ (Prize = Selected) ->\n        findall(D, (member(D, [1,2,3]), \\+ (D = Selected ; D = Prize)), [EmptyDoor]),\n        Door = EmptyDoor\n    )."}
-```

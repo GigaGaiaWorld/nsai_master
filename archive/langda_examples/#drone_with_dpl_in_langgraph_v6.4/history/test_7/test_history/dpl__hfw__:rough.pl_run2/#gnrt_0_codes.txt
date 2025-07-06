@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    arithmetic_operation(Op, N1, N2, TempResult),\n    parse([TempResult | Rest], Result).\n\narithmetic_operation(+, A, B, Result) :- Result is A + B.\narithmetic_operation(-, A, B, Result) :- Result is A - B.\narithmetic_operation(*, A, B, Result) :- Result is A * B.\narithmetic_operation(/, A, B, Result) :- Result is A / B."
-}
-]

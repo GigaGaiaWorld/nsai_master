@@ -1,6 +1,0 @@
-```report
-{"HASH": "55F6DA26","ErrorSummary": "Syntax error in the open_door/1 predicate definition - missing operator between conditions in the conditional statement","SuggestedFix": "Replace the line with: 'open_door(D) :- select_door(S), prize(P), findall(X, (member(X,[1,2,3]), X\\=S, X\\=P), Doors), length(Doors, L), (L=2 -> member(D,Doors); L=1 -> Doors=[D]).' (add semicolon between conditions)","Dependencies": [],"NeedRegenerate": true}
-```
-```report
-{"HASH": "N/A","ErrorSummary": "No issues found in main ProbLog code","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```

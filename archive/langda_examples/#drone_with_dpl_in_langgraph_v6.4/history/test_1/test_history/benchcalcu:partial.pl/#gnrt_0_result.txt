@@ -1,8 +1,0 @@
-Here's the completed code in the requested JSON format:
-
-```problog
-{
-    "HASH": "1039E900",
-    "Code": "% Cryptoaddition:\n% Find the unique answer to:\nquery_sum([S,E,N,D,M,O,R,Y]) :-\n digit(D), digit(E), D=\\=E,\n sumdigit(0, D, E, Y, C1),\n \n digit(N), all_different([N,Y,E,D]),\n \n digit(R), all_different([R,N,Y,E,D]),\n sumdigit(C1, N, R, E, C2),\n \n digit(O), all_different([O,R,N,Y,E,D]),\n sumdigit(C2, E, O, N, C3),\n \n digit(S), leftdigit(S), all_different([S,O,R,N,Y,E,D]),\n digit(M), leftdigit(M), all_different([M,S,O,R,N,Y,E,D]),\n sumdigit(C3, S, M, O, C4),\n sumdigit(C4, C3, 0, M, _),\n \n all_different([S,E,N,D,M,O,R,Y]).\n\nsumdigit(C, A, B, S, 0) :-\n X is C + A + B,\n X < 10,\n S = X.\nsumdigit(C, A, B, S, 1) :-\n X is C + A + B,\n X >= 10,\n S is X - 10.\n\ndigit(0).\ndigit(1).\ndigit(2).\ndigit(3).\ndigit(4).\ndigit(5).\ndigit(6).\ndigit(7).\ndigit(8).\ndigit(9).\n\nleftdigit(D) :- digit(D), D =\\= 0.\n\nall_different([]).\nall_different([H|T]) :- \\+ member(H, T), all_different(T).\n\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n\nquery(query_sum(X))."
-}
-```

@@ -1,9 +1,0 @@
-Here are the completed code snippets in JSON form:
-
-```problog
-{"HASH": "2DFC0CFD","Code": "% --------- Extended logic processing ---------\n% implies/2: A implies B succeeds if B can be proved when A is true\nimplies(A, B) :- A, B.\n\n% opposite/1: opposite(G) succeeds if G cannot be proved\nopposite(G) :- \\+ G.\n\n% expand/2: expand Term using defined rules\nexpand(Term, Result) :- call(Term, Result).\n\n% includes/2: includes(List, Elem) succeeds if Elem is in List\nincludes(List, Elem) :- member(Elem, List).\n\n% extend/2: add Elem to head of List\nextend(List, Elem, [Elem|List]).\n\n% refute/1: refute(G) succeeds if opposite(G) can be proved\nrefute(G) :- opposite(G)."}
-```
-
-```problog
-{"HASH": "XXXX7890","Code": ""}
-```

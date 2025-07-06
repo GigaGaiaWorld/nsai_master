@@ -1,3 +1,0 @@
-```problog
-{"HASH": "DA5E8955","Code": "parse([N1, + | T], R) :- \n    parse(T, R1), \n    R is N1 + R1.\nparse([N1, - | T], R) :- \n    parse(T, R1), \n    R is N1 - R1.\nparse([N1, * | T], R) :- \n    parse(T, R1), \n    R is N1 * R1.\nparse([N1, / | T], R) :- \n    parse(T, R1), \n    R1 =\\= 0, \n    R is N1 / R1."}
-```

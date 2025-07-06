@@ -1,6 +1,0 @@
-```report
-{"HASH": "C5B4A895","ErrorSummary": "The rule for open_door/1 with probability 0.5 for each door doesn't properly handle the case when both unselected doors are empty (no prize)","SuggestedFix": "Modify the probabilistic rule to ensure it only applies when both doors are empty: '0.5::open_door(A) ; 0.5::open_door(B) :- select_door(Selected), member(A,[1,2,3]), A \\= Selected, \\+ prize(A), member(B,[1,2,3]), B \\= Selected, B \\= A, \\+ prize(B), \\+ (member(P,[1,2,3]), P \\= Selected, prize(P))'.","Dependencies": [],"NeedRegenerate": true}
-```
-```report
-{"HASH": "N/A","ErrorSummary": "No issues found in the remaining code","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```

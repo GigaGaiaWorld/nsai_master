@@ -1,7 +1,0 @@
-Based on the requirements, I'll complete the code snippet for the coins_r predicate where we need to sample CNT independent coins and accumulate the number of heads. Here's the completed code in the requested JSON format:
-
-```problog
-{"HASH": "DF1FDC54", "Code": "coins_r(SC,S,CNT) :-\n    CNT > 0,\n    coin(C),\n    C = 1,\n    NSC is SC + 1,\n    NCNT is CNT - 1,\n    coins_r(NSC,S,NCNT).\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    coin(C),\n    C = 0,\n    NCNT is CNT - 1,\n    coins_r(SC,S,NCNT)."}
-```
-
-The completed code handles both cases when a coin toss results in heads (1) or tails (0), recursively counting down the remaining tosses while accumulating the number of heads. The base case (coins_r(SC,SC,0)) is already provided in the original code.

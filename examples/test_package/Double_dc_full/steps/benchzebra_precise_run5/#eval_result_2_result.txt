@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3EFED622",
-  "ErrorSummary": "Undefined 'member/2' predicate causing program failure",
-  "SuggestedFix": "Define the 'member/2' predicate as follows:\n\nmember(X, [X|_]).\nmember(X, [_|T]) :- member(X, T).\n\nAdd this definition before the 'zebra/1' predicate.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

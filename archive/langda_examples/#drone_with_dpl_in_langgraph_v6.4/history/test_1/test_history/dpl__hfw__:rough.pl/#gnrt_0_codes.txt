@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "parse([X], X) :- number(X).\nparse(List, Result) :-\n    append(Left, [Op|Right], List),\n    member(Op, [+,-,*,/]),\n    parse(Left, LeftResult),\n    parse(Right, RightResult),\n    ( Op = + -> Result is LeftResult + RightResult\n    ; Op = - -> Result is LeftResult - RightResult\n    ; Op = * -> Result is LeftResult * RightResult\n    ; Op = / -> Result is LeftResult / RightResult\n    )."
-}
-]

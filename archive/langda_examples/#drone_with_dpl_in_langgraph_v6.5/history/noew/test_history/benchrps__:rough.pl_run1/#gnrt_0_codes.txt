@@ -1,5 +1,0 @@
-[
-{
-"CFA63C1E": "% Play a single round and determine the outcome\nplay_round(P1Move, P2Move, win) :- beats(P1Move, P2Move).\nplay_round(P1Move, P2Move, lose) :- beats(P2Move, P1Move).\nplay_round(Move, Move, draw).\n\n% Play a sequence of moves and collect results\nplay([], [], []).\nplay([P1Move | P1Moves], [P2Move | P2Moves], [Result | Results]) :-\n    play_round(P1Move, P2Move, Result),\n    play(P1Moves, P2Moves, Results)."
-}
-]

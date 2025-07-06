@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "47D659C8",
-  "ErrorSummary": "Unsupported '->/2' operator in ProbLog causing execution failure; no handling of non-list inputs; potential stack overflow for large lists due to deep recursion",
-  "SuggestedFix": "Replace the conditional in bubblesort/3 with explicit logic: 'bubblesort(List, Acc, Sorted) :- bubble_pass(List, NewList, Swapped), (Swapped = true, bubblesort(NewList, Acc, Sorted) ; Swapped = false, append(NewList, Acc, Sorted)).' Add input validation for non-list inputs and optimize recursion for large lists.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

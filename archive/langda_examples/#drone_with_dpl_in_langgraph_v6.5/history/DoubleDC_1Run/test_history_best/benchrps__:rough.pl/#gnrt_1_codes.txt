@@ -1,5 +1,0 @@
-[
-{
-"CFA63C1E": "play_round(P1, P2, win) :- beats(P1, P2).\nplay_round(P1, P2, lose) :- beats(P2, P1).\nplay_round(P1, P2, draw) :- P1 = P2.\n\nplay([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    play_round(P1, P2, Result),\n    play(P1s, P2s, Results)."
-}
-]

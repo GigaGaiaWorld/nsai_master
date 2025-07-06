@@ -1,5 +1,0 @@
-Based on the instructions, I'll extract and format only the code that corresponds to the <langda> block in the original code. Here's the extracted and formatted code:
-
-```problog
-{"HASH": "190031BC","Code": "parse([N], N).\nparse([N, + | Rest], Result) :-\n    parse(Rest, RestResult),\n    Result is N + RestResult.\nparse([N, - | Rest], Result) :-\n    parse(Rest, RestResult),\n    Result is N - RestResult.\nparse([N, * | Rest], Result) :-\n    parse(Rest, RestResult),\n    Result is N * RestResult.\nparse([N, / | Rest], Result) :-\n    parse(Rest, RestResult),\n    Result is N / RestResult."}
-```

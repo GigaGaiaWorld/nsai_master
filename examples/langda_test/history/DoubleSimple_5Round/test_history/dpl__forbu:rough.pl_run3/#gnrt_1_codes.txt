@@ -1,5 +1,0 @@
-[
-{
-"47D659C8": "bubblesort(List,Sorted) :- swap(List,List1), !, bubblesort(List1,Sorted).\nbubblesort(Sorted,Sorted).\n\nswap([X,Y|Rest],[Y,X|Rest]) :- X > Y.\nswap([Z|Rest],[Z|Rest1]) :- swap(Rest,Rest1).\n\nquery(bubblesort([3,1,2,5,7,12],X))."
-}
-]

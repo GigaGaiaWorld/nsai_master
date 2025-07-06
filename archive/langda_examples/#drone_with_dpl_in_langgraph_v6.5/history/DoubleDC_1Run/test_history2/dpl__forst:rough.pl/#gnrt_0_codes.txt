@@ -1,5 +1,0 @@
-[
-{
-"5E40E418": "stack_op(sort, Stack, SortedStack) :- get_top_n(Stack, 3, Elements, RestStack), insertion_sort(Elements, SortedElements), append(SortedElements, RestStack, SortedStack).\nstack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Rest], Rest).\nstack_op(dup, [X|Rest], [X,X|Rest]).\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]).\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]).\nstack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]).\nget_top_n(Stack, N, Elements, Rest) :- length(Elements, N), append(Elements, Rest, Stack).\ninsertion_sort(List, Sorted) :- insertion_sort_aux(List, [], Sorted).\ninsertion_sort_aux([], Acc, Acc).\ninsertion_sort_aux([X|Xs], Acc, Sorted) :- insert(X, Acc, NewAcc), insertion_sort_aux(Xs, NewAcc, Sorted).\ninsert(X, [], [X]).\ninsert(X, [Y|Ys], [X,Y|Ys]) :- X =< Y.\ninsert(X, [Y|Ys], [Y|Zs]) :- X > Y, insert(X, Ys, Zs)."
-}
-]

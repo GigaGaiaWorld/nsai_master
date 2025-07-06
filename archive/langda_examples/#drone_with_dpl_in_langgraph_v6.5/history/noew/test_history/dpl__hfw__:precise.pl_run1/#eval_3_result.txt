@@ -1,3 +1,0 @@
-```report
-{"HASH": "9BA21093","ErrorSummary": "The parse/2 predicate for division uses the unsupported `->` operator, causing an UnknownClause error.","SuggestedFix": "Replace the `->` operator with a conjunction and disjunction to handle zero-division in a ProbLog-compliant way. For example: `parse([N1, / | T], R) :- parse(T, R1), (R1 \\= 0, almost_equal(N1 / R1, R) ; R1 =:= 0, fail).`","Dependencies": [],"NeedRegenerate": true}
-```

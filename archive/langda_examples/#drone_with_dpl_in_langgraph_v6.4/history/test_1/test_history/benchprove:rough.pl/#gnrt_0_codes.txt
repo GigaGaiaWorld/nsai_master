@@ -1,5 +1,0 @@
-[
-{
-"E553CC07": "% --------- Extended logic processing ---------\n% implies/2: Prove that A implies B\nprove(implies(A,B)) :-\n    (prove(A) -> prove(B); true).\n\n% opposite/1: Prove that something is not provable\nprove(opposite(A)) :-\n    \\+ prove(A).\n\n% expand/2: Expand a term according to defined rules\nprove(expand(A,B)) :-\n    expand(A,B).\n\n% includes/2: Check if element is in list\nprove(includes(List,Element)) :-\n    member(Element,List).\n\n% extend/2: Extend a list with an element\nprove(extend(List,Element,Extended)) :-\n    Extended = [Element|List].\n\n% refute/1: Attempt to prove the opposite\nprove(refute(A)) :-\n    (prove(A) -> false; true)."
-}
-]

@@ -1,5 +1,0 @@
-[
-{
-"47D659C8": "bubblesort([], Acc, Acc).\n\nbubblesort([H|T], Acc, Sorted) :-\n    bubble_pass([H|T], [], NewList, CurrentMax),\n    bubblesort(NewList, [CurrentMax|Acc], Sorted).\n\nbubble_pass([X], Acc, Acc, X).\n\nbubble_pass([X,Y|T], Acc, NewList, CurrentMax) :-\n    (X > Y ->\n        bubble_pass([X|T], [Y|Acc], NewList, CurrentMax)\n    ;\n        bubble_pass([Y|T], [X|Acc], NewList, CurrentMax)\n    )."
-}
-]

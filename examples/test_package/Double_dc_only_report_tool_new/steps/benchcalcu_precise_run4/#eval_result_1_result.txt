@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "6EAA2098",
-  "ErrorSummary": "Ungrounded variables in arithmetic operations causing CallModeError, incorrect evaluation order, missing digit instantiation",
-  "SuggestedFix": "Restructure query_sum to: 1) Select digits first (leftdigit(A), leftdigit(B), leftdigit(C), digit(D), digit(E)), 2) Apply uniqueness constraint (all_different), 3) Then perform arithmetic checks (sumdigit calls). Ensure variables are instantiated before arithmetic operations.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

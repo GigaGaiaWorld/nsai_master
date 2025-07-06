@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "751033ED",
-  "ErrorSummary": "Incorrect use of `->/2` (implication) in `open_door/1` predicate, causing ProbLog engine to fail with 'UnknownClause' error. The logic for handling two cases (random selection vs. forced selection) is not compatible with ProbLog syntax.",
-  "SuggestedFix": "Replace the `->/2` operator with ProbLog-compatible logic. For example, split the predicate into two separate clauses: (1) `open_door(Door) :- findall(D, (member(D, [1,2,3]), \+ prize(D), D \= Selected), Doors), length(Doors, 2), random_member(Door, Doors).` (2) `open_door(Door) :- findall(D, (member(D, [1,2,3]), \+ prize(D), D \= Selected), Doors), length(Doors, 1), [Door|_] = Doors.`",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

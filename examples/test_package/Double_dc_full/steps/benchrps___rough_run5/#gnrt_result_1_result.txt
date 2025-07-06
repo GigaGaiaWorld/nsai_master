@@ -1,3 +1,0 @@
-```problog
-{"HASH": "CFA63C1E","Code": "outcome(M1, M2, win) :- beats(M1, M2).\noutcome(M1, M2, lose) :- beats(M2, M1).\noutcome(M, M, draw).\n\nplay([], [], []).\nplay([M1 | P1Moves], [M2 | P2Moves], [R | Results]) :-\n    outcome(M1, M2, R),\n    play(P1Moves, P2Moves, Results)."}
-```

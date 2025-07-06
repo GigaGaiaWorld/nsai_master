@@ -1,3 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort(List, Acc, Sorted) :-\n    bubble(List, NewList),\n    NewList \\= List,\n    bubblesort(NewList, Acc, Sorted).\nbubblesort(List, Acc, Acc) :-\n    bubble(List, List).\n\nbubble([X,Y|T], [Y|Rest]) :-\n    X > Y,\n    bubble([X|T], Rest).\nbubble([X,Y|T], [X|Rest]) :-\n    X =< Y,\n    bubble([Y|T], Rest).\nbubble([X], [X]).\nbubble([], [])."}
-```

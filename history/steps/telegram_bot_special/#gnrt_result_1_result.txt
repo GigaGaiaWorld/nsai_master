@@ -1,3 +1,0 @@
-```problog
-{"HASH": "EFCE1CAE", "Code": "relative_offset(NorthOffset, EastOffset) :- \n    user_location(UserLat, UserLon),\n    special_zone_location(ZoneLat, ZoneLon),\n    meter_per_degree(Meters),\n    NorthOffset is (ZoneLat - UserLat) * Meters,\n    EastOffset is (ZoneLon - UserLon) * Meters."}
-```

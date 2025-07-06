@@ -1,8 +1,0 @@
-```problog
-{"HASH": "06576BEB","Code": "number([], 0).\nnumber([H|T], N) :- digit(H, D), number(T, NT), N is NT * 10 + D."}
-```
-
-This implementation:
-1. Handles the base case of an empty list returning 0
-2. For non-empty lists, recursively processes each digit and combines them into a single number
-3. Works with the existing digit/2 facts and multi_addition/3 predicate

@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block corresponding to the <langda> section in the <origin_code>:
-
-```problog
-{"HASH": "A5C06F43", "Code": "flap_position(Prev, PrevPos),\n    goal(G),\n    \\+ goal_reached(Prev),\n    use_actuator(Time, Actuator),\n    actuator_strength(Actuator, Strength),\n    wind_effect(Time, WindEffect),\n    (\n        (G > PrevPos, TempPos is PrevPos + Strength + WindEffect, Pos is min(TempPos, 10)) % Clamp to legal range\n        ;\n        (G < PrevPos, TempPos is PrevPos - Strength + WindEffect, Pos is max(TempPos, 0)) % Clamp to legal range\n        ;\n        (G =:= PrevPos, Pos = PrevPos)\n    )."}
-```

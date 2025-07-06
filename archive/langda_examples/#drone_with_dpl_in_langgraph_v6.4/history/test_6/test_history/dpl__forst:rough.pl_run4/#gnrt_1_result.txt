@@ -1,7 +1,0 @@
-Based on the provided origin_code and generated_code, here's the extracted and formatted code block in JSON format:
-
-```problog
-{"HASH": "5E40E418", "Code": "stack_op(push(X), Stack, [X|Stack]).\nstack_op(pop, [X|Stack], Stack).\nstack_op(dup, [X|Stack], [X,X|Stack]).\nstack_op(swap, [X,Y|Stack], [Y,X|Stack]).\nstack_op(over, [X,Y|Stack], [Y,X,Y|Stack]).\nstack_op(rot, [X,Y,Z|Stack], [Y,Z,X|Stack])."}
-```
-
-Note that this is the only code block that was marked with <Langda> tags in the origin_code. The rest of the code in generated_code either wasn't marked as a Langda block in the origin or was part of the test queries rather than implementation code blocks.

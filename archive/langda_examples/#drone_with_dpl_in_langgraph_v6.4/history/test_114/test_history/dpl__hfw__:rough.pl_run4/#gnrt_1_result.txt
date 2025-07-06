@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block from the `<generated_code>` that corresponds to the `<langda>` block in `<origin_code>`:
-
-```problog
-{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, Op, N2 | Rest], Result) :-\n    parse([N1, Op, N2], Temp),\n    parse([Temp | Rest], Result).\nparse([N1, '+', N2], Result) :-\n    Result is N1 + N2.\nparse([N1, '-', N2], Result) :-\n    Result is N1 - N2.\nparse([N1, '*', N2], Result) :-\n    Result is N1 * N2.\nparse([N1, '/', N2], Result) :-\n    Result is N1 / N2."}
-```

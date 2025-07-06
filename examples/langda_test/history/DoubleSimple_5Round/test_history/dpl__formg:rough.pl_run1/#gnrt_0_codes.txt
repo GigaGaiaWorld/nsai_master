@@ -1,5 +1,0 @@
-[
-{
-"418D2062": "append([], L, L).\nappend([H|T], L2, [H|R]) :-\n    append(T, L2, R).\n\nsplit(List, Left, Right) :-\n    length(List, Len),\n    Half is Len // 2,\n    length(Left, Half),\n    append(Left, Right, List).\n\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([L|Left], [R|Right], [L|Merged]) :-\n    L =< R,\n    merge(Left, [R|Right], Merged).\nmerge([L|Left], [R|Right], [R|Merged]) :-\n    L > R,\n    merge([L|Left], Right, Merged).\n\nmerge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n    length(List, Len),\n    Len > 1,\n    split(List, Left, Right),\n    merge_sort(Left, LeftSorted),\n    merge_sort(Right, RightSorted),\n    merge(LeftSorted, RightSorted, Sorted).\n\nquery(merge_sort([3,1,2,5,7,12],X))."
-}
-]

@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "CFA63C1E",
-  "ErrorSummary": "Nested '->' operator in play_round predicate causing syntax/logical error; undefined move 'scissor' (should be 'scissors')",
-  "SuggestedFix": "1. Rewrite play_round without nested conditionals: 'play_round(P1Move, P2Move, win) :- beats(P1Move, P2Move). play_round(P1Move, P2Move, lose) :- beats(P2Move, P1Move). play_round(_, _, draw).' 2. Correct move definition to 'scissors' in the facts section.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

@@ -1,6 +1,0 @@
-```problog
-{
-    "HASH": "E553CC07",
-    "Code": "% --------- Extended logic processing ---------\n% implies/2: succeeds if B can be proven whenever A can be proven\nprove(implies(A,B)) :-\n    (prove(A) -> prove(B); true).\n\n% opposite/1: succeeds if the negation of the goal cannot be proven\nprove(opposite(G)) :-\n    \\+ prove(G).\n\n% expand/2: succeeds if the second argument is an expansion of the first\nprove(expand(X,Y)) :-\n    expand(X,Y).\n\n% includes/2: succeeds if the list includes the element\nprove(includes(List,Element)) :-\n    member(Element, List).\n\n% extend/2: succeeds if the third argument is the second argument prepended to the first\nprove(extend(List,Element,Extended)) :-\n    Extended = [Element|List].\n\n% refute/1: succeeds if the goal cannot be proven\nprove(refute(G)) :-\n    \\+ prove(G)."
-}
-```

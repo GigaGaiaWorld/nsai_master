@@ -1,3 +1,0 @@
-```report
-{"HASH": "5E40E418", "ErrorSummary": "Unsupported if-then-else construct in get_top_n/4 predicate; Missing test for sort operation", "SuggestedFix": "Replace if-then-else with ProbLog-compatible logic: get_top_n(Stack, N, Elements, Rest) :- length(Stack, Len), (Len >= N, length(Elements, N), append(Elements, Rest, Stack) ; (Len < N, Elements = Stack, Rest = []). Add test cases for sort operation: query(stack_op(sort, [3, 1, 2, 4], Y)). query(stack_op(sort, [1, 2], Y)).", "Dependencies": [], "NeedRegenerate": true}
-```

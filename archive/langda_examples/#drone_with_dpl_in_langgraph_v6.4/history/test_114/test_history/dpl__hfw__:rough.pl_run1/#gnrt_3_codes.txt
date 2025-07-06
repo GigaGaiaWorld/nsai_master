@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "parse([N], N).\nparse(List, Result) :-\n    (select(N1, '*', N2, Rest, List) ; select(N1, '/', N2, Rest, List)),\n    parse([N2 | Rest], Temp),\n    (N1 == '*' -> Result is N1 * Temp ; (Temp =:= 0 -> fail ; Result is N1 / Temp)).\nparse(List, Result) :-\n    (select(N1, '+', N2, Rest, List) ; select(N1, '-', N2, Rest, List)),\n    parse([N2 | Rest], Temp),\n    (N1 == '+' -> Result is N1 + Temp ; Result is N1 - Temp)).\nselect(N1, Op, N2, Rest, [N1, Op, N2 | Rest])."
-}
-]

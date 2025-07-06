@@ -1,7 +1,0 @@
-Based on the provided `<origin_code>` and `<generated_code>`, here's the extracted and formatted code block that corresponds to the `<langda>` section:
-
-```problog
-{"HASH": "592D75CA", "Code": "% Probabilistic case: Player's door has the prize\n0.5::open_door(Door1) ; 0.5::open_door(Door2) :-\n    select_door(Selected),\n    prize(Selected),\n    member(Door1, [1,2,3]),\n    member(Door2, [1,2,3]),\n    Door1 \\= Selected,\n    Door2 \\= Selected,\n    Door1 \\= Door2.\n\n% Deterministic case: Host must open the empty door\nopen_door(Door) :-\n    select_door(Selected),\n    prize(PrizeDoor),\n    PrizeDoor \\= Selected,\n    member(Door, [1,2,3]),\n    Door \\= Selected,\n    Door \\= PrizeDoor."}
-```
-
-Note: I've included both the original probabilistic case (from the `<Code_Block>`) and the additional deterministic case that was implied by the `<Requirements>` section to complete the implementation of the `open_door/1` predicate as specified in the requirements.

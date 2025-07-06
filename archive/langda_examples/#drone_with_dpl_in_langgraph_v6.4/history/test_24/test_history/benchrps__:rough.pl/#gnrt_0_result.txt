@@ -1,5 +1,0 @@
-Here are the extracted code blocks from the <generated_code> that correspond to the <langda> block in the <origin_code>:
-
-```problog
-{"HASH": "CFA63C1E", "Code": "% Play a single round and determine the outcome\nplay_round(P1Move, P2Move, Result) :-\n    ( beats(P1Move, P2Move) -> Result = win\n    ; beats(P2Move, P1Move) -> Result = lose\n    ; Result = draw\n    ).\n\n% Play a list of moves and accumulate results\nplay([], [], []).\nplay([P1 | P1Rest], [P2 | P2Rest], [Result | Results]) :-\n    play_round(P1, P2, Result),\n    play(P1Rest, P2Rest, Results)."}
-```

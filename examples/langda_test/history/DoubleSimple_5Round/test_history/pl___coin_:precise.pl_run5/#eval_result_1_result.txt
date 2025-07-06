@@ -1,3 +1,0 @@
-```report
-{"HASH": "EA5E8D55","ErrorSummary": "Syntax error in conditional statement (->/2) and missing probability handling for make_coin","SuggestedFix": "1. Replace the conditional (->) with proper ProbLog syntax using probabilistic facts. 2. Add proper probability handling for make_coin. Modified code:\nPH::make_coin(C,PH).\n0.8::coin(C) :- make_coin(C).\ncoins_r(SC,SC,0).\ncoins_r(SC,S,CNT) :-\n    CNT > 0,\n    CNT1 is CNT - 1,\n    (coin(CNT), SC1 is SC + 1, coins_r(SC1,S,CNT1); coins_r(SC,S,CNT1)).\ntotal(S) :- coins_r(0,S,4).\nquery(total(_)).","Dependencies": [],"NeedRegenerate": true}
-```

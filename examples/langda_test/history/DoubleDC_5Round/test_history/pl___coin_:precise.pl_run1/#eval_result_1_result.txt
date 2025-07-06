@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "EA5E8D55",
-  "ErrorSummary": "Unsupported '->/2' operator in ProbLog, causing an UnknownClause error",
-  "SuggestedFix": "Replace the '->/2' operator with a standard Prolog conditional structure using ',' and ';'. The corrected code block should be: 'coins_r(SC, S, CNT) :- CNT > 0, (coin(CNT), NewSC is SC + 1, NewCNT is CNT - 1, coins_r(NewSC, S, NewCNT) ; (NewCNT is CNT - 1, coins_r(SC, S, NewCNT)).'",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

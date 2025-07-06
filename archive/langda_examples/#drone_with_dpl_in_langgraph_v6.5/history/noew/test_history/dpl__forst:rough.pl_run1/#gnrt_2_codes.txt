@@ -1,5 +1,0 @@
-[
-{
-"5E40E418": "stack_op(push(X), Stack, [X|Stack]).\n\nstack_op(pop, [X|Rest], Rest).\n\nstack_op(dup, [X|Rest], [X,X|Rest]).\n\nstack_op(swap, [X,Y|Rest], [Y,X|Rest]) :- length([X,Y|Rest], L), L >= 2.\n\nstack_op(over, [X,Y|Rest], [Y,X,Y|Rest]) :- length([X,Y|Rest], L), L >= 2.\n\nstack_op(rot, [X,Y,Z|Rest], [Y,Z,X|Rest]) :- length([X,Y,Z|Rest], L), L >= 3."
-}
-]

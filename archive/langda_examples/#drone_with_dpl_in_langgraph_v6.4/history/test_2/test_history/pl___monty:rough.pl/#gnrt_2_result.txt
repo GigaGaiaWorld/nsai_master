@@ -1,7 +1,0 @@
-Based on the provided origin_code and generated_code, I'll extract and format the code block that corresponds to the <langda> block:
-
-```problog
-{"HASH": "592D75CA","Code": "open_door(D) :-\n    select_door(S),\n    prize(P),\n    (P \\= S, D \\= S, D \\= P) ->\n        0.5::open_door(D) ;\n    (P \\= S, D \\= S, D =:= P) ->\n        fail ;\n    (P =:= S, D \\= S) ->\n        0.5::open_door(D)."}
-```
-
-Note that this is the exact same code that appeared in the <Current_Code> section of the <langda> block, as the generated_code didn't modify this particular section (it kept the same implementation that was marked as needing regeneration in the original report).

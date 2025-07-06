@@ -1,5 +1,0 @@
-Here's the extracted and formatted code block from the <generated_code> that corresponds to the <langda> block in <origin_code>:
-
-```problog
-{"HASH": "592D75CA", "Code": "open_door(Door) :-\n    select_door(Selected),\n    prize(Prize),\n    findall(D, (member(D, [1,2,3]), \+ select_door(D), \+ prize(D)), EmptyDoors),\n    (   Prize = Selected ->\n        % Randomly open one of the two empty doors with 50% probability\n        member(Door, EmptyDoors),\n        0.5::open_door(Door) ; 0.5::open_door(_)\n    ;   % Host must open the empty door\n        member(Door, EmptyDoors),\n        \+ prize(Door)\n    )."}
-```

@@ -1,5 +1,0 @@
-[
-{
-"47D659C8": "bubblesort([], Acc, Acc).\nbubblesort([X], Acc, [X|Acc]).\nbubblesort([X,Y|Rest], Acc, Sorted) :-\n    compare(Order, X, Y),\n    (Order = (>)\n    -> bubblesort([X|Rest], [Y|Acc], Sorted)\n    ;  bubblesort([Y|Rest], [X|Acc], Sorted)\n    )."
-}
-]

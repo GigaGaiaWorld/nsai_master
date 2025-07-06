@@ -1,8 +1,0 @@
-```report
-{
-  "HASH": "592D75CA",
-  "Report": "The `open_door/1` predicate has significant issues that require regeneration. The syntax error with the `->/2` operator prevents execution, and the logic does not fully implement the required behavior for deterministic and probabilistic door opening. The predicate should be rewritten to: 1) Correctly use ProbLog's conditional syntax, 2) Properly identify empty doors using `findall/3`, 3) Implement deterministic opening when only one empty door exists, and 4) Implement 50% probability selection when two empty doors exist. The current implementation fails to meet these requirements and causes downstream errors in the `win_switch` predicate.",
-  "Need_regenerate": true,
-  "Dependencies": []
-}
-```

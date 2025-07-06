@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Incorrect usage of Prolog implication operator (->/2) in ProbLog context causing execution failure. Also, refute/1 is identical to opposite/1 which may not be intended.",
-  "SuggestedFix": "Replace implies/2 implementation with: 'prove(implies(A,B)) :- prove(\\+ A); prove(A), prove(B).'. Consider making refute/1 distinct from opposite/1 if different behavior is desired.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

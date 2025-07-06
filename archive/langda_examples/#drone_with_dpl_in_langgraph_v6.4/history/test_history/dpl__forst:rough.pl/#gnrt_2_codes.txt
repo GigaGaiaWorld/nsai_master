@@ -1,5 +1,0 @@
-[
-{
-"5E40E418": "stack_op(push(X), Stack, [X|Stack]).\n\n% Pop operation: removes the top element from the stack\nstack_op(pop, [Top|Rest], Rest).\n\n% Dup operation: duplicates the top element of the stack\nstack_op(dup, [Top|Rest], [Top, Top|Rest]).\n\n% Swap operation: swaps the top two elements of the stack\nstack_op(swap, [X, Y|Rest], [Y, X|Rest]).\n\n% Over operation: copies the second element to the top of the stack\nstack_op(over, [X, Y|Rest], [Y, X, Y|Rest]).\n\n% Rot operation: rotates the top three elements of the stack\nstack_op(rot, [X, Y, Z|Rest], [Y, Z, X|Rest])."
-}
-]

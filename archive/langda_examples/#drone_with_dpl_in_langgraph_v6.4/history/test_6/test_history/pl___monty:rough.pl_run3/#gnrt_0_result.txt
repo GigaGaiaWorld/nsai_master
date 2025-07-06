@@ -1,9 +1,0 @@
-Here are the extracted and formatted code blocks from the <generated_code> that correspond to the <langda> blocks in <origin_code>:
-
-```problog
-{"HASH": "592D75CA", "Code": "% Random Door Opening Rules\nopen_door(D) :-\n    select_door(Selected),\n    prize(Prize),\n    member(D, [1,2,3]),\n    \+ select_door(D),\n    \+ prize(D),\n    random_select([D1, D2], [1,2,3], [Selected, Prize]),\n    (D1 = D ; D2 = D)."}
-```
-
-```problog
-{"HASH": "592D75CA", "Code": "% Deterministic Door Opening Rules\nopen_door(D) :-\n    select_door(Selected),\n    prize(Prize),\n    member(D, [1,2,3]),\n    \+ select_door(D),\n    \+ prize(D),\n    (Prize = Selected -> random_select([D1, D2], [1,2,3], [Selected, Prize]) ; D = Prize)."}
-```

@@ -1,7 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in `<origin_code>`:
-
-```problog
-{"HASH": "190031BC", "Code": "parse([N], N).\nparse([N1, '*', N2 | Rest], Result) :-\n    parse([N2 | Rest], Temp),\n    Result is N1 * Temp.\nparse([N1, '/', N2 | Rest], Result) :-\n    parse([N2 | Rest], Temp),\n    (Temp =:= 0 -> fail ; Result is N1 / Temp).\nparse([N1, '+', N2 | Rest], Result) :-\n    parse([N2 | Rest], Temp),\n    Result is N1 + Temp.\nparse([N1, '-', N2 | Rest], Result) :-\n    parse([N2 | Rest], Temp),\n    Result is N1 - Temp."}
-```
-
-Note: The original `<langda>` block contained a different implementation using `select/5` predicate, but the `<generated_code>` provided a simpler implementation that directly pattern matches the operators. I've extracted the actual implementation from the `<generated_code>` that corresponds to the requirements specified in the `<langda>` block (handling all four arithmetic operations with proper division checking).

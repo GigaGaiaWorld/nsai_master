@@ -1,5 +1,0 @@
-Here are the extracted and formatted code blocks from the `<generated_code>` that correspond to the `<langda>` blocks in the `<origin_code>`:
-
-```problog
-{"HASH": "190031BC","Code": "parse([N], N).\nparse(Symbols, Result) :-\n    split_at_lowest_precedence(Symbols, Left, Operator, Right),\n    parse(Left, LeftResult),\n    parse(Right, RightResult),\n    apply_operator(Operator, LeftResult, RightResult, Result).\n\nsplit_at_lowest_precedence([N, O | T], [N], O, T) :-\n    lowest_precedence_operator(O).\nsplit_at_lowest_precedence([N, O | T], [N, O | Left], Op, Right) :-\n    not(lowest_precedence_operator(O)),\n    split_at_lowest_precedence(T, Left, Op, Right).\n\nlowest_precedence_operator('+').\nlowest_precedence_operator('-').\n\napply_operator('+', L, R, Result) :- Result is L + R.\napply_operator('-', L, R, Result) :- Result is L - R.\napply_operator('*', L, R, Result) :- Result is L * R.\napply_operator('/', L, R, Result) :- R \\= 0, Result is L / R."}
-```

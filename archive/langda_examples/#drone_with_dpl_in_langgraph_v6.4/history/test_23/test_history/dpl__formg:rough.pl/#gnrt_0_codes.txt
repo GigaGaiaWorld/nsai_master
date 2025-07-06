@@ -1,5 +1,0 @@
-[
-{
-"418D2062": "% Base case: an empty list or a single-element list is already sorted\nmerge_sort([], []).\nmerge_sort([X], [X]).\n\n% Recursive case: split the list into two halves, sort each half, and merge them\nmerge_sort(List, Sorted) :-\n    List = [_, _ | _], % Ensure the list has at least two elements\n    split(List, Left, Right),\n    merge_sort(Left, SortedLeft),\n    merge_sort(Right, SortedRight),\n    merge(SortedLeft, SortedRight, Sorted).\n\n% Split the list into two halves\nsplit([], [], []).\nsplit([X], [X], []).\nsplit([X, Y | Tail], [X | Left], [Y | Right]) :-\n    split(Tail, Left, Right).\n\n% Merge two sorted lists into one sorted list\nmerge([], Right, Right).\nmerge(Left, [], Left).\nmerge([X | Left], [Y | Right], [X | Merged]) :-\n    X =< Y,\n    merge(Left, [Y | Right], Merged).\nmerge([X | Left], [Y | Right], [Y | Merged]) :-\n    X > Y,\n    merge([X | Left], Right, Merged)."
-}
-]

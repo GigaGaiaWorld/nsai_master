@@ -1,5 +1,0 @@
-[
-{
-"47D659C8": "% Interpretable Bubble Sort in ProbLog\n\n% Base case: If the list is empty, return the accumulator as the sorted list.\nbubblesort([], Acc, Acc).\n\n% Recursive case: Perform a pass to bubble the largest element to the end.\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, NewList, Swapped),\n    (Swapped = true ->\n        bubblesort(NewList, Acc, Sorted)\n    ;\n        append(NewList, Acc, Sorted)\n    ).\n\n% Bubble pass: Compare adjacent elements and swap if necessary.\nbubble_pass([X, Y | Rest], [Y | NewRest], true) :-\n    X > Y,\n    bubble_pass([X | Rest], NewRest, _).\n\nbubble_pass([X, Y | Rest], [X | NewRest], Swapped) :-\n    X =< Y,\n    bubble_pass([Y | Rest], NewRest, Swapped).\n\n% Base case for bubble_pass: Single element or empty list.\nbubble_pass([X], [X], false).\n\n% Predicate to call bubblesort with an empty accumulator.\nforth_sort(L, L2) :- bubblesort(L, [], L2).\n\n% Query example\nquery(forth_sort([3,1,2,5,7,12], X))."
-}
-]

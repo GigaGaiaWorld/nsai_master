@@ -1,3 +1,0 @@
-```problog
-{"HASH": "638F1761","Code": "at(robot, Pos, s(T)) :- do(goto(Pos), T), goto_succeeds(T).\nat(robot, CurrentPos, s(T)) :- do(goto(_), T), goto_fails(T), at(robot, CurrentPos, T).\nat(robot, CurrentPos, s(T)) :- \\+ goto_action(T), at(robot, CurrentPos, T)."}
-```

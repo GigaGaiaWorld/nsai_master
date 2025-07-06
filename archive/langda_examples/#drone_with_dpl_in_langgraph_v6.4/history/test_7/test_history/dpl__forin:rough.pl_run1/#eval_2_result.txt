@@ -1,8 +1,0 @@
-```report
-{
-    "HASH": "501F546D",
-    "Report": "The code block implements an insertion sort algorithm in ProbLog but contains a logical error in the `insert/3` predicate. The second clause incorrectly constructs the sorted list by placing `X` before `Y` without properly enforcing the condition `X @=< Y`. This results in an unsorted output, as evidenced by the test result. The issue can be fixed by revising the `insert/3` predicate to ensure correct placement of elements based on the comparison. The third clause should handle the recursive insertion correctly when `X` is greater than `Y`.",
-    "Need_regenerate": true,
-    "Dependencies": []
-}
-```

@@ -1,3 +1,0 @@
-```report
-{"HASH": "EA5E8D55", "ErrorSummary": "Logical error in `coins_r/3`: Incorrect use of `coin(CNT)` instead of iterating over coins properly. Probabilities are inconsistent with expected binomial distribution.", "SuggestedFix": "Replace `coin(CNT)` with explicit probabilistic facts for each coin (e.g., `0.8::coin(1).`, `0.8::coin(2).`, etc.) and ensure the recursive predicate correctly accumulates successes. Example fix:\n```prolog\ncoins_r(SC, SC, 0).\ncoins_r(SC, S, CNT) :-\n    CNT > 0,\n    (coin(CNT), NewSC is SC + 1 ; \\+ coin(CNT), NewSC = SC),\n    NextCNT is CNT - 1,\n    coins_r(NewSC, S, NextCNT).\n```", "Dependencies": [], "NeedRegenerate": true}
-```

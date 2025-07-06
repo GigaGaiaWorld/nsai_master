@@ -1,5 +1,0 @@
-[
-{
-"2D3597DC": "parse([N1, +, N2 | T], R) :- \n    almost_equal(N1 + N2, Temp),\n    parse([Temp | T], R).\nparse([N1, -, N2 | T], R) :- \n    almost_equal(N1 - N2, Temp),\n    parse([Temp | T], R).\nparse([N1, *, N2 | T], R) :- \n    almost_equal(N1 * N2, Temp),\n    parse([Temp | T], R).\nparse([N1, /, N2 | T], R) :- \n    almost_equal(N1 / N2, Temp),\n    parse([Temp | T], R)."
-}
-]

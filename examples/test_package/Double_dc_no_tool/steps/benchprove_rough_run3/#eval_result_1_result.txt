@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "1. Invalid use of '->' operator in ProbLog context for implies/2. 2. Missing implementations for opposite/1, refute/1, includes/2, and extend/2. 3. No probabilistic handling in the meta-interpreter.",
-  "SuggestedFix": "1. Replace implies/2 with: 'prove(implies(A,B)) :- \\+ prove(A); prove(B).' 2. Add missing predicates: 'opposite(G) :- \\+ prove(G).', 'refute(G) :- \\+ prove(G).', 'includes(E,L) :- member(E,L).', 'extend(L,E,[E|L]).' 3. Add probabilistic support by wrapping clauses with tprob/1 where needed.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

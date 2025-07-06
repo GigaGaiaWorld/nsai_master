@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Missing predicates for opposite/1, includes/2, extend/3, and unintegrated expand/2 functionality",
-  "SuggestedFix": "Add the following predicates:\n1. prove(opposite(A)) :- \\+ prove(A).\n2. prove(includes(List,Elem)) :- member(Elem,List).\n3. prove(extend(List,Elem,NewList)) :- NewList = [Elem|List].\n4. prove(expand(X,Y)) :- expand(X,Y).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

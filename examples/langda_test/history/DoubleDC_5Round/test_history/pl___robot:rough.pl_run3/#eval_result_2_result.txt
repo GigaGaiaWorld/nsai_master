@@ -1,3 +1,0 @@
-```report
-{"HASH": "8EB675E6", "ErrorSummary": "Syntax error due to missing line breaks between predicates and unexpected '.' character in parser", "SuggestedFix": "Separate the two 'at/3' predicates with line breaks:\n\nat(robot,Pos,s(T)) :- goto_succeeds(T), goto_action(T), \\+ at(robot, Pos, T).\nat(robot,Pos,s(T)) :- goto_fails(T), goto_action(T), at(robot, Pos, T).", "Dependencies": [], "NeedRegenerate": true}
-```

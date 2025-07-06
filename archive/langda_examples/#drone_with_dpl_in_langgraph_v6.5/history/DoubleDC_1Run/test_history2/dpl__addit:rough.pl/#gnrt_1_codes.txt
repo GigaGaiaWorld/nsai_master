@@ -1,5 +1,0 @@
-[
-{
-"06576BEB": "number(List, N) :- number(List, 0, N).\nnumber([], Acc, Acc).\nnumber([H|T], Acc, N) :-\n    digit(H, D),\n    NewAcc is Acc * 10 + D,\n    number(T, NewAcc, N)."
-}
-]

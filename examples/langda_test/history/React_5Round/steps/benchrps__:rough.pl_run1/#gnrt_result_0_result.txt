@@ -1,9 +1,0 @@
-```problog
-{"HASH": "CFA63C1E","Code": "play([], [], []).\nplay([P1|P1s], [P2|P2s], [Result|Results]) :-\n    (beats(P1, P2), Result = win;\n     beats(P2, P1), Result = lose;\n     Result = draw),\n    play(P1s, P2s, Results)."}
-```
-
-This implementation:
-1. Uses standard Prolog disjunction (;) instead of if-then
-2. Maintains the same logic: checking who beats whom or if it's a draw
-3. Properly handles the recursive case for processing multiple moves
-4. Works with the existing `beats/2` facts and scoring system

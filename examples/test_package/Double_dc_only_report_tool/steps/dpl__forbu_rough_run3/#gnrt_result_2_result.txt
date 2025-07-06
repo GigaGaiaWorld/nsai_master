@@ -1,6 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort([X], Acc, [X|Acc]).\nbubblesort([X, Y | Rest], Acc, Sorted) :-\n    if_then_else(\n        X > Y,\n        bubblesort([X | Rest], [Y | Acc], Sorted),\n        bubblesort([Y | Rest], [X | Acc], Sorted)\n    )."}
-```
-```problog
-{"HASH": "47D659C8","Code": "forth_sort(L, L2) :- bubblesort(L, [], L2)."}
-```

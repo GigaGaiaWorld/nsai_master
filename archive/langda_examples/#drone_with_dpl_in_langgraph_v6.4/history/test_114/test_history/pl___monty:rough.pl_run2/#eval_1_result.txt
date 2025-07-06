@@ -1,8 +1,0 @@
-```report
-{
-  "HASH": "592D75CA",
-  "Report": "The `open_door/1` predicate has significant issues that require regeneration. Key problems include: 1) Improper mixing of probabilistic and deterministic rules in ProbLog syntax, 2) Incorrect implementation of deterministic door opening logic using `fail`/`true`, 3) Non-compliant placement of probabilistic facts within rule bodies. The predicate fails to properly implement both required scenarios (random 50% selection between empty doors and forced selection of the empty door). While the test results show correct probabilities, this is likely due to the rest of the implementation compensating for these flaws rather than proper functioning of this predicate.",
-  "Need_regenerate": true,
-  "Dependencies": []
-}
-```

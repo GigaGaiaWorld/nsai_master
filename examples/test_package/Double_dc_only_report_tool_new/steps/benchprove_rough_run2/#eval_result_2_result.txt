@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "3F5BA02C",
-  "ErrorSummary": "Module implements only implies/2 but is missing other required predicates (opposite/1, includes/2, extend/2, refute/1)",
-  "SuggestedFix": "Add missing predicates to the module:\n1. prove(opposite(A)) :- \\+ prove(A).\n2. prove(includes(List,Elem)) :- member(Elem,List).\n3. prove(extend(List,Elem,NewList)) :- NewList = [Elem|List].\n4. prove(refute(A)) :- \\+ prove(A).\n5. Add integration for expand/2: prove(expand(A,B)) :- expand(A,B).",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

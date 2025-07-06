@@ -1,3 +1,0 @@
-```problog
-{"HASH": "47D659C8","Code": "bubblesort([], Acc, Acc).\nbubblesort([H|T], Acc, Sorted) :-\n    bubble_pass([H|T], [], NewList, Swapped),\n    (Swapped = true ->\n        bubblesort(NewList, Acc, Sorted)\n    ;\n        append(Acc, NewList, Sorted)\n    ).\nbubble_pass([X, Y|T], Acc, NewList, Swapped) :-\n    (X > Y ->\n        bubble_pass([Y|T], [X|Acc], NewList, true)\n    ;\n        bubble_pass([X|T], [Y|Acc], NewList, Swapped)\n    ).\nbubble_pass([X], Acc, [X|Acc], Swapped).\nforth_sort(L, L2) :- bubblesort(L, [], L2).\nquery(forth_sort([3,1,2,5,7,12],X))."}
-```

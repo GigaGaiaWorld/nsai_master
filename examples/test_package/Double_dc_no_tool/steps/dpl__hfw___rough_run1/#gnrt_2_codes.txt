@@ -1,5 +1,0 @@
-[
-{
-"FB41E2F7": "parse([N1, +, N2 | T], R) :-\n almost_equal(Sum, N1 + N2),\n parse([Sum | T], R).\nparse([N1, -, N2 | T], R) :-\n almost_equal(Diff, N1 - N2),\n parse([Diff | T], R).\nparse([N1, *, N2 | T], R) :-\n almost_equal(Prod, N1 * N2),\n parse([Prod | T], R).\nparse([N1, /, N2 | T], R) :-\n N2 =\\= 0,\n almost_equal(Quot, N1 / N2),\n parse([Quot | T], R)."
-}
-]

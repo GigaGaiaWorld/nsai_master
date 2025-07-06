@@ -1,3 +1,0 @@
-```report
-{"HASH": "2DFC0CFD","ErrorSummary": "The `implies/2` predicate uses the unsupported `->/2` construct in ProbLog, causing a runtime error.","SuggestedFix": "Replace `prove(implies(P, Q)) :- (prove(P) -> prove(Q)).` with `prove(implies(P, Q)) :- (prove(P), prove(Q)) ; (\\+ prove(P)).` to use ProbLog-compatible logic.","Dependencies": [],"NeedRegenerate": true}
-```

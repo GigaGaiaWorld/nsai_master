@@ -1,6 +1,0 @@
-```report
-{"HASH": "638F1761","ErrorSummary": "No issues found","SuggestedFix": "None needed","Dependencies": [],"NeedRegenerate": false}
-```
-```report
-{"HASH": "BCB17653","ErrorSummary": "Ambiguity in handling key position when the key is dropped or moved by other actions","SuggestedFix": "Modify the second clause to explicitly account for the key being dropped or moved: `at(key, Pos, s(T)) :- \\+ carrying(key, s(T)), at(key, Pos, T), \\+ drops(key, T).`","Dependencies": [],"NeedRegenerate": true}
-```

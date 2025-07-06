@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "DA5E8955",
-  "ErrorSummary": "The parse rule for division doesn't properly handle operator precedence and evaluates expressions strictly left-to-right. The test case shows incorrect evaluation of '2 / (3 + 3) - 2 * 7' which should be approximately -13.666 but returns 0.0.",
-  "SuggestedFix": "Restructure the parse rules to implement proper operator precedence. The division rule should be modified to handle nested expressions correctly. Consider adding separate precedence levels for different operators and potentially introducing parentheses handling.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

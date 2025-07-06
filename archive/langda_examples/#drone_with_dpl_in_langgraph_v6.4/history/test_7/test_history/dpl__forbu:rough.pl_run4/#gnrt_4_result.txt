@@ -1,7 +1,0 @@
-Here are the extracted and formatted code blocks from the generated code that correspond to the <langda> block in the original code:
-
-```problog
-{"HASH": "47D659C8", "Code": "bubblesort([], Acc, Acc).\n\nbubblesort(List, Acc, Sorted) :-\n    bubble_pass(List, [], NewList, Max),\n    bubblesort(NewList, [Max|Acc], Sorted).\n\nbubble_pass([X], Acc, Acc, X).\n\nbubble_pass([X, Y|T], Acc, NewList, Max) :-\n    X > Y,\n    bubble_pass([X|T], [Y|Acc], NewList, Max).\n\nbubble_pass([X, Y|T], Acc, NewList, Max) :-\n    X =< Y,\n    bubble_pass([Y|T], [X|Acc], NewList, Max)."}
-```
-
-Note: The original code only had one <langda> block with one code section, so only one JSON entry is needed. The hash "47D659C8" is preserved from the original code block. The generated code successfully replaces the Prolog conditional operator (`->`) with ProbLog-compatible separate clauses for the `X > Y` and `X =< Y` cases.

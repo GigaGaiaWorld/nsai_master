@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "47D659C8",
-  "ErrorSummary": "Unmatched parentheses in the `bubble/3` predicate causing a syntax error. The recursive case is improperly closed.",
-  "SuggestedFix": "Correct the `bubble/3` predicate by ensuring all parentheses are properly closed. For example, the recursive case should be:\n\n```prolog\nbubble([H1, H2 | T], [X1 | T1], X) :-\n    (H1 =< H2,\n     X1 = H1,\n     bubble([H2 | T], T1, X)\n    );\n    (H1 > H2,\n     X1 = H2,\n     bubble([H1 | T], T1, X)\n    ).\n```",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

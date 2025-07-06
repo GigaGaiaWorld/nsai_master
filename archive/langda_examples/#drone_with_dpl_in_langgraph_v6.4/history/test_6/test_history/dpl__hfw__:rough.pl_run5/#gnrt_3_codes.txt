@@ -1,5 +1,0 @@
-[
-{
-"190031BC": "operator_precedence('+', 1).\noperator_precedence('-', 1).\noperator_precedence('*', 2).\noperator_precedence('/', 2).\n\nsplit_lowest_precedence(Expr, Left, Op, Right) :-\n    find_operator(Expr, Op, Index),\n    split_at(Expr, Index, Left, Right).\n\nfind_operator([Op], Op, 0) :- operator_precedence(Op, _).\nfind_operator([Op|Rest], FoundOp, Index) :-\n    operator_precedence(Op, Prec),\n    find_operator(Rest, FoundOp, RestIndex),\n    (   operator_precedence(FoundOp, FoundPrec),\n        (   Prec =< FoundPrec\n        ->  Index is 0\n        ;   Index is RestIndex + 1\n        )\n    ).\n\nsplit_at(List, Index, Left, Right) :-\n    length(Left, Index),\n    append(Left, [Op|Right], List).\n\napply_operator('+', Left, Right, Result) :- Result is Left + Right.\napply_operator('-', Left, Right, Result) :- Result is Left - Right.\napply_operator('*', Left, Right, Result) :- Result is Left * Right.\napply_operator('/', Left, Right, Result) :- Result is Left / Right."
-}
-]

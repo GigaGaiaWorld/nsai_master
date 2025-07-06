@@ -1,3 +1,0 @@
-```problog
-{"HASH": "6931D64E","Code": "stack_op(sort, Stack, SortedStack) :-\n    get_top_n(Stack, 3, [X,Y,Z], Rest),\n    sort3(X, Y, Z, Sorted),\n    append(Sorted, Rest, SortedStack).\n\nsort3(X, Y, Z, [A,B,C]) :-\n    max_list([X,Y,Z], C),\n    min_list([X,Y,Z], A),\n    (   member(B, [X,Y,Z]), B \\= A, B \\= C -> true\n    ;   B = A\n    )."}
-```

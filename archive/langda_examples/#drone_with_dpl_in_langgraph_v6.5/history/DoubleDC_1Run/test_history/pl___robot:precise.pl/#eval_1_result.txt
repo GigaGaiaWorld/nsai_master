@@ -1,7 +1,0 @@
-```report
-{"HASH": "638F1761","ErrorSummary": "Missing definition for `goto_action(T)` and potential inconsistency in `at/3` predicates","SuggestedFix": "Add the predicate `goto_action(T) :- do(goto(_), T).` to explicitly define `goto_action`. Ensure the `at/3` predicates correctly handle the robot's movement and failure cases.","Dependencies": [],"NeedRegenerate": true}
-```
-
-```report
-{"HASH": "BCB17653","ErrorSummary": "Inconsistent probabilities for `at(key, Pos, s(T))` when the robot is not carrying the key","SuggestedFix": "Review the second `at/3` predicate to ensure it correctly models the key's stationary behavior when not carried. Consider adding probabilistic rules to account for external factors affecting the key's position.","Dependencies": [],"NeedRegenerate": true}
-```

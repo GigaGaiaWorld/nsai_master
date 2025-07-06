@@ -1,3 +1,0 @@
-```problog
-{"HASH": "418D2062","Code": "merge_sort([], []).\nmerge_sort([X], [X]).\nmerge_sort(List, Sorted) :-\n    length(List, Len),\n    Len > 1,\n    Half is Len // 2,\n    length(FirstHalf, Half),\n    append(FirstHalf, SecondHalf, List),\n    merge_sort(FirstHalf, SortedFirst),\n    merge_sort(SecondHalf, SortedSecond),\n    merge(SortedFirst, SortedSecond, Sorted).\nmerge([], L, L).\nmerge(L, [], L).\nmerge([X|Xs], [Y|Ys], [X|Zs]) :-\n    X @=< Y,\n    merge(Xs, [Y|Ys], Zs).\nmerge([X|Xs], [Y|Ys], [Y|Zs]) :-\n    X @> Y,\n    merge([X|Xs], Ys, Zs)."}
-```

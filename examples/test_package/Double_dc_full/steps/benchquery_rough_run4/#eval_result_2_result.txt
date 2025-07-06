@@ -1,3 +1,0 @@
-```report
-{"HASH": "6FC0DF89","ErrorSummary": "Missing query_pop/1 predicate required to query countries with similar population densities","SuggestedFix": "Add the following predicate to the code: query_pop([Country1, Density1, Country2, Density2]) :- density(Country1, Density1), density(Country2, Density2), Country1 \\= Country2, abs(Density1 - Density2) =< 0.05 * max(Density1, Density2).","Dependencies": [],"NeedRegenerate": true}
-```

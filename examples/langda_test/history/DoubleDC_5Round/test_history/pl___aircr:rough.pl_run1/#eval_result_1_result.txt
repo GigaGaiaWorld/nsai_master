@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "A5C06F43",
-  "ErrorSummary": "Unsupported '->/2' (if-then) construct in ProbLog, causing 'UnknownClause' error",
-  "SuggestedFix": "Replace the line '(Delta > 0 -> Direction = 1; Direction = -1)' with '(Delta > 0, Direction = 1; Delta =< 0, Direction = -1)' to use a disjunction instead of if-then",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```

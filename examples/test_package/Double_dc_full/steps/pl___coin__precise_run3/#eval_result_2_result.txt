@@ -1,9 +1,0 @@
-```report
-{
-  "HASH": "A88642CF",
-  "ErrorSummary": "CallModeError due to misuse of `is/2` predicate in recursive rule. `SC1` is not ground when `SC is SC1 + 1` is evaluated.",
-  "SuggestedFix": "Replace `SC is SC1 + 1` with `SC = SC1 + 1` to use unification instead of arithmetic evaluation. Ensure `SC1` is ground before arithmetic operations.",
-  "Dependencies": [],
-  "NeedRegenerate": true
-}
-```
