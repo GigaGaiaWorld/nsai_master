@@ -1,5 +1,8 @@
-### nsai_master
+### langda: 
+The final packaged code, directly execute langda_solve to get the final code
 
-### Core: The final packaged code, directly execute langda_solve to get the final code
-### archive: All historical development records
-### examples: examples showed in experiment
+### archive: 
+All historical development records
+
+### examples: 
+examples showed in experiment
